@@ -1,0 +1,36 @@
+---
+title: "WATI"
+slug: "whatsapp-wati"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send WhatsApp notification using WATI & Fyno | Fyno Documentation"
+    description: "To integrate WATI with Fyno, you need an active WhatsApp number and pre-configured templates in your WATI account. Follow the steps to fill in the required details, test the integration, and manually update the Fyno Callback Endpoint in WATI to track message delivery status."
+    image: []
+    robots: "index"
+createdAt: "Wed Aug 21 2024 07:35:28 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 06:54:58 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need an active WhatsApp number as well as templates pre-configured in your WATI account.
+
+1. Navigate to Integrations.
+2. Under "WhatsApp" section, click on the "WATI" button.
+3. In the pop-up, fill in:
+
+    1. **Custom name**: Provide a name to help you identify the configured account in Fyno's portal.
+    2. **API Endpoint**: In the top navigation, go to More -> API Docs to access API Endpoint
+    3. **Access Token**: In the top navigation, go to More -> API Docs to get Access Token
+       ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/whatsapp_wati_apikey.png)
+
+4. Click on "Test Integration" once done. If the account is successfully connected, you will see a success message.
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, WATI requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log in to your [WATI account](https://app.wati.io/).
+2. On the top navigation pane, find and click on _More -> Webhooks_
+3. Click 'Webhooks' to add the webhook URL (copy it from the WATI Integration popup) and choose status as 'Enabled'
+4. Select the events for which you want to receive the status in Fyno. We recommend adding the below shown statuses.
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/whatsapp_wati_callback.png)

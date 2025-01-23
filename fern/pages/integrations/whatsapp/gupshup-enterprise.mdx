@@ -1,0 +1,37 @@
+---
+title: "Gupshup Enterprise"
+slug: "whatsapp-gupshup-enterprise"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send WhatsApp channel notification using Gupshup Enterprise & Fyno | Help Document"
+    description: "A guide to integrate your Gupshup Enterprise WhatsApp account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Wed Feb 01 2023 06:35:23 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Oct 14 2024 10:59:28 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need an active WhatsApp number as well as templates pre-configured in your Gupshup Enterprise account
+
+1. Navigate to Integrations.
+2. Under "WhatsApp" section, click on the "Gupshup Enterprise" button.
+3. In the pop-up that appears, fill in:
+    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **Username:** Provide the username that you use to sign into your Gupshup Enterprise Account.
+    3. **Password:** Provide the password that you use to sign in, corresponding to the same Gupshup Enterprise account
+4. Click on "Test Integration" once done. If the account is successfully connected, you will see a success message.
+
+> ❗️ WhatsApp Template registration process for Gupshup Enterprise
+>
+> Gupshup Enterprise requires you to provide the body of message content even for templatized messages. So, when you configure a Gupshup Enterprise account in our provider list, you will be required to provide the body of the message for template messages also.
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, Gupshup Enterprise requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log in to your [Gupshup Analytics account](https://unify.smsgupshup.com/WhatsApp/Analytics/views/integration/webhooks/outbound/list).
+2. On the left navigation pane, find and click on **Integrations**.
+3. On the page that loads, again on the left navigation panel, find **Webhooks** and click on WhatsApp Message Delivery Events.
+4. Scroll to the bottom of the page and enter given in the Gupshup Enterprise Integration popup in the field mentioned as Notification Callback URL and select the forward method as **JSONBODY** and click on **Submit** at the end of the page.
+5. We recommend you test the configuration once by clicking on **Test** at the top right corner of the page to make sure the configuration is working as expected.

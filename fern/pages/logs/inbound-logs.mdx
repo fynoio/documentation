@@ -1,0 +1,81 @@
+---
+title: "Inbound logs"
+slug: "inbound-logs"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Inbound logs | Fyno Documentation"
+    description: "Inbound logs allow you to view user responses in a conversation mode, with options to filter logs by date range, customer number, business number, and workflow name."
+    image: []
+    robots: "index"
+createdAt: "Thu Jul 18 2024 06:21:42 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Oct 14 2024 11:38:24 GMT+0000 (Coordinated Universal Time)"
+---
+
+Inbound logs helps you to view all the responses sent by your users in a conversation mode. To access Inbound logs, go to Navigation Menu -> Logs -> Inbound.
+
+On the page that opens, you will see the following:
+
+1. Inbound Logs
+2. Filters
+
+## Inbound Logs
+
+You will see the inbound logs as shown below.
+
+![](https://files.readme.io/1c1f82a-inbound_logs.png)
+
+1. Timestamp - Tells you the details of when (date and time) the response was sent by the customer.
+2. From (Customer No) - Customer's mobile no from which the response is sent.
+3. To (Business No) - The WhatsApp Business account number that received the customer's message
+4. Response - Response Type of the customer. It could be one of the following
+    1. Text
+    2. Button
+    3. Image
+    4. Document
+    5. Video
+    6. Contacts
+    7. Sticker
+    8. Reaction
+    9. Location
+    10. Audio
+5. Workflow - Workflow which is linked to the notification sent.
+
+Once you click any Inbound log, you will see the Conversation as shown below.
+
+![](https://files.readme.io/a4e55a8-inbound_log_details.png)
+
+1. You can view the messages sent by you and the responses/options selected by the user as a conversation.
+2. This help you to understand and act on any user responses or queries.
+3. By default, it shows all the responses received from SMS and WhatsApp. If you want to see only SMS or WhatsApp, you can choose it by clicking on the icon at the top right corner.
+
+> 📘 To view the detailed Inbound logs, you need to enable Conversation Logs in Workspace settings.
+
+## Filters
+
+You can filter the logs based on the criteria mentioned below.
+
+1. **Date Range**: Tells you the details of when (date and time) the notification event was triggered. You can select one of the provided options, which are:
+    1. Today
+    2. Yesterday
+    3. Last 7 days
+    4. Custom - select a date range based on the log retention settings for delivery callback logs. You can see this under Workspace Settings -> Add On's -> Logs Archival
+2. **From Customer No**: Customer's mobile no from which the response is sent.
+3. **To Business No**: The WhatsApp Business account number that received the customer's message
+4. **Workflow Name**: Workflow which is linked to the notification sent.
+
+## Downloading inbound report
+
+To download incoming messages, apply all relevant filters and click 'Download Report' at the top right corner. You will see a popup which shows all the filters applied as shown below.
+
+![](https://files.readme.io/f8aba6201068eefa937477187fb16ea908754ae8c301ee179f4891a217cf3cef-Inbound_report.png)
+
+Once you click 'Download' button, the report will be downloaded with applied filters.
+
+You will see the below fields in the report
+
+1. Timestamp - Tells you the details of when (date and time) the response was sent by the customer.
+2. From (Customer No) - Customer's mobile no from which the response is sent.
+3. To (Business No) - The WhatsApp Business account number that received the customer's message
+4. Type - This will show the type of response like Interactive, text etc.
+5. Response - This field will show what the user has responded. If the user responded as part of Meta flow, we will show 'Submitted a flow' as response.

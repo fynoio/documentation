@@ -1,0 +1,315 @@
+---
+title: "Creating a Notification Event"
+slug: "notification-event-creation"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Notification Events Creation | Fyno Documentation"
+    description: 'Fyno''s application design centers around creating "Notification Events," which integrate providers, optional routing, and templates into a single executable API. Users can create, manage, and analyze these events through a user-friendly interface, with features like conditional templates, routing options, analytics labels, and conversion tracking, while also supporting approval workflows for going live.'
+    image: []
+    robots: "index"
+createdAt: "Wed Nov 16 2022 11:36:55 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Jan 15 2025 05:51:29 GMT+0000 (Coordinated Universal Time)"
+---
+
+A notification event is the single most important part of Fyno's application design.
+
+This stitches all the pieces that have been created by you and put them into a configuration flow or "**Notification Event**" that becomes executable in a single API
+
+For a notification event to be successfully created, you will need to have preconfigured:
+
+1. Providers
+2. Routing (optional)
+3. Templates
+
+The basic concept of a notification event is:
+
+> 😎 Providers + Routing (optional) + Templates = Notification Event
+
+Let's have a quick look around the landing page of Notification Events.
+
+You will find an easy toggle to change your view between a card grid and a list view, for your convenience.
+
+Your option to filter out only the **Live** routes is at the top of the page.
+
+On this page, you can quickly search for any of the notification events by the name given to them at the time of creation.
+
+> 📘 Create "Notification Events" with significant titles or names to help search for them easily.
+>
+> A detailed description can also be added at the time of creation.
+
+To create a new Notification Event, click on the "**Create+**" on the right side of the page.
+
+1. Provide a name for your notification event
+2. Provide a description of your notification event. This helps in the future when you want to review and change things up in your "**Notification Event**"
+3. Select Subscription topic from the list of subscriptions created in User Preferences. This is an optional field. Please refer this [documentation](https://docs.fyno.io/docs/user-preferences) on how to create subscription
+4. Click on "**Submit**" once done.
+
+> 📘 Make sure to choose the correct Subscription Topic. If a channel is disabled within the Subscription Topic, notifications will not be sent even if the corresponding channel template is configured.
+
+The most anticipated logic that Fyno has cracked is in the next few steps, leading to making your life easy breezy.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/events-landing-page.png)
+
+On creating a notification event, on each **Notification Event** card you will see:
+
+1. Notification Event Analytics button on the top right corner of the card
+2. cURL or Code Button, which will open up the Notification Event Trigger Window
+3. The last updated day or time of the notification event
+4. The latest version of the Notification Event, including live or test version details.
+5. a "**More**" menu at the bottom right corner, that gives you the option to
+    1. "Rename" the **Notification Event**
+    2. "Duplicate" the **Notification Event**
+    3. "Delete" the **Notification Event**
+
+## 1. Template
+
+The first step to building a great "**Notification Event**" with Fyno is to select a template that you have already created in the "**Templates**" section OR to create a new template by clicking 'Create Template'.
+
+-   **Selecting a template**
+
+    -   On clicking on the drop-down, you will see the entire list of templates created. Select one to proceed.
+    -   On selecting a template, at the bottom of the template selected, you will even be able to see the preview of the template on the right hand side.
+    -   If you wish to edit the selected template click on the 'EDIT TEMPLATE' button right above the template preview on the right hand side.
+        ![](https://files.readme.io/5b061d792ae032867345f5eafe0e1a70acd5051916e2ca538c2b027fdb59fe01-Event_template_selection.png)
+
+-   **Creating a new template**
+
+    -   You can create a new template from scratch by clicking 'Create Template'.
+        ![](https://files.readme.io/be5c82f26d0599a11203956a130c8ec8e3af883c96e772be84d50947b16d4cc8-event_template_creation.png)
+
+    -   It will open a popup from where you can start creating a template
+    -   Refer this [doc](https://docs.fyno.io/docs/template-creation) on how a new template can be created from scratch.
+
+### Conditional Templates
+
+Conditional Templates empower you to choose templates based on specific conditions. This feature allows you to associate multiple templates with the same event, eliminating the need for redundant creation of multiple notification events.
+
+#### How it works?
+
+For instance, if you plan to send order status communications to users for statuses like Order Confirmed, Shipped, In-Transit, and Delivered. You can create four templates, each tailored to a specific order status. With Conditional Templates, you can efficiently manage these 4 templates under a single notification event, streamlining your communication workflow.
+
+> 📘 There is NO cap on the number of templates you can include in a conditional template flow.
+
+#### Sample cURL Request:
+
+```Text Confirmed
+curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
+-H 'Authorization: Bearer <YOUR_FYNO_API_KEY>' \
+-H 'Content-Type: application/json' \
+-d '{
+    "event": "Order_Status",
+    "to": {
+        "email": "<receivers_email>"
+    },
+    "data": {
+        "order": {
+            "mobile": "+91 9876543210",
+            "order_amount": "₹ 1,350.00",
+            "status": "Confirmed",
+            "payment_type": "COD",
+            "product_name": "abc",
+            "customer_name": "Vivek",
+            "delivery_date": "25-Dec-2023",
+            "order_id": "DEC165432"
+        }
+    }
+}'
+```
+
+```Text Shipped
+curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
+-H 'Authorization: Bearer <YOUR_FYNO_API_KEY>' \
+-H 'Content-Type: application/json' \
+-d '{
+    "event": "Order_Status",
+    "to": {
+        "email": "<receivers_email>"
+    },
+    "data": {
+        "order": {
+            "mobile": "+91 9876543210",
+            "order_amount": "₹ 1,350.00",
+            "status": "Shipped",
+            "payment_type": "COD",
+            "product_name": "abc",
+            "customer_name": "Vivek",
+            "delivery_date": "25-Dec-2023",
+            "order_id": "DEC165432"
+        }
+    }
+}'
+```
+
+```Text InTransit
+curl -X POST 'https://api.dev.fyno.io/v1/<WorkspaceID>/event' \
+-H 'Authorization: Bearer <YOUR_FYNO_API_KEY>' \
+-H 'Content-Type: application/json' \
+-d '{
+    "event": "Order_Status",
+    "to": {
+        "email": "<receivers_email>"
+    },
+    "data": {
+        "order": {
+            "mobile": "+91 9876543210",
+            "order_amount": "₹ 1,350.00",
+            "status": "InTransit",
+            "payment_type": "COD",
+            "product_name": "abc",
+            "customer_name": "Vivek",
+            "delivery_date": "25-Dec-2023",
+            "order_id": "DEC165432"
+        }
+    }
+}'
+```
+
+```Text Delivered
+curl -X POST 'https://api.dev.fyno.io/v1/<WorkspaceID>/event' \
+-H 'Authorization: Bearer <YOUR_FYNO_API_KEY>' \
+-H 'Content-Type: application/json' \
+-d '{
+    "event": "Order_Status",
+    "to": {
+        "email": "<receivers_email>"
+    },
+    "data": {
+        "order": {
+            "mobile": "+91 9876543210",
+            "order_amount": "₹ 1,350.00",
+            "status": "Delivered",
+            "payment_type": "COD",
+            "product_name": "abc",
+            "customer_name": "Vivek",
+            "delivery_date": "25-Dec-2023",
+            "order_id": "DEC165432"
+        }
+    }
+}'
+```
+
+1. Navigate to the notification event page and click on "Use conditionally" under Templates section.
+
+![](https://files.readme.io/82208a04ee758c35d28f1bfcc91cc5c2a71f9f484f9cfdd4f2f58338e8e09794-event_template_creation.png)
+
+2. To add conditions, follow these steps:
+    1. Select the template you wish to use.
+    2. Establish conditions based on variables.  
+       For instance, to trigger the Order Confirmed communication, select the 'Order_Confirmed' template and set the condition as "status equals Confirmed," and repeat this process for other statuses accordingly. You can use 'Add rule' to add multiple conditions to choose a template.
+    3. You can click 'Add Template' to keep adding new templates with conditions.
+    4. Ensure, 'Else' condition is added. You can choose either 'Do Nothing' or select a fallback template attached if none of the other conditions are not satisfied.
+
+![](https://files.readme.io/c932bbf49dc2046b826b9e8df33136a9cbbb0300c0b85bab29d093306b8dcb5a-conditional_templates_1.png)
+
+3. To delete any of the conditions added, click the delete icon on the right hand side of each condition added.
+4. To preview a template, click the numbered button in the top-left corner of the conditional template card. The preview will appear on the right side of the page.
+5. To rearrange the conditions, you can drag them up or down by clicking the 'Drag Indicator' icon on the left-hand side of each condition.
+6. You can remove all the conditions by clicking 'Remove all conditions' icon at the bottom.
+7. Once you have added all the conditions, you will see the conditions in collapsed format as shown below. You can see the preview of different templates by clicking '>' icon to navigate forward and by clicking '\<' to navigate backwards or type in the condition number in the field next to 'Previewing' to go directly to that template.
+
+![](https://files.readme.io/ddc1fff0bf5f7204cb9c208ea59c3ee9b559f300508b38dd085e831d27e18a20-conditional_templates_after_adding.png)
+
+6. To modify any of the conditions, simply click on 'Edit Conditions.'
+
+On to the next step!
+
+## 2. Route/Provider
+
+Route/Provider allows you to define the manner in which the notification will be sent across channels and providers.
+
+On clicking the drop-down menu under Rules, you will see:
+
+1. **Single Channel Route or Provider** - Individually select each channel and select a **Provider** or **Route** for each channel. For example, if your template has 3 channels, you will see options to select how you want to send your Email, SMS and WhatsApp. You can decide to choose a service provider or a Single channel route created for that channel. You can read more about Single Channel Route [here](https://docs.fyno.io/docs/route-creation)
+
+![](https://files.readme.io/3f2628d2c73c7ba234b13b351bdf343641bc9e2f70423a7b10b9303f798df986-single_channel_route.png)
+
+2. **Omni-channel Route** - Select an **Omni-Channel Route** that has been created. You can read more about Omni Channel Route [here](https://docs.fyno.io/docs/omnichannel-routing-introduction)
+
+## 3. Analytics Label (Optional)
+
+Select this option if you want to either group analytics of multiple notification events or filter analytics of a single notification event.
+
+![](https://files.readme.io/1649d70719cc1e3ca708af6db41802e96761b4b50f0863058a5070ef6ac2e647-Analytics_label.png)
+
+You can select either Static or Dynamic analytics labels.
+
+-   **Static** - Use this option to consolidate and analyze analytics across multiple related notification events.
+
+    -   **Example:** - For instance, if you want to track multiple status notifications (Confirmed, Shipped, InTransit, Delivered) in one comprehensive view. This eliminate the need to analyze each notification separately. Helps you to gain holistic insights into customer engagement across the entire order journey  
+        By grouping these notifications, you'll understand the complete performance of your Order Status communication at a glance.
+    -   **How to Group Analytics:**
+        -   Navigate to the analytics label dropdown
+        -   Select the specific Order Status notifications you want to analyze together
+    -   **Related Resources:**
+        -   To know how to add analytics labels, please refer this [document](https://docs.fyno.io/docs/analytics-label)
+        -   To see how to view the analytics, you can refer this [document](https://docs.fyno.io/docs/dashboard#overview-and-insights).
+
+-   **Dynamic** - This feature allows you to dive deep into your notification performance by either:
+    1. Grouping analytics across multiple notification events
+    2. Filtering data for a specific notification event
+    -   **Example:**Imagine you're sending policy renewal emails using a single template across different mobile brands (Apple, Samsung, Vivo, and Oppo).
+        -   How to Analyze by Device Brand:
+            1. Use the placeholder {{brand_name}} as your Analytics label
+            2. This enables you to track performance metrics for each mobile brand separately
+    -   **Related Resources:**
+        -   To know how to add analytics labels, please refer this [document](https://docs.fyno.io/docs/analytics-label)
+        -   To see how to view the analytics, you can refer this document.
+
+## 4. Track Conversion (Optional)
+
+This option will be visible only if you enable Conversion Tracking setting. You can read how to enable this setting [here](https://docs.fyno.io/docs/conversion-tracking)
+
+![](https://files.readme.io/53431b1eb0ca1683f44475b3cf5c2468c6740a0111a9f00b5640319e013d6786-track_conversion.png)
+
+1. Enable Track conversion checkbox.
+2. Enter the duration till which you want to track the conversion. For example, if you fired the notification and want to track conversion for the next 5 minutes, enter 5 minutes.
+3. Click Copy Code. You need to pass only conversion id in the data payload to intimate Fyno to mark the notification as 'Converted' for a user/destination. Make sure, you pass the same conversion id while triggering the notification event also.
+
+## 5. Save & Go Live
+
+Make sure you save every change by hitting the "**Save**" button at the top of the page. This will only save your changes as **Test**
+
+On clicking on the **Go Live** CTA, the notification event will be live immediately.
+
+### Test and Live Versions
+
+When a **Test** version is saved, this does not disturb the **Live** version that may be plugged in your application and may be active.
+
+When you are confident and happy with the **Notification Event** that you have created and tested in **Test** version, this can then be moved into live version by following the below steps.
+
+1. Make the final changes on the notification event and test it to make sure you are getting the desirable results.
+2. On the top of the page, next to the name of the **Notification Event**, you will see the Test Version mentioned.
+3. To keep this as a **Test**, click on **Save** and the draft will be saved.
+4. To make this version of the **Test** live, click **Go Live**.
+5. This will make the current version the live version of the **Notification Event**.
+
+# How to group Notification events
+
+Notification Events Groups help you organize related notification events together. For instance, if you have multiple notification events for different order statuses (Confirmed, Cancelled, Shipped, InTransit, Delivered), you can create an 'Order Management' group and assign all these notification events to it. This makes notification events filtering and management more efficient.
+
+You can read more about it [here](https://docs.fyno.io/docs/notification-event-group)
+
+# Approval flow
+
+If you have enabled 'Approval' in Security Settings, when you click 'Go Live', you will need to raise an approval request for the changes you have done.
+
+1. You will see the below popup once you click 'Go Live' . Select approvers from the 'From' dropdown. You can choose one or more approvers. You need to write a short message mentioning the reason for approval request. If you select 'Go Live on approval', the feature will go Live once the approver approves the request. Clicking 'Send for Approval' will send the request.
+
+![](https://files.readme.io/eadd428-event_approval.png)
+
+2. You will see the approval request in the Notification event page as shown . You can click 'Cancel' to cancel the request.
+
+![](https://files.readme.io/2abc2a1-notif_event_approval_request.png)
+
+3. The approvers will receive an Email, an InApp notification for every approval request.
+4. The approver will see the request in the Notification event page. The approver can approve or reject from the respective notification event.
+
+![](https://files.readme.io/60de965-approval_request_feature_page.png)
+
+5. Also if the approver wants to see all the pending requests, then can see them in the 'Requests' page as shown below.
+
+![](https://files.readme.io/ba2bc39-Pending_Request.png)
+
+5. The approver can choose one or more requests and either Approve or Reject. While rejecting they need to provide a rejection reason.
+6. If the request is Approved, the feature will go Live if the requestor selected 'Go Live on approval' while raising the request. Otherwise, they have to click 'Go Live' to take the feature Live.

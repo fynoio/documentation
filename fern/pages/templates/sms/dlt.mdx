@@ -1,0 +1,169 @@
+---
+title: "DLT SMS template types"
+slug: "dlt-sms-templates"
+excerpt: ""
+hidden: false
+metadata:
+    title: "DLT templates & Guideline | Fyno Documentation"
+    description: "The document explains the use of Distributed Ledger Technology (DLT) for monitoring unsolicited SMS, categorizing messages into Transactional, Service Implicit, Service Explicit, and Promotional templates, with specific examples and guidelines for template validation."
+    image: []
+    robots: "index"
+createdAt: "Thu Jun 27 2024 09:09:29 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Jul 03 2024 07:39:35 GMT+0000 (Coordinated Universal Time)"
+---
+
+# What is Distributed Ledger Technology (DLT)
+
+TRAI uses Distributed Ledger Technology (DLT), a blockchain-based system, to monitor unsolicited SMS. Implemented in April 2021 as part of TCCCP Regulations, it requires all SMS sent by principal entities (PEs) to be registered on the DLT platform.
+
+## SMS Template Types
+
+There are 4 types of templates, each with specific Content Template guidelines. These include:
+
+1. Transactional
+2. Service Implicit
+3. Service Explicit
+4. Promotional
+
+**1. Transactional**
+
+Transactional templates are used for:
+
+-   Transaction-related messages (e.g., order confirmations, account alerts)
+-   Messages with One-Time Passwords (OTPs) for banking transactions
+-   Essential and time-sensitive communications
+
+These templates ensure secure and reliable messaging for critical transactions across various types.
+
+This applicability extends to all types of banks, including national, scheduled, private, government-owned, and multinational corporations (MNCs).
+
+_Example:_
+
+1. OTP message required for completing a Net-banking transaction.
+2. OTP message required for completing credit/debit card transaction at a Merchant location.
+
+| Actual Message                                                                                                                  | Required template format to register on DLT                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 012345 is your OTP for fund transfer for amount Rs.5,000 to Rahul. OTP is valid for 1 minute. Do not share this OTP with anyone | `{#var#}` is your OTP for fund transfer for amount `{#var#}` to `{#var#}`. OTP is valid for `{#var#}` minute(s). Do not share this OTP with anyone. |
+
+**2. Service Implicit**
+
+Service Implicit templates are for messages sent without explicit customer consent. They apply when:
+
+-   Consent can be reasonably inferred from customer behavior or existing relationships
+-   Messages result from customer actions or established sender-recipient interactions
+-   Content is non-promotional
+-   Blocking such communication isn't in the customer's best interest
+
+_Example:_
+
+1. Confirmation messages of a Net-banking and credit/debit card transactions
+2. Product purchase confirmation, delivery status, etc., from e-comm websites
+3. Customer making payments through Payment Wallet over E-Commerce website/mobile app where a OTP is sent to complete the transaction
+4. OTP’s required for e-comm website, app logins, social media apps, authentication/verification links, securities trading, account operations, KYC, e-wallet registration, etc.
+5. Telecom Service Provider(TSP)/Internet Service Provider(ISP) messages
+6. Periodic balance info, bill generation, bill dispatch, due date reminders, recharge confirmation (DTH, cable, prepaid electricity recharge, etc.)
+7. Delivery notifications, updates and periodic upgrades
+8. Messages from retail stores related to bill, warranty
+9. Messages from schools-attendance/transport alerts
+10. Messages from hospitals, clinics, pharmacies, radiologists, pathologists about registration, appointment, discharge, reports
+11. Confirmatory messages from app-based services
+12. Government/DOT/TRAI mandated messages
+13. Service updates from car workshops, repair shops, gadgets service centers
+14. Directory services like Justdial, yellow pages
+15. Day-end/month-end settlement alerts to securities/account holders
+
+| Actual Message                                                                                                                         | Required template format to register on DLT                                                                                            |
+| :------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| Thank you for using EMI Facility on your HDFC Bank Credit Card ending with 3495. EMI request for Rs. 100000.00 executed on 20/06/2024. | Thank you for using EMI Facility on your HDFC Bank Credit Card ending with `{#var#}`. EMI request for `{#var#}` executed on `{#var#}`. |
+
+**3. Service Explicit**
+
+These are the messages which requires explicit consent from customer, that has been verified directly from the recipient in robust and verifiable manner and recorded by consent registrar. Any service message which doesn’t fall under service-implicit category. There may not be any need for explicit consent to all other subscribers, who have not blocked service messages
+
+Service Explicit templates are for:
+
+-   Service messages sent with verified explicit customer consent
+-   Communications that don't fit the service-implicit category
+-   Messages where consent is:
+    -   Directly obtained from the recipient
+    -   Recorded by a consent registrar
+    -   Confirmed in a robust, verifiable manner
+
+_Example:_
+
+1. Messages to the existing customers recommending or promoting other products or services.
+2. Re-engagement messages sent to existing customer like "It's been 30 days since you last visited our platform. Visit now and explore our new products"
+
+| Actual Message                                                                                                                                       | Required template format to register on DLT                                                                                                                   |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Your Rs.1000 exclusive coupon is UNUSED!! Redeem it on purchase of Rs.2,000 and above at SuperDry. Use code XYZABC Valid till 31st Jul 2024!<br/>T&C | Your Rs.`{#var#}` exclusive coupon is UNUSED!! Redeem it on purchase of Rs.`{#var#}` and above at SuperDry. Use code `{#var#}` Valid till `{#var#}`!<br/>T&C. |
+
+**4. Promotional**
+
+Promotional templates are used for:
+
+-   Marketing messages and advertisements
+-   Content promoting products, goods, or services
+
+Key points to remember:
+
+-   Messages mixing service and promotional content are usually classified as promotional
+-   Require explicit customer consent for promotional content
+-   Subject to preference and consent scrubbing before sending
+-   Cannot be sent without explicit consent for the promotional aspect
+
+_Example:_
+
+1. Offer messages to new users like "Shop for 3999 and get 10% off on our App. Limited time offer. T&C. Download the App now..."
+2. Pack Upgrade message to existing customers like "Upgrade to our pro plan. Get credit limit of 1k and pay once in 30 days. Click here...."
+
+| Actual Message                                                                                                          | Required template format to register on DLT                                                                                     |
+| :---------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| Explore our latest Winter Collection Launch. Exclusive 10% discount for you. Valid till 10/07/2024. Use Coupon - XYZABC | Explore our latest Winter Collection Launch. Exclusive `{#var#}` discount for you. Valid till `{#var#}`. Use Coupon - `{#var#}` |
+
+## General Template Validation
+
+-   Organization name or brand name must appear in the template.
+-   Transaction Content Template is only available for banks, digital wallets duly permitted/approved by RBI.
+-   _Transaction/Service explicit/Service implicit_ templates can be created under _Alpha-headers_.
+-   _Promotional_ templates can be created under _Numeric headers_.
+-   2 or more spaces are not supposed to be used between 2 words, before word or after word.
+-   Transactional/Service category messages should have variable mandatorily.
+-   Promotional category can have complete fixed content or with variable part.
+-   Maximum allowed variable length is **30 characters**. Spaces, special and regular characters, all qualify as characters.
+-   All special characters are being allowed currently.
+-   Adding non-english alpha numeric and special characters in message qualify as UNICODE SMS which has a lower character limit per message than TEXT SMS
+
+> 📘 Using another entity name in templates
+>
+> If Principal entity(PE) uses the name of another entity in their templates, the Telecom service provider (TSP) will register the same on the presumption that there exists a business relationship with that entity without having any accountability to validate the same. Valid proofs and justification if sought pursuant to any complaints by TRAI/PE shall have to be furnished by the registering PE.
+
+| No of messages | Text characters | Unicode characters |
+| :------------- | :-------------- | :----------------- |
+| 1 SMS          | 160             | 70                 |
+| 2 SMS          | 306             | 134                |
+| 3 SMS          | 459             | 201                |
+| 4 SMS          | 612             | 268                |
+| 5 SMS          | 765             | 33                 |
+
+# Best practices
+
+In this section, you will discover recommended and not recommended practices for utilizing templates.
+
+## Do's
+
+-   Use promotional category for communications to send from a numerical Sender ID only.
+-   Use Transactional category for banking enterprises only and for OTP messages.
+-   Service – explicit category needs to link consent template as well, without which the template will be rejected.
+-   Choose a relevant name for templates.
+-   Use the “TEXT” message type for all general messages and “Unicode” for regional messages.
+-   Variable `{#var#}` insertion to be required against values.
+
+## Don'ts
+
+-   Not linking consent templates for content template categories “promotional” & “service – explicit”.
+-   Same content template should not be tagged against multiple headers.
+-   Selecting “Transactional” category by non-banking enterprises.
+-   Using double spaces in templates (this can be pre-checked by verifying the template on any text editor before template submission).
+-   The whole template should not be variable `{#var#}`, the customer is required to mention the template content in between the variables. Templates should not be less than 6 char long

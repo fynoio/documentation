@@ -1,0 +1,97 @@
+---
+title: "SMS Templates"
+slug: "template-creation-sms"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Templates - Creating SMS Templates | Fyno Documentation"
+    description: "Here are some instructions on how to create or edit an SMS template."
+    image: []
+    robots: "index"
+createdAt: "Thu Dec 15 2022 08:21:29 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Jan 15 2025 10:56:33 GMT+0000 (Coordinated Universal Time)"
+---
+
+Creating **Templates** for SMS's has been made super simple with Fyno's template feature.
+
+You need to follow the below steps to create a SMS template
+
+**Template Type**
+
+1. Synced - Select this option, if you have synced/uploaded all DLT approved SMS templates into Fyno. All these templates will be available under Templates -> External -> SMS
+2. Not Synced - Select this option if your SMS templates are not synced with Fyno.
+
+**Synced SMS Template**
+
+1. If you choose Synced template type, you can select the template from the dropdown. If your template has any placeholders, it will appear under 'Body variables' as shown below. Once you provide sample values for the placeholders, they will reflect in the Preview section.
+
+2. Click **Save** which will save the template in **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.
+   ![](https://files.readme.io/2e83a5d6b07c50f7de7e6a82d02db3d3b7c2a48268a36e6f9b62ec0c6f0dcc72-Screenshot_2024-12-20_at_11.44.36_AM.png)
+
+**Not Synced SMS Template**
+
+1. If you choose 'Not Synced Template', you will have an overview of your message details such as Encoding type, length of the message (character count) per part, and credits being used.
+   ![](https://files.readme.io/dc8ec4d-SMS_Template.png)
+
+2. You can enter the content of the message in the SMS template.
+
+3. **Override Sender Id**: You can specify any approved SenderId/Header here to override the default one configured in your Integration. E.g., using SenderId CLXYZA instead of the configured CLABCD in the integration.
+
+4. Create Text, Unicode or Flash (checkboxes to select) messages.
+
+    1. Unicode: Unicode SMS allows you to send messages in any foreign and regional language other than English
+    2. Flash:A flash message appears on the mobile device’s screen, without having to access the SMS storage application on the device.
+
+5. Enter the DLT template ID for Indian Customers.
+
+6. Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **{{ }}**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
+
+7. Review your content and take a look at what your message would look like in the Preview section on the right.
+
+8. Click **Save** which will save the template in **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version
+
+> 📘 To use any user property in your templates, you can add it in this format - `{{$user.$<user_property>}}`. For example, to add Name as placeholder from User profile, you can add it as `{{$user.$name}}`
+
+> 📘 Did you know?
+>
+> You can use period (.), underscore (\_) or hyphen (-) within the handlebars. Try it now!
+
+> ❗️ You cannot use only numeric values as placeholder keys!
+
+## How to test SMS template
+
+You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+
+1. Click 'Run Test' on the top right hand side of the template.
+
+2. It opens the pop up as shown below.
+   ![](https://files.readme.io/823b2e4-SMS_Test_Template_1.png)
+
+3. Enter the mobile no of the recipient where the SMS should be sent.
+
+4. Select a SMS service provider which is already configured in Fyno.
+
+5. When you click 'TEST', it will send SMS to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.
+
+# How to add dynamic content in template
+
+You can add dynamic content in your templates using one of the 4 options mentioned below.
+
+1. [Placeholders](./template-dynamic-content#1-placeholders)
+2. [System Variables](./template-dynamic-content#2-system-variables)
+3. [Handlebars](./template-dynamic-content#3-handlebars)
+4. [Components](./template-dynamic-content#4-components)
+
+# How to view change logs
+
+To view the history of all the modifications made to a template, you can utilize the change logs feature.
+
+To do so, locate the history icon positioned at the top right corner of the template page, as shown in the image below, and click on it to view the change logs.
+
+It shows the following details
+
+1. Who updated it
+2. Which version was updated
+3. At what date & time its updated.
+
+![](https://files.readme.io/60b1c59-changelog_templates.png)

@@ -1,0 +1,46 @@
+---
+title: "Log Details"
+slug: "sent-log-details"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Sent Log Details | Fyno Documentation"
+    description: 'The document explains the "Log Details" feature, which provides comprehensive information about notifications, including time taken, details sent, response received, and final status, useful for debugging and optimizing event routing. It also outlines the lifecycle of notifications across various channels like SMS, Email, WhatsApp, and more.'
+    image: []
+    robots: "index"
+createdAt: "Fri Nov 11 2022 13:06:13 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Jul 18 2024 07:47:54 GMT+0000 (Coordinated Universal Time)"
+---
+
+Log Details, as the name rightly reads, give a detailed understanding of the notification, with view on time taken, details sent, response received, and final status of the notification
+
+This is required and very informative when trying to debug and delivery failure or when trying to help set up the optimum routing configuration for an Event.
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/log-details.png)
+
+You can easily have a look at the "**Log Details**" by simply clicking on the notification log when you see it on the "**Sent Logs**" Panel.
+
+"**Log Details**" has information that gives you a bird's eye view as well as a detailed view of the notification's details. To understand this better, lets have a look at each section.
+
+1. [Trace](./log-details-trace)
+2. [Summary](./log-details-summary)
+3. [Placeholders](./log-details-placeholders)
+4. [Content](./log-details-content)
+5. [Response](./log-details-response)
+6. [Delivery](./log-details-delivery)
+
+## Lifecycle of a Notification
+
+Every notification, be it an SMS, Email, WhatsApp message or InApp and Push will have its own lifecycle. Understanding each one will contribute to understanding how your Event Analytics and Dashboard details are understood as well as what to expect in each notification type.
+
+| Channel    | Submitted | Delivered | Read/Open | Clicked | Deleted |
+| :--------- | :-------- | :-------- | :-------- | :------ | :------ |
+| SMS        | ✅        | ✅        | ❌        | ❌      | ❌      |
+| WhatsApp\* | ✅        | ✅        | ✅ (Read) | ❌      | ❌      |
+| Email      | ✅        | ✅        | ✅ (Open) | ✅      | ❌      |
+| Slack      | ✅        | ❌        | ❌        | ❌      | ❌      |
+| Teams      | ✅        | ❌        | ❌        | ❌      | ❌      |
+| Discord    | ✅        | ❌        | ❌        | ❌      | ❌      |
+| InApp      | ✅        | ✅        | ✅ (Read) | ❌      | ✅      |
+| Push (SDK) | ✅        | ✅        | ❌        | ✅      | ✅      |
+
+> 📘 WhatsApp will only show you "Read" if the recipient has "Read Reciepts" are turned on.

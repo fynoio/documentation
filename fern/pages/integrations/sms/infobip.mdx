@@ -1,0 +1,37 @@
+---
+title: "Infobip"
+slug: "sms-infobip"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send SMS using Infobip & Fyno | Help Document"
+    description: "A guide to integrate your Infobip SMS account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Thu Dec 07 2023 12:45:02 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 03:42:04 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have a Infobip account already set up, along with SenderID and Templates.
+
+1. Navigate to Integrations.
+
+2. Under "SMS" section, click on the "Infobip" button.
+
+3. In the pop-up, fill in:
+
+    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's application.
+    2. **infobip Base URL**: You can find it in Infobip home page as shown below. It will be in the format _xxxxx.api.infobip.com._
+       ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/sms_infobip_apikey.png)
+    3. **API Key**: Once you login into Infobip, go to Menu -> Developer Tools -> API Key. You can either copy the API Key of a previously created one or create a new one.
+       ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/sms_infobip_url.png)
+    4. **Sender**: Enter the Sender ID that you want to use.
+    5. **Entity Id (DLT)**: Enter your DLT registered Entity ID. You will get this from your DLT platform.
+
+4. Click on "Test Integration" once done. If the account is successfully integrated, you will see a success message.
+
+## Message Delivery Status
+
+Infobip, by default, provides the status of the message without any additional setup needed.
+
+Once the above integration is complete, the status of the notification, which will be shared by Infobip will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

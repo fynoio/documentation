@@ -1,0 +1,27 @@
+---
+title: "Logs Archival"
+slug: "logs-retention"
+excerpt: ""
+hidden: false
+createdAt: "Thu Jan 18 2024 04:06:13 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Jan 02 2025 08:34:22 GMT+0000 (Coordinated Universal Time)"
+---
+
+Logs Archival shows the retention period of different logs managed by Fyno. You can access this from Workspace Settings (bottom left corner in menu) -> Add On's -> Logs Archival
+
+![](https://files.readme.io/5fc3392d7795252e154294727fba810a7b87d15e9152f0c06cc523da9cd56d60-Screenshot_2025-01-02_at_2.03.58_PM.png)
+
+By default, we provide the following retention period. If you want to extend the retention period beyond the default duration, please write to [support@fyno.io](mailto:support@fyno.io)
+
+| Log Type                | Default Retention Period | Maximum Retention Period |
+| :---------------------- | :----------------------- | :----------------------- |
+| Sent (Raw) logs         | 7 days                   | 90 days                  |
+| Notification Event logs | 7 days                   | 90 days                  |
+| Workflow logs           | 3 days                   | 90 days                  |
+| Inbound logs            | 7 days                   | 90 days                  |
+| Delivery Callback logs  | 7 days                   | 90 days                  |
+| Shorty URL and logs     | 30 days                  | 90 days                  |
+
+For example, if you trigger a notification event on 1st January, you will be able to view the Sent logs and Notification Event logs till 8th January based on Default Retention Policy.
+
+To download the logs, click Extract Report and it will take you to [Report Extraction Page](./report-extraction)

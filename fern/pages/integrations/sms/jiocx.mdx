@@ -1,0 +1,36 @@
+---
+title: "JioCx"
+slug: "sms-jiocx"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send SMS using JiOCX & Fyno | Fyno Documentation"
+    description: "This document provides instructions on how to set up a Jio account for SMS integration in Fyno's portal, including filling in necessary information and selecting message routes. It also mentions that message delivery status will need to be enabled separately with Jio."
+    image: []
+    robots: "index"
+createdAt: "Fri Jan 12 2024 05:48:05 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Mar 15 2024 06:50:46 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have a Jio account already set up, along with SenderID and Templates.
+
+1. Navigate to Integrations.
+2. Under "SMS" section, click on the "JioCx" button.
+3. In the pop-up, fill in:
+    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **Org Name**: Jio will provide the Organisation name while integrating like Fyno etc.
+    3. **Username**: The Username that is displayed on your Jio Account when you log in and view the dashboard
+    4. **Password**: Password used to log into the Customer ID entered in the previous field
+    5. **Sender/Header**: Enter the Sender ID that you want to use.
+    6. **DLT Entity ID**: Enter your DLT registered Entity ID number.
+    7. **Route**: Select the round from the options:
+        1. Transactional
+        2. Promotional
+        3. OTP
+4. Click on "Add Account" once done, and you are all set!
+
+## Message Delivery Status
+
+JioCx does not provide the status of the message by default. You will need to contact Jio to enable callback URL given in the JioCx Integration popup and status updates via webhooks.
+
+Once the above integration is complete, the status of the notification, which will be shared by JioCx will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

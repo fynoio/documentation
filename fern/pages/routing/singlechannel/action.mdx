@@ -1,0 +1,83 @@
+---
+title: '"Action" Operator'
+slug: "routing-action"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Routing - Action Operator | Fyno Documentation"
+    description: 'Here''s an overview of the "Action" Operator within the Routing section.'
+    image: []
+    robots: "index"
+createdAt: "Mon Dec 12 2022 07:49:25 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Feb 05 2024 12:37:34 GMT+0000 (Coordinated Universal Time)"
+---
+
+The **Action** operator in the **Single Channel Route** flow-builder helps you create a simple and straightforward action, regardless of any factors. To understand this better, let's have a look at the options we have here.
+
+On creating a **Single Channel Route** and selecting **Action**, there are a few components that you will see.
+
+## Single Channel Route Strategy
+
+Routing strategy allows you to choose from multiple options, based on how and what you want to do with the traffic.
+
+1. Simply Send
+2. Round Robin
+3. Distribute Between
+4. Do Nothing
+
+Let's have a closer look at each selection.
+
+### 1. Simply Send
+
+**Simply Send** allows you to simply send messages in order to the providers that have been added, with the one that has been selected first as the Primary and the other providers as failover.
+
+On selecting **Simply Send**,
+
+1. You will be asked to select the provider you want to configure here. Select your preferred primary provider now.
+2. Once this is selected, you will see the **Failover** section. This allows you to select a failover provider, in case the primary operator did not (for any reason) execute the notification for you. Please note that adding failover is optional but its recommended if your are using more than 1 provider for the same channel.
+3. Select any **Provider** as your failover provider, that you have already pre-configured. You can add as many as you want and in any order you like.
+4. Click on "**Save**" to save your changes.
+
+> ✋ You can select a Provider only once!
+>
+> In any configuration, you can only select a listed provider only once, be it for the main configuration or for failover.
+>
+> If you have already added the **Provider** in the main configuration and try to add it in the Failover configuration, it would not be available.
+>
+> Go ahead, try it now!
+
+### 2. Round Robin
+
+If you choose **Round Robin** from the drop-down, your notifications will be distributed equally in an ordered fashion to each **Provider** that has been selected, one after another.
+
+For example, in case there are 3 Providers that have been configured, PA, PB, and PC; then:
+
+1. PA executes Notification 1
+2. PB executes Notification 2
+3. PC executes Notification 3
+4. PA executes Notification 4...
+5. Pn executes Notification "m"
+
+On selecting **Round Robin**:
+
+1. You will be asked to select a minimum of 2 providers.
+2. You can add as many providers as you like, depending on how many you have added in the **Providers** section.
+3. Once this is selected, you will see the **Failover** section. This allows you to select a failover provider, in case the primary operator that you selected above did not (for any reason) execute the notification for you.
+4. Select any **Provider** as your failover provider, that you have already pre-configured. You can add as many as you want and in any order you like.
+5. Click on "**Save**" to save your changes.
+
+### 3. Distribute Between
+
+Fyno's **Distribute Between** feature within the flow-builder allows you to do exactly that. Splitting traffic based on percentages has never been easier.
+
+On selecting **Distribute Between**:
+
+1. You will be asked to select a minimum of 2 providers as well as provide the percentage of traffic to be routed through each **Provider**.
+2. You can add as many providers as you like, depending on how many you have added in the **Providers** section.
+3. Once this is selected, you will see the **Failover** section. This allows you to select a failover provider, in case the primary operator that you selected above did not (for any reason) execute the notification for you.
+4. Select any **Provider** as your failover provider, that you have already pre-configured. You can add as many as you want and in any order you like.
+5. Click on "**Save**" to save your changes.
+
+### 4. Do Nothing
+
+This option essentially helps you end the action happening on the block. If **Do nothing** is selected, no other action will be available for toggling.

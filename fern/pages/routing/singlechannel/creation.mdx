@@ -1,0 +1,78 @@
+---
+title: "Creating a Single Channel Route"
+slug: "route-creation"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Routes - Creating Routes | Fyno Documentation"
+    description: "Here are some instructions on how to create or edit a route."
+    image: []
+    robots: "index"
+createdAt: "Mon Dec 12 2022 07:26:24 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Dec 06 2023 07:51:15 GMT+0000 (Coordinated Universal Time)"
+---
+
+Single Channel Routing is easy to create, with a clear concept of what you want to achieve and some creativity.
+
+But, understanding how the **Single Channel Routing** feature works is important before we get started.
+
+On the landing page, to the left, you will find an easy toggle to change your view between a card grid and a list view, for your convenience.
+
+Your option to filter out only the **Live** routes as well as the **Channel** filter is on the top of the page.
+
+## Create a Route
+
+On the landing page of **Single Channel Routing**, you will see a ribbon menu listing the channels. All your created **Single Channel Routes** will be shown under each channel, for ease of navigation.
+
+If this is your first time creating a notification event, click on **Create New Route** and let's get started.
+
+Alternatively, find the **Create+** at the top right corner of the page.
+
+In the pop-up that appears,
+
+1. Select the channel from the drop-down in the top right corner.
+2. Provide a name and description and hit "**Create Route**" to get started.
+
+### Flow-builder
+
+The page that opens on creating a new **Single Channel Route** is called the flow-builder.
+
+This is what allows you to design your routing and entire design, including redundancies and failovers. Before we get started with creating complex routes, let's understand the features.
+
+On the **Flow-builder** you will see:
+
+1. Start
+2. Components
+    1. **Action** - Action allows you to execute a straightforward action, with additional features that can be added, in case needed.
+    2. **Condition** - Condition allows you to provide complexity to govern the flow of notifications and execute specific actions based on the set conditions.
+    3. **Failover** - Allows you to have a backup plan for all your routing flows. This helps you improve your chances of keeping that "no downtime" promise to your clients!
+3. Stop (Once **Components** have been configured)
+
+### Menu Options
+
+On the Flow-builder page, you will see a few more options in the top left corner. These are:
+
+1. **Extended Menu**
+    1. Rename - Renames the current Routing configuration
+    2. Duplicate - Duplicates the current Routing configuration
+2. **Discard** - Discards the last changes made, up until the last save, on the flow-builder.
+3. **Save** - Saves the last changes that were made. This will be saved as a **Draft** and will be in **Development** environment.
+4. **Save and Promote** - Click on **Save and Promote** if you are happy with the flow and want to move the **Route** to **Production** environment.
+
+> 🚧 If you are in **Development** environment, and you only **Save**, then the draft will not be visible in **Production** environment.
+
+### Test and Live Versions
+
+Every route that you create will be saved as **Test** versions, allowing you to test different variations and combinations of routes, to suit your needs.
+
+When a **Test** version is saved, this does not disturb the **Live** version that may be plugged in your application and may be active.
+
+When you are confident and happy with the **Single Channel Route** that you have created and tested in **Test** version, this can then be moved into the live version by following the below steps.
+
+1. Make the final changes on the route and test it to make sure you are getting the desirable results.
+2. On the top of the page, next to the name of the **Single Channel Route**, you will see the Draft Version mentioned.
+3. To keep this as a **Test**, click on **Save** and the draft will be saved.
+4. To make this version of the **Test** version live, expand the **Save** menu to find **Save and Promote**.
+5. This will make the current version the live version of the **Single Channel Route**.
+
+> 🚧 Once a **Single Channel Route** is live, all the **Notification Events** into which this route is plugged in will also be automatically updated and modified.

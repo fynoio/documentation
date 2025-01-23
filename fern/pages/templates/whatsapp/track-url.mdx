@@ -1,0 +1,86 @@
+---
+title: "How to track URL clicks in WhatsApp"
+slug: "track-url-clicks-in-whatsapp"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to track URL clicks in WhatsApp | Fyno Documentation"
+    description: "To track URL clicks in WhatsApp messages, enable the Fyno Shorty feature in Workspace settings, then create and configure your WhatsApp template either directly in Fyno or through a Business Solution Provider, ensuring to select the appropriate URL type and tracking level."
+    image: []
+    robots: "index"
+createdAt: "Thu Aug 29 2024 05:14:43 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Aug 30 2024 03:14:26 GMT+0000 (Coordinated Universal Time)"
+---
+
+You can track URL clicks in WhatsApp message.
+
+## Prerequisites
+
+To track URL clicks, you need to enable Fyno Shorty feature. To do so, follow the below steps.
+
+1. Go to Workspace settings -> Add ons -> Fyno Shorty.
+2. Enable the toggle.
+
+## How the URL tracking works?
+
+The process for enabling URL tracking varies based on where you create your WhatsApp template:
+
+-   WhatsApp template created directly in Fyno
+-   WhatsApp template created through Meta or other Business Solution Providers (BSPs)
+
+## WhatsApp template created directly in Fyno
+
+If you are creating a WhatsApp template in Fyno and wants to track the URLs in the WhatsApp message, follow the below steps.
+
+1. Go to Template -> External template to create a WhatsApp template. You can read how to create a WhatsApp template here.
+2. Add a button 'Visit Website'
+   ![](https://files.readme.io/59a9cb346384c2ef782b6666e7c871a4e92a1691a1a29d649ad18ec75b75d13a-external_template_button.png)
+
+3. You can have 2 types of URL, Static and Dynamic.
+    1. **Static** - You can use static URL, when you send same URL to all your users like your website URL etc.
+        1. Add a button text which will appear as CTA in your WhatsApp message
+        2. Provide a valid website URL.
+        3. Enable 'Track URL' checkbox.
+    2. **Dynamic** - You can use Dynamic URL when you have to send different URLs to different users like Payment links etc.
+        1. Enable 'Dynamic URL' toggle
+        2. Add a button text which will appear as CTA in your WhatsApp message
+        3. Provide a valid website URL.
+        4. Enable 'Track URL' checkbox.
+4. Click 'Save' and send it to Meta for approval.
+5. Once the template is approved, go to _Templates -> Fyno_ and create a Fyno WhatsApp template.
+6. Select 'Synced' and choose the template you got approved in Step 4.
+7. In the buttons section, if you added dynamic URL, add the placeholder which you want to track. In case, if you have added static URL, you don't have to do anything.
+   ![](https://files.readme.io/91a10205f804447f1958b57b2a6969d406123d9b270266ee69146bd63858c757-dynamic_url_fyno.png)
+
+8. Make sure to add the placeholder in the 'Placeholder' section on the LHS of the template editor.
+9. URL Tracking type - There are 2 ways you can track a URL click.
+    1. **General** : Choose this option if you want to track URL clicks only at Notification Event level and not at channel or user level. This is recommended for use cases like creating product URLs for Google/FB Ads and or you want to track only clicks. If you choose this option, you won't see the 'Click' status in the Sent logs or in 'Engagement funnel' chart in Analytics. You will see the cumulative no of clicks under 'URL engagement' chart in analytics.
+    2. **User-Level** : Choose this option, if you want to track URL at user and channel level. This is recommended for use cases like sending unique payment links to users and or you want to track the click event at the message level. If you choose this option, you will see the 'Click' status in the Sent logs and in 'Engagement funnel' chart in Analytics.
+
+## WhatsApp template created through Business Solution Providers (BSPs)
+
+> 📘 If you want to track URL clicks, make sure you select Dynamic URL option.
+
+If you are creating a WhatsApp template in Meta or any service providers such as Kaleyra, Gupshup etc, and wants to track the URLs in the WhatsApp message, follow the below steps.
+
+1.  Go to Meta or any BSPs to create a WhatsApp template .
+2.  In the WhatsApp template, add a Type of action 'Visit Website'
+3.  You can have 2 types of URL, Static and Dynamic. However if you want to track URL clicks, make sure you select Dynamic URL option.
+
+    1.  **Dynamic** - You can use Dynamic URL when you have to send different URLs to different users like Payment links etc.
+        ![](https://files.readme.io/e6fb4d8c118f96b6726b9e4c72c249a5d66eea7753621481a02d4aab9db1f8ed-dynamic_url_meta.png)
+
+            1. Add a button text which will appear as CTA in your WhatsApp message
+            2. Choose Dynamic as URL Type
+            3. In the website URL, provide this - `https://fy1.in`
+            4. In the Sample URL, provide this - `https://fy1.in`
+
+4.  Once the template is approved, go to Fyno application , go to _Templates -> External_ and click 'Sync' icon next to WhatsApp. This will sync the template you created in BSPs to Fyno.
+5.  Go to _Templates -> Fyno_ and create a Fyno WhatsApp template.
+6.  Select 'Synced' and choose the template you got approved in Step 4.
+7.  In the buttons section, add the placeholder which you want to track.
+    ![](https://files.readme.io/91a10205f804447f1958b57b2a6969d406123d9b270266ee69146bd63858c757-dynamic_url_fyno.png)
+8.  Make sure to add the placeholder in the 'Placeholder' section on the RHS of the template editor.
+9.  URL Tracking type - There are 2 ways you can track a URL click.
+    1. **General** : Choose this option if you want to track URL clicks only at Notification Event level and not at channel or user level. This is recommended for use cases like creating product URLs for Google/FB Ads and or you want to track only clicks. If you choose this option, you won't see the 'Click' status in the Sent logs or in 'Engagement funnel' chart in Analytics. You will see the cumulative no of clicks under 'URL engagement' chart in analytics.
+    2. **User-Level** : Choose this option, if you want to track URL at user and channel level. This is recommended for use cases like sending unique payment links to users and or you want to track the click event at the message level. If you choose this option, you will see the 'Click' status in the Sent logs and in 'Engagement funnel' chart in Analytics.

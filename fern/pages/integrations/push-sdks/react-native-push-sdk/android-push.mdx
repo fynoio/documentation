@@ -1,0 +1,34 @@
+---
+title: "Android specific configuration"
+slug: "ios-specific-configuration"
+excerpt: ""
+hidden: false
+createdAt: "Thu May 16 2024 06:00:45 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu May 23 2024 11:44:07 GMT+0000 (Coordinated Universal Time)"
+---
+
+-   In your root-level (project-level) gradle file (project_name/build.gradle), add the Google services plugin as a dependency:
+
+```Text gradle
+dependencies {
+  ...
+  classpath 'com.google.gms:google-services:4.3.15'
+  ...
+}
+```
+
+-   In your module (app-level) gradle file (usually project_name/app_name/build.gradle), add the Google services plugin:
+
+```Text gradle
+plugins {
+  ...
+  id 'com.google.gms.google-services'
+  ...
+}
+```
+
+or
+
+```Text gradle
+apply plugin: 'com.google.gms.google-services'
+```

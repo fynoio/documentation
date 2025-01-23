@@ -1,0 +1,75 @@
+---
+title: "Sent Logs"
+slug: "sent-logs"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Sent Logs | Fyno Documentation"
+    description: 'The document explains how to use the "Sent Logs" feature on the Fyno platform to track notifications, including details on log statuses, filtering options, and understanding individual log entries. It also distinguishes between Test and Live versions of logs.'
+    image: []
+    robots: "index"
+createdAt: "Fri Nov 11 2022 09:42:54 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Nov 04 2024 11:54:27 GMT+0000 (Coordinated Universal Time)"
+---
+
+Sent logs are where we help you track each and every notification sent from Fyno.
+
+Logs are a detailed view of what has happened on each of your requests, with vital information for you to further analyse and derive conclusions about the notifications sent, and to further improve your communication strategies.
+
+This section covers the logs that you can see on the Fyno platform, how you can filter through the application to narrow down your search and a detailed understanding of the individual log details.
+
+When we go to the "Sent Logs" from the left navigation menu, we see the following sections:
+
+1. Logs
+2. Test & Live Versions
+3. Filters (explained in next section).
+
+## Logs
+
+The logs that are seen on the "Sent Logs" page give you an overview of the latest activity that has occurred on your Fyno account.
+
+When you have a look at the logs, what you will initially notice is the status icon that gives you an overall understanding of if the notification is:
+
+1. Sent - Message was successfully sent to the provider
+2. Dropped - Message was dropped (due to configuration in Fyno - suppression/route/subscription)
+3. Error - Message was failed at Fyno's end
+4. Failed - Message was failed at Service Provider's end
+5. Timeout - Provider failed to respond within 5-10 seconds
+6. Delivered - Message was delivered successfully
+7. Undelivered - Message could not be delivered by the provider
+8. Clicked - URL/Link in the message or the entire notification was clicked by the user
+9. Read/Open - Message was read/opened by the user
+
+You can read about all the different statuses in detail [here](./notification-status).
+
+This is important for you to understand the status of attempts, especially when you are setting up or configuring Fyno.
+
+To further understand this page, let's have a look at what exactly each column means and the data they contain.
+
+#### Timestamp
+
+Shows you when the notification request was initiated from the application. Give you the date and time details. Make sure to set your time zone from "Settings" to display the time in your time-zone
+
+#### Template
+
+Displays the name of the template that was used when the notification request was triggered.
+
+#### Notification Event
+
+Displays the name of the Event that was triggered with the notification request made to Fyno
+
+#### Destination
+
+Gives you a brief of where the end destination (recipient in this case) is along with the **Channel** that was used to reach that end destination.
+
+#### Provider
+
+Informs you which **Provider** was being used when the request for a notification was triggered.
+
+## Test & Live Versions
+
+In the logs section, the **Test** and **Live** versions are uniquely partitioned, in order to show you the details notifications sent in that particular version of the API that has been generated.
+
+> 🚧 Can't find a notification log?
+>
+> Check the environment that the notification was triggered in. Notification triggered in **Test** environment cannot be seen in **Live** and vice versa.

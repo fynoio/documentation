@@ -1,0 +1,47 @@
+---
+title: "Simple"
+slug: "whatsapp-simple-message"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to create a Simple WhatsApp message | Fyno Documentation"
+    description: "Simple templates can only be used for replies, while the first message must be a template message. Templates can include text, images, videos, audio, files, locations, and stickers, with specific guidelines for each media type, and placeholders can be defined using Handlebars."
+    image: []
+    robots: "index"
+createdAt: "Thu Aug 22 2024 11:57:42 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Jan 15 2025 10:57:07 GMT+0000 (Coordinated Universal Time)"
+---
+
+Simple templates can only be used for replies. They cannot be the first message that is sent. The first message should always be a template message.
+
+Allows you to create a template that can be used to send information to your end users only in the form of:
+
+> 📘 Supported Media Types
+>
+> https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media/#supported-media-types
+
+1. **Text**: Add text content in this space.
+2. **Image**: Insert an image you would like to send in the template. The URL of the image should be public. Supported file types are _jpeg_ and _png_. Images must be 8-bit, RGB or RGBA. Please note that images with transparent backgrounds are not supported. You can also upload an image directly from your device. Maximum size limit is 5 MB.
+3. **Video**: Insert the video file. The URL of the video should be public. Supported file types are _mp4_ and _3gpp_. Maximum size limit is 16MB.
+4. **Audio**: Attach an audio file that you would like to play in this template. The URL of the audio file should be public. Supported file types are _aac_, _mp4_, _amr_ and _mpeg_.Maximum size limit is 16MB.
+5. **File**: Attach a document you would like to send in the template. The URL of the document should be public. Any valid _MIME_ type of document is supported. Maximum size limit is 100MB.
+6. **Location**: Insert map location by entering the latitude and longitude details. This will then be translated into a location on maps and displayed. Don't know how to get your latitude and longitude details? Here's [how](https://support.google.com/maps/answer/18539?hl=en&co=GENIE.Platform%3DDesktop) you can do it via Google Maps.
+7. **Sticker**: Insert the link of a sticker that you want to be sent. The URL of the sticker should be public. The supported file type is _webp_ only.
+
+## Placeholders
+
+Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{ }}`**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
+
+> ❗️ You cannot use only numeric values as placeholder keys!
+
+> 🚧 WhatsApp URL Redirection will not work!
+>
+> When providing the URLs for files in the WhatsApp templates, redirected links (with multiple hops) will not work as per Facebook Policies.
+
+## Preview
+
+Review your content and take a look at what your message would look like in the Preview section on the right. If you have configured a Non-Synced template, you won't be seeing any preview.
+
+## Save & Go Live:
+
+Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.

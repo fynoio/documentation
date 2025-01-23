@@ -1,0 +1,35 @@
+---
+title: "MSG91"
+slug: "sms-msg91"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send SMS using MSG91 & Fyno | Help Document"
+    description: "A guide to integrate your MSG91 SMS account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Mon Dec 05 2022 10:54:48 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Sep 11 2023 14:46:23 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have an MSG91 account already set up, along with SenderID added.
+
+1. Navigate to Integrations and click on the "Providers" tab on the drop-down menu
+2. Find "SMS" and click on the "MSG91" button.
+3. In the pop-up, fill in:
+    1. **Custom name**: Provide a name to help you identify the configured account in Fyno's portal.
+    2. **Auth Key**: Enter the Auth Key from MSG91 account. You can find this in the Configurations Section, under "Auth Key". Create a new one, or use an existing one.
+    3. **Sender**: Enter the Sender ID that you want to use.
+    4. **Route**: Select the route from the drop-down depending on the message type - Transactional, Promotional or OTP.
+4. Click on "Add Account" once done, and you are all set!
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, MSG91 requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log in to your MSG91 account.
+2. Navigate to **Configuration** and find "**Webhook**" from the left navigation bar
+3. Configure the POST URL (URL can be retrieved from the integration page on Fyno):
+   ![](https://files.readme.io/6f5b8dc-MSG91-callback.jpg)
+
+You can now send a test message from Fyno using MSG91 as the **Provider** and see the delivery logs updated in your **Sent logs**.

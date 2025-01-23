@@ -1,0 +1,31 @@
+---
+title: "FAQs"
+slug: "faqs-1"
+excerpt: ""
+hidden: false
+createdAt: "Mon May 13 2024 07:20:37 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 08:54:03 GMT+0000 (Coordinated Universal Time)"
+---
+
+**Q. Build Issue**
+
+Error (Xcode): Cycle inside Runner; building could produce unreliable results
+
+**A.** In **Xcode** > **Targets** > **Runner** > **Build Phases**, drag and arrange Embed Frameworks, [CP] Embed Pods Frameworks, and Embed Foundation Extensions so that they are above **Run Script**. Refer [this](https://developer.apple.com/forums/thread/730974) for more details.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_FAQ.png)
+
+**Q. Pod install issue**
+
+[!] The following Swift pods cannot yet be integrated as static libraries:
+
+The Swift pod `fyno-push-ios` depends upon `FMDB`, which does not define modules. To opt into those targets generating module maps (which is necessary to import them from Swift when building as static libraries), you may set `use_modular_headers!` globally in your Podfile, or specify `:modular_headers => true` for particular dependencies.
+
+**A.** Add `use_modular_headers!` in your Podfile similar to:
+
+```Text Podfile
+target '<application_name>' do
+  use_modular_headers!
+```
+
+Also, comment the `:flipper_configuration => flipper_config,` line.

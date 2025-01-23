@@ -1,0 +1,54 @@
+---
+title: "Trace"
+slug: "log-details-trace"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Log Details - Trace | Fyno Documentation"
+    description: "Here's an overview of the Trace section in the log details page."
+    image: []
+    robots: "index"
+createdAt: "Mon Nov 14 2022 09:27:06 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Nov 22 2024 12:31:25 GMT+0000 (Coordinated Universal Time)"
+---
+
+"**Log Details**" is the pop-up that appears when you click on a notification log on the "**Sent Logs**" page, showing you all the details of the log.
+
+To understand this better, let's have a look at the "**Log Details**" with an example.
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/Trace-log.png)
+
+On the left side of the pop-up that appears, there is a "**Trace**"
+
+"**Trace**" gives you a summary of each hop or path that the notification has taken along with the time that each hop has taken, including the total as well as the final status of the notification.
+
+### Request Received
+
+The time the API was triggered and Fyno has received the request successfully to be executed further.
+
+### Sent To xxxxxxxx
+
+In the example shown above, "**Sent To Kaleyra.io**" is seen because, according to the routing and event created and triggered, the provider details show up accordingly in this step.
+
+The details shown in this field are the date and time this was sent to Kaleyra.io and the time it has taken for Fyno to process the request towards the provider. In this case, it's 121ms.
+
+### xxxxxxx's Response
+
+In the example shown above, "**Kaleyra.io's Response**" talks of the same details for the date and time the response was received from Kaleyra.io for the request that was made to their platform.
+
+It also shows how much time it has taken to receive the response from Kaleyra.io in milliseconds. In this case, it has taken 147ms
+
+### (Final Status)
+
+The last hop shows the final status of the notification at a glance. In this case, the notification was delivered successfully, so the hop shows as "**Success**".
+
+> 👍 From this hop, you can also navigate to the a detailed view of the response by clicking on "**View Response**".
+>
+> This will take you to the tab with the details of the final response.
+
+You will also be able to see what the total time taken for the entire lifecycle of the notification was. In this case, we can see that it has taken 268ms total for the entire notification to be triggered and for a final status to be updated.
+
+### Delivery Status
+
+This hop only shows up on the trace if and when we have a delivery response from the **Provider**
+
+In case the **Delivery Status** is visible, then you will also be able to see the timestamp for when the delivery status was shared.

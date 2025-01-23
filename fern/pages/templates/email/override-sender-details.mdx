@@ -1,0 +1,71 @@
+---
+title: "How to override email sender details"
+slug: "how-to-override-sender-details"
+excerpt: ""
+hidden: false
+createdAt: "Tue Sep 10 2024 08:01:05 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Tue Sep 10 2024 08:06:21 GMT+0000 (Coordinated Universal Time)"
+---
+
+You can override details in your email in 2 ways.
+
+1. Using API
+2. Using Email editor
+
+## How to override sender details using API
+
+During the integration setup, you would have specified a 'From_Email' address. If you have multiple email addresses such as [noreply@xyz.com](mailto:noreply@xyz.com), [marketing@xyz.com](mailto:marketing@xyz.com), [cs@xyz.com](mailto:cs@xyz.com), and you wish to use the appropriate email address depending on the communication you send, you can dynamically assign values to 'From_Email'. To achieve this, please follow the steps outlined below.
+
+1. Within the integrations popup, include 'from_email' as shown below. In this example, [support@fyno.io](mailto:support@fyno.io) will serve as the default From Email if the provided email ID in the payload is not valid. If you prefer not to use the default email, simply specify 'from_email' in the respective field.
+
+> 📘 Adding a default 'from_email' is advisable to ensure uninterrupted communication.
+
+![](https://files.readme.io/f113aab-Email_Integration_From.png)
+
+2. In the Notification event payload, you need to pass the from_email as shown below. By doing so, the emails triggered via this notification event will go from '[tech@fyno.io](mailto:tech@fyno.io)'.
+
+```Text cURL
+curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/test/event' \
+-H 'Authorization: Bearer <API_KEY>' \
+-H 'Content-Type: application/json' \
+-d '{
+    "event": "ReleaseNote",
+    "to": {
+        "email": "xyz@gmail.com"
+    },
+    "data": {
+        "name": "Rahul",
+        "key": "value"
+    },
+    "channel": {
+        "email": {
+            "override": {
+                “from_email": “tech@fyno.io"
+            }
+        }
+    }
+}'
+```
+
+> 📘 The same process can be followed for 'from_name' field also.
+
+## How to override sender details in Email editor
+
+To override the sender details configured in the Service Provider integration, follow the below steps
+
+1. Click 'Enter From and Cc/Bcc details' above the Subject line.
+   ![](https://files.readme.io/f23a645-sender_details_email.png)
+
+2. You will see the sender details as shown below.
+   ![](https://files.readme.io/4691bba-from_email.png)
+
+3. Once you enter the sender details, it will look as shown.
+   ![](https://files.readme.io/7bdf36f-from_details_entered.png)
+
+4. To override Cc/Bcc details, click the Cc/Bcc tab and enter the details as shown.
+   ![](https://files.readme.io/754967d-ccbcc_details.png)
+
+5. Once you entered Cc and Bcc details, it will look like shown below
+   ![](https://files.readme.io/de8ad07-ccbcc_entered.png)
+
+> 📘 Cc and Bcc details provided in Email template will override the Cc and Bcc details provided in the Notification Event API

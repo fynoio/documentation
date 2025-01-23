@@ -1,0 +1,59 @@
+---
+title: "Journey Analytics"
+slug: "journey-analytics"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Journey Analytics | Fyno Documentation"
+    description: "Journey Analytics provides insights into user engagement and performance within a journey, including an overall summary, channel engagement details, and node performance metrics, highlighting user progress, success, and exit points."
+    image: []
+    robots: "index"
+createdAt: "Mon Jan 13 2025 04:58:41 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 13 2025 10:28:36 GMT+0000 (Coordinated Universal Time)"
+---
+
+Journey Analytics helps you to view the following
+
+1. Overall summary of the Journey for a time period
+2. Engagement funnel of Individual notification events fired within a journey and also the overall Engagement funnel of a journey.
+3. Performance of each node - how many users exit the journey successfully or moving to the next node.
+
+## Summary
+
+The summary shows the following information
+
+![](https://files.readme.io/2eb31920fc9bdf7f5fb447acc097a13f6a7dc79b3461d07eb6e144520ff43f42-Screenshot_2025-01-13_at_10.35.30_AM.png)
+
+1. Entered journey - How many users entered the journey during the time period selected.
+2. Currently Waiting - How many users are currently waiting at different parts of the journey.
+3. Success Criteria Met - How many users exited the journey successfully after they met the success criteria defined.
+4. Exited - How many users exited the journey without meeting the success criteria defined.
+5. Blocked re-entry - How many users are blocked from re-entering the journey as they are already part of the journey.
+
+## Channel Engagement
+
+**Channel Engagement** provides you with a detailed view of each channel used to send out notifications along with the outcomes of the notifications sent.
+
+You can view Engagement funnel of Individual notification events fired within a journey and also the overall Engagement funnel of a journey using the filter.
+
+Outcomes can be anything from:
+
+1. **Sent** - When a notification is successfully sent from Fyno's platform
+2. **Delivered** - When a notification gets successfully delivered to the destination (mobile number, email address, or device tokens like in the case of Push).
+3. **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as "Read" for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially "opened", this will be tagged as "Open" and tracked on Fyno's App.
+4. **Clicked** - When a notification is clicked on, this will be tracked as a "Clicked" notification. This applies to In-App, Push, Emails with links, etc.
+
+## Node Performance
+
+Node Performance helps to understand how each node is performing - how many users exit the journey successfully or moving to the next node.
+
+![](https://files.readme.io/7703c557bca60dd8e83d8f0741f0fe836960b40840f0d9642808e9698f72573a-Screenshot_2025-01-13_at_10.38.59_AM.png)
+
+1. Node - Every wait for within in the journey is defined as node.
+2. Entered Journey - How many users entered that particular node ( Wait for block)
+3. Currently Waiting - How many users are waiting at each node ( Wait for block)
+4. Success Criteria Met - How many users exited the journey successfully at each node.
+5. Exited - How many users exited the journey without meeting success criteria (this is only the last node)
+6. Moved to next node - How many users moved to the next node in the journey as they didn't meet the success criteria.
+
+> 📘 Node performance can be measured by how many users successfully complete their journey by meeting the success criteria.

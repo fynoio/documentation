@@ -1,0 +1,35 @@
+---
+title: "Mailgun"
+slug: "email-mailgun"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send Email notification using Mailgun & Fyno | Help Document"
+    description: "A guide to integrate your Mailgun Email account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Tue Aug 29 2023 12:19:52 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Feb 15 2024 10:43:47 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before integrating Mailgun with Fyno, you will need to have an account already set up with Mailgun.
+
+1. Navigate to Integrations.
+2. Under "Email" section, click on the "Mailgun" button.
+3. In the pop-up that appears, fill in:
+    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **SMTP User:** From your Mailgun account, navigate to settings and select "Overview". On the page that opens, find "SMTP Credentials". You will see the "username" that you need to enter as "SMTP User".
+    3. **Password:** Enter the password associated with the SMTP User that was entered in the above field.
+    4. **From Name:** Enter the name that you want to be displayed to the recipient on receiving this email.
+    5. **From Email:** In your Mailgun account, from the Settings tab on the left navigation menu, find "Sender Authentication" and copy the details of the Sender that you intend on using. Alternatively, you can add a domain or a single user on Mailgun from the same page. This can then be entered into the Fyno "From Email" field.
+    6. **Password:** Enter the name associated with the Sender that was entered in the "From Email" field.
+    7. **Content type:** You can choose either "Text/Plain" (no rich content in emails, simple plain text) or "Text/HTML" (Rich content including images, buttons and links will be supported) depending on the type of content you intend on pushing in the templates.
+    8. **Reply To:** This is an optional field. You may enter an alternate email ID so that when the recipient clicks on "Reply", the email ID you have entered in the "Reply To" will be populated. This can be different from the "From" email ID.
+4. Click on "Add Account" once done and you are all set!
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, Mailgun requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log into your Mailgun account and click on the "Sending" tab on the left navigation panel to expand the same and find "**Webhooks**".
+2. On clicking on "**Webhooks**" you will be able to add Fyno's webhook for each event type by clicking on "**Create Webhook**". Please create and add a webhook for all the statuses with Fyno's callback URL given in the Mailgun Integration popup.

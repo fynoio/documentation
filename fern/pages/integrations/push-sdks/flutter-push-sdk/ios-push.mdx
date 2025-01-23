@@ -1,0 +1,136 @@
+---
+title: "iOS specific configuration"
+slug: "getting-your-application-ready-for-ios-push-notifications"
+excerpt: ""
+hidden: false
+createdAt: "Thu May 09 2024 12:16:38 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 08:41:01 GMT+0000 (Coordinated Universal Time)"
+---
+
+To enable push notifications for iOS, you need to configure specific capabilities and handle the necessary app delegate code. Let's walk through the steps.
+
+### Step 0: Update iOS pods
+
+1. Run `pod install` in the ios folder of your flutter application to install/update the pod dependencies.
+
+### Step 1: Add capabilities in iOS application
+
+1. Open your Flutter project in Xcode.
+2. Inside the **Targets** section, select your app target, and go to **Signing & Capabilities**.
+3. Click on **+ Capability** and add **Push Notifications** and **Background Modes** capabilities.
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/push_flutter_1.jpeg)
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/push_flutter_2.jpeg)
+
+4. In Background Modes, select the Remote Notifications option. This is required to receive background push notifications. Learn more about background notifications [here](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app).
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/push_flutter_3.png)
+
+### Step 2: Register for push notification in AppDelegate.swift file
+
+To handle push notifications in your iOS app, add the following code to `AppDelegate.swift`:
+
+1. Import the required packages:
+
+```Text swift
+import UIKit
+import Flutter
+import fyno_push_ios
+```
+
+2. If you are using Firebase Cloud Messaging (FCM), add the Firebase imports:
+
+```Text swift
+import FirebaseCore
+import FirebaseMessaging
+```
+
+3. Extend `FlutterAppDelegate` and implement the necessary methods:
+
+```Text swift
+@UIApplicationMain
+@objc class AppDelegate: FlutterAppDelegate {
+    let fynosdk = fyno.app
+
+    override func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        GeneratedPluginRegistrant.register(with: self)
+
+        UNUserNotificationCenter.current().delegate = fynosdk
+
+        self.fynosdk.registerForRemoteNotifications()
+
+        fynosdk.requestNotificationAuthorization { _ in }
+
+        FirebaseApp.configure() // Optional: Configure Firebase if FCM is used
+
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+
+    override func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register for remote notifications: \(error.localizedDescription)")
+    }
+
+    override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        fynosdk.setdeviceToken(deviceToken: deviceToken)
+
+      	Messaging.messaging().apnsToken = deviceToken // Optional: Set APNs token for FCM
+    }
+}
+```
+
+### Step 3: Add a Notification Service Extension
+
+To ensure rich push notifications and proper handling of incoming messages, add a `Notification Service Extension` to your iOS project:
+
+1. In Xcode go to **File** > **New** > **Target**.
+2. Select `Notification Service Extension` from the template list.
+3. Provide a product name, select your development team, choose Swift as the language, and click Finish.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/push_flutter_4.png)
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/push_flutter_5.png)
+
+4. Replace the contents of the generated `NotificationService.swift` file with the following code:
+
+```Text NotificationService.swift
+import UserNotifications
+import UIKit
+import fyno
+
+class NotificationService: UNNotificationServiceExtension {
+    var contentHandler: ((UNNotificationContent) -> Void)?
+    var bestAttemptContent: UNMutableNotificationContent?
+
+    override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+        fyno.app.handleDidReceive(request, withContentHandler: contentHandler)
+    }
+
+    override func serviceExtensionTimeWillExpire() {
+        if let contentHandler = contentHandler, let bestAttemptContent = bestAttemptContent {
+            contentHandler(bestAttemptContent)
+        }
+    }
+}
+```
+
+### Step 4: Add Fyno SDK to the Notification Service Extension
+
+To allow the Notification Service Extension to use the Fyno SDK, you need to import it:
+
+1. In Xcode, select your Notification Service Extension target.
+2. Under `Frameworks and Libraries`, click on the **+** button.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/push_flutter_6.png)
+
+3. Under `Add Other`, click on the `Add Package Dependency`.
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/push_flutter_7.png)
+
+4. Search for `https://github.com/fynoio/ios-sdk` in the text box.
+5. Select and add the `ios-sdk` package.
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/push_flutter_8.png)
+
+6. Ensure the target is set to the Notification Service Extension you created, then click `Add Package`.
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/push_flutter_9.png)
+
+> 👍 You have successfully integrated Fyno's Flutter Push Notification SDK into your application. Go ahead and test the integration by sending a push notification using [Notification Events](./events-overview)

@@ -1,0 +1,100 @@
+---
+title: "Fyno’s Quick-Start Guide"
+slug: "fyno-quickstart"
+excerpt: ""
+hidden: false
+metadata:
+    image: []
+    robots: "index"
+createdAt: "Thu Aug 10 2023 09:09:24 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Sep 07 2023 07:33:22 GMT+0000 (Coordinated Universal Time)"
+---
+
+> 🎉 Welcome to the Fyno family!
+
+We are thrilled to have you on board and are confident that we can lighten your communication load, allowing you to focus on what truly matters!
+
+To ensure a seamless onboarding process and get you up and running on Fyno's Application with ease, we have created this ‘Quick Start Guide’ to help you become familiar with our platform and kickstart your journey.
+
+Get Fyno up and running in a few hours, if not minutes. We've got the whole process broken down into 4 easy steps. Let's jump in:
+
+# 1. Configure your integrations
+
+Let's begin by setting up your channel and provider integrations :
+
+1. Go to your existing communication providers/platforms and get the authentication keys (API credentials).
+
+2. Now head over to the integrations tab on the Fyno platform, click on your provider and add the credentials to activate your provider/channel. If you use a provider/channel that is not already available, let us know and we will make it available within 5 days
+
+You’ve essentially finished your channel and provider integration. Wasn't it a breeze? No more API effort for integrations.
+
+> 👍 We’ve got 40+ integrations pre-loaded on the platform. Head over to the integrations tab of the platform to check them out.
+
+Access our detailed documentation [here](https://docs.fyno.io/docs/integrations-introduction) to dive deeper
+
+# 2. Create/Load your Templates
+
+-   Templates are a one-stop shop for all your messaging content.
+-   We have a “What You See is What You Get” (WYSISYG) template editor to create and edit your templates on the fly.
+-   You can create simple static templates or make them dynamic with placeholders. Placeholders can be used to send replaceable data points. Fyno uses {{ }} as placeholders.
+-   Templates are stored based on the Channel Type. Example: You can create rich templates on Email and Whatsapp, whereas, templates on SMS can only contain alpha-numeric values.
+-   In order to ease your troubles in getting started, you can help us with your existing templates and we can pre-load them onto your account.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/Templates.gif)
+
+Access our detailed documentation [here](https://docs.fyno.io/docs/templates-getting-started) to dive deeper.
+
+# 3. Configure your communication
+
+-   In order to fire your communication through Fyno, you will need to set up an API key. Head over to the API keys tab in the ‘workspace settings’ to create an API key
+
+> 🚧 It is of utmost importance that you copy and save your API Keys once created. Once the API Key pop-up is closed, you will not be able to retrieve this API Key.
+
+Any API Key generated from your account works for both the **Live** and **Test** versions!
+
+You can create any number of API keys for your account. Just remember to tag them with an appropriate name so that you can use them with ease.
+
+-   Once the API key is created, head to the “Notification Event” tab and create your first one. Select the correct template for that "Notification Event", select the Rule as “manual select” and select the channels and providers you want to use to send the message. Then head back to the top and “Save” your notification event.
+
+> 📘 In most cases, we have seen that notification events and templates carry the same name for ease of identification. Example: An “Out for Delivery” notification event will always use the “Out for Delivery” template.
+
+-   Once you Save the notification event, click on the '\<>' to view the command, where you will get a payload. This is your unified code for all your channels and providers.
+
+> 👍 For any changes in the template, channel or provider, you never have to go back and modify the code. All those changes can be carried out in real time on FYNO.
+
+-   Now run the command/call the API and test your communication. The saved notification event will run in test mode by default. Once your test is successful, head over to the notification events tab and “Promote” it to make it Live.
+
+Want to get a deeper understanding - [Click here](https://docs.fyno.io/docs/events-overview)
+
+# 4. Analytics
+
+With Fyno all set and active, your communications will now seamlessly flow across channels to your customers.  
+But wait, how do you observe your communication performance? Say 👋 to Analytics and Logs.
+
+## Analytics
+
+One of the most powerful outcomes of using Fyno is getting a single view of all your channel and provider usage. No more logging into provider/channel platforms and looking at data in silos.
+
+Use Fyno’s unified analytics to:
+
+-   Measure channel and provider usage
+-   Compare channel performance
+-   Know which provider is giving you better delivery and faster responses
+
+![](<https://fynodocs.s3.ap-south-1.amazonaws.com/images/Analytics+(1).gif>)
+
+You can get deeper analytics like delivery and open rates for each notification event once you have successfully triggered a few Notification Events from your [Notification Event Analytics](https://docs.fyno.io/docs/event-analytics) section.
+
+## Logs
+
+Our detailed logs give you the complete trace route of your message for quick and easy troubleshooting. We give you data up to milli-seconds.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/Logs.gif)
+
+You can check the status of every message right from the delivery attempt to the eventual status of whether it was read/ opened. If something goes wrong, you can troubleshoot within seconds.
+
+Click on the link to learn more about [Analytics](https://docs.fyno.io/docs/event-analytics) and [Logs](https://docs.fyno.io/docs/sent-logs).
+
+This brings us to the end of Fyno's Quick Start guide. We hope that you were able to set it up with little to no snags and are on your way to automating your communications with us!
+
+Stay tuned though, Fyno will constantly keep in touch via email to teach you tips and tricks, industry standards and much more, that will help ramp up your notification game!

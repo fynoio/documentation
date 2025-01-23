@@ -1,0 +1,204 @@
+---
+title: "Usage"
+slug: "usage-1"
+excerpt: ""
+hidden: false
+createdAt: "Mon May 13 2024 07:20:15 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu May 23 2024 11:44:07 GMT+0000 (Coordinated Universal Time)"
+---
+
+With the Fyno SDK installed, let's cover how to initialise it, identify users, register for push notifications, and handle other functionalities.
+
+### Initialising the SDK (to be called on app launch)
+
+> 📘 Distinct ID is an ID that is associated with a specific user and is unique to that user. No two user profiles can have the same Distinct ID.
+
+To initialise the Fyno SDK, you need to provide the following information:
+
+-   **Workspace ID:** Your unique Fyno workspace ID, available on the [Workspace Settings](https://app.fyno.io/settings) page.
+-   **Integration ID:** The ID of the integration created in [Fyno Integrations](https://app.fyno.io/integrations).
+-   **Distinct ID:** A unique identifier for your user. If not provided, a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) is automatically generated.
+-   **Version:** Indicates the environment in which the user is created. Default is "**live**", but you can set it to "**test**" for testing purposes.
+
+In your App.tsx file, import the `@fyno/react-native` package and call `FynoReactNative.initialise()` to initialise the SDK:
+
+```Text Javascript
+import FynoReactNative from '@fyno/react-native';
+
+function App(): React.JSX.Element {
+  ...
+  useEffect(() => {
+    (async function () {
+      try {
+        FynoReactNative.initialise(
+          'workspaceId',
+          'integrationID',
+          'distinctID',
+          'version',
+        );
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, []);
+  ...
+}
+```
+
+### Identifying the User
+
+To update/set a distinct ID or user name, you can call `FynoReactNative.identifyUser()`.
+
+-   **Distinct ID:**: The distinct ID you want to identify the user with.
+-   **User Name:** The name you want to assign to the user.
+
+```Text Javascript
+try {
+  FynoReactNative.identifyUser(
+    'distinctId',
+    'userName',
+  );
+} catch (e) {
+  console.error(e);
+}
+```
+
+### Registering for Push Notifications
+
+To register the application for push notifications, call `FynoReactNative.registerPush()`.
+
+#### APNs or Google FCM
+
+-   To register for push notifications with **APNs** or **Google FCM**, you need to specify the provider type.
+-   Use **apns** if [APNs](./push-apns) is configured or **fcm** if [Google FCM](./push-fcm) is configured in the integration.
+
+```Text Javascript
+try {
+    FynoReactNative.registerPush(
+    '',
+    '',
+    '',
+    'provider');
+} catch (e) {
+  console.error(e);
+}
+```
+
+For Google FCM, ensure you've followed the Firebase setup mentioned earlier and have added the `google-services.json` or `GoogleService-Info.plist` file to your project root.
+
+#### Xiaomi Services (Android only)
+
+-   To register for push notifications with Xiaomi, provide the Xiaomi application ID and key, along with the push region.
+-   **Xiaomi Application Id** and **Xiaomi Application Key** are mandatory fields which can be found under the application registered at [Xiaomi Admin](https://admin.xmpush.xiaomi.com/).
+-   **Push Region:** Refers to the geographical region where push notifications are delivered.
+-   **Provider:** Use **xiaomi**.
+
+```Text Javascript
+try {
+  FynoReactNative.registerPush(
+    'xiaomiApplicationID',
+    'xiaomiApplicationKey',
+    'pushRegion',
+    'provider',
+  );
+} catch (e) {
+  console.error(e);
+}
+```
+
+### Merging User Profiles
+
+If you need to merge two user profiles, call `FynoReactNative.mergeProfile()` with the old and new distinct IDs.
+
+```Text Javascript
+try {
+  FynoReactNative.mergeProfile(
+    'oldDistinctId',
+    'newDistinctId',
+  );
+} catch (e) {
+  console.error(e);
+}
+```
+
+### Updating Message Status
+
+You can update the status of a notification (received, clicked or dismissed) using `FynoReactNative.updateStatus()`.
+
+-   **Callback URL:** You can obtain the Callback URL from the notification additional payload if the notification was triggered from Fyno.
+-   **Status:** The status of the notification (one of **RECEIVED**, **CLICKED** or **DISMISSED**).
+
+```Text Javascript
+try {
+  FynoReactNative.updateStatus(
+    'callbackURL',
+    'status', // one of RECEIVED, CLICKED or DISMISSED
+  );
+} catch (e) {
+  console.error(e);
+}
+```
+
+### Resetting User Information
+
+To reset user information, call `FynoReactNative.resetUser()`.
+
+-   You can invoke this function when the user logs out of the application.
+-   It handles the deletion of channel data associated with the current user, initiates the creation of a fresh user profile, and transfers the channel data to the newly created profile.
+-   This feature proves to be invaluable if you plan to send push notifications to an application where the user has logged out.
+
+```Text Javascript
+try {
+  FynoReactNative.resetUser();
+} catch (e) {
+  console.error(e);
+}
+```
+
+### Sample initialisation
+
+```text Javascript
+// import
+import FynoReactNative from '@fyno/react-native';
+
+// initialise
+function App(): React.JSX.Element {
+  ...
+  useEffect(() => {
+    (async function () {
+      try {
+        FynoReactNative.initialise(
+          'workspaceID',
+          'integrationID',
+          'distinctID',
+          'version',
+        );
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, []);
+  ...
+}
+
+// identify user
+try {
+  FynoReactNative.identifyUser(
+    'distinctId',
+    'userName',
+  );
+} catch (e) {
+  console.error(e);
+}
+
+// register with APNs
+try {
+  FynoReactNative.registerPush(
+    '',
+    '',
+    '',
+    'apns');
+} catch (e) {
+  console.error(e);
+}
+```

@@ -1,0 +1,68 @@
+---
+title: "Delivery Limit"
+slug: "delivery-limit"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Delivery Limit | Fyno Documentation"
+    description: "Enables users to set notification delivery controls. Do Not Disturb enables them to not disturb users in a pre-defined time slots. Frequency Capping enables them to define and control the maximum no of notification a user can receive in a particular duration, thus avoiding spamming the user"
+    image: []
+    robots: "index"
+createdAt: "Wed Dec 13 2023 12:04:47 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Jun 20 2024 06:58:38 GMT+0000 (Coordinated Universal Time)"
+---
+
+## Do Not Disturb (DND)
+
+Do Not Disturb (DND) allows you to configure idle hours at which time notifications should not be sent to users.
+
+You can now configure your Do Not Disturb settings for all channels from the following navigation : Workspace Settings (bottom left corner in menu) -> Delivery Limit -> Do not disturb
+
+**Why DND? **
+
+Engaging your users with notifications is one of the most effective ways to drive increased adoption, retention and conversions. However, there are instances when you'd prefer your notifications not to reach them at inconvenient times, such as 3:00 am when your users are sound asleep..
+
+**How it works?**
+
+You now have the option to configure "Do Not Disturb" (DND) hours for both transactional and marketing communications. Currently, this feature is applicable to SMS, WhatsApp, Email, and Push channels.
+
+When DND is active, Fyno will not trigger notification during the specified hours. You have the flexibility to decide whether to **drop** (discard) notifications that were triggered during the DND period or **queue** their delivery until after the DND window. Queued messages will be sent at the end of DND period with 30 seconds additional delay.
+
+For example, if you want to set DND time for Marketing notifications from 11 PM till 7 AM for SMS and send notifications after the DND window, follow these steps.
+
+1. Under SMS channel, select Marketing from Notification Type drop down.
+2. Set DND Start Time as 11:00 PM
+3. Set DND End Time as 7:00 AM.
+4. Select **DROP IT** if you don't want to send notifications during DND hours and discard it. Select **QUEUE IT**, if you want to queue the notifications triggered during DND hours and send it after the DND window.
+
+![](https://files.readme.io/4c216c5-DND_Marketing.png)
+
+If you want to add DND settings for Transactional notification also for SMS, you can do it by clicking the '+ Add Another' button.
+
+> 📘 This setting will only apply to Notification Events triggered in LIVE environment.
+
+## Marketing Frequency Capping
+
+You can now configure your Marketing Frequency Capping for all channels from the following navigation : Workspace Settings(bottom left corner in menu) -> Delivery Limit -> Marketing Frequency Capping
+
+**Why Frequency Capping?**
+
+When multiple campaigns are created, some users may fall into multiple segments/cohorts and thus receive more than one notification in a day. Frequency Capping allows limits to be placed on the number of notifications users will receive during a particular period from a particular channel (Push/Email/SMS/WhatsApp).
+
+**How it works? **
+
+You now have the option to configure Frequency Capping for marketing communications. Currently, this feature is applicable to SMS, WhatsApp, Email, and Push channels.
+
+For example, if you want to set Frequency Capping as "_10 Notifications per destination per day for SMS_" , follow these steps.
+
+1. Under SMS channel, enter 10 as Notification count.
+2. Enter 1 in Time frame.
+3. Select Days from the time frame dropdown
+
+11th notification sent to the same destination on the same day will be dropped and won't be sent to the user.
+
+> 📘 We support time frames ranging from a minimum of 30 seconds to a maximum of 30 days. The Notification Count can range from a minimum of 2 to a maximum of 255.
+
+![](https://files.readme.io/4211224-Marketing_Frequency_Capping.png)
+
+> 📘 This setting will only apply to Notification Events triggered in LIVE environment.

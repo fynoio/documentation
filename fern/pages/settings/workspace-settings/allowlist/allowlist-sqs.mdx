@@ -1,0 +1,44 @@
+---
+title: "Allowlist SQS"
+slug: "allowlist-sqs"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Allowlist SQS | Fyno Documentation"
+    description: "The document provides a step-by-step guide on creating and configuring an Allowlist SQS in Fyno's application, including adding URLs, setting up SQS details from Amazon AWS, and adjusting access policies, with an option to convert it into a Delivery Webhook."
+    image: []
+    robots: "index"
+createdAt: "Mon Oct 14 2024 08:59:53 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Oct 14 2024 11:29:09 GMT+0000 (Coordinated Universal Time)"
+---
+
+# When to use SQS to receive Delivery reports
+
+1. **Handling Traffic Spikes**: SQS is ideal when you experience sudden surges in traffic. For instance, if you launch a campaign targeting 500,000 or more users, SQS is the recommended solution.
+2. **Managing Consistent High-Volume Traffic**: For scenarios with sustained high traffic, such as processing 30 million + notifications per month, SQS proves to be an effective choice.
+3. **Batch Processing of Delivery Reports**: If your workflow benefits from processing delivery reports in batches rather than handling each report individually, SQS offers an efficient approach.
+
+# Creating an Allowlist SQS
+
+You can add any number of SQS that you intend on using in Fyno's application by following the below steps:
+
+![](https://files.readme.io/6b707b15880ff7577e689319dbaa1efc8fa0d20860d5ff12e366739ce6118f70-adding_SQS.png)
+
+1. Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Allowlist URL**' which opens up the Allowlist URL page.
+2. On the page that opens, find the "**Add HTTP/SQS**" button on the top right side of the page.
+3. Select 'SQS' option.
+
+## Adding a Allowlist SQS
+
+1. **Custom Name** - Provide a name that would help you identify the configured account in Fyno's portal.
+2. **SQS URL** - You will get this from _Amazon SQS -> Queues_. Click a queue to get SQS URL.
+3. **Region** - From your Amazon AWS account, find the region either in the browser URL or you may also select the Region as per the drop-down next to your username in the AWS console.
+4. **AWS Access Key ID** - To get the access key ID, log into your Amazon AWS account and from the top right corner, open the menu by clicking on your name and navigate to "Security Credentials". On the page that opens, find "Access Keys" and enter the details.
+5. **AWS Secret Access Key** - To get the access key ID, log into your Amazon AWS account and from the top right corner, open the menu by clicking on your name and navigate to "Security Credentials". On the page that opens, find "Access Keys" and enter the details.
+6. **Access Policy** - By default, both Read and Write access is provided. If you want to change it, go to _Amazon SQS -> Queues_. Go to a queue where you want to change the access policy. In the JSON payload, replace "Action": ["SQS: *"] to "Action": ["SQS: SendMessage"]. This will give only Write access.
+
+## Enabling SQS to receive delivery report
+
+A allowlisted SQS can be enabled to receive delivery status of the notifications sent out and easily share the delivery details with you.
+
+An **Allowlist** SQS can be converted anytime to receive **Delivery Report**. You can read how to do it [here](./configuring-allowlist-url-sqs-to-receive-delivery-report).

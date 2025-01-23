@@ -1,0 +1,157 @@
+---
+title: "Configuring Allowlist URL/SQS to receive Delivery Report"
+slug: "configuring-allowlist-url-sqs-to-receive-delivery-report"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Configuring Allowlist URL/SQS to receive Delivery Report"
+    description: "A Delivery Webhook is an Allowlist URL that receives updates on notification delivery statuses from Fyno, which can be configured to send these updates to a specified location, with the first created endpoint set as the default for receiving reports."
+    image: []
+    robots: "index"
+createdAt: "Mon Oct 14 2024 09:58:23 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Oct 14 2024 10:10:43 GMT+0000 (Coordinated Universal Time)"
+---
+
+A **Delivery Webhook** is nothing but an **Allowlist** URL that can receive updates from Fyno regarding the delivery status of the notifications sent out and easily share the delivery details with you, to a location of your convenience, pre-decided by you.
+
+An **Allowlist** URL can be converted anytime to a **Delivery Webhook**, once it is successfully verified by following the below steps while adding Allowlist URL/SQS.
+
+1. Select the checkbox - 'Use this endpoint to receive delivery reports' and click 'Add'.
+2. In the window that opens, you can add additional configurations, based on your requirements. You can also alternatively scroll to the bottom and save. This will send you the basic details that are pre-configured at Fyno's end.
+
+![](https://files.readme.io/3c7ff6ed9f35b60c8a9ce1e023cd5e953d6ca54f63a654fff9b5fdafc1d4e8ed-delivery_endpoint.png)
+
+The first Delivery Endpoint you create will be considered as 'Default' and you will start receiving your delivery reports in that URL. At any point of time, there will be only one default Allowlist URL. If you want to receive delivery reports in other URLs other than default URLs, you need to specify it in the payload as explained in the next section.
+
+Once this is done, all the delivery statuses for every notification triggered will be automatically updated at this location.
+
+> 🚧 Not all Providers and Channels give you delivery notifications and updates. Check here for a detailed [list](./log-details-delivery#1-delivery-status-sent-no-extra-configuration)
+
+## Callback Objects in a Request
+
+| Parameter     | Type and Value                                                                                                                                                                                                                  |
+| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| enable        | **Default:** true,<br/>**true**: enable delivery status over callback.<br/>**false**: disable delivery status over callback                                                                                                     |
+| custom_id     | **string**; an alpha-numeric unique identifier of your notification.<br/>**Length**: 200 characters<br/>OR<br/>**number**; numeric unique identifier of your notification.<br/>**Length**: 20 digits                            |
+| custom1       | **string**; (Optional) additional information that you want to tag your notification.<br/>Example: order-id<br/>**Length**: 50 characters                                                                                       |
+| custom2       | **string**; (Optional) additional information that you want to tag your notification.<br/>Example: Category<br/>**Length**: 50 characters                                                                                       |
+| allowlist_url | **string**; (Optional) Allowlist url name where you want to receive delivery reports. Can be array of Allowlist url name too if you want the delivery reports in multiple URLs.<br/>Example: ["DynamicWebhookSite", "Mixpanel"] |
+
+```json Sample Callback Objects in  Request Parameters
+{
+   "event": "YOUR_EVENT_NAME",
+   "to": { // you channel destination },
+   "data": {  // your template placeholders  },
+   "callback": {
+       "custom_id": "YOUR_CUSTOM_ID_VALUE",
+       "custom1":"3d066514-c55d-48f8-b7ff-3981a43c20d4",
+       "allowlist_url": ["DynamicWebhookSite", "Mixpanel"]
+    }
+}
+```
+
+## Callback Response
+
+Here's a list of default fields which will be sent if the delivery status callback is subscribed using **Webhook URL**" with "**Callback Object**" in the request:
+
+The **Delivery Webhook** will be sent using:
+
+**Method**: POST | GET  
+**Content-Type** : `application/x-www-form-urlencoded` | `application/json`  
+**Data**: Default Parameters + Additional Parameters
+
+### Default Parameters
+
+| Parameter Name | Type & Value                                                                                                                              |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| custom_id      | **String or Number**; an alpha-numeric or numeric unique identifier that is provided in the callback object during the submission request |
+| msg_id         | **String**; Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5          |
+| status         | **String**; It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc         |
+
+### Additional Parameters
+
+Additional Parameters can be sent in the response by configuring the same in your "**Delivery Webhook**" URL. All you will need to do is configure it as a **Placeholder** as shown in the sample payload below.
+
+This configuration needs to be done in the payload section when converting an **Allowlist URL** to a **Delivery Webhook**
+
+Here is a sample payload for reference.
+
+```json Sample Payload
+{
+     "param1": "{{destination}}",
+     "param2": "{{provider}}",
+     "param6": "{{integration_name}}",
+      …………
+}
+
+```
+
+Below is a list of all the parameters that Fyno can send you as data points. However, each one of these will need to be specified if you need them.
+
+| Parameter Name   | Type & Value                                                                                                                                          |
+| :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| request_id       | string; request_id parameter in response which is generated during the submission request<br/>example: 17f7e491-f51f-4e1e-881c-794f838c7c3c           |
+| custom_id        | **String or Number**; an alpha-numeric or numeric unique identifier that is provided in the callback object during the submission request.            |
+| msg_id           | **String**; Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5                      |
+| status           | **String**; It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc                     |
+| destination      | **String**; destinations like email, mobile no sent during submission request.<br/>example : [abc@gmail.com](mailto:abc@gmail.com), 919876543210      |
+| distinct_id      | **String**; It holds the distinct_id of the user, if specified in the request                                                                         |
+| message          | **String**; This is an error message given by the provider if any delivery failure occurs.<br/>Note: all provider does not give this information      |
+| senttime         | **String**; Submission time of the request, YYYY-MM-DD HH:mm:ss UTC                                                                                   |
+| senttime_epoch   | **String**; Submission time of the request in epoch format (Unix time)                                                                                |
+| dlrtime          | **String**; The time when the delivery report status was received, YYYY-MM-DD HH:mm:ss UTC                                                            |
+| dlrtime_epoch    | **String**; The time when the delivery report status was received in epoch format (Unix time)                                                         |
+| integration_name | **String**; Integration account name through which the notification was sent                                                                          |
+| channel          | **String**; the name of the channel through which the notification was sent                                                                           |
+| provider         | **String**; the name of the provider via which the notification was sent                                                                              |
+| event_name       | **String**; the name of the Notification Event that is being triggered                                                                                |
+| template         | **String**; the name of the Template, whose content is sent out delivery and ideally it is being configured in the notification event                 |
+| version          | **String**: API version that is used to trigger a notification event<br/>test or live                                                                 |
+| custom1          | **String**: custom1 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string |
+| custom2          | **String**: custom2 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string |
+
+### Sample Webhook Configuration and Response
+
+Sample configuration for the additional parameters (JSON) in Webhooks Delivery status section
+
+```json Sample Webhook Configuration
+{
+    "url": "https://webhook.site/847c54cc-c471-40f4-b793-36c18a",
+    "method": "post",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": {
+        "recipent": "{{destination}}",
+        "providername": "{{provider}}",
+        "message": "{{message}}",
+        "request_time": "{{senttime}}",
+        "delivery_time": "{{dlrtime}}",
+        "account_name": "{{integration_name}}",
+        "reference_msg_id": "{{custom_id}}",
+        "order_id": "{{custom1}}",
+        "category": "{{custom2}}",
+        "channel": "{{channel}}"
+    }
+}
+```
+
+Once this is successfully configured, here is a sample of the Callback Response you would receive.
+
+```json
+{
+    "msg_id": "FYNO_MSG_ID_UUID",
+    "status": "DELIVERED",
+    "custom_id": "YOUR_CUSTOM_ID_VALUE",
+    "recipent": "user1@email.com",
+    "providername": "sendgrid",
+    "message": "",
+    "requesttime": "2023-03-24 10:23:39",
+    "deliverytime": "2023-03-24 10:23:50",
+    "account_name": "EmailProduction",
+    "reference_msg_id": "YOUR_CUSTOM_ID_VALUE",
+    "order_id": "YOUR_CUSTOM1_VALUE",
+    "category": "YOUR_CUSTOM2_VALUE",
+    "channel": "email"
+}
+```

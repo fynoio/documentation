@@ -1,0 +1,123 @@
+---
+title: '"Condition" Operator'
+slug: "routing-condition"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Routing - Condition Operator | Fyno Documentation"
+    description: 'Here''s an overview of the "Condition" Operator within the Routing section.'
+    image: []
+    robots: "index"
+createdAt: "Tue Dec 13 2022 06:00:54 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Dec 06 2023 07:51:15 GMT+0000 (Coordinated Universal Time)"
+---
+
+The "**Condition**" operator within the flow-builder allows you to experiment with a wide range of options by putting conditions to allow or deny an action from basically happening.
+
+The range of actions that can be achieved with such flexibility is limited only by imagination!
+
+On creating a **Single Channel Route** and selecting **Condition**, there are a few components that you will see:
+
+1. Key
+2. Operator
+3. Value
+
+To understand this better, let's have a look at the options we have here.
+
+# Key
+
+**Key** field allows you to select a field or a component within a notification (it may even be a component within the payload, not just the notification content!)
+
+On collapsing the menu, you can see the following options:
+
+1. Destination
+2. Country
+3. Variable
+
+## 1. Destination
+
+**Destination** refers to the end-point or recipient of the notification.
+
+A destination may be anything from:
+
+1. Number - Mobile numbers, including country code
+2. Email ID - Personal, official, etc.
+3. ID Tokens - Unique token IDs for applications like Push (Expo, FCM) or Chat (Slack, Teams)
+
+## 2. Country
+
+The option **Country** allows you to apply a condition to any notification which is directed towards a specific destination. This is identified by the country code of a phone number. The implications of the same can be many, based on how the redirections are done.
+
+From blocking entire traffic to specific countries to re-directing the traffic through specific operators, the options are limitless.
+
+## 3. Variable
+
+A **Variable** (placeholder, dynamic or replaceable parameters) is a component within a message that has user-specific details that are unique.
+
+Based on placeholder data, Fyno has the capacity of implementing rules. This can be anything from identifying OTP data and re-routing through a premium provider or blocking explicit or spamming content which is not allowed.
+
+> 📘 A "**Variable**" can be a message content or Meta-data that is pushed with the API request.
+>
+> If you have variable information that can govern a message being triggered or not, but not necessarily a part of the message content, this can be pushed as meta-data, and a variable dependent condition can be configured in "**Single Channel Routing**" to regulate this.
+
+# Operator
+
+An **Operator** helps to apply a condition on the **Key** and return the desired value or outcome.
+
+Operators that can be used on Fyno's application are:
+
+1. Greater Than
+2. Less Than
+3. Greater Than or Equal
+4. Less Than or Equal
+5. Equals
+6. Starts With
+7. Ends With
+8. Contains
+9. In
+
+These operators, in combination with the **Key** field, help apply rules that will help eventually affect the output and consequent action.
+
+# Value
+
+The **Value** lets you input the "true" value that you want to base your action on, thus directing the entire rule, to a result.
+
+To help you understand better, let's take an example of the same with the other fields **Key** and **Operator** in play.
+
+# Condition Outcomes
+
+Every condition that is defined or written will have 2 outcomes:
+
+1. True
+2. False
+
+On setting the factors governing any **Condition**, the outcome based on if that condition is "**True**" or "**False**" will need to be defined.
+
+This is done very simply by providing you with the below options in both scenarios:
+
+1. "Action" Operator
+2. "Condition" Operator
+3. Do Nothing
+
+> 🚧 Ensure your Routes makes logical sense and is a closed loop, to avoid gaps.
+
+# Understanding How Conditions Work
+
+Let's take an example to understand how **Conditions** work within Routing.
+
+In this scenario, our problem statement is:
+
+> 🤔 **_Block traffic towards a country, Belgium, without any other country's traffic affected._**
+
+The way to achieve this is by:
+
+1. Create a new route under the SMS tab from the ribbon menu on **Routing**.
+2. From the **Key** drop-down, select Country
+3. From the **Operator** drop-down, select equals
+4. Finally, from the **Value** drop-down, find and select Belgium
+5. Save the configuration.
+6. This will then show you the actions you can do if the **Condition** is "**True**" or "**False**"
+    1. Under the arm that shows "**True**", we select "**Do Nothing**" since we do not want these messages to be triggered.
+    2. Under the arm that shows "**False**", we select "**Action**" or "**Condition**" and define what needs to happen with the traffic going to all other countries EXCEPT Belgium.
+7. This essentially covers over problem statement of "Blocking traffic towards Belgium"
+8. Ensure to save and **Publish** your work.

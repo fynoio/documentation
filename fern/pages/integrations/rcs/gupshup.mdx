@@ -1,0 +1,31 @@
+---
+title: "Gupshup Enterprise"
+slug: "rcs-gupshup"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send RCS notification using Gupshup & Fyno | Help Document"
+    description: 'To integrate Gupshup Enterprise with Fyno, ensure you have a Gupshup account, then navigate to Integrations, select "Gupshup Enterprise" under the RCS section, and fill in the required fields in the pop-up.'
+    image: []
+    robots: "index"
+createdAt: "Fri Aug 09 2024 10:12:54 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 09:01:53 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have a Gupshup Enterprise account already set up, along with SenderID and Templates.
+
+1. Navigate to Integrations.
+2. Under "RCS" section, click on the "Gupshup Enterprise" button.
+3. In the pop-up, fill in:
+
+    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **UserID**: The CustomerID that is displayed on your Gupshup Enterprise Account when you log in and view the dashboard
+    3. **Password**: Password used to log into the Customer ID entered in the previous field
+       ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/rcs_gupshup_integration.png)
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, Gupshup Enterprise requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Copy the Callback URL in the Integrations popup
+2. Send the Callback URL to your Gupshup account manager to add it in your Gupshup account.

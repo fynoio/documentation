@@ -1,0 +1,70 @@
+---
+title: "Idempotent Requests"
+slug: "idempotent-requests"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Idempotent Requests | Fyno Documentation"
+    description: "Learn how Fyno support for idempotent requests prevents sending email, SMS, WhatsApp and push notifications twice (works with Gupshup, Kaleyra, ValueFirst, Meta, Twilio, SES, and more)."
+    image: []
+    robots: "index"
+createdAt: "Wed Oct 18 2023 09:00:43 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Dec 06 2023 07:51:15 GMT+0000 (Coordinated Universal Time)"
+---
+
+## What does Idempotency mean?
+
+Introducing Idempotency for Seamless Request Retries!
+
+Fyno API now supports idempotency, ensuring you can safely retry requests without the risk of performing the same operation twice. This feature proves invaluable in scenarios where an API call gets interrupted in transit, leaving you without a response.
+
+For instance, if a request to send a notification doesn't go through due to a network glitch, simply retry the request using the same idempotency key. This guarantees that no more than one notification will be sent.
+
+Fyno supports idempotency with only 3 APIs - Event, Event Bulk and Automations APIs.
+
+## Example
+
+Suppose customer places an order and you trigger OrderConfirmed Notification Event API to send order confirmation notification to your customer (Fyno successfully processes the request). However, your connection fails before you receive response from Fyno. You don't know what happened to your request and therefore you make the request again, sending the same notification twice.
+
+Fyno supports idempotency by allowing API operations to provide an idempotency key (a unique string) to protect against accidental duplicate calls that can have negative customer experience.
+
+In the case of the preceding OrderConfirmed example:
+
+-   If you make the same OrderConfirmed request with the same idempotency key again, the endpoint knows it's a duplicate request. It doesn't send the notification again. Instead of getting an error, the endpoint returns the same response that you would have received when you used the given idempotent key for the first time.
+-   If you use the same idempotency key but change the OrderConfirmed request (for example, specify a different order amount), the endpoint returns the same response that you would have received when you used the given idempotent key for the first time.
+
+## How it works?
+
+To make an idempotent request, include an additional `Idempotency-Key: <key>` header in your request. Experience smoother operations with this powerful addition to our API!"
+
+```Text cURL
+curl -X POST 'https://api.fyno.io/v1/FYXXXXXXXXXXXX/event' \
+-H 'Authorization: Bearer <YOUR_FYNO_API_KEY>' \
+-H 'Content-Type: application/json' \
+-H 'Idempotency-Key: 5de04035-9105-4c76-a6dc-fd20441a5ab9' \
+-d '{
+  "event": "Welcome_Email",
+  "to": {
+    "email": "<receivers_email>"
+  },
+  "data": {
+    "name": "Rahul"
+  }
+}'
+```
+
+At Fyno, we've engineered a foolproof idempotency system. It records the status code and body of the initial request made using a specific idempotency key, regardless of its outcome - success or failure. Subsequent requests with the same key will yield the identical result, even in the case of 500 errors.
+
+Crafting a unique idempotency key is in your hands, but we recommend using **V4 UUIDs or a similarly random string** to prevent overlaps.
+
+> 📘 We don’t have a length limit for idempotency key but we recommend using 256 characters or less for idempotency key. These keys are purged from the system after 24 hours.
+
+Remember, results are only saved if an API endpoint initiates execution. If incoming parameters don't pass validation or conflict with a concurrently executing request, no idempotent result is stored. You can confidently retry these requests.
+
+> 📘 Only Live version of Event, Event Bulk, and Automation API requests supports idempotency keys.
+
+## Idempotency Key expiration
+
+Rest easy knowing that your idempotency key is automatically eligible for reuse after 24 hours. No manual pruning required!
+
+Idempotency key expiration settings can not be modified until the original request expires, even if a new request is made with the same key and a different `x-idempotency-expiration` header value.

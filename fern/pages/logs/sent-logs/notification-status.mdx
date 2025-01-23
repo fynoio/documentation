@@ -1,0 +1,60 @@
+---
+title: "Notification Status"
+slug: "notification-status"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Notification Status | Fyno Documentation"
+    description: "This document explains all the different notification status which Fyno captures and show it their customers in Sent logs and in Analytics dashboard"
+    image: []
+    robots: "index"
+createdAt: "Tue Sep 10 2024 09:51:10 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Sep 19 2024 08:53:48 GMT+0000 (Coordinated Universal Time)"
+---
+
+This document explains the different notification status, from initiation on the Client's side till the delivery to the Client's customers.
+
+1. The following statuses are received after API requests are received from the Client and Fired by Fyno.
+
+| Status  | Description                                                                        | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :------ | :--------------------------------------------------------------------------------- | :---- | :------- | :-- | :-- | :---- | :--- | :------ | :---- | :------------------ |
+| Error   | Message was failed at Fyno's end                                                   | ✅    | ✅       | ✅  | ✅  | ✅    | ✅   | ✅      | ✅    | ✅                  |
+| Failed  | Message was failed at Provider's end                                               | ✅    | ✅       | ✅  | ✅  | ✅    | ✅   | ✅      | ✅    | ✅                  |
+| Timeout | Provider failed to respond within 5-10 seconds                                     | ✅    | ✅       | ✅  | ✅  | ✅    | ✅   | ✅      | ✅    | ✅                  |
+| Dropped | Message was dropped (due to configuration in Fyno - supression/route/subscription) | ✅    | ✅       | ✅  | ✅  | ✅    | ✅   | ✅      | ✅    | ✅                  |
+| Success | Message was successfully submitted to the provider                                 | ✅    | ✅       | ✅  | ✅  | ✅    | ✅   | ✅      | ✅    | ✅                  |
+
+2. The following statuses are received after Fyno's successfully submits the requests (or Submission Timeout).
+
+| Status    | Description                                         | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :-------- | :-------------------------------------------------- | :---- | :------- | :-- | :-- | :---- | :--- | :------ | :---- | :------------------ |
+| Queued    | Message was queued at the provider's end            | ✅    | ✅       | ✅  | ❌  | ✅    | ❌   | ❌      | ❌    | ❌                  |
+| Processed | Message request was processed and sent for delivery | ✅    | ✅       | ✅  | ✅  | ❌    | ✅   | ❌      | ❌    | ❌                  |
+
+3. The following statuses are received after the notification is sent from Service provider to the client's customers but undelivered.
+
+| Status      | Description                                                                       | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :---------- | :-------------------------------------------------------------------------------- | :---- | :------- | :-- | :-- | :---- | :--- | :------ | :---- | :------------------ |
+| INVALID-SUB | Subscriber was invalid                                                            | ❌    | ❌       | ✅  | ❌  | ❌    | ❌   | ❌      | ❌    | ❌                  |
+| REJECTED    | Message was rejected by the provider (DLT/Template/Complaint issue)               | ✅    | ✅       | ✅  | ❌  | ❌    | ❌   | ❌      | ❌    | ❌                  |
+| BOUNCE      | Email was bounced                                                                 | ✅    | ❌       | ❌  | ❌  | ❌    | ❌   | ❌      | ❌    | ❌                  |
+| DENIED      | Notification was denied (Push disabled / Call denied)                             | ❌    | ❌       | ❌  | ❌  | ❌    | ✅   | ❌      | ✅    | ❌                  |
+| FAILED      | Message has failed at the provider's end (due to congestion/error/template issue) | ❌    | ✅       | ✅  | ❌  | ❌    | ❌   | ❌      | ✅    | ❌                  |
+| NOANSWER    | Call was not answered (or user was busy)                                          | ❌    | ❌       | ❌  | ❌  | ❌    | ❌   | ❌      | ✅    | ❌                  |
+| UNDELIVERED | Message could not be delivered by the provider                                    | ✅    | ✅       | ✅  | ✅  | ❌    | ✅   | ❌      | ❌    |                     |
+
+4. The following statuses are received after the notification is successfully sent from Service provider to the client's customers and delivered.
+
+| Status       | Description                                                                | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :----------- | :------------------------------------------------------------------------- | :---- | :------- | :-- | :-- | :---- | :--- | :------ | :---- | :------------------ |
+| DELIVERED    | Message was delivered successfully                                         | ✅    | ✅       | ✅  | ✅  | ✅    | ✅   | ✅      | ❌    | ❌                  |
+| UPDATED      | Message content was updated successfully                                   | ❌    | ❌       | ❌  | ❌  | ✅    | ❌   | ❌      | ❌    | ❌                  |
+| CLICKED      | URL/Link in the message or the entire notification was clicked by the user | ✅    | ✅       | ✅  | ✅  | ✅    | ✅   | ✅      | ❌    | ✅                  |
+| OPEN         | Message was opened by the user                                             | ✅    | ❌       | ❌  | ❌  | ❌    | ❌   | ❌      | ❌    | ❌                  |
+| READ         | Message was read by the user (or marked as read)                           | ❌    | ✅       | ❌  | ✅  | ✅    | ❌   | ❌      | ❌    | ❌                  |
+| ANSWERED     | Call was answered                                                          | ❌    | ❌       | ❌  | ❌  | ❌    | ❌   | ❌      | ✅    | ❌                  |
+| DELETED      | Message was deleted/dismissed by the user                                  | ❌    | ❌       | ❌  | ❌  | ✅    | ✅   | ✅      | ❌    | ❌                  |
+| KEYPRESS     | Call was answered and a key was pressed by the user during the call        | ❌    | ❌       | ❌  | ❌  | ❌    | ❌   | ❌      | ✅    | ❌                  |
+| REPLIED      | Message was replied to by the user                                         | ❌    | ✅       | ❌  | ❌  | ❌    | ❌   | ❌      | ❌    | ❌                  |
+| UNSUBSCRIBED | The user unsubscribed for notifications from this particular message       | ✅    | ✅       | ✅  | ✅  | ✅    | ✅   | ✅      | ✅    | ✅                  |
+| UNKNOWN      | The status received is UNKNOWN. Please report to Fyno in such cases        | ✅    | ✅       | ✅  | ✅  | ✅    | ✅   | ✅      | ✅    | ✅                  |

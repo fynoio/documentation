@@ -1,0 +1,136 @@
+---
+title: "iOS specific configuration"
+slug: "getting-your-application-ready-for-ios-push-notifications-1"
+excerpt: ""
+hidden: false
+createdAt: "Mon May 13 2024 07:20:32 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 08:53:02 GMT+0000 (Coordinated Universal Time)"
+---
+
+To enable push notifications for iOS, you need to configure specific capabilities and handle the necessary app delegate code. Let's walk through these steps.
+
+### Step 0: Update iOS pods
+
+1. Run `pod install` in the ios folder of your React Native application to install/update the pod dependencies.
+
+### Step 1: Add capabilities in iOS application
+
+1. Open your React Native project in Xcode.
+2. Inside the **Targets** section, select your app target, and go to **Signing & Capabilities**.
+3. Click on **+ Capability** and add **Push Notifications** and **Background Modes** capabilities.
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_1.jpeg)
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_2.jpeg)
+
+4. In Background Modes, select the Remote Notifications option. This is required to receive background push notifications. Learn more about background notifications [here](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app).
+
+### Step 2: Register for push notification in AppDelegate.mm file
+
+To handle push notifications in your iOS app, add the following code to `AppDelegate.mm`:
+
+1. Import the required packages:
+
+```Text Obj-C
+#import "AppDelegate.h"
+
+#import <React/RCTBundleURLProvider.h>
+
+#import <UserNotifications/UserNotifications.h>
+#import <FirebaseMessaging/FirebaseMessaging.h>
+#import <FirebaseCore/FirebaseCore.h>
+#import <fyno/fyno-Swift.h>
+```
+
+2. In `AppDelegate.m` file, copy paste the below code:
+
+```Text Obj-C
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
+@property (nonatomic, strong) fyno *fynosdk;
+@end
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  ...
+  UNUserNotificationCenter.currentNotificationCenter.delegate = self.fynosdk;
+  self.fynosdk = [fyno app];
+
+  [self.fynosdk registerForRemoteNotifications];
+  ...
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"Failed to register for remote notifications: %@", error.localizedDescription);
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  // Send the device token to fynoServer
+  [self.fynosdk setdeviceTokenWithDeviceToken:deviceToken];
+}
+
+...
+```
+
+### Step 3: Add a Notification Service Extension
+
+To ensure rich push notifications and proper handling of incoming messages, add a `Notification Service Extension` to your iOS project:
+
+1. In Xcode go to **File** > **New** > **Target**.
+2. Select `Notification Service Extension` from the template list.
+3. Provide a product name, select your development team, choose Objective-C as the language, and click Finish.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_2.png)
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_4.png)
+
+Replace the contents of the generated `NotificationService.m` file with the following code:
+
+```Text NotificationService.m
+#import "NotificationService.h"
+#import <fyno/fyno-Swift.h>
+#import <FirebaseCore/FirebaseCore.h>
+#import <FirebaseMessaging/FirebaseMessaging.h>
+
+@interface NotificationService ()
+
+@property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
+@property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
+
+@end
+
+@implementation NotificationService
+
+- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+  [[fyno app] handleDidReceive:request withContentHandler:contentHandler];
+}
+
+- (void)serviceExtensionTimeWillExpire {
+    // Called just before the extension will be terminated by the system.
+    // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
+    self.contentHandler(self.bestAttemptContent);
+}
+
+@end
+
+```
+
+### Step 4: Add Fyno SDK to the Notification Service Extension
+
+In order for the Notification Service Extension to be able to access **fyno** and the **Firebase SDKs**, you will have to import it by following the below steps:
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_5.png)
+
+Select the framework named **fyno.xcframework** and click on **Add**
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_6.png)
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_7.png)
+
+Search for `https://github.com/firebase/firebase-ios-sdk` in the text box. Select and add the package named **firebase-ios-sdk**.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_8.png)
+
+Scroll down to find **FirebaseMessaging** and add it to the Notification Service Extension you had created.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_9.png)
+
+> 👍 You have successfully integrated Fyno's Flutter Push Notification SDK into your application. Go ahead and test the integration by sending a push notification using [Notification Events](./events-overview)

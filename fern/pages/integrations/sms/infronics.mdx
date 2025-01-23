@@ -1,0 +1,38 @@
+---
+title: "Infronics"
+slug: "sms-infronics"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send SMS using Infronics & Fyno | Fyno Documentation"
+    description: "This document provides instructions on how to set up an Infronics account in Fyno's portal for SMS integration, including providing a custom name, username, password, sender ID, DLT Entity ID, and selecting a route type. It also mentions that the message delivery status will be displayed in the logs after the integration is complete."
+    image: []
+    robots: "index"
+createdAt: "Mon May 13 2024 09:41:19 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon May 13 2024 09:48:26 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have a Infronics account already set up, along with SenderID and Templates.
+
+1. Navigate to Integrations.
+
+2. Under "SMS" section, click on the "Infronics" button.
+
+3. In the pop-up, fill in:
+
+    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **Username**: The username that is displayed on your Infronics Account when you log in and view the dashboard
+    3. **Password**: Password used to log into the Customer ID entered in the previous field
+    4. **Sender**: Enter the Sender ID that you want to use.
+    5. **DLT Entity Id**: Enter your DLT registered Entity ID
+    6. **Route**: Select the type of route from the below option
+        1. Transactional
+        2. OTP
+
+4. Click on "Test Integration" once done. If the account is successfully connected, you will see a success message.
+
+## Message Delivery Status
+
+Infronics, by default, provides the status of the message without any additional setup needed.
+
+Once the above integration is complete, the status of the notification, which will be shared by Infronics will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

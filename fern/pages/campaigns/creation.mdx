@@ -1,0 +1,189 @@
+---
+title: "Creating a campaign"
+slug: "campaign_creation"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Creating a campaign | Fyno Documentation"
+    description: "To create a campaign in Fyno, ensure you have a provider integration, notification template, event, and user CSV file ready, then follow the steps to configure, preview, and schedule or fire the campaign, with options for delivery reports, throttling, and testing."
+    image: []
+    robots: "index"
+createdAt: "Wed Oct 09 2024 15:10:23 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Nov 22 2024 07:45:56 GMT+0000 (Coordinated Universal Time)"
+---
+
+## Pre-requisites
+
+To create a Campaign, you will first need to have a few things in place:
+
+1. A provider integration in Fyno's platform
+2. A notification template (it may be any channel)
+3. A Notification Event
+4. A CSV file or Google sheet or Public URL or a Cohort with the user base to whom you would be triggering the campaign.
+
+`Once` we have these in place, we are all set to go with campaigns!
+
+## Creating a Campaign
+
+To create a campaign,
+
+1. Login to your Fyno account and find **Campaigns** from the left navigation bar under 'Advanced' section.
+2. On the landing page of **Campaigns**, click on the 'New Campaign' CTA at the top right corner. It will open a popup as shown below.
+   ![](https://files.readme.io/d5daa4623123ab493926ada6a1d047569147b169f62b59280d45c2af53a6d84b-new_campaign.png)
+3. Enter a name for your **Campaign** and select the notification event you want to fire using this campaign from the dropdown.
+4. Once you have selected the event, you will see the channels linked to that event and also you will see a sample file structure which you need to upload (as shown below). For ex - The selected notification event has only SMS and WhatsApp channel, thats why you see only SMS and WhatsApp channel in the sample file structure.
+   ![](https://files.readme.io/edc29f58e2b3bcd6d9ea432d7f93a7207b9519be1be63dc8a345c1c4b80cd90e-Screenshot_2024-11-22_at_1.09.22_PM.png)
+
+5. You can create a campaign by 3 ways
+    1. CSV upload
+    2. Google sheet
+    3. Public URL
+    4. Cohort
+
+## Creating a campaign using CSV upload
+
+If you want to create a campaign using csv upload,
+
+1.  You can also download the sample CSV file by click 'CSV for selected notification event' .
+2.  Once you have your CSV file ready, click 'Upload CSV file' or Drag and drop the CSV from your device.
+    ![](https://files.readme.io/675fa948c01b717260e5f13262d858d949fb130209b60413022e655ca63b20c8-Screenshot_2024-10-29_at_12.08.49_PM.png)
+
+3.  Once the file is uploaded, you will see a few important details:
+    ![](https://files.readme.io/da0007fac537aaf9261b032fe72beafac2ca235124a878c29cc54230a9598b45-csv_validation.png)
+
+        1. Number of records processed
+        2. Number of records ready to be imported
+        3. Number of records that are not valid (as per the checks in place). This could happen if there are any records without any destination and distinct Id etc.
+        4. Number of duplicate records that were found.
+
+4.  Click 'Create Campaign' to import the valid records from CSV.
+
+> 📘 If you are using **Distinct IDs**, ensure that this data matches the pre-existing distinct Ids in **User Profiles** on Fyno.
+
+## Creating a campaign using Google Sheet
+
+If you want to create a campaign using Google sheet,
+
+1. Select Google sheet. You will see the list of requirements. Please make sure all the requirements are satisfied.
+   ![](https://files.readme.io/54a6f6014abc40c7fb130229ebb1561c640888b2fb9c5a6535a594a9405466f0-new_gsheet_url.png)
+
+2. Provide a Google sheet link in the 'Link to Google sheet' field and click 'Validate Records'.
+3. You will see the validation as shown.
+   ![](https://files.readme.io/d149a7d2e57f1c1db5dd7d304cbe843121c7226cada961c438c658cfeff337cd-new_gsheet_url_validate.png)
+
+4. Once all the records are ready to be imported, click 'Create Campaign'.
+
+## Creating a campaign using Public URL
+
+If you want to create a campaign using Public URL,
+
+1. Select Public URL. You will see the list of requirements. Please make sure all the requirements are satisfied.
+   ![](https://files.readme.io/cd025fe444bb2f0ba44bf8d02ae2a1a09ceda6ae7db4b481466677572605dce3-campaign_add_public.png)
+
+2. Provide a Public URL link to the CSV file in the 'Link to CSV' field and click 'Validate Records'.
+3. You will see the validation as shown.
+   ![](https://files.readme.io/50220ec913b4854aa01326479ff1cbb4b56423a3463aec4a713e38ba31324744-campaign_public_url.png)
+
+4. Once all the records are ready to be imported, click 'Create Campaign'.
+
+## Creating a campaign using Cohort
+
+If you want to create a campaign using Cohort,
+
+1. Select Cohort. You will see the list of requirements. Please make sure all the requirements are satisfied.
+   ![](https://files.readme.io/1f5e0daac73d4a88e770a2ae41d39fe350cfe2b10d22e91b53db8f80c5064f41-cohort_select_cohort.png)
+
+2. Select a cohort created in the User profile section. To learn more about how to create a cohort, refer this [doc](./creating-cohorts). Click 'Validate Cohort'.
+3. You will see the validation as shown.
+   ![](https://files.readme.io/6612a5a0f2130dc7215ad258d8637f6ad60255909e0e677e9d27055ddcd56335-cohort_validate_records.png)
+
+4. Once all the records are ready to be imported, click 'Create Campaign'.
+
+> 📘 When 'Include duplicates in campaign' is enabled, any duplicate records in your uploaded file will be processed. This means your users may receive the same communication multiple times. To prevent spam, consider leaving this option disabled."
+
+## Configuring Campaign
+
+Once you have uploaded a CSV or linked a CSV using Google sheet or pUBLIC url, you will see the below screen
+
+![](https://files.readme.io/7e7bdd8431977cd68a0b1bc174993fde476d2d9bad347805186c9da9571963fd-Screenshot_2024-10-10_at_4.14.39_PM.png)
+
+1. **Notification Event**: The notification event is preselected based on the value selected.
+2. **Map destinations & Placeholders**: In this step, you will need to configure the details needed for the event to be successfully triggered. This includes the mapping of the Channels and Placeholders. You can select each item's corresponding data field from the uploaded CSV file by clicking on the drop-down and selecting one. In case you do not want to trigger a notification to a specific channel, you can remove it by deleting that row from this section.
+   ![](https://files.readme.io/e43f43b9f3f8cc2df9f6845723e163e0d6d45c6ccfe1c64bdd068d88c011e652-Screenshot_2024-10-10_at_4.38.48_PM.png)
+
+3. **Preview** : Preview allows you to visualize how the data from a CSV upload appears within the template, ensuring the uploaded data aligns with your expectations. You will see the preview as shown below. You can click '\<' and '>' to see a preview based on the first 10 records from the uploaded CSV file.
+
+![](https://files.readme.io/fa4fb79-Campaign_preview.png)
+
+### How to enable receiving Delivery reports from Fyno
+
+To enable receiving delivery reports from Fyno, select the checkbox 'Receive delivery report from Fyno to my allowlisted endpoint(s)'. This enables the callbacks for the channels and essentially sends back the delivery updates about each notification triggered. On checking this box, 3 additional placeholder details will need to be configured.
+
+![](https://files.readme.io/0754d409f6aeb8f9c7a94b0f3bd01c514cad27906c966dfd0cedbdaedc1c7fb0-Screenshot_2024-10-10_at_4.35.24_PM.png)
+
+1. **Custom ID** - This is mandatory field. This is the ID you provided in the callback.custom_id field while triggering the notification.
+2. **Custom1** - This is optional field
+3. **Custom2** - This is optional field
+
+By default you will receive these 3 values in callback: _custom_id , msg_id , status_  
+**custom_id** - Is the ID you provided in the callback.custom_id field while triggering the notification.  
+**msg_id**- is the message ID within Fyno.  
+**status** - Is the status of the message:
+
+1. More values can be added in the callback. For a list of additional available values, please see: [Callback Response](./allowlist-url#callback-response)
+2. **Reset**: Resets all the configurations for the Map Channels and Placeholders section.
+
+### How to throttle a campaign
+
+Throttle is optional but we recommend using it. Throttling allows you to control the rate at which notifications (Emails/SMS/WhatsApp/Push/WebPush) are sent to users.
+
+1. **By Time** - You can specify a duration for which the campaign should run. For example, if you want to execute the campaign for an hour, you can do that by entering 60 minutes.
+
+![](https://files.readme.io/d950b16b69b34d65379a366b1d32e6c17688ab9a714c64e825ad400de8d29c3c-Throttle_time.png)
+
+2. **By Batch** - In this option, you can throttle the number of records the campaign should send for a specific duration. For example you want to send a execute a batch of 1000 records in the csv file every minute, then you can enter 1000 records and 1 minute
+
+![](https://files.readme.io/746446a32efa717f2e08e5157baf92cd471738ee3f621e97947350a8e3afd960-Throttle_batch.png)
+
+### How to test a Campaign
+
+Just before you send out a campaign to all your customers, running a test is always a good idea, since you will be able to preview the look and feel of your notifications before they go out.
+
+To do this, once you have set up your campaign, simply:
+
+1. Scroll to the top of the campaign configuration page to find the **Run Test** button and click on it.
+2. A new pop-up requesting the below information to run the test will come up:
+    1. **Send Using (Channel Details)**: Map the channels that are there in the notification event to run the test on.
+    2. **Map Placeholders**: Map the placeholders that are there in the template of the corresponding Notification event to successfully simulate the notification.
+3. Once ready, click on run test to get the notification delivered to the corresponding test recipients.
+
+### Save as Draft
+
+Once an event is configured with the details of the **Notification Event**, mapped Channels and Placeholders and scheduled time, this can now be saved to use or edit at a later time.
+
+Simply click on the **Save** at any point in time of configuring the campaign and this will be saved for later use!
+
+### How to Fire or Schedule a campaign
+
+Once you have done with all the configuration, you can click Schedule/Fire CTA. You can fire it in 2 ways.
+
+![](https://files.readme.io/5cacf8bc19bd531103ff70f701b22a9647f5473a3c7acdf161b0226f397e0083-Screenshot_2024-10-10_at_4.27.40_PM.png)
+
+1. **Now** - If you select Now and click 'Fire', the campaign will be fired immediately and your users will start getting notifications.
+2. **Later** - If you select Later, you will be asked to select a date and time when you want to fire the campaign.
+
+![](https://files.readme.io/cbdc8c1d8c0d6e13e7eec444e469eacc6866b333f2313e3096d9d611d62efc21-Screenshot_2024-10-10_at_4.29.52_PM.png)
+
+> 📘 You can select a date upto 30 days from the time of selecting the schedule.
+
+Once you have successfully fired a campaign, you can see the progress as shown below.
+
+![](https://files.readme.io/bf6a920a73cc880f5699143f7b61b03ca68ef4ae32801e463d5718dace89d4da-image_33.png)
+
+### How to stop a Campaign
+
+If you want to pause a campaign after its fired, you can click the Stop Campaign and status of the campaign will show as Stopped.
+
+![](https://files.readme.io/bb11765d1f4761d32cbfe1737b01110522793eceb8e2d51e8f5d69d93c2c4c8f-image_34.png)
+
+> 📘 Please note that 'Stop Campaign' will be enabled only for CSV with more than 1000 records.

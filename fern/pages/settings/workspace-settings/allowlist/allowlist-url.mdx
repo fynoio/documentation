@@ -1,0 +1,42 @@
+---
+title: "Allowlist URL"
+slug: "allowlist-url"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Allowlist URL | Fyno Documentation"
+    description: "The document provides instructions on how to add and verify an allowlist URL in Fyno's application, detailing three verification methods: DNS Verification, Web Token, and manual verification, and explains how an allowlist URL can be converted into a Delivery Webhook for receiving notification delivery updates."
+    image: []
+    robots: "index"
+createdAt: "Mon Oct 14 2024 08:57:49 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Oct 14 2024 10:37:16 GMT+0000 (Coordinated Universal Time)"
+---
+
+# Creating an Allowlist URL
+
+You can add any number of URLs that you intend on using in Fyno's application by following the below steps:
+
+![](https://files.readme.io/eabffdb572fa5b2cae84fd348fec630b56f7ae40ba14698ba6bbdf211ba6a957-HTTPSQS.png)
+
+1. Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Allowlist URL**' which opens up the Allowlist URL page.
+2. On the page that opens, find the "**Add HTTP/SQS**" button on the top right side of the page.
+3. Provide a relevant name and enter the URL that you intend on verifying.
+
+## How to verify an Allowlist URL
+
+Allowlist URL can be verify in 3 ways.
+
+1. **DNS Verification**: With DNS verification, you would need to paste the TXT record, which can be copied from the same window, into your DNS configuration. This can usually be handled by your network administrator. A general guide on how to do this can be found [here](https://support.google.com/a/topic/1409901). If a domain is allow-listed once using this method, any URL's containing this domain are automatically allow-listed. For instance, if you allow-list `https://api.example.com`and then add `https://api.example.com/v1/data`, then the latter will be automatically allow-listed. This way you can add multiple variants of the endpoint to the allow-list without having to wait for verification to complete.
+2. **Web Token**: A web token is a simple process of Fyno checking if the URL that has been provided is valid by sending a token. This can be validated in 2 ways:
+    1. **System Generated Token:** A random token will be created from the back-end when the request is generated from the Fyno Application. The expected result is that when the webhook is called, it should be able to respond with the same token key. You have to echo the value that you receive in the query parameter. For example:If you receive a GET request from Fyno with fyno_token=98765. Then, your API should respond with 98765
+    2. **Optional Token:** If you want to protect the URL from being used in an unauthorized way, you can add an optional token. You can provide optional token in the field provided. This can be alpha-numeric. The validation process is the same where the expected result is that when the webhook is called, it should be able to respond with the same token key. For example. you have added '12345' as optional token, in that case the query parameter you will receive will be `fyno_token=98765&user_token=12345`.
+       You can validate if the user_token has the value that you have set. If it is matching then echo the fyno_token value for successful verification. This optional token is added for additional security.
+3. **Send For Verification**: If for any reason you are not able to verify via the above 2 methods, you can send the URL for manual verification to Fyno's team. Provide a relevant description for the link as well as what will be achieved with the link and our team will get back to you on this.
+
+Once the URL is added and the verification is complete, this will now be available on Fyno's application interface, for you to use.
+
+## Enabling SQS as Delivery Webhook
+
+A **Delivery Webhook** is nothing but an **Allowlist** URL that can receive updates from Fyno regarding the delivery status of the notifications sent out and easily share the delivery details with you, to a location of your convenience, pre-decided by you.
+
+An **Allowlist** URL can be converted anytime to a **Delivery Webhook**. You can read how to do it [here](./configuring-allowlist-url-sqs-to-receive-delivery-report).

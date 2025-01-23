@@ -1,0 +1,159 @@
+---
+title: "Alerts"
+slug: "alerts"
+excerpt: ""
+hidden: false
+createdAt: "Thu Jul 13 2023 05:36:48 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Tue Sep 17 2024 05:15:27 GMT+0000 (Coordinated Universal Time)"
+---
+
+Alerts are designed to help get your attention to any deviants from the norm on the Fyno platform.
+
+Be it an integration failure or anomaly detection, we have designed a few alerts you can configure in case something changes or behaves differently.
+
+Let's get right into it!
+
+There are 2 types of **Alerts** you can set up for your account.
+
+1. Anomaly Detection
+2. Integration Failure
+
+## Anomaly Detection
+
+An anomaly is when there is a deviation from the expected standard. The **Anomaly Detection** feature in Fyno helps you identify these deviations in terms of your traffic, based on your historical usage trends.
+
+**Anomaly Detection** is a crucial feature since:
+
+1. It brings your attention to alterations in traffic trends.
+2. It alerts you to possible unwarranted activity on your account.
+
+### How it works
+
+**Anomaly Detection** has been designed by Fyno to learn the trends unique to your account and alert you when there is any deviation from the norm.
+
+It works on a P90 or 90th percentile method, where the last 10% of the outliers in the traffic trend you have been clocking are flagged.
+
+This is then communicated via email to you or any other email of your choosing.
+
+![](https://files.readme.io/3fc255c-Screenshot_2023-07-13_at_2.43.06_PM.png)
+
+Let's look at an example.
+
+-   Typically, usage of your account on a monthly basis is around 20,000 - 22,000 notifications since you have started using Fyno's services. In the current month, however, there is a spike in your traffic (this may be expected or unexpected from your side).
+-   Once Fyno's system clocks the traffic you are pushing on a daily basis, it then does a predictive analysis and notices that based on your current notification trend, the monthly average you are clocking is around 25,000 notifications.
+-   Since this is deviating from your regular usage pattern, the **Anomaly Detection ** feature will be triggered and a notification will be sent to you regarding the new trends of your account.
+
+### Enabling Anomaly Detection
+
+To set up **Anomaly Detection** in your account, follow the below steps.
+
+1. Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Alerts**' which opens up the Alerts page.
+2. On the new page, find and click on the **Alerts** tab on the ribbon menu. Find the **Anomaly Detection** toggle and activate it.
+3. In the pop-up window, fill in the email addresses of the persons you want an email to be sent to whenever there is a traffic anomaly detected on your account.
+
+> 👍 You can add upto 5 Email IDs to receive communication for any anomaly that is detected.
+
+## Integration Failure
+
+Integrations make up the building blocks of Fyno's functionality. So if an Integration fails, it is important to ensure you are aware of it. For this, **Integration Failure** alerts can be used to ensure you are on top of this.
+
+**Integration Failure** is significant since:
+
+1. It can help you detect when any of your integrations are not working and quickly narrow it down so that you can take quick corrective action.
+2. It improves provider-level observability and gives you transparent updates on the status of your provider.
+
+### How it works
+
+On enabling the **Integrations Failure** notification,
+
+1. Whenever an integration fails, a notification will be triggered.
+2. But, since integrations are used in **Events**, this will continue to fail, which will create a significant amount of failures, sometimes mounting to 1000s.
+3. To avoid spamming, Fyno has designed the **Digest** feature to work in tandem with the **Integrations Failure** feature. This:
+    1. Intakes all the notifications for an integration failure and buckets them into each reason for failure.
+    2. Incrementally conveys this information, until the time it is resolved, in a summarised manner in the below-mentioned windows:
+        1. 10 minutes
+        2. 1 hour
+        3. 3 hours
+        4. 6 hours
+        5. 12 hours
+
+> 👍 You will receive emails at these intervals for integration failures. You will also receive an InApp notification on your Fyno account with more details of the failure.
+
+For example, let's consider you have an integration "Fyno SMS". This has been successfully integrated and is working fine. Suddenly, the integration starts failing since the account is pre-paid and you have run out of credits. With **Integrations Failure** feature on:
+
+1. The system will send you an initial communication stating "Fyno SMS' integration is failing, along with the reason.
+2. The system, which then continues to receive this intimation (since you have not actioned it) will keep count of the number of times it failed, up to 10 minutes, summarize this and communicate the same.
+3. This activity will continue further in intervals of 1, 3, 6 and 12 hours, until the time it is resolved.
+
+The email communication will look like below:
+
+![](https://files.readme.io/1980c49-image.png)
+
+> 🚧 The Integration Failure timer will not reset based on changes in the error messages generated by the integration.
+
+### Enabling Integration Failure
+
+To activate **Integration Failure** on your account, follow the below steps.
+
+1. Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Alerts**' which opens up the Alerts page.
+2. Find the **Integration Failure** toggle and activate it.
+3. In the pop-up window, fill in the email addresses of the persons you want an email to be sent to whenever there is an integration failure on your account.
+
+> 👍 You can add upto 5 Email IDs to receive communication for any Integration that has failed.
+
+## Downtime Alerts
+
+**Downtime Alerts** are set up for you to understand in case there are any application or performance issues with the Fyno App.
+
+While we do not expect the application to face downtimes or have issues that would hinder your communications from going out, it is always good to know in case it does happen.
+
+For this reason, we have a Status page that is up and running at all times, monitoring the statuses of all the critical features that have been provided by Fyno.
+
+### How it works
+
+In order to receive **Downtime Alerts**, you will need to subscribe to the service by following the below steps:
+
+1. Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Alerts**' which opens up the Alerts page.
+2. Find the **Downtime Alerts** card and click on **Subscribe**.
+3. This will redirect you to the [Fyno Status Page](https://status.fyno.io/), where you can subscribe to the downtime alerts by clicking on the **Subscribe to Updates** button and entering the details of either Email or Slack.
+
+## Workflow Failure Alerts
+
+**Workflow Failure Alerts** are set up for you to understand in case there are any notification failure in the workflow.
+
+For example, if you are triggering a notification event which sends WhatsApp message to the user and if the WhatsApp no is not configured, then the notification event will fail and you will get an alert. Sample alert below.
+
+> ❗️ Brand: \<brand_name>
+>
+> Company: \<company_name>  
+> WSID: FYAPxxxxxxxIN  
+> Workflow name: \<workflow_name>  
+> Failed: 1 / 1  
+> Failed Action(s): event-response  
+> Request ID: xxxxxxxx
+
+### Enabling Workflow Failure
+
+To activate **Workflow Failure** on your account, follow the below steps.
+
+1. Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Alerts**' which opens up the Alerts page.
+2. Find the **Workflow Failure** toggle and activate it.
+3. In the pop-up window, fill in the email addresses of the persons you want an email to be sent to whenever there is an integration failure on your account.
+
+> 👍 You can add upto 5 Email IDs to receive communication for any Workflow that has failed.
+
+## Callback Failure Alerts
+
+**Callback Failure Alerts** are set up for you to understand in case if Fyno didn't receive any success status from callback URL configured.
+
+For example, you are triggering a notification event which sends WhatsApp message to the user and you have configured Delivery Callback to receive the status at your end. After sending Delivery callback, if Fyno doesn't receive any success status for the callback, then you will get an alert.
+
+### Enabling Callback Failure Alert
+
+To activate **Callback Failure** on your account, follow the below steps.
+
+1. Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Alerts**' which opens up the Alerts page.
+2. Find the **Callback Failure** toggle and activate it.
+3. In the pop-up window, fill in the email addresses of the persons you want an email to be sent to whenever there is an Callback failure on your account.
+
+> 👍 You can add upto 5 Email IDs to receive communication for any Callback that has failed.

@@ -1,0 +1,81 @@
+---
+title: "InApp Templates"
+slug: "template-creation-inapp"
+excerpt: ""
+hidden: false
+createdAt: "Tue Mar 14 2023 09:26:09 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Dec 20 2024 07:26:52 GMT+0000 (Coordinated Universal Time)"
+---
+
+Fyno’s InApp template editor allows you to configure your template for Fyno’s InApp services.
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/template-inapp.png)
+
+On Clicking InApp, you can see:
+
+1. **Title:** Enter a title for your template, this is an optional field but it really helps to give a short context about your notification.
+
+2. **Body:** Enter the main body content of your template, you can use the rich text options provided in the editor to make your text more appealing.
+
+3. **Tag:** Only one notification with the same ID will be shown in the notification center. Use the same ID to update an existing notification instead of showing a new one. The character limit is set at 64 characters.
+
+4. **Action URL:** This is the main action of the notification when the notification tile is clicked. You can either enter a valid HTTP/HTTPS URL or a route starting with “/” if you want to route them within the same path. By default, the given URL opens in a new tab, but in case you want it to open in the same tab, just check the checkbox provided right under it.
+
+5. **Icon URL:** By default the icon used in the template is the image provided to the SDK. You are also provided with the option to override that icon for each template. If no value is given here the default icon will be used. The URL of the image should be public. Supported file types are _jpeg_ and _png_.
+
+6. **Attachment Type:** You can add any one of the following attachment options along with your template:
+
+    1. **None:** No attachment added
+
+    2. **Image:** Add an image attachment to your template to make it more attractive. The URL of the image should be public. Supported file types are _jpeg_ and _png_.
+
+    3. **Video:** Add a video attachment to your template.The URL of the video should be public.
+
+    4. **Document:** Add a document to your template. The URL of the document should be public.
+
+7. **Call To Actions:** You can add up to three CTA buttons to your template. Each of these buttons has the following configurations:
+
+    1. **Button:** This is the title of the button.
+
+    2. **Primary Button:** This checkbox allows you to add a primary/highlighted button to the template
+
+    3. **Link:** This is the action added to the button. You can either enter a valid HTTP/HTTPS URL or a route starting with “/” if you want to route them within the same path.
+
+    4. **Open in the same tab:** By default the action/link opens up in a new tab. If you want to open the link in the same tab, check this box to do so.
+
+    5. **Add another: **This button adds a new button to the template
+
+    6. **Delete:** Allows you to delete the previously created button.
+
+8. **Preview:** Review your content and take a look at what your message would look like in the Preview section on the right. This section shows the notification panel that comes with the Fyno InApp SDK.
+
+9. **Save & Save and Promote:** Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.
+
+> 📘 To use any user property in your templates, you can add it in this format - `{{$user.$<user_property>}}`. For example, to add Name as placeholder from User profile, you can add it as `{{$user.$name}}`
+
+> 📘 All the links in the preview will always open in a new tab, even when "open in the same tab" is selected.
+
+> ❗️ You cannot use only numeric values as placeholder keys!
+
+## How to add dynamic content in template
+
+You can add dynamic content in your templates using one of the 4 options mentioned below.
+
+1. [Placeholders](./template-dynamic-content#1-placeholders)
+2. [System Variables](./template-dynamic-content#2-system-variables)
+3. [Handlebars](./template-dynamic-content#3-handlebars)
+4. [Components](./template-dynamic-content#4-components)
+
+## How to test InApp template
+
+You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+
+1. Click 'Run Test' on the top right hand side of the template.
+
+2. It opens the pop up as shown below.
+   ![](https://files.readme.io/0e3b0c5-InApp_template_updated.png)
+
+3. Enter the InApp token of the recipient where the InApp Notification should be sent.
+
+4. Select a InApp service provider which is already configured in Fyno.
+
+5. When you click 'TEST', it will send InApp notification to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.

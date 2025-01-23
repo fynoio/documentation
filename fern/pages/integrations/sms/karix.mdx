@@ -1,0 +1,34 @@
+---
+title: "Karix"
+slug: "sms-karix"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send SMS using Karix & Fyno | Help Document"
+    description: "A quick introduction about integrating your Karix SMS account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Mon Sep 11 2023 07:54:11 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Sep 11 2023 14:50:14 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have a Karix account already set up, along with SenderID and Templates.
+
+1. Navigate to Integrations and click on the "Providers" tab on the drop-down menu
+2. Find "SMS" and click on the "Karix" button.
+3. In the pop-up, fill in:
+    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **API Key**: From your Karix platform, find "**Power API**" and click on "API Keys". On the page that opens, create a new API Key or use an existing one.
+    3. **Sender**: Enter the Sender ID that you want to use.
+    4. **Entity ID**: Enter your DLT registered Entity ID number.
+    5. **Route**: Select the round from the options:
+        1. Transactional
+        2. Promotional
+        3. OTP
+4. Click on "Add Account" once done, and you are all set!
+
+## Message Delivery Status
+
+Karix does not provide the status of the message by default. You will need to send a mail to [provisioning@karix.com](mailto:provisioning@karix.com) to enable callback URL and status updates via webhooks.
+
+Once the above integration is complete, the status of the notification, which will be shared by Karix will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

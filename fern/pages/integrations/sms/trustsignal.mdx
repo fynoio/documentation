@@ -1,0 +1,35 @@
+---
+title: "TrustSignal"
+slug: "sms-trustsignal"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send WhatsApp channel notification using TrustSignal & Fyno | Help Document"
+    description: "To integrate TrustSignal with Fyno for SMS notifications, set up your TrustSignal account with SenderID and Templates, navigate to Integrations in Fyno, fill in the required details, and add the account. For message delivery status, manually update the Fyno Callback Endpoint in TrustSignal's SMS Webhook settings."
+    image: []
+    robots: "index"
+createdAt: "Wed Aug 21 2024 06:05:05 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 03:42:37 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have a TrustSignal account already set up, along with SenderID and Templates.
+
+1. Navigate to Integrations.
+2. Under "SMS" section, click on the "TrustSignal" button.
+3. In the pop-up, fill in:
+
+    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **API Key**: You can get API Key by going to the left navigation, SMS -> SMS API.
+    3. **Sender**: On the left navigation, go to \_SMS -> SMS Settings -> Headers. \_Use the value(s) present in Header column.
+    4. **Type of Route**: Select the type of route based on the configuration added in TrustSignal application.
+
+4. Click on "Add Account" once done, and you are all set!
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/sms_trustsignal_header.png)
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, TrustSignal requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log into your TrustSignal Messaging Account.
+2. On the left navigation, go to _SMS -> SMS Settings -> SMS Webhook. _
+3. On the page that opens, enter the URL given in the TrustSignal Integration popup and Save.

@@ -1,0 +1,78 @@
+---
+title: "User Profiles - Overview"
+slug: "user-profiles-overview"
+excerpt: ""
+hidden: false
+metadata:
+    title: "User Profiles - Introduction | Fyno Documentation"
+    description: "A quick introduction to what Fyno User Profiles are about."
+    image: []
+    robots: "index"
+createdAt: "Tue Mar 14 2023 09:29:45 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Tue Jun 25 2024 07:42:58 GMT+0000 (Coordinated Universal Time)"
+---
+
+A **User Profile** contains all the information about a user which is required to send out any notification.
+
+All the data related to a user, along with the details of notifications sent, and much more are stored within a user profile. This includes basic user information like Name, specific channel-wise information and custom user information to ensure the successful delivery of notifications.
+
+All this information is connected to a unique identifier called a **Distinct ID**, which can then be used to fire any type of notification.
+
+With the introduction of **Distinct ID**, you can replace your data payload that may contain information like email, sms, or push token. The **Distinct ID** then becomes the identifier to pick up the relevant information required to fire the notification through any channel.
+
+## Why User Profiles?
+
+User Profiles bring all the user data and the notification logs sent to that user in one place. You don't have to pass any user related information in the payload. You can access it directly from User profile. It helps you get the best use of your user data and fire notifications efficiently and effectively.  
+It allows you to:
+
+-   Fire notifications with just a single **Distinct ID**
+-   Have the ability to enable or disable all notifications for any user
+-   Manage your users' notifications with preferences and intelligence
+-   View all the notifications sent to that user
+
+On the listing page of **User Profiles** you will see a list of all your created users, with certain details pertaining to that account, which are the "**User Properties**" for that account.
+
+**Distinct ID** is an ID that is associated with a specific User ID and is unique to that User ID. No two **User Profiles** can have the same **Distinct ID**.
+
+Apart from **Distinct ID** the other properties that are visible for each account are:
+
+### General user properties:
+
+-   Name
+-   Country
+-   Timezone
+-   Status
+-   Created At
+-   Updated At
+
+### Channel-specific user properties:
+
+-   Email
+-   SMS
+-   WhatsApp
+-   Push
+-   WebPush
+-   Slack
+-   Discord
+-   Teams
+-   Inapp
+
+### Custom user properties:
+
+You can any no of custom user properties to you user profile. You can do it manually from User Profile page or using our APIs.
+
+You also can find a few more options on the page as below:
+
+1. **Properties List**: You can view all the properties associated with your users. You will also have the flexibility to decide which user properties you want to see as part of User profile table by enabling/disabling the toggle under 'See in Table'. You can also add a new user property from here.
+2. **Test and Live Toggle Tabs**: A user profile could be of either type: **Test** or **Live**. Profiles created within either environment are similar and work in the same way.
+3. **Filters** - You can filter users using 'enabled'/'disabled' status of the users.
+4. **Notifications sent** - All the notifications sent to the user will be available in this section
+5. **Preference** - All the subscription topics and channel preference will be shown in this section.
+
+> 📘 Keep in mind about the Environments
+>
+> Notifications fired from **Live** notification events can only be send to **Live** users and cannot be sent to **Test** versions.
+>
+> This will also mean that these logs will be visible for **Live** Notification Events for **Live** users, under the **Live** tab of the Logs page.
+>
+> Crossing over of **User Profiles** from **Live** to **Test** versions or vice versa is not possible.

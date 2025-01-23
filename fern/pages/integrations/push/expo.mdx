@@ -1,0 +1,34 @@
+---
+title: "Expo"
+slug: "push-expo"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send Push notification using Expo & Fyno | Help Document"
+    description: "A guide to integrate your Expo account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Mon Dec 05 2022 10:05:55 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Dec 08 2023 11:41:31 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before integrating Expo with Fyno, you will need to have an account already set up in Expo with an App built (SDK) within Expo.
+
+1. Navigate to Integrations.
+2. Under "Push" section, click on the "Expo" button.
+3. In the pop-up that appears, fill in:
+    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **Access Token:** You may provide the access token. This is an optional field.
+4. Click on "Add Account" once done and you are all set!
+
+> 🚧 Expo works with a very unique token-based system.
+>
+> This allows for very unique tokens to be created for each user, down to the uniqueness tagging the device and if the device changes, a new token will be assigned.
+>
+> However, if you have "Access Token" activated on the Account Setting page of your Expo account, will need to enter the same in Fyno while integrating.
+
+## Message Delivery Status
+
+Expo, by default, provides the status of the message without any additional set-up needed. You will only need to make sure to deploy Fyno's SDK with your application.
+
+Once the above integration is complete, the status of the notification, which will be shared by Expo will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

@@ -1,0 +1,38 @@
+---
+title: "Mailchimp (Mandrill)"
+slug: "email-mailchimp"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send Email notification using Mailchimp (Mandrill) & Fyno | Help Document"
+    description: "A guide to integrate your Mailchimp Email account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Tue Jun 27 2023 12:18:22 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Feb 15 2024 10:43:07 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before integrating Mailchimp with Fyno, you will need to have an account already set up in Mailchimp with Domains and API Keys already created.
+
+> 📘 Only transactional emails are processed through Fyno for Mandrill (Mailchimp).
+>
+> Campaigns are currently not supported. But, if you need this functionality, let's talk!
+
+1. Navigate to Integrations.
+2. Under "Email" section, click on the "Mailchimp" button.
+3. In the pop-up that appears, fill in:
+    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **API Key: ** Log in to your Mailchimp account. Navigate to the "Transactional email" tab and click on the "Launch App" button in the top right corner. On the new page that opens, from the left navigation pane, click on "Settings". Find the API Keys section in the page that opens and create a new API Key.
+    3. **From Email:** Enter the from Email address you want to use. This email ID has to be a domain that has already been whitelisted in the "[Domains](https://mandrillapp.com/settings/sending-domains)" section of Mailchimp. If not added, then go ahead and add the domain by clicking on the "Add" button and follow the instructions to complete verification, DKIM and SPF setup.
+    4. **From Name:** Enter the name associated with the Sender Signature that was entered in the "From Email" field.
+    5. **Content type:** You can choose either "Text/Plain" (no rich content in emails, simple plain text) or "Text/HTML" (Rich content including images, buttons and links will be supported) depending on the type of content you intend on pushing in the templates.
+4. Click on "Add Account" once done, and you are all set!
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, Mailchimp requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log in to your Mailchimp account.
+2. From the left navigation panel, find and click on "Settings". On the page that opens, find and click on "Webhooks" on the ribbon menu.
+3. Click on "Add a Webhook", select the all triggers you need, enter the Callback URL given in the Mailchimp Integration popup and save the same.
+4. Test your integration by sending a message from the Fyno App. Your notification delivery status will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

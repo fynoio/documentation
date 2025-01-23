@@ -1,0 +1,37 @@
+---
+title: "Syniverse"
+slug: "sms-syniverse"
+excerpt: ""
+hidden: false
+metadata:
+    robots: "index"
+createdAt: "Tue Jun 13 2023 07:18:12 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Sep 11 2023 14:49:31 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have a Syniverse account already set up, along with SenderID and registered numbers assigned. Alternatively, you can use the number that are publicly available on the platform for testing.
+
+1. Navigate to Integrations and click on the "Providers" tab on the drop-down menu
+2. Find "SMS" and click on the "Syniverse" button.
+3. In the pop-up, fill in:
+    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **Access Token**: Login into your Syniverse account. On the Applications page, find the Application that you would like to connect and click on it. On the page that loads, find "**Auth Keys**" section and expand it to find "**Access Token**". Copy the same and paste it in the "**Access Token**" field of the Fyno integration page.
+    3. **Sender Address/Channel**: Login into your Syniverse account. On the Applications page, find "**Voice and Messaging Console**" and click on it. You will be prompted to select an account. Please select the relevant account and click on "**Select**". On the page that opens, from the left navigation panel, find "**Messaging Account** and expand it to find "**Private Channels**". Select the Channel you would like to connect and copy the channel ID. On the Fyno platform, you will need to enter - "_channel:_" followed by your channel ID you just copied.
+4. Click on "Add Account" once done, and you are all set!
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, Syniverse requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log into your Syniverse Account. On the Homepage, find "**Event Manager**" and expand the menu. Click on "**Delivery Configurations **"
+2. On the page that loads, find and click on "** New Delivery Configuration**". In the pop-up that appears, provide it a suitable name, enter the Fyno Callback URL (you can get this by getting in touch with us), with the "**Delivery Protocol**" set to **REST** and the "**Delivery Format**" set to **JSON**, and click on **Save**.
+3. Once done, from the "**Event Manager**" menu, find and click on "**Subscriptions**". On the page that loads, click on "**New Subscription**". In the pop-up that loads, fill in the below details:
+    1. Topic: SCG-Message
+    2. Event Type: All types
+    3. Delivery Configuration: The configuration that was created using the above steps 1 & 2.
+    4. Matching Criteria: You may leave this blank.
+    5. Start Time: Enter a time and date.
+    6. End time: We advise to leave this blank, thus not having an expiration date for the Callback URL.
+4. Once done, click on **Create**.
+
+You can now send a test message from Fyno using Syniverse as the **Provider** and see the delivery logs updated in your **Sent logs**.

@@ -1,0 +1,83 @@
+---
+title: "How to add cc and bcc recipients in email"
+slug: "how-to-add-cc-bcc-to-email"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to add cc and bcc recipients in email | Fyno Documentation"
+    description: "This document explains how to add cc and bcc recipients in your email. You can achieve it in 2 ways - through API and Email editor"
+    image: []
+    robots: "index"
+createdAt: "Tue Sep 10 2024 07:48:55 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Tue Sep 10 2024 07:57:21 GMT+0000 (Coordinated Universal Time)"
+---
+
+You can add cc and bcc details in your email in 2 ways.
+
+1. Using API
+2. Using Email editor
+
+## How to add cc and bcc recipients using API
+
+Sample code with cc and bcc details in Notification Event API. You can add any no of emails to cc and bcc.
+
+```Text cURL
+curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/test/event' \
+-H 'Authorization: Bearer <API_KEY>' \
+-H 'Content-Type: application/json' \
+-d '{
+    "event": "ReleaseNote",
+    "to": {
+        "email": "xyz@gmail.com"
+    },
+    "data": {
+        "name": "Rahul",
+        "key": "value"
+    },
+    "channel": {
+        "email": {
+            "append": {
+                "cc": [
+                    {
+                        "name": "name1",
+                        "email": "abc@gmail.com"
+                    }
+                ],
+             "bcc": [
+                    {
+                        "name": "name2",
+                        "email": "def@gmail.com"
+                    }
+                ]
+            }
+        }
+    }
+}'
+```
+
+<br />
+
+## How to add cc and bcc recipients using Email editor
+
+> 📘 This is available only in Stripo Editor
+
+To add cc/bcc details using Email editor, follow the below steps
+
+1. Click 'Enter From and Cc/Bcc detals' above the Subject line.
+2. To add Cc/Bcc details, click the CC/BCC tab and enter the details as shown.
+
+![](https://files.readme.io/754967d-ccbcc_details.png)
+
+3. Once you entered Cc and Bcc details, it will look like shown below
+
+![](https://files.readme.io/de8ad07-ccbcc_entered.png)
+
+> 📘 Cc and Bcc details provided in Email template will override the Cc and Bcc details provided in the Notification Event API
+
+## Cc and Bcc details in logs
+
+In the sent logs, you'll find the recipient details (destination, cc, and bcc) in the Summary tab.
+
+For the above scenario, the sent logs will display the following information.
+
+![](https://files.readme.io/122a1d1-sentlogs_cc_bcc.png)

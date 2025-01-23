@@ -1,0 +1,83 @@
+---
+title: "How to create a cohort in Fyno Connect"
+slug: "how-to-create-a-cohort-in-fyno-connect"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to create a cohort in Fyno Connect"
+    description: "To create a campaign, first create a cohort by segmenting users with filters or queries, then save and optionally start a campaign; you can also download cohort data as a CSV."
+    image: []
+    robots: "index"
+createdAt: "Thu Nov 14 2024 07:55:05 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Nov 15 2024 06:32:36 GMT+0000 (Coordinated Universal Time)"
+---
+
+To create a one-time or recurring campaign, you need to create a cohort as first step.
+
+### What is a Cohort
+
+A Cohort is a collection or a segment of users created on a set of filters or a database query. This allows you to segment users based on any criteria and send targeted messages to them.
+
+A few examples of filters include filtering by specific status, location, or sign-up date range. There are countless other possibilities that you can explore by using different combinations of filters or writing your own query.
+
+### How to create a cohort
+
+Let's have a look at how to create a cohort.
+
+1. From the left navigation panel, click on **Cohorts**. On the page that opens, click on "Create Cohort".
+2. In the pop-up, provide a relevant name for the cohort, select a database to create the cohort and click on "Submit".
+3. On submitting, a new page will open consisting of a dropdown menu with the list of all the schemas present in the selected database.
+4. Select a schema and view its data in a tabular form below. Apply filters, or run a query on it to get the desired segment of users.
+5. Click on "Save Cohort" to save the selected schema and the applied filters or query to complete the cohort creation process.
+6. Alternatively, you can click on the dropdown next to "Save Cohort" and select "Save and Create Campaign" to not only save the cohort but also create a campaign from it.
+
+### Filters and Query Builder
+
+Filters and Query allow you to get the segment of users for certain conditions or factors.
+
+1. **Filters Builder**: A powerful visual builder using which you can apply a set of filters to the schema data to get the desired output. This builder consists of 3 major components: rule, group, and combinator.
+
+    1. **Rule**: It is the most important component as it consists of the single condition or the filter that needs to be applied.  
+       A rule is created by combining 3 things:  
+       **Rule = Key + Operator + Value**  
+       The "Key" is the column name or the object key from your schema. It is present as a dropdown menu with a list of column names or object keys from your schema.  
+       The "Operator" is the operation or check that is to be performed between the key and the value. It is present as a dropdown menu with a pre-defined list of operators.  
+       The "Value" is the data value that you input. The data type of this field will depend on the "Key" selected and will change as you change the selected "Key".  
+       Example of a rule: Age > 30, Company = Fyno, Email ends with @fyno.io, and many more.
+    2. **Distinct Values** - Use the highlighted icon to instantly see all unique values in your selected column. This automatic detection saves time, especially when working with large datasets, by showing you all possible filter values in a convenient dropdown menu.
+       ![](https://files.readme.io/230d8777ec059df76799fc4f004cc16ab12ffc2132cf540ed95e55bdc85297fb-distinct_values_icon.png)
+    3. **Group**: A group is a collection of rules that can be used to organize filters and create complex filters by combining multiple groups with different combinators.
+    4. **Combinators**: Determine how 2 rules or groups will combine together in order to form a complete condition or a filter. It can have 2 values:
+        1. AND: The "AND" combinator evaluates to true if both of its rules or groups are true. If at least one of the it is false, the entire combined condition evaluates to false. The "AND" operator can be thought of as representing the intersection of conditions.
+        2. OR: The "OR" operator evaluates to true if at least one of its rules or groups is true. If both are false, the entire combined condition evaluates to false. The "OR" operator can be thought of as representing the union of conditions.  
+           After completely adding all the rules and groups, hit the "Apply" button to filters and view the updated data below.
+            > 📘 Click the 'Get Count' button to view the total number of users in the cohort.
+
+2. **Query Builder**: A simple code editor to write or paste your db queries and run it directly on the schema data to get the desired output. This editor gives you more freedom as you can write as complex a query as you can and also helps you reuse what you have already written someplace else.  
+   It's essential to use the appropriate query when working with different databases. For instance, MongoDB requires a JSON-formatted Aggregation Pipeline query which looks like this:
+
+    ```json
+    [
+        {
+            "$match": {}
+        }
+    ]
+    ```
+
+> 📘 Introducing Magic Query Generator! (Beta)
+>
+> The Magic Query Generator is an innovative and powerful feature designed to simplify and streamline the process of creating database queries. With this, generating database queries is as simple as providing a prompt in plain English.
+>
+> By eliminating the need to write queries manually, the Magic Query Generator empowers you to retrieve, filter, and manipulate data from the database with ease and efficiency.
+>
+> Just write out what exactly you want the data to be comprised of with all the conditions, and hit the "Generate Query" button. The query will auto run after successfull generation and you can view the results.
+>
+> Modify the query or the prompt until you get the desired output.  
+> Give it a try!
+
+## How to download cohort data
+
+To download cohort data, go to cohorts page and click ellipsis present at the end of each cohort. You will see the below options.
+
+Click Download CSV option to download the cohort data.
+![](https://files.readme.io/4b0ab11b4dade1d7e171cf420ce2f61446a2c511cfa505bfeed630a872cf5714-download_cohort.png)

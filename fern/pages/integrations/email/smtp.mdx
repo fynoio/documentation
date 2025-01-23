@@ -1,0 +1,31 @@
+---
+title: "SMTP"
+slug: "email-smtp"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send Email notification using SMTP & Fyno | Help Document"
+    description: 'To configure an SMTP email integration in Fyno''s portal, navigate to Integrations, click on the "SMTP" button under the "Email" section, and fill in the required fields in the pop-up, then click "Add Account."'
+    image: []
+    robots: "index"
+createdAt: "Tue May 14 2024 05:01:00 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Jul 19 2024 06:44:19 GMT+0000 (Coordinated Universal Time)"
+---
+
+Follow the below steps to .
+
+1. Navigate to Integrations.
+2. Under "Email" section, click on the "SMTP" button.
+3. In the pop-up that appears, fill in:
+    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **SMTP Host**: Enter the SMTP Host. For example, for Gmail, the fully qualified domain name of the SMTP service is _smtp.gmail.com_.
+    3. **SMTP Port:** Select from one of the port options - 25, 465, or 587.
+    4. **SMTP Username** - Enter the SMTP username from your email service provider
+    5. **Password:** Enter the password associated with the SMTP User that was entered in the above field.
+    6. **From Name:** Enter the name that you want to be displayed to the recipient on receiving this email.
+    7. **From Email:** Enter the Email ID from which the emails will be sent from. This must be an email ID with a domain that is already registered with your email service provider.
+    8. **Password:** Enter the name associated with the Sender that was entered in the "From Email" field.
+    9. **Content type:** You can choose either "Text/Plain" (no rich content in emails, simple plain text) or "Text/HTML" (Rich content including images, buttons and links will be supported) depending on the type of content you intend on pushing in the templates.
+    10. **Reply To:** This is an optional field. You may enter an alternate email ID so that when the recipient clicks on "Reply", the email ID you have entered in the "Reply To" will be populated. This can be different from the "From" email ID.
+    11. **DSN Support**: Select yes, If your delivery service supports it (not all SMTP servers have DSN extension enabled). Set up the Delivery Callback URL on your SMTP provider for Fyno to receive delivery reports.  
+        Click on "Add Account" once done and you are all set!

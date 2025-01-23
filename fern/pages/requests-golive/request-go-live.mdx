@@ -1,0 +1,90 @@
+---
+title: "Requests/Go Live"
+slug: "request-go-live"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Request Approval and Go Live | Fyno Documentation"
+    description: "This document explains how the Go Live and Requests flow works in the system, allowing users to seamlessly promote features from the Test version to Live, with options for approval and rejection by designated approvers."
+    image: []
+    robots: "index"
+createdAt: "Wed Dec 06 2023 07:49:52 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Tue Jul 02 2024 06:48:15 GMT+0000 (Coordinated Universal Time)"
+---
+
+If you have enabled Maker-Checker Approval flow in Security Settings, you will see '**Requests**' in the navigation menu, otherwise you will see '**Go Live**'.
+
+From Requests/Go Live page, you can seamlessly promote all features like Templates, Routing, Notification Events and Workflows, from the Test version to Live. Additionally, you have access to the complete version change log for all these features.
+
+# How Go Live flow works?
+
+You will see all the features which are saved but didn't Go Live under Test tab.
+
+1. You can choose any of the features you've created and promote it to Live by clicking the 'Go Live' CTA.
+2. Using the 'Select Feature' filter, you can select all Test versions of a particular feature and promote them to Live collectively by clicking the 'Go Live' CTA.
+3. Alternatively, you can search for a particular feature and take it Live by clicking 'Go Live'.
+4. Once its Live, you will see them under 'Live' tab.
+
+![](https://files.readme.io/498742f-Screenshot_2024-06-28_at_5.16.54_PM.png)
+
+## Data in Test version
+
+To further understand this page, let's have a look at what exactly each column means and the data they contain.
+
+#### Name
+
+Displays the names of Templates, Routing, Notification Events or Automations that you have created in the Test version and have not yet promoted to Live.
+
+#### Feature
+
+Displays the types of features that have a test version and are ready to be promoted to Live. The values can be one of the following: Templates, Routing, Notification Events, Workflows.
+
+#### Test Version
+
+Shows the test version of the feature. It will have values like v1,v2, v3 etc.
+
+#### Created
+
+Shows when the test version was created.
+
+#### Updated
+
+Shows when the test version was last updated.
+
+## Data in Live version
+
+#### Name
+
+Displays the names of Templates, Routing, Notification Events or Automations that you have created in the Test version and have not yet promoted to Live.
+
+#### Feature
+
+Displays the types of features that have a test version and are ready to be promoted to Live. The values can be one of the following: Templates, Routing, Notification Events, Workflows.
+
+#### Went Live
+
+Shows the when the feature went Live
+
+#### By
+
+Who pushed the feature from Test to Live
+
+# How Requests flow works?
+
+In the Requests page, you will see the following tabs
+
+1. **Test** - All the features which are not Live will appear under this tab. To take Live, select one or more of the features and click 'Go Live'. It will open up the approval popup, where you can choose the approvers and send for Approval.
+2. **Pending Approval** - All the features which are sent for Approval and yet to be approved will appear under this tab.
+
+    1. The approver can choose one or more of the requests and click 'Approve' or 'Reject'
+       ![](https://files.readme.io/243a351-Pending_Request.png)
+
+    2. For approval, the approver needs to provide approval reason. If the approver selects, 'Go Live on approval', once the approval is done, the feature will go Live. Otherwise, the requester needs to take it Live.
+       ![](https://files.readme.io/3848b8f-Approval.png)
+
+    3. For rejection, the approver needs to provide rejection reason
+       ![](https://files.readme.io/b670b56-Reject_Request.png)
+
+3. **Approved** - All the features approved by the approver(s) will appear under this tab.
+4. **Live** - All the features which are approved by the approver(s) and went Live will appear under this tab.
+5. **Rejected** - All the features rejected by the approver(s) will appear under this tab.

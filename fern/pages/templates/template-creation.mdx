@@ -1,0 +1,75 @@
+---
+title: "Creating a Template"
+slug: "template-creation"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Templates - Creating Templates | Fyno Documentation"
+    description: "A guide to creating and updating your notification templates on Fyno's App."
+    image: []
+    robots: "index"
+createdAt: "Thu Nov 10 2022 13:03:10 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Jul 05 2024 05:04:50 GMT+0000 (Coordinated Universal Time)"
+---
+
+Fyno offers support for 8 different notification channels. For each channel to work, a template is mandatory, without which you won't be able to send notifications.
+
+In Fyno, templates serve as the foundation for your notification content. To streamline content management, Fyno allows you to create a single template that encompasses the content for all supported channels, including SMS, Email, WhatsApp, Push notifications, and more. A template can consist of two types of content:
+
+**Static Content**: This portion of the template remains consistent for all recipients and contains the core message or design of your notification.  
+**Dynamic Content**: This part of the template includes placeholders that are dynamically populated with user-specific information. These placeholders can be mapped to data from your data payload, allowing you to personalize the notification content for each recipient. Examples of dynamic content include customer names, SIP amounts, due dates, and other relevant information.
+
+![](https://files.readme.io/89d1d39-Template_creation.png)
+
+1. Once a template is created, you can add content for each channel as shown below.
+2. Click 'Add Channel' to add a new channel
+3. Click '+' next to Placeholders to add dynamic content in the template.
+   ![](https://files.readme.io/7d0aae2-template_channels_pc.png)
+
+To understand how templates work for each **Channel**, let's go a little bit in-depth for each one.
+
+1. [SMS (Messaging)](./templates-sms)
+2. [WhatsApp](./templates-whatsapp)
+3. [Email](./templates-email)
+4. [Chat](./templates-chat)
+5. [Push](./push-templates)
+6. [InApp](./inapp-templates)
+7. [Web Push](./https://docs.fyno.io/docs/fyno-web-push)
+8. [Voice](./https://docs.fyno.io/docs/voice-channel)
+
+### Test and Live Versions
+
+Every template that you create will be saved as **Test** versions, allowing you to test different variations and content of templates, to suit your needs.
+
+When a **Test** version is saved, this does not disturb the **Live** version that may be plugged in your application and may be active.
+
+When you are confident and happy with the **Template** that you have created and tested in **Test** version, this can then be moved into the live version by following the below steps.
+
+1. Make the final changes to the template and test it to make sure you are getting the desirable results.
+2. On the top of the page, next to the name of the **Template**, you will see the Test Version mentioned.
+3. To keep this as a **Test**, click on **Save** and the draft will be saved.
+4. To make this version of the **Test** version live, expand the **Save** menu to find **Save and Promote**.
+5. This will make the current version live in the **Template**.
+
+> 🚧 Once a **Template** is live, all the **Notification Events** into which this template is plugged in will also be automatically updated and modified.
+
+# Approval flow
+
+If you have enabled 'Approval' in Security Settings, when you click 'Go Live', you will need to raise an approval request for the changes you have done.
+
+1. You will see the below popup once you click 'Go Live' . Select approvers from the 'From' dropdown. You can choose one or more approvers. You need to write a short message mentioning the reason for approval request. If you select 'Go Live on approval', the feature will go Live once the approver approves the request. Clicking 'Send for Approval' will send the request.
+   ![](https://files.readme.io/eadd428-event_approval.png)
+
+2. You will see the approval request in the Template page as shown . You can click 'Cancel' to cancel the request.
+   ![](https://files.readme.io/2abc2a1-notif_event_approval_request.png)
+
+3. The approvers will receive an Email, an InApp notification for every approval request.
+4. The approver will see the request in the Template page. The approver can approve or reject from the respective Template.
+   ![](https://files.readme.io/60de965-approval_request_feature_page.png)
+
+5. Also if the approver wants to see all the pending requests, then can see them in the 'Requests' page as shown below.
+   ![](https://files.readme.io/ba2bc39-Pending_Request.png)
+
+6. The approver can choose one or more requests and either Approve or Reject. While rejecting they need to provide a rejection reason.
+
+7. If the request is Approved, the feature will go Live if the requestor selected 'Go Live on approval' while raising the request. Otherwise, they have to click 'Go Live' to take the feature Live.

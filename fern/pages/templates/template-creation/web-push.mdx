@@ -1,0 +1,63 @@
+---
+title: "Web Push Template"
+slug: "web-push-template"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Web Push Template | Fyno Documentation"
+    description: "Fyno's web push templates allow you to create templates for desktop and mobile web on Windows and MacOS devices, with options for customizing the title, message content, icon, action URL, action buttons, tag, image, and additional data. The templates can be previewed on Google Chrome browsers on Mac OS and Windows devices."
+    image: []
+    robots: "index"
+createdAt: "Fri Dec 15 2023 09:58:33 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Dec 20 2024 07:27:16 GMT+0000 (Coordinated Universal Time)"
+---
+
+Fyno's web push templates allow you to create templates for both desktop and mobile web across Windows and MacOS devices.
+
+![](https://files.readme.io/c4e1440-webpush_creation.png)
+
+1. **Title:** This is the title for your template. While it's optional, it aids in summarizing and providing context to the template.
+2. **Message Content:** This constitutes the body of the template, where the primary content is placed. It's a mandatory field that must be filled out.
+3. **Icon URL**: This is the icon you wish to display on the notification.This is primarily used for displaying brand logos. You can either provide a URL or upload an image for this purpose. The recommended size of the icon is 1:1 ratio. This is a mandatory field.
+4. **Action URL:** This is the link that clicking the notification will redirect to. You can enter a valid HTTP/HTTPS URL or a route beginning with "/" if you intend to route users within the same path.
+5. **Action Buttons**: (Optional)
+    1. Button Title- Provide a name for the button.
+    2. Link - Along with the button, provide the link that clicking the button would lead to. You can either enter a valid HTTP/HTTPS URL or a route starting with “/” if you want to route them within the same path. For example, you can specify either `https://www.myntra.com/cart?product-id=123` or /cart?product-id=123.
+    3. Icon - Enter a value in the format of '/img/icon.png'. This icon will not be rendered in the preview but will render in the actual notification sent.
+
+> 📘 You can add upto 3 Action buttons
+
+6. **Tag:** Only one notification with the same ID will be shown on the device. Use the same ID to update an existing notification instead of showing a new one. The character limit is set at 64 characters.
+7. **Image:** Specify an image link for the image you wish to send along with the web push message. Alternatively, you can also upload an image. Supported file formats are JPG,JPEG, PNG. Recommended Size is less than 1 MB. Recommended ratio for the image is 2:3. The supported file formats are JPG, JPEG, and PNG for desktop and mobile web.
+8. **Time to Live**: It defines how long the push message is preserved for delivery if the device is offline or due to OEM device restrictions.The default is 259,200 seconds.
+9. **Additional Data**: This is an additional field that can be used to send some extra information along with the notification and used to render something on the device.
+
+## Preview
+
+On the right hand side, you can see the Web Push Preview. It can be viewed at Device level. As of now, we support 2 devices.
+
+1. Mac OS
+2. Windows
+
+![](https://files.readme.io/418d5fd-webpush_preview_window.png)
+
+## How to add dynamic content in template
+
+You can add dynamic content in your templates using one of the 4 options mentioned below.
+
+1. [Placeholders](./template-dynamic-content#1-placeholders)
+2. [System Variables](./template-dynamic-content#2-system-variables)
+3. [Handlebars](./template-dynamic-content#3-handlebars)
+4. [Components](./template-dynamic-content#4-components)
+
+## How to test WebPush template
+
+You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+
+1. Click 'Run Test' on the top right hand side of the template.
+2. It opens the pop up as shown below.
+   ![](https://files.readme.io/e89466c-webpush_template_updated.png)
+
+3. Enter the WebPush token of the recipient where the WebPush notification should be sent.
+4. Select a WebPush service provider which is already configured in Fyno.
+5. When you click 'TEST', it will send WebPush notification to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.

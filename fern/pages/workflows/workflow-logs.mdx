@@ -1,0 +1,152 @@
+---
+title: "Workflow Logs"
+slug: "workflow-logs"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Workflow Logs | Fyno Documentation"
+    description: "The document explains how to use Workflow logs in Fyno's App to track and analyze Workflow activities, including sections on viewing logs, filtering by various criteria, and understanding detailed trace logs for debugging and improving communication strategies."
+    image: []
+    robots: "index"
+createdAt: "Wed Jul 17 2024 11:51:07 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Jul 18 2024 06:13:00 GMT+0000 (Coordinated Universal Time)"
+---
+
+Workflow logs are where we help you track each and every Workflow and its outcomes through Fyno's App for you.
+
+Workflow logs are a detailed view of what has happened on each of your Workflow, with vital information for you to further analyse and derive conclusions about your Workflow , and to further improve your communication strategies.
+
+When we go to the "Workflow Logs" from the left navigation menu, we see the following sections:
+
+1. Workflow Logs
+2. Test & Live Versions
+3. Filters
+4. Trace Logs
+
+## Workflow Logs
+
+The logs that are seen on the "Workflow Logs" page give you an overview of the latest activity that has occurred on your Workflow
+
+When you have a look at the logs, what you will initially notice is the status icon that gives you an overall understanding of if the notification is:
+
+1. Delivered
+2. Error
+3. Failed
+4. Timed out
+5. Dropped
+
+This is important for you to understand the status of attempts, especially when you are setting up or configuring the Automation.
+
+To further understand this page, let's have a look at what exactly each column means and the data they contain.
+
+#### Timestamp
+
+Displays the time that the Workflow triggered was initiated
+
+#### Name
+
+Displays the name of the Workflow that has been triggered
+
+#### Actions
+
+Displays the total no of actions that are successful. For example, if your workflow has 3 notification events configured and only 2 of them got sent successfully, then you will se 2 out of 3 successful.
+
+#### Trigger Type
+
+Displays the Trigger Type of the input that triggered the Workflow. This can be:
+
+1. Webhook
+2. Virtual No
+3. Mixpanel
+4. Notification Event
+
+#### Source IP
+
+Display the source IP from which this Workflow trigger was initiated from.
+
+## Test & Live Versions
+
+In the logs section, the **Test** and **Live** versions are uniquely partitioned, in order to show you the details notifications sent in that particular version of the Workflow that have been generated.
+
+> 🚧 Can't find an Workflow log?
+>
+> Check the environment that the Workflow was triggered in. Workflow triggered in **Test** environment cannot be seen in **Live** and vice versa.
+
+## Filters
+
+Filters within the Workflow logs page help you seamlessly sift through all the logs that have been generated for all the Workflow that have been triggered through the Fyno App.
+
+To understand how to use the filters, let's have a look at the categories within filters.
+
+### Date Range
+
+"Date Range" allows you to specify the time frame for which you want to view the logs.
+
+You can select one of the provided options, which are:
+
+1. Today
+2. Yesterday
+3. Last 7 days
+4. Last 28 days
+5. Custom - Select a start and end date of your choice
+
+### Request ID
+
+The "**Request ID**" option allows you to look for Request IDs, which you would have received for a notification within an **Workflow**. This is crucial to do individual debugging and trace a notification
+
+### Workflow Name/Request Id
+
+The "**Custom Name**" option allows for you to look for any **Workflow** logs based on the name. This can be a partial search or an exact match search too.
+
+The "**Request ID**" option allows you to look for Workflow IDs, which you would have received for an **Workflow**. This is crucial for debugging and tracing an issue at an **Workflow** level. This would give you multiple records, based on the common Workflow ID
+
+### Trigger Type
+
+Select the input Trigger Type of the Workflow. This can be:
+
+1. Webhook
+2. Virtual No
+3. Mixpanel
+4. Notification Event
+
+### Status
+
+You can select the "**Status** of your **Workflow** as a filter to narrow down your search. The statuses that you can choose from are:
+
+For Workflow ( with trigger types - Webhook, Virtual No or Mixpanel)
+
+1. Completed
+2. Partially Completed
+3. Pending
+4. Failed
+
+For Journey ( with trigger type - Notification Event)
+
+1. Successful - When user successfully exited the journey after completing the success criteria
+2. Waiting - When user is waiting for the next step
+3. Exited - When user is forced to exited the journey at the end of the Workflow without completing the success criteria.
+4. Error - When journey execution is failed.
+
+This filter is particularly helpful when you want to have a bird's eye view of only failed statuses to help debug and solve them.
+
+## Trace Log
+
+Workflow logs cover a descriptive log of each step of the Workflow, and what has happened. Let's take a closer look at the Workflow logs and what exactly each aspect of the logs talks about.
+
+You can easily have a look at the "**Workflow Details**" by simply clicking on the Workflow log when you see it on the "**Workflow Logs**" Panel.
+
+When the log details open up, the first thing you will see on the left is the trace log for the Workflow.
+
+This gives you a bird's eye view of the entire Workflow, the path it has taken and what has happened at every step.
+
+Depending on what elements are used for your Workflow configuration, you will see the following:
+
+1. Start Workflow
+2. Input Data
+3. If Condition
+    1. Then Scenario
+    2. Else Scenario
+4. Call an API
+5. Waiting (Only for Journeys triggered via Notification Event)
+6. Fire an Event
+7. Final Workflow Status

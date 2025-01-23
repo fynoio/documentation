@@ -1,0 +1,111 @@
+---
+title: "Campaign Analytics"
+slug: "campaign-analytics"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Campaign Analytics | Fyno Documentation"
+    description: "Fyno's Campaign Analytics provides visual insights into campaign performance through graphs and charts, accessible via the **Campaign** page. It includes detailed metrics on notification events, channel distribution, engagement outcomes, and delivery statuses to help optimize campaign effectiveness."
+    image: []
+    robots: "index"
+createdAt: "Fri Jul 19 2024 06:17:53 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Jul 19 2024 12:38:44 GMT+0000 (Coordinated Universal Time)"
+---
+
+Fyno's **Campaign Analytics** allows you to visualise the performance as well as gain insights into your **Campaign** in the form of graphs and charts in one place, which helps improve the overall experience as well as outcomes pertaining to that notification event linked to that campaign.
+
+To get started with **Campaign Analytics**, you will need to have created a **Campaign**. Once a **Campaign** is created and is in use, the triggered notifications would be summarised into the Analytics.
+
+You can find your way to **Campaign Analytics** by:
+
+1. Navigating to the **Campaign** page and clicking the "Bar Chart" icon corresponding to that particular campaign.
+2. Clicking on a **Campaign** and clicking on the "View Analytics" CTA on the top right corner of the campaign.
+
+## Overview
+
+The **Overview** section of the **Campaign Analytics** section provides an eagle-eye view of the campaign's performance.
+
+On this card, you will see:
+
+1. The number of times the notification event was fired
+2. The number of notifications submitted via this notification event
+3. The number of notifications delivered via this notification event.
+
+> 🤔 Count of notifications higher than number of times the notification event was fired?
+>
+> Thats completely normal! It all depends on the number of channels and providers added for the route or notification event itself.
+>
+> In case you have more than 1 channel or provider configured, you will have exponentially more number of notifications, compared to the number of times the notification event was triggered.
+
+## Channel Sent
+
+The **Channel Sent** card gives you a view of the distribution of notification traffic through the channels used.
+
+The top 3 channels used will be displayed with the rest of the counts for the other channels clubbed together under "**Others**". In the image above, the top 3 channels used were:
+
+1. Email
+2. SMS
+3. WhatsApp
+
+All the others (InApp, Teams and Slack) are clubbed under "**Others**".
+
+## Channel Engagement
+
+**Channel Engagement** provides you with a detailed view of each channel used to send out notifications along with the outcomes of the notifications sent.
+
+Outcomes can be anything from:
+
+1. **Submitted** - When a notification is successfully sent from Fyno's platform
+2. **Delivered** - When a notification gets successfully delivered to the destination (mobile number, email address, or device tokens like in the case of Push).
+3. **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as "Read" for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially "opened", this will be tagged as "Open" and tracked on Fyno's App.
+4. **Clicked** - When a notification is clicked on, this will be tracked as a "Clicked" notification. This applies to In-App, Push, Emails with links, etc.
+
+> ❗️ Undelivered statuses are tracked when they are:
+>
+> 1. Invalid-Subscriber
+> 2. Blacklist
+> 3. Rejected
+> 4. Bounce
+
+The count for each can be seen on hovering over the bar graphs.
+
+> 📘 You can highlight a single status to look at!
+>
+> Simply click on the other statuses from the legend list at the bottom of the graph to un-select them!
+
+## Delivery Status
+
+The delivery status graph shows you the delivery status by the channel that you have selected from the drop-down in the top right corner of the card.
+
+The list will populate the **Channels** based on usage and in chronological order of the count of each channel.
+
+You can toggle on or off the statuses you would like to see by clicking on the legends at the bottom of the graph. Let's have a look at some of these statuses to understand it better.
+
+1. **Sent** - All notifications that have left the Fyno App successfully towards the destination are marked as "Sent". In scenarios where there is no delivery confirmation received from the provider, this status will remain as "Sent".
+2. **Delivered** - When a notification is delivered successfully to the Destination, then these messages are considered "Delivered"
+3. **Error** - All notifications that fail to be triggered from the Fyno App due to some error (it may be any from an issue on a template to not choosing a provider for a channel), will be tagged as "Error"
+4. **Failed** - When a notification is tagged as "Failed" this is most probably due to conditions that are mandatory from the provider that are not being met, due to which the notification execution has been tagged as "Failed"
+5. **Bounce** - Bounce is a status that would be seen only in the case of an "Email" channel. This happens when
+    1. The email address is incorrect
+    2. The email address requires senders to be whitelisted in their domain to receive emails.
+    3. The email address' mailbox is full and unable to receive any more notifications.
+
+## Download Report
+
+You can download a report of a campaign by clicking '**Download Report**' CTA.
+
+1. You will receive an email with a downloadable link within 10 minutes of raising a download report request.
+2. You will also receive an InApp with the downloadable link for the campaign Report.
+
+The campaign report contains the following
+
+1. Request_ts - When the campaign was fired.
+2. Request_id - A unique id for each notification sent.
+3. Template - Template name which is linked to the notification event fired via Campaign.
+4. Distinct_id - A unique id for every user profile created in Fyno. If you are not using Fyno's User Profile, this field will be blank.
+5. SMS_credits_use - No of credits used for the SMS sent via this campaign. If SMS is not sent via the Campaign, this field won't be there in the report.
+6. Email_credits_use - No of credits used for the Email sent via this campaign. If Email is not sent via the Campaign, this field won't be there in the report.
+7. \<Channel> - This will have the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS and WhatsApp
+8. \<Channel>\_submisison_statuses - This will have the submission status of the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS_submission_status and WhatsApp_submission_status
+9. \<Channel>\_dlr_final_status - This will have the final status of the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS_dlr_final_status and WhatsApp_dlr_final_status
+10. \<Channel>\_dlr_statuses - This will have the all the statuses of the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS_dlr_statuses and WhatsApp_dlr_statuses

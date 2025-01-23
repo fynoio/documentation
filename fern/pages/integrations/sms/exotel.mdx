@@ -1,0 +1,39 @@
+---
+title: "Exotel"
+slug: "sms-exotel"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Messaging (SMS) Channel - Exotel | Fyno Documentation"
+    description: "A guide to integrate your Exotel SMS account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Mon Sep 11 2023 06:40:04 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Sep 11 2023 07:52:41 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have an Exotel account already set up, along with SenderID and Templates configured.
+
+1. Navigate to Integrations and click on the "Providers" tab on the drop-down menu
+2. Find "SMS" and click on the "Exotel" button.
+3. In the pop-up, fill in:
+    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **API Key**: From your Exotel account, find "**API Credentials**" at the top of the application and click on it. On the new page, either click on **Create an API Key** or use an existing one that has already been created.
+    3. **API Token**: Corresponding to the API Key copied above, also copy and paste the API Token.
+    4. **Account SID**: From the same API Credential page, find the Account SID and paste the same on the Fyno Application.
+    5. **Sub-Domain**: From the same API credential page, find the subdomain and select an option:
+        1. api.exotel.com
+        2. api.in.exotel.com
+    6. **Type of SMS**: Choose the type of SMS you intend on triggering.
+        1. Transactional
+        2. Transactional_opt_in
+        3. Promotional
+    7. **Sender/Header**: Enter the Sender ID that you want to use.
+    8. **Entity ID**: Enter your DLT registered Entity ID.
+4. Click on "Add Account" once done, and you are all set!
+
+## Message Delivery Status
+
+Exotel does not provide the status of the message by default. You will need to speak with your Exotel Account Manager to help get this configured.
+
+Once the above integration is complete, the status of the notification, which will be shared by Exotel will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

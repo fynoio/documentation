@@ -1,0 +1,66 @@
+---
+title: "Handlebars"
+slug: "templates-handlebars"
+excerpt: ""
+hidden: false
+metadata:
+    description: "Handlebars is a JavaScript library for creating dynamic templates with placeholders that are replaced with data, and in Fyno, it supports features like conditional operations, loops, and custom helpers to enhance template creation."
+    image: []
+    robots: "index"
+createdAt: "Mon Oct 16 2023 13:09:28 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Nov 29 2024 07:55:27 GMT+0000 (Coordinated Universal Time)"
+---
+
+Handlebars is a JavaScript library used for creating dynamic templates.
+
+It allows you to define templates with placeholders, and these placeholders are replaced with data when the template is triggered with the information sent in the payload.
+
+Handlebars within Fyno support features like conditional operations, loops, date time formatting, partial searches, and custom helpers, making it a very cool tool to use when creating your templates.
+
+## Handlebars in Fyno's Templates
+
+To understand how handlebars work, we first need to establish a sample payload, based off which the Handlebars function and applicability can be demonstrated.
+
+```text Sample Payload
+{
+    "members": [
+        {
+            "first_name": "Ashwin",
+            "last_name": "Agarwal",
+            "city": ""
+        }
+    ],
+    "investments": [
+        {
+            "amount": 10,
+            "company": "L&T"
+        },
+        {
+            "amount": 20
+        }
+    ],
+    "companies": {
+        "L&T": "India",
+        "Apple": "USA"
+    },
+    "user_type": "pro",
+    "period": {
+        "start": "2023-10-01",
+        "end": "2023-10-03"
+    },
+    "classification": [
+        "active",
+        "pro"
+    ]
+}
+```
+
+Fyno has default as well as custom **handlebars** that you can use in your templates. Let's have a look at what these are and how to use them using the above payload and data as example responses.
+
+> 🚧 Double Quotes within Handlebars `{{" "}}` may break your templates!
+>
+> Double quote may break your syntax in HBS, especially in emails! And nobody wants that!
+>
+> **For example:** Use `{{math number1 '+' number2}}` instead of `{{math number1 "+" number2}}`
+>
+> **Use single quotes `{{' '}}` instead!** :sunglasses:

@@ -1,0 +1,30 @@
+---
+title: "Allowlist"
+slug: "allowlist"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Delivery Reports Webhook"
+    description: "This document explains the concept of an Allowlist, which is a list of verified URLs or APIs that need to be added to the Fyno platform for security purposes. It also provides steps on how to create an Allowlist URL and convert it into a Delivery Webhook to receive updates on delivery statuses."
+    image: []
+    robots: "index"
+createdAt: "Tue Mar 28 2023 11:49:38 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Oct 14 2024 10:34:36 GMT+0000 (Coordinated Universal Time)"
+---
+
+Allowlist in its definition itself is a list of URLs or SQS that you would need to add to the Fyno platform and verify before you use it on the application and in your workflows.
+
+All URLs that you intend on using within the Fyno Application need to be added to the **Allowlist** before being plugged into the application.
+
+## The need for an Allowlist
+
+Allowlists were designed for Fyno's app users to ensure security for the information that is being plugged into the system, by having verified URLs/SQS and thus help avoid unnecessary security hassles.
+
+Pre-approving the URLs/SQS that you need to use in your integration ensures that no changes can happen in the integrations without actively making the changes and thus leaves very little room for error.
+
+## Types of Allowlist
+
+You can add Allowlists as
+
+1. [URL](./allowlist-url)
+2. [SQS](./allowlist-sqs)

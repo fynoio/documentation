@@ -1,0 +1,145 @@
+---
+title: "Creating a journey"
+slug: "create-journey"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to create a Journey | Fyno Documentation"
+    description: "Fyno Journey is an omnichannel marketing solution that allows teams to create automated notification experiences for users at different stages of their lifecycle, such as onboarding, retention, and conversion. Users can define entry and exit points, unique identifiers, and notification paths to create personalized journeys."
+    image: []
+    robots: "index"
+createdAt: "Tue May 28 2024 12:14:50 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Nov 07 2024 07:33:00 GMT+0000 (Coordinated Universal Time)"
+---
+
+Fyno Journey is an all-in-one omnichannel marketing solution designed to empower Product, Growth and Marketing teams.
+
+Journeys lets you create an automated omnichannel notification experience for your users using a visual journey builder. It consists of a series of notification events, each engaging the user with the most relevant content at the right moment, resulting in the desired conversion.
+
+Fyno Journeys can be crafted to engage users at every phase of their lifecycle within your product, leveraging user and event data to create highly personalized experiences.
+
+# When can you create a Journey?
+
+A Journey can be delivered at any stage of the user's lifecycle. Few examples below.
+
+1. **User Onboarding**: Build an onboarding Journey that engages users over several days or weeks and on different channels to educate them about your product's unique features.
+2. **Payment Reminder**: Build a payment reminder flow to nudge users to make the payment like SIPs, EMIs on time.
+
+# Steps to Create a Journey
+
+1. **Define Journey Entry** - Define when the journey should be started. You can select the trigger of any notification event as Journey entry point
+2. **Define Unique Identifier** - Define how you want to identify your user. You can select any fields from the payload as unique identifier.
+3. **Define Journey Exit** (Optional) - Define when the user will exit the journey successfully. You can select the trigger of any notification event as Journey exit point.
+4. **Define Journey Path** - Define what are the different notifications user should get during their journey. You can also add any wait time between 2 different notifications so that users can do the required action and exit the journey.
+5. **Save and Promote the journey** - Once all the above steps are done, you can save it or promote it.
+
+# Use Case
+
+Let's take the example of ABC, a fintech company that aims to ensure users complete their SIP payments even after an initial failure. To achieve this goal, ABC plans to implement a multi-step reminder system. The system will send payment reminders at various intervals following the payment failure, such as 1 day, 2 days, 3 days etc after the initial failure. These reminders will continue until the user successfully makes the payment. However, if the user does not complete the payment within 10 days of the original payment failure, ABC will discontinue the reminder notifications. If the user makes the payment within 10 days, they will stop getting reminders.
+
+Let's assume ABC send these payment reminders via WhatsApp. Visual representation for the flow is shown below.
+
+![](https://files.readme.io/50b449c-journey_usecase.png)
+
+To achieve the above use case, you need to follow the below steps.
+
+1. Go to Navigation menu -> Workflow.
+2. Click 'Create+' to create a new workflow.
+3. Enter an appropriate name for your workspace and click 'Create'.
+
+![](https://files.readme.io/f2ec2e7-create_wf_journey.png)
+
+4. You will see an empty canvas as shown below
+
+![](https://files.readme.io/432ae69-empty_canvas.png)
+
+5. From the panel on the right hand side, drag and drop 'Notification Event' into the canvas. You need to configure the following
+
+    1. **Journey Start** - Select the notification event which will start the journey. In this use case, SIP payment failure notification event will start the journey
+    2. **Unique Key** - You need to select one or more keys as Unique Key which will unique identify your user. Every SIP will have a unique Transaction Id. So, in this use case, we will choose it as Unique Key.
+
+![](https://files.readme.io/2a0b07b-SIP_Journey_start.png)
+
+    3. **Journey Success Criteria based on Notification Event** - Select the notification event which will successfully end the journey for the user. In this use case, SIP payment success notification event will end the journey for the user.
+
+    ![](https://files.readme.io/e8dad0f-SIP_Journey_end.png)
+
+    4. **Journey Success Criteria based on Notification Event Status** - You can end Journeys based on the status of notifications. For instance, you can set up a journey to end when a user has either read the 'SIP_Payment_Success' notification on WhatsApp or opened the corresponding email. This can be configured as shown below:
+
+      ![](https://files.readme.io/4f12411-SIP_Journey_end_status.png)
+
+6. Drag & drop, 'Wait for' under Action and configure wait for as shown below. Now you are giving 1 day time to users to make the SIP payment. If the user makes the payment within 1 day, then 'sip+payment_success' event will fire and users will exit the journey successfully.
+
+![](https://files.readme.io/2aee498-wait_for.png)
+
+7. Drag & drop notification event below 'Wait for' as shown below.
+
+    1. Select Notification event you want to fire. In this case, it would be sending SIP Payment reminder.
+    2. Destination - Select DistinctId (if you manage User Profile) in Fyno or destination(s) from the event payload. In this case, we are sending payment reminder in WhatsApp.
+    3. Data - This will have the list of placeholders configured in the template linked to the notification event selected.
+    4. Additional Data - if you want to add any other variables which is not added as part of the template, you can add it here.
+
+    ![](https://files.readme.io/96dbe89-notif_event_step.png)
+
+8. Follow Steps 6 & 7 depending on the no of reminders you are planning to send. In this use case, we want to send 3 reminders. So you need to add it as shown below.
+
+![](https://files.readme.io/1736af1-full_journey_flow.png)
+
+> 📘 Its recommended to add 'Wait for' after configuring the last Notification Event. This will improve your overall success rate of your journey. You will see the below tip, if you don't add a 'Wait for' after the last notification event.
+>
+> ![](https://files.readme.io/48b5ab6-tfc_1.png)
+
+9. User will exit the journey in 2 cases
+    1. When user does the success criteria defined. In this case, once the user makes the SIP payment, they will successfully exit the journey.
+    2. When user received all the notification configured in the journey and reached the end of the journey. In this case, if user doesn't make SIP payment, after 6 days and 12 hours, they will exit the journey.
+    3. When user interacted with the notification sent like Read, Opened, Clicked etc on any of the sent channels. For example, if the target of your notification is user opening the notification, you can set your success metric as Notification Status - Seen/Read.
+        > 📘 Your Success Criteria can include multiple conditions. For instance, you might set up the journey to end if either Notification Event A or Notification Event B is triggered.
+
+# How to view users in the Journey
+
+To view users in the journey, pls enable View Users as shown below.
+
+![](https://files.readme.io/7d7266e-view_users-2.png)
+
+Once you enable '**View Users**' , then you can see no of users at each step (Wait for) of the Journey.
+
+When you click the user count as shown below, it will open up the list of users in the Journey.
+
+![](https://files.readme.io/d092846-view_users_count_1.png)
+
+# How to fast forward users in the Journey
+
+The 'Fast Forward' feature helps you to move the users to the next step in the journey, especially useful for testing workflows with wait times.  
+For instance, if your journey includes a 1-day wait period between notifications, you can use Fast Forward to skip this wait time instead of waiting 24 hours to test the next step.
+
+1. Click 'Fast Forward Users' in the top right corner. You will see a popup as shown
+
+![](https://files.readme.io/a756936bba7bb672278959a56e354c080660e1d79c89961cf6a4fe98cc4faa80-fast_forward_users.png)
+
+2. Enter the Unique Identifiers for the users you want to fast forward (up to 10 at a time). For example, if you configured 'Mobile Number' as your Unique Identifier while creating the journey, enter the mobile numbers here. Click 'Confirm' to proceed."
+3. All these users will be automatically moved to the next step in the journey.
+
+# What will happen if you edit a journey while its active
+
+For instance, let's consider a scenario where you add an extra step to an active journey. In this case:
+
+1. Users who enter the journey after the changes has been made will experience the updated version of the journey, which includes the newly added step.
+2. Users who are already progressing through the journey at the time of the change will continue with the previous version of the journey, without encountering the additional step.
+
+## How to receive delivery reports
+
+Fyno allows you to forward delivery reports to your own system or integrate them with third-party analytics tools like Mixpanel and Amplitude. This feature enables you to track and analyze the success of your notification deliveries seamlessly.
+
+You can read more about it [here](./receive-delivery-reports)
+
+## How to configure Idempotent Key
+
+Workflows now supports idempotency, ensuring you can safely retry requests without the risk of performing the same operation twice. This feature proves invaluable in scenarios where an API call gets interrupted in transit, leaving you without a response.
+
+You can read more about it [here](./configure-idempotent-key-workflow)
+
+## How to configure overrides
+
+Fyno allows you to override pre-configured values within an Integration, enabling you to use different values for specific notifications in a Workflow. This flexibility is useful when you need to customize the sender information or other details based on the requirements of each notification.
+
+You can read more about it [here](./configure-overrides-workflow)

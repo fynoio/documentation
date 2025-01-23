@@ -1,0 +1,34 @@
+---
+title: "Netcore"
+slug: "email-netcore"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send Email notification using Netcore & Fyno | Help Document"
+    description: "A guide to integrate your Netcore Email account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Thu Nov 10 2022 13:32:45 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Feb 01 2024 06:28:20 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have your Netcore account already set up with the domain mapped and verified and the content type specified.
+
+1. Navigate to Integrations.
+2. Under "Email" section, click on the "NetCore" button.
+3. In the pop-up that appears, fill in:
+    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **API Key:** Log into your Netcore application and click on "Integrations" on the left navigation panel. On the page that loads, find the API tab on the ribbon menu and obtain your API Key.
+    3. **From Email:** Enter the Email ID from which the emails will be sent from. This must be an email ID with the domain that is already registered with Netcore.
+    4. **Name:** Enter the name that would be displayed in the "From" line. It may be a person or a group name.
+    5. **Content type:** You can choose either "HTML" or "amp-content" based on your preconfigured setup on Netcore.
+    6. **Reply to:** This is an optional field. You may enter an alternate email ID so that when the recipient clicks on "Reply", the email ID you have entered in the "Reply To" will be populated. This can be different from the "From" email ID
+4. Click on "Add Account" once done and you are all set!
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, NetCore requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log in to your Netcore Email API account.
+2. Navigate to **Settings** and find **Webhooks**. Enter Fyno's callback URL and save.
+3. Test your integration by sending a message from the Fyno App. Your notification delivery details will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

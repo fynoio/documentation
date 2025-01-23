@@ -1,0 +1,66 @@
+---
+title: "Teams (by Microsoft)"
+slug: "chat-teams"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send MS Teams notification using Fyno | Help Document"
+    description: "A guide to integrate your Teams Chat account into Fyno."
+    image: []
+    robots: "index"
+createdAt: "Fri Dec 09 2022 07:29:25 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Dec 08 2023 11:41:04 GMT+0000 (Coordinated Universal Time)"
+---
+
+Teams, by Microsoft, is one of the biggest internal communication channels. With that in mind, having notification integrations that can seamlessly send out either a mass blast or personalised communication has become the need of the hour.
+
+And we're here for it.
+
+Teams can be integrated in 2 ways, depending on your requirement:
+
+1. Teams Incoming Webhook
+2. Teams Bot App
+
+To understand each the capabilities of each integration method, here is a handy list for you:
+
+| Action                             | Teams Incoming Webhook | Teams Bot App |
+| :--------------------------------- | :--------------------- | :------------ |
+| Able to message individual person  | Yes                    | No            |
+| Able to message group chat         | Yes                    | No            |
+| Able to message public channel     | Yes                    | Yes           |
+| Able to message private channel    | No                     | Yes           |
+| Able to send card message          | Yes                    | Yes           |
+| Able to send welcome message       | Yes                    | No            |
+| Able to retrieve Teams context     | Yes                    | No            |
+| Require installation step on Teams | Yes                    | No            |
+| Require Azure resource             | Azure Bot Service      | No            |
+
+The integration process also varies, depending on the method. Let's have a look at this now.
+
+### Teams Incoming Webhook
+
+1. Navigate to Integrations.
+2. Under "Chat" section, click on the "Teams" button.
+3. In the pop-up that appears, fill in:
+    1. **Custom name:** Provide a name to help you identify the configured account in Fyno's portal.
+    2. **Incoming Webhook:** Log into your Teams Account and :
+        1. Find the channel you want to connect to. Click on the menu option next to it and click on "**Connectors**"
+        2. In the pop-up that opens, find "**Categories**" and select **All**.
+        3. In the list Find **Incoming Webhook**" and click on configure.
+        4. In the new pop-up, fill in the name, provide a logo (optional) and click on create.
+        5. This will create. a URL in the same pop-up. This can now be used in Fyno's integration page.
+4. Click on "Add Account" once done and you are all set!
+
+### Teams Bot App
+
+If you would like to integrate a bot that you have already built or would like to create and integrate a new bot, we got you!
+
+Reach out to us now at **[support@fyno.io](mailto:support@fyno.io)** and we will take care of the rest!
+
+## Message Delivery Status
+
+Teams (by Microsoft), by default, does not provide the status of the notification sent out. This is not a configurable feature as well.
+
+As and when this becomes a supported feature, Fyno will integrate the same into the application.
+
+In the meantime, for every **Trace ** for Teams, the **[Delivery](./log-details-delivery)** tab under **Trace ** will not be seen.

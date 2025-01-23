@@ -1,0 +1,59 @@
+---
+title: "Delivery Callback Logs"
+slug: "delivery-callback-logs"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Delivery Callback Logs"
+    description: "This document explains how callback logs can help track delivery reports sent to your Allowlist URL, providing details such as timestamp, notification event, channel, HTTP status code, and response time. It also includes information on filters for date range, message ID, custom ID, and HTTP status code, with the ability to view individual callback log details."
+    image: []
+    robots: "index"
+createdAt: "Tue May 07 2024 06:58:34 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Jul 18 2024 07:11:44 GMT+0000 (Coordinated Universal Time)"
+---
+
+Delivery Callback logs help you track each and every delivery report we sent it back to your Allowlist URL
+
+On the page that opens, you will see the following:
+
+1. Delivery Callback Logs
+2. Filters
+3. Test and Live version tabs.
+
+## Delivery Callback Logs
+
+The logs that are seen on the "Delivery Callback Logs" page give you an overview of all the Delivery Callback sent to the Allowlist URL. Each log will have the below details.
+
+1. **Timestamp**: Tells you the details of when (date and time) the delivery report was sent to the Allowlisted URL.
+2. **Notification Event**: Notification Event for which the callback request was triggered.
+3. **Allowlist URL**: Allowlist URL where the delivery report was sent. You can find the list of Allowlist URLs under Workspace Settings -> Allowlist URL.
+4. **HTTP Status Code**: HTTP status code of the callback request. The status code can be anything, be it success (200, 201, 2xx etc.) or failure (4xx or 5xx).
+5. **Response Time**: Time it took to send the delivery report to the Allowlist URL.
+
+![](https://files.readme.io/fb7ca5c-Delivery_Callback_Logs.png)
+
+## Filters
+
+You can filter the logs based on the criteria mentioned below.
+
+1. **Date Range**: Tells you the details of when (date and time) the notification event was triggered. You can select one of the provided options, which are:
+    1. Today
+    2. Yesterday
+    3. Last 7 days
+    4. Custom - select a date range based on the log retention settings for delivery callback logs. You can see this under Workspace Settings -> Add On's -> Logs Archival
+2. **Message Id**: A unique id generated for the notification event that was triggered.
+3. **Custom Id**: Shows the Custom Id configured as part of the callback.
+4. **Allowlist URL**: Allowlisted URL where the delivery report was sent.
+5. **HTTP Status Code**: HTTP status code of the callback request. The status code can be anything, be it success (200, 201, 2xx etc.) or failure (4xx or 5xx).
+
+On clicking the individual Callback log, you will see the Request and Response payloads with each request.
+
+![](https://files.readme.io/096c8af-Callback_details_new.png)
+
+## Test & Live Versions
+
+In the logs section, the **Test** and **Live** versions are uniquely partitioned, to show you the details notifications sent in that particular version of the API that has been generated.
+
+> 🚧 Can't find a notification log?
+>
+> Check the environment that the notification was triggered in. Notification triggered in **Test** environment cannot be seen in **Live** and vice versa.

@@ -1,0 +1,102 @@
+---
+title: "AMP Email Template"
+slug: "amp-email-template"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Sending Email using AMP | Fyno Documentation"
+    description: "This document explains the benefits and process of sending AMP (Accelerated Mobile Pages) emails, which provide interactive and engaging content within the email itself. It also outlines the prerequisites for sending AMP emails and the importance of creating a fallback for recipients who cannot view AMP content."
+    image: []
+    robots: "index"
+createdAt: "Thu Jun 06 2024 08:52:30 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jul 01 2024 07:03:56 GMT+0000 (Coordinated Universal Time)"
+---
+
+## What is AMP for Email?
+
+AMP (Accelerated Mobile Pages) for Email is changing the way businesses approach transactional and marketing email campaigns. Unlike traditional static emails, AMP allows you to deliver dynamic, interactive content directly within the email itself. This includes features like carousels, accordions, and forms, eliminating the need for recipients to open a new tab and visit a website. With AMP, you can provide a seamless, website-like experience right inside the email, enhancing user experience.
+
+## Inboxes that support AMP for Email
+
+Currently AMP is supported by these email clients:
+
+1. Gmail
+2. Yahoo! Mail
+3. FairEmail
+4. Mail.ru
+
+## Benefits of AMP Email
+
+With interactive AMP emails, you can send:
+
+1. Embed interactive **forms** within emails to conduct surveys and gather user feedback, such as Net Promoter Score (NPS) and Customer Satisfaction (CSAT) surveys, enabling users to provide their feedback without leaving the email.
+
+2. Enhance emails containing content and numerous links by presenting the information in **interactive carousels**. This approach allows users to engage with the content and navigate through the links without the need to open a new page, thus improving the overall user experience.
+
+3. Utilize **accordions** to present details of multiple products or services within an email. By organizing the information in collapsible sections, users can easily explore and access the specific details they're interested in, resulting in a more engaging and user-friendly experience.
+
+## How does AMP for Email work?
+
+Traditionally, a marketing or a transactional email is a multipart message with two different parts delivered as different MIME types.
+
+1. **HTML**: This is what most email clients support now.
+
+2. **Plain Text**: Originally, this was the only way to send emails. When the HTML MIME type was rolled out, not all email clients supported HTML, or readers could set their client to display only the text version. The text part still acts as a fallback for the HTML part.
+
+AMP for Email Works by creating an AMP markup that looks like HTML but is a new specification. It is delivered using a third, additional MIME type (on top of existing types i.e. HTML and Plain Text).
+
+The AMP HTML version is delivered only to the inboxes of service providers that currently support AMP, such as Gmail, Yahoo Mail, FairEmail, and mail.ru. All other clients fall back to the HTML version.
+
+## AMP enabled Email Clients
+
+We support AMP email for the below Email Service Providers.
+
+1. SES
+2. SendGrid
+3. Sparkpost
+4. Mailmodo
+5. Mailgun
+6. SMTP
+
+## Prerequisite for sending AMP Emails
+
+Before starting to send AMP emails, you will have to ensure the following
+
+1. You have SPF (Sender Policy Framework) and DKIM (DomainKeys Identified Mail) set up for the domain you’re sending from.
+
+2. Your email should be approved for sending AMP (Dynamic) emails, including elements like Carousel, Accordion, and Forms. For more information, you can refer to [Google's AMP email documentation](https://developers.google.com/gmail/ampemail).
+
+3. Send a production-ready AMP email to the following addresses:
+    1. [ampverification@yahoo.com](mailto:ampverification@yahoo.com)
+    2. [ampforemail.whitelisting@gmail.com](mailto:ampforemail.whitelisting@gmail.com)
+    3. [postmaster_amp@corp.mail.ru](mailto:postmaster_amp@corp.mail.ru) (recommended only if you have more than 5000 users with the mail.ru domain)
+    4. The last step is to complete the [AMP for Email: Sender Registration form](https://docs.google.com/forms/d/e/1FAIpQLSdso95e7UDLk_R-bnpzsAmuUMDQEMUgTErcfGGItBDkghHU2A/viewform?gxids=7628). This is the only form you need to fill out to be allowed to send AMP emails for all supporting email clients.
+    5. Wait for Confirmation - Each email client notifies you of your allowlist status via email. If you have any issues, contact the AMP for Email Working Group via [GitHub repository for AMP for Email](https://github.com/ampproject/wg-amp4email).
+        > 📘 Important
+        >
+        > 1. Providers require you to register all the from email addresses from which you plan to send AMP emails.
+        > 2. Always refer to the latest support information about [AMP for Email](https://amp.dev/about/email) provided by the email services because it may vary over time.
+        > 3. Adding your from email address to Gmail's allowlist can take up to three weeks.
+        > 4. No confirmation emails will be sent by Yahoo Mail. After 7 days, AMP will begin functioning for Yahoo Mail if it satisfies all client sender requirements.
+
+Other criteria to be fulfilled:
+
+1. The recipient should have enabled dynamic emails through the inbox settings.
+
+2. A non-AMP fallback email must also be sent along with AMP version. This is to make sure that an email is rendered in non AMP supporting mailboxes or AMP disabled mailboxes.
+
+However, you can still test AMP emails by sending them to yourself. To do this, go to your Gmail settings, select _Dynamic Email > Developer Settings_, and add the email address that will be sending dynamic content .
+
+## HTML Fallback for AMP Emails
+
+To ensure that every email recipient has a seamless inbox experience, it is necessary to create a fallback for AMP emails. When you add videos or images to the email, it is a good practice to add the HTML fallback so that the users who cannot view it due to limited email client functionality can still have a good email experience.
+
+Fallback message comes in play when:
+
+1. The AMP email expires after 30 days, and if the user tries to access the AMP email after it has expired
+
+2. If a user wants to forward an AMP email. In this case the recipient will only see the fallback.
+
+3. The recipient does not use the email service provider to support the AMP functionality.
+
+In such scenarios, the HTML fallback lets the recipient have an enjoyable experience and successfully impart necessary information.

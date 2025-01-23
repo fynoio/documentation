@@ -1,0 +1,76 @@
+---
+title: "Fyno Verify"
+slug: "fyno-verify-otp-link"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Fyno Verify using OTP or Link"
+    description: "Fyno Verify provides a fully managed API for secure multichannel user verification via OTP or link, supporting SMS, Email, WhatsApp, Push, InApp, and Voice, to enhance onboarding and login processes. It offers configurable options for OTP and link validation, allowing customization of OTP characteristics and link validation time, with the ability to send different OTPs to different channels."
+    image: []
+    robots: "index"
+createdAt: "Tue Dec 03 2024 12:23:13 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 09:24:28 GMT+0000 (Coordinated Universal Time)"
+---
+
+Fyno Verify offers a fully managed API for seamless multichannel user verification via OTP or link.
+
+Elevate your onboarding and login process with a single API that handles the entire OTP generation, delivery and verification process in a secure way.
+
+## Why Fyno Verify?
+
+Verification is an essential first step in your online relationship with a user. By verifying that a new user is who they say they are, you can reduce spam and fraud on your site while ensuring the user's security.
+
+> 📘 Fyno Verify supports SMS, Email, WhatsApp, Push, InApp and Voice.
+
+## How to configure Fyno Verify
+
+In the templates, go to System Variables -> Verify. Click Settings icon
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_verify_1.png)
+
+You can configure Fyno Verify in 2 ways.
+
+1. OTP
+2. Link
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_verify_2.png)
+
+> 📘 You can also configure both OTP and Link in the same template.
+
+### How to configure Fyno Verify for OTP
+
+1. Enable OTP toggle.
+
+2. In the pop-up, configure your settings for OTP.
+
+    1. Choose between a numeric or an alphanumeric OTP.
+
+    2. Specify the desired number of characters for the OTP. You can choose between 3 and 6 characters
+
+    3. Define the OTP validation time. You can choose between 60 seconds and 48 hours.
+
+    4. Set the number of allowed retries. You can choose between 1 and 10 retries
+
+3. Select `Yes` in 'Use destination as id', if you want to send the destination(email/phone no etc) as id in the request once OTP is entered by the users in your app/website.
+
+4. If you choose `No` in 'Use destination as id', then you need to send `request_id` as part of Fyno Verify API request to verify the OTP.
+
+5. By default we will send same OTP to all the channels configured in your template. if you want to send different OTPs to different channels, then select 'Different OTP for all channels'.
+
+> 📘 Use `{{$fyno.$otp}}` as the OTP placeholder in your Fyno template.
+
+![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_verify_3.png)
+
+### How to configure Fyno Verify for Link
+
+1. Enable Link toggle.
+
+2. In the pop-up, define the Link validation time. You can choose between 60 seconds and 48 hours.
+
+3. By default we will send same OTP to all the channels configured in your template. if you want to send different OTPs to different channels, then select 'Different OTP for all channels'.
+
+4. Provide a redirect link if you want to redirect your users to a specific page in your app/website, otherwise leave it black. Users will see a success screen once they click the validation link and its verified.
+
+> 📘 Use `{{$fyno.$link}}` as the Link placeholder in your Fyno template.
+> ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_verify_4.png)
+
+> 📘 The generated URL will follow this format: `https://fy1.in/verify/x`, where x is a 32-character string.

@@ -1,0 +1,124 @@
+---
+title: "Create a WhatsApp Template with carousel"
+slug: "carousel-whatsapp-template"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to create WhatsApp template with carousel | Fyno Documentation"
+    description: "This document explains how to create Carousel WhatsApp templates with up to 10 cards, submit them for approval, and common reasons for rejection."
+    image: []
+    robots: "index"
+createdAt: "Tue Apr 09 2024 07:43:30 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Apr 11 2024 12:47:06 GMT+0000 (Coordinated Universal Time)"
+---
+
+Carousel WhatsApp templates allow you to send a single text message accompanied by a set of up to 10 carousel cards in a horizontally scrollable view.
+
+You can create a Carousel WhatsApp template and send it for Approval from Fyno itself. To do so, go to Templates -> External. Click Create. It will open up the below popup.
+
+> 📘 Currently carousel message is supported by the following providers - Meta, Fyno WhatsApp, Fyno x Kalerya, Fyno x Valuefirst.
+
+![](https://files.readme.io/dc0f673-external_meta.png)
+
+1. **Template Name** - Give a unique name for your meta template. Template Name can only have small case characters, numbers and underscores - '\_'. eg: meta_template_1.
+2. **Integration** - Select from the list of integrations from the dropdown. Please make sure you have configured at least one [Fyno WhatsApp integration](./fyno-whatsapp)
+3. **Category** - Refer this [meta document](https://developers.facebook.com/docs/whatsapp/updates-to-pricing/new-template-guidelines/) for examples
+    - **Marketing** - Select this option if you want to send promotion or information about your product, services. Enables you to achieve a wide range of goals, from generating awareness to driving sales and retargeting customers. Examples include new product, service, or feature announcements, targeted promotions/offers, and cart abandonment reminders.
+        - Custom - Used to send promotions or information about your products, services or business
+        - Product Messages - Used to send messages about your entire catalogue or multiple products from it
+    - **Utility** - Select this option if you want to send notifications about existing order or account details. Enables you to follow-up on user actions or requests. Examples include opt-in confirmation, order/delivery management (e.g., delivery update); account updates or alerts (e.g., payment reminder); or feedback surveys.
+4. **Language** - Choose languages for your template. You can delete or add more languages later.
+5. Click **Create**.
+
+You will see the template creation page as below.
+
+1. Template Type - Carousel. Select this if you want to send Carousel in the message.
+   ![](https://files.readme.io/bbd23c7-carousel_wa_template.png)
+
+2. Body - Enter the text for your message in the language that you've selected. Maximum limit is 1028 characters without variables and with each variable added it increases by 4. For example, if you have 2 variables in body content, then maximum character limit is 1036.
+3. Samples for Body Content - If you are using any variables/placeholders in the Body, you need to provide sample value here.
+   ![](https://files.readme.io/cad7b53-carousel_wa_body.png)
+
+## How to add Carousel to template
+
+Carousel templates support up to 10 carousel cards. Cards must have a media header (image or video), body text, and at least one button. Supports maximum 2 buttons. Buttons can be the same or a mix of quick reply buttons or URL buttons.
+
+The media header format and button types must be the same across all cards that make up a carousel template.
+
+1.  **Media Type** - Image or Video.
+2.  **Samples for header content** - You need to add sample image or video based on the media type you selected. Images should be in JPG or PNG format. Videos should be in mp4 format.
+3.  **Body** - Enter the text for your message in the language that you've selected. Maximum limit is 160 characters without variables and with each variable added it increases by 4. For example, if you have 2 variables in body content, then maximum character limit is 168.
+4.  **Samples for Body content** - If you are using any variables/placeholders in the Body, you need to provide sample value here.
+5.  **Buttons** - You can add upto 2 buttons. It could be Quick replies or Call to Action (Website) or a mix of both.
+
+        1. Quick Replies - Allows your customer to return a simple text message
+        2. Call to Action - Allows your customers to Visit a Website
+           URLs in Call-to-Action buttons can either be static or dynamic. If you want to use dynamic URLs, you will need to provide the static part of your URL along with the sample URL when submitting your Message Template as shown below.
+
+    ![](https://files.readme.io/68a9a91-carousel_dynamic_url.png)
+
+Click Save to see the changes made and decide to send for approval.
+
+### Variable Validation
+
+1. The variables in the body content must follow an increasing order. For instance, it should be formatted as "hey `{{1}}`, this is `{{2}}`" and not "hey `{{2}}`, this is `{{1}}`".
+2. Variables have to be numbers and not applicable for Handlebars.
+3. The ratio between words and placeholders is defined as 2x+1 : x, where 'x' represents the number of variables.
+
+## Meta Approval
+
+1. Once you have saved your template, you will see the below popup. If you wish to send the template for approval make sure to check the language you wish to send and click 'Submit'.
+
+![](https://files.readme.io/68ebe60-image.png)
+
+2. You will see the submission status as below. You will only see response for languages that have changes and saved as draft or are sent for approval. For example, if you have 3 languages and you changed content of hindi template and saved it in response you will only see Hindi language’s response.
+
+![](https://files.readme.io/768be36-meta_approval_response.png)
+
+3. In the External Template page, you will see the new template created along with the status. Once the status is approved or rejected by Meta, you will see the status updated in this page.
+
+![](https://files.readme.io/17854a8-meta_status.png)
+
+| Status   | Meaning                                                                                                                                                                                                                                              |
+| :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pending  | Indicates that the template is still under review by WhatsApp. Review can take up to 24 hours.                                                                                                                                                       |
+| Approved | The template was approved by WhatsApp and can be used to notify customers.                                                                                                                                                                           |
+| Rejected | The template has been rejected by WhatsApp during the review process.                                                                                                                                                                                |
+| Paused   | The template has been paused by WhatsApp due to recurring negative feedback from end users, typically resulting from "block" and "report spam" actions associated with the template. Message templates with this status cannot be sent to end users. |
+| Disabled | The template has been disabled by WhatsApp due to recurring negative feedback from end users or for violating one or more of WhatsApp's policies. Message templates with this status cannot be sent to end users.                                    |
+
+## How to save template as Draft
+
+To save a template as a draft before submitting it for approval, follow these steps.
+
+1. Once you click 'Save' in the template page, you will see the below popup.
+2. Uncheck the language for which you wish to save the template, then click 'Submit'. This action will save the selected language as a draft. You can also see this template status as 'Draft' in External Template page.
+3. You can edit the template and submit for approval later.
+
+![](https://files.readme.io/09251fe-image.png)
+
+## Common Rejection Reasons
+
+Submissions are commonly rejected for the following reasons, so make sure you avoid these mistakes.
+
+1. Variable parameters are missing or have mismatched curly braces. The correct format is `{{1}}`.
+2. Variable parameters contain special characters such as a #, $, or %.
+3. Variable parameters are not sequential. For example, `{{1}}`, `{{2}}`, `{{4}}`, `{{5}}` are defined but `{{3}}` does not exist.
+4. The message template contains content that violates WhatsApp’s Commerce Policy: When you offer goods or services for sale, Meta consider all messages and media related to your goods or services, including any descriptions, prices, fees, taxes and/or any required legal disclosures, to constitute transactions. Transactions must comply with the WhatsApp Commerce Policy.
+5. The message template contains content that violates the WhatsApps Business Policy: Do not request sensitive identifiers from users. For example, do not ask people to share full length individual payment card numbers, financial account numbers, National Identification numbers, or other sensitive identifiers. This also includes not requesting documents from users that might contain sensitive identifiers. Requesting partial identifiers (ex: last 4 digits of their Social Security number) is OK.
+6. The content contains potentially abusive or threatening content, such as threatening a customer with legal action or threatening to publicly shame them.
+7. The message template is a duplicate of an existing template. If a template is submitted with the same wording in the body and footer of an existing template, the duplicate template will be rejected.
+
+## How to create multi-language template
+
+You can add templates for multiple languages from the same template creation page and send them for Approval together or one by one. You can do that by selecting language from Add language drop down.
+
+![](https://files.readme.io/e24a8cd-meta_multi_lang.png)
+
+In this example, we have created the same template in multiple languages, English, Hindi and Tamil. If there are any validation issues in the template, you will see an error as shown below for Tamil language. In such cases, go back to the specific language tab, fix the errors and send it for approval.
+
+Once you have submitted the templates for approval, you can track the same in External Templates page.
+
+![](https://files.readme.io/cd528bf-image.png)
+
+> 🚧 Meta imposes restrictions on template updates, limiting them to once per day and no more than 10 times in a month.

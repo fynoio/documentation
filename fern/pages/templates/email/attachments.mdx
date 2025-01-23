@@ -1,0 +1,87 @@
+---
+title: "How to add attachments in email"
+slug: "how-to-add-attachments-in-email"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to add attachments in email | Fyno Documentation"
+    description: "This document describes how you can add attachments dynamically in the emails you send to your customers."
+    image: []
+    robots: "index"
+createdAt: "Thu Jul 25 2024 06:47:15 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Nov 27 2024 04:04:39 GMT+0000 (Coordinated Universal Time)"
+---
+
+In this document, we will explain how to add a single or multiple attachments in your email.
+
+You can add static as well as dynamic attachments to emails
+
+> 📘 There is no limit to the number of attachments. However, maximum size of the attachment(s) should be 10MB. We support the following file extensions: .jpg, .jpeg, .png, .gif, .pdf, .mp4, .doc, .docx, .xls and .xlsx
+
+On clicking on the attach button (highlighted below) on the to right corner of the either Email editor, you will see:
+
+![](https://files.readme.io/138f239-template_email_attachment.png)
+
+**Upload Files**: Allows you to attach files from the system. This then stays as a static attachment in the body of the email and is sent along with the email as an attachment every time it's triggered.
+
+**Dynamic Placeholders**: Allows you to include dynamic files within the email, when the notification event is triggered. You can use placeholders to specify the:
+
+-   Filename - provide a static value like 'Invoice.pdf' (if you are testing it manually) or a placeholder like `{{attachment.filename}}`(if your are triggering notification event via API)
+-   File type - provide a static value like 'application/pdf' (if you are testing it manually) or a placeholder like `{{attachment.filetype}}`(if your are triggering notification event via API). _File type should be MIME type_. You can get all the MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
+-   Content - provide the converted BASE64 file content (if you are testing it manually) or a placeholder like `{{attachment.base64}}`(if your are triggering notification event via API). _You can also use any Presigned URL_ in the content.
+
+> 📘 Please note that if you are using Presigned S3 URL, then the URL should trigger a download of the file immediately when opened.
+
+Placeholders should be used if the attachment information is dynamic (for instance, a personalized attachment depending on the recipient). Typically such attachments are sent via an API call. To send dynamic attachments in the event payload, make sure that the `data` section of the payload has an object called `attachment` as shown below.
+
+```
+curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/test/event' \
+-H 'Authorization: Bearer <API_KEY>' \
+-H 'Content-Type: application/json' \
+-d '{
+    "event": "EmailWithAttachments",
+    "to": {
+        "email": "xyz@gmail.com"
+    },
+    "data": {
+       "attachment":
+        {
+            "base64": "<BASE64 content>",
+            "filename": "<attachement_file_name>",
+            "filetype": "application/pdf"
+       }
+    }
+}'
+```
+
+In the above command:
+
+1. Replace `<WorkspaceID>` with your actual Workspace ID.
+2. Replace `<API_KEY>` with your actual API key.
+3. Replace `<BASE64 content>` with the base64-encoded content of the attachment file..
+4. Replace `<filename>` with the name of the file attached.
+
+Ensure to provide the correct filename and filetype for the attachment.
+
+When sending dynamic attachments in the payload, we need to configure the dynamic placeholders as shown below.
+
+![](https://files.readme.io/04ac879-image.png)
+
+> ❗️ You cannot use only numeric values as placeholder keys!
+
+## How to add multiple attachments
+
+To add multiple attachments in email, add them in the placeholders as shown below.
+
+1. For file 1, you can give the below placeholders,
+    1. Filename - `{{attachment.filename.0}}`
+    2. File Type - `{{attachment.filetype.0}}`
+    3. Content - `{{attachment.base64.0}}`
+2. Click 'Add Key'
+3. For file 2, you can give the below placeholders
+    1. Filename - `{{attachment.filename.1}}`
+    2. File Type - `{{attachment.filetype.1}}`
+    3. Content - `{{attachment.base64.1}}`
+4. You can keep adding as many files. The total file size should not exceed 10MB.
+
+> 📘 Please note that the content can be base64-encoded content or a Presigned URL

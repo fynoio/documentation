@@ -1,0 +1,97 @@
+---
+title: "Delivery"
+slug: "log-details-delivery"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Log Details - Delivery | Fyno Documentation"
+    description: "Here's a quick overview of the Delivery section in the log details."
+    image: []
+    robots: "index"
+createdAt: "Mon Nov 14 2022 12:47:35 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Dec 06 2023 07:51:15 GMT+0000 (Coordinated Universal Time)"
+---
+
+On the "Log Details" pop-up, the fifth tab on the ribbon menu you will see is "Delivery".
+
+The delivery tab is dependent on the information relayed from the providers. You will see a delivery status tab only for providers who send the Delivery Status.
+
+The **Delivery** tab will show you the details of the delivery response that Fyno has received from the "Provider" that was used to send the notification.
+
+> 🚧 This tab will not be visible in cases where Fyno has not received any information from the "Provider" about **Delivery Status**
+
+On that note, let's have a quick look at the types of **Providers** based on the Delivery Status
+
+1. Delivery status sent, with no extra configuration needed.
+2. Delivery status can be sent, configuration required
+3. Delivery status not sent, configuration not available
+
+## 1. Delivery Status Sent, No Extra Configuration
+
+There are providers within some services that readily share the delivery status of the notification without having to configure webhooks or callbacks at their end. They are:
+
+1. Messaging (SMS)
+    1. [Exotel](./sms-exotel)
+    2. [Fyno SMS](./sms-fyno-sms)
+    3. [Kaleyra Alerts](./sms-kaleyra-alerts)
+    4. [Kaleyra Global](./sms-kaleyra-global)
+    5. [Kaleyra.io](./sms-kaleyraio)
+    6. [MessageBird](./sms-messagebird)
+    7. [Plivo](./sms-plivo)
+    8. [Twilio](./sms-twilio)
+    9. [ValueFirst](./sms-valuefirst)
+2. WhatsApp
+    1. [Freshchat](./whatsapp-freshchat)
+    2. [MessageBird](./whatsapp-messagebird)
+    3. [Twilio](./whatsapp-twilio)
+    4. [ValueFirst](./whatsapp-valuefirst)
+3. Chat
+    1. [Slack](chat-slack)
+    2. [Teams](chat-teams) (by Microsoft)
+4. InApp
+    1. [Expo](./push-expo)
+    2. [FCM](./push-fcm)
+    3. [Mi Push](./push-mi-push)
+    4. [OneSignal](./push-onesignal)
+
+## 2. Delivery Status can be Sent, Configuration Needed
+
+Some other providers need to be configured to send the delivery status. For these **Providers**, once configured the delivery tab will show up in logs. These are:
+
+1. Messaging (SMS)
+
+    1. [Gupshup](./sms-gupshup)
+    2. [Karix](./sms-karix)
+    3. [MSG91](./sms-msg91)
+    4. [RouteMobile](./sms-route-mobile)
+    5. [Syniverse](./sms-syniverse)
+
+2. WhatsApp
+
+    1. [Connectly](./whatsapp-connectly)
+    2. [Kaleyra.io](whatsapp-kaleyraio)
+    3. [Gupshup Enterprise](./whatsapp-gupshup)
+    4. [Meta (by Facebook)](whatsapp-meta)
+
+3. Email
+    1. [Mailchimp (Mandrill)](./email-mailchimp)
+    2. [Mailgun](./email-mailgun)
+    3. [Netcore](email-netcore)
+    4. [PostMark](email-postmark)
+    5. [SendGrid](email-sendgrid)
+    6. [SES](email-ses)
+
+However, there are a few providers that don't provide the delivery status and we will be unable to fetch that data. We would request you to check with your provider for more details on the same.
+
+## 3. Delivery Status Not Sent, Configuration not available
+
+Some providers do not have the feasibility to share the delivery status, and thus this cannot be shared. For these providers, the **Delivery** tab will not be visible. They are:
+
+1. WhatsApp
+    1. [AiSensy](./whatsapp-aisensy)
+2. Email
+    1. [Gmail](email-gmail)
+    2. [Outlook](email-outlook)
+3. Push
+    1. [Slack](./chat-slack)
+    2. [Teams (by Microsoft)](./chat-teams)

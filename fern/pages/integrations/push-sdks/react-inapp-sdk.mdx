@@ -1,0 +1,256 @@
+---
+title: "Fyno In-App React SDK"
+slug: "fyno-in-app-react-sdk"
+excerpt: ""
+hidden: false
+createdAt: "Fri Oct 06 2023 09:59:49 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Feb 26 2024 10:57:15 GMT+0000 (Coordinated Universal Time)"
+---
+
+The Fyno In-App React SDK is a powerful tool that allows you to seamlessly integrate Fyno's notification center into your React-based applications. With this SDK, you can enhance your user's experience by providing them with a feature-rich and customisable notification center.
+
+## Installation
+
+To get started with Fyno's In-App React SDK, you'll need to install it using [NPM](https://www.npmjs.com/package/@fyno/inapp-react)
+
+```shell
+npm install @fyno/inapp-react
+```
+
+## Usage
+
+Before you dive into using the In-App Notification Center, there are some prerequisites you need to fulfill. You must ensure you have the necessary information and generate an HMAC signature.
+
+### Prerequisites
+
+Before you start, make sure you have the following information ready
+
+-   **Workspace ID (WSID)**: You can find your workspace ID on your Fyno [API Keys](https://app.fyno.io/api-keys) page.
+-   **Integration Token**: Obtain the integration token from the [Integrations](https://app.fyno.io/integrations) page.
+-   **User ID**: This should be a unique identifier for the currently logged-in user. This user ID is crucial for Fyno to send specific notifications to the right users.
+
+### HMAC Signature Generation
+
+The HMAC signature is essential for ensuring the security and integrity of your notifications. Here are examples of how to generate the HMAC signature in various programming languages
+
+```javascript Node
+import crypto from "crypto"; //module
+//or
+// const crypto = require('crypto') //commonjs
+const signature = crypto
+    .createHmac("sha256", "WSID" + "INTEGRATION_TOKEN")
+    .update("USER_ID")
+    .digest("hex");
+```
+
+```javascript
+const CryptoJS = require("crypto-js"); //commonjs
+//or
+//import CryptoJS from "crypto-js";//module
+const secretKey = "WSID" + "INTEGRATION_TOKEN";
+const userId = "USER_ID";
+
+const signature = CryptoJS.HmacSHA256(userId, secretKey).toString(
+    CryptoJS.enc.Hex
+);
+```
+
+```python
+import hashlib
+import hmac
+
+secret_key = b'WSID'+b'INTEGRATION_TOKEN'
+user_id = 'USER_ID'
+
+signature = hmac.new(secret_key, user_id.encode('utf-8'), hashlib.sha256).hexdigest()
+```
+
+```java
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+
+public class SignatureExample {
+
+    public static void main(String[] args) throws Exception {
+        String secretKey = "WSID" + "INTEGRATION_TOKEN"; // Concatenate the secret key
+        String userId = "USER_ID";
+
+        // Create a new instance of the HmacSHA256 algorithm
+        Mac mac = Mac.getInstance("HmacSHA256");
+        SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+        mac.init(secretKeySpec);
+
+        // Compute the hash
+        byte[] hash = mac.doFinal(userId.getBytes(StandardCharsets.UTF_8));
+
+        // Convert the hash to a hexadecimal string
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = String.format("%02x", b);
+            hexString.append(hex);
+        }
+
+        String signature = hexString.toString();
+    }
+}
+```
+
+```go
+package main
+
+import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
+	"fmt"
+)
+
+func main() {
+	secretKey := "WSID"+"INTEGRATION_TOKEN"
+	userId := "USER_ID"
+
+	key := []byte(secretKey)
+	data := []byte(userId)
+
+	// Create an HMAC-SHA256 hasher
+	hasher := hmac.New(sha256.New, key)
+
+	// Write the data to the hasher
+	_, err := hasher.Write(data)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Get the resulting hash as bytes
+	hash := hasher.Sum(nil)
+
+	// Convert the hash to a hexadecimal string
+	signature := hex.EncodeToString(hash)
+}
+```
+
+```php
+$secretKey = 'WSID'.'INTEGRATION_TOKEN';
+$userId = 'USER_ID';
+
+$signature = hash_hmac('sha256', $userId, $secretKey);
+```
+
+```ruby
+require 'openssl'
+
+secret_key = 'WSID'+'INTEGRATION_TOKEN'
+user_id = 'USER_ID'
+
+signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secret_key, user_id)
+```
+
+```csharp
+using System;
+using System.Security.Cryptography;
+using System.Text;
+
+class Program
+{
+    static void Main()
+    {
+        string secretKey = "WSIDINTEGRATION_TOKEN";
+        string userId = "USER_ID";
+
+        using (HMACSHA256 hmac = new HMACSHA256(Encoding.UTF8.GetBytes(secretKey))
+        {
+            byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userId));
+            string signature = BitConverter.ToString(hash).Replace("-", "").ToLower();
+        }
+    }
+}
+```
+
+> 🚧 Watch out when generating HMAC Signatures!
+>
+> Please be cautious when generating the signature on the frontend, as it might expose your Integration token. It's recommended to perform the token generation on the backend.
+
+### SDK Initialisation in Frontend
+
+To use the SDK in your React application, you can import FynoInappCenter and configure it as follows
+
+```javascript JSX
+import { FynoInappCenter } from '@fyno/inapp-react'
+
+class Example extends Component {
+  // Incoming notification listener
+  const onMessageReceived = () => {
+  //Handle incoming notification data
+  }
+  const config = {
+    mode: 'THEME_MODE', // Choose between 'light' or 'dark'
+    userId: 'USER_ID',
+    workspaceId: 'WSID',
+    integration: 'INTRGRATION_ID',
+    signature: 'signature',
+    themeConfig: {
+      logo: 'LINK_TO_BRAND_LOGO',
+      primary: 'PRIMARY_COLOR',
+      lightBackground: 'LIGHT_THEME_BACKGROUND_COLOR',
+      darkBackground: 'DARK_THEME_BACKGROUND_COLOR',
+      header: 'Notifications', // Optional: If specified, a header will be shown
+    },
+    notificationSettings: {
+      sound: 'LINK_TO_NOTIFICATION_SOUND',
+      invertTheme: false, // Set to true for inverted theme
+    },
+    onMessageReceived
+  }
+
+  render() {
+    return <FynoInappCenter {...config} />
+  }
+}
+
+```
+
+Alternatively, you can configure the SDK like this
+
+```javascript JSX
+import { FynoInappCenter } from '@fyno/inapp-react'
+
+class Example extends Component {
+  // Incoming notification listener
+  const onMessageReceived = () => {
+  //Handle incoming notification data
+  }
+  const themeConfig = {
+    logo: 'LINK_TO_BRAND_LOGO',
+    primary: 'PRIMARY_COLOR',
+    lightBackground: 'LIGHT_THEME_BACKGROUND_COLOR',
+    darkBackground: 'DARK_THEME_BACKGROUND_COLOR',
+  }
+
+  const notificationSettings = {
+    sound: 'LINK_TO_NOTIFICATION_SOUND',
+    invertTheme: false, // Set to true for inverted theme
+  }
+
+  render() {
+    return (
+      <FynoInappCenter
+        theme="light"
+        user="{userid}"
+        workspace="{workspace_id}"
+        integration="{integration_id}"
+        signature="{signature generated from backend}"
+        themeConfig={themeConfig}
+        notificationSettings={notificationSettings}
+				onMessageReceived = {onMessageReceived}
+      />
+    )
+  }
+}
+
+```
+
+Feel free to customise the configuration to match your application's requirements.
+
+That's it! You're now ready to integrate and use Fyno's In-App Notification Center in your React application.

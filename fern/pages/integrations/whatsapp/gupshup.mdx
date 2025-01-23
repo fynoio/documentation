@@ -1,0 +1,38 @@
+---
+title: "Gupshup"
+slug: "whatsapp-gupshup"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send WhatsApp channel notification using Gupshup & Fyno | Help Document"
+    description: "To integrate WhatsApp with Gupshup.io, ensure you have an active WhatsApp number and pre-configured templates, then follow the steps to set up the integration and update the Fyno Callback Endpoint for message delivery status tracking."
+    image: []
+    robots: "index"
+createdAt: "Mon Oct 14 2024 10:39:12 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 06:58:54 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need an active WhatsApp number as well as templates pre-configured in your Gupshup.io account
+
+1. Navigate to Integrations.
+2. Under "WhatsApp" section, click on the "Gupshup" button.
+3. In the pop-up that appears, fill in:
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/whatsapp_gupshup_settings.png)
+    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **API Key** - You will get API key from settings.
+    3. **Bot Name** - You will get Bot Name from settings. App name is the Bot name
+    4. **App ID** - You will get App ID from settings.
+    5. **From phone No** - Enter the registered Business Number that you would like to use and enter the same without the "+" symbol.
+4. Click on "Test Integration" once done. If the account is successfully connected, you will see a success message.
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, Gupshup requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log in to your Gupshup account.
+2. On the top navigation pane, find and click on **Webhooks**.
+   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/whatsapp_gupshup_callback.png)
+
+3. On the page that loads, add the callback URL from the Gupshup integration popup in Callback URL field.
+4. Scroll to the bottom of the page and select all the Message events and System events under 'Message events settings'.
+5. We recommend you test the configuration once by clicking on **Test** at the top right corner of the page to make sure the configuration is working as expected.

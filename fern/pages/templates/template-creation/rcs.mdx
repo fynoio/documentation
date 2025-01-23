@@ -1,0 +1,125 @@
+---
+title: "RCS Template"
+slug: "rcs-template"
+excerpt: ""
+hidden: false
+metadata:
+    title: "RCS Template | Fyno Documentation"
+    description: "The document outlines four types of RCS (Rich Communication Services) templates: Template Message, Simple, Card, and Carousel, detailing their specific features, content requirements, and supported file types."
+    image: []
+    robots: "index"
+createdAt: "Sun Aug 11 2024 17:36:06 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Dec 20 2024 07:27:24 GMT+0000 (Coordinated Universal Time)"
+---
+
+There are 4 different types of RCS templates you can create.
+
+1. Template Message
+2. Simple
+3. Card
+4. Carousel
+
+## 1. Template Message
+
+A template message has a 160 character limit. Used for OTP, transactional, typically replaces SMS communication.
+
+To create a new RCS template message, you need the following details
+
+1. Template Name - Enter the RCS template name you have created in your service provider.
+2. Placeholders (Optional) - If your template uses any placeholders, you can add them here.
+
+![](https://files.readme.io/ae28728-RCS_Temp_message.png)
+
+## 2. Simple
+
+To create a new RCS template message, you need the following details
+
+| Message Type | Content                                                                                                                                                                                                  | Supported file types       |
+| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------- |
+| Text         | You can enter any text with Placeholders. Text messages are limited to 1,000 characters                                                                                                                  |                            |
+| Image        | You need to provide an image URL or need to upload a image file. The file size is limited to 100 MB, and the File URL can have a maximum of 2048 characters.                                             | jpeg, jpg, png,gif         |
+| Video        | You need to provide a video URL or need to upload a image file. The file size is limited to 100 MB, and the File URL can have a maximum of 2048 characters.                                              | h263, m4v, mp4, mpeg, webm |
+| File         | File URL - You need to provide any file URL or need to upload a file. You need to provide a valid file name. The file size is limited to 100 MB, and the File URL can have a maximum of 2048 characters. | pdf                        |
+
+![](https://files.readme.io/924b505-RCS_Simple.png)
+
+> 📘 Enabling _Force Refresh_ ensures that if the media at the specified URL is updated, the system automatically retrieves the latest version of the Image, Video, or File. This feature guarantees that your linked media always reflects the most current content available at that URL.
+
+## 3. Card
+
+Send a preview of your website or product in the form of an interactive card. Customers can click the link on the card to view your website or product. Rich media messages enable you to send images, buttons and suggestions for customer replies and actions.
+
+Rich cards contain the following elements (you can always see how your message will look in the preview on the right side of your editor):
+
+| Elements         | Description                                                                                         | Supported File Types               |
+| :--------------- | :-------------------------------------------------------------------------------------------------- | :--------------------------------- |
+| Card Title       | This is the title of the card                                                                       |                                    |
+| Card Description | This is the description of the card                                                                 |                                    |
+| Card Orientation | Choose Vertical or Horizontal.                                                                      |                                    |
+| Card Alignment   | Choose Left or Right for horizontal card.<br/>OR<br/>Choose Short or Medium for vertical card.      |                                    |
+| Image            | You can add an image by entering URL or uploading an image file. The file size is limited to 100 MB | JPG, JPEG, GIF                     |
+| Video            | You can add a video by entering URL or uploading a video file. The file size is limited to 100 MB   | H263, M4V, MP4, MPEG-4, MPEG, WEBM |
+| File             | You can add a file by entering URL or uploading a file. The file size is limited to 100 MB          | PDF                                |
+| Buttons          | Add up to 4 buttons to your rich card, giving customers quick replies or actions.                   |                                    |
+
+### How to add buttons to Card
+
+You can add upto 4 buttons. There are 6 different types of buttons you can add
+
+1. **Quick Reply**
+
+    1. Button Title - Provide the text that appear on the message button.
+    2. Button Payload (Optional) - Provide the payload that are sent back to the system when the button is clicked.
+       ![](https://files.readme.io/815df37-button_QR.png)
+
+2. **Visit Website**
+
+    1. Button Title - Provide the text that appear on the message button.
+
+    2. Button Payload (Optional)- Provide the message or payload that are sent back to the system when the button is clicked.
+
+    3. URL - Provide a specific webpage or resource that users are directed to when they click on the button. Please ensure you have base URL: as the base before adding variables as suffixes. For eg., `https://www.fyno.io/customers/` can be the base URL followed by [customer_name]. So the full URL will be: `https://www.fyno.io/customers/[customer_name]`
+
+    ![](https://files.readme.io/51cd4c6-button_website.png)
+
+3. **Phone Number** - Phone numbers must include a leading +, the country code. Do not include separators. For example, +91 9999900000.
+
+4. **Date Select** -
+
+    1. Button Title - Provide the text that appear on the message button
+
+    2. Button Payload (Optional)- Provide the message or payload that are sent back to the system when the button is clicked.
+
+    3. Start Date - If you are sending a RCS message for an event conference, use start date to show when the conference starts.
+
+    4. End Date - If you are sending a RCS message for an event conference, use end date to show when the conference ends.
+
+    5. Event Title - Provide the title of the event
+
+    6. Event Description (Optional) - Provide a description about the event.
+       ![](https://files.readme.io/10a1aa6-button_dates.png)
+
+5. **Send Location** - You can show a location by entering the latitude and longitude or by entering Query.
+
+    1. Latitude - Provide the latitude in degrees. It must be in the range [-90.0, +90.0]. Positive latitudes are north of the equator, negative latitudes are south of the equator.
+
+    2. Longitude - Provide the longitude in degrees. It must be in the range [-180.0, +180.0]. Positive longitudes are east of the Prime Meridian; negative longitudes are west of the Prime Meridian.
+
+    3. Label - Provide the label of the pin dropped at latLong
+
+    4. Query - Enter the query that you would like to search for here. For instance, setting the query string to "Wework Co-working Space" will show all Wework Co-working locations in the user's vicinity. Setting the query string to "32, 5th Block, Jaya Nagar, Bengaluru 560041" will select that specific address, regardless of the user's location.
+
+6. **Request Location** - Requests your user to share their location
+
+## 4. Carousel
+
+In this RCS template type, you can add upto 10 Rich Cards. All the input fields are similar to Rich Card. To know how to add a Rich Card, you can refer [this](./rcs-template#3-card).
+
+## How to add dynamic content in template
+
+You can add dynamic content in your templates using one of the 4 options mentioned below.
+
+1. [Placeholders](./template-dynamic-content#1-placeholders)
+2. [System Variables](./template-dynamic-content#2-system-variables)
+3. [Handlebars](./template-dynamic-content#3-handlebars)
+4. [Components](./template-dynamic-content#4-components)

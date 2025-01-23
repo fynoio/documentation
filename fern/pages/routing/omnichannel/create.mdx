@@ -1,0 +1,99 @@
+---
+title: "Create an Omnichannel Route"
+slug: "omnichannel-route-creation"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Omnichannel Routes - Creating Routes | Fyno Documentation"
+    description: "Here are some instructions on how to create or edit an omnichannel route."
+    image: []
+    robots: "index"
+createdAt: "Wed Jun 14 2023 10:19:38 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Apr 24 2024 09:03:19 GMT+0000 (Coordinated Universal Time)"
+---
+
+Creating an Omnichannel Route is pretty simple, with Fyno's Omnichannel Route Builder.
+
+To get started, follow the below steps:
+
+1. Login to your Fyno account and navigate to the Omnichannel Tab from the left Navigation pane.
+2. Click on "**Create+**" to a new Omnichannel Route.
+3. In the pop-up that appears, fill in an appropriate name for the route that you are about to create along with a description and click on "**Submit**".
+4. On the page that loads, you will see a flow builder and elements that act as your building component on the right-hand pane.
+
+To understand each of the elements, let's quickly have a look at the sections within the right-hand pane.
+
+## Channels
+
+Channels account for all the Channels and Providers you have added in the "**Integrations**" section. This will also contain the Routes you have created within a **Channel** within the "**Routing**" section of Fyno's App.
+
+If there is no Integration configured, you will not be able to see any details when trying to select a **Provider** or **Route**.
+
+Within each channel component, you would be able to:
+
+1. Select a provider or a route (single channel route)
+2. **Success Criteria** - This is an optional field. You can define the status(es) that determine the Success flow and specify the wait time for these statuses.
+3. For example - To set the success criteria for a WhatsApp notification when it is delivered or read within 2 minutes after being sent, configure the settings as follows:
+    1. Enable the Success Criteria section.
+    2. Select the desired statuses, such as "delivered" or "read" etc.
+    3. Set the wait time to 2 minutes.  
+       This configuration ensures that the flow will wait for up to 2 minutes to receive either a "delivered" or "read" status for the WhatsApp notification before proceeding to the success flow. If none of the specified statuses are received within the 2-minute window, the flow will transition to the failure flow.
+
+> 📘 The wait time range is limited to a minimum of 5 seconds and a maximum of 10 minutes.
+
+![](https://files.readme.io/44d4aef-new_omni_status.png)
+
+> 📘 To end the flow, simply disable the Success Criteria section.
+
+## Status-Based Routing
+
+Each Channel block has "**Success**" and "**Failure**" operations. - classify this section as Status based routing to make sure it stands out
+
+1. **Success**: When a notification satisfies a success criteria within the configured 'wait for' time ,then the Success flow will be executed
+2. **Failure**: When a notification doesn't satisfy a success criteria within the configured 'wait for' time ,then the Failure flow will be executed
+
+## Controls
+
+Controls allow you to shape the direction that your Omnichannel Route takes with multiple functions to help you achieve this.
+
+Under this, we have 2 components:
+
+1. **Condition**: Condition allows you to execute specific actions based on the set conditions. For example, based on user type, if you want to decide the channel, you can do it by using conditions. If the user type is Power User, then send WhatsApp else send SMS. This can be done as shown below.
+
+![](https://files.readme.io/1e38666-omni-channel-route.png)
+
+2. **Wait for**: Allows you to add a delay to the route, so that you can create a stacked notification plan, without bombarding your end users across all channels. Under this, we have a few options:
+
+    1. Enter Time: Enter the count of time here.
+    2. Unit: Choose the unit of time for the delay.
+
+> ❗️ You can only enter values upto 24 hours, for a delay.
+>
+> This means you can :
+>
+> 1. Enter upto 1440 minutes
+> 2. Enter upto 86400 seconds
+
+## Understanding how Omnichannel Routing works
+
+For example, you have 3 channels - WhatsApp, Email and Push. The objective of this OmniChannel Route is to make sure your user 'Read' the notification you sent.
+
+1. Initially send an WhatsApp notification to a customer and wait for 5 minutes till its is Read. Based on this Success Criteria, the next flow will be triggered.
+
+![](https://files.readme.io/8883b72-whatsapp_omni.png)
+
+2. If the WhatsApp is successfully Read, this means you have achieved your objective and the flow will end. If the WhatsApp is not Read, then send Email and wait for 5 minutes till its Opened (In email, there is only Open status, not Read).
+
+![](https://files.readme.io/2278b7b-email_omni.png)
+
+3. If the Email is successfully Read, this means you have achieved your objective and the flow will end. If the Email is not Read, then send Push.
+
+![](https://files.readme.io/6956a7a-push_omni.png)
+
+On creating this on Fyno's Omnichannel Route builder, it would look like this.
+
+![](https://files.readme.io/916fdc4-omni_channel_route.png)
+
+> 😎 Proximity Matters!
+>
+> Our workflow builders are so receptive, we have proximity connectors that automatically connects to the component closest to it, which has a free connection node!

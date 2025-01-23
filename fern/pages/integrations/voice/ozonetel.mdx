@@ -1,0 +1,40 @@
+---
+title: "Ozonetel"
+slug: "voice-ozonetel"
+excerpt: ""
+hidden: false
+metadata:
+    title: "How to send Voice channel notification using Ozonetel & Fyno | Help Document"
+    description: 'To integrate Ozonetel with Fyno, ensure you have an Ozonetel account with numbers and IVRs set up, then navigate to Integrations, select "Voice" and "Ozonetel," fill in the required details, and click "Add Account." Message delivery status will be automatically provided, and for IVR keypress capture, contact support to configure Fyno''s webhook.'
+    image: []
+    robots: "index"
+createdAt: "Tue Apr 02 2024 06:26:53 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Mon Jan 20 2025 08:55:47 GMT+0000 (Coordinated Universal Time)"
+---
+
+Before we get started, you will need to have a Ozonetel account already set up, along with numbers assigned and IVRs pre-created. Make sure you have created at least 1 inbound or outbound campaign.
+
+1. Navigate to Integrations from the left hand menu.
+2. On the page that opens, find "Voice" and click on the "Ozonetel" button.
+3. In the pop-up, fill in:
+
+    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+    2. **API Key**: Enter the API Key from your Ozonetel Platform. You can access it from _Home page -> Edit Profile_
+    3. **Username**: Enter the Username from your Ozonetel Platform. You can access it from _Home page -> Edit Profile_
+    4. **DID/Caller ID**: Enter the caller ID for the number/IVR that you intend on triggering with this integration. You can access it from _Campaigns -> Inbound/Outbound Campaigns_.
+    5. **Campaign Name**: From your Ozonetel platform, you can access it from _Campaigns -> Inbound/Outbound Campaigns _
+       ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/voice_ozonetel.png)
+
+4. Click on "Add Account" once done and you are all set!
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, Ozonetel requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+1. Log in to your Ozonetel account.
+2. Enter Fyno's Callback URL given in the Ozonetel Integration popup and select the relevant notifications required and save the same.
+3. Test your integration by sending a message from the Fyno App. Your notification delivery status will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.
+
+> ❗️ Keypress Capture?
+>
+> Does your IVR flow have a Keypress capturing requirement? If yes, you will need to configure Fyno's webhook to capture these details. Contact us to help set this up!

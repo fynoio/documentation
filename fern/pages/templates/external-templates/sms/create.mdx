@@ -1,0 +1,47 @@
+---
+title: "Create a SMS Template from Fyno"
+slug: "sms-template-from-fyno"
+excerpt: ""
+hidden: false
+metadata:
+    title: "SMS Template Creation from Fyno | Fyno Documentation"
+    description: "This document explains how to create an SMS template in Fyno, including selecting a DLT integration, category, template type, and configuring the header and content before sending it for approval."
+    image: []
+    robots: "index"
+createdAt: "Tue Apr 16 2024 05:20:51 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Apr 25 2024 06:08:08 GMT+0000 (Coordinated Universal Time)"
+---
+
+You can create a SMS template and send it for Approval from Fyno itself. To do so, go to Templates->External->SMS. Click Create. It will open up the below popup.
+
+![](https://files.readme.io/baeb00b-SMS_External.png)
+
+1. **Template Name** - Give a unique name for your SMS template.
+2. **DLT Integration** - Select from the list of DLT integrations from the dropdown. Please make sure you have configured at least one [DLT integration](https://docs.fyno.io/docs/dlt)
+3. **Category** - Choose a category that best describes your message template.
+    1. Banking/Insurance/Financial Products/Credit Cards
+    2. Real Estate
+    3. Education
+    4. Health
+    5. Consumer goods and automobiles
+    6. Communication/Broadcasting/Entertaintment/IT
+    7. Tourism and Leisure
+    8. Food and Beverages
+    9. Others
+4. **Template Type**
+    1. Transactional - Transactional SMS can only be used by Banks to send OTPs and alerts.
+    2. Service Implicit - All kinds of purely transactional SMS content like OTPs, Order Placement, Order Tracking, etc.
+    3. Service Explicit - All kinds of promotional content should be registered here, like Discounts, Offers, New Launches
+    4. Promotional - Similar to Service Explicit except it can be sent between 10 PM and 9 AM.
+5. Click **Create**.
+
+You will see the below screen where you need to configure your Header and Content.
+
+![](https://files.readme.io/e9bc7d1-SMS_External_Fyno.png)
+
+1. Header - Its a mandatory field. It should be one of the DLT Headers configured in the DLT Integrations. Header should be 6 characters.
+2. Content - Its a mandatory field. You can see the preview on the right hand side. You can add placeholders as `{{1}}`, `{{2}}` etc. Placeholders should be in numerical order. For example: `{{1}}` should be used before `{{2}}` and so on
+
+![](https://files.readme.io/858942c-Sms_External_template.png)
+
+3. Unicode - Its optional field. Select this checkbox if you want to send messages in any foreign and regional language other than English

@@ -1,0 +1,35 @@
+---
+title: "How to configure Idempotent Key"
+slug: "configure-idempotent-key-workflow"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Configuring Idempotent Key in Workflow | Fyno Documentation"
+    description: "Workflows now support idempotency, allowing safe retries of requests without duplicating operations, which is particularly useful for handling interrupted API calls. To configure, add an idempotent key in the settings to prevent duplicate notifications for a specified duration."
+    image: []
+    robots: "index"
+createdAt: "Tue Sep 24 2024 06:23:00 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Tue Sep 24 2024 06:38:21 GMT+0000 (Coordinated Universal Time)"
+---
+
+Workflows now supports idempotency, ensuring you can safely retry requests without the risk of performing the same operation twice. This feature proves invaluable in scenarios where an API call gets interrupted in transit, leaving you without a response.
+
+For instance, if a request to send a notification doesn't go through due to a network glitch, simply retry the request using the same idempotency key. This guarantees that no more than one notification will be sent.
+
+You can read more about it [here](./idempotent-requests)
+
+## Steps to configure Idempotent Key
+
+1. After adding a notification event to the workflow, click Settings icon on the top right corner.
+
+![](https://files.readme.io/39cf12f72a6ffdc58289589b9378548bff9d23c6b66974f8bbe83c93b729e44c-idempotent_settings.png)
+
+2. Navigate to Idempotent tab and add the below details
+
+    1. Idempotent Key - Add an idempotent key to prevent this notification event from getting fired multiple times (for a specific duration) to a user when there is no change in the data. Duration should be between 1 second and 24 hours.
+    2. Time - Enter how long you want to prevent duplicate notification events from sending.
+    3. Units - You can add time in Seconds, Minutes, Hours or Days.
+
+    ![](https://files.readme.io/b785591e6d6e791708b99352136eaa580717909570eaa7aa96ee8e5898262461-idempotent_config.png)
+
+> 📘 We don’t have a length limit for idempotency key but we recommend using 256 characters or less for idempotency key. These keys are purged from the system after 24 hours.

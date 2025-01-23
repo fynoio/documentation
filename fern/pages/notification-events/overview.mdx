@@ -1,0 +1,38 @@
+---
+title: "Notification Events - Overview"
+slug: "events-overview"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Events - Overview | Fyno Documentation"
+    description: "Here's a quick overview of events."
+    image: []
+    robots: "index"
+createdAt: "Wed Nov 09 2022 08:17:45 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Wed Dec 06 2023 07:51:15 GMT+0000 (Coordinated Universal Time)"
+---
+
+# What is a notification event?
+
+A notification event is the final club sandwich of templates, providers, and channels.
+
+Notification Events = Providers + Rule + Template
+
+# What does it do?
+
+A notification event is what sends your configured message to the end user.
+
+> 📘 Note: We are talking about transactional scenarios and a notification event such as a transaction will most usually be triggered for only one user.
+>
+> Bulk sending of a message is more promotional and is not the purpose of a notification event. A notification event is personalised for a user at a given point in time.
+
+# How do they work?
+
+1. Add the recipient number or email ID - depending on your use case.
+2. Add variables that have been created within the template.
+    1. Variables are usually denoted within **`{{ }}`**.
+    2. Each variable needs to be filled out without which the default variable placeholder itself will be delivered in the message.
+
+# Work involved in creating a notification event?
+
+You will need to choose the template along with the channels to create a successful notification event. A detailed walk-through is provided in the next section.

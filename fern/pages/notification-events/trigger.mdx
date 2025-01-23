@@ -1,0 +1,91 @@
+---
+title: "Triggering a Notification Event"
+slug: "notification-event-triggering"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Triggering a Notification Event | Fyno Documentation"
+    description: "The document provides instructions on how to trigger and manage notification events using the Notification Event Playground, including options for testing, previewing, and sending notifications in batches, as well as receiving delivery reports through callback objects."
+    image: []
+    robots: "index"
+createdAt: "Tue Dec 13 2022 09:06:08 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Thu Dec 19 2024 05:28:55 GMT+0000 (Coordinated Universal Time)"
+---
+
+A notification event that has been successfully created and saved can be run or executed by hitting the cURL request.
+
+From the **Notification Events** section:
+
+1. Find the **Notification Event** you want to trigger.
+2. You can trigger a notification event in 2 ways:
+    1. Within the **Notification Event** page, click on the "**\<>API CODE**" icon in the top right corner. This will open up the **Notification Event Playground** page.
+    2. From the notification event card, click on the "**\<>**" on the top right corner of the corresponding **Notification Event** card. This will open up the **Notification Event Playground** page.
+
+## Notification Event Playground
+
+The notification playground allows you to visualize, trigger and view logs of the test notification that you have triggered from Fyno's application.
+
+Let's have a look at the **Notification Playground** and how to use it most efficiently.
+
+![](https://files.readme.io/8b69ea5c5adfd5cac5a84959c2e0f2a57bd9b9a08ea4639e7788773128cdbd66-playground.png)
+
+In the Notification event playground, you will see the following:
+
+1. **Notification Event:** Gives you the option to select a notification event from the ones you have created, in a drop-down. Select the one you would like to trigger. You can also open the notification event in a separate browser by clicking on the icon next to the Event name.
+2. **Trigger using:** Select one of the destination options:
+    1. **Distinct ID** - Distinct ID is the user profile identifier unique to that recipient. Use this only if you manage Distinct Id in your user profile.
+    2. **Destination**: On selecting manual you would be able to add one of the below details for the recipient.
+    3. **Both**: The API will understand to accept either the Distinct ID or the recipient details directly.
+3. **Additional data**: This allows you to provide the data for testing the "**Placeholders**" with dynamic values, which would have to be written in JSON.
+4. **Preview**: The Preview tab shows the details of the notification that is about to be triggered. You can take it to the next level and see how it looks for each channel by clicking on the respective icon. For Email, you can preview both Desktop and Mobile views.
+5. **Preview with Conditional Templates** : If you have used conditional templates in the notification event, you will see the Preview, as shown below. The template will be selected based on the satisfaction of a particular condition.
+    1. Using Template: "Template_name" (template version)
+    2. because "placeholder" matches the condition
+
+![](https://files.readme.io/9c4fa2e-event_playground.png)
+
+6. **Command**: The command tab displays the cURL command that has been generated for this Notification Event and can be copied and placed into your code easily.
+7. **Logs**: When the notification event is triggered, the logs that would be generated can be seen on the logs tab as well for a quick overview of the status.
+8. **Template**: Displays the name of the template that is being used for the respective Notification Event. Click on the pop-out icon to revisit the template and make edits.
+
+### Copy your All-In-One API
+
+Under the Command tab, you will be able to copy the API by clicking on the **Copy** button on the top right corner of the cURL window.
+
+### Test your All-In-One API
+
+From the same notification event's playground, find the "**Fire notification**" button on the bottom left.
+
+### Use Batch Send
+
+**Batch Send **or Batching allows you to use the same Notification Event API to send information to multiple users, like a campaign.
+
+When creating a **Notification Event**, if the check box is marked for **Use Batch Send**, then this **Notification Event** API can be used like a campaigning or bulk send API.
+
+> 📘 Notice that your API will also be appended with "Bulk" when you select the **Batch Send** option.
+
+## How to receive delivery reports
+
+If you want to receive delivery reports in your system or any third party tool, you need to send callback object in the API call as shown below
+
+```Text Sample Callback Objects in  Request Parameters
+{
+   "event": "YOUR_EVENT_NAME",
+   "to": { // you channel destination },
+   "data": {  // your template placeholders  },
+   "callback": {
+       "custom_id": "YOUR_CUSTOM_ID_VALUE",
+       "custom1":"YOUR_CUSTOM_VARIABLE_1",
+       "custom2":"YOUR_CUSTOM_VARIABLE_2"
+       "allowlist_url": ["DynamicWebhookSite", "Mixpanel"]
+    }
+}
+```
+
+| Parameter     | Type and Value                                                                                                                                                                                                                                                                                                          |
+| :------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| enable        | **Default:** true,<br/>**true**: enable delivery status over callback.<br/>**false**: disable delivery status over callback                                                                                                                                                                                             |
+| custom_id     | **string**; an alpha-numeric unique identifier of your notification.<br/>**Length**: 200 characters<br/>OR<br/>**number**; numeric unique identifier of your notification.<br/>**Length**: 20 digits                                                                                                                    |
+| custom1       | **string**; (**Optional**) additional information that you want to tag your notification.<br/>Example: order-id<br/>**Length**: 50 characters                                                                                                                                                                           |
+| custom2       | **string**; (**Optional**) additional information that you want to tag your notification.<br/>Example: Category<br/>**Length**: 50 characters                                                                                                                                                                           |
+| allowlist_url | **string**; (**Optional**) Allowlist url name where you want to receive delivery reports. Can be array of allowlist url names if you want the delivery reports in multiple URLs.<br/>Example: ["DynamicWebhookSite", "Mixpanel"] . If you have only 1 allowlist URL, it will be automatically will be sent to that URL. |

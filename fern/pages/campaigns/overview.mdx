@@ -1,0 +1,82 @@
+---
+title: "Campaigns - Overview"
+slug: "campaigns-overview"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Campaigns - Overview | Fyno Documentation"
+    description: "A quick introduction to what Fyno's Campaigns are all about."
+    image: []
+    robots: "index"
+createdAt: "Fri Sep 29 2023 07:34:07 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Jan 05 2024 07:06:55 GMT+0000 (Coordinated Universal Time)"
+---
+
+Fyno's Campaigns feature is the feature that enables you send notification manually at any time.
+
+Be it marketing campaigns or mass informational updates, campaigns are the way to go. Quickly set up and execute bulk messaging to your customers via SMS, Email, WhatsApp etc. with a few easy steps.
+
+## Why Campaigns?
+
+Campaigns allow you to:
+
+1. Send out mass communication quickly
+2. Schedule and forget about it.
+3. Get detailed insights on your marketing base (from Campaign Analytics).
+4. Zero Tech efforts
+
+## Getting Started with Campaigns
+
+You can navigate to **Campaigns** by finding it on the left navigation panel.
+
+Let's run through the **Campaigns** Page to have a better understanding of how it works.
+
+On the landing page, you will see:
+
+-   An option to provide a name for your new campaign
+-   An option to download a sample CSV file of how the data would need to be uploaded.
+-   Sample CSV file is shown below. Every record in the file should have either distinct_id or at least 1 destination. Otherwise it will show as Not Valid after uploading the file.
+-   Use distinct_id if you are using Fyno's user profile.
+-   You can also other data points in data_columns if you need them in your template placeholders.
+
+![](https://files.readme.io/3be877f-Fyno_sample_file.png)
+
+> 📘 The maximum file size you can upload is 50 MB.
+
+-   An option to upload your CSV file for your campaign, with all the details.
+-   A list of all the campaigns previously triggered with details of :
+    -   Campaign name
+    -   Total Count
+    -   Status: This may be "Fired", "Saved", "Processing" or "Scheduled on ...". or "Expired" or "Error"
+    -   Created on date and time
+    -   Uploaded on date and time
+    -   Uploaded By
+    -   Actions
+        -   For "Fired" campaigns, you will see options to
+            -   View Campaign Analytics
+            -   View Campaign Logs
+        -   For "Saved" and "Scheduled" campaigns, you will see options to
+            -   Edit Campaign
+            -   Rename Campaign
+            -   Delete Campaign
+
+On clicking on any of the previously created campaigns, you will be able to see the details of their configuration.
+
+Deleting a campaign is allowed only if campaign is in Saved or Scheduled or Expired status.
+
+> 📘 Details of a "Fired" campaign cannot be edited.
+>
+> You will only be able to see the configurations of this campaign.
+
+### Campaign Status
+
+| Status     | What it means                                                                                                                                                                                 |
+| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Saved      | When Campaign is created after CSV file is uploaded and when user clicks 'Save as Draft'.                                                                                                     |
+| Processing | When Campaign is Fired , it goes into Processing state.                                                                                                                                       |
+| Fired      | When campaign is successfully executed. This means all notifications are either Sent or in Queued state                                                                                       |
+| Scheduled  | Campaign is scheduled for later date and not yet fired. Once campaign is start processing on scheduled date state changes to "Processing" and once completed the state changes to Fired state |
+| Expired    | If the Campaign is "Saved" and Older than 30 Days then state changes to Expired. Expired campaign will not be allowed to Fire.                                                                |
+| Error      | When Campaign gets Fired successfully but any error occurs. The status will become Error, only when we encounter any issues like Uploaded file is not accessible etc.                         |
+
+> 📘 Incase of integration provider down, it will skip that record and continue processing the subsequent ones without pausing the campaign.

@@ -1,0 +1,23 @@
+---
+title: "How to configure overrides"
+slug: "configure-overrides-workflow"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Configure overrides in Workflow | Fyno Documentation"
+    description: "Fyno allows you to override pre-configured values in an Integration for specific notifications within a Workflow, enabling customization of details like sender information based on each notification's requirements."
+    image: []
+    robots: "index"
+createdAt: "Fri Apr 19 2024 12:45:11 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Tue Sep 24 2024 06:51:19 GMT+0000 (Coordinated Universal Time)"
+---
+
+Fyno allows you to override pre-configured values within an Integration, enabling you to use different values for specific notifications in a Workflow. This flexibility is useful when you need to customize the sender information or other details based on the requirements of each notification.
+
+For example, if you have set up "[tech@fyno.io](mailto:tech@fyno.io)" as the "from_email" address in your SES integration but want to use a different email address passed in the payload for a specific notification, Fyno enables you to achieve this by configuring overrides. This feature allows you to tailor your notifications according to your needs while maintaining the overall integration configuration.
+
+1. Go to 'Override' tab under Settings, while configuring notification event within a worflow as shown below.
+
+![](https://files.readme.io/0b3259a-override_config.png)
+
+2. Select the value you want to use from the payload. For example, if you want to use the variable 'email' from the payload for 'from_email', you can do it as shown above.

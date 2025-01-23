@@ -1,0 +1,95 @@
+---
+title: "Filters"
+slug: "sent-logs-filters"
+excerpt: ""
+hidden: false
+metadata:
+    title: "Sent Logs Filters | Fyno Documentation"
+    description: "The document explains how to use various filters on the sent logs page of the Fyno App to efficiently search and manage notification logs, including filters for date range, search terms, destination, templates, channels, providers, account names, event names, placeholders, and status."
+    image: []
+    robots: "index"
+createdAt: "Fri Nov 11 2022 09:50:41 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Fri Nov 22 2024 12:30:56 GMT+0000 (Coordinated Universal Time)"
+---
+
+Filters within the sent logs page help you seamlessly sift through all the logs that have been generated for all the notifications that have been triggered through the Fyno App.
+
+To understand how to use the filters, let's have a look at the categories within filters.
+
+### Date Range
+
+"Date Range" allows you to specify the time frame for which you want to view the logs.
+
+You can select one of the provided options, which are:
+
+1. Today
+2. Yesterday
+3. Last 7 days
+4. Last 28 days
+5. Custom - Select a start and end date of your choice.
+
+### Search
+
+The "**Search**" option allows you to look for individual Messages or Request IDs, which you would have received for a notification. Read more about [Message ID](./log-details-summary#message-id) and [Request ID](./log-details-summary#request-id). This is crucial to do individual debugging and trace a notification
+
+### Destination
+
+"**Destination**" in this context is the end destination of the notification that has been triggered via Fyno's event.
+
+The destination may be anything from a phone number to an email ID to an alpha-numeric ID to your User Profile **Distinct ID**, depending on the channel the notification has been triggered through.
+
+### Templates
+
+The "**Templates**" search option allows you only to select from a drop-down, which displays all the templates that you have created in the "**Templates**" section
+
+### Channels
+
+"**Channels**" search option allows you to narrow down the view of the logs to a certain channel of your choice. This may be:
+
+1. SMS
+2. WhatsApp
+3. Email
+4. Chat
+5. Push
+6. In-App
+
+This is a great way for you to club and view your logs channel-wise, regardless of the providers that actually executed the notification.
+
+### Providers
+
+"**Providers**" allows you to filter the logs that you have generated on the Fyno App by the provider that has been used, regardless of the channel being used for the notification.
+
+A really good use case where the "**Providers**" filter would really come in handy is when you want to check the monthly reports for a particular provider, to reconcile and close the billing aspects with them.
+
+### Account Name
+
+The "**Account Name**" search option allows you to isolate a specific account within a service and provider and have a view of the notifications sent specifically via that account only.
+
+This comes in handy when you create multiple accounts under a single provider in a channel. These kinds of scenarios are seen when notification services are used by multiple departments in a single company and for the sake of traceability, each department has a separate account created.
+
+### Event Name
+
+Filtering by the "**Event Name**" field allows you to see all the notifications sent across by an Event that was created.
+
+This means that regardless of the channel or provider that was used if any or all of the providers and channels were configured in the event, the details will be shown for all the notifications that were triggered.
+
+### Placeholders
+
+The **Placeholders** search option allows you to search for logs with a placeholder you have used within the message body of your notification.
+
+### Status
+
+You can select the "**Status** of your notification as a filter to narrow down your search. The statuses that you can choose from are:
+
+1. **Sent**: The status **Sent** will be displayed for all successful submissions to the provider, regardless of the final outcome of the submission.
+2. **Dropped**: This status is internal to Fyno. This status will be displayed when an intentional "Do Nothing" component has been used in a Route (Omni-Channel or Single Route).
+3. **Timeout**: When a notification is sent to a provider for execution and Fyno does not receive any sort of acknowledgement from the provider, this will be marked as **Timeout**.
+4. **Failed**: When a notification has been successfully sent from Fyno's end and for whatever reason the execution of the notification has failed from the provider end, this will be tagged as **Failed**. For example, if you do not have sufficient credits in your provider account, you will receive the status **Failed**.
+5. **Error**: This status is internal to Fyno. This status will be populated when the request to execute the event is not actionable. To get more details, check the response section. For example, when there is an issue with the configured integration.
+6. **Delivered**: When a notification has been successfully sent to the user by the provider and we receive an acknowledgement, these notifications will be marked as **Delivered**.
+7. **Undelivered**: When a notification has been successfully submitted to the provider and we receive an acknowledgement as **Undelivered** from the provider for any reason, these would be marked as the same. To get more details, check the response section.
+8. **Read/Opened** - When a user reads (WhatsApp, Push. WebPush,InApp) or opens (Email) a notiifcation received, these notification are marked as '**Read/Opened**'
+9. **Clicked** - When a user clicks the URL/Link in the message or the entire notification, these notification are marked as '**Clicked**'
+10. **All**: All the above statuses will be displayed in the logs.
+
+This filter is particularly helpful when you want to have a bird's eye view of only failed statuses to help debug and solve them.

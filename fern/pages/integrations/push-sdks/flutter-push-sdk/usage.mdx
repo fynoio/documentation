@@ -1,0 +1,266 @@
+---
+title: "Usage"
+slug: "usage"
+excerpt: ""
+hidden: false
+createdAt: "Thu May 09 2024 12:13:55 GMT+0000 (Coordinated Universal Time)"
+updatedAt: "Tue Jan 21 2025 06:07:03 GMT+0000 (Coordinated Universal Time)"
+---
+
+With the Fyno SDK installed, let's cover how to initialise it, identify users, register for push notifications, and handle other functionalities.
+
+### Initialising the SDK (to be called on app launch)
+
+> 📘 Distinct ID is an ID that is associated with a specific user and is unique to that user. No two user profiles can have the same Distinct ID.
+
+To initialise the Fyno SDK, you need to provide the following information:
+
+-   **Workspace ID:** Your unique Fyno workspace ID, available on the [Workspace Settings](https://app.fyno.io/settings) page.
+-   **Integration ID:** The ID of the integration created in [Fyno Integrations](https://app.fyno.io/integrations).
+-   **Distinct ID:** A unique identifier for your user. If not provided, a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) is automatically generated.
+-   **Version:** Indicates the environment in which the user is created. Default is "**live**", but you can set it to "**test**" for testing purposes.
+
+In your main Dart file, import the `fyno_flutter` package and call `FynoFlutter.init()` to initialise the SDK:
+
+```dart dart
+import 'package:fyno_flutter/fyno_flutter.dart';
+
+void main() {
+    ...
+    Exception? initException = await FynoFlutter.init(
+        'workspaceId',
+        'integrationId',
+        'distinctId',
+        'version',
+    );
+
+    if (initException != null) {
+        // Handle initialization error
+        print("Initialization error: $initException");
+    } else {
+        // Initialization successful
+    }
+    ...
+}
+```
+
+### Identifying the User
+
+To update/set a distinct ID or user name, you can call `FynoFlutter.identify()`.
+
+-   **Distinct ID:**: The distinct ID you want to identify the user with.
+-   **User Name:** The name you want to assign to the user.
+
+```dart dart
+Exception? identifyException = await FynoFlutter.identify('distinctId', 'userName');
+
+if (identifyException != null) {
+    // Handle identification error
+    print("Identification error: $identifyException");
+} else {
+    // User identification successful
+}
+```
+
+### Updating user profile name
+
+To update/set only the name for a user profile, you can call `FynoFlutter.updateName()`
+
+-   **User Name:** The name you want to assign to the user.
+
+```dart dart
+Exception? updateUserNameException = await FynoFlutter.updateName('userName');
+
+if (updateUserNameException != null) {
+    // Handle updateUserName error
+    print("User Name Update Exception: $updateUserNameException");
+} else {
+    // User identification successful
+}
+```
+
+### Registering for Push Notifications
+
+To register the application for push notifications, call `FynoFlutter.registerPush()`.
+
+#### APNs or Google FCM
+
+-   To register for push notifications with **APNs** or **Google FCM**, you need to specify the provider type.
+-   Use **apns** if [APNs](./push-apns) is configured or **fcm** if [Google FCM](./push-fcm) is configured in the integration.
+
+```dart dart
+Exception? pushRegistrationException = await FynoFlutter.registerPush(
+  'provider', // has to be either apns or fcm
+);
+
+if (pushRegistrationException != null) {
+    // Handle push registration error
+    print("Push registration error: $pushRegistrationException");
+} else {
+    // Push registration successful
+}
+```
+
+For Google FCM, ensure you've followed the Firebase setup mentioned earlier and have added the `google-services.json` or `GoogleService-Info.plist` file to your project root.
+
+#### Xiaomi Services (Android only)
+
+-   To register for push notifications with Xiaomi, provide the Xiaomi application ID and key, along with the push region.
+-   Xiaomi **Application Id** and Xiaomi **Application Key** are mandatory fields which can be found under the application registered at [Xiaomi Admin](https://admin.xmpush.xiaomi.com/).
+-   **Push Region:** Refers to the geographical region where push notifications are delivered.
+-   **Provider:** Use **xiaomi**.
+
+```dart dart
+Exception? pushRegistrationResult = FynoFlutter.registerPush(
+    'xiaomi',
+    xiaomiApplicationId: 'xiaomiApplicationId',
+    xiaomiApplicationKey: 'xiaomiApplicationKey',
+    pushRegion: 'pushRegion', // one of ‘INDIA’,’EUROPE’,’RUSSIA’,’GLOBAL’,
+);
+
+if (pushRegistrationResult != null) {
+    // Handle push registration error
+    print("Push registration error: $pushRegistrationResult");
+} else {
+    // Push registration successful
+}
+```
+
+### Fetch push notification token
+
+If you want to fetch the push notification token for the current device, use `FynoFlutter.getNotificationToken()`
+
+```dart dart
+String? notificationToken = await FynoFlutter.getNotificationToken();
+if(notificationToken != null) {
+  print("Notification token: $notificationToken");
+}
+```
+
+### Check if notification received is from Fyno and also handle it
+
+To check if the push notification received is from Fyno, use `FynoFlutter.isFynoNotification(messageData)` and to handle it, use `FynoFlutter.handleFynoNotification()`
+
+-   **message:** an instance of Firebase RemoteMessage
+
+> 🚧 These functions are available only in Android
+
+```dart dart
+// to receive and handle notifications when the application is in background or killed state
+FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
+  if (await FynoFlutter.isFynoNotification(message.toMap())) {
+    await FynoFlutter.handleFynoNotification(message.toMap());
+  } else {
+    // any other logic to handle the notification
+  }
+});
+
+// to receive and handle notifications when the application is in foreground state
+FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+  if (await FynoFlutter.isFynoNotification(message.toMap())) {
+    await FynoFlutter.handleFynoNotification(message.toMap());
+  } else {
+    // any other logic to handle the notification
+  }
+});
+```
+
+### Merging User Profiles
+
+If you need to merge two user profiles, call `FynoFlutter.mergeProfile()` with the old and new distinct IDs.
+
+```dart dart
+Exception? mergeException = await FynoFlutter.mergeProfile(
+    'oldDistinctId',
+    'newDistinctId',
+);
+
+if (mergeException != null) {
+    // Handle user profile merge error
+    print("User profile merge error: $mergeException");
+} else {
+    // User profile merge successful
+}
+```
+
+### Updating Message Status
+
+You can update the status of a notification (received, clicked or dismissed) using `FynoFlutter.updateStatus()`.
+
+-   **Callback URL:** You can obtain the Callback URL from the notification additional payload if the notification was triggered from Fyno.
+-   **Status:** The status of the notification (one of **RECEIVED**, **CLICKED** or **DISMISSED**).
+
+```dart dart
+Exception? updateStatusException = await FynoFlutter.updateStatus(
+    'callbackUrl',
+    'status',
+);
+
+if (updateStatusException != null) {
+    // Handle user status update error
+    print("User status update error: $updateStatusException");
+} else {
+    // User status update successful
+}
+```
+
+### Resetting User Information
+
+To reset user information, call `FynoFlutter.resetUser()`.
+
+-   You can invoke this function when the user logs out of the application.
+-   It handles the deletion of channel data associated with the current user, initiates the creation of a fresh user profile, and transfers the channel data to the newly created profile.
+-   This feature proves to be invaluable if you plan to send push notifications to an application where the user has logged out.
+
+```dart dart
+Exception? resetUserException = await FynoFlutter.resetUser();
+
+if (resetUserException != null) {
+    // Handle user information reset error
+    print("User information reset error: $resetUserException");
+} else {
+    // User information reset successful
+}
+```
+
+### Sample initialisation
+
+```dart dart
+// initialise
+
+Exception? initException = await FynoFlutter.init(
+    'workspaceId',
+    'integrationId',
+    'distinctId',
+    'version',
+);
+
+if (initException != null) {
+    // Handle initialization error
+    print("Initialization error: $initException");
+} else {
+    // Initialization successful
+}
+
+// identify user
+Exception? identifyException = await FynoFlutter.identify('distinctId', 'userName');
+
+if (identifyException != null) {
+    // Handle identification error
+    print("Identification error: $identifyException");
+} else {
+    // User identification successful
+}
+
+// register with APNs
+Exception? pushRegistrationException = await FynoFlutter.registerPush(
+    'apns',
+);
+
+if (pushRegistrationException != null) {
+    // Handle push registration error
+    print("Push registration error: $pushRegistrationException");
+} else {
+    // Push registration successful
+}
+```
