@@ -1,6 +1,35 @@
 instances:
-    - url: https://Fyno.docs.buildwithfern.com
+    - url: fyno.docs.buildwithfern.com
+      custom-domain: fyno.io/docs
+      edit-this-page:
+          github:
+              owner: fynoio
+              repo: documentation
+              branch: main
 title: Fyno | Help Center
+
+tabs:
+    home:
+        display-name: Home
+        icon: fa-regular fa-home
+        skip-slug: true
+    api-definition:
+        display-name: API Definition
+        icon: fa-regular fa-book
+        slug: api-definition
+    docs:
+        display-name: Docs
+        icon: fa-regular fa-browser
+        slug: docs
+    sdks:
+        display-name: SDKs
+        icon: fa-brands fa-codepen
+        slug: sdks
+    cli-api:
+        display-name: CLI & API Reference
+        icon: fa-regular fa-code
+        slug: cli-api
+
 navigation:
     - page: "Get Started"
       path: "pages/get-started/fyno-quickstart.mdx"
@@ -477,6 +506,27 @@ navigation:
             path: "pages/settings/push-token-cleanup.mdx"
           - page: "Fyno Free Plan and Usage"
             path: "pages/settings/fyno-free-plan-and-usage.mdx"
+navbar-links:
+    - type: filled
+      text: Talk to us
+      url: https://www.fyno.io/schedule-demo
+logo:
+    href: https://www.fyno.io
+    light: ./images/fyno-logo-dark.png
+    dark: ./images/fyno-logo-dark.png
+    height: 36
 colors:
-    accentPrimary: "#ffffff"
-    background: "#000000"
+    accentPrimary:
+        dark: "#9155FD"
+        light: "#9155FD"
+    background:
+        dark: "#171424"
+        light: "#FFFFFF"
+    header-background:
+        dark: "#171424"
+        light: "#FFFFFF"
+layout:
+    page-width: 1504px
+    header-height: 75px
+    searchbar-placement: header
+    tabs-placement: header
