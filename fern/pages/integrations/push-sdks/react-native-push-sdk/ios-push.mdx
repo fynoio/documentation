@@ -18,8 +18,8 @@ To enable push notifications for iOS, you need to configure specific capabilitie
 1. Open your React Native project in Xcode.
 2. Inside the **Targets** section, select your app target, and go to **Signing & Capabilities**.
 3. Click on **+ Capability** and add **Push Notifications** and **Background Modes** capabilities.
-   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_1.jpeg)
-   ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_2.jpeg)
+   ![](/images/react_ios_1.jpeg)
+   ![](/images/react_ios_2.jpeg)
 
 4. In Background Modes, select the Remote Notifications option. This is required to receive background push notifications. Learn more about background notifications [here](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app).
 
@@ -79,8 +79,8 @@ To ensure rich push notifications and proper handling of incoming messages, add 
 2. Select `Notification Service Extension` from the template list.
 3. Provide a product name, select your development team, choose Objective-C as the language, and click Finish.
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_2.png)
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_4.png)
+![](/images/react_ios_2.png)
+![](/images/react_ios_4.png)
 
 Replace the contents of the generated `NotificationService.m` file with the following code:
 
@@ -117,20 +117,20 @@ Replace the contents of the generated `NotificationService.m` file with the foll
 
 In order for the Notification Service Extension to be able to access **fyno** and the **Firebase SDKs**, you will have to import it by following the below steps:
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_5.png)
+![](/images/react_ios_5.png)
 
 Select the framework named **fyno.xcframework** and click on **Add**
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_6.png)
+![](/images/react_ios_6.png)
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_7.png)
+![](/images/react_ios_7.png)
 
 Search for `https://github.com/firebase/firebase-ios-sdk` in the text box. Select and add the package named **firebase-ios-sdk**.
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_8.png)
+![](/images/react_ios_8.png)
 
 Scroll down to find **FirebaseMessaging** and add it to the Notification Service Extension you had created.
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/react_ios_9.png)
+![](/images/react_ios_9.png)
 
 > 👍 You have successfully integrated Fyno's Flutter Push Notification SDK into your application. Go ahead and test the integration by sending a push notification using [Notification Events](./events-overview)

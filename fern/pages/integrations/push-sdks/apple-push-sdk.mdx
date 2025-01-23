@@ -44,13 +44,13 @@ Then run a pod install inside your terminal to download and install the fyno pus
 1. Inside Targets select signing and capabilities.
 2. Click on +capabilities and add Push Notifications and Background Modes capabilities to your application.
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_apns_1.jpeg)
+![](/images/fyno_apns_1.jpeg)
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_apns_2.jpeg)
+![](/images/fyno_apns_2.jpeg)
 
 3. In Background Modes, select Remote Notifications option. We use background notifications to receive delivery reports when your app is in quit and background state. Refer [doc](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app) to know more about background notifications.
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_apns_3.png)
+![](/images/fyno_apns_3.png)
 
 ### Step 3: Add Notification Service Extension to your application
 
@@ -58,9 +58,9 @@ Then run a pod install inside your terminal to download and install the fyno pus
 2. Select `Notification Service Extension` from the template list.
 3. Then in Next popup give it any product name, select your team, select swift language and click finish.
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_apns_4.png)
+![](/images/fyno_apns_4.png)
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_apns_5.png)
+![](/images/fyno_apns_5.png)
 
 4. After clicking on "Finish", a folder will be created with your given product name. Replace the contents of the **NotificationService.swift** file with the below code.
 
@@ -87,17 +87,17 @@ class NotificationService: UNNotificationServiceExtension {
 
 5. In order for the **Notification Service Extension** to be able to access the fyno SDK, you will have to import it by following the below steps:
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_apns_6.png)
+![](/images/fyno_apns_6.png)
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_apns_7.png)
+![](/images/fyno_apns_7.png)
 
 Search for `https://github.com/fynoio/ios-sdk` in the text box. Select and add the package named **ios-sdk**.
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_apns_8.png)
+![](/images/fyno_apns_8.png)
 
 Select the Target as the Notification Service Extension you had created and click on `Add Package`.
 
-![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/fyno_apns_9.png)
+![](/images/fyno_apns_9.png)
 
 > 🚧 If you face any build issues similar to `Error (Xcode): Cycle inside Runner; building could produce unreliable results` after adding the notification service extension, follow [this](https://stackoverflow.com/a/77261331) answer to resolve it.
 

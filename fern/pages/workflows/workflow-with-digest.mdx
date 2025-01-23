@@ -52,7 +52,7 @@ This use case can be implemented with the below steps.
 
 1. Create a Workflow with Webhook as trigger. You can read how to create it [here](./workflow-webhook-trigger).
 2. **Digest** - After adding a digest node in the workflow editor, each node below the digest node will be only triggered once in the specified digest interval. You can decide to send messages before adding a digest node and they will be triggered in real-time.
-   ![](https://files.readme.io/e407db3b9237c440f76c2727b9b1e2a0071dbf4236fa5832cba967d8b09a7054-digest_digestkey.png)
+   ![](/images/e407db3b9237c440f76c2727b9b1e2a0071dbf4236fa5832cba967d8b09a7054-digest_digestkey.png)
 
 3. **Digest Key** - You need to provide a unique key to identify the user. This will help the workflow to digest the notifications for that user. In this case, user's profile_id in your system will be the Digest Key.
 4. **Time Period** - Specify how long you want to digest the notifications. Minimum 1 second to maximum 7 days.
@@ -64,7 +64,7 @@ In the template, you will find System variable on the LHS of the template editor
 
 For example, if you want to use the users' who have liked your post in the notification. You can do it as shown
 
-![](https://files.readme.io/35f57e72724b934abb71335708773889680ee38baf8897b006d5648f1043bf2c-Screenshot_2024-12-16_at_12.08.42_PM.png)
+![](/images/35f57e72724b934abb71335708773889680ee38baf8897b006d5648f1043bf2c-Screenshot_2024-12-16_at_12.08.42_PM.png)
 
 -   $digest.head will give you the top 5 payloads by default. You can see the payload in logs section
 -   $digest.tail will give you the last 5 payloads by default. You can see the payload in logs section
@@ -76,7 +76,7 @@ In this example. $digest.head.SIP_name will give you the SIP which failed.
 
 You can see the Digest logs in Logs -> Workflow. Sample logs below
 
-![](https://files.readme.io/a58e07486e26b5b7f2a1e6017279fcc4b1d80cd4112231241098d6fbfc675d5e-digest_logs.png)
+![](/images/a58e07486e26b5b7f2a1e6017279fcc4b1d80cd4112231241098d6fbfc675d5e-digest_logs.png)
 
 1. **Summary** - You will see the Digest Key and count will show the no of requests digested. Total time taken will be updated once the Digest is completed and shows the total time taken.
 2. **Head** - It will show the first 5 payloads received for Digest

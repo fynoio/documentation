@@ -36,7 +36,7 @@ To create a workflow, you need to choose a trigger. This is based on how you wan
 ## How to configure a Webhook
 
 1. Drag and drop 'Webhook' under Triggers into the Workflow canvas.
-   ![](https://files.readme.io/0868954-workflow_trigger_webhook.png)
+   ![](/images/0868954-workflow_trigger_webhook.png)
 
 2. **HTTP Method** - Select the HTTP method which will call the workflow. There are 2 options.
 
@@ -52,10 +52,10 @@ To create a workflow, you need to choose a trigger. This is based on how you wan
     5. Text - content will be set to text/plain
 
 4. **Sample Payload** - If you have selected JSON or Form Data or URL Encoded Form, then you need to add sample payload as shown below.
-   ![](https://files.readme.io/4365960-add_sample_payload.png)
+   ![](/images/4365960-add_sample_payload.png)
 
 5. Once you click 'Add Sample Payload', a page will open where you can enter the sample payload.
-   ![](https://files.readme.io/c6a56a1-payload_json.png)
+   ![](/images/c6a56a1-payload_json.png)
 
 6. **Simplify** - Using complex payloads for placeholder mapping can be challenging. Additionally, employing a payload variable repeatedly for conditional checks in Workflow is a cumbersome task. To streamline this process, we've introduced the '_Simplify_' feature. This feature allows you to create custom variables, map payload fields to these variables, assign complex expressions to these variables using the payload fields and seamlessly use these new variables throughout the Workflow. You can click 'Simplify' on the top right hand side.
 
@@ -64,7 +64,7 @@ To create a workflow, you need to choose a trigger. This is based on how you wan
     1. When directly mapping payload data, you can achieve it by linking, for example, 'acquirer_data.authentication_reference_number' to the variable 'ref_no'.
     2. However, if you're using Handlebars (HBS), the correct syntax involves using the payload data as '$input.body.status' to map it to a variable like payment_status. Attempting to use just 'payload.status' will result in an error. To know more about Handlebars, please refer our [documentation](./templates-handlebars)
 
-    ![](https://files.readme.io/aa6b101-simplify_payload_mapper.png)
+    ![](/images/aa6b101-simplify_payload_mapper.png)
 
 > 📘 There is no restriction on the number of mapper variables created. All mapper variable names need to be unique.
 
@@ -118,7 +118,7 @@ Once we save the initial component, the next step of the flow opens up. You have
 
 Once a **Trigger** has been successfully set up and saved, you can drag and drop any action block or condition block.
 
-![](https://files.readme.io/90897e9-workflow_actions.png)
+![](/images/90897e9-workflow_actions.png)
 
 To understand each of these components, a deep dive into the same is needed, which will be covered in the next sections.
 
@@ -134,13 +134,13 @@ On drag and drop of the **Notification Event**, you will see the
 
 1.  **Notification Event:** Select a relevant **Notification Event** from the dropdown, specific to this **Trigger**.
 2.  **Map Data** : On selecting the notification event, you will see the Notification Event Mapping details. Basically, for the notification event that you have selected, you will need to specify details from the payload that is being received from the Trigger
-    ![](https://files.readme.io/d1460ba-Event_Mapping.png)
+    ![](/images/d1460ba-Event_Mapping.png)
 
         1. **Distinct Id:** If you are using Fyno's user profile, then select value for Distinct Id from the payload or a custom variable created using the _Simplify_ option.
         2. **Channels** : All the channels configured as part of the template linked to the Notification Event selected will appear here. If you are not using Fyno's user profile, map the channel level destinations from the payload data or custom variables created with _Simplify_. In this example, the template linked to the notification event 'sms-test-2' has only SMS as the channel. That's why you see SMS under Map data.
 
 3.  **Data:** In this section, you will see all the fields that you have specified as **Placeholders** (variable parameters/dynamic values) in the **Template** that is associated with the **Notification Event** that was selected. In case you do not see this field, this means that there are no **Placeholders** in the **Template**.
-    ![](https://files.readme.io/6caa7b5-event_maping_data.png)
+    ![](/images/6caa7b5-event_maping_data.png)
 
 4.  **Additional Data:** Additional data in the form of a payload can be specified here if required, in JSON format. This is an optional field. A typical use case for additional data is when you do not manually add placeholders during template creation. For instance, if your template contains the text `Hi {{name}}` but you do not explicitly specify `name` as a placeholder during template creation. Nevertheless, Fyno still identifies the name as a placeholder since it appears in the `{{ }}` syntax. In this scenario, you can include the value of the name in the **Additional Data'**section. To do this, specify the name as the key and select a corresponding value from the dropdown.
 
@@ -173,7 +173,7 @@ The first step to calling an external API in an Workflow is to allowlist the API
 
 On drag & drop of the **API** component, you'll see the following:
 
-![](https://files.readme.io/1202247-Call_API_Config.png)
+![](/images/1202247-Call_API_Config.png)
 
 1.  **Allowlist URL Name:** Select a URL from the allowlist
 
@@ -191,17 +191,17 @@ On drag & drop of the **API** component, you'll see the following:
     5. Text - content will be set to text/plain
 
 4.  **Sample Payload** - If you have selected JSON or Form Data or URL Encoded Form, then you need to add sample payload as shown below.
-    ![](https://files.readme.io/4365960-add_sample_payload.png)
+    ![](/images/4365960-add_sample_payload.png)
 
         Once you click 'Add Payload', a page will open as shown below.
 
-        ![](https://files.readme.io/ee47f7e-Call_API_Sample.png)
+        ![](/images/ee47f7e-Call_API_Sample.png)
 
 
         1. You can either paste the payload in the json window (or)
         2. You can select 'Use sections of the sample payload submitted during trigger configuration' checkbox. If you select this option, then you need to select one of the sections as shown below
 
-![](https://files.readme.io/1408c85-Call_API_Payload.png)
+![](/images/1408c85-Call_API_Payload.png)
 
 5.  **Query Parameters** - This is an optional field. This is primarily used with GET requests. They are appended to the URL path after a ? character. Example - /users?page=1&per_page=20
 6.  **Headers**- This is an optional field. In API requests, request headers are used to provide additional information for a server to process an API request. API headers typically have a key and a value. For example, a Cache-Control header might be structured like this: _Cache-Control:no-store, no-cache, must-revalidate_
@@ -212,7 +212,7 @@ On drag & drop of the **API** component, you'll see the following:
         2. However, if you're using Handlebars (HBS), the correct syntax involves using the payload data as '$input.body.status' to map it to a variable like payment_status.
         Attempting to use just 'payload.status' will result in an error. To know more about Handlebars, please refer our [documentation](./templates-handlebars)
 
-    ![](https://files.readme.io/aa6b101-simplify_payload_mapper.png)
+    ![](/images/aa6b101-simplify_payload_mapper.png)
 
 > 📘 There is no restriction on the number of mapper variables created. All mapper variable names need to be unique.
 
@@ -230,15 +230,15 @@ For example, to unsubscribe a user from WhatsApp notification, follow the below 
 
 1. In the Workflow, configure the WABA no by adding 'Virtual No' trigger.
 
-![](https://files.readme.io/966ff8a-virtual_no.png)
+![](/images/966ff8a-virtual_no.png)
 
 2. Drag and drop a Condition block and configure it as shown below. Its critical to use the variable '**$input.body.simplified.message.text**' and value as '**Stop promotions**'
 
-![](https://files.readme.io/b386c56-subs_if.png)
+![](/images/b386c56-subs_if.png)
 
 3. Drag and drop 'Subscription' action and attach it to if block. Then add Subscription key as 'simplified.message.button.payload' and action as 'Opted-Out'.
 
-![](https://files.readme.io/9d34db2-sub_key.png)
+![](/images/9d34db2-sub_key.png)
 
 ## Condition
 
@@ -249,7 +249,7 @@ the initial **Trigger** and will help orchestrate the flow based on these parame
 
 > 📘 You can't add a condition block directly to 'Else'
 
-![](https://files.readme.io/0f42772-workflow_condition.png)
+![](/images/0f42772-workflow_condition.png)
 
 1. **Variable:**
 
@@ -300,7 +300,7 @@ Once you saved or saved and promoted your workflow, you need to copy the Workflo
 
 You can do that by clicking the ellipsis icon at the top right side next to 'Save' button.
 
-![](https://files.readme.io/69664ee-workflow_url.png)
+![](/images/69664ee-workflow_url.png)
 
 The URL is auto-generated when you create the workflow. You will need to use this URL to invoke this Workflow.
 
@@ -314,7 +314,7 @@ If you are using Public URL, you can select one of these 2 options.
 
 2. **Token Auth** - the URL includes a query parameter `token=<Fyno_generated_token>`.
 
-![](https://files.readme.io/db9f18f-workflow_url_public.png)
+![](/images/db9f18f-workflow_url_public.png)
 
 > 📘 Workflows are public by default. If you enable the "Restricted" option after the workflow is created and save it with this setting, you must use "Restricted" URLs (Live & Test) when funning the workflow.
 
@@ -326,7 +326,7 @@ If you want to use Restricted access, enable the Restricted Toggle as shown belo
 2. **Basic Auth** - the URL consists of the combination of your workspace ID and API Key which Fyno uses for authentication.  
    Example - `https://<WORKSPACE_ID>:<API_KEY>@api.fyno.io/v1/automation/XXXXXXX`
 
-![](https://files.readme.io/b81bbac-workflow_url_restricted.png)
+![](/images/b81bbac-workflow_url_restricted.png)
 
 > 📘 **You can update the token using the "Customize Token" option in the Workflow details page header.**
 > Since you can invoke the workflow URL from anywhere, it is a good idea to update the token if you feel it has been compromised. You must always remember to update the workflow URL (with the new token) at the source from where the workflow is called.

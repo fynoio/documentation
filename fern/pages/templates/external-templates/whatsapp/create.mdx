@@ -14,7 +14,7 @@ updatedAt: "Tue Aug 27 2024 06:03:59 GMT+0000 (Coordinated Universal Time)"
 
 You can create a WhatsApp template and send it for Approval from Fyno itself. To do so, go to Templates -> External -> WhatsApp. Click Create. It will open up the below popup.
 
-![](https://files.readme.io/dc0f673-external_meta.png)
+![](/images/dc0f673-external_meta.png)
 
 1. **Template Name** - Give a unique name for your meta template. Template Name can only have small case characters, numbers and underscores - '\_'. eg: meta_template_1.
 2. **Integration** - Select from the list of integrations from the dropdown. Please make sure you have configured at least one [Fyno WhatsApp integration](./fyno-whatsapp)
@@ -28,7 +28,7 @@ You can create a WhatsApp template and send it for Approval from Fyno itself. To
 
 You will see the template creation page as below.
 
-![](https://files.readme.io/f92e8ac-wa_external_updated.png)
+![](/images/f92e8ac-wa_external_updated.png)
 
 1.  Template Type
 
@@ -41,7 +41,7 @@ You will see the template creation page as below.
 
         1. Text - Enter the text which will appear in template header when sent to users. In the below example, Header content is Our `{{1}}` is On!. Add a value for variable `{{1}}` as 'Winter Sale'. The changes can be seen in the Preview section.
 
-    ![](https://files.readme.io/305fa42-Header_Text.png)
+    ![](/images/305fa42-Header_Text.png)
 
         2. Media - Media headers can be an image, video, or a document such as a PDF.
             1. Image - You can add any JPG or PNG file. Maximum file size allowed is 5 MB.
@@ -57,7 +57,7 @@ You will see the template creation page as below.
     -   **Quick Replies**
 
         1. Custom - Allows your customer to return a simple text message.
-           ![](https://files.readme.io/92958f9-Qucik_Reply.png)
+           ![](/images/92958f9-Qucik_Reply.png)
 
     -   **Flow** - Flow allows you to create trigger a Meta flow from WhatsApp template.
 
@@ -66,21 +66,21 @@ You will see the template creation page as below.
         -   Flow Action - Flow Action could be Navigate or Data Exchange.
         -   Navigate Screen - If you choose Navigate, then you have to provide the First Screen name of your flow.
 
-        ![](https://files.readme.io/bcefa6caa5130cef09e42e2c3bd681c98826de935881338af903a1ad911a24e5-Flow_button.png)
+        ![](/images/bcefa6caa5130cef09e42e2c3bd681c98826de935881338af903a1ad911a24e5-Flow_button.png)
 
     -   **Call to Action** - Call-to-action buttons allow customers to call a phone number or visit a website (e.g., payment link, order tracking link etc) at the touch of a button. A template can have a maximum of four call-to-action buttons, two “visit website”, one “call phone number” and one “copy coupon code”.
 
         1. **Visit Website** - URLs in Call-to-Action buttons can either be static or dynamic. If you want to use dynamic URLs, you will need to provide the static part of your URL with a variable when submitting your Message Template. You can then append the suffix variable when sending your Message Template. Example for Dynamic URL - `https://example.com/static_url/{{1}}` . If you want to track URL clicks or you want to shorten a URL, you can use [Fyno Shorty](./url-shortener). To use the same, you need to add Website URL and Sample URL as shown below. In the below example, download_url is a placeholder, which you will configure while creating Fyno template.
 
-    ![](https://files.readme.io/305eaa3-Fyno_Shorty.png)
+    ![](/images/305eaa3-Fyno_Shorty.png)
 
         2. **Call Phone Number **
 
-        ![](https://files.readme.io/372f0ab-cta_call.png)
+        ![](/images/372f0ab-cta_call.png)
 
         3. **Copy Coupon Code **
 
-        ![](https://files.readme.io/70ea3f7-cta_coupon.png)
+        ![](/images/70ea3f7-cta_coupon.png)
 
 6.  Click Save and Promote to save the change and push it to Live version.
 
@@ -94,15 +94,15 @@ You will see the template creation page as below.
 
 1. Once you have saved your template, you will see the below popup. Clicking 'Send for Approval' will submit this template to Meta for approval.
 
-![](https://files.readme.io/b6fcfac-meta_approval.png)
+![](/images/b6fcfac-meta_approval.png)
 
 2. You will see the submission status as below. You will only see response for languages that have changes and saved as draft or are sent for approval. For example, if you have 3 languages and you changed content of hindi template and saved it in response I will only see Hindi language’s response.
 
-![](https://files.readme.io/768be36-meta_approval_response.png)
+![](/images/768be36-meta_approval_response.png)
 
 3. In the External Template page, you will see the new template created along with the status. Once the status is approved or rejected by Meta, you will see the status updated in this page.
 
-![](https://files.readme.io/17854a8-meta_status.png)
+![](/images/17854a8-meta_status.png)
 
 | Status   | Meaning                                                                                                                                                                                                                                              |
 | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -120,7 +120,7 @@ To save a template as a draft before submitting it for approval, follow these st
 2. Uncheck the language for which you wish to save the template, then click 'Submit'. This action will save the selected language as a draft. You can also see this template status as 'Draft' in External Template page.
 3. You can edit the template and submit for approval later.
 
-![](https://files.readme.io/99d0655-Draft.png)
+![](/images/99d0655-Draft.png)
 
 ## Common Rejection Reasons
 
@@ -138,12 +138,12 @@ Submissions are commonly rejected for the following reasons, so make sure you av
 
 You can add templates for multiple languages from the same template creation page and send them for Approval together or one by one. You can ado that selecting language from Add language drop down.
 
-![](https://files.readme.io/e24a8cd-meta_multi_lang.png)
+![](/images/e24a8cd-meta_multi_lang.png)
 
 In this example, we have created the same template in multiple languages, English, Hindi and Tamil. If there are any validation issues in the template, you will see an error as shown below for Tamil language. In such cases, go back to template page, fix the errors and send it for approval.
 
 Once you have submitted the templates for approval, you can track the same in External Templates page.
 
-![](https://files.readme.io/ad89fa4-meta_multi_approval.png)
+![](/images/ad89fa4-meta_multi_approval.png)
 
 > 🚧 Meta imposes restrictions on template updates, limiting them to once per day and no more than 10 times in a month.
