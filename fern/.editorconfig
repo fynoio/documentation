@@ -1,0 +1,16 @@
+# Top-most EditorConfig file
+root = true
+
+# Default settings for all files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# MDX files
+[*.mdx]
+trim_trailing_whitespace = false
+max_line_length = off  # Prevents wrapping of lines

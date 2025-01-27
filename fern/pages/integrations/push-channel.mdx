@@ -1,15 +1,8 @@
 ---
 title: "Push Notification Channel"
 slug: "push-notification-channel"
-excerpt: ""
-hidden: false
-metadata:
-    title: "Push Notifications Channel | Fyno Documentation"
-    description: "Here's a quick overview of Push notification providers supported by Fyno."
-    image: []
-    robots: "index"
-createdAt: "Mon Dec 05 2022 09:59:48 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Oct 17 2024 10:11:55 GMT+0000 (Coordinated Universal Time)"
+og:title: "Push Notifications Channel | Fyno Documentation"
+og:description: "Here's a quick overview of Push notification providers supported by Fyno."
 ---
 
 Push notification applications are a rage and have in the past couple of years been a real game changer in terms of notifications.
@@ -18,29 +11,86 @@ As communication methods are getting more complex and have more alternative rout
 
 Keeping this in mind, let's have a look into the integration processes for some Push notification providers.
 
-1. [APNs](push-apns)
-2. [Expo](push-expo)
-3. [FCM](push-fcm)
-4. [Fyno Push](./push-fyno)
-5. [Mi Push](push-mi-push)
-6. [OneSignal](push-onesignal)
+<CardGroup cols={3}>
+    <Card
+        title="APNs"
+        icon={
+            <img
+                src="https://fynodev.s3.ap-south-1.amazonaws.com/provider_logo/apple.png"
+                alt="APNs Logo"
+            />
+        }
+        href="./push-apns"
+    ></Card>
+    <Card
+        title="Expo"
+        icon={
+            <img
+                src="https://fynodev.s3.ap-south-1.amazonaws.com/provider_logo/expo.png"
+                alt="Expo Logo"
+            />
+        }
+        href="./push-expo"
+    ></Card>
+    <Card
+        title="Fyno Push"
+        icon={
+            <img
+                src="https://fynodev.s3.ap-south-1.amazonaws.com/provider_logo/ifyno.svg"
+                alt="Fyno Logo"
+            />
+        }
+        href="./push-fyno"
+    ></Card>
+    <Card
+        title="Google FCM"
+        icon={
+            <img
+                src="https://fynodev.s3.ap-south-1.amazonaws.com/provider_logo/fcm.png"
+                alt="FCM Logo"
+            />
+        }
+        href="./push-fcm"
+    ></Card>
+    <Card
+        title="Mi Push"
+        icon={
+            <img
+                src="https://fynodev.s3.ap-south-1.amazonaws.com/provider_logo/mi.png"
+                alt="Mi Push Logo"
+            />
+        }
+        href="./push-mi-push"
+    ></Card>
+    <Card
+        title="OneSignal"
+        icon={
+            <img
+                src="https://fynodev.s3.ap-south-1.amazonaws.com/provider_logo/onesignal.png"
+                alt="OneSignal Logo"
+            />
+        }
+        href="./push-onesignal"
+    ></Card>
 
-> 👍 Fyno's Push Simulator
->
-> We know you love testing.
->
-> And to provide this feature for you, with realtime logs and experience of configuration, Fyno has come up with the **Push Simulator** to help you do just that! Avoid the hassle of integrating your providers and use our **Push Simulator** to get an idea of how an integration would work when added to Fyno's platform.
->
-> To set it up, follow the below steps:
->
-> 1. From the left navigation panel, click on **Integrations**.
-> 2. On the page that opens, under the Push section, find and click on **Simulator**.
-> 3. In the pop-up that appears, provide a name and click on **Add Account**.
->
-> And you are all set to go!
->
-> #### Benefits of using Fyno's Push Simulator
->
-> -   You are not using any of your live providers
-> -   You will save credits from your live account when testing
-> -   You will save usage bandwidth on your live providers
+</CardGroup>
+
+## Fyno's Push Simulator
+
+We know you love testing and to provide this feature for you, with realtime logs and experience of configuration, Fyno has come up with the **Push Simulator** to help you do just that! Avoid the hassle of integrating your providers and use our **Push Simulator** to get an idea of how an integration would work when added to Fyno's platform.
+
+To set it up, follow the below steps:
+
+<Steps>
+  <Step>From the left navigation panel, click on **Integrations**.</Step>
+  <Step>On the page that opens, under the Push section, find and click on **Simulator**.</Step>
+  <Step>In the pop-up that appears, provide a name, and dummy information in the other fields, and click on **Add Account**.</Step>
+</Steps>
+
+And you are all set to go!
+
+### Benefits of using Fyno's Push Simulator
+
+- You are not using any of your live providers
+- You will save credits from your live account when testing
+- You will save usage bandwidth on your live providers

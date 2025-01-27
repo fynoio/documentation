@@ -1,63 +1,73 @@
 ---
 title: "SES"
 slug: "email-ses"
-excerpt: ""
-hidden: false
-metadata:
-    title: "How to send Email notification using SES & Fyno | Help Document"
-    description: "A guide to integrate your AWS SES Email account into Fyno."
-    image: []
-    robots: "index"
-createdAt: "Tue Nov 15 2022 11:41:26 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Nov 07 2024 09:50:07 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send Email notification using SES & Fyno | Help Document"
+og:description: "A guide to integrate your AWS SES Email account into Fyno."
 ---
 
 Before integrating Amazon SES with Fyno, you will need to have an account already set up with SES.
 
 You must have an Amazon SES SMTP username and password to access the SMTP interface. These credentials are different from your AWS access keys and are unique to each region.
 
-[ Steps to create your AWS SMTP credentials ](https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html)
+[Steps to create your AWS SMTP credentials](https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html)
 
 Follow the steps below to integrate your AWS SMTP account with Fyno.
 
-1. Navigate to Integrations.
-2. Under "Email" section, click on the "SES" button.
-3. In the pop-up that appears, fill in:
-    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
-    2. **Auth Type**: There are 2 different Auth Types
-        1. **Secret Access Key**
-            1. **Access Key ID:** To get the access key ID, log into your Amazon AWS account and from the top right corner, open the menu by clicking on your name and navigate to "Security Credentials". On the page that opens, find "Access Keys" and enter the details.
-            2. **Secret Access Key:** To get the access key ID, log into your Amazon AWS account and from the top right corner, open the menu by clicking on your name and navigate to "Security Credentials". On the page that opens, find "Access Keys" and enter the details.
-        2. **SMTP Password**
-            1. **SMTP Username:** To get SMTP username, log into your Amazon AWS account and search for SES. Click on 'Amazon Simple Email Service'. Go to SMTP settings in the left navigation pane. Click 'Create SMTP Credentials' and then click 'Create User'. Save or download SMTP username and password details.
-            2. **SMTP Password:** To get SMTP password, log into your Amazon AWS account and search for SES. Click on 'Amazon Simple Email Service'. Go to SMTP settings in the left navigation pane. Click 'Create SMTP Credentials' and then click 'Create User'. Save or download SMTP username and password details.
-    3. **Region:**From your Amazon AWS account, find the region either in the browser URL or you may also select the Region as per the drop-down next to your username in the AWS console.
-    4. **Content-Type:** You can choose either "Text/Plain" (no rich content in emails, simple plain text) or "Text/HTML" (Rich content including images, buttons and links will be supported) depending on the type of content you intend on pushing in the templates.
-    5. **From Email:** Enter the Email ID from which the emails will be sent from. This must be an email ID with a domain that is already registered with Amazon SES.
-    6. **From Name:** Enter the name that would be displayed in the "From" line. It may be a person or a group name.
-    7. **Reply to:** This is an optional field. You may enter an alternate email ID so that when the recipient clicks on "Reply", the email ID you have entered in the "Reply To" will be populated. This can be different from the "From" email ID.
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. Under "Email" section, click on the "SES" button.
 
-> 📘 You can only send emails to pre-registered email IDs that have been verified within Amazon SES.
+### Configure the Integration
+
+In the pop-up that appears, fill in:
+
+- **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+
+- **Auth Type**: There are 2 different Auth Types:
+
+  - **Secret Access Key**
+    - **Access Key ID:** To get the access key ID, log into your Amazon AWS account and from the top right corner, open the menu by clicking on your name and navigate to "Security Credentials". On the page that opens, find "Access Keys" and enter the details.
+    - **Secret Access Key:** To get the access key ID, log into your Amazon AWS account and from the top right corner, open the menu by clicking on your name and navigate to "Security Credentials". On the page that opens, find "Access Keys" and enter the details.
+  - **SMTP Password**
+    - **SMTP Username:** To get SMTP username, log into your Amazon AWS account and search for SES. Click on 'Amazon Simple Email Service'. Go to SMTP settings in the left navigation pane. Click 'Create SMTP Credentials' and then click 'Create User'. Save or download SMTP username and password details.
+    - **SMTP Password:** To get SMTP password, log into your Amazon AWS account and search for SES. Click on 'Amazon Simple Email Service'. Go to SMTP settings in the left navigation pane. Click 'Create SMTP Credentials' and then click 'Create User'. Save or download SMTP username and password details.
+
+- **Region:** From your Amazon AWS account, find the region either in the browser URL or you may also select the Region as per the drop-down next to your username in the AWS console.
+
+- **Content-Type:** You can choose either "Text/Plain" (no rich content in emails, simple plain text) or "Text/HTML" (Rich content including images, buttons and links will be supported) depending on the type of content you intend on pushing in the templates.
+
+- **From Email:** Enter the Email ID from which the emails will be sent from. This must be an email ID with a domain that is already registered with Amazon SES.
+
+- **From Name:** Enter the name that would be displayed in the "From" line. It may be a person or a group name.
+
+- **Reply to:** This is an optional field. You may enter an alternate email ID so that when the recipient clicks on "Reply", the email ID you have entered in the "Reply To" will be populated. This can be different from the "From" email ID.
+
+<Tip>You can only send emails to pre-registered email IDs that have been verified within Amazon SES.</Tip>
+
+### Complete the Integration
+
+Click on "Add Account" once done and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
 While Fyno has the capacity to track the notification delivery status, SES requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
 
-1. Log into your AWS account and navigate to SES. Find **Configuration Sets** from the left navigation menu and on the page that loads, click on **Create Set**.
-2. For convenience and trackability name the new set as "Fyno-Ses-Configuration-Set" and click on **Create Set**.
-3. Once the configuration is saved, click on the configuration, and navigate to the **Events Destination** tab on the ribbon menu.
-4. On this page, click on **Add Destination**, select all the event types and click on **Next**.
-5. From the Destination options on the new page, select **Amazon SNS** and name the destination as "Fyno-Ses-Destination".
-6. Next, on the same page, click on **Create SNS topic**. Name it “Fyno-Ses-Sns-Topic” and click on **Create Topic**.
-7. Select the topic “Fyno-Ses-Sns-Topic” from the SNS topic drop-down under “**Amazon Simple Notification Service (SNS) topic**” and click on **Next**.
-8. Review your configuration and click on **Add Destination** button.
-9. Now, you will need to access your Amazon SNS and navigate to **Topics** from the left navigation pane. On the page that loads, click on “Fyno-Ses-Sns-Topic” and click on **Create Subscription**.
-10. On the page that loads, select the protocol as **HTTPS** from the menu.
-11. For the end-point, please fill in Callback URL given in the SES Integration popup and check the box marked **Enable raw message delivery** and click on **Create Subscription**.
-12. Your subscription request will automatically be approved by Fyno. To verify the same, click on **Subscriptions** on the left navigation panel,. Your subscription will now be listed with a **Confirmed** status.
-13. Test your integration by sending a message from the Fyno App. You will be able to see the delivery details now on the **Delivery** tab under **Sent logs**.
+<Steps>
+  <Step>Log into your AWS account and navigate to SES. Find **Configuration Sets** from the left navigation menu and on the page that loads, click on **Create Set**.</Step>
+  <Step>For convenience and trackability name the new set as "Fyno-Ses-Configuration-Set" and click on **Create Set**.</Step>
+  <Step>Once the configuration is saved, click on the configuration, and navigate to the **Events Destination** tab on the ribbon menu.</Step>
+  <Step>On this page, click on **Add Destination**, select all the event types and click on **Next**.</Step>
+  <Step>From the Destination options on the new page, select **Amazon SNS** and name the destination as "Fyno-Ses-Destination".</Step>
+  <Step>Next, on the same page, click on **Create SNS topic**. Name it “Fyno-Ses-Sns-Topic” and click on **Create Topic**.</Step>
+  <Step>Select the topic “Fyno-Ses-Sns-Topic” from the SNS topic drop-down under “**Amazon Simple Notification Service (SNS) topic**” and click on **Next**.</Step>
+  <Step>Review your configuration and click on **Add Destination** button.</Step>
+  <Step>Now, you will need to access your Amazon SNS and navigate to **Topics** from the left navigation pane. On the page that loads, click on “Fyno-Ses-Sns-Topic” and click on **Create Subscription**.</Step>
+  <Step>On the page that loads, select the protocol as **HTTPS** from the menu.</Step>
+  <Step>For the end-point, please fill in Callback URL given in the SES Integration popup and check the box marked **Enable raw message delivery** and click on **Create Subscription**.</Step>
+  <Step>Your subscription request will automatically be approved by Fyno. To verify the same, click on **Subscriptions** on the left navigation panel,. Your subscription will now be listed with a **Confirmed** status.</Step>
+  <Step>Test your integration by sending a message from the Fyno App. You will be able to see the delivery details now on the **Delivery** tab under **Sent logs**.</Step>
+</Steps>
 
-> 🚧 Troubleshooting
->
-> 1. Ensure that the configuration set is named as “Fyno-Ses-Configuration-Set”
-> 2. Please visit [Amazon SES email sending metrics FAQs](https://docs.aws.amazon.com/ses/latest/dg/faqs-metrics.html) for understanding several metrics about the email you send.
+<Tip title="Troubleshooting">- Ensure that the configuration set is named as “Fyno-Ses-Configuration-Set” - Please visit [Amazon SES email sending metrics FAQs](https://docs.aws.amazon.com/ses/latest/dg/faqs-metrics.html) for understanding several metrics about the email you send.</Tip>

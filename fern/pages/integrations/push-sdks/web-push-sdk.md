@@ -3,8 +3,6 @@ title: "Fyno Web Push Notification SDK"
 slug: "fyno-web-push-notification-sdk"
 excerpt: ""
 hidden: true
-createdAt: "Mon Nov 25 2024 20:45:55 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Nov 25 2024 20:45:56 GMT+0000 (Coordinated Universal Time)"
 ---
 
 The Fyno Web Push SDK is designed for technical users who are responsible for integrating and working with the Fyno web push service. This documentation provides a detailed overview of the SDK's functionalities and how to use them.

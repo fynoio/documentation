@@ -1,29 +1,20 @@
 ---
 title: "Fyno Push"
 slug: "push-fyno"
-excerpt: ""
-hidden: false
-metadata:
-    title: "How to send Push notification using Fyno Push | Help Document"
-    description: "A guide to integrate your Fyno Push account into Fyno."
-    image: []
-    robots: "index"
-createdAt: "Wed Aug 02 2023 06:23:07 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Wed Dec 06 2023 07:51:15 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send Push notification using Fyno Push | Help Document"
+og:description: "A guide to integrate your Fyno Push account into Fyno."
 ---
 
 **Fyno Push** combines 3 different push notification services, in one plugin. You can integrate one or all of them to get the best possible outcome in terms of push notification delivery.
 
-> 🚧 Minimum requirements!
->
-> You will need to install and configure Google FCM as default/primary provider, if nothing else, to make Fyno Push functional.
+<Tip title="Minimum requirements!">You will need to install and configure Google FCM as default/primary provider, if nothing else, to make Fyno Push functional.</Tip>
 
 The Push providers in **Fyno Push** that you can configure are:
 
-1. [Google FCM](./push-fcm)
-2. [MI Push](./push-mi-push)
-3. [APNS](./push-apns)
+<CardGroup cols={3}>
+  <Card title="APNs" icon={<img src="https://fynodev.s3.ap-south-1.amazonaws.com/provider_logo/apple.png" alt="APNs Logo" />} href="./push-apns"></Card>
+  <Card title="Google FCM" icon={<img src="https://fynodev.s3.ap-south-1.amazonaws.com/provider_logo/fcm.png" alt="FCM Logo" />} href="./push-fcm"></Card>
+  <Card title="Mi Push" icon={<img src="https://fynodev.s3.ap-south-1.amazonaws.com/provider_logo/mi.png" alt="Mi Push Logo" />} href="./push-mi-push"></Card>
+</CardGroup>
 
-> 😎 Did you notice that the integrations will cover all mobile device operating systems?
->
-> Fyno Push was designed to address this problem. One integration, with the capability to deliver push notifications all mobile devices!
+<Tip>😎 Did you notice that the integrations will cover all mobile device operating systems? Fyno Push was designed to address this problem. One integration, with the capability to deliver push notifications all mobile devices!</Tip>

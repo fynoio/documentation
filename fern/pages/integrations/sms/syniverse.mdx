@@ -17,11 +17,11 @@ Navigate to the Integrations page. Find "SMS" and click on the "Syniverse" butto
 
 In the pop-up, fill in:
 
--   **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+- **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
 
--   **Access Token**: Login into your Syniverse account. On the Applications page, find the Application that you would like to connect and click on it. On the page that loads, find "**Auth Keys**" section and expand it to find "**Access Token**". Copy the same and paste it in the "**Access Token**" field of the Fyno integration page.
+- **Access Token**: Login into your Syniverse account. On the Applications page, find the Application that you would like to connect and click on it. On the page that loads, find "**Auth Keys**" section and expand it to find "**Access Token**". Copy the same and paste it in the "**Access Token**" field of the Fyno integration page.
 
--   **Sender Address/Channel**: Login into your Syniverse account. On the Applications page, find "**Voice and Messaging Console**" and click on it. You will be prompted to select an account. Please select the relevant account and click on "**Select**". On the page that opens, from the left navigation panel, find "**Messaging Account** and expand it to find "**Private Channels**". Select the Channel you would like to connect and copy the channel ID. On the Fyno platform, you will need to enter - "_channel:_" followed by your channel ID you just copied.
+- **Sender Address/Channel**: Login into your Syniverse account. On the Applications page, find "**Voice and Messaging Console**" and click on it. You will be prompted to select an account. Please select the relevant account and click on "**Select**". On the page that opens, from the left navigation panel, find "**Messaging Account** and expand it to find "**Private Channels**". Select the Channel you would like to connect and copy the channel ID. On the Fyno platform, you will need to enter - "_channel:_" followed by your channel ID you just copied.
 
 ### Complete the Integration
 
@@ -35,36 +35,20 @@ While Fyno has the capacity to track the notification delivery status, Syniverse
 
 <Steps>
 
-<Step>
-    Log into your Syniverse Account. On the Homepage, find "**Event Manager**"
-    and expand the menu. Click on "**Delivery Configurations**"
-</Step>
+<Step>Log into your Syniverse Account. On the Homepage, find "**Event Manager**" and expand the menu. Click on "**Delivery Configurations**"</Step>
+
+<Step>On the page that loads, find and click on "**New Delivery Configuration**". In the pop-up that appears, provide it a suitable name, enter the Fyno Callback URL, with the "**Delivery Protocol**" set to **REST** and the "**Delivery Format**" set to **JSON**, and click on **Save**.</Step>
 
 <Step>
-    On the page that loads, find and click on "**New Delivery Configuration**".
-    In the pop-up that appears, provide it a suitable name, enter the Fyno
-    Callback URL, with the "**Delivery Protocol**" set to **REST** and the
-    "**Delivery Format**" set to **JSON**, and click on **Save**.
-</Step>
-
-<Step>
-    Once done, from the "**Event Manager**" menu, find and click on
-    "**Subscriptions**". On the page that loads, click on "**New
-    Subscription**". In the pop-up that loads, fill in the below details:
-    <ul>
-        <li>**Topic:** SCG-Message</li>
-        <li>**Event Type:** All types</li>
-        <li>
-            **Delivery Configuration:** The configuration that was created
-            above.
-        </li>
-        <li>**Matching Criteria:** You may leave this blank.</li>
-        <li>**Start Time:** Enter a time and date.</li>
-        <li>
-            **End time:** We advise to leave this blank, thus not having an
-            expiration date for the Callback URL.
-        </li>
-    </ul>
+  Once done, from the "**Event Manager**" menu, find and click on "**Subscriptions**". On the page that loads, click on "**New Subscription**". In the pop-up that loads, fill in the below details:
+  <ul>
+    <li>**Topic:** SCG-Message</li>
+    <li>**Event Type:** All types</li>
+    <li>**Delivery Configuration:** The configuration that was created above.</li>
+    <li>**Matching Criteria:** You may leave this blank.</li>
+    <li>**Start Time:** Enter a time and date.</li>
+    <li>**End time:** We advise to leave this blank, thus not having an expiration date for the Callback URL.</li>
+  </ul>
 </Step>
 
 <Step>Once done, click on **Create**.</Step>

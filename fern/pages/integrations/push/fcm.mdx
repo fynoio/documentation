@@ -1,36 +1,41 @@
 ---
 title: "FCM"
 slug: "push-fcm"
-excerpt: ""
-hidden: false
-metadata:
-    title: "How to send Push notification using FCM & Fyno | Help Document"
-    description: "A guide to integrate your FCM account into Fyno."
-    image: []
-    robots: "index"
-createdAt: "Mon Dec 05 2022 10:13:14 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Fri Dec 08 2023 11:41:44 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send Push notification using FCM & Fyno | Help Document"
+og:description: "A guide to integrate your FCM account into Fyno."
 ---
 
 Before integrating FCM with Fyno, you will need to have an account already set up in FCM with an App built (SDK) within FCM.
 
-1. Navigate to Integrations.
-2. Under "Push" section, click on the "FCM" button.
-3. In the pop-up that appears, fill in:
-    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
-    2. **Firebase Project ID:** Log into your Firebase (FCM) panel and find the app that you would like to connect to.
-        1. On the "Project Overview" tab on the left navigation panel, find the "Settings" icon, and select "Project Settings".
-        2. On the page that opens, on the ribbon menu find " Service Accounts" and click on "[Generate New Private Key](https://firebase.google.com/docs/admin/setup?authuser=0#initialize-sdk)". If you are not able to see "Generate New Private Key", you will need to first "Create a new Service Account" by clicking on the button.
-        3. Once downloaded, open the file, which will have the "project_id". Fill in the details.
-    3. **Private Key:** Following the same steps as above, you can find the "Private Key" in the file that opens.
-    4. **Client Email:** Following the same steps as above, you can find the "Client Email" in the file that opens.
-4. Click on "Add Account" once done and you are all set!
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. Under "Push" section, click on the "FCM" button.
 
-> 🚧 Wait! "Private Key" format is important!
->
-> When you copy the "**Private Key**" from the downloaded file, copy the entire value that is mentioned within the quotes, which includes the prefix and suffix as below:
->
-> "-----BEGIN PRIVATE KEY-----**your_key**-----END PRIVATE KEY-----"
+### Configure the Integration
+
+In the pop-up that appears, fill in:
+
+- **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+- **Firebase Project ID:** Log into your Firebase (FCM) panel and find the app that you would like to connect to.
+  <Steps>
+    <Step>On the "Project Overview" tab on the left navigation panel, find the "Settings" icon, and select "Project Settings".</Step>
+    <Step>On the page that opens, on the ribbon menu find " Service Accounts" and click on "[Generate New Private Key](https://firebase.google.com/docs/admin/setup?authuser=0#initialize-sdk)". If you are not able to see "Generate New Private Key", you will need to first "Create a new Service Account" by clicking on the button.</Step>
+    <Step>Once downloaded, open the file, which will have the "project_id". Fill in the details.</Step>
+  </Steps>
+- **Private Key:** Following the same steps as above, you can find the "Private Key" in the file that opens.
+- **Client Email:** Following the same steps as above, you can find the "Client Email" in the file that opens.
+
+### Complete the Integration
+
+Click on "Add Account" once done and you are all set!
+
+</Steps>
+
+<Tip title='Wait! "Private Key" format is important!'>
+  When you copy the "**Private Key**" from the downloaded file, copy the entire value that is mentioned within the quotes, which includes the prefix and suffix as below:
+  <br />
+  `-----BEGIN PRIVATE KEY-----**your_key**-----END PRIVATE KEY-----`
+</Tip>
 
 ## Message Delivery Status
 

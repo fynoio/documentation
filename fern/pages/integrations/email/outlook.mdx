@@ -1,23 +1,16 @@
 ---
 title: "Outlook"
 slug: "email-outlook"
-excerpt: ""
-hidden: false
-metadata:
-    title: "How to send Email notification using Outlook & Fyno | Help Document"
-    description: "A guide to integrate your Outlook Email account into Fyno."
-    image: []
-    robots: "index"
-createdAt: "Thu Dec 08 2022 07:34:03 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu May 02 2024 13:00:06 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send Email notification using Outlook & Fyno | Help Document"
+og:description: "A guide to integrate your Outlook Email account into Fyno."
 ---
 
 Before we get started, we also need to understand the account type being configured.
 
 Accounts may be:
 
-1. Outlook/ Office 365 Accounts - These are almost all of the time, belonging to an organisation or company.
-2. Microsoft/ Live accounts - These are personal accounts, created by signing up on Microsoft. This does not belong to a company or organisation.
+- Outlook/ Office 365 Accounts - These are almost all of the time, belonging to an organisation or company.
+- Microsoft/ Live accounts - These are personal accounts, created by signing up on Microsoft. This does not belong to a company or organisation.
 
 Depending on the type of account, outlook configuration involves a few prerequisites that need to be done by you or your Outlook Administrator.
 
@@ -27,23 +20,35 @@ Firstly, you would need to request your administrator to grant you permission to
 
 Your Admin will need to perform the following steps:
 
-1. Log into the **[Microsoft 365 Admin Center](https://aka.ms/admincenter)**.
-2. In the left navigation pane, find "**Active users**" under "**Users**". On the page that opens, find the name of the person. On selecting it, a pop-up will appear on the right.
-3. To enable SMTP:
-    1. In the pop-up, find "**Mail**" on the ribbon menu and find "**Manage Email Apps**".
-    2. In the second pop-up that appears tick the box against **Authenticated SMTP** and save.
-    3. This will enable the SMTP for you.
-4. To enable App Password Creation:
-5. In the same pop-up, find "**Account**" and scroll to the bottom to find "**Manage Multifactor Authentication**". This will open a fresh page.
-6. On the new page, find and click "**Service Settings**" on the ribbon menu. Find and select **Allow users to create app passwords to sign in to non-browser apps** and click on **Save**.
+<Steps>
+  <Step>Log into the **[Microsoft 365 Admin Center](https://aka.ms/admincenter)**.</Step>
+  <Step>In the left navigation pane, find "**Active users**" under "**Users**". On the page that opens, find the name of the person. On selecting it, a pop-up will appear on the right.</Step>
+  <Step>
+    To enable SMTP:
+    <Steps>
+      <Step>In the pop-up, find "**Mail**" on the ribbon menu and find "**Manage Email Apps**".</Step>
+      <Step>In the second pop-up that appears tick the box against **Authenticated SMTP** and save.</Step>
+      <Step>This will enable the SMTP for you.</Step>
+    </Steps>
+  </Step>
+  <Step>
+    To enable App Password Creation:
+    <Steps>
+      <Step>In the same pop-up, find "**Account**" and scroll to the bottom to find "**Manage Multifactor Authentication**". This will open a fresh page.</Step>
+      <Step>On the new page, find and click "**Service Settings**" on the ribbon menu. Find and select **Allow users to create app passwords to sign in to non-browser apps** and click on **Save**.</Step>
+    </Steps>
+  </Step>
+</Steps>
 
 Once this is done, you will need to create an app password.
 
 To create an App Password:
 
-1. Log into your account and navigate to the "**[Account Settings](https://myaccount.microsoft.com/)**". Find the **Account Info** card and click on "**Update Info**".
-2. On the page that opens, click on "**Add Sign-in Method**". In the pop-up, select, **App Password** and click on **Add**, provide a name and hit **Next**.
-3. The App Password will be displayed in the pop-up. This won't be displayed again, so make sure to copy it before clicking on **Done**
+<Steps>
+  <Step>Log into your account and navigate to the "**[Account Settings](https://myaccount.microsoft.com/)**". Find the **Account Info** card and click on "**Update Info**".</Step>
+  <Step>On the page that opens, click on "**Add Sign-in Method**". In the pop-up, select, **App Password** and click on **Add**, provide a name and hit **Next**.</Step>
+  <Step>The App Password will be displayed in the pop-up. This won't be displayed again, so make sure to copy it before clicking on **Done**.</Step>
+</Steps>
 
 ### Prerequisites for Microsoft/ Live Accounts.
 
@@ -51,24 +56,36 @@ Microsoft or Live accounts are personal accounts, owned by a single person. Usua
 
 To create an App Password:
 
-1. Log into your account through "**[Security Basics](https://account.microsoft.com/security)**" and click on the "**Advance Security Options**" card.
-2. Scroll to **App Passwords** and click on **Create New App Password**.
-3. Copy the App Password that is displayed on the new page and click on **Done**.
+<Steps>
+  <Step>Log into your account through "**[Security Basics](https://account.microsoft.com/security)**" and click on the "**Advance Security Options**" card.</Step>
+  <Step>Scroll to **App Passwords** and click on **Create New App Password**.</Step>
+  <Step>Copy the App Password that is displayed on the new page and click on **Done**.</Step>
+</Steps>
 
 ### Integrating with Fyno
 
 Once you have these details in place, we can proceed with the integration into Fyno's App.
 
-1. Navigate to Integrations.
-2. Under "Email" section, click on the "Outlook" button.
-3. In the pop-up that appears, fill in:
-    1. **Custom name:** Provide a name to help you identify the configured account in Fyno's portal.
-    2. **Email:** The email address from which the "From" line or email will be sent. This will be the same Email ID for which the settings were updated by the Admin of your organisation.
-    3. **App Password:** Follow the steps mentioned above to create the **App Password**
-    4. **From Name:** The name you want to be displayed in the from field to the recipient. This may be an individual or group name and is optional.
-    5. **Content type:** You can choose either "Text/Plain" (no rich content in emails, simple plain text) or "Text/HTML" (Rich content including images, buttons and links will be supported) depending on the type of content you intend on pushing in the templates.
-    6. **Reply to:** This is an optional field. You may enter an alternate email ID so that when the recipient clicks on "Reply", the email ID you have entered in the "Reply To" will be populated. This can be different from the "From" email ID
-4. Click on "Add Account" once done and you are all set!
+<Steps>
+### Find the Provider
+Navigate to tge Integrations page. Under "Email" section, click on the "Outlook" button.
+
+### Configure the Integration
+
+In the pop-up that appears, fill in:
+
+- **Custom name:** Provide a name to help you identify the configured account in Fyno's portal.
+- **Email:** The email address from which the "From" line or email will be sent. This will be the same Email ID for which the settings were updated by the Admin of your organisation.
+- **App Password:** Follow the steps mentioned above to create the **App Password**
+- **From Name:** The name you want to be displayed in the from field to the recipient. This may be an individual or group name and is optional.
+- **Content type:** You can choose either "Text/Plain" (no rich content in emails, simple plain text) or "Text/HTML" (Rich content including images, buttons and links will be supported) depending on the type of content you intend on pushing in the templates.
+- **Reply to:** This is an optional field. You may enter an alternate email ID so that when the recipient clicks on "Reply", the email ID you have entered in the "Reply To" will be populated. This can be different from the "From" email ID
+
+### Complete the Integration
+
+Click on "Add Account" once done and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
@@ -76,4 +93,4 @@ Outlook, by default, does not provide the status of the notification sent out. T
 
 As and when this becomes a supported feature, Fyno will integrate the same into the application.
 
-In the meantime, for every **Trace ** for Gmail, the **[Delivery](https://docs.fyno.io/docs/log-details-delivery)** tab under **Trace ** will not be seen.
+In the meantime, for every **Trace** for Gmail, the **[Delivery](https://docs.fyno.io/docs/log-details-delivery)** tab under **Trace** will not be seen.

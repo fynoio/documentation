@@ -8,42 +8,11 @@ og:description: "A guide to integrate your Meta (by Facebook) WhatsApp account i
 Before we get started, you will need to have some prerequisites in place from Meta's Business Manager page.
 
 <Steps>
-    <Step>
-        Get added to the business by your Business Admin. If you are not an
-        Admin for the Facebook Business page, request the admin to add you as
-        "Employee Access" from the [People
-        page](https://business.facebook.com/settings/people/).
-    </Step>
-    <Step>
-        Once you have received the invite and activated your account, you will
-        also need to have access to the app, which your Meta Admin can provide.
-        On the People page, click on "**Add Asset"**, navigate to "**Apps**",
-        select the App from the list and provide access to Manage apps by
-        toggling the radio button and saving.
-    </Step>
-    <Step>
-        You will then need to generate an App Token by navigating to "[System
-        Users](https://business.facebook.com/settings/system-users/)" and click
-        on "Generate New Token". This will be your "Access Token" on Fyno's App.
-        Provide access to "WhatsApp Business Messaging" and "WhatsApp Business
-        Management" and generate the token.
-    </Step>
-    <Step>
-        Next, you will need to navigate to your [Business
-        Manager](https://business.facebook.com/settings/apps) page and choose
-        the business you want to integrate. Select "**Apps**" under
-        "**Accounts**" and find the App you are integrating on the page that
-        appears. On the top right corner, find "**[Open in App
-        Dashboard](https://developers.facebook.com/apps/)**", which will open a
-        new page.
-    </Step>
-    <Step>
-        Find "**Getting Started**" under "**WhatsApp**" from the left navigation
-        panel. In the "Send and Receive Message", find the number you want to
-        use in the "Phone Number" drop-down and select it. This will display the
-        "Phone Number ID" right below the drop-down menu. This will be your
-        "Phone Number ID" on Fyno's App.
-    </Step>
+  <Step>Get added to the business by your Business Admin. If you are not an Admin for the Facebook Business page, request the admin to add you as "Employee Access" from the [People page](https://business.facebook.com/settings/people/).</Step>
+  <Step>Once you have received the invite and activated your account, you will also need to have access to the app, which your Meta Admin can provide. On the People page, click on "**Add Asset"**, navigate to "**Apps**", select the App from the list and provide access to Manage apps by toggling the radio button and saving.</Step>
+  <Step>You will then need to generate an App Token by navigating to "[System Users](https://business.facebook.com/settings/system-users/)" and click on "Generate New Token". This will be your "Access Token" on Fyno's App. Provide access to "WhatsApp Business Messaging" and "WhatsApp Business Management" and generate the token.</Step>
+  <Step>Next, you will need to navigate to your [Business Manager](https://business.facebook.com/settings/apps) page and choose the business you want to integrate. Select "**Apps**" under "**Accounts**" and find the App you are integrating on the page that appears. On the top right corner, find "**[Open in App Dashboard](https://developers.facebook.com/apps/)**", which will open a new page.</Step>
+  <Step>Find "**Getting Started**" under "**WhatsApp**" from the left navigation panel. In the "Send and Receive Message", find the number you want to use in the "Phone Number" drop-down and select it. This will display the "Phone Number ID" right below the drop-down menu. This will be your "Phone Number ID" on Fyno's App.</Step>
 </Steps>
 
 Once you have followed the above steps, or have the needed information, we can integrate Meta into Fyno's app by following the steps below.
@@ -56,10 +25,10 @@ Navigate to the Integrations page. Under "WhatsApp" section, click on the "Meta 
 
 In the pop-up that appears, fill in:
 
--   **Custom name:** Provide a name to help you identify the configured account in Fyno's portal.
--   **Phone Number ID**: This can be found in Meta's App Dashboard, as explained in step 4 above.
--   **Access Token**: This can be found on Meta's Business Manager page, by following steps 1 - 3, mentioned above.
--   **WhatsApp Business Account Id (WABA Id)** : You will get it from Business Settings -> Accounts -> WhatsApp accounts -> Account Name. On top right corner, you will find WABA Id.
+- **Custom name:** Provide a name to help you identify the configured account in Fyno's portal.
+- **Phone Number ID**: This can be found in Meta's App Dashboard, as explained in step 4 above.
+- **Access Token**: This can be found on Meta's Business Manager page, by following steps 1 - 3, mentioned above.
+- **WhatsApp Business Account Id (WABA Id)** : You will get it from Business Settings -> Accounts -> WhatsApp accounts -> Account Name. On top right corner, you will find WABA Id.
 
 ### Complete the Integration
 
@@ -72,32 +41,11 @@ Click on "Add Account" once done, and you are all set!
 While Fyno has the capacity to track the notification delivery status, Meta (by Facebook) requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
 
 <Steps>
-    <Step>Log in to your Meta account.</Step>
-    <Step>
-        Navigate to **[App Dashboard](https://developers.facebook.com/apps/)**
-        and find the app you want to connect to and click on it.
-    </Step>
-    <Step>
-        On the page that loads, scroll down to find **Webhooks** under **Add
-        products to your app** and Click on **Set Up**.
-    </Step>
-    <Step>
-        On the new page, select **User** from the drop-down and click on
-        **Subscribe to this Object**.
-    </Step>
-    <Step>
-        Subscribe to these topics - 'message_template_quality_update',
-        'message_template_status_update' and 'messages'. Choose version as v18.0
-    </Step>
-    <Step>
-        Enter the Callback URL provided in the Meta Integration popup in the
-        **Callback URL** field and enter a string in the **Verify Token** field.
-        This will be relayed to you by Meta for all your verification requests.
-        'Verify Token' can be any string.
-    </Step>
-    <Step>
-        Test your integration by sending a message from the Fyno App. You will
-        be able to see the delivery details now on the **Delivery** tab under
-        **Sent logs**.
-    </Step>
+  <Step>Log in to your Meta account.</Step>
+  <Step>Navigate to **[App Dashboard](https://developers.facebook.com/apps/)** and find the app you want to connect to and click on it.</Step>
+  <Step>On the page that loads, scroll down to find **Webhooks** under **Add products to your app** and Click on **Set Up**.</Step>
+  <Step>On the new page, select **User** from the drop-down and click on **Subscribe to this Object**.</Step>
+  <Step>Subscribe to these topics - 'message_template_quality_update', 'message_template_status_update' and 'messages'. Choose version as v18.0</Step>
+  <Step>Enter the Callback URL provided in the Meta Integration popup in the **Callback URL** field and enter a string in the **Verify Token** field. This will be relayed to you by Meta for all your verification requests. 'Verify Token' can be any string.</Step>
+  <Step>Test your integration by sending a message from the Fyno App. You will be able to see the delivery details now on the **Delivery** tab under **Sent logs**.</Step>
 </Steps>
