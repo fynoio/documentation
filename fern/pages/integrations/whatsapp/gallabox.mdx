@@ -1,33 +1,40 @@
 ---
 title: "Gallabox"
 slug: "whatsapp-gallabox"
-excerpt: ""
-hidden: false
-metadata:
-    title: "How to send WhatsApp notification using Gallabox & Fyno | Fyno Documentation"
-    description: "To integrate WhatsApp with Gallabox in Fyno's portal, you need an active WhatsApp number, pre-configured templates, and an access token from Gallabox; additionally, manually update the Fyno Callback Endpoint in Gallabox to track message delivery status."
-    image: []
-    robots: "index"
-createdAt: "Tue Oct 08 2024 09:40:41 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Jan 20 2025 06:58:06 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send WhatsApp notification using Gallabox & Fyno | Fyno Documentation"
+og:description: "To integrate WhatsApp with Gallabox in Fyno's portal, you need an active WhatsApp number, pre-configured templates, and an access token from Gallabox; additionally, manually update the Fyno Callback Endpoint in Gallabox to track message delivery status."
 ---
 
 Before we get started, you will need an active WhatsApp number as well as templates pre-configured in your Gallabox account.
 
-1. Navigate to Integrations.
-2. Under "WhatsApp" section, click on the "Gallabox" button.
-3. In the pop-up, fill in:
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. Under "WhatsApp" section, click on the "Gallabox" button.
 
-    1. **Custom name**: Provide a name to help you identify the configured account in Fyno's portal.
-    2. **Access Token**: In your Gallabox account, in the left navigation, Integrations -> Configuration and copy the Access Token
-       ![](/images/whatsapp_gallabox_accesstoken.png)
+### Configure the Integration
 
-4. Click on "Run Test" once done. If the account is successfully connected, you will see a success message.
+In the pop-up, fill in:
+
+-   **Custom name**: Provide a name to help you identify the configured account in Fyno's portal.
+
+-   **Access Token**: In your Gallabox account, in the left navigation, Integrations -> Configuration and copy the Access Token
+    ![](/images/whatsapp_gallabox_accesstoken.png)
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
 While Fyno has the capacity to track the notification delivery status, Gallabox requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
 
-1. Log in to your Gallabox account.
-2. On the left navigation pane, find and click on **Integrations**.
-3. On the page that loads, under Configuration tab, add callback URL (you can get it from the integration popup) in Status URL field
+<Steps>
+    <Step>Log in to your Gallabox account.</Step>
+    <Step> the left navigation pane, find and click on **Integrations**.</Step>
+    <Step>
+        On the page that loads, under Configuration tab, add callback URL (you
+        can get it from the integration popup) in Status URL field.
+    </Step>
+</Steps>

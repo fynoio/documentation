@@ -1,33 +1,52 @@
 ---
 title: "Gupshup"
 slug: "sms-gupshup"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "How to send SMS using Gupshup & Fyno | Help Document"
-  description: "A guide to integrate your Gupshup SMS account into Fyno."
-  image: []
-  robots: "index"
-createdAt: "Thu Nov 10 2022 12:49:23 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Sep 11 2023 14:45:15 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send SMS using Gupshup & Fyno | Help Document"
+og:description: "A guide to integrate your Gupshup SMS account into Fyno."
 ---
-Before we get started, you will need to have a Gupshup account already set up, along with SenderID and Templates. 
 
-1. Navigate to Integrations and click on the "Providers" tab on the drop-down menu
-2. Find "SMS" and click on the "Gupshup" button.
-3. In the pop-up, fill in:
-   1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
-   2. **UserID**: The CustomerID that is displayed on your Gupshup Account when you log in and view the dashboard
-   3. **Password**: Password used to log into the Customer ID entered in the previous field
-   4. **Source**: The SenderID (Mask) that is being used by you to send out messages.
-4. Click on "Add Account" once done, and you are all set!
+Before we get started, you will need to have a Gupshup account already set up, along with SenderID and Templates.
+
+<Steps>
+
+### Find the Provider
+
+Navigate to the Integrations page. Find "SMS" and click on the "Gupshup" button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+-   **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+
+-   **UserID**: The CustomerID that is displayed on your Gupshup Account when you log in and view the dashboard
+
+-   **Password**: Password used to log into the Customer ID entered in the previous field
+
+-   **Source**: The SenderID (Mask) that is being used by you to send out messages.
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
 While Fyno has the capacity to track the notification delivery status, Gupshup requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
 
-1. Log into your Gupshup Messaging Account.
-2. Click on **Settings** on the Menu bar and find **Advance Account Settings**.
-3. On the page that opens, find **Realtime Delivery URL** and enter Fyno's URL. (This will be shared on request).
+<Steps>
+
+<Step>Log into your Gupshup Messaging Account.</Step>
+
+<Step>
+    Click on **Settings** on the Menu bar and find **Advance Account Settings**.
+</Step>
+
+<Step>
+    On the page that opens, find **Realtime Delivery URL** and enter Fyno's URL.
+</Step>
+
+</Steps>
 
 To know more about Gupshup's Webhook integration, please check out their documentation [now](real-time-delivery-reports).

@@ -1,34 +1,46 @@
 ---
 title: "ICS"
 slug: "sms-ics"
-excerpt: ""
-hidden: false
-metadata:
-    title: "How to send SMS using ICS & Fyno | Fyno Documentation"
-    description: "This document provides instructions on setting up an ICS account in Fyno's portal, including providing necessary information such as Custom name, UserID, Password, Sender, and Entity ID. It also explains how to manually update the Fyno Callback Endpoint in ICS to track message delivery status."
-    image: []
-    robots: "index"
-createdAt: "Fri Mar 15 2024 06:09:02 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Fri Mar 15 2024 06:51:14 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send SMS using ICS & Fyno | Fyno Documentation"
+og:description: "This document provides instructions on setting up an ICS account in Fyno's portal, including providing necessary information such as Custom name, UserID, Password, Sender, and Entity ID. It also explains how to manually update the Fyno Callback Endpoint in ICS to track message delivery status."
 ---
 
 Before we get started, you will need to have a ICS account already set up, along with SenderID and Templates.
 
-1. Navigate to Integrations.
-2. Under "SMS" section, click on the "ICS" button.
-3. In the pop-up, fill in:
+<Steps>
 
-    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
-    2. **UserID**: The CustomerID that is displayed on your ICS Account when you log in and view the dashboard
-    3. **Password**: Password used to log into the Customer ID entered in the previous field
-    4. **Sender**: The Sender that is being used by you to send out messages.
-    5. **Entity Id**: The Entity ID that is registered with DLT Platform
+### Find the Provider
 
-4. Click on "Add Account" once done, and you are all set!
+Navigate to the Integrations page. Under "SMS" section, click on the "ICS" button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+-   **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+
+-   **UserID**: The CustomerID that is displayed on your ICS Account when you log in and view the dashboard
+
+-   **Password**: Password used to log into the Customer ID entered in the previous field
+
+-   **Sender**: The Sender that is being used by you to send out messages.
+
+-   **Entity Id**: The Entity ID that is registered with DLT Platform
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
 While Fyno has the capacity to track the notification delivery status, ICS requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
 
-1. Log into your ICS Account.
-2. Configure the URL given in the ICS Integration popup and Save.
+<Steps>
+
+    <Step>Log into your ICS Account.</Step>
+
+    <Step>Configure the URL given in the ICS Integration popup and Save.</Step>
+
+</Steps>

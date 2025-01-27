@@ -1,38 +1,52 @@
 ---
 title: "telSpiel"
 slug: "sms-telspiel"
-excerpt: ""
-hidden: false
-metadata:
-    title: "How to send SMS using telSpiel & Fyno | Help Document"
-    description: "To integrate telSpiel with Fyno's application, set up your telSpiel account with SenderID and Templates, fill in the required details under the SMS section in Integrations, and email telSpiel for API key and delivery tracking activation."
-    image: []
-    robots: "index"
-createdAt: "Wed Dec 11 2024 09:31:53 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Wed Dec 11 2024 10:42:12 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send SMS using telSpiel & Fyno | Help Document"
+og:description: "A quick introduction about integrating your telSpiel SMS account into Fyno."
 ---
 
 Before we get started, you will need to have a telSpiel account already set up, along with SenderID and Templates.
 
-1. Navigate to Integrations.
+<Steps>
 
-2. Under "SMS" section, click on the "telSpiel" button.
+### Find the Provider
 
-3. In the pop-up, fill in:
+Navigate to the Integrations page. Under "SMS" section, click on the "telSpiel" button.
 
-    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's application.
-    2. **Username/AccountId**: Provide the username/AccountId of your telSpiel account
-    3. **API Key**: To get API key, you need to send an email to [care@telspiel.com.](mailto:care@telspiel.com.)
-    4. **Sender**: Enter the Sender ID that you want to use.
-    5. **Entity Id **: Enter your DLT registered Entity ID. You will get this from your DLT platform.
+### Configure the Integration
 
-4. Click on "Test Integration" once done. If the account is successfully integrated, you will see a success message.
+In the pop-up, fill in:
+
+-   **Custom name**: Provide a name that would help you identify the configured account in Fyno's application.
+
+-   **Username/AccountId**: Provide the username/AccountId of your telSpiel account
+
+-   **API Key**: To get API key, you need to send an email to [care@telspiel.com.](mailto:care@telspiel.com.)
+
+-   **Sender**: Enter the Sender ID that you want to use.
+
+-   **Entity Id**: Enter your DLT registered Entity ID. You will get this from your DLT platform.
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
 TelSpiel does not provide the status of the message by default. To enable tracking delivery status, follow the below steps.
 
-1. Send an email to [care@telspiel.com](mailto:provisioning@karix.com) requesting the activation of delivery tracking. Ensure you include the Callback URL provided in the Karix Integration popup within your email.
-2. Enable "custref" in the webhook URL
+<Steps>
+
+<Step>
+    Send an email to [care@telspiel.com](mailto:care@telspiel.com) requesting
+    the activation of delivery tracking. Ensure you include the Callback URL
+    provided in the telSpiel Integration popup within your email.
+</Step>
+
+<Step>Enable "custref" in the webhook URL</Step>
+
+</Steps>
 
 Once the above integration is complete, the status of the notification, which will be shared by Karix will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

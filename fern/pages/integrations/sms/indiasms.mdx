@@ -1,32 +1,48 @@
 ---
 title: "India SMS"
 slug: "sms-indiasms"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "How to send SMS using India SMS & Fyno | Fyno Documentation"
-  description: "This document provides instructions on setting up an India SMS account in Fyno, including filling in necessary information and updating the Callback Endpoint in India SMS for message delivery status tracking."
-  image: []
-  robots: "index"
-createdAt: "Fri Mar 15 2024 06:51:25 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Fri Mar 15 2024 07:04:52 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send SMS using India SMS & Fyno | Fyno Documentation"
+og:description: "This document provides instructions on setting up an India SMS account in Fyno, including filling in necessary information and updating the Callback Endpoint in India SMS for message delivery status tracking."
 ---
-Before we get started, you will need to have a India SMS account already set up, along with SenderID and Templates. 
 
-1. Navigate to Integrations. 
-2. Under "SMS" section, click on the "India SMS" button.
-3. In the pop-up, fill in:
+Before we get started, you will need to have a India SMS account already set up, along with SenderID and Templates.
 
-   1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
-   2. **API UserName**: Enter the username you use to log into India SMS portal
-   3. **API Password**: Enter the password you use to log into India SMS portal
-   4. **Sender**: The Sender that is being used by you to send out messages. 
-   5. **Type of Route**: Select the type of route based on the configuration added in India SMS application. 
-4. Click on "Add Account" once done, and you are all set!
+<Steps>
+
+### Find the Provider
+
+Navigate to the Integrations page. Under "SMS" section, click on the "India SMS" button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+-   **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+
+-   **API UserName**: Enter the username you use to log into India SMS portal
+
+-   **API Password**: Enter the password you use to log into India SMS portal
+
+-   **Sender**: The Sender that is being used by you to send out messages.
+
+-   **Type of Route**: Select the type of route based on the configuration added in India SMS application.
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
 While Fyno has the capacity to track the notification delivery status, India SMS requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
 
-1. Log into your India SMS Account.
-2. Configure the URL given in the India SMS Integration popup and Save.
+<Steps>
+
+    <Step>Log into your India SMS Account.</Step>
+
+    <Step>
+        Configure the URL given in the India SMS Integration popup and Save.
+    </Step>
+
+</Steps>

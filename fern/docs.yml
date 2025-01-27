@@ -31,13 +31,15 @@ navigation:
       layout:
           - page: Welcome
             slug: home
-            path: pages/placeholder.mdx
+            path: pages/home.mdx
     - tab: docs
       layout:
-          - page: "Get Started"
-            path: "pages/get-started/fyno-quickstart.mdx"
-          - page: "Dashboard"
-            path: "pages/dashboard/dashboard.mdx"
+          - section: "Getting Started"
+            contents:
+                - page: "Quick Start"
+                  path: "pages/get-started/fyno-quickstart.mdx"
+                - page: "Dashboard"
+                  path: "pages/dashboard/dashboard.mdx"
           - section: "Integrations"
             contents:
                 - page: "Integrations - Introduction"
@@ -513,6 +515,10 @@ navigation:
       layout:
           - page: Overview
             path: pages/placeholder.mdx
+    - tab: api
+      layout:
+          - api: API Reference
+            alphabetized: true
 navbar-links:
     - type: filled
       text: Talk to us

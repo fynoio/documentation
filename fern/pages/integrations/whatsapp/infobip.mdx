@@ -1,52 +1,76 @@
 ---
 title: "Infobip"
 slug: "whatsapp-infobip"
-excerpt: ""
-hidden: false
-metadata:
-    title: "How to send WhatsApp notification using Infobip & Fyno | Fyno Documentation"
-    description: "This document provides instructions on how to integrate an Infobip account with WhatsApp for message delivery status tracking. It includes steps on configuring the account in Fyno's portal and obtaining necessary information from the Infobip account."
-    image: []
-    robots: "index"
-createdAt: "Fri Mar 08 2024 04:57:28 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Jan 20 2025 06:57:30 GMT+0000 (Coordinated Universal Time)"
+og:title: "How to send WhatsApp notification using Infobip & Fyno | Fyno Documentation"
+og:description: "This document provides instructions on how to integrate an Infobip account with WhatsApp for message delivery status tracking. It includes steps on configuring the account in Fyno's portal and obtaining necessary information from the Infobip account."
 ---
 
 Before we get started, you will need an active WhatsApp number as well as templates pre-configured in your Infobip account.
 
-1. Navigate to Integrations.
+<Steps>
 
-2. Under "WhatsApp" section, click on the "Infobip" button.
+### Find the Provider
 
-3. In the pop-up, fill in:
+Navigate to the Integrations page. Under "WhatsApp" section, click on the "Infobip" button.
 
-    1. **Custom name**: Provide a name to help you identify the configured account in Fyno's portal.
-    2. **From Number**: Enter the registered WhatsApp number that you would like to use to initiate conversations.  
-       Login to [Infobip account](https://portal.infobip.com/homepage) and follow the below steps:
-        1. Go to "Channels and Numbers" -> "Numbers" page on the left navigation menu
-        2. If you have already added a WhatsApp number, you'll see Mobile number and Sender Name on the right side of the page or
-        3. You can add a number by clicking on "Buy Number" button
-    3. **Base URL** - You can find it in Infobip home page as shown below. It will be in the format _xxxxx.api.infobip.com._
-       ![](/images/whatsapp_infobip_url.png)
+### Configure the Integration
 
-    iv. **API/Account Key**: Once you login into Infobip, go to Menu -> Developer Tools -> API Key. You can either copy the API Key of a previously created one or create a new one.
+In the pop-up, fill in:
+
+-   **Custom name**: Provide a name to help you identify the configured account in Fyno's portal.
+-   **From Number**: Enter the registered WhatsApp number that you would like to use to initiate conversations.
+    Login to [Infobip account](https://portal.infobip.com/homepage) and follow the below steps:
+
+    <Steps>
+        <Step>
+            Go to "Channels and Numbers" -> "Numbers" page on the left
+            navigation menu
+        </Step>
+        <Step>
+            If you have already added a WhatsApp number, you'll see Mobile
+            number and Sender Name on the right side of the page or
+        </Step>
+        <Step>You can add a number by clicking on "Buy Number" button</Step>
+    </Steps>
+
+-   **Base URL** - You can find it in Infobip home page as shown below. It will be in the format _xxxxx.api.infobip.com._
+    ![](/images/whatsapp_infobip_url.png)
+
+-   **API/Account Key**: Once you login into Infobip, go to Menu -> Developer Tools -> API Key. You can either copy the API Key of a previously created one or create a new one.
     ![](/images/whatsapp_infobip_apikey.png)
 
-4. Click on "Test Integration" once done. If the account is successfully connected, you will see a success message.
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
 
 ## How to enable API Scopes
 
 To send WhatsApp messages to users and to sync WhatsApp templates directly with Fyno, you need to enable few API scopes in Infobip dashboard.
 
-1. Go to Developer Tools -> API Keys. If there are no API keys created, click 'Create API Key', else click any existing API Key.
-2. You will see available API scopes as shown below.
-   ![](/images/whatsapp_infobip_apiscope.png)
-
-3. Search for 'Whatsapp' and you will see the below available scopes
-   ![](/images/whatsapp_infobp_availscope.png)
-
-4. Select '_whatsapp:manage_' and '_whatsapp:message:send_' scopes and Click Save.
-5. Now you will be able to send WhatsApp messages to users and to sync WhatsApp templates directly with Fyno
+<Steps>
+    <Step>
+        Go to Developer Tools -> API Keys. If there are no API keys created,
+        click 'Create API Key', else click any existing API Key.
+    </Step>
+    <Step>
+        You will see available API scopes as shown below.
+        ![](/images/whatsapp_infobip_apiscope.png)
+    </Step>
+    <Step>
+        Search for 'Whatsapp' and you will see the below available scopes
+        ![](/images/whatsapp_infobp_availscope.png)
+    </Step>
+    <Step>
+        Select '_whatsapp:manage_' and '_whatsapp:message:send_' scopes and
+        Click Save.
+    </Step>
+    <Step>
+        Now you will be able to send WhatsApp messages to users and to sync
+        WhatsApp templates directly with Fyno
+    </Step>
+</Steps>
 
 ## Message Delivery Status
 
