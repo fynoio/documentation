@@ -1,0 +1,32 @@
+---
+title: "Prerequisites"
+slug: "prerequisites-1"
+og:title: "Prerequisites - Flutter Push SDK | Fyno Documentation"
+og:description: "This guide will walk you through the prerequisites required to get your app ready for push notifications."
+---
+
+Before you integrate the SDK into your Flutter app, make sure the following prerequisites are fulfilled:
+
+### Active Fyno Account
+
+- You must have a Fyno account and an active workspace. Learn more about workspaces [here](./workspace-introduction).
+- Configure your Fyno Push provider in Fyno App > [Integrations](https://app.fyno.io/integrations).
+
+### Flutter Application
+
+- Ensure you have a working Flutter application. If you don't, set up a new Flutter project using the Flutter CLI or your preferred IDE.
+
+### iOS Prerequisites
+
+- **Apple Developer Account**: Required for setting up push notifications on iOS. Follow the [APNs setup guide](./push-apns).
+- **Xcode**: Ensure you have Xcode installed and set up for iOS development.
+
+### Android Prerequisites
+
+- **Firebase Cloud Messaging (FCM)**: Set up Firebase and create a project in the Firebase Console. Download the `google-services.json` (for Android) or `GoogleService-Info.plist` (for iOS) and place them in your Flutter project root folder. Follow the FCM setup guides for [Android](https://firebase.google.com/docs/android/setup) and [iOS](https://firebase.google.com/docs/ios/setup).
+- **Xiaomi Setup**: If you intend to send push notifications to Xiaomi devices, set up a Xiaomi Developer Account and create an application in the Xiaomi push console. Refer to the [Mi Push Documentation](./push-mi-push) for more details.
+
+### Development Environment
+
+- **Dart and Flutter SDK**: Ensure your Flutter development environment is set up and working correctly.
+- **Integrated Development Environment (IDE)**: IDEs like Visual Studio Code (for Flutter), Android Studio (for Android) and Xcode (for iOS) are recommended.

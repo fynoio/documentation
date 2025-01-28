@@ -1,0 +1,26 @@
+---
+title: "Android specific configuration"
+slug: "getting-your-application-ready-for-push-notifications-in-android-devices"
+og:title: "Android Specific Configuration - Flutter Push SDK | Fyno Documentation"
+og:description: "This guide will walk you through the Android specific configuration required to get your app ready for push notifications."
+---
+
+- In your root-level (project-level) gradle file (`project_name/build.gradle`), add the Google services plugin as a dependency:
+
+```dart
+dependencies {
+  ...
+  classpath 'com.google.gms:google-services:4.3.15'
+  ...
+}
+```
+
+- In your module (app-level) gradle file (usually `project_name/app_name/build.gradle`), add the Google services plugin:
+
+```dart
+plugins {
+  ...
+  id 'com.google.gms.google-services'
+  ...
+}
+```

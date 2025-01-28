@@ -1,0 +1,77 @@
+---
+title: "Installation"
+slug: "fyno-connect/install"
+og:title: "Installation - Fyno Connect | Fyno Documentation"
+og:description: "Here's a quick overview of how to set up Fyno Connect!"
+---
+
+Before installing Fyno Connect, you will need to have the following:
+
+- A Fyno Cloud account, preferably with a few templates, routes and notification events created and ready for testing.
+- A VM (Virtual Machine), where this instance of Fyno Connect will be set up. This can be anything from AWS EC2 to Azure Compute Services, whichever best suits your set-up and needs. Please install the latest version of docker in this VM.
+- A CNAME or A record pointing your Fyno Connect sub-domain (example: connect.example.com) to this VM.
+- Allow public access to ports 80 and 443 of this VM for automatic SSL certificate creation. This can be disabled later.
+
+## Setting up and installing Fyno Connect
+
+<Steps>
+
+### Install Docker and Docker-Compose
+
+In your VM, install the latest version of docker and docker-compose.
+
+### Download and Extract Fyno Connect Files
+
+Download the Fyno Connect zip file (we will share this with you) in the VM and extract the files.
+
+### Configure Environment Variables in .env File
+
+Edit the `.env` file in the folder where you have extracted the zip file. In this file add your Fyno Workspace ID and API Key details. You can fetch these values from Fyno Cloud API Keys page.
+
+```console
+FYNO_WSID=<your_fyno_workspace_id>
+FYNO_API_KEY=<your_fyno_api_key>
+```
+
+### Edit the `Caddyfile` for SSL and Domain Configuration
+
+Edit the `Caddyfile` located in the `docker-data` folder. Add your email ID, which will be used to create your SSL certificate, and the address of the domain you would use for Fyno Connect.
+
+```console
+{
+    email <YOUR_EMAIL>
+}
+
+connect.example.com {
+    handle_path /api/app/* {
+        reverse_proxy connect-frontend:4005
+    }
+    handle {
+        reverse_proxy connect-frontend:3000
+    }
+}
+```
+
+### Start Fyno Connect with the `start.sh` Script
+
+Once done, run the `start.sh` shell script to startup Fyno Connect.
+
+```console
+./start.sh
+
+OR
+
+sh start.sh
+```
+
+### Access Fyno Connect via Sub-Domain
+
+If the setup is successful, you will be able to access Fyno Connect via the sub-domain (example: `connect.example.com`) you used above.
+
+### Restrict Public Access to Ports 80 and 443
+
+You may now restrict public access for ports 80 and 443 to your Fyno Connect domain.
+
+</Steps>
+
+<Tip title="`delete.sh` and `update.sh` works too!">For when you want to remove Fyno Connect or update it!</Tip>

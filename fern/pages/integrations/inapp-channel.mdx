@@ -11,15 +11,19 @@ We at Fyno understand how important it is to keep things simple, because of this
 
 All you will need to do is navigate to Integrations.
 
-1. Under "In-App" section, click on the "Fyno In-App" button.
-2. In the pop-up that appears, fill in:
-    1. **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
-    2. **Token:** Token is pre-filled by Fyno's application since this is our native application.
-    3. **Request Origin URL:** The URL of the website into which the In-App will be integrating to. For Example, the URL needs to be provided as "demoapp.fyno.io" and NOT as "https://demoapp.fyno.io".
+<Steps>
+  <Step>Under "In-App" section, click on the "Fyno In-App" button.</Step>
+  <Step>
+    In the pop-up that appears, fill in:
+    <ul>
+      <li>**Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.</li>
+      <li>**Token:** Token is pre-filled by Fyno's application since this is our native application.</li>
+      <li>**Request Origin URL:** The URL of the website into which the In-App will be integrating to. For Example, the URL needs to be provided as "demoapp.fyno.io" and NOT as "https://demoapp.fyno.io".</li>
+    </ul>
+  </Step>
+</Steps>
 
-> 👍 Handling Sub-Domains
->
-> For the **Request Origin URL**, in case you want to cover all the subdomains, all you will need to do is preceed your domain URL with an **`*` ** (asterisk). This will help the system understand that all subdomains of that URL needs to be handled via this integration.
+<Tip title="Handling Sub-Domains">For the **Request Origin URL**, in case you want to cover all the subdomains, all you will need to do is preceed your domain URL with an **`*`** (asterisk). This will help the system understand that all subdomains of that URL needs to be handled via this integration.</Tip>
 
 ## Message Delivery Status
 
@@ -27,11 +31,7 @@ Fyno In-App, by default, provides the status of the message without any addition
 
 Once the above integration is complete, the notification status, which will be shared by Fyno's In-App will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.
 
-> 🚧 Fyno's In-App is meant to be used as an SDK!
->
-> While the testing and set up can be done on the application interface, the actually implication of the application is via SDK.
->
-> The SDK and installation guide for Fyno's In-App can be found in [Recipes Section ](https://docs.fyno.io/recipes/fynos-in-app-sdk-nodejs)of our documentation. Alternatively, you can also find the same documentation in [Fyno's Github Repo](https://github.com/fynoio/inapp-react)
+<Tip title="Fyno's In-App is meant to be used as an SDK!">While the testing and set up can be done on the application interface, the actually implication of the application is via SDK. The SDK and installation guide for Fyno's In-App can be found in [Recipes Section](./recipes/fynos-in-app-sdk-nodejs) of our documentation. Alternatively, you can also find the same documentation in [Fyno's Github Repo](https://github.com/fynoio/inapp-react)</Tip>
 
 ## Testing Fyno's In-App
 
@@ -39,23 +39,27 @@ The In-App is an SDK that would work within your mobile app when you have succes
 
 And we have thought of that too!
 
-Check out our [In-App Sandbox/ Simulator page](https://demoapp.fyno.io/) here and give the In-App feature a whirl!
+Check out our [In-App Sandbox/Simulator page](https://demoapp.fyno.io/) here and give the In-App feature a whirl!
 
 You can use the simulator with the default configurations that it comes with, or even key in your Fyno's credentials and details from the **Settings** option on the page and customize the test notifications!
 
 In case you want to try it out with your own Fyno account and templates, follow the instructions below to add your account to the Sandbox/Simulator page.
 
-1. Go to the Fyno [In-App Sandbox/Simulator page](https://demoapp.fyno.io/).
-2. Click on the **Settings** icon at the top right corner.
-3. On the pop-up that opens, fill in the below:
-    1. **Workspace ID**: You can find this on your Fyno account by navigating to "Settings" and then going to the **[API Keys](https://app.fyno.io/settings#api-keys)** section.
-    2. **Integration ID**: Navigate to the **[Integrations](https://app.fyno.io/integrations)** section of your Fyno find the In-App integration you want to use and click on it to find the **Integration ID** specific to that integration.
-    3. **Integration Token**: In the same pop-up as above, you will find the **Integration Token** specific to that integration.
-    4. **API Key**: You can find this on your Fyno account by navigating to "Settings" and then going to the **[API Keys](https://app.fyno.io/settings#api-keys)** section.
-    5. **Distinct User ID**: In the Fyno App, from the left navigation panel, find **Users** and click on it. Create a **[Live User](https://app.fyno.io/user-profiles?op=l2crd_1)** or use a pre-created one.
-    6. **Custom Notification Event Name**: In the Fyno App, from the left navigation panel, find **[Notification Events](https://app.fyno.io/events?filters=search-_env-dev_activeLayout-Grid)** and click on it. Create a new Notification Event or use a pre-created one.
-4. Once done, click on Save, and you are all set!
+<Steps>
+  <Step>Go to the Fyno [In-App Sandbox/Simulator page](https://demoapp.fyno.io/).</Step>
+  <Step>Click on the **Settings** icon at the top right corner.</Step>
+  <Step>
+    On the pop-up that opens, fill in the below:
+    <ul>
+      <li>**Workspace ID**: You can find this on your Fyno account by navigating to "Settings" and then going to the **[API Keys](https://app.fyno.io/settings#api-keys)** section.</li>
+      <li>**Integration ID**: Navigate to the **[Integrations](https://app.fyno.io/integrations)** section of your Fyno find the In-App integration you want to use and click on it to find the **Integration ID** specific to that integration.</li>
+      <li>**Integration Token**: In the same pop-up as above, you will find the **Integration Token** specific to that integration.</li>
+      <li>**API Key**: You can find this on your Fyno account by navigating to "Settings" and then going to the **[API Keys](https://app.fyno.io/settings#api-keys)** section.</li>
+      <li>**Distinct User ID**: In the Fyno App, from the left navigation panel, find **Users** and click on it. Create a **[Live User](https://app.fyno.io/user-profiles?op=l2crd_1)** or use a pre-created one.</li>
+      <li>**Custom Notification Event Name**: In the Fyno App, from the left navigation panel, find **[Notification Events](https://app.fyno.io/events?filters=search-_env-dev_activeLayout-Grid)** and click on it. Create a new Notification Event or use a pre-created one.</li>
+    </ul>
+  </Step>
+  <Step>Once done, click on Save, and you are all set!</Step>
+</Steps>
 
-> 👍 You can also customize the test notifications.
->
-> Click on the "palette" icon on the top right corner of the page and fill in the colour and image details to make the In-App notifications your own!
+<Info title="You can also customize the test notifications.">Click on the "palette" icon on the top right corner of the page and fill in the colour and image details to make the In-App notifications your own!</Info>

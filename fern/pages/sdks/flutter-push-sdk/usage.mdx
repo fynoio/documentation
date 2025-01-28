@@ -1,26 +1,26 @@
 ---
 title: "Usage"
 slug: "usage"
-excerpt: ""
-hidden: false
+og:title: "Usage - Flutter Push SDK | Fyno Documentation"
+og:description: "This guide will walk you through the steps required to setup your app for push notifications."
 ---
 
 With the Fyno SDK installed, let's cover how to initialise it, identify users, register for push notifications, and handle other functionalities.
 
 ### Initialising the SDK (to be called on app launch)
 
-> 📘 Distinct ID is an ID that is associated with a specific user and is unique to that user. No two user profiles can have the same Distinct ID.
+<Note>Distinct ID is an ID that is associated with a specific user and is unique to that user. No two user profiles can have the same Distinct ID.</Note>
 
 To initialise the Fyno SDK, you need to provide the following information:
 
--   **Workspace ID:** Your unique Fyno workspace ID, available on the [Workspace Settings](https://app.fyno.io/settings) page.
--   **Integration ID:** The ID of the integration created in [Fyno Integrations](https://app.fyno.io/integrations).
--   **Distinct ID:** A unique identifier for your user. If not provided, a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) is automatically generated.
--   **Version:** Indicates the environment in which the user is created. Default is "**live**", but you can set it to "**test**" for testing purposes.
+- **Workspace ID:** Your unique Fyno workspace ID, available on the Fyno App > [Workspace Settings](https://app.fyno.io/settings) page.
+- **Integration ID:** The ID of the integration created in Fyno App > [Integrations](https://app.fyno.io/integrations).
+- **Distinct ID:** A unique identifier for your user. If not provided, a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) is automatically generated.
+- **Version:** Indicates the environment in which the user is created. Default is "**live**", but you can set it to "**test**" for testing purposes.
 
 In your main Dart file, import the `fyno_flutter` package and call `FynoFlutter.init()` to initialise the SDK:
 
-```dart dart
+```dart
 import 'package:fyno_flutter/fyno_flutter.dart';
 
 void main() {
@@ -46,10 +46,10 @@ void main() {
 
 To update/set a distinct ID or user name, you can call `FynoFlutter.identify()`.
 
--   **Distinct ID:**: The distinct ID you want to identify the user with.
--   **User Name:** The name you want to assign to the user.
+- **Distinct ID:**: The distinct ID you want to identify the user with.
+- **User Name:** The name you want to assign to the user.
 
-```dart dart
+```dart wordWrap
 Exception? identifyException = await FynoFlutter.identify('distinctId', 'userName');
 
 if (identifyException != null) {
@@ -60,13 +60,13 @@ if (identifyException != null) {
 }
 ```
 
-### Updating user profile name
+### Updating User Profile Mame
 
 To update/set only the name for a user profile, you can call `FynoFlutter.updateName()`
 
--   **User Name:** The name you want to assign to the user.
+- **User Name:** The name you want to assign to the user.
 
-```dart dart
+```dart wordWrap
 Exception? updateUserNameException = await FynoFlutter.updateName('userName');
 
 if (updateUserNameException != null) {
@@ -83,10 +83,10 @@ To register the application for push notifications, call `FynoFlutter.registerPu
 
 #### APNs or Google FCM
 
--   To register for push notifications with **APNs** or **Google FCM**, you need to specify the provider type.
--   Use **apns** if [APNs](./push-apns) is configured or **fcm** if [Google FCM](./push-fcm) is configured in the integration.
+- To register for push notifications with **APNs** or **Google FCM**, you need to specify the provider type.
+- Use **apns** if [APNs](./push-apns) is configured or **fcm** if [Google FCM](./push-fcm) is configured in the integration.
 
-```dart dart
+```dart wordWrap
 Exception? pushRegistrationException = await FynoFlutter.registerPush(
   'provider', // has to be either apns or fcm
 );
@@ -99,14 +99,14 @@ if (pushRegistrationException != null) {
 }
 ```
 
-For Google FCM, ensure you've followed the Firebase setup mentioned earlier and have added the `google-services.json` or `GoogleService-Info.plist` file to your project root.
+For Google FCM, ensure you've followed the Firebase setup [mentioned earlier](./prerequisites-1#android-prerequisites) and have added the `google-services.json` or `GoogleService-Info.plist` file to your project root.
 
 #### Xiaomi Services (Android only)
 
--   To register for push notifications with Xiaomi, provide the Xiaomi application ID and key, along with the push region.
--   Xiaomi **Application Id** and Xiaomi **Application Key** are mandatory fields which can be found under the application registered at [Xiaomi Admin](https://admin.xmpush.xiaomi.com/).
--   **Push Region:** Refers to the geographical region where push notifications are delivered.
--   **Provider:** Use **xiaomi**.
+- To register for push notifications with Xiaomi, provide the Xiaomi application ID and key, along with the push region.
+- Xiaomi **Application Id** and Xiaomi **Application Key** are mandatory fields which can be found under the application registered at [Xiaomi Admin](https://admin.xmpush.xiaomi.com/).
+- **Push Region:** Refers to the geographical region where push notifications are delivered.
+- **Provider:** Use **xiaomi**.
 
 ```dart dart
 Exception? pushRegistrationResult = FynoFlutter.registerPush(
@@ -124,12 +124,13 @@ if (pushRegistrationResult != null) {
 }
 ```
 
-### Fetch push notification token
+### Fetch Push Notification Token
 
 If you want to fetch the push notification token for the current device, use `FynoFlutter.getNotificationToken()`
 
-```dart dart
+```dart wordWrap
 String? notificationToken = await FynoFlutter.getNotificationToken();
+
 if(notificationToken != null) {
   print("Notification token: $notificationToken");
 }
@@ -139,11 +140,11 @@ if(notificationToken != null) {
 
 To check if the push notification received is from Fyno, use `FynoFlutter.isFynoNotification(messageData)` and to handle it, use `FynoFlutter.handleFynoNotification()`
 
--   **message:** an instance of Firebase RemoteMessage
+- `message` is an instance of `Firebase RemoteMessage`
 
-> 🚧 These functions are available only in Android
+<Warning title="Android only">The following two functions (`isFynoNotification` and `handleFynoNotification`) is available only in Android and applicable only if you have notifications getting triggered from multiple sources.</Warning>
 
-```dart dart
+```dart wordWrap
 // to receive and handle notifications when the application is in background or killed state
 FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
   if (await FynoFlutter.isFynoNotification(message.toMap())) {
@@ -167,7 +168,7 @@ FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
 
 If you need to merge two user profiles, call `FynoFlutter.mergeProfile()` with the old and new distinct IDs.
 
-```dart dart
+```dart wordWrap
 Exception? mergeException = await FynoFlutter.mergeProfile(
     'oldDistinctId',
     'newDistinctId',
@@ -185,10 +186,10 @@ if (mergeException != null) {
 
 You can update the status of a notification (received, clicked or dismissed) using `FynoFlutter.updateStatus()`.
 
--   **Callback URL:** You can obtain the Callback URL from the notification additional payload if the notification was triggered from Fyno.
--   **Status:** The status of the notification (one of **RECEIVED**, **CLICKED** or **DISMISSED**).
+- **Callback URL:** You can obtain the Callback URL from the notification additional payload if the notification was triggered from Fyno.
+- **Status:** The status of the notification (one of **RECEIVED**, **CLICKED** or **DISMISSED**).
 
-```dart dart
+```dart wordWrap
 Exception? updateStatusException = await FynoFlutter.updateStatus(
     'callbackUrl',
     'status',
@@ -206,11 +207,12 @@ if (updateStatusException != null) {
 
 To reset user information, call `FynoFlutter.resetUser()`.
 
--   You can invoke this function when the user logs out of the application.
--   It handles the deletion of channel data associated with the current user, initiates the creation of a fresh user profile, and transfers the channel data to the newly created profile.
--   This feature proves to be invaluable if you plan to send push notifications to an application where the user has logged out.
+- You can invoke this function when the user logs out of the application.
+- It handles the deletion of channel data associated with the current user, initiates the creation of a fresh user profile, and transfers this particular channel data (push token) to the newly created profile.
+- This feature proves to be invaluable if you plan to send push notifications to an application even after the user has logged out.
+- It is also **recommmended** as it ensures that devices where the users have logged out are no longer associated with them.
 
-```dart dart
+```dart
 Exception? resetUserException = await FynoFlutter.resetUser();
 
 if (resetUserException != null) {
@@ -223,7 +225,7 @@ if (resetUserException != null) {
 
 ### Sample initialisation
 
-```dart dart
+```dart
 // initialise
 
 Exception? initException = await FynoFlutter.init(

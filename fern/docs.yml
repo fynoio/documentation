@@ -16,11 +16,15 @@ tabs:
     docs:
         display-name: Docs
         icon: fa-regular fa-browser
-        slug: docs
+        skip-slug: true
     sdks:
         display-name: SDKs
         icon: fa-brands fa-codepen
-        slug: sdks
+        skip-slug: true
+    fyno-connect:
+        display-name: Connect
+        icon: fa-regular fa-plug
+        skip-slug: true
     api:
         display-name: API Reference
         icon: fa-regular fa-code
@@ -181,63 +185,7 @@ navigation:
                       - page: "OneSignal"
                         path: "pages/integrations/push/onesignal.mdx"
                 - page: "Fyno In-App"
-                  path: "pages/integrations/inapp-channel.mdx"
-                - section: "Fyno Connect"
-                  path: "pages/integrations/fyno-connect.mdx"
-                  contents:
-                      - page: "How to create a cohort in Fyno Connect"
-                        path: "pages/integrations/fyno-connect/create-cohort.mdx"
-                      - page: "How to create a campaign in Fyno Connect"
-                        path: "pages/integrations/fyno-connect/create-campaign.mdx"
-                      - page: "How to invite team members to Fyno Connect"
-                        path: "pages/integrations/fyno-connect/invite-team.mdx"
-                      - page: "How to enable Alerts in Fyno Connect"
-                        path: "pages/integrations/fyno-connect/enable-alerts.mdx"
-                - section: "Fyno SDK Library"
-                  path: "pages/integrations/push-sdks.mdx"
-                  contents:
-                      - page: "Fyno Android Push Notification SDK"
-                        path: "pages/integrations/push-sdks/android-push-sdk.mdx"
-                      - page: "Fyno APNs (Apple Push Notification services) SDK"
-                        path: "pages/integrations/push-sdks/apple-push-sdk.mdx"
-                      - page: "Fyno In-App React SDK"
-                        path: "pages/integrations/push-sdks/react-inapp-sdk.mdx"
-                      - page: "Fyno In-App React Hooks"
-                        path: "pages/integrations/push-sdks/react-inapp-hooks.mdx"
-                      - page: "Fyno Flutter InApp SDK"
-                        path: "pages/integrations/push-sdks/flutter-inapp-sdk.mdx"
-                      - page: "Silent / Background InApp Notifications"
-                        path: "pages/integrations/push-sdks/silent-notifications.mdx"
-                      - section: "Flutter Push Notification SDK Integration Guide"
-                        path: "pages/integrations/push-sdks/flutter-push-sdk.mdx"
-                        contents:
-                            - page: "Prerequisites"
-                              path: "pages/integrations/push-sdks/flutter-push-sdk/prerequisites.mdx"
-                            - page: "Installation"
-                              path: "pages/integrations/push-sdks/flutter-push-sdk/installation.mdx"
-                            - page: "Usage"
-                              path: "pages/integrations/push-sdks/flutter-push-sdk/usage.mdx"
-                            - page: "Android specific configuration"
-                              path: "pages/integrations/push-sdks/flutter-push-sdk/android-push.mdx"
-                            - page: "iOS specific configuration"
-                              path: "pages/integrations/push-sdks/flutter-push-sdk/ios-push.mdx"
-                            - page: "FAQs"
-                              path: "pages/integrations/push-sdks/flutter-push-sdk/faqs.mdx"
-                      - section: "React Native Push Notification SDK Integration Guide"
-                        path: "pages/integrations/push-sdks/react-native-push-sdk.mdx"
-                        contents:
-                            - page: "Prerequisites"
-                              path: "pages/integrations/push-sdks/react-native-push-sdk/prerequisites.mdx"
-                            - page: "Installation"
-                              path: "pages/integrations/push-sdks/react-native-push-sdk/installation.mdx"
-                            - page: "Usage"
-                              path: "pages/integrations/push-sdks/react-native-push-sdk/usage.mdx"
-                            - page: "Android specific configuration"
-                              path: "pages/integrations/push-sdks/react-native-push-sdk/android-push.mdx"
-                            - page: "iOS specific configuration"
-                              path: "pages/integrations/push-sdks/react-native-push-sdk/ios-push.mdx"
-                            - page: "FAQs"
-                              path: "pages/integrations/push-sdks/react-native-push-sdk/faqs.mdx"
+                  path: "pages/integrations/inapp-channel.mdx"                
                 - section: "Voice Channel"
                   path: "pages/integrations/voice-channel.mdx"
                   contents:
@@ -513,8 +461,87 @@ navigation:
                   path: "pages/settings/fyno-free-plan-and-usage.mdx"
     - tab: sdks
       layout:
-          - page: Overview
-            path: pages/placeholder.mdx
+          - section: "Introduction"
+            contents:
+            - page: "Overview"
+              path: "pages/sdks/overview.mdx"
+          - section: "Mobile Push"          
+            contents:                
+                - section: "Flutter Push SDK"
+                  path: "pages/sdks/flutter-push-sdk.mdx"                  
+                  contents:
+                      - page: "Prerequisites"
+                        path: "pages/sdks/flutter-push-sdk/prerequisites.mdx"
+                      - page: "Installation"
+                        path: "pages/sdks/flutter-push-sdk/installation.mdx"
+                      - page: "Usage"
+                        path: "pages/sdks/flutter-push-sdk/usage.mdx"
+                      - page: "Android specific configuration"
+                        path: "pages/sdks/flutter-push-sdk/android-push.mdx"
+                      - page: "iOS specific configuration"
+                        path: "pages/sdks/flutter-push-sdk/ios-push.mdx"
+                      - page: "FAQs"
+                        path: "pages/sdks/flutter-push-sdk/faqs.mdx"
+                - section: "React Native Push SDK"                  
+                  path: "pages/sdks/react-native-push-sdk.mdx"
+                  contents:
+                      - page: "Prerequisites"
+                        path: "pages/sdks/react-native-push-sdk/prerequisites.mdx"
+                      - page: "Installation"
+                        path: "pages/sdks/react-native-push-sdk/installation.mdx"
+                      - page: "Usage"
+                        path: "pages/sdks/react-native-push-sdk/usage.mdx"
+                      - page: "Android specific configuration"
+                        path: "pages/sdks/react-native-push-sdk/android-push.mdx"
+                      - page: "iOS specific configuration"
+                        path: "pages/sdks/react-native-push-sdk/ios-push.mdx"
+                      - page: "FAQs"
+                        path: "pages/sdks/react-native-push-sdk/faqs.mdx"
+                - page: "Kotlin Push SDK"                  
+                  path: "pages/sdks/android-push-sdk.mdx"
+                - page: "Swift Push SDK"                  
+                  path: "pages/sdks/apple-push-sdk.mdx"
+          - section: "In-App"
+            contents:
+                - section: "React In-App SDK"
+                  path: "pages/sdks/react-inapp-sdk.mdx"
+                  contents: 
+                  - page: "Silent / Background InApp Notifications"
+                    path: "pages/sdks/silent-notifications.mdx"
+                - page: "React Native In-App SDK"
+                  path: "pages/sdks/react-inapp-hooks.mdx"
+                - page: "Flutter In-App SDK"
+                  path: "pages/sdks/flutter-inapp-sdk.mdx"                
+    - tab: fyno-connect
+      layout:
+          - section: "Getting Started"
+            contents:
+              - page: "Introduction"
+                path: "pages/fyno-connect/introduction.mdx"
+              - page: "Installation"
+                path: "pages/fyno-connect/set-up.mdx"
+          - section: "Supported Databases"
+            contents:
+              - page: "MongoDB"
+                path: "pages/fyno-connect/databases/mongodb.mdx"
+              - page: "MsSQL"
+                path: "pages/fyno-connect/databases/mssql.mdx"
+              - page: "MySQL"
+                path: "pages/fyno-connect/databases/mysql.mdx"
+              - page: "Postgres"
+                path: "pages/fyno-connect/databases/postgres.mdx"
+              - page: "Snowflake"
+                path: "pages/fyno-connect/databases/snowflake.mdx"
+          - section: "Using Fyno Connect"
+            contents:
+            - page: "Create Cohorts"
+              path: "pages/fyno-connect/create-cohort.mdx"
+            - page: "Create Campaigns"
+              path: "pages/fyno-connect/create-campaign.mdx"
+            - page: "Invite Team Members"
+              path: "pages/fyno-connect/invite-team.mdx"
+            - page: "Enable Alerts"
+              path: "pages/fyno-connect/enable-alerts.mdx"
     - tab: api
       layout:
           - api: API Reference

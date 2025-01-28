@@ -1,17 +1,18 @@
 ---
 title: "iOS specific configuration"
 slug: "getting-your-application-ready-for-ios-push-notifications"
-excerpt: ""
-hidden: false
+og:title: "iOS Specfic Configuration - Flutter Push SDK | Fyno Documentation"
+og:description: "This guide will walk you through the iOS Specific Configuration required to get your app ready for push notifications."
 ---
 
 To enable push notifications for iOS, you need to configure specific capabilities and handle the necessary app delegate code. Let's walk through the steps.
 
-### Step 0: Update iOS pods
+<Steps>
+### Update iOS pods
 
-1. Run `pod install` in the ios folder of your flutter application to install/update the pod dependencies.
+Run `pod install` in the ios folder of your flutter application to install/update the pod dependencies.
 
-### Step 1: Add capabilities in iOS application
+### Add capabilities in iOS application
 
 1. Open your Flutter project in Xcode.
 2. Inside the **Targets** section, select your app target, and go to **Signing & Capabilities**.
@@ -23,13 +24,13 @@ To enable push notifications for iOS, you need to configure specific capabilitie
 
 ![](/images/push_flutter_3.png)
 
-### Step 2: Register for push notification in AppDelegate.swift file
+### Register for push notification in AppDelegate.swift file
 
 To handle push notifications in your iOS app, add the following code to `AppDelegate.swift`:
 
 1. Import the required packages:
 
-```Text swift
+```swift
 import UIKit
 import Flutter
 import fyno_push_ios
@@ -37,14 +38,14 @@ import fyno_push_ios
 
 2. If you are using Firebase Cloud Messaging (FCM), add the Firebase imports:
 
-```Text swift
+```swift
 import FirebaseCore
 import FirebaseMessaging
 ```
 
 3. Extend `FlutterAppDelegate` and implement the necessary methods:
 
-```Text swift
+```swift wordWrap
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
     let fynosdk = fyno.app
@@ -78,7 +79,7 @@ import FirebaseMessaging
 }
 ```
 
-### Step 3: Add a Notification Service Extension
+### Add a Notification Service Extension
 
 To ensure rich push notifications and proper handling of incoming messages, add a `Notification Service Extension` to your iOS project:
 
@@ -91,7 +92,7 @@ To ensure rich push notifications and proper handling of incoming messages, add 
 
 4. Replace the contents of the generated `NotificationService.swift` file with the following code:
 
-```Text NotificationService.swift
+```swift title="NotificationService.swift" wordWrap
 import UserNotifications
 import UIKit
 import fyno
@@ -112,7 +113,7 @@ class NotificationService: UNNotificationServiceExtension {
 }
 ```
 
-### Step 4: Add Fyno SDK to the Notification Service Extension
+### Add Fyno SDK to the Notification Service Extension
 
 To allow the Notification Service Extension to use the Fyno SDK, you need to import it:
 
@@ -131,4 +132,6 @@ To allow the Notification Service Extension to use the Fyno SDK, you need to imp
 6. Ensure the target is set to the Notification Service Extension you created, then click `Add Package`.
    ![](/images/push_flutter_9.png)
 
-> 👍 You have successfully integrated Fyno's Flutter Push Notification SDK into your application. Go ahead and test the integration by sending a push notification using [Notification Events](./events-overview)
+</Steps>
+
+<Success>You have successfully integrated Fyno's Flutter Push Notification SDK into your application. Go ahead and test the integration by sending a push notification using [Notification Events](./events-overview)</Success>
