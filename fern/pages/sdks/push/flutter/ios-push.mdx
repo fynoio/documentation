@@ -21,8 +21,7 @@ Run `pod install` in the ios folder of your flutter application to install/updat
    ![](/images/push_flutter_2.jpeg)
 
 4. In Background Modes, select the Remote Notifications option. This is required to receive background push notifications. Learn more about background notifications [here](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app).
-
-![](/images/push_flutter_3.png)
+   ![](/images/push_flutter_3.png)
 
 ### Register for push notification in AppDelegate.swift file
 
@@ -86,9 +85,8 @@ To ensure rich push notifications and proper handling of incoming messages, add 
 1. In Xcode go to **File** > **New** > **Target**.
 2. Select `Notification Service Extension` from the template list.
 3. Provide a product name, select your development team, choose Swift as the language, and click Finish.
-
-![](/images/push_flutter_4.png)
-![](/images/push_flutter_5.png)
+   ![](/images/push_flutter_4.png)
+   ![](/images/push_flutter_5.png)
 
 4. Replace the contents of the generated `NotificationService.swift` file with the following code:
 
@@ -119,8 +117,7 @@ To allow the Notification Service Extension to use the Fyno SDK, you need to imp
 
 1. In Xcode, select your Notification Service Extension target.
 2. Under `Frameworks and Libraries`, click on the **+** button.
-
-![](/images/push_flutter_6.png)
+   ![](/images/push_flutter_6.png)
 
 3. Under `Add Other`, click on the `Add Package Dependency`.
    ![](/images/push_flutter_7.png)
