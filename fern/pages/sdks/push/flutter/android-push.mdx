@@ -7,7 +7,7 @@ og:description: "This guide will walk you through the Android specific configura
 
 - In your root-level (project-level) gradle file (`project_name/build.gradle`), add the Google services plugin as a dependency:
 
-```dart
+```dart title="project_name/build.gradle" wordWrap
 dependencies {
   ...
   classpath 'com.google.gms:google-services:4.3.15'
@@ -17,7 +17,7 @@ dependencies {
 
 - In your module (app-level) gradle file (usually `project_name/app_name/build.gradle`), add the Google services plugin:
 
-```dart
+```dart title="project_name/app_name/build.gradle" wordWrap
 plugins {
   ...
   id 'com.google.gms.google-services'

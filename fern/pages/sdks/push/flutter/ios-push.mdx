@@ -29,7 +29,7 @@ To handle push notifications in your iOS app, add the following code to `AppDele
 
 1. Import the required packages:
 
-```swift
+```swift title="AppDelegate.swift" wordWrap
 import UIKit
 import Flutter
 import fyno_push_ios
@@ -37,14 +37,14 @@ import fyno_push_ios
 
 2. If you are using Firebase Cloud Messaging (FCM), add the Firebase imports:
 
-```swift
+```swift title="AppDelegate.swift" wordWrap
 import FirebaseCore
 import FirebaseMessaging
 ```
 
 3. Extend `FlutterAppDelegate` and implement the necessary methods:
 
-```swift wordWrap
+```swift title="AppDelegate.swift" wordWrap
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
     let fynosdk = fyno.app

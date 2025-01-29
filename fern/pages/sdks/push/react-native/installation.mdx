@@ -1,27 +1,28 @@
 ---
 title: "Installation"
 slug: "installation-1"
-excerpt: ""
-hidden: false
+og:title: "Installation - React Native Push SDK | Fyno Documentation"
+og:description: "This guide will walk you through the installation steps required to get your app ready for push notifications."
 ---
 
 To integrate the Fyno SDK into your React Native application, you need to add the `@fyno/react-native` package to your project's dependencies. You can add the package using one of the following commands:
 
-```Text bash
+<CodeBlocks>
+```bash title="npm"
 npm install @fyno/react-native
 ```
 
-OR
-
-```Text bash
+```bash title="yarn"
 yarn add @fyno/react-native
 ```
 
-Alternatively, you can manually edit the `package.json` file in your project and add `@fyno/react-native` to the `dependencies` section:
+</CodeBlocks>
+
+**Alternatively,** you can manually edit the `package.json` file in your project and add `@fyno/react-native` to the `dependencies` section:
 
 Find the latest version at [Fyno React Native Push SDK](https://www.npmjs.com/package/@fyno/react-native)
 
-```Text yaml
+```json title="package.json" wordWrap
 "dependencies": {
     ...
     "@fyno/react-native": "<latest_version>",

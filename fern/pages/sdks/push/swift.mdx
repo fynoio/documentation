@@ -1,30 +1,29 @@
 ---
-title: "Fyno APNs (Apple Push Notification services) SDK"
+title: "Swift Push SDK"
 slug: "sdk-apns-sdk"
-og:title: "Push Notification SDK - APNs SDK | Fyno Documentation"
-og:description: "A guide to integrating your APNs SDK into Fyno."
+og:title: "iOS (Swift) Push Notification SDK | Fyno Documentation"
+og:description: "A guide to integrating your Fyno iOS Push Notification SDK into Fyno."
 ---
 
-# Fyno iOS SDK
-
-Fyno's iOS Push Notification SDK offers a comprehensive set of notification features within your app. It's designed to efficiently deliver messages, ensuring optimal performance and user experience.
+Fyno's iOS (Swift) Push Notification SDK offers a comprehensive set of notification features within your app. It's designed to efficiently deliver messages, ensuring optimal performance and user experience.
 
 ## Prerequisites
 
 In order to get started, there are a few prerequisites that needs to be in place:
 
-1. **Fyno account:** A valid Fyno workspace with at least one active API Key. For more info, refer [Workspace Docs](https://docs.fyno.io/docs/workspace-settings).
-2. **Configuration:** Configure your Fyno Push provider in [Fyno App](https://app.fyno.io/integrations).
-3. **Swift iOS application:** A working Swift iOS application in which you want to integrate the SDK.
-4. **Apple developer account:** Required details are mentioned in [APNs Docs](https://docs.fyno.io/docs/push-apns).
+- **Fyno account:** A valid Fyno workspace with at least one active API Key. For more info, refer [Workspace Docs](./workspace-settings).
+- **Configuration:** Configure your Fyno Push provider in Fyno App > [Integrations](https://app.fyno.io/integrations).
+- **Swift iOS application:** A working Swift iOS application in which you want to integrate the SDK.
+- **Apple developer account:** Required details are mentioned in [APNs Docs](./push-apns).
 
-## SDK Setup to enable Push Notifications
+## Installation
 
-### Step 1: Install the SDK
+<Steps>
+### Install the SDK
 
-Add `pod 'fyno-push-ios', '~> 1.1'` similar to the following to your Podfile:
+Add `pod 'fyno-push-ios', '~> 1.1'` similar to the following to your `Podfile`:
 
-```
+```Text title="Podfile" wordWrap
 target 'MyApp' do
   pod 'fyno-push-ios', '~> 1.1'
 end
@@ -32,81 +31,73 @@ end
 
 Then run a pod install inside your terminal to download and install the fyno push sdk for iOS.
 
-### Step 2: Add Required Capabilities
+### Add Required Capabilities
 
 1. Inside Targets select signing and capabilities.
 2. Click on +capabilities and add Push Notifications and Background Modes capabilities to your application.
-
-![](/images/fyno_apns_1.jpeg)
-
-![](/images/fyno_apns_2.jpeg)
+   ![](/images/fyno_apns_1.jpeg)
+   ![](/images/fyno_apns_2.jpeg)
 
 3. In Background Modes, select Remote Notifications option. We use background notifications to receive delivery reports when your app is in quit and background state. Refer [doc](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app) to know more about background notifications.
+   ![](/images/fyno_apns_3.png)
 
-![](/images/fyno_apns_3.png)
-
-### Step 3: Add Notification Service Extension to your application
+### Add Notification Service Extension to your application
 
 1. In Xcode go to **File** > **New** > **Target**.
 2. Select `Notification Service Extension` from the template list.
 3. Then in Next popup give it any product name, select your team, select swift language and click finish.
-
-![](/images/fyno_apns_4.png)
-
-![](/images/fyno_apns_5.png)
+   ![](/images/fyno_apns_4.png)
+   ![](/images/fyno_apns_5.png)
 
 4. After clicking on "Finish", a folder will be created with your given product name. Replace the contents of the **NotificationService.swift** file with the below code.
 
-```
-import UserNotifications
-import UIKit
-import fyno
+   ```swift title="NotificationService.swift" wordWrap
+   import UserNotifications
+   import UIKit
+   import fyno
 
-class NotificationService: UNNotificationServiceExtension {
-    var contentHandler: ((UNNotificationContent) -> Void)?
-    var bestAttemptContent: UNMutableNotificationContent?
+   class NotificationService: UNNotificationServiceExtension {
+       var contentHandler: ((UNNotificationContent) -> Void)?
+       var bestAttemptContent: UNMutableNotificationContent?
 
-    override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
-        fyno.app.handleDidReceive(request, withContentHandler: contentHandler)
-    }
+       override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+           fyno.app.handleDidReceive(request, withContentHandler: contentHandler)
+       }
 
-    override func serviceExtensionTimeWillExpire() {
-        if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-            contentHandler(bestAttemptContent)
-        }
-    }
-}
-```
+       override func serviceExtensionTimeWillExpire() {
+           if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
+               contentHandler(bestAttemptContent)
+           }
+       }
+   }
+   ```
 
 5. In order for the **Notification Service Extension** to be able to access the fyno SDK, you will have to import it by following the below steps:
+   ![](/images/fyno_apns_6.png)
+   ![](/images/fyno_apns_7.png)
 
-![](/images/fyno_apns_6.png)
+6. Search for `https://github.com/fynoio/ios-sdk` in the text box. Select and add the package named **ios-sdk**.
+   ![](/images/fyno_apns_8.png)
 
-![](/images/fyno_apns_7.png)
+7. Select the Target as the Notification Service Extension you had created and click on `Add Package`.
+   ![](/images/fyno_apns_9.png)
 
-Search for `https://github.com/fynoio/ios-sdk` in the text box. Select and add the package named **ios-sdk**.
+<Tip>If you face any build issues similar to `Error (Xcode): Cycle inside Runner; building could produce unreliable results` after adding the notification service extension, follow [this](https://stackoverflow.com/a/77261331) answer to resolve it.</Tip>
 
-![](/images/fyno_apns_8.png)
+### Register for push notification in AppDelegate.swift file
 
-Select the Target as the Notification Service Extension you had created and click on `Add Package`.
+Add the below code in your `AppDelegate.swift` file.
 
-![](/images/fyno_apns_9.png)
-
-> 🚧 If you face any build issues similar to `Error (Xcode): Cycle inside Runner; building could produce unreliable results` after adding the notification service extension, follow [this](https://stackoverflow.com/a/77261331) answer to resolve it.
-
-### Step 4: Register for push notification in AppDelegate.swift file
-
-1. Add the below code in your **AppDelegate.swift** file.
-
-```Text swift
+<CodeBlocks>
+```swift title="Without FCM" wordWrap
 // without FCM
 
 import Foundation
 import UIKit
 import fyno_push_ios
 
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
-    let fynosdk = fyno.app
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+let fynosdk = fyno.app
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        UNUserNotificationCenter.current().delegate = fynosdk
@@ -125,10 +116,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Send the device token to fynoServer
         fynosdk.setdeviceToken(deviceToken: deviceToken)
     }
-}
-```
 
-```Text swift
+}
+
+````
+
+```swift title="With FCM" wordWrap
 // with FCM
 
 import Foundation
@@ -165,22 +158,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Messaging.messaging().apnsToken = deviceToken // add only if FCM has been integrated
     }
 }
+````
 
+</CodeBlocks>
 
-```
-
-> 👍 You have successfully configured the iOS SDK for receiving push notifications.
+</Steps>
+<Success>You have successfully configured the iOS SDK for receiving push notifications.</Success>
 
 ## Usage
 
-### Initialising the SDK (should be called on app launch)
+### Initialising the SDK (to be called on app launch)
 
--   Workspace ID(Mandatory) - Fyno's unique workspace ID, which you will see at the top of the **Workspace Settings** page.
--   Integration ID(Mandatory) - The ID of the integration created in [Fyno Integrations](https://app.fyno.io/integrations).
--   Distinct ID(Optional) - Unique identifier for your user (An [uuid](https://en.wikipedia.org/wiki/Universally_unique_identifier) is automatically generated if no value is passed).
--   Version(Optional) - Indicates the environment in which the user has to be created. Could be either **test** or **live**. (Default value is "live").
+To initialise the Fyno SDK, you need to provide the following information:
 
-```Text swift
+- **Workspace ID (Mandatory):** Your unique Fyno workspace ID, available on the Fyno App > [Workspace Settings](https://app.fyno.io/settings) page.
+- **Integration ID (Mandatory):** The ID of the integration created in Fyno App > [Integrations](https://app.fyno.io/integrations).
+- **Distinct ID (Optional):** A unique identifier for your user. If not provided, a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) is automatically generated.
+- **Version (Optional):** Indicates the environment in which the user has to be created. Default is **"live"**, but you can set it to **"test"** for testing purposes.
+
+```swift title="swift" wordWrap
 fyno.app.initializeApp(
     workspaceID: workspaceId,
     integrationID: integrationID,
@@ -197,12 +193,14 @@ fyno.app.initializeApp(
 }
 ```
 
-### Identifying the User (should be called when you want to update previously created distinct ID or user name)
+### Identifying the User
 
--   Distinct ID(Mandatory) - The distinct ID you want to identify the user with.
--   User Name(Optional) - The name you want to assign to the user.
+To update/set a distinct ID or user name, call `fyno.app.identify()`.
 
-```Text swift
+- **Distinct ID (Mandatory):** The distinct ID you want to identify the user with.
+- **User Name (Optional):** - The name you want to assign to the user.
+
+```swift title="swift" wordWrap
 fyno.app.identify(newDistinctId: distinctID, userName: userName) { identifyResult in
     switch identifyResult{
     case .success(_):
@@ -213,11 +211,13 @@ fyno.app.identify(newDistinctId: distinctID, userName: userName) { identifyResul
 }
 ```
 
-### Registering Push Notifications with APNs or Google FCM
+### Registering for Push Notifications
 
--   isAPNs(Mandatory) - Use **true** if [APNs](https://docs.fyno.io/docs/push-apns) is configured, **false** if [Google FCM](https://docs.fyno.io/docs/push-fcm) is configured in the integration.
+To register the application for push notifications, call `fyno.app.registerPush()`.
 
-```Text swift
+- **isAPNs (Mandatory):** Use **true** if [APNs](https://docs.fyno.io/docs/push-apns) is configured, **false** if [Google FCM](https://docs.fyno.io/docs/push-fcm) is configured in the integration.
+
+```swift title="swift" wordWrap
 fyno.app.registerPush(isAPNs: isAPNs){
     registerPushResult in
     switch registerPushResult{
@@ -231,10 +231,9 @@ fyno.app.registerPush(isAPNs: isAPNs){
 
 ### Merging User Profiles
 
--   Old Distinct ID(Mandatory).
--   New Distinct ID(Mandatory).
+If you need to merge two user profiles, call `fyno.app.mergeProfile()` with the old and new distinct IDs.
 
-```Text swift
+```swift title="swift" wordWrap
 fyno.app.mergeProfile(newDistinctId:newDistinctId){
     mergeResult in
     switch mergeResult{
@@ -248,10 +247,12 @@ fyno.app.mergeProfile(newDistinctId:newDistinctId){
 
 ### Updating Message Status
 
--   Callback URL(Mandatory) - You can get the Callback URL from the notification additional payload if the notification was triggered from Fyno.
--   Status(Mandatory) - The status of the notification (one of **RECEIVED**, **CLICKED** or **DISMISSED**).
+You can update the status of a notification (received, clicked or dismissed) using `fyno.app.updateStatus()`.
 
-```Text swift
+- **Callback URL (Mandatory):** You can obtain the Callback URL from the notification additional payload if the notification was triggered from Fyno.
+- **Status (Mandatory):** The status of the notification (one of **RECEIVED**, **CLICKED** or **DISMISSED**).
+
+```swift title="swift" wordWrap
 fyno.app.updateStatus(callbackUrl: callbackUrl, status: status){
     updateStatusResult in
     switch updateStatusResult{
@@ -263,9 +264,16 @@ fyno.app.updateStatus(callbackUrl: callbackUrl, status: status){
 }
 ```
 
-### Resetting User Information (You can call this function when user logs out from your application)
+### Resetting User Information
 
-```Text swift
+To reset user information, call `fyno.app.resetUser()`.
+
+- You can invoke this function when the user logs out of the application.
+- It handles the deletion of channel data associated with the current user, initiates the creation of a fresh user profile, and transfers this particular channel data (push token) to the newly created profile.
+- This feature proves to be invaluable if you plan to send push notifications to an application even after the user has logged out.
+- It is also **recommmended** as it ensures that devices where the users have logged out are no longer associated with them.
+
+```swift title="swift" wordWrap
 fyno.app.resetUser() {
     resetUserResult in
     switch resetUserResult{

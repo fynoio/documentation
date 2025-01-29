@@ -1,8 +1,8 @@
 ---
-title: "Fyno In-App React Hooks"
+title: "React Native In-App Hooks"
 slug: "fyno-in-app-react-hooks"
-excerpt: ""
-hidden: false
+og:title: "React Native In-App Hooks | Fyno Documentation"
+og:description: "This guide will walk you through the prerequisites, installation, and step-by-step configuration required to get your mobile application ready for In-App notifications"
 ---
 
 Fyno In-app React hooks SDK lets you manage the in-app notification center in your React application with your own UI. The core of this SDK is the `useInappManager` hook, which helps you retrieve notification data and manage actions like marking messages as read or deleting them.
@@ -11,7 +11,7 @@ Fyno In-app React hooks SDK lets you manage the in-app notification center in yo
 
 To get started with Fyno's In-App React Hooks SDK, you'll need to install it using [NPM](https://www.npmjs.com/package/@fyno/react-hooks)
 
-```shell
+```bash title="npm" wordWrap
 npm install @fyno/react-hooks
 ```
 
@@ -23,37 +23,36 @@ Before you dive into using the In-App Notification Center, there are some prereq
 
 Before you start, make sure you have the following information ready
 
--   **Workspace ID (WSID)**: You can find your workspace ID on your Fyno [API Keys](https://app.fyno.io/api-keys) page.
--   **Integration Token**: Obtain the integration token from the [Integrations](https://app.fyno.io/integrations) page.
--   **User ID**: This should be a unique identifier for the currently logged-in user. This user ID is crucial for Fyno to send specific notifications to the right users.
+- **Workspace ID (WSID)**: You can find your workspace ID on your Fyno App > [API Keys](https://app.fyno.io/api-keys) page.
+- **Integration Token**: Obtain the integration token from the Fyno App > [Integrations](https://app.fyno.io/integrations) page.
+- **User ID**: This should be a unique identifier for the currently logged-in user. This user ID is crucial for Fyno to send specific notifications to the right users.
 
 ### HMAC Signature Generation
 
 The HMAC signature is essential for ensuring the security and integrity of your notifications. Here are examples of how to generate the HMAC signature in various programming languages
 
-```javascript Node
+<CodeBlocks>
+```js title="Node" wordWrap
 import crypto from "crypto"; //module
 //or
 // const crypto = require('crypto') //commonjs
 const signature = crypto
-    .createHmac("sha256", "WSID" + "INTEGRATION_TOKEN")
-    .update("USER_ID")
-    .digest("hex");
+  .createHmac("sha256", "WSID" + "INTEGRATION_TOKEN")
+  .update("USER_ID")
+  .digest("hex");
 ```
 
-```javascript
+```js title="JavaScript" wordWrap
 const CryptoJS = require("crypto-js"); //commonjs
 //or
 //import CryptoJS from "crypto-js";//module
 const secretKey = "WSID" + "INTEGRATION_TOKEN";
 const userId = "USER_ID";
 
-const signature = CryptoJS.HmacSHA256(userId, secretKey).toString(
-    CryptoJS.enc.Hex
-);
+const signature = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
 ```
 
-```python
+```python title="Python" wordWrap
 import hashlib
 import hmac
 
@@ -63,7 +62,7 @@ user_id = 'USER_ID'
 signature = hmac.new(secret_key, user_id.encode('utf-8'), hashlib.sha256).hexdigest()
 ```
 
-```java
+```java title="Java" wordWrap
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
@@ -94,7 +93,7 @@ public class SignatureExample {
 }
 ```
 
-```go
+```go title="Go" wordWrap
 package main
 
 import (
@@ -129,14 +128,14 @@ func main() {
 }
 ```
 
-```php
+```php title="PHP" wordWrap
 $secretKey = 'WSID'.'INTEGRATION_TOKEN';
 $userId = 'USER_ID';
 
 $signature = hash_hmac('sha256', $userId, $secretKey);
 ```
 
-```ruby
+```ruby title="Ruby" wordWrap
 require 'openssl'
 
 secret_key = 'WSID'+'INTEGRATION_TOKEN'
@@ -145,7 +144,7 @@ user_id = 'USER_ID'
 signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secret_key, user_id)
 ```
 
-```csharp
+```csharp title="C#" wordWrap
 using System;
 using System.Security.Cryptography;
 using System.Text;
@@ -166,23 +165,23 @@ class Program
 }
 ```
 
-> 🚧 Watch out when generating HMAC Signatures!
->
-> Please be cautious when generating the signature on the frontend, as it might expose your Integration token. It's recommended to perform the token generation on the backend.
+</CodeBlocks>
 
-### SDK Initialisation in Frontend
+<Warning title="Watch out when generating HMAC Signatures!">Avoid generating the signature in the frontend, as it can expose your Integration token. Always generate the token securely in the backend or middleware.</Warning>
 
-To use the SDK in your React or React native application, you can import `useInappManager` hook. The `useInappManager` hook provides all the data and handlers needed to work with in-app notifications. Here’s a quick example of how the configuration looks like:
+### SDK Initialisation
 
-```javascript JSX
+To use the SDK in your React native application, you can import `useInappManager` hook. The `useInappManager` hook provides all the data and handlers needed to work with in-app notifications. Here’s a quick example of how the configuration looks like:
+
+```js title="JSX" wordWrap
 import useInappManager from "@fyno/react-hooks";
 
 // Define the necessary props
 const fynoProps = {
-    distinctId: "your-distinct-id", // Unique user ID
-    workspaceId: "your-workspace-id", // Your workspace identifier
-    integrationId: "your-integration-id", // Integration identifier
-    signature: "your-signature", // HMAC signature for authentication
+  distinctId: "your-distinct-id", // Unique user ID
+  workspaceId: "your-workspace-id", // Your workspace identifier
+  integrationId: "your-integration-id", // Integration identifier
+  signature: "your-signature", // HMAC signature for authentication
 };
 
 // Call the hook with the props
@@ -192,15 +191,7 @@ const { data, handlers } = useInappManager(fynoProps);
 const { unreadCount, list, unreadList, count, errMsg } = data;
 
 // Access handler functions
-const {
-    handleClick,
-    handleIncomingMessage,
-    handleMarkAsRead,
-    handleDelete,
-    loadMoreNotifications,
-    deleteAllMessages,
-    handleMarkAllAsRead,
-} = handlers;
+const { handleClick, handleIncomingMessage, handleMarkAsRead, handleDelete, loadMoreNotifications, deleteAllMessages, handleMarkAllAsRead } = handlers;
 ```
 
 That's it! You're ready to build your notification center with data and handlers provided by Fyno In-App Hooks in your React application.

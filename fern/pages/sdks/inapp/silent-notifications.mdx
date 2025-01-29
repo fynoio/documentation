@@ -2,67 +2,76 @@
 title: "Silent / Background InApp Notifications"
 slug: "silent-background-notifications"
 excerpt: ""
-hidden: false
+og:title: "Silent / Background InApp Notifications - React In-App SDK | Fyno Documentation"
+og:description: "This documentation provides a comprehensive guide on creating a silent notification template in Fyno and capturing these notifications in your application."
 ---
 
 These notifications lack a visible user interface element but come with valuable data payloads. To effectively use this feature, you must create a notification template in the Fyno application, specifying the template type as "silent." Additionally, developers must integrate the `onMessageReceived` event handler into the In-App SDK configuration to capture these silent notifications.
 
 This documentation provides a comprehensive guide on creating a silent notification template in Fyno and capturing these notifications in your application.
 
-## Creating a Silent Notification Template in Fyno
+## Creating Silent Notification Template
 
 To create a silent notification template in Fyno, follow these steps:
 
-1. **Accessing Fyno Application**: Access your Fyno account and navigate to the Templates section.
-2. **Template Creation**:
+<Steps>
+### Access Fyno Application
+Access your Fyno account and navigate to the Templates section.
+
+### Create Template
+
     - Click the "Create Template" button or edit an existing template.
     - Set the template type to "Silent." This indicates that this notification template will be used for sending silent notifications.
     - Define the data payload.
     - You can leave placeholders for content that can be dynamically filled by your application.
-3. **Final Step**: Save and promote your template and It's ready to use
 
-### Capturing silent notification in your application
+### Final Step
+
+Save and promote your template and it's ready to use.
+
+</Steps>
+
+## Handling Silent Notification
 
 To capture the incoming silent notification in your application, You need to pass the event handlers(`onMessageReceived` and `onMessageClicked`) to the In-App SDK
 
-1. **SDK Integration**:  
-   Ensure you have integrated the Fyno's In-App SDK into your application by following the [Integration Guide](https://docs.fyno.io/recipes/fynos-in-app-sdk-reactjs).
-2. **Configure Event Handlers**  
-   While configuring the SDK, include `onMessageReceived` and `onMessageClicked` event handler props and pass your custom message handler methods.  
-   Define the message handler functions in your application to handle incoming silent notifications and to handle notification click/deleted events.
+### SDK Integration
 
-    In your messageHandler function, access the silent notification data payload and perform actions based on the received data. For example
+Ensure you have integrated the Fyno's In-App SDK into your application by following the [Integration Guide](./fyno-in-app-react-sdk).
 
-    ```
-    const onMessageHandler = (incoming) => {
-      // Handle the silent notification data payload here
-      const data = incoming.notification.additional_data
-      // Perform actions based on the data received
-    }
+### Configure Event Handlers
 
-    <FynoInappCenter {...config} onMessageReceived={onMessageHandler} onMessageClicked={onClickHandler}/>
-    ```
+While configuring the SDK, include `onMessageReceived` and `onMessageClicked` event handler props and pass your custom message handler methods.  
+Define the message handler functions in your application to handle incoming silent notifications and to handle notification click/deleted events.
 
-> 📘 Note
->
-> Ensure you are using @fyno/inapp-react library - **v1.0.15 or later.**
+In your messageHandler function, access the silent notification data payload and perform actions based on the received data. For example
 
-### Use Case
+```jsx title="JSX" wordWrap
+const onMessageHandler = (incoming) => {
+  // Handle the silent notification data payload here
+  const data = incoming.notification.additional_data;
+  // Perform actions based on the data received
+};
+
+<FynoInappCenter {...config} onMessageReceived={onMessageHandler} onMessageClicked={onClickHandler} />;
+```
+
+<Note>Ensure you are using @fyno/inapp-react library - **v1.0.15 or later.**</Note>
+
+## Use Case
 
 Consider a scenario where users initiate payments in your application, and you want to send silent notifications to update payment information in real-time without disrupting users with visible notifications. Follow these steps to achieve this
 
-```
+```jsx title="JSX" wordWrap
 const messageHandler = (notification) => {
   // Handle the silent notification data payload
-  const data = notification.notification_content.additional_data
+  const data = notification.notification_content.additional_data;
 
   // Update the state information in your app
-  updatePaymentInformation(data)
-}
+  updatePaymentInformation(data);
+};
 
-<FynoInappCenter {...config} onMessageReceived={messageHandler} />
+<FynoInappCenter {...config} onMessageReceived={messageHandler} />;
 ```
-
-### Conclusion
 
 By creating a silent notification template in Fyno and configuring the In-App SDK with the `onMessageReceived` event handler, developers can easily send and capture silent notifications in their applications. This feature enables non-intrusive updates and real-time data synchronisation while delivering a seamless user experience.

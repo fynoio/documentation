@@ -1,17 +1,17 @@
 ---
-title: "Fyno In-App React SDK"
+title: "React In-App SDK"
 slug: "fyno-in-app-react-sdk"
-excerpt: ""
-hidden: false
+og:title: "React In-App SDK | Fyno Documentation"
+og:description: "This guide will walk you through the prerequisites, installation, and step-by-step configuration required to get your web application ready for In-App notifications"
 ---
 
-The Fyno In-App React SDK is a powerful tool that allows you to seamlessly integrate Fyno's notification center into your React-based applications. With this SDK, you can enhance your user's experience by providing them with a feature-rich and customisable notification center.
+The In-App React SDK is a powerful tool that allows you to seamlessly integrate Fyno's notification center into your React-based applications. With this SDK, you can enhance your user's experience by providing them with a feature-rich and customisable notification center.
 
 ## Installation
 
-To get started with Fyno's In-App React SDK, you'll need to install it using [NPM](https://www.npmjs.com/package/@fyno/inapp-react)
+To get started with In-App React SDK, you'll need to install it using [NPM](https://www.npmjs.com/package/@fyno/inapp-react)
 
-```shell
+```bash title="npm"
 npm install @fyno/inapp-react
 ```
 
@@ -23,37 +23,37 @@ Before you dive into using the In-App Notification Center, there are some prereq
 
 Before you start, make sure you have the following information ready
 
--   **Workspace ID (WSID)**: You can find your workspace ID on your Fyno [API Keys](https://app.fyno.io/api-keys) page.
--   **Integration Token**: Obtain the integration token from the [Integrations](https://app.fyno.io/integrations) page.
--   **User ID**: This should be a unique identifier for the currently logged-in user. This user ID is crucial for Fyno to send specific notifications to the right users.
+- **Workspace ID (WSID)**: You can find your workspace ID on your Fyno App > [API Keys](https://app.fyno.io/api-keys) page.
+- **Integration Token**: Obtain the integration token from the Fyno App > [Integrations](https://app.fyno.io/integrations) page.
+- **User ID**: This should be a unique identifier for the currently logged-in user. This user ID is crucial for Fyno to send specific notifications to the right users.
 
 ### HMAC Signature Generation
 
 The HMAC signature is essential for ensuring the security and integrity of your notifications. Here are examples of how to generate the HMAC signature in various programming languages
 
-```javascript Node
+<CodeBlocks>
+
+```js title="Node" wordWrap
 import crypto from "crypto"; //module
 //or
 // const crypto = require('crypto') //commonjs
 const signature = crypto
-    .createHmac("sha256", "WSID" + "INTEGRATION_TOKEN")
-    .update("USER_ID")
-    .digest("hex");
+  .createHmac("sha256", "WSID" + "INTEGRATION_TOKEN")
+  .update("USER_ID")
+  .digest("hex");
 ```
 
-```javascript
+```js title="JavaScript" wordWrap
 const CryptoJS = require("crypto-js"); //commonjs
 //or
 //import CryptoJS from "crypto-js";//module
 const secretKey = "WSID" + "INTEGRATION_TOKEN";
 const userId = "USER_ID";
 
-const signature = CryptoJS.HmacSHA256(userId, secretKey).toString(
-    CryptoJS.enc.Hex
-);
+const signature = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
 ```
 
-```python
+```python title="Python" wordWrap
 import hashlib
 import hmac
 
@@ -63,7 +63,7 @@ user_id = 'USER_ID'
 signature = hmac.new(secret_key, user_id.encode('utf-8'), hashlib.sha256).hexdigest()
 ```
 
-```java
+```java title="Java" wordWrap
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
@@ -91,10 +91,12 @@ public class SignatureExample {
 
         String signature = hexString.toString();
     }
+
 }
+
 ```
 
-```go
+```go title="Go" wordWrap
 package main
 
 import (
@@ -129,14 +131,14 @@ func main() {
 }
 ```
 
-```php
+```php title="PHP" wordWrap
 $secretKey = 'WSID'.'INTEGRATION_TOKEN';
 $userId = 'USER_ID';
 
 $signature = hash_hmac('sha256', $userId, $secretKey);
 ```
 
-```ruby
+```ruby title="Ruby" wordWrap
 require 'openssl'
 
 secret_key = 'WSID'+'INTEGRATION_TOKEN'
@@ -145,7 +147,7 @@ user_id = 'USER_ID'
 signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secret_key, user_id)
 ```
 
-```csharp
+```csharp title="C#" wordWrap
 using System;
 using System.Security.Cryptography;
 using System.Text;
@@ -166,15 +168,17 @@ class Program
 }
 ```
 
-> 🚧 Watch out when generating HMAC Signatures!
->
-> Please be cautious when generating the signature on the frontend, as it might expose your Integration token. It's recommended to perform the token generation on the backend.
+</CodeBlocks>
 
-### SDK Initialisation in Frontend
+<Warning title="Watch out when generating HMAC Signatures!">Avoid generating the signature in the frontend, as it can expose your Integration token. Always generate the token securely in the backend or middleware.</Warning>
 
-To use the SDK in your React application, you can import FynoInappCenter and configure it as follows
+### SDK Initialisation
 
-```javascript JSX
+To use the SDK in your React application, you can import `FynoInappCenter` and configure it as follows
+
+<CodeBlocks>
+
+```jsx title="Option 1" wordWrap
 import { FynoInappCenter } from '@fyno/inapp-react'
 
 class Example extends Component {
@@ -209,9 +213,7 @@ class Example extends Component {
 
 ```
 
-Alternatively, you can configure the SDK like this
-
-```javascript JSX
+```jsx title="Option 2" wordWrap
 import { FynoInappCenter } from '@fyno/inapp-react'
 
 class Example extends Component {
@@ -241,13 +243,14 @@ class Example extends Component {
         signature="{signature generated from backend}"
         themeConfig={themeConfig}
         notificationSettings={notificationSettings}
-				onMessageReceived = {onMessageReceived}
+        onMessageReceived = {onMessageReceived}
       />
     )
   }
 }
-
 ```
+
+</CodeBlocks>
 
 Feel free to customise the configuration to match your application's requirements.
 

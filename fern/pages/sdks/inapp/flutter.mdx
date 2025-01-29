@@ -1,43 +1,55 @@
 ---
-title: "Fyno Flutter InApp SDK"
+title: "Flutter In-App SDK"
 slug: "fyno-flutter-inapp-sdk"
-og:title: "Fyno Flutter InApp SDK"
+og:title: "Flutter In-App SDK | Fyno Documentation"
+og:description: "This guide will walk you through the prerequisites, installation, and step-by-step configuration required to get your web application ready for In-App notifications"
 ---
 
 Fyno's Flutter InApp SDK offers a comprehensive set of notification features within your app. It's designed to efficiently deliver messages, ensuring optimal performance and user experience.
-
-## Prerequisites
-
-Before you start, make sure you have the following information ready
-
--   **Workspace ID (WSID)**: You can find your workspace ID on your Fyno [API Keys](https://app.fyno.io/api-keys) page.
--   **Integration Token**: Obtain the integration token from the [Integrations](https://app.fyno.io/integrations) page.
--   **User ID**: This should be a unique identifier for the currently logged-in user. This user ID is crucial for Fyno to send specific notifications to the right users.
 
 ## Installation
 
 Install the package by using one of the following commands.
 
-```Text bash
+<CodeBlocks>
+```bash title="Dart" wordWrap
 dart pub add fyno_flutter_inapp
-OR
+```
+
+```bash title="Flutter" wordWrap
 flutter pub add fyno_flutter_inapp
 ```
 
-This will add a line like this to your package's pubspec.yaml (and run an implicit `dart/flutter pub get`):
+</CodeBlocks>
 
-```Text yaml
+This will add a line like this to your package's `pubspec.yaml` (and run an implicit `dart/flutter pub get`):
+
+```yaml title="pubspec.yaml" wordWrap
 dependencies:
   fyno_flutter_inapp: <latest_version>
 ```
 
 Alternatively, your editor might support `dart/flutter pub get`. Check the docs for your editor to learn more.
 
-## HMAC Signature Generation
+## Usage
 
-The HMAC signature is essential for ensuring the security and integrity of your notifications. Here is an example of how to generate the HMAC signature in dart
+Before you dive into using the In-App Notification Center, there are some prerequisites you need to fulfill. You must ensure you have the necessary information and generate an HMAC signature.
 
-```csharp dart
+### Prerequisites
+
+Before you start, make sure you have the following information ready
+
+- **Workspace ID (WSID)**: You can find your workspace ID on your Fyno App > [API Keys](https://app.fyno.io/api-keys) page.
+- **Integration Token**: Obtain the integration token from the Fyno App > [Integrations](https://app.fyno.io/integrations) page.
+- **User ID**: This should be a unique identifier for the currently logged-in user. This user ID is crucial for Fyno to send specific notifications to the right users.
+
+### HMAC Signature Generation
+
+The HMAC signature is essential for ensuring the security and integrity of your notifications. Here is an example of how to generate the HMAC signature in various programming languages.
+
+<CodeBlocks>
+
+```dart title="Dart" wordWrap
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 
@@ -46,40 +58,180 @@ void main() {
       .convert(utf8.encode(userId))
       .toString();
 }
+
 ```
 
-## Usage
-
-Import the package in your Dart file:
-
-```Text dart
-import 'package:fyno_flutter_inapp/fyno_flutter_inapp.dart';
+```js title="Node" wordWrap
+import crypto from "crypto"; //module
+//or
+// const crypto = require('crypto') //commonjs
+const signature = crypto
+  .createHmac("sha256", "WSID" + "INTEGRATION_TOKEN")
+  .update("USER_ID")
+  .digest("hex");
 ```
+
+```js title="JavaScript" wordWrap
+const CryptoJS = require("crypto-js"); //commonjs
+//or
+//import CryptoJS from "crypto-js";//module
+const secretKey = "WSID" + "INTEGRATION_TOKEN";
+const userId = "USER_ID";
+
+const signature = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
+```
+
+```python title="Python" wordWrap
+import hashlib
+import hmac
+
+secret_key = b'WSID'+b'INTEGRATION_TOKEN'
+user_id = 'USER_ID'
+
+signature = hmac.new(secret_key, user_id.encode('utf-8'), hashlib.sha256).hexdigest()
+```
+
+```java title="Java" wordWrap
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+
+public class SignatureExample {
+
+    public static void main(String[] args) throws Exception {
+        String secretKey = "WSID" + "INTEGRATION_TOKEN"; // Concatenate the secret key
+        String userId = "USER_ID";
+
+        // Create a new instance of the HmacSHA256 algorithm
+        Mac mac = Mac.getInstance("HmacSHA256");
+        SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+        mac.init(secretKeySpec);
+
+        // Compute the hash
+        byte[] hash = mac.doFinal(userId.getBytes(StandardCharsets.UTF_8));
+
+        // Convert the hash to a hexadecimal string
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = String.format("%02x", b);
+            hexString.append(hex);
+        }
+
+        String signature = hexString.toString();
+    }
+
+}
+
+```
+
+```go title="Go" wordWrap
+package main
+
+import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
+	"fmt"
+)
+
+func main() {
+	secretKey := "WSID"+"INTEGRATION_TOKEN"
+	userId := "USER_ID"
+
+	key := []byte(secretKey)
+	data := []byte(userId)
+
+	// Create an HMAC-SHA256 hasher
+	hasher := hmac.New(sha256.New, key)
+
+	// Write the data to the hasher
+	_, err := hasher.Write(data)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Get the resulting hash as bytes
+	hash := hasher.Sum(nil)
+
+	// Convert the hash to a hexadecimal string
+	signature := hex.EncodeToString(hash)
+}
+```
+
+```php title="PHP" wordWrap
+$secretKey = 'WSID'.'INTEGRATION_TOKEN';
+$userId = 'USER_ID';
+
+$signature = hash_hmac('sha256', $userId, $secretKey);
+```
+
+```ruby title="Ruby" wordWrap
+require 'openssl'
+
+secret_key = 'WSID'+'INTEGRATION_TOKEN'
+user_id = 'USER_ID'
+
+signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secret_key, user_id)
+```
+
+```csharp title="C#" wordWrap
+using System;
+using System.Security.Cryptography;
+using System.Text;
+
+class Program
+{
+    static void Main()
+    {
+        string secretKey = "WSIDINTEGRATION_TOKEN";
+        string userId = "USER_ID";
+
+        using (HMACSHA256 hmac = new HMACSHA256(Encoding.UTF8.GetBytes(secretKey))
+        {
+            byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userId));
+            string signature = BitConverter.ToString(hash).Replace("-", "").ToLower();
+        }
+    }
+}
+```
+
+</CodeBlocks>
+
+<Warning title="Watch out when generating HMAC Signatures!">Avoid generating the signature in the frontend, as it can expose your Integration token. Always generate the token securely in the backend or middleware.</Warning>
 
 ### SDK Initialisation
 
-To use the SDK in your Flutter application, initialise the SDK as follows
+Import the package in your Dart file:
 
-```Text dart
+```dart title="dart" wordWrap
+import 'package:fyno_flutter_inapp/fyno_flutter_inapp.dart';
+```
+
+To use the SDK in your Flutter application, initialise the SDK as follows:
+
+```dart title="dart" wordWrap
 final FynoInApp fynoInApp = FynoInApp();
 
 //Web Socket connection
 fynoInApp.fynoInAppSocketConnect(
-	workspaceId,
+  workspaceId,
   integrationId,
-	userId,
+  userId,
   origin,
-	signature,
+  signature,
 );
 ```
 
 ### Reset SDK
 
-To reset the Inapp SDK, typically during logout, call the fynoInapp.reset() function.
+To reset the Inapp SDK, typically during logout, call the `fynoInapp.reset()` function.
 
-```Text dart
+```dart title="dart" wordWrap
 fynoInApp.reset();
 ```
+
+### In-App UI
 
 There are 3 ways you can configure the InApp UI.
 
@@ -87,16 +239,16 @@ There are 3 ways you can configure the InApp UI.
 2. Fyno Customisable UI
 3. Your own UI
 
-### Fyno UI
+#### Fyno UI
 
-```Text dart
+```dart title="dart" wordWrap
 fynoInApp.getFynoNotificationIconButton(
   context,
   <icon_color>,
 ),
 ```
 
-### Fyno Customisable UI
+#### Fyno Customisable UI
 
 To customise the Fyno UI, you can pass the notification icon and colours you would like to use for the inapp notification inbox.
 
@@ -104,7 +256,7 @@ As of now, you can only change notification icon to any of the built in icons.
 
 You can do the customisation as follows:
 
-```
+```dart title="dart" wordWrap
 fynoInApp.getFynoNotificationIconButton(
     context,
     <icon_color>,
@@ -119,79 +271,69 @@ fynoInApp.getFynoNotificationIconButton(
 )
 ```
 
-**lightBackground** (optional) - The background color in light mode
+- **lightBackground** (optional) - The background color in light mode
+- **darkBackground** (optional) - The background color in dark mode
+- **lightText** (optional) - The text color in light mode
+- **darkText** (optional) - The text color in dark mode
+- **primary** (optional) - The background color of primary buttons (if any) in the notification
 
-**darkBackground** (optional) - The background color in dark mode
-
-**lightText** (optional) - The text color in light mode
-
-**darkText** (optional) - The text color in dark mode
-
-**primary** (optional) - The background color of primary buttons (if any) in the notification
-
-### Your own UI
+#### Your own UI
 
 You have the flexibility to build your own UI. Additionally, you can personalise the icons for actions like 'Read all' and 'Delete all' with your own custom designs. If you are going to use this approach, it is necessary to invoke the following functions.
 
-1. Count of all InApp notifications (Both read and unread)
-
-```Text dart
-fynoInApp.fynoInAppState.count
+<AccordionGroup>
+<Accordion title="Count of all InApp notifications (Both read and unread)">
+```js title="dart" wordWrap
+fynoInApp.fynoInAppState.count;
 ```
+</Accordion>
 
-2. Count of unread InApp notifications
-
-```Text dart
+<Accordion title="Count of unread InApp notifications">
+```js title="dart" wordWrap
 fynoInApp.fynoInAppState.unreadCount
 ```
-
-3. List of all InApp notifications (Both read and unread)
-
-```Text dart
+</Accordion>
+<Accordion title="List of all InApp notifications (Both read and unread)">
+```js title="dart" wordWrap
 fynoInApp.fynoInAppState.list
 ```
-
-4. List of unread InApp notifications
-
-```Text dart
+</Accordion>
+<Accordion title="List of unread InApp notifications">
+```js title="dart" wordWrap
 fynoInApp.fynoInAppState.unreadList
 ```
-
-5. Current page number
-
-```Text dart
+</Accordion>
+<Accordion title="Current page number">
+```js title="dart" wordWrap
 fynoInApp.fynoInAppState.page
 ```
-
-6. To mark all InApp notifications as Read
-
-```Text dart
+</Accordion>
+<Accordion title="To mark all InApp notifications as Read">
+```js title="dart" wordWrap
 fynoInApp.markAllAsRead()
 ```
-
-7. To delete all InApp notifications
-
-```Text dart
+</Accordion>
+<Accordion title="To delete all InApp notifications">
+```js title="dart" wordWrap
 fynoInApp.deleteAllMessages()
 ```
-
-8. To mark a single InApp notifications as Read
-
-```Text dart
+</Accordion>
+<Accordion title="To mark a single InApp notifications as Read">
+```js title="dart" wordWrap
 fynoInApp.markAsRead(notification)
 // pass one of the items from the list: fynoInApp.fynoInAppState.list
 ```
-
-9. To delete a single InApp notification
-
-```Text dart
+</Accordion>
+<Accordion title="To delete a single InApp notification">
+```js title="dart" wordWrap
 fynoInApp.deleteMessage(notification)
 // pass one of the items from the list: fynoInApp.fynoInAppState.list
 ```
-
-10. To load more notifications (based on pagination)
-
-```Text dart
+</Accordion>
+<Accordion title="To load more notifications (based on pagination)">
+```js title="dart" wordWrap
 fynoInApp.loadMoreNotifications(page, type)
 // type -> 'all' or 'unread', page should be greater than zero
 ```
+</Accordion>
+</AccordionGroup>

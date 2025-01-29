@@ -1,29 +1,26 @@
 ---
 title: "FAQs"
 slug: "faqs-1"
-excerpt: ""
-hidden: false
+og:title: "FAQs - React Native Push SDK | Fyno Documentation"
+og:description: "This guide will walk you through the Frequently Asked Questions when getting your app ready for push notifications."
 ---
 
-**Q. Build Issue**
+<AccordionGroup>
+<Accordion title="Build Issue: Error (Xcode): Cycle inside Runner; building could produce unreliable results">
 
-Error (Xcode): Cycle inside Runner; building could produce unreliable results
-
-**A.** In **Xcode** > **Targets** > **Runner** > **Build Phases**, drag and arrange Embed Frameworks, [CP] Embed Pods Frameworks, and Embed Foundation Extensions so that they are above **Run Script**. Refer [this](https://developer.apple.com/forums/thread/730974) for more details.
+<p>In **Xcode** > **Targets** > **Runner** > **Build Phases**, drag and arrange Embed Frameworks, [CP] Embed Pods Frameworks, and Embed Foundation Extensions so that they are above **Run Script**. Refer [this](https://developer.apple.com/forums/thread/730974) for more details.</p>
 
 ![](/images/react_FAQ.png)
 
-**Q. Pod install issue**
+</Accordion>
 
-[!] The following Swift pods cannot yet be integrated as static libraries:
-
-The Swift pod `fyno-push-ios` depends upon `FMDB`, which does not define modules. To opt into those targets generating module maps (which is necessary to import them from Swift when building as static libraries), you may set `use_modular_headers!` globally in your Podfile, or specify `:modular_headers => true` for particular dependencies.
-
-**A.** Add `use_modular_headers!` in your Podfile similar to:
-
-```Text Podfile
+<Accordion title = "Pod install issue: [!] The following Swift pods cannot yet be integrated as static libraries: The Swift pod fyno-push-ios depends upon FMDB, which does not define modules. To opt into those targets generating module maps (which is necessary to import them from Swift when building as static libraries), you may set use_modular_headers! globally in your Podfile, or specify :modular_headers => true for particular dependencies.">
+<p></p>
+<p>Add `use_modular_headers!` in your Podfile similar to:</p>
+```Text title="Podfile" wordWrap
 target '<application_name>' do
   use_modular_headers!
 ```
-
-Also, comment the `:flipper_configuration => flipper_config,` line.
+<p>Also, comment the `:flipper_configuration => flipper_config,` line.</p>
+</Accordion>
+</AccordionGroup>

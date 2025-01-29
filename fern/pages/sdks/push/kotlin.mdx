@@ -1,49 +1,56 @@
 ---
-title: "Fyno Android Push Notification SDK"
+title: "Kotlin Push SDK"
 slug: "sdk-fyno-android-push-sdk"
-og:title: "Push Notification SDK - Fyno Android Push Notification SDK | Fyno Documentation"
+og:title: "Android (Kotlin) Push Notification SDK | Fyno Documentation"
 og:description: "A guide to integrating your  Fyno Android Push Notification SDK into Fyno."
 ---
 
-Fyno's Android Push Notification SDK comes with the ability to provide its users with a multitude of notification features, all bundled into one, allowing it to smartly provide the best and optimised message delivery service from within your application itself.
+Fyno's Android (Kotlin) Push Notification SDK comes with the ability to provide its users with a multitude of notification features, all bundled into one, allowing it to smartly provide the best and optimised message delivery service from within your application itself.
 
 ## Prerequisites
 
 In order to get started, there are a few prerequisites that needs to be in place:
 
-1. **Firebase Setup:** Setup Firebase and create application in Firebase Console. You can refer to the [FCM Documentation](./push-fcm) for more details.
-2. **Xiaomi Setup:** Setup _Xiaomi Developer Account_ and create application in Xiaomi push console. You may refer to the [Mi Push Documentation](./push-mi-push) for more details.
-3. **Configuration:** Configure your Fyno Push provider in [Fyno App](https://app.fyno.io/integrations)
+- **Firebase Setup:** Setup Firebase and create application in Firebase Console. You can refer to the [FCM Documentation](./push-fcm) for more details.
+- **Xiaomi Setup:** Setup _Xiaomi Developer Account_ and create application in Xiaomi push console. You may refer to the [Mi Push Documentation](./push-mi-push) for more details.
+- **Configuration:** Configure your Fyno Push provider in Fyno App > [Integrations](https://app.fyno.io/integrations).
 
 ## Installation
 
 This step essentially explains how and where to place the Fyno SDK in your repository in order to have the SDK correctly initialised.
 
-1. Add mavenCentral() repository to your root build gradle.
+<Steps>
+### Add mavenCentral() repository
+Add mavenCentral() repository to your root build gradle.
 
-    ```kotlin
-    // place the below snippet in your project gradle file
-    allprojects {
-        repositories {
-            ...
-            mavenCentral()
-        }
+```kotlin title="project_name/build.gradle" wordWrap
+// place the below snippet in your project gradle file
+allprojects {
+    repositories {
+        ...
+        mavenCentral()
     }
+}
+```
 
-    ```
+### Add Android dependencies
 
-2. Add Android dependencies inside the app build gradle by adding the below line inside dependencies {}
+Add Android dependencies inside the app build gradle by adding the below line inside dependencies {}
 
-    ```kotlin
-    implementation 'io.fyno.kotlin-sdk:kotlin-sdk:0.0.4'
+```kotlin title="project_name/app/build.gradle" wordWrap
+implementation 'io.fyno.kotlin-sdk:kotlin-sdk:0.0.4'
+```
 
-    ```
+</Steps>
 
 ## Initialisation
 
-1. To integrate Fyno Android SDK, initialise Fyno SDK in MainActivity/MainApplication inside `onCreate` method.
+<Steps>
+### Initialize Fyno SDK in Your Android App
 
-```kotlin
+To integrate Fyno Android SDK, initialise Fyno SDK in `MainActivity/MainApplication` inside `onCreate` method.
+
+```kotlin title="kotlin" wordWrap
 class MyApplication : Application() {
 
     override fun onCreate() {
@@ -63,77 +70,82 @@ FynoSdk.identify("Distinct_Id")
 
 ```
 
-> 🤓 `onCreate` Magic!
->
-> `onCreate` allows the SDK to collect the device details and user profile details and transmits this information to your Fyno account to:
->
-> 1. Create a temporary User Profile, in case the customer is not signed in, with Push and In-App token details
-> 2. Create a User Profile with Push and In-App token details, along with other details captured (Including email or mobile number details depending on the inputs received during signing into your application)
-> 3. Appends details to a User Profile with the matching Distinct_ID for the newly created Push Tokens.
+<Info title="onCreate Magic!">
+  <p>`onCreate` allows the SDK to collect the device details and user profile details and transmits this information to your Fyno account to:</p>
+  <ul>
+    <li>Create a temporary User Profile, in case the customer is not signed in, with Push and In-App token details</li>
+    <li>Create a User Profile with Push and In-App token details, along with other details captured (Including email or mobile number details depending on the inputs received during signing into your application)</li>
+    <li>Appends details to a User Profile with the matching Distinct_ID for the newly created Push Tokens.</li>
+  </ul>
+</Info>
 
-> 📘 NOTE:
->
-> You can also use individual SDK's for communication via Fyno. Read on to understand more about each component.
+<Note>You can also use individual SDK's for communication via Fyno. Read on to understand more about each component.</Note>
 
-2. **Fyno Core:** Fyno Core initialises the context between your android application and Fyno, which has all the required configurations needed for FynoSDK, FynoPush and FynoCallback to work and helps with profiling the users as well.
+### Fyno Core: Establish Context & User Profiling
 
-    1. **Adding Dependencies:** Add following line inside dependencies in app build gradle
+Fyno Core initialises the context between your android application and Fyno, which has all the required configurations needed for FynoSDK, FynoPush and FynoCallback to work and helps with profiling the users as well.
 
-        ```kotlin
-        dependencies{
-            ...
-            implementation 'io.fyno.kotlin-sdk:core:0.0.5'
-        }
-        ```
+1.  **Adding Dependencies:** Add following line inside dependencies in app build gradle
 
-    2. **Initialisation:** Fyno Core SDK is responsible for initialising the context to save Fyno configurations and user profiling.
-        1. To initialise Fyno SDK you have to call `FynoCore.initialize(this, "WSID", "APIKEY")`
-        2. When a user logs in, to create a user profile, call `FynoUser.identify("Distinct_Id")`
+    ```kotlin title="project_name/app/build.gradle" wordWrap
+    dependencies{
+        ...
+        implementation 'io.fyno.kotlin-sdk:core:0.0.5'
+    }
+    ```
 
-3. **Fyno Push:** Fyno Push handles incoming push notification requests from Fyno and renders the customised push message with different templates as configured in Fyno platform. This library takes care of Push Amplification, if enabled.
+2.  **Initialisation:** Fyno Core SDK is responsible for initialising the context to save Fyno configurations and user profiling.
+    - To initialise Fyno SDK you have to call `FynoCore.initialize(this, "WSID", "APIKEY")`
+    - When a user logs in, to create a user profile, call `FynoUser.identify("Distinct_Id")`
 
-    1. **Adding Dependencies:** Add following line inside dependencies in app build gradle. Also, download the google-services.json from Firebase console and place it in the root folder as per [FCM Documentations](https://firebase.google.com/docs/android/setup)
+### Fyno Push: Handle and Amplify Push Notifications
 
-        ```kotlin
-        dependencies{
-            ...
-            implementation 'io.fyno.kotlin-sdkk:pushlibrary:0.0.4'
-        }
+Fyno Push handles incoming push notification requests from Fyno and renders the customised push message with different templates as configured in Fyno platform. This library takes care of Push Amplification, if enabled.
 
-        ```
+1.  **Adding Dependencies:** Add following line inside dependencies in app build gradle. Also, download the google-services.json from Firebase console and place it in the root folder as per [FCM Documentations](https://firebase.google.com/docs/android/setup)
 
-    2. **Initialisation:** Fyno Push SDK is responsible for handling push rendering and push amplification.
+    ```kotlin title="project_name/app/build.gradle" wordWrap
+    dependencies{
+        ...
+        implementation 'io.fyno.kotlin-sdkk:pushlibrary:0.0.4'
+    }
 
-        1. To initialise Fyno Push you are required to use `FynoCore` you have to call `FynoCore.initilize(this, "WSID", "APIKEY")`
-        2. To initialize push, call `FynoPush.registerPush` method
-        3. **Push Amplification:** To make use of push amplification Follow [Mi Push Documentation](https://docs.fyno.io/docs/push-mi-push) to implement Xiaomi push
+    ```
 
-            ```kotlin
-            //register push
-            FynoPush.registerPush("Xiaomi_App_Id", "Xiaomi_App_Key", "Xiaomi_Push_Region", "Fyno_Integration_Id")
-            //register push without amplification
-            FynoPush.registerFcm("Fyno_Integration_id")
+2.  **Initialisation:** Fyno Push SDK is responsible for handling push rendering and push amplification.
 
-            ```
+    - To initialise Fyno Push you are required to use `FynoCore` you have to call `FynoCore.initilize(this, "WSID", "APIKEY")`
+    - To initialize push, call `FynoPush.registerPush` method
+    - **Push Amplification:** To make use of push amplification follow [Mi Push Documentation](https://docs.fyno.io/docs/push-mi-push) to implement Xiaomi push
 
-4. **Fyno Callback:** Fyno Push SDK is responsible for sending push callbacks to Fyno by calling `FynoCallback.updateStatus` method. The above method required 2 required parameters and 1 optional parameter
+    ```kotlin title="kotlin" wordWrap
+    //register push
+    FynoPush.registerPush("Xiaomi_App_Id", "Xiaomi_App_Key", "Xiaomi_Push_Region", "Fyno_Integration_Id")
+    //register push without amplification
+    FynoPush.registerFcm("Fyno_Integration_id")
+    ```
 
-    1. `callback_url` - Required parameter - You can get the `callback_url`from the notification additional payload if the notification triggered from Fyno.
-    2. `status` - Required parameter - `status` of the push notification to be notified to Fyno. It is of type `MessageStatus`. The possible message statuses that you can receive are:
-        1. `MessageStatus.RECEIVED`
-        2. `MessageStatus.OPENED`
-        3. `MessageStatus.CLICKED`
-        4. `MessageStatus.DISMISSED`
-    3. Additional parameters - optional parameters, like device details can be captured here.
+### Fyno Callback: Track Push Notification Status
 
-        ```kotlin
-        //Updating notification status to Fyno
-        FynoCallback.updateStatus("Callback_URL", "Message_Status","Additional_Data")
+Fyno Push SDK is responsible for sending push callbacks to Fyno by calling `FynoCallback.updateStatus` method. The above method required 2 required parameters and 1 optional parameter
 
-        ```
+1.  `callback_url` - Required parameter - You can get the `callback_url`from the notification additional payload if the notification triggered from Fyno.
+2.  `status` - Required parameter - `status` of the push notification to be notified to Fyno. It is of type `MessageStatus`. The possible message statuses that you can receive are:
+    - `MessageStatus.RECEIVED`
+    - `MessageStatus.OPENED`
+    - `MessageStatus.CLICKED`
+    - `MessageStatus.DISMISSED`
+3.  Additional parameters - optional parameters, like device details can be captured here.
 
-> 💥 Fyno Callback stand-alone
->
-> We all love features that can be mixed and matched! Fyno is a firm believer of this and has made our Callback feature with this in mind.
->
-> While the `callback_url` feature works effortlessly through the Fyno Android Push Notification SDK without any additional setup needed, when used independently, you can also use only this piece to get your notification status, which can be found in the data payload of your notification.
+    ```kotlin title="kotlin" wordWrap
+    //Updating notification status to Fyno
+    FynoCallback.updateStatus("Callback_URL", "Message_Status", "Additional_Data")
+
+    ```
+
+</Steps>
+
+<Tip title="Fyno Callback stand-alone">
+  <p>We all love features that can be mixed and matched! Fyno is a firm believer of this and has made our Callback feature with this in mind.</p>
+  <p>While the `callback_url` feature works effortlessly through the Fyno Android Push Notification SDK without any additional setup needed, when used independently, you can also use only this piece to get your notification status, which can be found in the data payload of your notification.</p>
+</Tip>

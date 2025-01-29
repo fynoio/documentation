@@ -1,13 +1,13 @@
 ---
 title: "Android specific configuration"
 slug: "ios-specific-configuration"
-excerpt: ""
-hidden: false
+og:title: "Android Specific Configuration - React Native Push SDK | Fyno Documentation"
+og:description: "This guide will walk you through the Android specific configuration required to get your app ready for push notifications."
 ---
 
--   In your root-level (project-level) gradle file (project_name/build.gradle), add the Google services plugin as a dependency:
+- In your root-level (project-level) gradle file (`project_name/build.gradle`), add the Google services plugin as a dependency:
 
-```Text gradle
+```dart title="project_name/build.gradle" wordWrap
 dependencies {
   ...
   classpath 'com.google.gms:google-services:4.3.15'
@@ -15,9 +15,9 @@ dependencies {
 }
 ```
 
--   In your module (app-level) gradle file (usually project_name/app_name/build.gradle), add the Google services plugin:
+- In your module (app-level) gradle file (usually `project_name/app_name/build.gradle`), add the Google services plugin:
 
-```Text gradle
+```dart title="project_name/app_name/build.gradle" wordWrap
 plugins {
   ...
   id 'com.google.gms.google-services'
@@ -25,8 +25,8 @@ plugins {
 }
 ```
 
-or
+OR
 
-```Text gradle
+```dart title="project_name/app_name/build.gradle" wordWrap
 apply plugin: 'com.google.gms.google-services'
 ```

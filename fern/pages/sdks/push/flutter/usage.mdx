@@ -20,7 +20,7 @@ To initialise the Fyno SDK, you need to provide the following information:
 
 In your main Dart file, import the `fyno_flutter` package and call `FynoFlutter.init()` to initialise the SDK:
 
-```dart
+```dart title="dart"
 import 'package:fyno_flutter/fyno_flutter.dart';
 
 void main() {
@@ -49,7 +49,7 @@ To update/set a distinct ID or user name, you can call `FynoFlutter.identify()`.
 - **Distinct ID:**: The distinct ID you want to identify the user with.
 - **User Name:** The name you want to assign to the user.
 
-```dart wordWrap
+```dart title="dart" wordWrap
 Exception? identifyException = await FynoFlutter.identify('distinctId', 'userName');
 
 if (identifyException != null) {
@@ -66,7 +66,7 @@ To update/set only the name for a user profile, you can call `FynoFlutter.update
 
 - **User Name:** The name you want to assign to the user.
 
-```dart wordWrap
+```dart title="dart" wordWrap
 Exception? updateUserNameException = await FynoFlutter.updateName('userName');
 
 if (updateUserNameException != null) {
@@ -86,7 +86,7 @@ To register the application for push notifications, call `FynoFlutter.registerPu
 - To register for push notifications with **APNs** or **Google FCM**, you need to specify the provider type.
 - Use **apns** if [APNs](./push-apns) is configured or **fcm** if [Google FCM](./push-fcm) is configured in the integration.
 
-```dart wordWrap
+```dart title="dart" wordWrap
 Exception? pushRegistrationException = await FynoFlutter.registerPush(
   'provider', // has to be either apns or fcm
 );
@@ -108,7 +108,7 @@ For Google FCM, ensure you've followed the Firebase setup [mentioned earlier](./
 - **Push Region:** Refers to the geographical region where push notifications are delivered.
 - **Provider:** Use **xiaomi**.
 
-```dart dart
+```dart title="dart" wordWrap
 Exception? pushRegistrationResult = FynoFlutter.registerPush(
     'xiaomi',
     xiaomiApplicationId: 'xiaomiApplicationId',
@@ -128,7 +128,7 @@ if (pushRegistrationResult != null) {
 
 If you want to fetch the push notification token for the current device, use `FynoFlutter.getNotificationToken()`
 
-```dart wordWrap
+```dart title="dart" wordWrap
 String? notificationToken = await FynoFlutter.getNotificationToken();
 
 if(notificationToken != null) {
@@ -144,7 +144,7 @@ To check if the push notification received is from Fyno, use `FynoFlutter.isFyno
 
 <Warning title="Android only">The following two functions (`isFynoNotification` and `handleFynoNotification`) is available only in Android and applicable only if you have notifications getting triggered from multiple sources.</Warning>
 
-```dart wordWrap
+```dart title="dart" wordWrap
 // to receive and handle notifications when the application is in background or killed state
 FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
   if (await FynoFlutter.isFynoNotification(message.toMap())) {
@@ -168,7 +168,7 @@ FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
 
 If you need to merge two user profiles, call `FynoFlutter.mergeProfile()` with the old and new distinct IDs.
 
-```dart wordWrap
+```dart title="dart" wordWrap
 Exception? mergeException = await FynoFlutter.mergeProfile(
     'oldDistinctId',
     'newDistinctId',
@@ -189,7 +189,7 @@ You can update the status of a notification (received, clicked or dismissed) usi
 - **Callback URL:** You can obtain the Callback URL from the notification additional payload if the notification was triggered from Fyno.
 - **Status:** The status of the notification (one of **RECEIVED**, **CLICKED** or **DISMISSED**).
 
-```dart wordWrap
+```dart title="dart" wordWrap
 Exception? updateStatusException = await FynoFlutter.updateStatus(
     'callbackUrl',
     'status',
@@ -212,7 +212,7 @@ To reset user information, call `FynoFlutter.resetUser()`.
 - This feature proves to be invaluable if you plan to send push notifications to an application even after the user has logged out.
 - It is also **recommmended** as it ensures that devices where the users have logged out are no longer associated with them.
 
-```dart
+```dart title="dart" wordWrap
 Exception? resetUserException = await FynoFlutter.resetUser();
 
 if (resetUserException != null) {
@@ -225,7 +225,7 @@ if (resetUserException != null) {
 
 ### Sample initialisation
 
-```dart
+```dart title="dart" wordWrap
 // initialise
 
 Exception? initException = await FynoFlutter.init(
