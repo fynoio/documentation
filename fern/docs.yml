@@ -197,7 +197,7 @@ navigation:
                           path: "pages/integrations/voice/twilio.mdx"
                   - page: "Web Push"
                     path: "pages/integrations/web-push-channel.mdx"
-                  - section: "DLT (Distributed Ledger Technology)"
+                  - section: "DLT"
                     path: "pages/integrations/dlt.mdx"
                     contents:
                         - page: "Airtel Commercial Communications"
@@ -208,7 +208,7 @@ navigation:
                           path: "pages/integrations/dlt/videocon.mdx"
                         - page: "Vodafone Idea"
                           path: "pages/integrations/dlt/vodafone-idea.mdx"
-                  - section: "RCS (Rich Communication Services)"
+                  - section: "RCS"
                     path: "pages/integrations/rcs-channel.mdx"
                     contents:
                         - page: "Gupshup Enterprise"
@@ -288,7 +288,7 @@ navigation:
                         path: "pages/templates/components.mdx"
                 - section: "Routing"
                   icon: fa-regular fa-code-branch
-                  path: "pages/placeholder.mdx"
+                  path: "pages/routing/routing.mdx"
                   contents:
                       - section: "Single Channel Routing"
                         path: "pages/routing/singlechannel/introduction.mdx"
@@ -309,9 +309,8 @@ navigation:
                               path: "pages/routing/omnichannel/create.mdx"
                 - section: "Notification Events"
                   icon: fa-regular fa-paper-plane
-                  contents:
-                      - page: "Overview"
-                        path: "pages/notification-events/overview.mdx"
+                  path: "pages/notification-events/overview.mdx"
+                  contents:                      
                       - section: "Creating a Notification Event"
                         path: "pages/notification-events/creation.mdx"
                         contents:
@@ -329,6 +328,7 @@ navigation:
                   icon: fa-regular fa-mouse-pointer
                   path: "pages/requests-golive/request-go-live.mdx"                  
                 - section: "Logs"
+                  path: "pages/logs/logs.mdx"
                   icon: fa-regular fa-database
                   contents:
                       - section: "Sent Logs"
@@ -360,10 +360,9 @@ navigation:
           - section: "Advanced Features"
             contents:
               - section: "Workflows"
+                path: "pages/workflows/workflows.mdx"
                 icon: fa-regular fa-diagram-project
-                contents:
-                    - page: "Overview"
-                      path: "pages/workflows/workflows.mdx"
+                contents:                                          
                     - page: "Creating a Workflow with webhook trigger"
                       path: "pages/workflows/workflow-webhook-trigger.mdx"
                     - page: "Creating a workflow with Incoming message"
@@ -386,29 +385,26 @@ navigation:
                     - page: "How to configure Idempotent Key"
                       path: "pages/workflows/idempotent-key.mdx"
               - section: "Campaigns"
+                path: "pages/campaigns/overview.mdx"
                 icon: fa-regular fa-bullhorn
-                contents:
-                    - page: "Campaigns - Overview"
-                      path: "pages/campaigns/overview.mdx"
+                contents:                    
                     - page: "Campaign Analytics"
                       path: "pages/campaigns/analytics.mdx"
                     - page: "Creating a campaign"
                       path: "pages/campaigns/creation.mdx"
               - section: "User Profiles"
+                path: "pages/user-profiles/overview.mdx"
                 icon: fa-regular fa-user-group
-                contents:
-                    - section: "User Profiles - Overview"
-                      path: "pages/user-profiles/overview.mdx"
+                contents:                
+                    - section: "Creating User Profiles"
+                      path: "pages/user-profiles/profiles-overview/creation.mdx"
                       contents:
-                          - section: "Creating User Profiles"
-                            path: "pages/user-profiles/profiles-overview/creation.mdx"
-                            contents:
-                                - page: "Adding new user property"
-                                  path: "pages/user-profiles/profiles-overview/user-property.mdx"
-                          - page: "User Profile Details"
-                            path: "pages/user-profiles/profiles-overview/details.mdx"
-                          - page: "Creating Cohorts"
-                            path: "pages/user-profiles/profiles-overview/creating-cohorts.mdx"
+                          - page: "Adding new user property"
+                            path: "pages/user-profiles/profiles-overview/user-property.mdx"
+                    - page: "User Profile Details"
+                      path: "pages/user-profiles/profiles-overview/details.mdx"
+                    - page: "Creating Cohorts"
+                      path: "pages/user-profiles/profiles-overview/creating-cohorts.mdx"
                     - page: "Updating and Deleting User Profile"
                       path: "pages/user-profiles/updation-deletion.mdx"
                     - page: "Preferences"
@@ -586,7 +582,7 @@ logo:
     height: 30
 colors:
     accentPrimary:
-        dark: "#008080"
+        dark: "#18A5A5"
         light: "#008080"
     background:
         dark: "#030303"
