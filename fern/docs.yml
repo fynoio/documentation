@@ -40,6 +40,9 @@ navigation:
                 - page: "Dashboard"
                   path: "pages/dashboard/dashboard.mdx"
                   icon: fa-regular fa-chart-simple
+                - page: "Versioning"
+                  icon: fa-regular fa-code-pull-request
+                  path: "pages/versioning/versioning-overview.mdx"
           - section: "Core Features"
             contents:            
                 - section: "Integrations"
@@ -324,6 +327,8 @@ navigation:
                         path: "pages/notification-events/logs.mdx"
                       - page: "Delivery Callback Logs"
                         path: "pages/notification-events/callback-logs.mdx"
+                      - page: "Idempotent Requests"                        
+                        path: "pages/settings/idempotent-requests.mdx"
                 - page: "Requests/Go Live"
                   icon: fa-regular fa-mouse-pointer
                   path: "pages/requests-golive/request-go-live.mdx"                  
@@ -440,33 +445,25 @@ navigation:
                         path: "pages/settings/workspace-settings/security.mdx"
                       - page: "Delivery Limit"
                         path: "pages/settings/workspace-settings/delivery-limit.mdx"
-                      - page: "Logs Archival"
-                        path: "pages/settings/workspace-settings/logs-retention.mdx"
-                      - page: "Suppression List"
-                        path: "pages/settings/workspace-settings/suppression.mdx"
-                      - page: "Conversation Logs"
-                        path: "pages/settings/workspace-settings/conversation-logs.mdx"
-                      - page: "Conversion Tracking"
-                        path: "pages/settings/workspace-settings/conversion-tracking.mdx"
-                      - page: "Analytics Label"
-                        path: "pages/settings/workspace-settings/analytics-label.mdx"
-          - section: "Bonus Features"
-            contents:
-                - page: "Versioning"
-                  icon: fa-regular fa-code-pull-request
-                  path: "pages/versioning/versioning-overview.mdx"
-                - page: "Idempotent Requests"
-                  icon: fa-regular fa-file-signature
-                  path: "pages/settings/idempotent-requests.mdx"
-                - page: "Fyno Verify"
-                  icon: fa-regular fa-key
-                  path: "pages/settings/fyno-verify.mdx"
-                - page: "Report Extraction"
-                  icon: fa-regular fa-file-export
-                  path: "pages/settings/report-extraction.mdx"
-                - page: "Push Token Cleanup"
-                  icon: fa-regular fa-broom
-                  path: "pages/settings/push-token-cleanup.mdx"
+                - section: "Add-Ons"
+                  icon: fa-regular fa-wand-magic-sparkles
+                  contents:
+                    - page: "Fyno Verify"                  
+                      path: "pages/settings/fyno-verify.mdx"
+                    - page: "Push Token Cleanup"                  
+                      path: "pages/settings/push-token-cleanup.mdx"
+                    - page: "Report Extraction"                  
+                      path: "pages/settings/report-extraction.mdx"
+                    - page: "Logs Archival"
+                      path: "pages/settings/workspace-settings/logs-retention.mdx"
+                    - page: "Suppression List"
+                      path: "pages/settings/workspace-settings/suppression.mdx"
+                    - page: "Conversation Logs"
+                      path: "pages/settings/workspace-settings/conversation-logs.mdx"
+                    - page: "Conversion Tracking"
+                      path: "pages/settings/workspace-settings/conversion-tracking.mdx"
+                    - page: "Analytics Label"
+                      path: "pages/settings/workspace-settings/analytics-label.mdx"                                          
     - tab: sdks
       layout:
           - section: "Introduction"
@@ -563,17 +560,17 @@ navbar-links:
       url: https://www.fyno.io/schedule-demo
 typography:
     bodyFont:
-        name: Inter
+        name: NotoSans
         paths:
-            - path: ./assets/Inter_18pt-Regular.ttf
+            - path: ./assets/NotoSans-Regular.ttf
               weight: 400
-            - path: ./assets/Inter_18pt-Medium.ttf
+            - path: ./assets/NotoSans-Medium.ttf
               weight: 500
-            - path: ./assets/Inter_18pt-SemiBold.ttf
+            - path: ./assets/NotoSans-SemiBold.ttf
               weight: 600 700
     headingsFont:
-        name: Inter
-        path: ./assets/Inter_24pt-Bold.ttf
+        name: RedditSans
+        path: ./assets/RedditSans-Bold.ttf
         weight: 600 700
 logo:
     href: https://www.fyno.io
