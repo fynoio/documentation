@@ -7,14 +7,24 @@ og:description: "A guide to integrate your Kaleyra Voice account into Fyno."
 
 Before we get started, you will need to have a Kaleyra Voice account already set up, along with numbers assigned and IVRs pre-created.
 
-1. Navigate to Integrations from the left hand menu.
-2. On the page that opens, find "Voice" and click on the "Kaleyra" button.
-3. In the pop-up, fill in:
-    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
-    2. **API Key**: Enter the API Key copied from your Kaleyra Voice Platform from the Developers section.
-    3. **Caller ID**: Enter the caller ID for the number/IVR that you intend on triggering with this integration.
-    4. **IVR/Call Flow ID**: From your Kaleyra Voice platform, on the main IVR Studio page, find the IVR/Call Flow ID for the corresponding flow you would like to use, and enter the same with the prefix "ivr:" (This needs to be in lower case only.) **Example:** ivr:12345
-4. Click on "Add Account" once done and you are all set!
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. On the page that opens, find "Voice" and click on the "Kaleyra" button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+- **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+- **API Key**: Enter the API Key copied from your Kaleyra Voice Platform from the Developers section.
+- **Caller ID**: Enter the caller ID for the number/IVR that you intend on triggering with this integration.
+- **IVR/Call Flow ID**: From your Kaleyra Voice platform, on the main IVR Studio page, find the IVR/Call Flow ID for the corresponding flow you would like to use, and enter the same with the prefix "ivr:" (This needs to be in lower case only.) **Example:** ivr:12345
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
@@ -22,6 +32,4 @@ Kaleyra Voice, by default, provides the status of the message without any additi
 
 Once the above integration is complete, the status of the notification, which will be shared by Kaleyra will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.
 
-> ❗️ Keypress Capture?
->
-> Does your IVR flow have a Keypress capturing requirement? If yes, you will need to configure Fyno's webhook to capture these details. Contact us to help set this up!
+<Tip title="Keypress Capture?">Does your IVR flow have a Keypress capturing requirement? If yes, you will need to configure Fyno's webhook to capture these details. Contact us to help set this up!</Tip>

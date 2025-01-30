@@ -96,6 +96,11 @@ navigation:
                           path: "pages/integrations/sms/twilio.mdx"
                         - page: "ValueFirst"
                           path: "pages/integrations/sms/valuefirst.mdx"
+                  - section: "RCS"
+                    path: "pages/integrations/rcs-channel.mdx"
+                    contents:
+                        - page: "Gupshup Enterprise"
+                          path: "pages/integrations/rcs/gupshup.mdx"
                   - section: "WhatsApp"
                     path: "pages/integrations/whatsapp-channel.mdx"
                     contents:
@@ -170,7 +175,7 @@ navigation:
                           path: "pages/integrations/chat/slack.mdx"
                         - page: "Teams"
                           path: "pages/integrations/chat/teams.mdx"
-                  - section: "Mobile Push"
+                  - section: "Push"
                     path: "pages/integrations/push-channel.mdx"
                     contents:
                         - page: "APNs (Apple Push Notification services)"
@@ -184,9 +189,7 @@ navigation:
                         - page: "Mi Push"
                           path: "pages/integrations/push/mi-push.mdx"
                         - page: "OneSignal"
-                          path: "pages/integrations/push/onesignal.mdx"
-                  - page: "In-App"
-                    path: "pages/integrations/inapp-channel.mdx"                
+                          path: "pages/integrations/push/onesignal.mdx"                  
                   - section: "Voice"
                     path: "pages/integrations/voice-channel.mdx"
                     contents:
@@ -196,8 +199,10 @@ navigation:
                           path: "pages/integrations/voice/kaleyra.mdx"
                         - page: "Ozonetel"
                           path: "pages/integrations/voice/ozonetel.mdx"
-                        - page: "Twilio Voice"
+                        - page: "Twilio"
                           path: "pages/integrations/voice/twilio.mdx"
+                  - page: "In-App"
+                    path: "pages/integrations/inapp-channel.mdx"                
                   - page: "Web Push"
                     path: "pages/integrations/web-push-channel.mdx"
                   - section: "DLT"
@@ -210,12 +215,7 @@ navigation:
                         - page: "Videocon"
                           path: "pages/integrations/dlt/videocon.mdx"
                         - page: "Vodafone Idea"
-                          path: "pages/integrations/dlt/vodafone-idea.mdx"
-                  - section: "RCS"
-                    path: "pages/integrations/rcs-channel.mdx"
-                    contents:
-                        - page: "Gupshup Enterprise"
-                          path: "pages/integrations/rcs/gupshup.mdx"              
+                          path: "pages/integrations/dlt/vodafone-idea.mdx"                  
                 - section: "Templates"
                   path: "pages/templates/templates-getting-started.mdx"
                   icon: fa-regular fa-pen-ruler

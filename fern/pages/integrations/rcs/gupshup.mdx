@@ -7,18 +7,30 @@ og:description: 'To integrate Gupshup Enterprise with Fyno, ensure you have a Gu
 
 Before we get started, you will need to have a Gupshup Enterprise account already set up, along with SenderID and Templates.
 
-1. Navigate to Integrations.
-2. Under "RCS" section, click on the "Gupshup Enterprise" button.
-3. In the pop-up, fill in:
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. Under "RCS" section, click on the "Gupshup Enterprise" button.
 
-    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
-    2. **UserID**: The CustomerID that is displayed on your Gupshup Enterprise Account when you log in and view the dashboard
-    3. **Password**: Password used to log into the Customer ID entered in the previous field
-       ![](/images/rcs_gupshup_integration.png)
+### Configure the Integration
+
+In the pop-up, fill in:
+
+- **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+- **UserID**: The CustomerID that is displayed on your Gupshup Enterprise Account when you log in and view the dashboard
+- **Password**: Password used to log into the Customer ID entered in the previous field
+  ![](/images/rcs_gupshup_integration.png)
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
 While Fyno has the capacity to track the notification delivery status, Gupshup Enterprise requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
 
-1. Copy the Callback URL in the Integrations popup
-2. Send the Callback URL to your Gupshup account manager to add it in your Gupshup account.
+<Steps>
+  <Step>Copy the Callback URL in the Integrations popup.</Step>
+  <Step>Send the Callback URL to your Gupshup account manager to add it in your Gupshup account.</Step>
+</Steps>

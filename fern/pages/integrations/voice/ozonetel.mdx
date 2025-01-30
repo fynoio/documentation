@@ -7,27 +7,35 @@ og:description: "A guide to integrate your Ozonetel Voice account into Fyno."
 
 Before we get started, you will need to have a Ozonetel account already set up, along with numbers assigned and IVRs pre-created. Make sure you have created at least 1 inbound or outbound campaign.
 
-1. Navigate to Integrations from the left hand menu.
-2. On the page that opens, find "Voice" and click on the "Ozonetel" button.
-3. In the pop-up, fill in:
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. On the page that opens, find "Voice" and click on the "Ozonetel" button.
 
-    1. **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
-    2. **API Key**: Enter the API Key from your Ozonetel Platform. You can access it from _Home page -> Edit Profile_
-    3. **Username**: Enter the Username from your Ozonetel Platform. You can access it from _Home page -> Edit Profile_
-    4. **DID/Caller ID**: Enter the caller ID for the number/IVR that you intend on triggering with this integration. You can access it from _Campaigns -> Inbound/Outbound Campaigns_.
-    5. **Campaign Name**: From your Ozonetel platform, you can access it from _Campaigns -> Inbound/Outbound Campaigns _
-       ![](/images/voice_ozonetel.png)
+### Configure the Integration
 
-4. Click on "Add Account" once done and you are all set!
+In the pop-up, fill in:
+
+- **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+- **API Key**: Enter the API Key from your Ozonetel Platform. You can access it from _Home page -> Edit Profile_
+- **Username**: Enter the Username from your Ozonetel Platform. You can access it from _Home page -> Edit Profile_
+- **DID/Caller ID**: Enter the caller ID for the number/IVR that you intend on triggering with this integration. You can access it from _Campaigns -> Inbound/Outbound Campaigns_.
+- **Campaign Name**: From your Ozonetel platform, you can access it from _Campaigns -> Inbound/Outbound Campaigns _
+  ![](/images/voice_ozonetel.png)
+
+### Complete the Integration
+
+Click on "Add Account" once done and you are all set!
+
+</Steps>
 
 ## Message Delivery Status
 
 While Fyno has the capacity to track the notification delivery status, Ozonetel requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
 
-1. Log in to your Ozonetel account.
-2. Enter Fyno's Callback URL given in the Ozonetel Integration popup and select the relevant notifications required and save the same.
-3. Test your integration by sending a message from the Fyno App. Your notification delivery status will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.
+<Steps>
+  <Step>Log in to your Ozonetel account.</Step>
+  <Step>Enter Fyno's Callback URL given in the Ozonetel Integration popup and select the relevant notifications required and save the same.</Step>
+  <Step>Test your integration by sending a message from the Fyno App. Your notification delivery status will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.</Step>
+</Steps>
 
-> ❗️ Keypress Capture?
->
-> Does your IVR flow have a Keypress capturing requirement? If yes, you will need to configure Fyno's webhook to capture these details. Contact us to help set this up!
+<Tip title="Keypress Capture?">Does your IVR flow have a Keypress capturing requirement? If yes, you will need to configure Fyno's webhook to capture these details. Contact us to help set this up!</Tip>
