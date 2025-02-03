@@ -1,16 +1,19 @@
 ---
-title: "How to use dynamic content in template"
-slug: "template-dynamic-content"
-og:title: "How to use dynamic content in template | Fyno Documentation"
-og:description: "The document provides an overview of placeholders, system variables, Handlebars, and components in Fyno, explaining how to use them for creating dynamic templates and modular elements in workflows and notifications."
+title: 'Dynamic Content'
+slug: 'template-dynamic-content'
+og:title: 'Dynamic Content - Templates | Fyno Documentation'
+og:description: 'The document provides an overview of placeholders, system variables, Handlebars, and components in Fyno, explaining how to use them for creating dynamic templates and modular elements in workflows and notifications.'
 ---
 
-# 1. Placeholders
+When creating templates in Fyno, dynamic content plays a crucial role in personalizing your notifications. This guide explores the key features that enable dynamic content in templates, including Placeholders, System Variables, Handlebars, and Components. By leveraging these features, you can easily insert dynamic data and enhance the flexibility of your templates. Let’s dive into the details of each feature.
+
+## Placeholders
 
 Below the "Channels" section on the left, you can find placeholders. Placeholders help you to add dynamic variables in your template. Placeholders are denoted by **{{ }}** . You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. Once you add any placeholders in your templates using {{}} and open the Placeholders popup, you will see an option 'New placeholders detected. Add them here?' . When you click YES, then the placeholder will get automatically added here.
+
 ![](/images/fyno_placeholders.png)
 
-# 2. System Variables
+## System Variables
 
 This will have a list of pre-defined system variables in Fyno. There are 4 different types of system varaibles
 
@@ -22,51 +25,59 @@ This will have a list of pre-defined system variables in Fyno. There are 4 diffe
 ### Digest
 
 If you use 'Digest' action in your workflow, you will see 3 variables under this section which you can use in your templates.
+
 ![](/images/fyno_digest.png)
 
--   head - gives you the top 5 payloads in the digest
--   tail - gives you the bottom 5 payloads in the digest
--   count - gives you the total count of payloads in the digest
+- head - gives you the top 5 payloads in the digest
+- tail - gives you the bottom 5 payloads in the digest
+- count - gives you the total count of payloads in the digest
 
 You can read more about how Digest works and how to use these variables in the template [here](./creating-a-workflow-with-digest).
 
 ### User
 
 If you use Fyno's User profile, you will see all the all the user properties linked to a user profile under this section. You can read more about User profiles and how to create user properties [here](./adding-new-user-property)
+
 ![](/images/fyno_placeholder_users.png)
 
 ### Subscription
 
-If you want to enabl your users to Opt-in/Opt-out or unsubscribe from your notification, you can use the variables available under Subscription section.
+If you want to enable your users to Opt-in/Opt-out or unsubscribe from your notification, you can use the variables available under Subscription section.
+
 ![](/images/fyno_placeholder_subscription.png)
 
--   Opt-in/Opt-out - Use it as part of button payload in WhatsApp templates to enable users to Opt-in/Opt-out of your WhatsApp notifications.
--   Unsubscribe - Adds a clickable link in your notification which the user can click to Unsubscribe. Generally used in the footer of the Email templates.
+- Opt-in/Opt-out - Use it as part of button payload in WhatsApp templates to enable users to Opt-in/Opt-out of your WhatsApp notifications.
+- Unsubscribe - Adds a clickable link in your notification which the user can click to Unsubscribe. Generally used in the footer of the Email templates.
 
 ### Verify
 
 Fyno Verify offers a fully managed API for seamless multichannel user verification via OTP or link. You can read more about how Fyno Verify works [here](./fyno-verify-otp-link).
+
 ![](/images/fyno_verify_1.png)
 
--   OTP - Use this variable if you want to generate and Verify OTP.
--   Link - Use this variable if you want to validate an Email or Mobile no using a link.
+- OTP - Use this variable if you want to generate and Verify OTP.
+- Link - Use this variable if you want to validate an Email or Mobile no using a link.
 
-# 3. Handlebars
+## Handlebars
 
 Handlebars is a JavaScript library used for creating dynamic templates.
+
 ![](/images/fyno_handlebars.png)
 
 It allows you to define templates with placeholders, and these placeholders are replaced with data when the template is triggered with the information sent in the payload.
 
 Handlebars within Fyno support features like conditional operations, loops, date time formatting, partial searches, and custom helpers, making it a very helpful tool to use when creating your templates.
 
-You can read more about how Handlebar works [here](./fyno-verify-otp-link)
+You can read more about how Handlebar works [here](./templates-handlebars)
 
-# 4. Components
+## Components
 
 The Components feature allows you to build modular, reusable elements such as headers and footers.
 
 By creating these components once, you can easily add them into any email you create, saving time and effort.
 
 You can read more about how Components works [here](./components)
+
+<Info>Components are currently available only for Email templates.</Info>
+
 ![](/images/fyno_components.png)

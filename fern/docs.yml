@@ -226,7 +226,7 @@ navigation:
                         path: "pages/templates/templates-getting-started/shorty.mdx"
                       - page: "Fyno Verify"
                         path: "pages/templates/templates-getting-started/verify.mdx"
-                      - page: "How to use dynamic content in template"
+                      - page: "Dynamic Content"
                         path: "pages/templates/templates-getting-started/dynamic-content.mdx"
                       - page: "Template Group"
                         path: "pages/templates/templates-getting-started/group.mdx"
@@ -236,7 +236,7 @@ navigation:
                             - section: "SMS Templates"
                               path: "pages/templates/template-creation/sms.mdx"
                               contents:
-                                  - page: "DLT SMS template types"
+                                  - page: "DLT Templates"
                                     path: "pages/templates/sms/dlt.mdx"
                             - section: "WhatsApp Templates"
                               path: "pages/templates/template-creation/whatsapp.mdx"
@@ -593,3 +593,4 @@ layout:
     header-height: 75px
     searchbar-placement: header
     tabs-placement: header
+css: "./style.css"

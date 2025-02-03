@@ -5,7 +5,8 @@
       "options": {
         "htmlWhitespaceSensitivity": "strict",
         "printWidth": 999,
-        "proseWrap": "preserve"
+        "proseWrap": "preserve",
+        "singleQuote": true
       }
     }
   ]
