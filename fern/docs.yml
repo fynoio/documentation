@@ -1,5 +1,5 @@
 instances:
-    - url: fyno.docs.buildwithfern.com
+    - url: fyno.docs.buildwithfern.com/docs
       custom-domain: fyno.io/docs
       edit-this-page:
           github:
