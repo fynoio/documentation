@@ -1,29 +1,31 @@
 ---
-title: "Notification Events"
-slug: "events-overview"
-og:title: "Events - Overview | Fyno Documentation"
-og:description: "Here's a quick overview of events."
+title: 'Notification Events'
+slug: 'events-overview'
+og:title: 'Notification Events - Overview | Fyno Documentation'
+og:description: "Here's a quick overview of notification events."
 ---
 
-A notification event is the final club sandwich of templates, providers, and channels.
+A notification event is the final club sandwich of templates, providers or route, and channels.
 
-Notification Events = Providers + Rule + Template
+**Notification Events = Providers + Routing (optional) + Template**
 
-# What does it do?
+## What does it do?
 
 A notification event is what sends your configured message to the end user.
 
-> 📘 Note: We are talking about transactional scenarios and a notification event such as a transaction will most usually be triggered for only one user.
->
-> Bulk sending of a message is more promotional and is not the purpose of a notification event. A notification event is personalised for a user at a given point in time.
+## How do they work?
 
-# How do they work?
+<Steps>
+  <Step>Add the recipient number or email ID - depending on your use case.</Step>
+  <Step>
+    Add variables that have been created within the template.
+    <ul>
+      <li>Variables are usually denoted within **`{{}}`**.</li>
+      <li>Each variable needs to be filled out without which null (empty) value will be delivered in place of the placeholder in the message.</li>
+    </ul>
+  </Step>
+</Steps>
 
-1. Add the recipient number or email ID - depending on your use case.
-2. Add variables that have been created within the template.
-   1. Variables are usually denoted within **`{{ }}`**.
-   2. Each variable needs to be filled out without which the default variable placeholder itself will be delivered in the message.
-
-# Work involved in creating a notification event?
+## How to create a notification event?
 
 You will need to choose the template along with the channels to create a successful notification event. A detailed walk-through is provided in the next section.
