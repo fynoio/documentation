@@ -1,40 +1,50 @@
 ---
-title: "Create a SMS Template from Fyno"
-slug: "sms-template-from-fyno"
-og:title: "SMS Template Creation from Fyno | Fyno Documentation"
-og:description: "This document explains how to create an SMS template in Fyno, including selecting a DLT integration, category, template type, and configuring the header and content before sending it for approval."
+title: 'Create a SMS Template from Fyno'
+slug: 'sms-template-from-fyno'
+og:title: 'SMS Template Creation from Fyno - Templates | Fyno Documentation'
+og:description: 'This document explains how to create an SMS template in Fyno, including selecting a DLT integration, category, template type, and configuring the header and content before sending it for approval.'
 ---
 
 You can create a SMS template and send it for Approval from Fyno itself. To do so, go to Templates->External->SMS. Click Create. It will open up the below popup.
 
 ![](/images/baeb00b-SMS_External.png)
 
-1. **Template Name** - Give a unique name for your SMS template.
-2. **DLT Integration** - Select from the list of DLT integrations from the dropdown. Please make sure you have configured at least one [DLT integration](https://docs.fyno.io/docs/dlt)
-3. **Category** - Choose a category that best describes your message template.
-    1. Banking/Insurance/Financial Products/Credit Cards
-    2. Real Estate
-    3. Education
-    4. Health
-    5. Consumer goods and automobiles
-    6. Communication/Broadcasting/Entertaintment/IT
-    7. Tourism and Leisure
-    8. Food and Beverages
-    9. Others
-4. **Template Type**
-    1. Transactional - Transactional SMS can only be used by Banks to send OTPs and alerts.
-    2. Service Implicit - All kinds of purely transactional SMS content like OTPs, Order Placement, Order Tracking, etc.
-    3. Service Explicit - All kinds of promotional content should be registered here, like Discounts, Offers, New Launches
-    4. Promotional - Similar to Service Explicit except it can be sent between 10 PM and 9 AM.
-5. Click **Create**.
+<Steps>
+  <Step>**Template Name** - Give a unique name for your SMS template.</Step>
+  <Step>**DLT Integration** - Select from the list of DLT integrations from the dropdown. Please make sure you have configured at least one [DLT integration](https://docs.fyno.io/docs/dlt)</Step>
+  <Step>
+    **Category** - Choose a category that best describes your message template.
+    <ul>
+      <li>Banking/Insurance/Financial Products/Credit Cards</li>
+      <li>Real Estate</li>
+      <li>Education</li>
+      <li>Health</li>
+      <li>Consumer goods and automobiles</li>
+      <li>Communication/Broadcasting/Entertaintment/IT</li>
+      <li>Tourism and Leisure</li>
+      <li>Food and Beverages</li>
+      <li>Others</li>
+    </ul>
+  </Step>
+  <Step>
+    **Template Type**
+    <ul>
+      <li>Transactional - Transactional SMS can only be used by Banks to send OTPs and alerts.</li>
+      <li>Service Implicit - All kinds of purely transactional SMS content like OTPs, Order Placement, Order Tracking, etc.</li>
+      <li>Service Explicit - All kinds of promotional content should be registered here, like Discounts, Offers, New Launches</li>
+      <li>Promotional - Similar to Service Explicit except it can be sent between 10 PM and 9 AM.</li>
+    </ul>
+  </Step>
+  <Step>Click **Create**.</Step>
+</Steps>
 
 You will see the below screen where you need to configure your Header and Content.
 
 ![](/images/e9bc7d1-SMS_External_Fyno.png)
 
-1. Header - Its a mandatory field. It should be one of the DLT Headers configured in the DLT Integrations. Header should be 6 characters.
-2. Content - Its a mandatory field. You can see the preview on the right hand side. You can add placeholders as `{{1}}`, `{{2}}` etc. Placeholders should be in numerical order. For example: `{{1}}` should be used before `{{2}}` and so on
+- Header - Its a mandatory field. It should be one of the DLT Headers configured in the DLT Integrations. Header should be 6 characters.
+- Content - Its a mandatory field. You can see the preview on the right hand side. You can add placeholders as `{{1}}`, `{{2}}` etc. Placeholders should be in numerical order. For example: `{{1}}` should be used before `{{2}}` and so on
 
 ![](/images/858942c-Sms_External_template.png)
 
-3. Unicode - Its optional field. Select this checkbox if you want to send messages in any foreign and regional language other than English
+- Unicode - Its optional field. Select this checkbox if you want to send messages in any foreign and regional language other than English

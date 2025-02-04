@@ -1,100 +1,95 @@
 ---
-title: "Chat Templates"
-slug: "template-creation-chat"
-og:title: "Templates - Creating Chat Templates | Fyno Documentation"
-og:description: "Here are some instructions on how to create or edit a Chat template."
+title: 'Chat Templates'
+slug: 'template-creation-chat'
+og:title: 'Creating Chat Templates - Templates | Fyno Documentation'
+og:description: 'Here are some instructions on how to create or edit a Chat template.'
 ---
 
 ## Slack
 
 ![](/images/template-slack.png)
 
-The message body can be in Text or JSON depending on the kind of input. Text allows you to send simple message text whereas JSON message body is used with the Slack Block kit Builder. In case you want to use JSON, a great place to start is "https://app.slack.com/block-kit-builder". You can design your slack message at Block Kit Builder and simply copy the JSON block to Fyno Template and paste it under JSON tab. Please note: You only need to copy the JSON array start with "[" until the closing array block "]" as shown below:-
+The message body can be in Text or JSON depending on the kind of input. Text allows you to send simple message text whereas JSON message body is used with the Slack Block kit Builder. In case you want to use JSON, a great place to start is [Slack Block Kit Builder](https://app.slack.com/block-kit-builder). You can design your slack message at Block Kit Builder and simply copy the JSON block to Fyno Template and paste it under JSON tab. Please note: You only need to copy the JSON array start with "[" until the closing array block "]" as shown below:-
 
 ![](/images/5d9b395-image.png)
 
-> 🚧 Handlebars do not work on Slack's block kit builder!
+<Note>Handlebars do not work on Slack's block kit builder!</Note>
 
-1. Tag ID: Allows you to specify a unique identifier or a placeholder based on which all consecutive notification events using the same identifier get added under this message as a thread.
+- Tag ID: Allows you to specify a unique identifier or a placeholder based on which all consecutive notification events using the same identifier get added under this message as a thread.
 
-    1. Tag TTL: Enter the duration in numeric value to define the period for which this feature should be valid for.
+  - Tag TTL: Enter the duration in numeric value to define the period for which this feature should be valid for.
 
-    2. Duration: Select Seconds, Minutes, Hours or Days to define the period for which this feature is valid for.
+  - Duration: Select Seconds, Minutes, Hours or Days to define the period for which this feature is valid for.
 
-2. Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`** or **Handlebars**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
+- Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`** or **Handlebars**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
 
-    > 📘 Did you know?
-    >
-    > You can use period (.), underscore (\_) or hyphen (-) within the handlebars. Try it now!
+<Tip title="Did you know?">You can use period (.), underscore (\_) or hyphen (-) within the handlebars. Try it now!</Tip>
 
-    > ❗️ You cannot use only numeric values as placeholder keys!
+<Warning>You cannot use only numeric values as placeholder keys!</Warning>
 
-3. Preview: Review your content and take a look at what your message would look like in the Preview section on the right.
+- Preview: Review your content and take a look at what your message would look like in the Preview section on the right.
 
-4. Save & Save and Promote: Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.
+- Save & Save and Promote: Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.
 
-### How to tag a user in Slack channel
+### How to tag a user in Slack channel?
 
-1. \<!here\>: notifies only the active members of a channel.
+- `<!here>`: notifies only the active members of a channel.
 
-2. \<!channel\>: notifies all members of a channel, active or not.
+- `<!channel>`: notifies all members of a channel, active or not.
 
-3. \<!everyone\>: notifies every person in the #general channel (i.e. every non-guest member of a workspace).
+- `<!everyone>`: notifies every person in the #general channel (i.e. every non-guest member of a workspace).
 
-4. To tag a user specifically, you can use _\<@abc.xyz\>_ if [abc.xyz@gmail.com](mailto:abc.xyz@gmail.com) is your email id.
+- To tag a user specifically, you can use `<@abc.xyz>` if `abc.xyz@gmail.com` is the email id you want to tag.
 
-### How to test a Slack template
+### How to test a Slack template?
 
 ![](/images/75e6ab0-slack_test.png)
 
-1. To send a DM, you can use @name in the Slack Recipient and choose the Slack provider
+- To send a DM, you can use `@name` in the Slack Recipient and choose the Slack provider
 
-2. To send a message to a channel, use #channel_name. Make sure the App you created should be added to the Channel where you are sending the message.
+- To send a message to a channel, use `#channel_name`. Make sure the app you created is added to the channel where you are sending the message.
 
 ## Discord
 
 ![](/images/template-discord.png)
 
-1. Discord Template: The message body can be in Text or JSON depending on the kind of input.
+- Discord Template: The message body can be in Text or JSON depending on the kind of input.
 
-2. Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`** or **Handlebars**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
+- Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`** or **Handlebars**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
 
-3. Preview: Review your content and take a look at what your message would look like in the Preview section on the right.
+- Preview: Review your content and take a look at what your message would look like in the Preview section on the right.
 
-4. Save & Save and Promote: Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.
+- Save & Save and Promote: Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.
 
 ## Teams
 
 ![](/images/template-teams.png)
 
-1. Teams Template: The message body can be in Text or JSON depending on the kind of input.
+- Teams Template: The message body can be in Text or JSON depending on the kind of input.
 
-2. Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
+- Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
 
-3. Preview: Review your content and take a look at what your message would look like in the Preview section on the right.
+- Preview: Review your content and take a look at what your message would look like in the Preview section on the right.
 
-4. Save & Save and Promote: Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.
+- Save & Save and Promote: Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.
 
-## How to add dynamic content in template
+## How to add dynamic content in template?
 
 You can add dynamic content in your templates using one of the 4 options mentioned below.
 
-1. [Placeholders](./template-dynamic-content#1-placeholders)
-2. [System Variables](./template-dynamic-content#2-system-variables)
-3. [Handlebars](./template-dynamic-content#3-handlebars)
-4. [Components](./template-dynamic-content#4-components)
+- [Placeholders](./template-dynamic-content#placeholders)
+- [System Variables](./template-dynamic-content#system-variables)
+- [Handlebars](./template-dynamic-content#handlebars)
+- [Components](./template-dynamic-content#components)
 
-## How to test Slack template
+## How to test any Chat template?
 
 You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
 
-1. Click 'Run Test' on the top right hand side of the template.
-
-2. It opens the pop up as shown below.
-   ![](/images/c0f70f2-slack_test_template.png)
-
-3. Enter the slack recipient where the message should be sent.
-
-4. Select a Slack provider which is already configured in Fyno.
-
-5. When you click 'TEST', it will send Slack message to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.
+<Steps>
+  <Step>Click 'Run Test' on the top right hand side of the template.</Step>
+  <Step>It opens the pop up as shown below. ![](/images/c0f70f2-slack_test_template.png)</Step>
+  <Step>Enter the destination where the message should be sent.</Step>
+  <Step>Select a provider which is already configured in Fyno.</Step>
+  <Step>When you click 'TEST', it will send chat message to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.</Step>
+</Steps>

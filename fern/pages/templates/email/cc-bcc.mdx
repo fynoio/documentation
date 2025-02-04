@@ -1,20 +1,20 @@
 ---
-title: "How to add cc and bcc recipients in email"
-slug: "how-to-add-cc-bcc-to-email"
-og:title: "How to add cc and bcc recipients in email | Fyno Documentation"
-og:description: "This document explains how to add cc and bcc recipients in your email. You can achieve it in 2 ways - through API and Email editor"
+title: 'How to add CC and BCC recipients in email'
+slug: 'how-to-add-cc-bcc-to-email'
+og:title: 'How to add cc and bcc recipients in email - Email Templates | Fyno Documentation'
+og:description: 'This document explains how to add cc and bcc recipients in your email. You can achieve it in 2 ways - through API and Email editor'
 ---
 
-You can add cc and bcc details in your email in 2 ways.
+You can add CC and BCC details in your email in 2 ways.
 
 1. Using API
 2. Using Email editor
 
-## How to add cc and bcc recipients using API
+## How to add CC and BCC recipients using API?
 
-Sample code with cc and bcc details in Notification Event API. You can add any no of emails to cc and bcc.
+Sample code with CC and BCC details in Notification Event API. You can add any no of emails to CC and BCC.
 
-```Text cURL
+```cURL title="Add CC and BCC" wordWrap
 curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/test/event' \
 -H 'Authorization: Bearer <API_KEY>' \
 -H 'Content-Type: application/json' \
@@ -48,28 +48,23 @@ curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/test/event' \
 }'
 ```
 
-<br />
+## How to add CC and BCC recipients using Email editor?
 
-## How to add cc and bcc recipients using Email editor
+<Note>This is available only in Stripo Editor</Note>
 
-> 📘 This is available only in Stripo Editor
+To add CC/BCC details using Email editor, follow the below steps
 
-To add cc/bcc details using Email editor, follow the below steps
+<Steps>
+  <Step>Click 'Enter From and CC/BCC detals' above the Subject line.</Step>
+  <Step>To add CC/BCC details, click the CC/BCC tab and enter the details as shown. ![](/images/754967d-ccbcc_details.png)</Step>
+  <Step>Once you entered CC and BCC details, it will look like shown below ![](/images/de8ad07-ccbcc_entered.png)</Step>
+</Steps>
 
-1. Click 'Enter From and Cc/Bcc detals' above the Subject line.
-2. To add Cc/Bcc details, click the CC/BCC tab and enter the details as shown.
+<Note>CC and BCC details provided in Email template will override the CC and BCC details provided in the Notification Event API</Note>
 
-![](/images/754967d-ccbcc_details.png)
+## CC and BCC details in logs
 
-3. Once you entered Cc and Bcc details, it will look like shown below
-
-![](/images/de8ad07-ccbcc_entered.png)
-
-> 📘 Cc and Bcc details provided in Email template will override the Cc and Bcc details provided in the Notification Event API
-
-## Cc and Bcc details in logs
-
-In the sent logs, you'll find the recipient details (destination, cc, and bcc) in the Summary tab.
+In the sent logs, you'll find the recipient details (destination, CC, and BCC) in the Summary tab.
 
 For the above scenario, the sent logs will display the following information.
 

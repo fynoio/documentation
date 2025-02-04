@@ -1,8 +1,8 @@
 ---
-title: "RCS Template"
-slug: "rcs-template"
-og:title: "RCS Template | Fyno Documentation"
-og:description: "The document outlines four types of RCS (Rich Communication Services) templates: Template Message, Simple, Card, and Carousel, detailing their specific features, content requirements, and supported file types."
+title: 'RCS Template'
+slug: 'rcs-template'
+og:title: 'RCS Template - Templates | Fyno Documentation'
+og:description: 'The document outlines four types of RCS (Rich Communication Services) templates: Template Message, Simple, Card, and Carousel, detailing their specific features, content requirements, and supported file types.'
 ---
 
 There are 4 different types of RCS templates you can create.
@@ -12,18 +12,18 @@ There are 4 different types of RCS templates you can create.
 3. Card
 4. Carousel
 
-## 1. Template Message
+## Template Message
 
 A template message has a 160 character limit. Used for OTP, transactional, typically replaces SMS communication.
 
-To create a new RCS template message, you need the following details
+To create a new RCS template message, you need the following details:
 
-1. Template Name - Enter the RCS template name you have created in your service provider.
-2. Placeholders (Optional) - If your template uses any placeholders, you can add them here.
+- Template Name - Enter the RCS template name you have created in your service provider.
+- Placeholders (Optional) - If your template uses any placeholders, you can add them here.
 
 ![](/images/ae28728-RCS_Temp_message.png)
 
-## 2. Simple
+## Simple
 
 To create a new RCS template message, you need the following details
 
@@ -36,9 +36,9 @@ To create a new RCS template message, you need the following details
 
 ![](/images/924b505-RCS_Simple.png)
 
-> 📘 Enabling _Force Refresh_ ensures that if the media at the specified URL is updated, the system automatically retrieves the latest version of the Image, Video, or File. This feature guarantees that your linked media always reflects the most current content available at that URL.
+<Tip>Enabling _Force Refresh_ ensures that if the media at the specified URL is updated, the system automatically retrieves the latest version of the Image, Video, or File. This feature guarantees that your linked media always reflects the most current content available at that URL.</Tip>
 
-## 3. Card
+## Card
 
 Send a preview of your website or product in the form of an interactive card. Customers can click the link on the card to view your website or product. Rich media messages enable you to send images, buttons and suggestions for customer replies and actions.
 
@@ -55,64 +55,70 @@ Rich cards contain the following elements (you can always see how your message w
 | File             | You can add a file by entering URL or uploading a file. The file size is limited to 100 MB          | PDF                                |
 | Buttons          | Add up to 4 buttons to your rich card, giving customers quick replies or actions.                   |                                    |
 
-### How to add buttons to Card
+### How to add buttons to Card?
 
 You can add upto 4 buttons. There are 6 different types of buttons you can add
 
-1. **Quick Reply**
+#### Quick Reply
 
-    1. Button Title - Provide the text that appear on the message button.
-    2. Button Payload (Optional) - Provide the payload that are sent back to the system when the button is clicked.
-       ![](/images/815df37-button_QR.png)
+- Button Title - Provide the text that appear on the message button.
+- Button Payload (Optional) - Provide the payload that are sent back to the system when the button is clicked.
+  ![](/images/815df37-button_QR.png)
 
-2. **Visit Website**
+#### Visit Website
 
-    1. Button Title - Provide the text that appear on the message button.
+- Button Title - Provide the text that appear on the message button.
 
-    2. Button Payload (Optional)- Provide the message or payload that are sent back to the system when the button is clicked.
+- Button Payload (Optional)- Provide the message or payload that are sent back to the system when the button is clicked.
 
-    3. URL - Provide a specific webpage or resource that users are directed to when they click on the button. Please ensure you have base URL: as the base before adding variables as suffixes. For eg., `https://www.fyno.io/customers/` can be the base URL followed by [customer_name]. So the full URL will be: `https://www.fyno.io/customers/[customer_name]`
+- URL - Provide a specific webpage or resource that users are directed to when they click on the button. Please ensure you have base URL: as the base before adding variables as suffixes. For eg., `https://www.fyno.io/customers/` can be the base URL followed by [customer_name]. So the full URL will be: `https://www.fyno.io/customers/[customer_name]`
 
-    ![](/images/51cd4c6-button_website.png)
+  ![](/images/51cd4c6-button_website.png)
 
-3. **Phone Number** - Phone numbers must include a leading +, the country code. Do not include separators. For example, +91 9999900000.
+#### Phone Number
 
-4. **Date Select** -
+Phone numbers must include a leading +, the country code. Do not include separators. For example, +91 9999900000.
 
-    1. Button Title - Provide the text that appear on the message button
+#### Date Select
 
-    2. Button Payload (Optional)- Provide the message or payload that are sent back to the system when the button is clicked.
+- Button Title - Provide the text that appear on the message button
 
-    3. Start Date - If you are sending a RCS message for an event conference, use start date to show when the conference starts.
+- Button Payload (Optional)- Provide the message or payload that are sent back to the system when the button is clicked.
 
-    4. End Date - If you are sending a RCS message for an event conference, use end date to show when the conference ends.
+- Start Date - If you are sending a RCS message for an event conference, use start date to show when the conference starts.
 
-    5. Event Title - Provide the title of the event
+- End Date - If you are sending a RCS message for an event conference, use end date to show when the conference ends.
 
-    6. Event Description (Optional) - Provide a description about the event.
-       ![](/images/10a1aa6-button_dates.png)
+- Event Title - Provide the title of the event
 
-5. **Send Location** - You can show a location by entering the latitude and longitude or by entering Query.
+- Event Description (Optional) - Provide a description about the event.
+  ![](/images/10a1aa6-button_dates.png)
 
-    1. Latitude - Provide the latitude in degrees. It must be in the range [-90.0, +90.0]. Positive latitudes are north of the equator, negative latitudes are south of the equator.
+#### Send Location
 
-    2. Longitude - Provide the longitude in degrees. It must be in the range [-180.0, +180.0]. Positive longitudes are east of the Prime Meridian; negative longitudes are west of the Prime Meridian.
+You can show a location by entering the latitude and longitude or by entering Query.
 
-    3. Label - Provide the label of the pin dropped at latLong
+- Latitude - Provide the latitude in degrees. It must be in the range [-90.0, +90.0]. Positive latitudes are north of the equator, negative latitudes are south of the equator.
 
-    4. Query - Enter the query that you would like to search for here. For instance, setting the query string to "Wework Co-working Space" will show all Wework Co-working locations in the user's vicinity. Setting the query string to "32, 5th Block, Jaya Nagar, Bengaluru 560041" will select that specific address, regardless of the user's location.
+- Longitude - Provide the longitude in degrees. It must be in the range [-180.0, +180.0]. Positive longitudes are east of the Prime Meridian; negative longitudes are west of the Prime Meridian.
 
-6. **Request Location** - Requests your user to share their location
+- Label - Provide the label of the pin dropped at latLong
 
-## 4. Carousel
+- Query - Enter the query that you would like to search for here. For instance, setting the query string to "Wework Co-working Space" will show all Wework Co-working locations in the user's vicinity. Setting the query string to "32, 5th Block, Jaya Nagar, Bengaluru 560041" will select that specific address, regardless of the user's location.
+
+#### Request Location
+
+Requests your user to share their location
+
+## Carousel
 
 In this RCS template type, you can add upto 10 Rich Cards. All the input fields are similar to Rich Card. To know how to add a Rich Card, you can refer [this](./rcs-template#3-card).
 
-## How to add dynamic content in template
+## How to add dynamic content in template?
 
 You can add dynamic content in your templates using one of the 4 options mentioned below.
 
-1. [Placeholders](./template-dynamic-content#1-placeholders)
-2. [System Variables](./template-dynamic-content#2-system-variables)
-3. [Handlebars](./template-dynamic-content#3-handlebars)
-4. [Components](./template-dynamic-content#4-components)
+- [Placeholders](./template-dynamic-content#placeholders)
+- [System Variables](./template-dynamic-content#system-variables)
+- [Handlebars](./template-dynamic-content#handlebars)
+- [Components](./template-dynamic-content#components)

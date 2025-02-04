@@ -247,16 +247,16 @@ navigation:
                                     path: "pages/templates/whatsapp/simple-message.mdx"
                                   - page: "Interactive"
                                     path: "pages/templates/whatsapp/interactive-message.mdx"
-                                  - page: "How to track URL clicks in WhatsApp"
+                                  - page: "URL Clicks"
                                     path: "pages/templates/whatsapp/track-url.mdx"
                             - section: "Email Templates"
                               path: "pages/templates/template-creation/email.mdx"
                               contents:
-                                  - page: "How to add attachments in email"
+                                  - page: "Add Attachments"
                                     path: "pages/templates/email/attachments.mdx"
-                                  - page: "How to add cc and bcc recipients in email"
+                                  - page: "Add CC and BCC Recipients"
                                     path: "pages/templates/email/cc-bcc.mdx"
-                                  - page: "How to override email sender details"
+                                  - page: "Override Email Sender Details"
                                     path: "pages/templates/email/override-sender-details.mdx"
                             - page: "Chat Templates"
                               path: "pages/templates/template-creation/chat.mdx"
@@ -290,28 +290,27 @@ navigation:
                       - page: "Reusable Components"
                         path: "pages/templates/components.mdx"
                 - section: "Routing"
-                  icon: fa-regular fa-code-branch
+                  icon: fa-regular fa-code-merge
                   path: "pages/routing/routing.mdx"
                   contents:
                       - section: "Single Channel Routing"
                         path: "pages/routing/singlechannel/introduction.mdx"
                         contents:
-                        - section: "Creating a Single Channel Route"
-                          path: "pages/routing/singlechannel/creation.mdx"
-                          contents:
-                              - page: '"Action" Operator'
-                                path: "pages/routing/singlechannel/action.mdx"
-                              - page: '"Condition" Operator'
-                                path: "pages/routing/singlechannel/condition.mdx"
-                              - page: "Integrating a Single Channel Route"
-                                path: "pages/routing/singlechannel/integration.mdx"
+                        - page: "Creating a Single Channel Route"
+                          path: "pages/routing/singlechannel/creation.mdx"                          
+                        - page: '"Action" Operator'
+                          path: "pages/routing/singlechannel/action.mdx"
+                        - page: '"Condition" Operator'
+                          path: "pages/routing/singlechannel/condition.mdx"
+                        - page: "Integrating a Single Channel Route"
+                          path: "pages/routing/singlechannel/integration.mdx"
                       - section: "Omnichannel Routing"
                         path: "pages/routing/omnichannel/introduction.mdx"
                         contents:
                             - page: "Create an Omnichannel Route"
                               path: "pages/routing/omnichannel/create.mdx"
                 - section: "Notification Events"
-                  icon: fa-regular fa-paper-plane
+                  icon: fa-regular fa-sitemap
                   path: "pages/notification-events/overview.mdx"
                   contents:                      
                       - section: "Creating a Notification Event"
@@ -417,10 +416,10 @@ navigation:
           - section: "Settings"
             contents:
                 - page: "Profile Settings"
-                  icon: fa-regular fa-user
+                  icon: fa-regular fa-user-gear
                   path: "pages/settings/profile.mdx"
                 - page: "Workspaces"
-                  icon: fa-regular fa-network-wired
+                  icon: fa-regular fa-shapes
                   path: "pages/settings/workspace-introduction.mdx"
                 - section: "Workspace Settings"
                   icon: fa-regular fa-gear
