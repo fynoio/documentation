@@ -34,7 +34,7 @@ To create a new Notification Event, click on the "**Create+**" on the right side
 <Steps>
   <Step>Provide a name for your notification event</Step>
   <Step>Provide a description of your notification event. This helps in the future when you want to review and change things up in your "**Notification Event**"</Step>
-  <Step>Select Subscription topic from the list of subscriptions created in User Preferences. This is an optional field. Please refer this [documentation](https://docs.fyno.io/docs/user-preferences) on how to create subscription</Step>
+  <Step>Select Subscription topic from the list of subscriptions created in User Preferences. This is an optional field. Please refer this [documentation](./user-preferences) on how to create subscription</Step>
   <Step>Click on "**Submit**" once done.</Step>
 </Steps>
 
@@ -72,7 +72,7 @@ The first step to building a great "**Notification Event**" with Fyno is to sele
     ![](/images/be5c82f26d0599a11203956a130c8ec8e3af883c96e772be84d50947b16d4cc8-event_template_creation.png)
 
   - It will open a popup from where you can start creating a template
-  - Refer this [doc](https://docs.fyno.io/docs/template-creation) on how a new template can be created from scratch.
+  - Refer this [doc](./template-creation) on how a new template can be created from scratch.
 
 ### Conditional Templates
 
@@ -185,28 +185,25 @@ curl -X POST 'https://api.dev.fyno.io/v1/<WorkspaceID>/event' \
 
 </CodeBlocks>
 
-1. Navigate to the notification event page and click on "Use conditionally" under Templates section.
-
-![](/images/82208a04ee758c35d28f1bfcc91cc5c2a71f9f484f9cfdd4f2f58338e8e09794-event_template_creation.png)
-
-2. To add conditions, follow these steps:
-   1. Select the template you wish to use.
-   2. Establish conditions based on variables.  
-      For instance, to trigger the Order Confirmed communication, select the 'Order_Confirmed' template and set the condition as "status equals Confirmed," and repeat this process for other statuses accordingly. You can use 'Add rule' to add multiple conditions to choose a template.
-   3. You can click 'Add Template' to keep adding new templates with conditions.
-   4. Ensure, 'Else' condition is added. You can choose either 'Do Nothing' or select a fallback template attached if none of the other conditions are not satisfied.
-
-![](/images/c932bbf49dc2046b826b9e8df33136a9cbbb0300c0b85bab29d093306b8dcb5a-conditional_templates_1.png)
-
-3. To delete any of the conditions added, click the delete icon on the right hand side of each condition added.
-4. To preview a template, click the numbered button in the top-left corner of the conditional template card. The preview will appear on the right side of the page.
-5. To rearrange the conditions, you can drag them up or down by clicking the 'Drag Indicator' icon on the left-hand side of each condition.
-6. You can remove all the conditions by clicking 'Remove all conditions' icon at the bottom.
-7. Once you have added all the conditions, you will see the conditions in collapsed format as shown below. You can see the preview of different templates by clicking '>' icon to navigate forward and by clicking '\<' to navigate backwards or type in the condition number in the field next to 'Previewing' to go directly to that template.
-
-![](/images/ddc1fff0bf5f7204cb9c208ea59c3ee9b559f300508b38dd085e831d27e18a20-conditional_templates_after_adding.png)
-
-6. To modify any of the conditions, simply click on 'Edit Conditions.'
+<Steps>
+  <Step>Navigate to the notification event page and click on "Use conditionally" under Templates section. ![](/images/82208a04ee758c35d28f1bfcc91cc5c2a71f9f484f9cfdd4f2f58338e8e09794-event_template_creation.png)</Step>
+  <Step>
+    To add conditions, follow these steps:
+    <ol>
+      <li>Select the template you wish to use.</li>
+      <li>Establish conditions based on variables. For instance, to trigger the Order Confirmed communication, select the 'Order_Confirmed' template and set the condition as "status equals Confirmed," and repeat this process for other statuses accordingly. You can use 'Add rule' to add multiple conditions to choose a template.</li>
+      <li>You can click 'Add Template' to keep adding new templates with conditions.</li>
+      <li>Ensure, 'Else' condition is added. You can choose either 'Do Nothing' or select a fallback template attached if none of the other conditions are not satisfied.</li>
+    </ol>
+    ![](/images/c932bbf49dc2046b826b9e8df33136a9cbbb0300c0b85bab29d093306b8dcb5a-conditional_templates_1.png)
+  </Step>
+  <Step>To delete any of the conditions added, click the delete icon on the right hand side of each condition added.</Step>
+  <Step>To preview a template, click the numbered button in the top-left corner of the conditional template card. The preview will appear on the right side of the page.</Step>
+  <Step>To rearrange the conditions, you can drag them up or down by clicking the 'Drag Indicator' icon on the left-hand side of each condition.</Step>
+  <Step>You can remove all the conditions by clicking 'Remove all conditions' icon at the bottom.</Step>
+  <Step>Once you have added all the conditions, you will see the conditions in collapsed format as shown below. You can see the preview of different templates by clicking '>' icon to navigate forward and by clicking '\<' to navigate backwards or type in the condition number in the field next to 'Previewing' to go directly to that template.![](/images/ddc1fff0bf5f7204cb9c208ea59c3ee9b559f300508b38dd085e831d27e18a20-conditional_templates_after_adding.png)</Step>
+  <Step>To modify any of the conditions, simply click on 'Edit Conditions.'</Step>
+</Steps>
 
 On to the next step!
 
@@ -216,11 +213,10 @@ Route/Provider allows you to define the manner in which the notification will be
 
 On clicking the drop-down menu under Rules, you will see:
 
-1. **Single Channel Route or Provider** - Individually select each channel and select a **Provider** or **Route** for each channel. For example, if your template has 3 channels, you will see options to select how you want to send your Email, SMS and WhatsApp. You can decide to choose a service provider or a Single channel route created for that channel. You can read more about Single Channel Route [here](https://docs.fyno.io/docs/route-creation)
+- **Single Channel Route or Provider** - Individually select each channel and select a **Provider** or **Route** for each channel. For example, if your template has 3 channels, you will see options to select how you want to send your Email, SMS and WhatsApp. You can decide to choose a service provider or a Single channel route created for that channel. You can read more about Single Channel Route [here](./route-creation).
+  ![](/images/3f2628d2c73c7ba234b13b351bdf343641bc9e2f70423a7b10b9303f798df986-single_channel_route.png)
 
-![](/images/3f2628d2c73c7ba234b13b351bdf343641bc9e2f70423a7b10b9303f798df986-single_channel_route.png)
-
-2. **Omni-channel Route** - Select an **Omni-Channel Route** that has been created. You can read more about Omni Channel Route [here](https://docs.fyno.io/docs/omnichannel-routing-introduction)
+- **Omni-channel Route** - Select an **Omni-Channel Route** that has been created. You can read more about Omni Channel Route [here](./omnichannel-routing-introduction).
 
 ## Analytics Label (Optional)
 
@@ -238,29 +234,31 @@ You can select either Static or Dynamic analytics labels.
     - Navigate to the analytics label dropdown
     - Select the specific Order Status notifications you want to analyze together
   - **Related Resources:**
-    - To know how to add analytics labels, please refer this [document](https://docs.fyno.io/docs/analytics-label)
-    - To see how to view the analytics, you can refer this [document](https://docs.fyno.io/docs/dashboard#overview-and-insights).
+    - To know how to add analytics labels, please refer this [document](./analytics-label).
+    - To see how to view the analytics, you can refer this [document](./dashboard).
 
 - **Dynamic** - This feature allows you to dive deep into your notification performance by either:
-  1. Grouping analytics across multiple notification events
-  2. Filtering data for a specific notification event
-  - **Example:**Imagine you're sending policy renewal emails using a single template across different mobile brands (Apple, Samsung, Vivo, and Oppo).
+  - Grouping analytics across multiple notification events
+  - Filtering data for a specific notification event
+  - **Example:** Imagine you're sending policy renewal emails using a single template across different mobile brands (Apple, Samsung, Vivo, and Oppo).
     - How to Analyze by Device Brand:
-      1. Use the placeholder {{brand_name}} as your Analytics label
-      2. This enables you to track performance metrics for each mobile brand separately
+      - Use the placeholder `{{brand_name}}` as your Analytics label
+      - This enables you to track performance metrics for each mobile brand separately
   - **Related Resources:**
-    - To know how to add analytics labels, please refer this [document](https://docs.fyno.io/docs/analytics-label)
-    - To see how to view the analytics, you can refer this document.
+    - To know how to add analytics labels, please refer this [document](./analytics-label).
+    - To see how to view the analytics, you can refer this [document](./dashboard).
 
 ## Track Conversion (Optional)
 
-This option will be visible only if you enable Conversion Tracking setting. You can read how to enable this setting [here](https://docs.fyno.io/docs/conversion-tracking)
+This option will be visible only if you enable Conversion Tracking setting. You can read how to enable this setting [here](./conversion-tracking).
 
 ![](/images/53431b1eb0ca1683f44475b3cf5c2468c6740a0111a9f00b5640319e013d6786-track_conversion.png)
 
-1. Enable Track conversion checkbox.
-2. Enter the duration till which you want to track the conversion. For example, if you fired the notification and want to track conversion for the next 5 minutes, enter 5 minutes.
-3. Click Copy Code. You need to pass only conversion id in the data payload to intimate Fyno to mark the notification as 'Converted' for a user/destination. Make sure, you pass the same conversion id while triggering the notification event also.
+<Steps>
+  <Step>Enable Track conversion checkbox.</Step>
+  <Step>Enter the duration till which you want to track the conversion. For example, if you fired the notification and want to track conversion for the next 5 minutes, enter 5 minutes.</Step>
+  <Step>Click Copy Code. You need to pass only conversion id in the data payload to intimate Fyno to mark the notification as 'Converted' for a user/destination. Make sure, you pass the same conversion id while triggering the notification event also.</Step>
+</Steps>
 
 ## Save & Go Live
 
@@ -274,38 +272,30 @@ When a **Test** version is saved, this does not disturb the **Live** version tha
 
 When you are confident and happy with the **Notification Event** that you have created and tested in **Test** version, this can then be moved into live version by following the below steps.
 
-1. Make the final changes on the notification event and test it to make sure you are getting the desirable results.
-2. On the top of the page, next to the name of the **Notification Event**, you will see the Test Version mentioned.
-3. To keep this as a **Test**, click on **Save** and the draft will be saved.
-4. To make this version of the **Test** live, click **Go Live**.
-5. This will make the current version the live version of the **Notification Event**.
+<Steps>
+  <Step>Make the final changes on the notification event and test it to make sure you are getting the desirable results.</Step>
+  <Step>On the top of the page, next to the name of the **Notification Event**, you will see the Test Version mentioned.</Step>
+  <Step>To keep this as a **Test**, click on **Save** and the draft will be saved.</Step>
+  <Step>To make this version of the **Test** live, click **Go Live**.</Step>
+  <Step>This will make the current version the live version of the **Notification Event**.</Step>
+</Steps>
 
-## How to group Notification events?
+## How to group Notification Events?
 
 Notification Events Groups help you organize related notification events together. For instance, if you have multiple notification events for different order statuses (Confirmed, Cancelled, Shipped, InTransit, Delivered), you can create an 'Order Management' group and assign all these notification events to it. This makes notification events filtering and management more efficient.
 
-You can read more about it [here](https://docs.fyno.io/docs/notification-event-group)
+You can read more about it [here](./notification-event-group).
 
 ## Approval flow
 
 If you have enabled 'Approval' in Security Settings, when you click 'Go Live', you will need to raise an approval request for the changes you have done.
 
-1. You will see the below popup once you click 'Go Live' . Select approvers from the 'From' dropdown. You can choose one or more approvers. You need to write a short message mentioning the reason for approval request. If you select 'Go Live on approval', the feature will go Live once the approver approves the request. Clicking 'Send for Approval' will send the request.
-
-![](/images/eadd428-event_approval.png)
-
-2. You will see the approval request in the Notification event page as shown . You can click 'Cancel' to cancel the request.
-
-![](/images/2abc2a1-notif_event_approval_request.png)
-
-3. The approvers will receive an Email, an InApp notification for every approval request.
-4. The approver will see the request in the Notification event page. The approver can approve or reject from the respective notification event.
-
-![](/images/60de965-approval_request_feature_page.png)
-
-5. Also if the approver wants to see all the pending requests, then can see them in the 'Requests' page as shown below.
-
-![](/images/ba2bc39-Pending_Request.png)
-
-5. The approver can choose one or more requests and either Approve or Reject. While rejecting they need to provide a rejection reason.
-6. If the request is Approved, the feature will go Live if the requestor selected 'Go Live on approval' while raising the request. Otherwise, they have to click 'Go Live' to take the feature Live.
+<Steps>
+  <Step>You will see the below popup once you click 'Go Live' . Select approvers from the 'From' dropdown. You can choose one or more approvers. You need to write a short message mentioning the reason for approval request. If you select 'Go Live on approval', the feature will go Live once the approver approves the request. Clicking 'Send for Approval' will send the request. ![](/images/eadd428-event_approval.png)</Step>
+  <Step>You will see the approval request in the Notification event page as shown . You can click 'Cancel' to cancel the request. ![](/images/2abc2a1-notif_event_approval_request.png)</Step>
+  <Step>The approvers will receive an Email, an InApp notification for every approval request.</Step>
+  <Step>The approver will see the request in the Notification event page. The approver can approve or reject from the respective notification event. ![](/images/60de965-approval_request_feature_page.png)</Step>
+  <Step>Also if the approver wants to see all the pending requests, then can see them in the 'Requests' page as shown below. ![](/images/ba2bc39-Pending_Request.png)</Step>
+  <Step>The approver can choose one or more requests and either Approve or Reject. While rejecting they need to provide a rejection reason.</Step>
+  <Step>If the request is Approved, the feature will go Live if the requestor selected 'Go Live on approval' while raising the request. Otherwise, they have to click 'Go Live' to take the feature Live.</Step>
+</Steps>
