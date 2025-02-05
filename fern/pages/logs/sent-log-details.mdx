@@ -1,7 +1,7 @@
 ---
-title: "Log Details"
-slug: "sent-log-details"
-og:title: "Sent Log Details | Fyno Documentation"
+title: 'Log Details'
+slug: 'sent-log-details'
+og:title: 'Sent Log Details - Sent Logs | Fyno Documentation'
 og:description: 'The document explains the "Log Details" feature, which provides comprehensive information about notifications, including time taken, details sent, response received, and final status, useful for debugging and optimizing event routing. It also outlines the lifecycle of notifications across various channels like SMS, Email, WhatsApp, and more.'
 ---
 
@@ -26,14 +26,14 @@ You can easily have a look at the "**Log Details**" by simply clicking on the no
 Every notification, be it an SMS, Email, WhatsApp message or InApp and Push will have its own lifecycle. Understanding each one will contribute to understanding how your Event Analytics and Dashboard details are understood as well as what to expect in each notification type.
 
 | Channel    | Submitted | Delivered | Read/Open | Clicked | Deleted |
-| :--------- | :-------- | :-------- | :-------- | :------ | :------ |
-| SMS        | ✅        | ✅        | ❌        | ❌      | ❌      |
-| WhatsApp\* | ✅        | ✅        | ✅ (Read) | ❌      | ❌      |
-| Email      | ✅        | ✅        | ✅ (Open) | ✅      | ❌      |
-| Slack      | ✅        | ❌        | ❌        | ❌      | ❌      |
-| Teams      | ✅        | ❌        | ❌        | ❌      | ❌      |
-| Discord    | ✅        | ❌        | ❌        | ❌      | ❌      |
-| InApp      | ✅        | ✅        | ✅ (Read) | ❌      | ✅      |
-| Push (SDK) | ✅        | ✅        | ❌        | ✅      | ✅      |
+| :--------- | :-------: | :-------: | :-------: | :-----: | :-----: |
+| SMS        |    ✅     |    ✅     |    ❌     |   ❌    |   ❌    |
+| WhatsApp\* |    ✅     |    ✅     | ✅ (Read) |   ❌    |   ❌    |
+| Email      |    ✅     |    ✅     | ✅ (Open) |   ✅    |   ❌    |
+| Slack      |    ✅     |    ❌     |    ❌     |   ❌    |   ❌    |
+| Teams      |    ✅     |    ❌     |    ❌     |   ❌    |   ❌    |
+| Discord    |    ✅     |    ❌     |    ❌     |   ❌    |   ❌    |
+| InApp      |    ✅     |    ✅     | ✅ (Read) |   ❌    |   ✅    |
+| Push (SDK) |    ✅     |    ✅     |    ❌     |   ✅    |   ✅    |
 
-> 📘 WhatsApp will only show you "Read" if the recipient has "Read Reciepts" are turned on.
+<Info>WhatsApp will only show you "Read" if the recipient has "Read Reciepts" are turned on.</Info>

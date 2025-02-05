@@ -327,7 +327,7 @@ navigation:
                       - page: "Delivery Callback Logs"
                         path: "pages/notification-events/callback-logs.mdx"
                       - page: "Idempotent Requests"                        
-                        path: "pages/settings/idempotent-requests.mdx"
+                        path: "pages/notification-events/idempotent-requests.mdx"
                 - page: "Requests/Go Live"
                   icon: fa-regular fa-mouse-pointer
                   path: "pages/requests-golive/request-go-live.mdx"                  

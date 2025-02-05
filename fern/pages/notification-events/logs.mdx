@@ -1,8 +1,8 @@
 ---
-title: "Notification Event Logs"
-slug: "notification-event-logs"
-og:title: "Notification Event Logs | Fyno Documentation"
-og:description: "The document explains how to navigate and use the Notification Event logs on the Fyno platform, detailing the components and filters available to track and analyze notification events, and improve communication strategies. It also describes how to access logs, interpret log details, and use filters to narrow down searches, with a focus on understanding the status and flow of notifications."
+title: 'Notification Event Logs'
+slug: 'notification-event-logs'
+og:title: 'Notification Event Logs - Notification Events | Fyno Documentation'
+og:description: 'The document explains how to navigate and use the Notification Event logs on the Fyno platform, detailing the components and filters available to track and analyze notification events, and improve communication strategies. It also describes how to access logs, interpret log details, and use filters to narrow down searches, with a focus on understanding the status and flow of notifications.'
 ---
 
 Notification Event logs are where we help you track each and every activity through Fyno's App for your notification event.
@@ -15,9 +15,9 @@ We can navigate to "Notification Event Logs" by clicking on "Logs" from the left
 
 On the page that opens, you will see the following:
 
-1. Notification Event Logs
-2. Filters
-3. Test and Live version tabs.
+- Notification Event Logs
+- Filters
+- Test and Live version tabs.
 
 ## Notification Event Logs
 
@@ -25,22 +25,22 @@ The logs that are seen on the "Notification Event Logs" page give you an overvie
 
 You will see:
 
-1. **Timestamp**: Tells you the details of when (date and time) the notification event was triggered.
-2. **Notification Event**: Give you the details of the Notification Event that was triggered including the method of execution under the "Via" section.
-3. **Template**: Shows the name of the template used in the Notification Event.
-4. **Distinct ID**: Will display the Distinct ID, if it was used during the triggering of the notification event. If the distinct ID was not used, this field would be blank.
-5. **To Payload**: This displays all the channels that are configured in that notification event and of those, the ones that are highlighted were the channels through which communication was attempted.
+- **Timestamp**: Tells you the details of when (date and time) the notification event was triggered.
+- **Notification Event**: Give you the details of the Notification Event that was triggered including the method of execution under the "Via" section.
+- **Template**: Shows the name of the template used in the Notification Event.
+- **Distinct ID**: Will display the Distinct ID, if it was used during the triggering of the notification event. If the distinct ID was not used, this field would be blank.
+- **To Payload**: This displays all the channels that are configured in that notification event and of those, the ones that are highlighted were the channels through which communication was attempted.
 
 On clicking on any of the notification event logs, you will see some key information and components.
 
-1. **Start Component**: Tells you the Notification Event started or was triggered at that specific time. You will also be able to see the Request ID of that Notification Event next to the Start Component
-2. **Channel Component**: Gives you the details of the Channel that was triggered according to the notification event, and the integration name used along with the timestamp.
-3. **Failover Component**: This component shows the channels that were selected as failovers to the primary channel (the "[Channel Component](./omnichannel-route-creation#channels)" preceding it ), along with the details of the failover attempted.  
+- **Start Component**: Tells you the Notification Event started or was triggered at that specific time. You will also be able to see the Request ID of that Notification Event next to the Start Component
+- **Channel Component**: Gives you the details of the Channel that was triggered according to the notification event, and the integration name used along with the timestamp.
+- **Failover Component**: This component shows the channels that were selected as failovers to the primary channel (the "[Channel Component](./omnichannel-route-creation#channels)" preceding it ), along with the details of the failover attempted.  
    This component will only be displayed if:
-    1. The "Routing" in the Notification Event is an "Omnichannel Route",
-    2. All attempts made from the primary channel fail and,
-    3. Another channel is configured as a failover to the primary one in Omnichannel Routing.
-4. **Wait Component**: When configuring an Omnichannel route, if a "[Wait for](./omnichannel-route-creation#controls)" component was configured, the same will be displayed in the notification event logs.
+  - The "Routing" in the Notification Event is an "Omnichannel Route",
+  - All attempts made from the primary channel fail and,
+  - Another channel is configured as a failover to the primary one in Omnichannel Routing.
+- **Wait Component**: When configuring an Omnichannel route, if a "[Wait for](./omnichannel-route-creation#controls)" component was configured, the same will be displayed in the notification event logs.
 
 ### Channel Component
 
@@ -54,16 +54,16 @@ Clicking on a **Notification Event Log** for an SMS channel component shows us t
 
 At first glance, it looks very similar to individual **Sent Logs**. However, let's understand the differences here.
 
-1. **Log Details**: Gives you a summary of:
-    1. The channel name attempted in this component
-    2. The different providers (in case a single channel route was configured) that were attempted.
-    3. The success or failure status of each provider attempted.
-2. **Trace**:Gives you a summary of each hop or path that the notification has taken along with the time that each hop has taken, including the total as well as the final status of the notification. Read more [here](./log-details-trace).
-3. **Summary**: Gives you a summary of the notification. Read more [here](./log-details-summary).
-4. **Placeholders**: Tells you the details of the [Placeholders](./log-details-placeholders) used in the notification template.
-5. **Content**: Displays the details of the content triggered in the notification. [Read more](./log-details-content).
-6. **Response**: Shows all the details of the notification response that was received from the Provider. Understand more about [Response](./log-details-response).
-7. **Delivery**: Provides you a detailed account of the delivery response received from the provider. [Read more](./log-details-delivery).
+- **Log Details**: Gives you a summary of:
+  - The channel name attempted in this component
+  - The different providers (in case a single channel route was configured) that were attempted.
+  - The success or failure status of each provider attempted.
+- **Trace**: Gives you a summary of each hop or path that the notification has taken along with the time that each hop has taken, including the total as well as the final status of the notification. Read more [here](./log-details-trace).
+- **Summary**: Gives you a summary of the notification. Read more [here](./log-details-summary).
+- **Placeholders**: Tells you the details of the [Placeholders](./log-details-placeholders) used in the notification template.
+- **Content**: Displays the details of the content triggered in the notification. [Read more](./log-details-content).
+- **Response**: Shows all the details of the notification response that was received from the Provider. Understand more about [Response](./log-details-response).
+- **Delivery**: Provides you a detailed account of the delivery response received from the provider. [Read more](./log-details-delivery).
 
 ### Colour-Coded Components
 
@@ -73,9 +73,9 @@ To understand this better, let's take another example here.
 
 ![](/images/event-logs-2.png)
 
--   The first Channel component - _Email_ is green in colour, indicating that the attempt for the Email Channel has successfully gone through.
--   The secondary channel component, which has a _Wait For_ element showing 10 seconds, will cause the _Email_ channel to be triggered with a 10-second delay, which is indicated in yellow.
--   The third component, _SMS_, on failure (shown with a red component) will trigger the next set of steps, including _Wait for_ and then the consequent channels, that is _WhatsApp_ and _Push_.
+- The first Channel component - _Email_ is green in colour, indicating that the attempt for the Email Channel has successfully gone through.
+- The secondary channel component, which has a _Wait For_ element showing 10 seconds, will cause the _Email_ channel to be triggered with a 10-second delay, which is indicated in yellow.
+- The third component, _SMS_, on failure (shown with a red component) will trigger the next set of steps, including _Wait for_ and then the consequent channels, that is _WhatsApp_ and _Push_.
 
 Another error that can possibly appear in the **Notification Event logs** is the below:
 
@@ -99,11 +99,11 @@ To understand how to use the filters, let's have a look at the categories within
 
 You can select one of the provided options, which are:
 
-1. Today
-2. Yesterday
-3. Last 7 days
-4. Last 28 days
-5. Custom - Select a start and end date of your choice.
+- Today
+- Yesterday
+- Last 7 days
+- Last 28 days
+- Custom - Select a start and end date of your choice.
 
 ### Search
 
@@ -131,6 +131,4 @@ The **Placeholders** search option allows you to search for logs with a placehol
 
 In the logs section, the **Test** and **Live** versions are uniquely partitioned, to show you the details notifications sent in that particular version of the API that has been generated.
 
-> 🚧 Can't find a notification log?
->
-> Check the environment that the notification was triggered in. Notification triggered in **Test** environment cannot be seen in **Live** and vice versa.
+<Tip title="Can't find a notification log?">Check the environment that the notification was triggered in. Notification triggered in **Test** environment cannot be seen in **Live** and vice versa.</Tip>

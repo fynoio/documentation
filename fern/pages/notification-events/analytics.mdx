@@ -1,7 +1,7 @@
 ---
-title: "Notification Event Analytics"
-slug: "notification-event-analytics"
-og:title: "Notification Event Analytics | Fyno Documentation"
+title: 'Notification Event Analytics'
+slug: 'notification-event-analytics'
+og:title: 'Notification Event Analytics - Notification Events | Fyno Documentation'
 og:description: "Fyno's Notification Event Analytics provides visual insights into the performance of notification events through graphs and charts It will help you to optimise your communication strategy to improve your deliverability"
 ---
 
@@ -11,8 +11,8 @@ To get started with **Notification Event Analytics**, you will need to have crea
 
 You can find your way to **Notification Event Analytics** by:
 
-1. Navigating to the **Notification Events** page and clicking the "Bar Chart" icon on the top right corner of the corresponding event card.
-2. By clicking on a **Notification Event** and clicking on the "Bar Chart" icon on the top right corner of the event.
+- Navigating to the **Notification Events** page and clicking the "Bar Chart" icon on the top right corner of the corresponding event card.
+- Or by clicking on a **Notification Event** and clicking on the "Bar Chart" icon on the top right corner of the event.
 
 On clicking on the "Bar Chart" icon for **Notification Event Analytics**, a new page opens up with details. For ease of understanding, an **Notification Events Analytics** page with pre-populated data is visualised below.
 
@@ -36,16 +36,12 @@ The **Overview** section of the **Notification Event Analytics** section provide
 
 On this card, you will see:
 
-1. The number of times the notification event was fired
-2. The number of notifications submitted via this notification event
-3. The number of notifications delivered via this notification event.
-4. The no of conversions for this notification event (if you have enabled Track Conversion in your notification event). You can read more about it [here](https://docs.fyno.io/docs/event-creation#4-track-conversion-optional).
+- The number of times the notification event was fired
+- The number of notifications submitted via this notification event
+- The number of notifications delivered via this notification event.
+- The no of conversions for this notification event (if you have enabled Track Conversion in your notification event). You can read more about it [here](./notification-event-creation#track-conversion-optional).
 
-> 🤔 Count of notifications higher than number of times the notification event was fired?
->
-> Thats completely normal! It all depends on the number of channels and providers added for the route or notification event itself.
->
-> In case you have more than 1 channel or provider configured, you will have exponentially more number of notifications, compared to the number of times the notification event was triggered.
+<Info title="Count of notifications higher than number of times the notification event was fired?">Thats completely normal! It all depends on the number of channels and providers added for the route or notification event itself. In case you have more than 1 channel or provider configured, you will have exponentially more number of notifications, compared to the number of times the notification event was triggered.</Info>
 
 ## Sent by Channels
 
@@ -53,7 +49,7 @@ The **Channel Sent** card gives you a view of the distribution of notification t
 
 ## Analytics Label
 
-The **Analytics Label** filter enables you to view analytics based on Dynamic Analytics label you configured in your notification event. You can read more about it [here](https://docs.fyno.io/docs/event-creation#3-analytics-label-optional).
+The **Analytics Label** filter enables you to view analytics based on Dynamic Analytics label you configured in your notification event. You can read more about it [here](./notification-event-creation#analytics-label-optional).
 
 ## Channel Engagement
 
@@ -61,21 +57,19 @@ The **Analytics Label** filter enables you to view analytics based on Dynamic An
 
 Outcomes can be anything from:
 
-1. **Sent** - When a notification is successfully sent from Fyno's platform
-2. **Delivered** - When a notification gets successfully delivered to the destination (mobile number, email address, or device tokens like in the case of Push).
-3. **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as "Read" for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially "opened", this will be tagged as "Open" and tracked on Fyno's App.
-4. **Clicked** - When a notification is clicked on, this will be tracked as a "Clicked" notification. This applies to In-App, Push, Emails with links, etc.
-5. **Deleted** - When a Push notification is rendered in user's device and user dismiss it by swiping left.
-6. **Keypress** - When a user receives a voice IVR call and presses a key to proceed with the call.
-7. **Replied** - When a user replies to a WhatsApp a notification he/she receives in their device.
+- **Sent** - When a notification is successfully sent from Fyno's platform
+- **Delivered** - When a notification gets successfully delivered to the destination (mobile number, email address, or device tokens like in the case of Push).
+- **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as "Read" for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially "opened", this will be tagged as "Open" and tracked on Fyno's App.
+- **Clicked** - When a notification is clicked on, this will be tracked as a "Clicked" notification. This applies to In-App, Push, Emails with links, etc.
+- **Deleted** - When a Push notification is rendered in user's device and user dismiss it by swiping left.
+- **Keypress** - When a user receives a voice IVR call and presses a key to proceed with the call.
+- **Replied** - When a user replies to a WhatsApp a notification he/she receives in their device.
 
-You can read about all the different notification statuses for each channel [here](https://docs.fyno.io/docs/notification-status)
+You can read about all the different notification statuses for each channel [here](./notification-status).
 
 The count for each can be seen on hovering over the bar graphs.
 
-> 📘 You can highlight a single status to look at!
->
-> Simply click on the other statuses from the legend list at the bottom of the graph to un-select them!
+<Tip>You can highlight a single status to look at! Simply click on the other statuses from the legend list at the bottom of the graph to un-select them!</Tip>
 
 ## Delivery Status
 
@@ -85,18 +79,21 @@ The list will populate the **Channels** based on usage and in chronological orde
 
 You can toggle on or off the statuses you would like to see by clicking on the legends at the bottom of the graph. Let's have a look at some of these statuses to understand it better.
 
-1. **Sent** - All notifications that have left the Fyno App successfully towards the destination are marked as "Sent". In scenarios where there is no delivery confirmation received from the provider, this status will remain as "Sent".
-2. **Delivered** - When a notification is delivered successfully to the Destination, then these messages are considered "Delivered"
-3. **Error** - All notifications that fail to be triggered from the Fyno App due to some error (it may be any from an issue on a template to not choosing a provider for a channel), will be tagged as "Error"
-4. **Failed** - When a notification is tagged as "Failed" this is most probably due to conditions that are mandatory from the provider that are not being met, due to which the notification execution has been tagged as "Failed"
-5. **Bounce** - Bounce is a status that would be seen only in the case of an "Email" channel. This happens when
-    1. The email address is incorrect
-    2. The email address requires senders to be whitelisted in their domain to receive emails.
-    3. The email address' mailbox is full and unable to receive any more notifications.
+- **Sent** - All notifications that have left the Fyno App successfully towards the destination are marked as "Sent". In scenarios where there is no delivery confirmation received from the provider, this status will remain as "Sent".
+- **Delivered** - When a notification is delivered successfully to the Destination, then these messages are considered "Delivered"
+- **Error** - All notifications that fail to be triggered from the Fyno App due to some error (it may be any from an issue on a template to not choosing a provider for a channel), will be tagged as "Error"
+- **Failed** - When a notification is tagged as "Failed" this is most probably due to conditions that are mandatory from the provider that are not being met, due to which the notification execution has been tagged as "Failed"
+- **Bounce** - Bounce is a status that would be seen only in the case of an "Email" channel. This happens when
+  - The email address is incorrect
+  - The email address requires senders to be whitelisted in their domain to receive emails.
+  - The email address' mailbox is full and unable to receive any more notifications.
 
-> ❗️ Undelivered statuses are tracked when they are:
->
-> 1. Invalid-Subscriber
-> 2. Blacklist
-> 3. Rejected
-> 4. Bounce
+<Info>
+  Undelivered statuses are tracked when they are:
+  <ul>
+    <li>Invalid-Subscriber</li>
+    <li>Blacklist</li>
+    <li>Rejected</li>
+    <li>Bounce</li>
+  </ul>
+</Info>
