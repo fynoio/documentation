@@ -1,7 +1,7 @@
 ---
-title: "Workflows"
-slug: "workflows"
-og:title: "Workflow overview | Fyno Documentation"
+title: 'Workflows'
+slug: 'workflows'
+og:title: 'Overview - Workflow | Fyno Documentation'
 og:description: "Fyno's Workflow builder allows users to create intelligent notification flows without coding, connecting to third-party tools and using conditional blocks to determine notifications. An example is provided where a company uses the Workflow to handle different scenarios for payment failures based on customer type."
 ---
 
@@ -9,11 +9,11 @@ Workflows lets you create an automated omnichannel notification experience for y
 
 This feature has the flexibility to connect to any third party tool like Mixpanel, Amplitude, Segment or to any web hooks and use conditional blocks to decide who should receive what notifications. You can also design a pre-defined chat workflow where you can send notifications based on user reply. All these can be achieved with ZERO code.
 
-## What is an Workflow?
+## What is a Workflow?
 
 Workflows in Fyno is a notifications orchestration service that allows anyone to easily design intelligent notification flows without coding.
 
-Workflow can be used to
+Workflow can be used to:
 
 - Deliver notifications based on notification events created from and data sources like Segment, Mixpanel, Amplitude or any webhooks .
 - Deliver notifications based on a user response to a SMS or WhatsApp notification.
@@ -23,13 +23,13 @@ Workflow can be used to
 
 ## Workflow Triggers
 
-To create a workflow, you need to choose a trigger. This is based on how you want to send payload to workflow. We support 2 triggers in workflows now.
+To create a workflow, you need to choose a trigger. This is based on how you want to send payload to workflow. We support multiple triggers in workflows now:
 
-1. [Webhooks](./workflow-webhook-trigger) - Create the Workflow using a Webhook as the trigger.
-2. [Virtual No](./creating-a-workflow-with-incoming-message-trigger) - A virtual mobile number with the capability to receive incoming messages can be configured here. If you want to design a workflow based on user's response in WhatsApp or SMS, then this trigger should be used. Contact [support@fyno.io](mailto:support@fyno.io) for configuring a virtual number.
-3. [Mixpanel](./workflow-using-mixpanel-cohort) - Create the Workflow using a mixpanel cohort as the trigger.
-4. [Journey](./create-journey) - Create a Journey using notification event as the trigger. This will be helpful if you have a predefined journey with a end goal like SIP reminders to complete payment, KYC completion etc.
-5. [Webhooks with Digest](./creating-a-workflow-with-digest) - Create a workflow with digest. Digest Notifications work by collecting multiple notification events, aggregating them into a single message, and delivering it to the user.
+- [Webhooks](./workflow-webhook-trigger) - Create the Workflow using a Webhook as the trigger.
+- [Virtual No](./creating-a-workflow-with-incoming-message-trigger) - A virtual mobile number with the capability to receive incoming messages can be configured here. If you want to design a workflow based on user's response in WhatsApp or SMS, then this trigger should be used. Contact [support@fyno.io](mailto:support@fyno.io) for configuring a virtual number.
+- [Mixpanel](./workflow-using-mixpanel-cohort) - Create the Workflow using a mixpanel cohort as the trigger.
+- [Journey](./create-journey) - Create a Journey using notification event as the trigger. This will be helpful if you have a predefined journey with a end goal like SIP reminders to complete payment, KYC completion etc.
+- [Webhooks with Digest](./creating-a-workflow-with-digest) - Create a workflow with digest. Digest Notifications work by collecting multiple notification events, aggregating them into a single message, and delivering it to the user.
 
 ## Understanding Workflows
 
@@ -50,23 +50,23 @@ While Fyno’s notification events will handle the delivery of notifications, th
 
 For this example, let’s assume that company ABC has two API endpoints -
 
-1. `/customers` - a `GET` endpoint that returns the type of customer.
+- `/customers` - a `GET` endpoint that returns the type of customer.
 
-2. `/orders/{{customer_id}}` - a `PUT` endpoint that can update the customer’s order details  
+- `/orders/{{customer_id}}` - a `PUT` endpoint that can update the customer’s order details  
    Here is how the end-to-end process would work:  
    ![](/images/automations-example.png)
 
-<br />
-
-1. Company ABC creates the Workflow in Fyno.
-2. ABC then adds the Workflow URL as a webhook for successful and failed payments on the payment gateway site
-3. Customer 1 makes a successful purchase on ABC’s website. The Workflow fires, and the customer receives an SMS and email confirming the successful purchase.
-4. Customers 2 and 3 cannot make a successful online payment due to an issue with the bank. The Workflow fires, and due to the failed payment, it knows to trigger the `/customers` endpoint to get details about customer type.
-5. Customer 2 is found to be a Power User (best user cohort in terms of monetisation) based on the result of the API call to `/customers`.
-6. As a result, Customer 2’s order is confirmed (despite the failed payment), and the Workflow converts the order type to COD by making an API call to `/orders/{{customer_id}}`.
-7. If this API call is successful, the Workflow sends an order confirmation to Customer 2 via Email and SMS.
-8. But Customer 3 is found to be a non-Power User.
-9. So for Customer 3, workflow will trigger a notification with Payment link to retry and make the payment.
-10. Once the Customer 3 successfully makes the payment, he/she will receive Order Confirmation communication.
+<Steps>
+  <Step>Company ABC creates the Workflow in Fyno.</Step>
+  <Step>ABC then adds the Workflow URL as a webhook for successful and failed payments on the payment gateway site</Step>
+  <Step>Customer 1 makes a successful purchase on ABC’s website. The Workflow fires, and the customer receives an SMS and email confirming the successful purchase.</Step>
+  <Step>Customers 2 and 3 cannot make a successful online payment due to an issue with the bank. The Workflow fires, and due to the failed payment, it knows to trigger the `/customers` endpoint to get details about customer type.</Step>
+  <Step>Customer 2 is found to be a Power User (best user cohort in terms of monetisation) based on the result of the API call to `/customers`.</Step>
+  <Step>As a result, Customer 2’s order is confirmed (despite the failed payment), and the Workflow converts the order type to COD by making an API call to `/orders/{{ customer_id }}`.</Step>
+  <Step>If this API call is successful, the Workflow sends an order confirmation to Customer 2 via Email and SMS.</Step>
+  <Step>But Customer 3 is found to be a non-Power User.</Step>
+  <Step>So for Customer 3, workflow will trigger a notification with Payment link to retry and make the payment.</Step>
+  <Step> Once the Customer 3 successfully makes the payment, he/she will receive Order Confirmation communication.</Step>
+</Steps>
 
 What would have otherwise required more than a few lines of code to configure, is being addressed with Fyno's Workflow feature, allowing you to add triggers, provide conditions and decide outcomes, all with a visual understanding of how the entire flow will work.
