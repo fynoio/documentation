@@ -23,6 +23,6 @@ jobs:
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
             fern generate --docs
-          elif [[ "${{ github.ref }}" == refs/heads/25.* ]]; then
+          elif [[ "${{ github.ref }}" =~ refs/heads/25\..* ]]; then
             fern generate --docs --preview
           fi
