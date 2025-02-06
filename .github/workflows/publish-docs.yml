@@ -24,5 +24,15 @@ jobs:
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
             fern generate --docs
           elif [[ "${{ github.ref }}" =~ refs/heads/25\..* ]]; then
-            fern generate --docs --preview
+            OUTPUT=$(fern generate --docs --preview 2>&1) || true
+            echo "$OUTPUT"
+            URL=$(echo "$OUTPUT" | grep -oP 'Published docs to \K.*(?= \()')
+            echo "Preview URL: $URL"
+            echo "🌿 Preview your docs: $URL" > preview_url.txt
           fi
+
+      - name: Comment URL in PR
+        uses: thollander/actions-comment-pull-request@v2.4.3
+        if: startsWith(github.ref, 'refs/heads/25.')
+        with:
+            filePath: preview_url.txt
