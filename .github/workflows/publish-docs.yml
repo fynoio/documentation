@@ -35,6 +35,4 @@ jobs:
         uses: peter-evans/commit-comment@v3
         if: startsWith(github.ref, 'refs/heads/25.')
         with:
-            body: |
-              "${{ env.URL }}"
-
+            body-path: "preview_url.txt"
