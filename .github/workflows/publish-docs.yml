@@ -40,15 +40,6 @@ jobs:
       - name: Comment Progress in PR
         uses: thollander/actions-comment-pull-request@v2.4.3
         if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
-<<<<<<< HEAD
-=======
-        with:
-            message: "Build deployed: https://fyno.io/docs"
-
-      - name: Comment Progress in Commit
-        uses: peter-evans/commit-comment@v3
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
->>>>>>> a67576124cdebbf2565998b80e37383ed0d90777
         with:
             message: "Build deployed: https://fyno.io/docs"
 
