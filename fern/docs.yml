@@ -6,7 +6,7 @@ instances:
       #         owner: fynoio
       #         repo: documentation
       #         branch: main
-title: Fyno | Help Center
+title: Fyno Documentation
 
 tabs:    
     docs:
