@@ -41,4 +41,4 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2.4.3
         if: github.ref == 'refs/heads/main'
         with:
-            body: "Build deployed: https://fyno.io/docs"
+            message: "Build deployed: https://fyno.io/docs"
