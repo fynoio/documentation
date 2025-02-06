@@ -36,5 +36,5 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/25.')
         with:
             body: |
-              Preview your docs: $(cat preview_url.txt)
+              $(cat preview_url.txt)
 
