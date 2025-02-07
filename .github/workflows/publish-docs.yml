@@ -35,13 +35,13 @@ jobs:
             echo "Preview your docs: $URL" > preview_url.txt
           fi
 
-      - name: Comment URL in Commit
+      - name: Comment Preview URL (Commit)
         uses: peter-evans/commit-comment@v3
         if: startsWith(github.ref, 'refs/heads/25.')
         with:
             body-path: "preview_url.txt"
 
-      - name: Comment Progress in PR
+      - name: Comment Preview URL (PR)
         uses: thollander/actions-comment-pull-request@v2.4.3
         if: github.event_name == 'pull_request'
         with:
