@@ -26,29 +26,25 @@ jobs:
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
         run: |
           if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
-            fern generate --docs
+            fern generate --docs --instance fyno.docs.buildwithfern.com/docs
           elif [[ "${{ github.ref }}" =~ refs/heads/25\..* || "${{ github.event_name }}" == "pull_request" ]]; then
-            OUTPUT=$(fern generate --docs --preview 2>&1) || true
-            echo "$OUTPUT"
-            URL=$(echo "$OUTPUT" | grep -oP 'Published docs to \K.*(?= \()')
-            echo "Preview URL: $URL"
-            echo "Preview your docs: $URL" > preview_url.txt
+            fern generate --docs --instance dev-fyno.docs.buildwithfern.com/docs 
           fi
 
       - name: Comment Preview URL (Commit)
         uses: peter-evans/commit-comment@v3
         if: startsWith(github.ref, 'refs/heads/25.')
         with:
-            body-path: "preview_url.txt"
+            body: "[Test] Build deplolyed: https://dev-fyno.docs.buildwithfern.com/docs"
 
       - name: Comment Preview URL (PR)
         uses: thollander/actions-comment-pull-request@v2.4.3
         if: github.event_name == 'pull_request'
         with:
-            filePath: "preview_url.txt"
+            message: "[Test] Build deplolyed: https://dev-fyno.docs.buildwithfern.com/docs"
 
       - name: Comment Progress in Commit
         uses: peter-evans/commit-comment@v3
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         with:
-            body: "Build deployed: https://fyno.io/docs"
+            body: "[Prod] Build deployed: https://fyno.io/docs"
