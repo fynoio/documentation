@@ -25,7 +25,7 @@ tabs:
     api:
         display-name: API Reference
         icon: fa-regular fa-code
-        slug: api
+        skip-slug: true
 
 navigation:    
     - tab: docs
