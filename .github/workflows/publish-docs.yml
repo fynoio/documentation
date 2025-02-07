@@ -27,13 +27,7 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
             fern generate --docs
-          elif [[ "${{ github.ref }}" =~ refs/heads/25\..* ]]; then
-            OUTPUT=$(fern generate --docs --preview 2>&1) || true
-            echo "$OUTPUT"
-            URL=$(echo "$OUTPUT" | grep -oP 'Published docs to \K.*(?= \()')
-            echo "Preview URL: $URL"
-            echo "Preview your docs: $URL" > preview_url.txt
-          elif [[ "${{ github.event_name }}" == "pull_request" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+          elif [[ "${{ github.ref }}" =~ refs/heads/25\..* || "${{ github.event_name }}" == "pull_request" ]]; then
             OUTPUT=$(fern generate --docs --preview 2>&1) || true
             echo "$OUTPUT"
             URL=$(echo "$OUTPUT" | grep -oP 'Published docs to \K.*(?= \()')
@@ -49,7 +43,7 @@ jobs:
 
       - name: Comment Progress in PR
         uses: thollander/actions-comment-pull-request@v2.4.3
-        if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'pull_request'
         with:
             filePath: "preview_url.txt"
 
