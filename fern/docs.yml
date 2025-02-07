@@ -599,3 +599,6 @@ layout:
     searchbar-placement: header
     tabs-placement: header
 css: "./style.css"
+analytics:
+  ga4:
+    measurement-id: G-EPD71390T2
