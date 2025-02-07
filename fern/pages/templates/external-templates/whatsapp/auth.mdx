@@ -1,0 +1,36 @@
+---
+title: 'Create an Authentication WhatsApp template'
+slug: 'create-an-authentication-whatsapp-template'
+og:title: 'Create an Authentication WhatsApp template | Fyno'
+og:description: 'You can create a WhatsApp template for sending authentication codes like OTPs, with options for zero-tap, one-tap auto-fill, or copy code, and configure it with app details, button text, and additional security settings.'
+---
+
+You can create a WhatsApp template with Authentication as category, if you want to send messages such as OTP through WhatsApp.
+
+You can send an authentication code in 3 different ways:
+
+1. Zero tap auto-fill (Use it if you are sending OTP to mobile apps)
+   - By selecting zero-tap, It’s your responsibility to ensure that your customers expect that the code will be automatically filled in on their behalf when they choose to receive the zero-tap code through WhatsApp.
+2. One tap auto-fill (Use it if you are sending OTP to mobile apps and mobile browser)
+3. Copy code
+
+## How to configure an Authentication template?
+
+<Steps>
+### App Setup
+  - Package name - This is your mobile app package name.
+  - App Signature hash - This is the signature you used to submit your mobile app to Play store/App store
+
+### Button text
+
+Buttons are still needed for the backup code delivery method even when zero-tap is selected.
+
+- Auto Fill - This is the default label used. You can override with any other text.
+- Copy Code - This is the default label used. You can override with any other text.
+
+### Additional Configuration
+
+- Add security recommendation - If you select this option, the text 'For your security, do not share this code.' will be added to your message.
+- Add expiry time for code - After the code has expired, the auto-fill button will be disabled
+
+</Steps>

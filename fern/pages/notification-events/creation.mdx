@@ -248,6 +248,36 @@ You can select either Static or Dynamic analytics labels.
     - To know how to add analytics labels, please refer this [document](./analytics-label).
     - To see how to view the analytics, you can refer this [document](./dashboard).
 
+## Check for Duplication (Optional)
+
+This option will be visible only if you enable 'Duplicate Message Check' settings. You can read how to enable this setting [here](./duplicate-message-check)
+
+Enabling this option will drop notifications with the **same template ID, channel and destination**. Additionally you can check placeholder(s) too before deciding whether to drop a notification or not. This will make sure users don't get duplicate content if its triggered by mistake from your end.
+
+<Steps>
+  <Step>Enable Check for Duplication checkbox.</Step>
+  <Step>Enter the duration till which you want to check for duplication. For example, if you fired the notification and want to check for duplicate content and drop it for the next 1 hour, enter 1 hour. You can enter upto 24 hours.</Step>
+  <Step>Enable '**Exceptions**' option, to check the placeholder data before deciding whether to drop a notification or not. You can select the placeholders to check (along with template ID, channel and destination) from the dropdown.</Step>
+  <Step>
+    **Example Scenario**: Imagine sending SIP confirmation notifications where:
+    <ul>
+      <li>A user has multiple SIPs</li>
+      <li>Each SIP is for a different stock</li>
+      <li>All SIPs have the same amount</li>
+      <li>The only differentiating factor is the stock name</li>
+    </ul>
+  </Step>
+  <Step>
+    **How to Use:**
+    <ul>
+      <li>Enable Exceptions feature</li>
+      <li>Select relevant placeholders from the dropdown (e.g., 'Stock')</li>
+      <li>Fyno will then consider the stock name when checking for duplicates</li>
+      <li>Result: All notifications will be sent, even with same template/channel/destination</li>
+    </ul>
+  </Step>
+</Steps>
+
 ## Track Conversion (Optional)
 
 This option will be visible only if you enable Conversion Tracking setting. You can read how to enable this setting [here](./conversion-tracking).
