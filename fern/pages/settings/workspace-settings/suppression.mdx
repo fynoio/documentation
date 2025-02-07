@@ -1,59 +1,58 @@
 ---
-title: "Suppression List"
-slug: "suppression"
-og:title: "How to manage Suppression list | Fyno Documentation"
-og:description: "A suppression list is a list of users you do not want to send notifications to, such as those with bounced emails or who have requested to stop receiving notifications. You can create and manage this list in Fyno by adding users based on various criteria like channels and suppression reasons."
+title: 'Suppression List'
+slug: 'suppression'
+og:title: 'How to manage Suppression list - Add-Ons | Fyno Documentation'
+og:description: 'A suppression list is a list of users you do not want to send notifications to, such as those with bounced emails or who have requested to stop receiving notifications. You can create and manage this list in Fyno by adding users based on various criteria like channels and suppression reasons.'
 ---
 
 A suppression list is a list of destinations (users) that you do not want to send notifications because sending to these destinations will hurt delivery rates.
 
 For example, users whose emails have bounced, those without WhatsApp who cannot receive messages, those with incorrectly captured mobile numbers preventing them from receiving WhatsApp or SMS, and users who have complained about excessive notifications and requested to stop sending any notifications to them will be placed on the suppression list. They will be excluded from any notifications triggered from Fyno.
 
-## How to create a Suppression List
+## How to create a Suppression List?
 
-1. To create a Suppression List, go to Workspace Settings(bottom left corner in menu) -> Add On's -> Suppression List.
-2. Enable the toggle. You will see the popup as shown below.
+<Steps>
+  <Step>To create a Suppression List, go to Workspace Settings(bottom left corner in menu) -> Add On's -> Suppression List.</Step>
+  <Step>Enable the toggle. You will see the popup as shown below. ![](/images/2afbab0-Suppression_list_eventtype.png)</Step>
+  <Step>For example, if you select Marketing, all the notification events with event type as Marketing will be suppressed for the users present in the list.</Step>
+</Steps>
 
-![](/images/2afbab0-Suppression_list_eventtype.png)
+## How to add users to Suppression List?
 
-3. For example, if you select Marketing, all the notification events with event type as Marketing will be suppressed for the users present in the list.
-
-## How to add users to Suppression List
-
-1. When you click 'View Users', you will see the page as shown below.
-
-![](/images/b2116c2-suppression_list_empty.png)
-
-2. When you click 'Add Users', the below popup opens up where you can add the users to the list.
-
-![](/images/244b448-Add_suppression_list.png)
-
-![](/images/a21abd3-Add_suppression_list.png)
-
-3. You can add users to Suppression list by
-    1. Distinct Id
-    2. Destination.
-        > 📘 Select Distinct Id if you manage User Profiles in Fyno. Otherwise, select Destination
-4. **Channels** - If you choose Destination, you can add the below channels.
-    1. SMS
-    2. WhatsApp
-    3. Email
-    4. Push
-    5. Web Push
-    6. InApp
-5. **Time to Live (TTL)** - You have the option to set the TTL (Time to Live) as 'ever' or customize it. If you opt for customization, you can specify the TTL ranging from a minimum of 5 minutes to a maximum of 90 days.
-6. **Suppression Reasons**
-    1. User complained about Spam
-    2. DND
-    3. Email bounced
-    4. Invalid number
-7. For example, if you want to exclude a destination [abc@gmail.com](mailto:abc@gmail.com) from receiving any email notifications for a period of 30 days as their email has bounced, it can done as shown below.
-
-![](/images/8a62752-suppression_list_example.png)
-
-8. You can add more destination or distinct ids by click 'ADD+' .
-9. Once you click 'Add Users' the destination or distinct id will be added to the Suppression List and the list will look as show below.
-
-![](/images/874c16c-Suppression_list_added.png)
-
-10. When you try to send an email to [abc@gmail.com](mailto:abc@gmail.com), it will be Suppressed by Fyno and won't be sent to the user till the TTL expires.
+<Steps>
+  <Step>When you click 'View Users', you will see the page as shown below. ![](/images/b2116c2-suppression_list_empty.png)</Step>
+  <Step>When you click 'Add Users', the below popup opens up where you can add the users to the list. ![](/images/244b448-Add_suppression_list.png) ![](/images/a21abd3-Add_suppression_list.png)</Step>
+  <Step>
+    You can add users to Suppression list by:
+    <ul>
+      <li>Distinct Id</li>
+      <li>Destination.</li>
+    </ul>
+    <Tip>Select Distinct Id if you manage User Profiles in Fyno. Otherwise, select Destination</Tip>
+  </Step>
+  <Step>
+    **Channels** - If you choose Destination, you can add the below channels.
+    <ul>
+      <li>SMS</li>
+      <li>WhatsApp</li>
+      <li>Email</li>
+      <li>Push</li>
+      <li>Web Push</li>
+      <li>InApp</li>
+    </ul>
+  </Step>
+  <Step>**Time to Live (TTL)** - You have the option to set the TTL (Time to Live) as 'ever' or customize it. If you opt for customization, you can specify the TTL ranging from a minimum of 5 minutes to a maximum of 90 days.</Step>
+  <Step>
+    **Suppression Reasons**
+    <ul>
+      <li>User complained about Spam</li>
+      <li>DND</li>
+      <li>Email bounced</li>
+      <li>Invalid number</li>
+    </ul>
+  </Step>
+  <Step>For example, if you want to exclude a destination `abc@gmail.com` from receiving any email notifications for a period of 30 days as their email has bounced, it can done as shown below. ![](/images/8a62752-suppression_list_example.png)</Step>
+  <Step>You can add more destination or distinct ids by click 'ADD+'.</Step>
+  <Step>Once you click 'Add Users' the destination or distinct id will be added to the Suppression List and the list will look as show below. ![](/images/874c16c-Suppression_list_added.png)</Step>
+  <Step>When you try to send an email to `abc@gmail.com`, it will be Suppressed by Fyno and won't be sent to the user till the TTL expires.</Step>
+</Steps>
