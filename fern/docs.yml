@@ -572,8 +572,8 @@ typography:
         weight: 600
 logo:
     href: https://www.fyno.io
-    light: "https://images.fyno.io/brand/fyno-logo-primary.svg"
-    dark: "https://images.fyno.io/brand/fyno-logo-white.svg"
+    light: ./assets/fyno-logo-primary.svg
+    dark: ./assets/fyno-logo-white.svg
     height: 30
 colors:
     accentPrimary:
@@ -585,7 +585,7 @@ colors:
     header-background:
         dark: "#030303"
         light: "#FCFCFC"
-favicon: "https://images.fyno.io/brand/favicon.svg"
+favicon: ./assets/favicon.svg
 layout:
     page-width: 1504px
     header-height: 75px
