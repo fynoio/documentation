@@ -1,13 +1,13 @@
 instances:
     - url: fyno.docs.buildwithfern.com/docs
       custom-domain: fyno.io/docs
-    - url: dev-fyno.docs.buildwithfern.com/docs      
+    - url: dev-fyno.docs.buildwithfern.com/docs
       # edit-this-page:
       #     github:
       #         owner: fynoio
       #         repo: documentation
       #         branch: main
-title: Fyno Documentationg
+title: Fyno Documentation
 
 tabs:    
     docs:
