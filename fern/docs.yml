@@ -179,7 +179,7 @@ navigation:
                   - section: "Push"
                     path: "pages/integrations/push-channel.mdx"
                     contents:
-                        - page: "APNs (Apple Push Notification services)"
+                        - page: "APNs"
                           path: "pages/integrations/push/apns.mdx"
                         - page: "Expo"
                           path: "pages/integrations/push/expo.mdx"
