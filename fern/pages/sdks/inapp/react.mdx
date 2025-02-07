@@ -1,8 +1,8 @@
 ---
-title: "React In-App SDK"
-slug: "fyno-in-app-react-sdk"
-og:title: "React In-App SDK | Fyno Documentation"
-og:description: "This guide will walk you through the prerequisites, installation, and step-by-step configuration required to get your web application ready for In-App notifications"
+title: 'React In-App SDK'
+slug: 'fyno-in-app-react-sdk'
+og:title: 'React In-App SDK | Fyno Documentation'
+og:description: 'This guide will walk you through the prerequisites, installation, and step-by-step configuration required to get your web application ready for In-App notifications'
 ---
 
 The In-App React SDK is a powerful tool that allows you to seamlessly integrate Fyno's notification center into your React-based applications. With this SDK, you can enhance your user's experience by providing them with a feature-rich and customisable notification center.
@@ -34,21 +34,21 @@ The HMAC signature is essential for ensuring the security and integrity of your 
 <CodeBlocks>
 
 ```js title="Node" wordWrap
-import crypto from "crypto"; //module
+import crypto from 'crypto'; //module
 //or
 // const crypto = require('crypto') //commonjs
 const signature = crypto
-  .createHmac("sha256", "WSID" + "INTEGRATION_TOKEN")
-  .update("USER_ID")
-  .digest("hex");
+  .createHmac('sha256', 'WSID' + 'INTEGRATION_TOKEN')
+  .update('USER_ID')
+  .digest('hex');
 ```
 
 ```js title="JavaScript" wordWrap
-const CryptoJS = require("crypto-js"); //commonjs
+const CryptoJS = require('crypto-js'); //commonjs
 //or
 //import CryptoJS from "crypto-js";//module
-const secretKey = "WSID" + "INTEGRATION_TOKEN";
-const userId = "USER_ID";
+const secretKey = 'WSID' + 'INTEGRATION_TOKEN';
+const userId = 'USER_ID';
 
 const signature = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
 ```
@@ -188,8 +188,8 @@ class Example extends Component {
   }
   const config = {
     mode: 'THEME_MODE', // Choose between 'light' or 'dark'
-    userId: 'USER_ID',
-    workspaceId: 'WSID',
+    user: 'USER_ID',
+    workspace: 'WSID',
     integration: 'INTRGRATION_ID',
     signature: 'signature',
     themeConfig: {
