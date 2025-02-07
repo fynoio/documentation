@@ -1,0 +1,40 @@
+---
+title: 'Plivo'
+slug: 'voice-plivo'
+og:title: 'How to send Voice channel notification using Plivo & Fyno | Help Document'
+og:description: 'To integrate Plivo with Fyno, ensure you have a Plivo account and number, then fill in the required details such as Custom Name, Auth ID, Auth Token, Phone Number, and optionally IVR PHLO/ID in the Integrations section under "Voice," and test the integration for success. Message delivery status is automatically provided by Twilio and can be viewed in the logs under the Delivery tab.'
+---
+
+Before we get started, you must have a Plivo account already set up, along with a Plivo number.
+
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. Under "Voice" section, click on the "Plivo" button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+- **Custom name**: Provide a name to help you identify the configured account in Fyno's portal.
+- **Auth ID:** In your Plivo account, Click the Phone Icon on the right, Under the Account Section Auth ID and Auth token. Make use of the eye icon to display the auth token.
+  ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/voice_plivo_auth.png)
+
+- **Auth Token:** In your Plivo account, Click the Phone Icon on the right, Under the Account Section Auth ID and Auth token. Make use of the eye icon to display the auth token.
+
+- **Phone Number:** In your Plivo account, Under the Phone Numbers Section. Either create a new Phone Number or use an existing one.
+  ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/voice_plivo_number.png)
+
+- **IVR PHLO/ID:** Optional, Configure PHLO ID for triggering a Flow/IVR/PHLO. In your Plivo account, Under the PHLO Section. Either create a new PHLO number or use an existing one. Copy the PHLO ID.
+  ![](https://fynodocs.s3.ap-south-1.amazonaws.com/images/voice_plivo_phlo.png)
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
+
+## Message Delivery Status
+
+Plivo, by default, provides the status of the message without any additional setup needed.
+
+Once the above integration is complete, the status of the notification, which will be shared by Plivo will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.

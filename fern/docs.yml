@@ -179,7 +179,7 @@ navigation:
                   - section: "Push"
                     path: "pages/integrations/push-channel.mdx"
                     contents:
-                        - page: "APNs (Apple Push Notification services)"
+                        - page: "APNs"
                           path: "pages/integrations/push/apns.mdx"
                         - page: "Expo"
                           path: "pages/integrations/push/expo.mdx"
@@ -190,7 +190,7 @@ navigation:
                         - page: "Mi Push"
                           path: "pages/integrations/push/mi-push.mdx"
                         - page: "OneSignal"
-                          path: "pages/integrations/push/onesignal.mdx"                  
+                          path: "pages/integrations/push/onesignal.mdx"
                   - section: "Voice"
                     path: "pages/integrations/voice-channel.mdx"
                     contents:
@@ -200,6 +200,8 @@ navigation:
                           path: "pages/integrations/voice/kaleyra.mdx"
                         - page: "Ozonetel"
                           path: "pages/integrations/voice/ozonetel.mdx"
+                        - page: "Plivo"
+                          path: "pages/integrations/voice/plivo.mdx"
                         - page: "Twilio"
                           path: "pages/integrations/voice/twilio.mdx"
                   - page: "In-App"
@@ -216,7 +218,7 @@ navigation:
                         - page: "Videocon"
                           path: "pages/integrations/dlt/videocon.mdx"
                         - page: "Vodafone Idea"
-                          path: "pages/integrations/dlt/vodafone-idea.mdx"                  
+                          path: "pages/integrations/dlt/vodafone-idea.mdx"
                 - section: "Templates"
                   path: "pages/templates/templates-getting-started.mdx"
                   icon: fa-regular fa-pen-ruler
@@ -276,8 +278,11 @@ navigation:
                       - section: "External Templates"
                         path: "pages/templates/external-templates.mdx"
                         contents:
-                            - page: "Create a WhatsApp template from Fyno"
+                            - section: "Create a WhatsApp template from Fyno"
                               path: "pages/templates/external-templates/whatsapp/create.mdx"
+                              contents:
+                                - page: "Create an Authentication WhatsApp template"
+                                  path: "pages/templates/external-templates/whatsapp/auth.mdx"
                             - page: "Sync SMS templates to Fyno"
                               path: "pages/templates/external-templates/sms/sync.mdx"
                             - page: "Sync WhatsApp templates to Fyno"
@@ -298,7 +303,7 @@ navigation:
                         path: "pages/routing/singlechannel/introduction.mdx"
                         contents:
                         - page: "Creating a Single Channel Route"
-                          path: "pages/routing/singlechannel/creation.mdx"                          
+                          path: "pages/routing/singlechannel/creation.mdx"
                         - page: '"Action" Operator'
                           path: "pages/routing/singlechannel/action.mdx"
                         - page: '"Condition" Operator'
@@ -327,11 +332,11 @@ navigation:
                         path: "pages/notification-events/logs.mdx"
                       - page: "Delivery Callback Logs"
                         path: "pages/notification-events/callback-logs.mdx"
-                      - page: "Idempotent Requests"                        
+                      - page: "Idempotent Requests"
                         path: "pages/notification-events/idempotent-requests.mdx"
                 - page: "Requests/Go Live"
                   icon: fa-regular fa-mouse-pointer
-                  path: "pages/requests-golive/request-go-live.mdx"                  
+                  path: "pages/requests-golive/request-go-live.mdx"
                 - section: "Logs"
                   path: "pages/logs/logs.mdx"
                   icon: fa-regular fa-database
@@ -357,7 +362,7 @@ navigation:
                             - page: "Response"
                               path: "pages/logs/sent-log-details/response.mdx"
                             - page: "Delivery"
-                              path: "pages/logs/sent-log-details/delivery.mdx"                    
+                              path: "pages/logs/sent-log-details/delivery.mdx"
                       - page: "Inbound logs"
                         path: "pages/logs/inbound-logs.mdx"
           - section: "Advanced Features"
@@ -411,7 +416,7 @@ navigation:
                     - page: "Updating and Deleting User Profile"
                       path: "pages/user-profiles/updation-deletion.mdx"
                     - page: "Preferences"
-                      path: "pages/user-profiles/preferences.mdx"                                         
+                      path: "pages/user-profiles/preferences.mdx"
           - section: "Settings"
             contents:
                 - page: "Profile Settings"
@@ -461,7 +466,9 @@ navigation:
                     - page: "Conversion Tracking"
                       path: "pages/settings/workspace-settings/conversion-tracking.mdx"
                     - page: "Analytics Label"
-                      path: "pages/settings/workspace-settings/analytics-label.mdx"                                          
+                      path: "pages/settings/workspace-settings/analytics-label.mdx"
+                    - page: "Duplicate Message Check"
+                      path: "pages/settings/workspace-settings/duplicate-check.mdx"
     - tab: sdks
       layout:
           - section: "Introduction"
@@ -485,7 +492,7 @@ navigation:
                         path: "pages/sdks/push/flutter/ios-push.mdx"
                       - page: "FAQs"
                         path: "pages/sdks/push/flutter/faqs.mdx"
-                - section: "React Native Push SDK"                  
+                - section: "React Native Push SDK"
                   path: "pages/sdks/push/react-native.mdx"
                   contents:
                       - page: "Prerequisites"
@@ -514,7 +521,7 @@ navigation:
                 - page: "React Native In-App SDK"
                   path: "pages/sdks/inapp/react-native.mdx"
                 - page: "Flutter In-App SDK"
-                  path: "pages/sdks/inapp/flutter.mdx"                
+                  path: "pages/sdks/inapp/flutter.mdx"
     - tab: fyno-connect
       layout:
           - section: "Getting Started"
