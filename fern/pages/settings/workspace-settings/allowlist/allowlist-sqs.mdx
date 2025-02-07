@@ -1,25 +1,27 @@
 ---
-title: "Allowlist SQS"
-slug: "allowlist-sqs"
-og:title: "Allowlist SQS | Fyno Documentation"
+title: 'Allowlist SQS'
+slug: 'allowlist-sqs'
+og:title: 'Allowlist SQS | Fyno Documentation'
 og:description: "The document provides a step-by-step guide on creating and configuring an Allowlist SQS in Fyno's application, including adding URLs, setting up SQS details from Amazon AWS, and adjusting access policies, with an option to convert it into a Delivery Webhook."
 ---
 
-# When to use SQS to receive Delivery reports
+You may use AWS SQS to receive delivery reports when:
 
 1. **Handling Traffic Spikes**: SQS is ideal when you experience sudden surges in traffic. For instance, if you launch a campaign targeting 500,000 or more users, SQS is the recommended solution.
 2. **Managing Consistent High-Volume Traffic**: For scenarios with sustained high traffic, such as processing 30 million + notifications per month, SQS proves to be an effective choice.
 3. **Batch Processing of Delivery Reports**: If your workflow benefits from processing delivery reports in batches rather than handling each report individually, SQS offers an efficient approach.
 
-# Creating an Allowlist SQS
+## Creating an Allowlist SQS
 
 You can add any number of SQS that you intend on using in Fyno's application by following the below steps:
 
 ![](/images/6b707b15880ff7577e689319dbaa1efc8fa0d20860d5ff12e366739ce6118f70-adding_SQS.png)
 
-1. Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Allowlist URL**' which opens up the Allowlist URL page.
-2. On the page that opens, find the "**Add HTTP/SQS**" button on the top right side of the page.
-3. Select 'SQS' option.
+<Steps>
+  <Step>Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Allowlist URL**' which opens up the Allowlist URL page.</Step>
+  <Step>On the page that opens, find the "**Add HTTP/SQS**" button on the top right side of the page.</Step>
+  <Step>Select 'SQS' option.</Step>
+</Steps>
 
 ## Adding a Allowlist SQS
 
