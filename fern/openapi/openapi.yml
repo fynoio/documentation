@@ -928,7 +928,7 @@ components:
           enum:
             - true
             - false
-      description: (Optional) You can enable callback for an event by specifying the `callback` attribute in the payload of the event. By enabling callback, you will be able to receive delivery status of the events onto your webhook URL specified in the "Allowlist URL" section of the application. See <a href="https://docs.fyno.io/docs/creating-delivery-webhooks" target="_blank">Creating Delivery Webhooks</a> for more details.<br/><br/>The following parameters are prefined within callback and can be passed dynamically when you invoke an event&#58;<br/><br/>**Note&#58;** Additional parameters can be added from the DLR configuration in the Allowlist URL page.
+      description: (Optional) You can enable callback for an event by specifying the `callback` attribute in the payload of the event. By enabling callback, you will be able to receive delivery status of the events onto your webhook URL specified in the "Allowlist URL" section of the application. See <a href="./creating-delivery-webhooks" target="_blank">Creating Delivery Webhooks</a> for more details.<br/><br/>The following parameters are prefined within callback and can be passed dynamically when you invoke an event&#58;<br/><br/>**Note&#58;** Additional parameters can be added from the DLR configuration in the Allowlist URL page.
     version_event_body:
       oneOf:
         - required:
