@@ -1,16 +1,18 @@
 ---
-title: "Configuring Allowlist URL/SQS to receive Delivery Report"
-slug: "configuring-allowlist-url-sqs-to-receive-delivery-report"
-og:title: "Configuring Allowlist URL/SQS to receive Delivery Report"
-og:description: "A Delivery Webhook is an Allowlist URL that receives updates on notification delivery statuses from Fyno, which can be configured to send these updates to a specified location, with the first created endpoint set as the default for receiving reports."
+title: 'Configuring Allowlist URL/SQS to receive Delivery Report'
+slug: 'configuring-allowlist-url-sqs-to-receive-delivery-report'
+og:title: 'Configuring Allowlist URL/SQS to receive Delivery Report - Workspace Settings | Fyno Documentation'
+og:description: 'A Delivery Webhook is an Allowlist URL that receives updates on notification delivery statuses from Fyno, which can be configured to send these updates to a specified location, with the first created endpoint set as the default for receiving reports.'
 ---
 
 A **Delivery Webhook** is nothing but an **Allowlist** URL that can receive updates from Fyno regarding the delivery status of the notifications sent out and easily share the delivery details with you, to a location of your convenience, pre-decided by you.
 
 An **Allowlist** URL can be converted anytime to a **Delivery Webhook**, once it is successfully verified by following the below steps while adding Allowlist URL/SQS.
 
-1. Select the checkbox - 'Use this endpoint to receive delivery reports' and click 'Add'.
-2. In the window that opens, you can add additional configurations, based on your requirements. You can also alternatively scroll to the bottom and save. This will send you the basic details that are pre-configured at Fyno's end.
+<Steps>
+  <Step>Select the checkbox - 'Use this endpoint to receive delivery reports' and click 'Add'.</Step>
+  <Step>In the window that opens, you can add additional configurations, based on your requirements. You can also alternatively scroll to the bottom and save. This will send you the basic details that are pre-configured at Fyno's end.</Step>
+</Steps>
 
 ![](/images/3c7ff6ed9f35b60c8a9ce1e023cd5e953d6ca54f63a654fff9b5fdafc1d4e8ed-delivery_endpoint.png)
 
@@ -18,7 +20,7 @@ The first Delivery Endpoint you create will be considered as 'Default' and you w
 
 Once this is done, all the delivery statuses for every notification triggered will be automatically updated at this location.
 
-> 🚧 Not all Providers and Channels give you delivery notifications and updates. Check here for a detailed [list](./log-details-delivery#1-delivery-status-sent-no-extra-configuration)
+<Info>Not all Providers and Channels give you delivery notifications and updates. Check here for a detailed [list](./log-details-delivery#delivery-status-sent-no-extra-configuration).</Info>
 
 ## Callback Objects in a Request
 
@@ -30,7 +32,7 @@ Once this is done, all the delivery statuses for every notification triggered wi
 | custom2       | **string**; (Optional) additional information that you want to tag your notification.<br/>Example: Category<br/>**Length**: 50 characters                                                                                       |
 | allowlist_url | **string**; (Optional) Allowlist url name where you want to receive delivery reports. Can be array of Allowlist url name too if you want the delivery reports in multiple URLs.<br/>Example: ["DynamicWebhookSite", "Mixpanel"] |
 
-```json Sample Callback Objects in  Request Parameters
+```json title="Sample Callback Objects in Request Parameters" wordWrap
 {
    "event": "YOUR_EVENT_NAME",
    "to": { // you channel destination },
@@ -45,7 +47,7 @@ Once this is done, all the delivery statuses for every notification triggered wi
 
 ## Callback Response
 
-Here's a list of default fields which will be sent if the delivery status callback is subscribed using **Webhook URL**" with "**Callback Object**" in the request:
+The following contains list of default fields which will be sent if the payload for the delivery status callback is not defined.
 
 The **Delivery Webhook** will be sent using:
 
@@ -69,7 +71,7 @@ This configuration needs to be done in the payload section when converting an **
 
 Here is a sample payload for reference.
 
-```json Sample Payload
+```json title="Sample Payload" wordWrap
 {
      "param1": "{{destination}}",
      "param2": "{{provider}}",
@@ -107,44 +109,44 @@ Below is a list of all the parameters that Fyno can send you as data points. How
 
 Sample configuration for the additional parameters (JSON) in Webhooks Delivery status section
 
-```json Sample Webhook Configuration
+```json title="Sample Webhook Configuration" wordWrap
 {
-    "url": "https://webhook.site/847c54cc-c471-40f4-b793-36c18a",
-    "method": "post",
-    "headers": {
-        "Content-Type": "application/json"
-    },
-    "data": {
-        "recipent": "{{destination}}",
-        "providername": "{{provider}}",
-        "message": "{{message}}",
-        "request_time": "{{senttime}}",
-        "delivery_time": "{{dlrtime}}",
-        "account_name": "{{integration_name}}",
-        "reference_msg_id": "{{custom_id}}",
-        "order_id": "{{custom1}}",
-        "category": "{{custom2}}",
-        "channel": "{{channel}}"
-    }
+  "url": "https://webhook.site/847c54cc-c471-40f4-b793-36c18a",
+  "method": "post",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": {
+    "recipent": "{{destination}}",
+    "providername": "{{provider}}",
+    "message": "{{message}}",
+    "request_time": "{{senttime}}",
+    "delivery_time": "{{dlrtime}}",
+    "account_name": "{{integration_name}}",
+    "reference_msg_id": "{{custom_id}}",
+    "order_id": "{{custom1}}",
+    "category": "{{custom2}}",
+    "channel": "{{channel}}"
+  }
 }
 ```
 
 Once this is successfully configured, here is a sample of the Callback Response you would receive.
 
-```json
+```json title="Sample Callback Response" wordWrap
 {
-    "msg_id": "FYNO_MSG_ID_UUID",
-    "status": "DELIVERED",
-    "custom_id": "YOUR_CUSTOM_ID_VALUE",
-    "recipent": "user1@email.com",
-    "providername": "sendgrid",
-    "message": "",
-    "requesttime": "2023-03-24 10:23:39",
-    "deliverytime": "2023-03-24 10:23:50",
-    "account_name": "EmailProduction",
-    "reference_msg_id": "YOUR_CUSTOM_ID_VALUE",
-    "order_id": "YOUR_CUSTOM1_VALUE",
-    "category": "YOUR_CUSTOM2_VALUE",
-    "channel": "email"
+  "msg_id": "FYNO_MSG_ID_UUID",
+  "status": "DELIVERED",
+  "custom_id": "YOUR_CUSTOM_ID_VALUE",
+  "recipent": "user1@email.com",
+  "providername": "sendgrid",
+  "message": "",
+  "requesttime": "2023-03-24 10:23:39",
+  "deliverytime": "2023-03-24 10:23:50",
+  "account_name": "EmailProduction",
+  "reference_msg_id": "YOUR_CUSTOM_ID_VALUE",
+  "order_id": "YOUR_CUSTOM1_VALUE",
+  "category": "YOUR_CUSTOM2_VALUE",
+  "channel": "email"
 }
 ```
