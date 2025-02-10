@@ -4,6 +4,8 @@ info:
   version: v1
 servers:
   - url: https://api.fyno.io/v1
+security:
+  - BearerAuth: []
 paths:
   /{WSID}/{version}/event:
     post:
@@ -3324,7 +3326,3 @@ components:
       x-fern-bearer: 
         name: apiKey
         env: FYNO_API_KEY
-x-readme:
-  explorer-enabled: true
-  proxy-enabled: true
-  samples-enabled: true
