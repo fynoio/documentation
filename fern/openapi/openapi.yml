@@ -717,13 +717,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_401'
+                $ref: '#/components/schemas/inline_response_401'  
   /{WSID}/{version}/verify/validate:
     post:
       tags:
         - Fyno Verify
-      summary: Verify OTP using request Id
-      description: This API enables you to validate the OTP entered by the user using request_id.
+      summary: Verify OTP
+      description: This API enables you to validate the OTP entered by the user using either `request_id` (received in response of the Fire an Event API) or `destination` (such as phone number, email).
       parameters:
         - name: WSID
           in: path
@@ -748,73 +748,17 @@ paths:
               - test
         - name: request_id
           in: query
-          description: Specify the request id of the triggered notification event that sent the OTP to the user.
-          required: true
+          description: Specify the request id of the triggered notification event that sent the OTP to the user.<br/>You must use this query parameter if **you've disabled "Use destination as id"** in the Fyno Verify setting.
+          required: false
           style: form
           explode: true
           schema:
             type: string
           example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-        - name: otp
-          in: query
-          description: Enter the OTP which you want to validate.
-          required: true
-          style: form
-          explode: true
-          schema:
-            type: string
-          example: 1234
-      responses:
-        '200':
-          description: OTP successfully validated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_200_5'
-        '400':
-          description: Invalid OTP entered by user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_400_7'
-        '401':
-          description: API Key or Workspace Id is invalid
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_401'
-  /{WSID}/{version}/verify/validate/:
-    post:
-      tags:
-        - Fyno Verify
-      summary: Verify OTP using destination
-      description: This API enables you to validate the OTP entered by the user using destination.
-      parameters:
-        - name: WSID
-          in: path
-          description: Enter your workspace ID. You can obtain this value from the API Keys page within your Fyno account.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-          example: FYXXXXXXXX
-        - name: version
-          in: path
-          description: Specify the version for which you would like to manage the user profile.
-          required: true
-          style: simple
-          explode: false
-          schema:
-            type: string
-            default: live
-            enum:
-              - live
-              - test
         - name: destination
           in: query
-          description: Enter the destination where the OTP is sent. It can be either mobile no or email id
-          required: true
+          description: Enter the destination where the OTP is sent. It can be either mobile no or email id.<br/>You must use this query parameter if **you've enabled "Use destination as id"** in the Fyno Verify setting.
+          required: false
           style: form
           explode: true
           schema:
@@ -3336,5 +3280,3 @@ components:
         password:
           name: apiKey
           env: FYNO_API_KEY
-
-    
