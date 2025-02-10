@@ -1,8 +1,8 @@
 ---
-title: "React Native In-App Hooks"
-slug: "fyno-in-app-react-hooks"
-og:title: "React Native In-App Hooks | Fyno Documentation"
-og:description: "This guide will walk you through the prerequisites, installation, and step-by-step configuration required to get your mobile application ready for In-App notifications"
+title: 'React Native In-App Hooks'
+slug: 'fyno-in-app-react-hooks'
+og:title: 'React Native In-App Hooks | Fyno Documentation'
+og:description: 'This guide will walk you through the prerequisites, installation, and step-by-step configuration required to get your mobile application ready for In-App notifications'
 ---
 
 Fyno In-app React hooks SDK lets you manage the in-app notification center in your React application with your own UI. The core of this SDK is the `useInappManager` hook, which helps you retrieve notification data and manage actions like marking messages as read or deleting them.
@@ -23,7 +23,7 @@ Before you dive into using the In-App Notification Center, there are some prereq
 
 Before you start, make sure you have the following information ready
 
-- **Workspace ID (WSID)**: You can find your workspace ID on your Fyno App > [API Keys](https://app.fyno.io/api-keys) page.
+- **Workspace ID (WSID)**: You can find your workspace ID on your Fyno App > [API Keys](https://app.fyno.io/settings#api-keys) page.
 - **Integration Token**: Obtain the integration token from the Fyno App > [Integrations](https://app.fyno.io/integrations) page.
 - **User ID**: This should be a unique identifier for the currently logged-in user. This user ID is crucial for Fyno to send specific notifications to the right users.
 
@@ -43,11 +43,11 @@ const signature = crypto
 ```
 
 ```js title="JavaScript" wordWrap
-const CryptoJS = require("crypto-js"); //commonjs
+const CryptoJS = require('crypto-js'); //commonjs
 //or
 //import CryptoJS from "crypto-js";//module
-const secretKey = "WSID" + "INTEGRATION_TOKEN";
-const userId = "USER_ID";
+const secretKey = 'WSID' + 'INTEGRATION_TOKEN';
+const userId = 'USER_ID';
 
 const signature = CryptoJS.HmacSHA256(userId, secretKey).toString(CryptoJS.enc.Hex);
 ```
@@ -174,14 +174,14 @@ class Program
 To use the SDK in your React native application, you can import `useInappManager` hook. The `useInappManager` hook provides all the data and handlers needed to work with in-app notifications. Here’s a quick example of how the configuration looks like:
 
 ```js title="JSX" wordWrap
-import useInappManager from "@fyno/react-hooks";
+import useInappManager from '@fyno/react-hooks';
 
 // Define the necessary props
 const fynoProps = {
-  distinctId: "your-distinct-id", // Unique user ID
-  workspaceId: "your-workspace-id", // Your workspace identifier
-  integrationId: "your-integration-id", // Integration identifier
-  signature: "your-signature", // HMAC signature for authentication
+  distinctId: 'your-distinct-id', // Unique user ID
+  workspaceId: 'your-workspace-id', // Your workspace identifier
+  integrationId: 'your-integration-id', // Integration identifier
+  signature: 'your-signature', // HMAC signature for authentication
 };
 
 // Call the hook with the props
