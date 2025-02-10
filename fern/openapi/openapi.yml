@@ -4,6 +4,8 @@ info:
   version: v1
 servers:
   - url: https://api.fyno.io/v1
+security:
+  - BearerAuth: []
 paths:
   /{WSID}/{version}/event:
     post:
@@ -791,6 +793,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_401'
 components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      description: Enter your API Key. If you don't have it already, you can create one from the API Keys page within your Fyno account
+      scheme: bearer
+      x-fern-bearer:
+        name: apiKey
+        env: FYNO_API_KEY
   schemas:
     event:
       type: string
@@ -3259,11 +3269,3 @@ components:
         _message:
           type: string
           example: distinct_id is required!
-  securitySchemes:
-    BearerAuth:
-      type: http
-      description: Enter your API Key. If you don't have it already, you can create one from the API Keys page within your Fyno account
-      scheme: bearer
-      x-fern-bearer:
-        name: apiKey
-        env: FYNO_API_KEY
