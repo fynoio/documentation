@@ -4,8 +4,6 @@ info:
   version: v1
 servers:
   - url: https://api.fyno.io/v1
-security:
-  - BearerAuth: []
 paths:
   /{WSID}/{version}/event:
     post:
