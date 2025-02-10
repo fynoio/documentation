@@ -92,6 +92,37 @@ try {
 }
 ```
 
+### Check if notification received is from Fyno and also handle it
+
+To check if the push notification received is from Fyno, use `FynoReactNative.isFynoNotification(remoteMessage)` and to handle it, use `FynoReactNative.handleFynoNotification(remoteMessage)`
+
+<Warning title="Android only">The following two functions (`isFynoNotification` and `handleFynoNotification`) is available only in Android and applicable only if you have notifications getting triggered from multiple sources.</Warning>
+
+```jsx title="jsx" wordWrap
+// to receive and handle notifications when the application is in background or killed state
+messaging().setBackgroundMessageHandler(async (remoteMessage: any) => {
+  if (await FynoReactNative.isFynoNotification(remoteMessage)) {
+    await FynoReactNative.handleFynoNotification(remoteMessage);
+  } else {
+    // any other logic to handle the notification
+  }
+});
+
+// to receive and handle notifications when the application is in foreground state
+const handleForegroundNotification = async () => {
+  messaging().onMessage(async (remoteMessage: any) => {
+    if (await FynoReactNative.isFynoNotification(remoteMessage)) {
+      await FynoReactNative.handleFynoNotification(remoteMessage);
+    } else {
+      // any other logic to handle the notification
+    }
+  });
+};
+
+// Call this function inside useEffect or when the app initializes
+handleForegroundNotification();
+```
+
 ### Merging User Profiles
 
 If you need to merge two user profiles, call `FynoReactNative.mergeProfile()` with the old and new distinct IDs.
