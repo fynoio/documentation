@@ -716,7 +716,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/inline_response_401'
-/{WSID}/{version}/verify/validate:
+  /{WSID}/{version}/verify/validate:
     post:
       tags:
         - Fyno Verify
