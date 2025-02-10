@@ -1,8 +1,7 @@
 ---
 title: "Fyno Web Push Notification SDK"
 slug: "fyno-web-push-notification-sdk"
-excerpt: ""
-hidden: true
+image: https://images.fyno.io/brand/favicon.svg
 ---
 
 The Fyno Web Push SDK is designed for technical users who are responsible for integrating and working with the Fyno web push service. This documentation provides a detailed overview of the SDK's functionalities and how to use them.
@@ -26,9 +25,9 @@ const fyno = require("@fyno/websdk");
 fyno.init(wsid, integration, env);
 ```
 
--   `wsid`: Workspace ID
--   `integration`: Integration ID
--   `env` (optional): Environment (default is "live")
+- `wsid`: Workspace ID
+- `integration`: Integration ID
+- `env` (optional): Environment (default is "live")
 
 ## Customise Notification Pop-up
 
@@ -85,7 +84,7 @@ const vapidKey = "your_vapid_key";
 const webpushDetails = await fyno.register_push(vapidKey);
 ````
 
--   `vapidKey`: VAPID key for push notifications
+- `vapidKey`: VAPID key for push notifications
 
 ## User Identification
 
@@ -95,8 +94,8 @@ Identify a user with a distinct ID:
 fyno.identify(distinct_id, name);
 ```
 
--   `distinct_id`: Distinct ID of the user
--   `name` (optional): Name of the user
+- `distinct_id`: Distinct ID of the user
+- `name` (optional): Name of the user
 
 ## User Profile Reset
 
@@ -112,6 +111,6 @@ To register service worker and handle incoming messages from the server, create 
 
 ```javascript
 importScripts(
-    "https://cdn.jsdelivr.net/npm/@fyno/websdk@<latest_version>/sw/serviceworker.min.js"
+  "https://cdn.jsdelivr.net/npm/@fyno/websdk@<latest_version>/sw/serviceworker.min.js"
 );
 ```

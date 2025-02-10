@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.0.2
 info:
   title: Fyno Rest API
   version: v1
@@ -3260,16 +3260,10 @@ components:
           type: string
           example: distinct_id is required!
   securitySchemes:
-    BasicAuth:
-      type: http
-      description: Enter the WSID for username and the API Key for password. If you don't have these values, you can obtain it from the API Keys page within your Fyno account.
-      scheme: basic
     BearerAuth:
       type: http
       description: Enter your API Key. If you don't have it already, you can create one from the API Keys page within your Fyno account
       scheme: bearer
-      bearerFormat: JWT
-x-readme:
-  explorer-enabled: true
-  proxy-enabled: true
-  samples-enabled: true
+      x-fern-bearer:
+        name: apiKey
+        env: FYNO_API_KEY

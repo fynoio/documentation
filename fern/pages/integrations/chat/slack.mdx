@@ -1,8 +1,9 @@
 ---
-title: "Slack"
-slug: "chat-slack"
-og:title: "How to send Slack notification using Fyno | Fyno Documentation"
-og:description: "A guide to integrate your Slack Chat account into Fyno."
+title: 'Slack'
+slug: 'chat-slack'
+og:title: 'How to send Slack notification using Fyno | Fyno Documentation'
+og:description: 'A guide to integrate your Slack Chat account into Fyno.'
+image: https://images.fyno.io/brand/favicon.svg
 ---
 
 Slack is becoming one of the top channels to communicate with internal team members, and stay up to date with various details by plugging into Slack and connecting with other teams from other companies as well. Integrating Slack requires you to have a Slack App already created based on your requirements.
@@ -10,48 +11,26 @@ Slack is becoming one of the top channels to communicate with internal team memb
 To get started, let's have a look at Slack Apps and how to get them set up first since we will need a Bot Token to integrate into Fyno.
 
 <Steps>
-    <Step>
-        On Slack, go to Home -> Apps on the left navigation panel and click on
-        Add Apps. You should see the App Directory button on the top right
-        corner, which will redirect you to the **Add Apps to Slack** page to
-        continue the process.
-    </Step>
-    <Step>
-        On this page, find the "**Build**" button on the top right corner of the
-        page and click on "Create an App". A pop-up will appear prompting you to
-        create "**From Scratch**" or "**From an App Manifest**". For ease of
-        understanding, we will select "**From Scratch**", give it a name, select
-        a workspace that we want to publish this App to and click on "**Create
-        App**".
-    </Step>
-    <Step>
-        Once the app is created and the page loads, from the left navigation
-        panel, under "**Settings**" find "**OAuth & Permissions**".
-    </Step>
-    <Step>
-        Scroll to find "**Scopes**" and add the below scopes for your App
-        connector.
-        <ul>
-            <li>"chat:write",</li>
-            <li>chat:write.public,</li>
-            <li>app_mentions:read,</li>
-            <li>channels:history,</li>
-            <li>channels:read,</li>
-            <li>channels:join,</li>
-            <li>im:read,</li>
-            <li>im:write,</li>
-            <li>users:read,</li>
-            <li>users:read.email,</li>
-            <li>users:write</li>
-        </ul>
-    </Step>
-    <Step>
-        Once this is done and you save, the permissions will automatically
-        update to show you the "**OAuth Token for Your Workspace**" at the top
-        of the page. Copy the "**Bot User OAuth Token**" that is provided
-        starting with xoxb-. This will be used to connect this App you created
-        via Fyno.
-    </Step>
+  <Step>On Slack, go to Home -> Apps on the left navigation panel and click on Add Apps. You should see the App Directory button on the top right corner, which will redirect you to the **Add Apps to Slack** page to continue the process.</Step>
+  <Step>On this page, find the "**Build**" button on the top right corner of the page and click on "Create an App". A pop-up will appear prompting you to create "**From Scratch**" or "**From an App Manifest**". For ease of understanding, we will select "**From Scratch**", give it a name, select a workspace that we want to publish this App to and click on "**Create App**".</Step>
+  <Step>Once the app is created and the page loads, from the left navigation panel, under "**Settings**" find "**OAuth & Permissions**".</Step>
+  <Step>
+    Scroll to find "**Scopes**" and add the below scopes for your App connector.
+    <ul>
+      <li>"chat:write",</li>
+      <li>chat:write.public,</li>
+      <li>app_mentions:read,</li>
+      <li>channels:history,</li>
+      <li>channels:read,</li>
+      <li>channels:join,</li>
+      <li>im:read,</li>
+      <li>im:write,</li>
+      <li>users:read,</li>
+      <li>users:read.email,</li>
+      <li>users:write</li>
+    </ul>
+  </Step>
+  <Step>Once this is done and you save, the permissions will automatically update to show you the "**OAuth Token for Your Workspace**" at the top of the page. Copy the "**Bot User OAuth Token**" that is provided starting with xoxb-. This will be used to connect this App you created via Fyno.</Step>
 </Steps>
 
 Integrating into Fyno after getting your "**Bot User OAuth Token**" is pretty simple. Follow the below steps to set up:
@@ -64,8 +43,8 @@ Navigate to the Integrations page. Under "Chat" section, click on the "Slack" bu
 
 In the pop-up that appears, fill in:
 
--   **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
--   **Bot Token:** The Bot Token that was obtained from the above-mentioned steps can be entered here. Alternatively, you can find the bot token in the OAuth and Permission Section of your created Slack App under "OAuth Tokens for Your Workspace".
+- **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+- **Bot Token:** The Bot Token that was obtained from the above-mentioned steps can be entered here. Alternatively, you can find the bot token in the OAuth and Permission Section of your created Slack App under "OAuth Tokens for Your Workspace".
 
 ### Complete the Integration
 
