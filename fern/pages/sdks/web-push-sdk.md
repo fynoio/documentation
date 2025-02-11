@@ -1,7 +1,7 @@
 ---
 title: "Fyno Web Push Notification SDK"
 slug: "fyno-web-push-notification-sdk"
-image: https://images.fyno.io/brand/favicon.svg
+image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
 The Fyno Web Push SDK is designed for technical users who are responsible for integrating and working with the Fyno web push service. This documentation provides a detailed overview of the SDK's functionalities and how to use them.
