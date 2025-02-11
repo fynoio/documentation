@@ -592,7 +592,7 @@ colors:
     header-background:
         dark: "#030303"
         light: "#FCFCFC"
-favicon: ./assets/favicon.svg
+favicon: ./assets/favicon.ico
 layout:
     page-width: 1504px
     header-height: 75px
