@@ -46,9 +46,14 @@ This use case can be implemented with the below steps.
 
 <Steps>
   <Step>Create a Workflow with Webhook as trigger. You can read how to create it [here](./workflow-webhook-trigger).</Step>
-  <Step>**Digest** - After adding a digest node in the workflow editor, each node below the digest node will be only triggered once in the specified digest interval. You can decide to send messages before adding a digest node and they will be triggered in real-time. ![](/images/e407db3b9237c440f76c2727b9b1e2a0071dbf4236fa5832cba967d8b09a7054-digest_digestkey.png)</Step>
+  <Step>**Digest** - After adding a digest node in the workflow editor, each node below the digest node will be only triggered once in the specified digest interval. You can decide to send messages before adding a digest node and they will be triggered in real-time. ![](/images/Workflow_Digest_Config.png)</Step>
   <Step>**Digest Key** - You need to provide a unique key to identify the user. This will help the workflow to digest the notifications for that user. In this case, user's profile_id in your system will be the Digest Key.</Step>
   <Step>**Time Period** - Specify how long you want to digest the notifications. Minimum 1 second to maximum 7 days.</Step>
+  <Step>**Sum digest data**(Optional) - If you want to sum a particular digest key, you can select this checkbox. For example, if you want to calculate the total SIP amount across all SIPs which failed, you can use this option.</Step>
+      <ul>
+      <li>**Custom Variable** - Add a custom variable which you need to use it in your template. For example, if u add a variable 'SIPAmount' then your digest variable will be $digest.sum.SIPAmount </li>
+      <li>**Digest Key** - Select the digest key for which you want to sum all the values.</li>
+    </ul>
   <Step>**Notification event** - Add a notification event block after the digest depending on what communication you want to send.</Step>
 </Steps>
 
