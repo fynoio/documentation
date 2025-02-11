@@ -9,7 +9,7 @@ instances:
       #         branch: main
 title: Fyno Documentation
 
-tabs:    
+tabs:
     docs:
         display-name: Documentation
         icon: fa-regular fa-browser
@@ -27,12 +27,12 @@ tabs:
         icon: fa-regular fa-code
         skip-slug: true
 
-navigation:    
+navigation:
     - tab: docs
       layout:
           - page: Home
             icon: fa-regular fa-home
-            path: pages/home.mdx          
+            path: pages/home.mdx
           - section: "Getting Started"
             contents:
                 - page: "Quickstart"
@@ -45,7 +45,7 @@ navigation:
                   icon: fa-regular fa-code-pull-request
                   path: "pages/versioning/versioning-overview.mdx"
           - section: "Core Features"
-            contents:            
+            contents:
                 - section: "Integrations"
                   path: "pages/integrations/introduction.mdx"
                   icon: fa-regular fa-puzzle-piece
@@ -205,7 +205,7 @@ navigation:
                         - page: "Twilio"
                           path: "pages/integrations/voice/twilio.mdx"
                   - page: "In-App"
-                    path: "pages/integrations/inapp-channel.mdx"                
+                    path: "pages/integrations/inapp-channel.mdx"
                   - page: "Web Push"
                     path: "pages/integrations/web-push-channel.mdx"
                   - section: "DLT"
@@ -318,7 +318,7 @@ navigation:
                 - section: "Notification Events"
                   icon: fa-regular fa-sitemap
                   path: "pages/notification-events/overview.mdx"
-                  contents:                      
+                  contents:
                       - section: "Creating a Notification Event"
                         path: "pages/notification-events/creation.mdx"
                         contents:
@@ -370,7 +370,7 @@ navigation:
               - section: "Workflows"
                 path: "pages/workflows/workflows.mdx"
                 icon: fa-regular fa-diagram-project
-                contents:                                          
+                contents:
                     - page: "Creating a Workflow with webhook trigger"
                       path: "pages/workflows/workflow-webhook-trigger.mdx"
                     - page: "Creating a workflow with Incoming message"
@@ -395,7 +395,7 @@ navigation:
               - section: "Campaigns"
                 path: "pages/campaigns/overview.mdx"
                 icon: fa-regular fa-bullhorn
-                contents:                    
+                contents:
                     - page: "Campaign Analytics"
                       path: "pages/campaigns/analytics.mdx"
                     - page: "Creating a campaign"
@@ -403,7 +403,7 @@ navigation:
               - section: "User Profiles"
                 path: "pages/user-profiles/overview.mdx"
                 icon: fa-regular fa-user-group
-                contents:                
+                contents:
                     - section: "Creating User Profiles"
                       path: "pages/user-profiles/profiles-overview/creation.mdx"
                       contents:
@@ -451,11 +451,11 @@ navigation:
                 - section: "Add-Ons"
                   icon: fa-regular fa-wand-magic-sparkles
                   contents:
-                    - page: "Fyno Verify"                  
+                    - page: "Fyno Verify"
                       path: "pages/settings/fyno-verify.mdx"
-                    - page: "Push Token Cleanup"                  
+                    - page: "Push Token Cleanup"
                       path: "pages/settings/push-token-cleanup.mdx"
-                    - page: "Report Extraction"                  
+                    - page: "Report Extraction"
                       path: "pages/settings/report-extraction.mdx"
                     - page: "Logs Archival"
                       path: "pages/settings/workspace-settings/logs-retention.mdx"
@@ -473,12 +473,12 @@ navigation:
       layout:
           - section: "Introduction"
             contents:
-            - page: "Overview"              
+            - page: "Overview"
               path: "pages/sdks/overview.mdx"
-          - section: "Mobile Push"          
-            contents:                
-                - section: "Flutter Push SDK"                  
-                  path: "pages/sdks/push/flutter.mdx"                  
+          - section: "Mobile Push"
+            contents:
+                - section: "Flutter Push SDK"
+                  path: "pages/sdks/push/flutter.mdx"
                   contents:
                       - page: "Prerequisites"
                         path: "pages/sdks/push/flutter/prerequisites.mdx"
@@ -507,15 +507,15 @@ navigation:
                         path: "pages/sdks/push/react-native/ios-push.mdx"
                       - page: "FAQs"
                         path: "pages/sdks/push/react-native/faqs.mdx"
-                - page: "Kotlin Push SDK"                  
+                - page: "Kotlin Push SDK"
                   path: "pages/sdks/push/kotlin.mdx"
-                - page: "Swift Push SDK"                  
+                - page: "Swift Push SDK"
                   path: "pages/sdks/push/swift.mdx"
           - section: "In-App"
             contents:
                 - section: "React In-App SDK"
                   path: "pages/sdks/inapp/react.mdx"
-                  contents: 
+                  contents:
                   - page: "Silent / Background InApp Notifications"
                     path: "pages/sdks/inapp/silent-notifications.mdx"
                 - page: "React Native In-App SDK"
@@ -602,3 +602,52 @@ css: "./style.css"
 analytics:
   ga4:
     measurement-id: G-EPD71390T2
+redirects:
+  - source: "/docs/push-sdks"
+    destination: "/docs/sdks"
+    permanent: true
+  - source: "/docs/reference"
+    destination: "/docs/api-reference"
+    permanent: true
+  - source: "/docs/reference/post_wsid-version-event"
+    destination: "/docs/api-reference/fire-an-event/notify-a-single-user"
+    permanent: true
+  - source: "/docs/reference/post_wsid-version-event-bulk"
+    destination: "/docs/api-reference/fire-an-event/notify-multiple-users"
+    permanent: true
+  - source: "/docs/reference/post_wsid-version-profiles"
+    destination: "/docs/api-reference/manage-user-profiles/create-user-profile"
+    permanent: true
+  - source: "/docs/reference/get_wsid-version-profiles-distinct-id"
+    destination: "/docs/api-reference/manage-user-profiles/get-user-profile"
+    permanent: true
+  - source: "/docs/reference/put_wsid-version-profiles-distinct-id"
+    destination: "/docs/api-reference/manage-user-profiles/update-user-profile"
+    permanent: true
+  - source: "/docs/reference/patch_wsid-version-profiles-source-distinct-id-merge-target-distinct-id"
+    destination: "/docs/api-reference/manage-user-profiles/merge-user-profiles"
+    permanent: true
+  - source: "/docs/reference/post_wsid-version-profiles-delete"
+    destination: "/docs/api-reference/manage-user-profiles/delete-channel-data"
+    permanent: true
+  - source: "/docs/reference/patch_wsid-version-profiles-distinct-id-channel"
+    destination: "/docs/api-reference/manage-user-profiles/add-update-channel-data"
+    permanent: true
+  - source: "/docs/reference/post_wsid-version-profiles-distinct-id-channel-delete"
+    destination: "/docs/api-reference/manage-user-profiles/delete-user-profile"
+    permanent: true
+  - source: "/docs/reference/get_wsid-version-subscriptions-preference"
+    destination: "/docs/api-reference/manage-user-subscriptions-preferences/get-user-preference"
+    permanent: true
+  - source: "/docs/reference/put_wsid-version-subscriptions-preference"
+    destination: "/docs/api-reference/manage-user-subscriptions-preferences/update-user-preference"
+    permanent: true
+  - source: "/docs/reference/post_wsid-version-subscriptions-list-subscription-id-user"
+    destination: "/docs/api-reference/manage-user-subscriptions-preferences/update-user-preference-single"
+    permanent: true
+  - source: "/docs/reference/post_wsid-version-verify-validate"
+    destination: "/docs/api-reference/fyno-verify/verify-otp"
+    permanent: true
+  - source: "/docs/reference/post_wsid-version-verify-validate-1"
+    destination: "/docs/api-reference/fyno-verify/verify-otp"
+    permanent: true
