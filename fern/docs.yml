@@ -556,6 +556,32 @@ navigation:
       layout:
           - api: API Reference
             alphabetized: true
+            layout:
+              - section: Notification Event
+                slug: notification-event
+                contents:
+                  - POST /{WSID}/{version}/event
+                  - POST /{WSID}/{version}/event/bulk
+              - section: Fyno Verify
+                slug: verify
+                contents:
+                  - POST /{WSID}/{version}/verify/validate
+              - section: User Profiles
+                slug: user-profiles
+                contents:
+                  - GET /{WSID}/{version}/profiles/{distinct_id}
+                  - POST /{WSID}/{version}/profiles
+                  - PUT /{WSID}/{version}/profiles/{distinct_id}
+                  - PATCH /{WSID}/{version}/profiles/{source_distinct_id}/merge/{target_distinct_id}
+                  - PATCH /{WSID}/{version}/profiles/{distinct_id}/channel
+                  - POST /{WSID}/{version}/profiles/{distinct_id}/channel/delete
+                  - POST /{WSID}/{version}/profiles/delete
+              - section: User Subscriptions
+                slug: user-subscriptions
+                contents:
+                  - GET /{WSID}/{version}/subscriptions/preference
+                  - PUT /{WSID}/{version}/subscriptions/preference
+                  - POST /{WSID}/{version}/subscriptions/list/{subscription_id}/user
 navbar-links:
     - type: minimal
       text: Login
@@ -610,44 +636,44 @@ redirects:
     destination: "/docs/api-reference"
     permanent: true
   - source: "/docs/reference/post_wsid-version-event"
-    destination: "/docs/api-reference/fire-an-event/notify-a-single-user"
+    destination: "/docs/api-reference/notification-event/notify-a-single-user"
     permanent: true
   - source: "/docs/reference/post_wsid-version-event-bulk"
-    destination: "/docs/api-reference/fire-an-event/notify-multiple-users"
+    destination: "/docs/api-reference/notification-event/notify-multiple-users"
     permanent: true
   - source: "/docs/reference/post_wsid-version-profiles"
-    destination: "/docs/api-reference/manage-user-profiles/create-user-profile"
+    destination: "/docs/api-reference/user-profiles/create-user-profile"
     permanent: true
   - source: "/docs/reference/get_wsid-version-profiles-distinct-id"
-    destination: "/docs/api-reference/manage-user-profiles/get-user-profile"
+    destination: "/docs/api-reference/user-profiles/get-user-profile"
     permanent: true
   - source: "/docs/reference/put_wsid-version-profiles-distinct-id"
-    destination: "/docs/api-reference/manage-user-profiles/update-user-profile"
+    destination: "/docs/api-reference/user-profiles/update-user-profile"
     permanent: true
   - source: "/docs/reference/patch_wsid-version-profiles-source-distinct-id-merge-target-distinct-id"
-    destination: "/docs/api-reference/manage-user-profiles/merge-user-profiles"
+    destination: "/docs/api-reference/user-profiles/merge-user-profiles"
     permanent: true
   - source: "/docs/reference/post_wsid-version-profiles-delete"
-    destination: "/docs/api-reference/manage-user-profiles/delete-channel-data"
+    destination: "/docs/api-reference/user-profiles/delete-channel-data"
     permanent: true
   - source: "/docs/reference/patch_wsid-version-profiles-distinct-id-channel"
-    destination: "/docs/api-reference/manage-user-profiles/add-update-channel-data"
+    destination: "/docs/api-reference/user-profiles/add-update-channel-data"
     permanent: true
   - source: "/docs/reference/post_wsid-version-profiles-distinct-id-channel-delete"
-    destination: "/docs/api-reference/manage-user-profiles/delete-user-profile"
+    destination: "/docs/api-reference/user-profiles/delete-user-profile"
     permanent: true
   - source: "/docs/reference/get_wsid-version-subscriptions-preference"
-    destination: "/docs/api-reference/manage-user-subscriptions-preferences/get-user-preference"
+    destination: "/docs/api-reference/user-subscriptions/get-user-preference"
     permanent: true
   - source: "/docs/reference/put_wsid-version-subscriptions-preference"
-    destination: "/docs/api-reference/manage-user-subscriptions-preferences/update-user-preference"
+    destination: "/docs/api-reference/user-subscriptions/update-user-preference"
     permanent: true
   - source: "/docs/reference/post_wsid-version-subscriptions-list-subscription-id-user"
-    destination: "/docs/api-reference/manage-user-subscriptions-preferences/update-user-preference-single"
+    destination: "/docs/api-reference/user-subscriptions/update-user-preference-single"
     permanent: true
   - source: "/docs/reference/post_wsid-version-verify-validate"
-    destination: "/docs/api-reference/fyno-verify/verify-otp"
+    destination: "/docs/api-reference/verify/verify-otp"
     permanent: true
   - source: "/docs/reference/post_wsid-version-verify-validate-1"
-    destination: "/docs/api-reference/fyno-verify/verify-otp"
+    destination: "/docs/api-reference/verify/verify-otp"
     permanent: true
