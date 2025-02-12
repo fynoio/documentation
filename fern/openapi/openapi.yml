@@ -1104,10 +1104,18 @@ components:
       content:
         application/json:
           schema:
+            required:
+              - meta
+              - result
             properties:
               meta:
+                required:
+                  - all
                 properties:
                   all:
+                    required:
+                      - preference
+                      - updated_at
                     properties:
                       preference:
                         "$ref": "#/components/schemas/preference_channels_opted_out"
@@ -1116,9 +1124,20 @@ components:
                     type: object
                 type: object
               result:
+                required:
+                  - Section1
                 properties:
                   Section1:
                     items:
+                      required:
+                        - channel_config
+                        - description
+                        - is_global_opted_out
+                        - name
+                        - notification_events
+                        - preference
+                        - subscription_id
+                        - updated_at
                       properties:
                         channel_config:
                           properties:
@@ -1316,6 +1335,8 @@ components:
       content:
         application/json:
           schema:
+            required:
+              - SXXXXXXXXX
             properties:
               SXXXXXXXXX:
                 "$ref": "#/components/schemas/preference_channels"
@@ -3180,6 +3201,8 @@ components:
               "$ref": "#/components/schemas/preference_channels"
           type: object
       type: object
+      required:
+        - user_preference
     update_subscription_single:
       properties:
         channel:
@@ -3203,6 +3226,10 @@ components:
           - opted-out
           type: string
       type: object
+      required:
+        - channel
+        - distinct_id
+        - status
     updated_at:
       properties:
         discord:
