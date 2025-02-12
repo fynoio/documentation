@@ -3003,19 +3003,11 @@ components:
       - $set
       type: object
     set_user_property_fields:
-      properties:
-        property_1:
-          description: Enter the property name as JSON key and the value to set as JSON value
-          example: XXXXX
-          type: string
-        property_2:
-          description: Enter the property name as JSON key and the value to set as JSON value
-          example: XXXXX
-          type: string
-        property_n:
-          description: Enter the property name as JSON key and the value to set as JSON value
-          example: XXXXX
-          type: string
+      description: 'Enter the property name as JSON key and the value to set as JSON value'
+      example:
+        property_1: value_1
+        property_2: value_2
+        property_n: value_n
       type: object
     set_user_property_once:
       properties:
@@ -3028,19 +3020,11 @@ components:
       - $once
       type: object
     set_user_property_once_fields:
-      properties:
-        property_1:
-          description: Enter the property name as JSON key and the value to set as JSON value
-          example: XXXXX
-          type: string
-        property_2:
-          description: Enter the property name as JSON key and the value to set as JSON value
-          example: XXXXX
-          type: string
-        property_n:
-          description: Enter the property name as JSON key and the value to set as JSON value
-          example: XXXXX
-          type: string
+      description: Enter the property name as JSON key and the value to set as JSON value
+      example:
+        property_1: value_1
+        property_2: value_2
+        property_n: value_n
       type: object
     increment_user_property:
       properties:
@@ -3053,19 +3037,11 @@ components:
       - $add
       type: object
     increment_user_property_fields:
-      properties:
-        property_1:
-          description: Enter the property name as JSON key and the numeric value to increment/decrement as JSON value
-          example: -200
-          type: number
-        property_2:
-          description: Enter the property name as JSON key and the numeric value to increment/decrement as JSON value
-          example: 800
-          type: number
-        property_n:
-          description: Enter the property name as JSON key and the numeric value to increment/decrement as JSON value
-          example: 1200
-          type: number
+      description: Enter the property name as JSON key and the numeric value to increment/decrement as JSON value
+      example:
+        property_1: value_1
+        property_2: value_2
+        property_n: value_n
       type: object
     append_to_user_property:
       properties:
@@ -3078,19 +3054,11 @@ components:
       - $append
       type: object
     append_to_user_property_fields:
-      properties:
-        property_1:
-          description: Enter the property name as JSON key and the value to append as JSON value
-          example: XXXX
-          type: string
-        property_2:
-          description: Enter the property name as JSON key and the value to append as JSON value
-          example: 12345
-          type: number
-        property_n:
-          description: Enter the property name as JSON key and the value to append as JSON value
-          example: XXXX
-          type: string
+      description: Enter the property name as JSON key and the numeric or string value to append as JSON value
+      example:
+        property_1: value_1
+        property_2: value_2
+        property_n: value_n
       type: object
     remove_from_user_property_list:
       properties:
@@ -3103,19 +3071,11 @@ components:
       - $remove
       type: object
     remove_from_user_property_list_fields:
-      properties:
-        property_1:
-          description: Enter the property name as JSON key and the value to remove as JSON value
-          example: XXXX
-          type: string
-        property_2:
-          description: Enter the property name as JSON key and the value to remove as JSON value
-          example: 12345
-          type: number
-        property_n:
-          description: Enter the property name as JSON key and the value to remove as JSON value
-          example: 4567
-          type: string
+      description: Enter the property name as JSON key and the value to remove as JSON value
+      example:
+        property_1: value_1
+        property_2: value_2
+        property_n: value_n
       type: object
     unset_user_property:
       properties:
@@ -3128,7 +3088,7 @@ components:
       - $unset
       type: object
     unset_user_property_fields:
-      description: Enter the property name to unset in an array
+      description: Enter the property names to unset in an array
       example: ["property_1", "property_2", "property_n"]
       type: array
     user_property_bulk:
