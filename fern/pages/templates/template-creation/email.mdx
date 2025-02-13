@@ -30,7 +30,7 @@ Fyno recommends using the Stripo editor due to the ease of use as it supports AM
   <Step>Preview your created template by clicking on the "eye" icon in the bottom right corner. You can also see how your template looks on different devices.</Step>
   <Step>Save your design by clicking on the **Save** button.</Step>
   <Step>Clicking on **Close Editor** will allow you to discard the draft.</Step>
-  <Step>Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.</Step>
+  <Step>Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.</Step>
 </Steps>
 
 <Tip>To use any user property in your templates, you can add it in this format - `{{$user.$<user_property>}}`. For example, to add Name as placeholder from User profile, you can add it as `{{$user.$name}}`.</Tip>
@@ -62,7 +62,7 @@ curl -X POST 'https://api.fyno.io/v1/{{WorkspaceId}}/test/event' \
 -d '{
     "event": "ReleaseNote",
     "to": {
-       "email": ["vivek@fyno.io","ashwin@fyno.io"]
+       "email": ["xyz@fyno.io","abc@fyno.io"]
     },
     "data": {
         "company": "Fyno"
