@@ -3025,10 +3025,20 @@ components:
       type: object
     set_user_property_fields:
       description: 'Enter the property name as JSON key and the value to set as JSON value'
+      additionalProperties:
+        oneOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: string
+            format: date
       example:
-        property_1: value_1
-        property_2: value_2
-        property_n: value_n
+        property_1: "some text"
+        property_2: 123
+        property_3: 45.67
+        property_4: true
+        property_5: false
+        property_n: "2024-02-12"
       type: object
     set_user_property_once:
       properties:
@@ -3042,10 +3052,20 @@ components:
       type: object
     set_user_property_once_fields:
       description: Enter the property name as JSON key and the value to set as JSON value
+      additionalProperties:
+        oneOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: string
+            format: date
       example:
-        property_1: value_1
-        property_2: value_2
-        property_n: value_n
+        property_1: "some text"
+        property_2: 123
+        property_3: 45.67
+        property_4: true
+        property_5: false
+        property_n: "2024-02-12"
       type: object
     increment_user_property:
       properties:
@@ -3063,6 +3083,8 @@ components:
         property_1: value_1
         property_2: value_2
         property_n: value_n
+      additionalProperties:
+        type: number
       type: object
     append_to_user_property:
       properties:
@@ -3076,6 +3098,10 @@ components:
       type: object
     append_to_user_property_fields:
       description: Enter the property name as JSON key and the numeric or string value to append as JSON value
+      additionalProperties:
+        oneOf:
+          - type: number
+          - type: string
       example:
         property_1: value_1
         property_2: value_2
@@ -3093,6 +3119,10 @@ components:
       type: object
     remove_from_user_property_list_fields:
       description: Enter the property name as JSON key and the value to remove as JSON value
+      additionalProperties:
+        oneOf:
+          - type: number
+          - type: string
       example:
         property_1: value_1
         property_2: value_2
@@ -3111,6 +3141,8 @@ components:
     unset_user_property_fields:
       description: Enter the property names to unset in an array
       example: ["property_1", "property_2", "property_n"]
+      items:
+        type: string
       type: array
     user_property_bulk:
       properties:
@@ -3142,7 +3174,6 @@ components:
           type: array
       required:
         - batch
-
     to:
       properties:
         discord:
