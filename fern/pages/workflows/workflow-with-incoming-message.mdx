@@ -44,7 +44,7 @@ To achieve this, you need to do the following steps:
 
 <Steps>
 <Step>Create a workflow with 'Virtual Number' as trigger. You can do that by dragging & dropping Virtual No trigger into Workflow canvas. ![](/images/6dddd38-VMN_Trigger.png)</Step>
-<Step>Select your WhatsApp Business no to which user sends their response. ![](/images/aa54674-VMN_Choose_no.png)</Step>
+<Step>Select your WhatsApp Business no to which user sends their response. ![](/images/workflow_VMN_mobileno.png)</Step>
 <Step>You can store the data you are passing in the button payload if you want to use that data further in the workflow. In this example, we are passing order_id and template name in the button payload. We can store those values as shown. ![](/images/f27d71ec69009694e212fde5cad1d0cb6789a961267b336095b3f7dee0add82d-store_data.png)</Step>
 <Step>Add a condition to check what the user has sent to your WhatsApp Business number. In this use case, user could have sent either 'Confirm' or 'Cancel'. The variable '_simplified.message.button.text_' will contain the Quick Reply text your customer has sent. In this case, we have assumed, user has sent 'Confirm'. ![](/images/12535fb-check_user_input.png)</Step>
 <Step>If you want to make sure, this response comes from the exact template message you sent to the user, you can add one more condition to check the template name as shown. ![](/images/bd5f73f-template_additional_condn.png)</Step>
@@ -67,7 +67,7 @@ To achieve this, you need to do the following steps:
 
 While configuring the Incoming number, there is an option to add Test mobile numbers. You can add up to 3 numbers. So all the messages sent from these mobile numbers will trigger the _latest Test version of the Workflow_.
 
-![](/images/29783d5bd389093e64bbb89bb26b04036f494dec65ac622d9d3527704a09aba2-Screenshot_2025-01-13_at_10.23.56_AM.png)
+![](/images/workflow_incoming_test.png)
 
 ## How to receive delivery reports?
 
