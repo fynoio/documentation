@@ -555,7 +555,7 @@ navigation:
     - tab: api
       layout:
           - api: API Reference
-            alphabetized: true
+            # alphabetized: true
             layout:
               - section: Notification Event
                 slug: notification-event
@@ -582,6 +582,16 @@ navigation:
                   - GET /{WSID}/{version}/subscriptions/preference
                   - PUT /{WSID}/{version}/subscriptions/preference
                   - POST /{WSID}/{version}/subscriptions/list/{subscription_id}/user
+              - section: User Properties
+                slug: user-properties
+                contents:
+                  - POST /{WSID}/{version}/profiles/properties/set
+                  - POST /{WSID}/{version}/profiles/properties/set-once
+                  - POST /{WSID}/{version}/profiles/properties/numerical-add
+                  - POST /{WSID}/{version}/profiles/properties/list-append
+                  - POST /{WSID}/{version}/profiles/properties/list-remove
+                  - POST /{WSID}/{version}/profiles/properties/unset
+                  - POST /{WSID}/{version}/profiles/properties/batch
 navbar-links:
     - type: minimal
       text: Login
