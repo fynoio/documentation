@@ -9,6 +9,9 @@ instances:
       #         branch: main
 title: Fyno Documentation
 
+experimental:
+  openapi-parser-v2: true
+
 tabs:
     docs:
         display-name: Documentation
