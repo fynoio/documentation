@@ -1,7 +1,8 @@
 stages:
   - publish_to_dev
+  - publish_to_prod
 
-stage:
+publish_to_dev:
   image: node:latest
   stage: publish_to_dev
   before_script:
@@ -13,3 +14,16 @@ stage:
   only:
     refs:      
       - /^25\..*/
+
+publish_to_prod:
+  image: node:latest
+  stage: publish_to_prod
+  before_script:
+    - npm install -g fern-api
+  variables:
+    FERN_TOKEN: $FERN_TOKEN
+  script:
+    - fern generate --docs --instance fyno.docs.buildwithfern.com/docs
+  only:
+    refs:      
+      - main
