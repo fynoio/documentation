@@ -561,16 +561,16 @@ navigation:
             # alphabetized: true
             layout:
               - section: Notification Event
-                slug: notification-event
+                skip-slug: true
                 contents:
                   - POST /{WSID}/{version}/event
                   - POST /{WSID}/{version}/event/bulk
               - section: Fyno Verify
-                slug: verify
+                skip-slug: true
                 contents:
                   - POST /{WSID}/{version}/verify/validate
               - section: User Profiles
-                slug: user-profiles
+                skip-slug: true
                 contents:
                   - GET /{WSID}/{version}/profiles/{distinct_id}
                   - POST /{WSID}/{version}/profiles
@@ -580,13 +580,13 @@ navigation:
                   - POST /{WSID}/{version}/profiles/{distinct_id}/channel/delete
                   - POST /{WSID}/{version}/profiles/delete
               - section: User Subscriptions
-                slug: user-subscriptions
+                skip-slug: true
                 contents:
                   - GET /{WSID}/{version}/subscriptions/preference
                   - PUT /{WSID}/{version}/subscriptions/preference
                   - POST /{WSID}/{version}/subscriptions/list/{subscription_id}/user
               - section: User Properties
-                slug: user-properties
+                skip-slug: true
                 contents:
                   - POST /{WSID}/{version}/profiles/properties/set
                   - POST /{WSID}/{version}/profiles/properties/set-once
