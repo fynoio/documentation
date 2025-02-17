@@ -1038,8 +1038,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     ProfileFetched:
       description: Profile fetched successfully
       content:
@@ -1315,8 +1315,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     ProfileChannelUpdated:
       description: Profile updated successfully
       content:
@@ -1331,8 +1331,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     ProfileMergedSuccessfully:
       description: Profiles merged successfully and the source profile is deleted
       content:
@@ -1347,8 +1347,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     ProfileDeletedSuccessfully:
         description: Profile deleted successfully
         content:
@@ -1363,8 +1363,8 @@ components:
                   type: string
               type: object
               required:
-                - _message              
-                - status                
+                - _message
+                - status
     SubscriptionUpdated:
       description: Subscription updated successfully
       content:
@@ -1390,8 +1390,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     SourceDistinctIDDoesNotExist:
       description: Source distinct ID does not exist
       content:
@@ -1406,8 +1406,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     DistinctIDDoesNotExist:
       description: Distinct ID does not exist
       content:
@@ -1422,8 +1422,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     DistinctIDDoesNotExist2:
       description: Distinct ID does not exist
       content:
@@ -1438,8 +1438,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     DistinctIDDoesNotExist3:
       description: Distinct ID does not exist
       content:
@@ -1454,8 +1454,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     DistinctIDOrChannelDataDoesNotExist:
       description: Distinct ID or channel data does not exist
       content:
@@ -1470,8 +1470,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     DistinctIDAlreadyExists:
       description: Distinct ID already exists
       content:
@@ -1487,8 +1487,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     DistinctIDMissing:
           description: Distinct ID is not provided
           content:
@@ -1503,8 +1503,8 @@ components:
                     type: string
                 type: object
                 required:
-                  - _message              
-                  - status                  
+                  - _message
+                  - status
     DistinctIDChannelStatusMissing:
       description: Distinct ID, channel, or status is not provided
       content:
@@ -1519,8 +1519,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     EventNameDoesNotExist:
       description: Event name does not exist
       content:
@@ -1536,8 +1536,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status            
+              - _message
+              - status
     OTPInvalid:
       description: Invalid OTP entered by user
       content:
@@ -1552,8 +1552,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status            
+              - _message
+              - status
     EmptySetObject:
       description: $set object is empty
       content:
@@ -1568,8 +1568,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     EmptySetOnceObject:
       description: $once object is empty
       content:
@@ -1584,8 +1584,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     EmptyAddObject:
       description: $add object is empty
       content:
@@ -1600,8 +1600,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     EmptyAppendObject:
       description: $append object is empty
       content:
@@ -1616,8 +1616,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     EmptyRemoveObject:
       description: $remove object is empty
       content:
@@ -1632,8 +1632,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     EmptyUnsetObject:
       description: $unset object is empty
       content:
@@ -1648,8 +1648,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     EmptyActionBulkProperty:
       description: $unset object is empty
       content:
@@ -1664,8 +1664,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
     APIKeyInvalid:
       description: API Key or Workspace ID is invalid. User is unauthorised.
       content:
@@ -1680,8 +1680,8 @@ components:
                 type: string
             type: object
             required:
-              - _message              
-              - status              
+              - _message
+              - status
   schemas:
     WSIDversionprofiles_channel:
       properties:
@@ -2331,7 +2331,7 @@ components:
       required:
         - destination
         - msg_id
-        - status      
+        - status
     inline_response_202_response_push:
       properties:
         destination:
@@ -2347,7 +2347,7 @@ components:
       required:
         - destination
         - msg_id
-        - status      
+        - status
     inline_response_202_response_slack:
       properties:
         destination:
@@ -2363,7 +2363,7 @@ components:
       required:
         - destination
         - msg_id
-        - status      
+        - status
     inline_response_202_response_sms:
       properties:
         destination:
@@ -2379,7 +2379,7 @@ components:
       required:
         - destination
         - msg_id
-        - status      
+        - status
     inline_response_202_response_teams:
       properties:
         destination:
@@ -2395,7 +2395,7 @@ components:
       required:
         - destination
         - msg_id
-        - status      
+        - status
     preference_channels:
       properties:
         discord:
