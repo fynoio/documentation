@@ -1,67 +1,15 @@
 stages:
-  - publish
+  - publish_to_dev
 
-variables:
-  FERN_TOKEN: $FERN_TOKEN
-
-publish_docs:
-  stage: publish
+stage:
   image: node:latest
+  stage: publish_to_dev
   before_script:
     - npm install -g fern-api
+  variables:
+    FERN_TOKEN: $FERN_TOKEN
   script:
-    - |
-      if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
-        fern generate --docs --instance fyno.docs.buildwithfern.com/docs
-      elif [[ "$CI_COMMIT_BRANCH" =~ ^25\..* || "$CI_MERGE_REQUEST_ID" ]]; then
-        fern generate --docs --instance dev-fyno.docs.buildwithfern.com/docs
-      fi
+    - fern generate --docs --instance dev-fyno.docs.buildwithfern.com/docs
   only:
-    refs:
-      - main
+    refs:      
       - /^25\..*/
-    changes:
-      - "**/*.md"  # Only trigger when docs change
-
-comment_preview_commit:
-  stage: publish
-  image: curlimages/curl:latest
-  script:
-    - |
-      if [[ "$CI_COMMIT_BRANCH" =~ ^25\..* ]]; then
-        curl --request POST --header "PRIVATE-TOKEN: $GITLAB_ACCESS_TOKEN" \
-        --data "body=[Test] Build deployed: https://dev-fyno.docs.buildwithfern.com/docs" \
-        "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/repository/commits/$CI_COMMIT_SHA/comments"
-      fi
-  only:
-    refs:
-      - /^25\..*/
-
-comment_preview_pr:
-  stage: publish
-  image: curlimages/curl:latest
-  script:
-    - |
-      if [[ "$CI_MERGE_REQUEST_ID" ]]; then
-        curl --request POST --header "PRIVATE-TOKEN: $GITLAB_ACCESS_TOKEN" \
-        --data "body=[Test] Build deployed: https://dev-fyno.docs.buildwithfern.com/docs" \
-        "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/merge_requests/$CI_MERGE_REQUEST_ID/notes"
-      fi
-  only:
-    refs:
-      - merge_requests
-
-comment_progress_commit:
-  stage: publish
-  image: curlimages/curl:latest
-  script:
-    - |
-      if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
-        curl --request POST --header "PRIVATE-TOKEN: $GITLAB_ACCESS_TOKEN" \
-        --data "body=[Prod] Build deployed: https://fyno.io/docs" \
-        "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/repository/commits/$CI_COMMIT_SHA/comments"
-      fi
-  only:
-    refs:
-      - main
-
