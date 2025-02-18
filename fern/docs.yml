@@ -139,6 +139,8 @@ navigation:
                           path: "pages/integrations/whatsapp/meta.mdx"
                         - page: "MSG91"
                           path: "pages/integrations/whatsapp/msg91.mdx"
+                        - page: "Route Mobile"
+                          path: "pages/integrations/whatsapp/route-mobile.mdx"
                         - page: "Twilio"
                           path: "pages/integrations/whatsapp/twilio.mdx"
                         - page: "ValueFirst"
