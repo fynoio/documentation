@@ -145,6 +145,16 @@ To enable receiving delivery reports from Fyno, select the checkbox 'Receive del
   </ul>
 </ParamField>
 
+<ParamField path="allowlist_url" type="string" required={false}>
+  <ul>
+    <li>Specify one or more allowlisted URL names (upto 3) where you want to receive delivery reports.</li>
+    <li>If no URL name(s) are specified here, the system will use your default URL (if one exists).</li>
+    <li>If no URL name(s) are specified here AND no default URL is set, delivery reports cannot be sent.</li>
+    <li>**Example**: `["DynamicWebhookSite", "Mixpanel"]`</li>
+    <li>**Example**: `DynamicWebhookSite`</li>
+  </ul>
+</ParamField>
+
 More values can be added in the callback. For a list of additional available values, please see: [Callback Response](./allowlist-url#callback-response)
 
 Click **Reset** to reset all the configurations for the Map Channels and Placeholders section.

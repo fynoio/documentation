@@ -25,13 +25,47 @@ Once this is done, all the delivery statuses for every notification triggered wi
 
 ## Callback Objects in a Request
 
-| Parameter     | Type and Value                                                                                                                                                                                                                  |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| enable        | **Default:** true,<br/>**true**: enable delivery status over callback.<br/>**false**: disable delivery status over callback                                                                                                     |
-| custom_id     | **string**; an alpha-numeric unique identifier of your notification.<br/>**Length**: 200 characters<br/>OR<br/>**number**; numeric unique identifier of your notification.<br/>**Length**: 20 digits                            |
-| custom1       | **string**; (Optional) additional information that you want to tag your notification.<br/>Example: order-id<br/>**Length**: 50 characters                                                                                       |
-| custom2       | **string**; (Optional) additional information that you want to tag your notification.<br/>Example: Category<br/>**Length**: 50 characters                                                                                       |
-| allowlist_url | **string**; (Optional) Allowlist url name where you want to receive delivery reports. Can be array of Allowlist url name too if you want the delivery reports in multiple URLs.<br/>Example: ["DynamicWebhookSite", "Mixpanel"] |
+<ParamField path="enable" type="string" required={true}>
+  <ul>
+    <li>**true**: enable delivery status over callback.</li>
+    <li>**false**: disable delivery status over callback</li>
+  </ul>
+</ParamField>
+
+<ParamField path="custom_id" type="string" required={true}>
+  <ul>
+    <li>Unique identifier of your notification</li>
+    <li>**Length**: 200 characters if string</li>
+    <li>**Length**: 20 digits if numeric</li>
+  </ul>
+</ParamField>
+
+<ParamField path="custom1" type="string" required={false}>
+  <ul>
+    <li>Additional information to tag your notification</li>
+    <li>**Length**: 50 characters</li>
+    <li>**Example:** `order-id`</li>
+  </ul>
+</ParamField>
+
+<ParamField path="custom2" type="string" required={false}>
+  <ul>
+    <li>Additional information to tag your notification</li>
+    <li>**Length**: 50 characters</li>
+    <li>**Example:** `category`</li>
+  </ul>
+</ParamField>
+
+<ParamField path="allowlist_url" type="string" required={false}>
+  <ul>
+    <li>Specify one or more allowlisted URL names (upto 3) where you want to receive delivery reports.</li>
+    <li>If no URL name(s) are specified here, the system will use your default URL (if one exists).</li>
+    <li>If no URL name(s) are specified here AND no default URL is set, delivery reports cannot be sent.</li>
+    <li>**Example**: `["DynamicWebhookSite", "Mixpanel"]`</li>
+    <li>**Example**: `DynamicWebhookSite`</li>
+  </ul>
+</ParamField>
+
 
 ```json title="Sample Callback Objects in Request Parameters" wordWrap
 {
@@ -39,6 +73,7 @@ Once this is done, all the delivery statuses for every notification triggered wi
    "to": { // you channel destination },
    "data": {  // your template placeholders  },
    "callback": {
+       "enable":"true",
        "custom_id": "YOUR_CUSTOM_ID_VALUE",
        "custom1":"3d066514-c55d-48f8-b7ff-3981a43c20d4",
        "allowlist_url": ["DynamicWebhookSite", "Mixpanel"]

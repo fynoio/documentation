@@ -19,8 +19,8 @@ Find the **Notification Event** you want to trigger.
 
 You can trigger a notification event in 2 ways:
 
-    - Within the **Notification Event** page, click on the "**\<>API CODE**" icon in the top right corner. This will open up the **Notification Event Playground** page.
-    - From the notification event card, click on the "**\<>**" on the top right corner of the corresponding **Notification Event** card. This will open up the **Notification Event Playground** page.
+    - Within the **Notification Event** page, click on the "**Run Test**" in the top right corner. This will open up the **Notification Event Playground** page.
+    - From the notification event card, click on the "**Run Test**" icon on the bottom right corner of the corresponding **Notification Event** card. This will open up the **Notification Event Playground** page.
 
 </Steps>
 
@@ -40,7 +40,8 @@ In the Notification event playground, you will see the following:
   - **Destination**: On selecting manual you would be able to add one of the below details for the recipient.
   - **Both**: The API will understand to accept either the Distinct ID or the recipient details directly.
 - **Additional data**: This allows you to provide the data for testing the "**Placeholders**" with dynamic values, which would have to be written in JSON.
-- **Preview**: The Preview tab shows the details of the notification that is about to be triggered. You can take it to the next level and see how it looks for each channel by clicking on the respective icon. For Email, you can preview both Desktop and Mobile views.
+- **Receive Delivery Report** - Select this option if you want to check if delivery report is sent to Allowlist URL. You can read more about it [here](./notification-event-triggering#how-to-receive-delivery-reports).
+- **Preview**: The Preview tab shows the details of the notification that is about to be triggered. You can see how it looks for each channel by clicking on the respective icon. For Email, you can preview both Desktop and Mobile views.
 - **Preview with Conditional Templates** : If you have used conditional templates in the notification event, you will see the Preview, as shown below. The template will be selected based on the satisfaction of a particular condition.
 
   - Using Template: "Template_name" (template version)
@@ -48,7 +49,7 @@ In the Notification event playground, you will see the following:
 
   ![](/images/notification_event_playground.png)
 
-- **Command**: The command tab displays the cURL command that has been generated for this Notification Event and can be copied and placed into your code easily.
+- **Code**: The code tab displays the cURL command that has been generated for this Notification Event and can be copied and placed into your code easily.
 - **Logs**: When the notification event is triggered, the logs that would be generated can be seen on the logs tab as well for a quick overview of the status.
 - **Template**: Displays the name of the template that is being used for the respective Notification Event. Click on the pop-out icon to revisit the template and make edits.
 
@@ -121,8 +122,9 @@ If you want to receive delivery reports in your system or any third party tool, 
 
 <ParamField path="allowlist_url" type="string" required={false}>
   <ul>
-    <li>Allowlist URL name where you want to receive delivery reports. Can be array of allowlist url names if you want the delivery reports in multiple URLs.</li>
-    <li>If you have a default allowlist URL, it will be automatically will be sent to that URL.</li>
+    <li>Specify one or more allowlisted URL names (upto 3) where you want to receive delivery reports.</li>
+    <li>If no URL name(s) are specified here, the system will use your default URL (if one exists).</li>
+    <li>If no URL name(s) are specified here AND no default URL is set, delivery reports cannot be sent.</li>
     <li>**Example**: `["DynamicWebhookSite", "Mixpanel"]`</li>
     <li>**Example**: `DynamicWebhookSite`</li>
   </ul>
