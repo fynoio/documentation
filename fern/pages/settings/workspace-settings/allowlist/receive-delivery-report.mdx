@@ -25,12 +25,6 @@ Once this is done, all the delivery statuses for every notification triggered wi
 
 ## Callback Objects in a Request
 
-<ParamField path="enable" type="string" required={true}>
-  <ul>
-    <li>**true**: enable delivery status over callback.</li>
-    <li>**false**: disable delivery status over callback</li>
-  </ul>
-</ParamField>
 
 <ParamField path="custom_id" type="string" required={true}>
   <ul>
@@ -56,6 +50,14 @@ Once this is done, all the delivery statuses for every notification triggered wi
   </ul>
 </ParamField>
 
+<ParamField path="enable" type="enum" required={false} default="true">
+  <ul>
+    <li>**true**: enable delivery status over callback.</li>
+    <li>**false**: disable delivery status over callback</li>
+    <li>The default value is **true** if custom_id is specified.</li>
+  </ul>
+</ParamField>
+
 <ParamField path="allowlist_url" type="string" required={false}>
   <ul>
     <li>Specify one or more allowlisted URL names (upto 3) where you want to receive delivery reports.</li>
@@ -73,7 +75,7 @@ Once this is done, all the delivery statuses for every notification triggered wi
    "to": { // you channel destination },
    "data": {  // your template placeholders  },
    "callback": {
-       "enable":"true",
+       "enable":true,
        "custom_id": "YOUR_CUSTOM_ID_VALUE",
        "custom1":"3d066514-c55d-48f8-b7ff-3981a43c20d4",
        "allowlist_url": ["DynamicWebhookSite", "Mixpanel"]
