@@ -79,9 +79,10 @@ If you want to receive delivery reports in your system or any third party tool, 
    "to": { // you channel destination },
    "data": {  // your template placeholders  },
    "callback": {
+       "enable":true,
        "custom_id": "YOUR_CUSTOM_ID_VALUE",
        "custom1": "YOUR_CUSTOM_VARIABLE_1",
-       "custom2": "YOUR_CUSTOM_VARIABLE_2"
+       "custom2": "YOUR_CUSTOM_VARIABLE_2",
        "allowlist_url": ["DynamicWebhookSite", "Mixpanel"]
     }
 }
@@ -89,12 +90,6 @@ If you want to receive delivery reports in your system or any third party tool, 
 
 <Note>The `custom_id`, `custom1`, and `custom2` values can be sent back to your allowlist URL.</Note>
 
-<ParamField path="enable" type="string" required={false} default={'true'}>
-  <ul>
-    <li>**true**: enable delivery status over callback.</li>
-    <li>**false**: disable delivery status over callback</li>
-  </ul>
-</ParamField>
 
 <ParamField path="custom_id" type="string" required={true}>
   <ul>
@@ -117,6 +112,14 @@ If you want to receive delivery reports in your system or any third party tool, 
     <li>Additional information to tag your notification</li>
     <li>**Length**: 50 characters</li>
     <li>**Example:** `category`</li>
+  </ul>
+</ParamField>
+
+<ParamField path="enable" type="enum" required={false} default="true">
+  <ul>
+    <li>**true**: enable delivery status over callback.</li>
+    <li>**false**: disable delivery status over callback</li>
+    <li>The default value is **true** if custom_id is specified.</li>
   </ul>
 </ParamField>
 
