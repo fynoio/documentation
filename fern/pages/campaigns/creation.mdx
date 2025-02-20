@@ -11,8 +11,8 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 To create a Campaign, you will first need to have a few things in place:
 
 - A provider integration in Fyno's platform
-- A notification template (it may be any channel)
-- A Notification Event
+- A notification [template](./template-creation) (it may be any channel)
+- A Notification [Event](./notification-event-creation)
 - A CSV file or Google sheet or Public URL or a Cohort with the user base to whom you would be triggering the campaign.
 
 `Once` we have these in place, we are all set to go with campaigns!
@@ -107,7 +107,7 @@ The notification event is preselected based on the value selected.
 
 In this step, you will need to configure the details needed for the event to be successfully triggered. This includes the mapping of the Channels and Placeholders. You can select each item's corresponding data field from the uploaded CSV file by clicking on the drop-down and selecting one. In case you do not want to trigger a notification to a specific channel, you can remove it by deleting that row from this section.
 ![](/images/e43f43b9f3f8cc2df9f6845723e163e0d6d45c6ccfe1c64bdd068d88c011e652-Screenshot_2024-10-10_at_4.38.48_PM.png)
-
+<Warning> Ensure all placeholders are properly mapped to your columns. For WhatsApp specifically, notifications will fail to deliver if any placeholder remains unmapped.</Warning>
 ### Preview
 
 Preview allows you to visualize how the data from a CSV upload appears within the template, ensuring the uploaded data aligns with your expectations. You will see the preview as shown below. You can click '\<' and '>' to see a preview based on the first 10 records from the uploaded CSV file.
@@ -121,6 +121,16 @@ To enable receiving delivery reports from Fyno, select the checkbox 'Receive del
 
 ![](/images/0754d409f6aeb8f9c7a94b0f3bd01c514cad27906c966dfd0cedbdaedc1c7fb0-Screenshot_2024-10-10_at_4.35.24_PM.png)
 
+<ParamField path="Allowlisted Endpoints" type="string" required={false}>
+  <ul>
+    <li>Specify one or more allowlisted URL names (upto 3) where you want to receive delivery reports.</li>
+    <li>If no URL name(s) are specified here, the system will use your default URL (if one exists).</li>
+    <li>If no URL name(s) are specified here AND no default URL is set, delivery reports cannot be sent.</li>
+    <li>**Example**: `["DynamicWebhookSite", "Mixpanel"]`</li>
+    <li>**Example**: `DynamicWebhookSite`</li>
+  </ul>
+</ParamField>
+
 <ParamField path="Custom ID" type="string" required={true}>
   <ul>
     <li>Unique identifier of your notification</li>
@@ -133,7 +143,7 @@ To enable receiving delivery reports from Fyno, select the checkbox 'Receive del
   <ul>
     <li>Additional information to tag your notification</li>
     <li>**Length**: 50 characters</li>
-    <li>**Example:** `order-id`</li>
+    <li>**Example:** `campaign-name`</li>
   </ul>
 </ParamField>
 
@@ -145,15 +155,7 @@ To enable receiving delivery reports from Fyno, select the checkbox 'Receive del
   </ul>
 </ParamField>
 
-<ParamField path="allowlist_url" type="string" required={false}>
-  <ul>
-    <li>Specify one or more allowlisted URL names (upto 3) where you want to receive delivery reports.</li>
-    <li>If no URL name(s) are specified here, the system will use your default URL (if one exists).</li>
-    <li>If no URL name(s) are specified here AND no default URL is set, delivery reports cannot be sent.</li>
-    <li>**Example**: `["DynamicWebhookSite", "Mixpanel"]`</li>
-    <li>**Example**: `DynamicWebhookSite`</li>
-  </ul>
-</ParamField>
+
 
 More values can be added in the callback. For a list of additional available values, please see: [Callback Response](./allowlist-url#callback-response)
 
