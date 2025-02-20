@@ -36,6 +36,9 @@ navigation:
           - page: Home
             icon: fa-regular fa-home
             path: pages/home.mdx
+          - changelog: pages/release-notes
+            icon: fa-regular fa-sparkles
+            title: Release Notes
           - section: "Getting Started"
             contents:
                 - page: "Quickstart"
