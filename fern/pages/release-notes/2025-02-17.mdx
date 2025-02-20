@@ -1,0 +1,46 @@
+---
+hide-nav-links: true
+---
+
+## 25.1.3
+
+### 🔹 New Features
+
+- **YAML-based Backend APIs** (Beta): Introduced support for creating backend APIs via YAML configuration, enabling multiple API calls with a single request.
+- **Rebranding**: Updated brand colors and logo across the application.
+- **Templates**: Added a Handlebars function to [convert numbers into words](./templates-handlebars#convert-number-to-words).
+- **Integrations**: Added support for **[Route Mobile WhatsApp](./whatsapp-route-mobile)** and [Gupshup.io](./whatsapp-gupshup).
+- **In-App Messaging**: Automatically marks **queued messages as DELIVERED** when the user comes online.
+
+### ⚡ Feature Enhancements
+
+- **Templates**:
+  - Users can now test templates using `distinct_id` from the [User Profile](./user-profiles-overview), eliminating the need to send messages to a destination.
+  - Implemented an [archival policy](./data-retention) — templates older than one year (and not live) will be **automatically deleted**.
+- **React Native Push SDK**: Added [`isFynoNotification()`](usage-1#check-if-notification-received-is-from-fyno-and-also-handle-it) and [`handleFynoNotification()`](usage-1#check-if-notification-received-is-from-fyno-and-also-handle-it) functions.
+- **User Profiles**: Now supports all **ISO 8601 date-time formats** for [date type properties](./api-reference/user-properties/post-wsid-version-profiles-properties-set).
+- **Dashboard**: **Notification Event analytics** now shows "Verified" Data if you use [Fyno Verify](./fyno-verify).
+- **Digest**: Added support for **numeric values in string format** for sum calculations.
+- **Logs**: Workflow names are now visible in Inbound logs.
+- **Campaigns**: Improved CSV validation—incorrect file formats **no longer break campaigns**.
+- **Omni-channel Routing**: Increased **failover delay** limit from **10 minutes to 30 minutes**.
+
+### 🛠 Bug Fixes
+
+- **Fyno Shorty**: Fixed an issue where [Shorty URLs](./url-shortener) wouldn’t generate if template conditions were applied in notification events.
+- **External Templates**:
+  - Fixed buttons not loading in WhatsApp **Carousel Templates**.
+  - Resolved preview issues for WhatsApp templates containing buttons.
+  - Fixed Gupshup **WhatsApp Carousel template creation issue**.
+- **Logs**:
+  - Fixed hidden tabs issue on Windows devices.
+  - Expanded campaign dropdown width to accommodate more data.
+  - **Allowlist URL values** now appear correctly in callback logs.
+- **Suppression**: Fixed a bug preventing **deletion of entries** from the [suppression list](suppression).
+- **[Duplicate Message Check](./duplicate-message-check) & [Conversion Tracking](./conversion-tracking)**:
+  - Added validation for **negative TTL values**.
+  - Fixed incorrect URL issue in **conversion tracking**.
+- **Notification Events**: Resolved a bug that removed **[Group Names](./notification-event-group)** when promoting an event to Live.
+- **[Campaigns](./campaign_creation)**: Fixed:
+  - **Page crash issues** when using Google Sheets, Public CSV, or Cohort options.
+  - **Template preview issues** in Campaigns.

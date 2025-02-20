@@ -12,8 +12,8 @@ publish_to_dev:
   script:
     - fern generate --docs --instance dev-fyno.docs.buildwithfern.com/docs
   only:
-    refs:      
-      - /^25\..*/
+    refs:
+      - dev
 
 publish_to_prod:
   image: node:latest
@@ -25,5 +25,5 @@ publish_to_prod:
   script:
     - fern generate --docs --instance fyno.docs.buildwithfern.com/docs
   only:
-    refs:      
+    refs:
       - main

@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-      - "25.**"
+      - dev
   pull_request:
     branches:
-      - main      
+      - main
 
 jobs:
   publish-docs:
@@ -26,13 +26,13 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
             fern generate --docs --instance fyno.docs.buildwithfern.com/docs
-          elif [[ "${{ github.ref }}" =~ refs/heads/25\..* || "${{ github.event_name }}" == "pull_request" ]]; then
-            fern generate --docs --instance dev-fyno.docs.buildwithfern.com/docs 
+          elif [[ "${{ github.ref }}" =~ refs/heads/dev || "${{ github.event_name }}" == "pull_request" ]]; then
+            fern generate --docs --instance dev-fyno.docs.buildwithfern.com/docs
           fi
 
       - name: Comment Preview URL (Commit)
         uses: peter-evans/commit-comment@v3
-        if: startsWith(github.ref, 'refs/heads/25.')
+        if: github.ref == 'refs/heads/dev'
         with:
             body: "[Test] Build deplolyed: https://dev-fyno.docs.buildwithfern.com/docs"
 
