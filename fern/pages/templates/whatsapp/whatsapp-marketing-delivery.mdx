@@ -22,15 +22,21 @@ Given below are some of the common errors that you might encounter while trying 
     ![](/images/meta_error_code_131049.png)
 
     - If you send over 2 marketing messages to a user within 24 hours, you will receive this error message. You will not be able to send the next message until they reply. 
-    - If a marketing template message is not sent due to per-user marketing template limit enforcement, you will see the response status set to failed and (error) code set to **131049 (for Cloud API) or 1026 (for On-Premises API)**. [Learn more about WhatsApp’s Per-User Marketing Template Message Limits](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates#per-user-marketing-template-message-limits) 
-    - WhatsApp’s help documentation suggests that if you encounter this error, it is ideal to refrain from immediately sending further messages. This could lead to another error as the limit might still be in place. You can attempt to send the messages again, by gradually increasing the time gap, until all messages are successfully delivered. 
+    - If a marketing template message is not sent due to per-user marketing template limit enforcement, you will see the following error code and message 
+        - **Error code** - 131049 (for Cloud API) or 1026 (for On-Premises API)
+        - **Error message** - This message was not delivered to maintain healthy ecosystem engagement. In order to maintain a healthy ecosystem engagement, the message failed to be delivered. 
+    - [Learn more about WhatsApp’s Per-User Marketing Template Message Limits](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates#per-user-marketing-template-message-limits) 
+    - **How to resolve this** - WhatsApp’s help documentation suggests that if you encounter this error, it is ideal to refrain from immediately sending further messages. This could lead to another error as the limit might still be in place. You can attempt to send the messages again, by gradually increasing the time gap, until all messages are successfully delivered. 
 - **Recipient under integration experiment**
     ![](/images/meta_error_code_130472.png)
     - WhatsApp is running an experiment where 1% of users will not receive any marketing messages from businesses unless a chat already exists between them.
     - You’ll face this error if you try to send messages to such users. If you send a marketing template message to a customer who is part of the experiment group, your message will not be sent and you will not be billed for it since no conversation was created.
-    - Instead, you will receive a message status containing **error code 130472**, notifying you of the failure. [Learn more about WhatsApp Experiments](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/experiments/).
-    - You can reach out to them outside WhatsApp and ask them to initiate a WhatsApp chat with you so you can resend the message to them.
-- **Message Undeliverable** - You will receive an **error code 131026** when one of the below condition is met.
+    - Instead, you will receive the following error code and message   
+        - **Error code** -  130472
+        - **Error message** - Message was not sent as part of an experiment. 
+    - [Learn more about WhatsApp Experiments](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/experiments/).
+    - **How to resolve this** - You can reach out to them outside WhatsApp and ask them to initiate a WhatsApp chat with you so you can resend the message to them.
+- **Message Undeliverable** - You will receive an **error code 131026** with the message 'Message Undeliverable' when one of the below condition is met.
     ![](/images/meta_error_code_131026.png)
     - The recipient phone number is not a WhatsApp phone number.
     - Recipient has not accepted our new Terms of Service and Privacy Policy.
