@@ -1,0 +1,39 @@
+---
+title: 'Why delivery rates of WhatsApp Marketing notifications is low'
+slug: 'whatsapp-marketing-delivery'
+og:title: 'Why delivery rates of WhatsApp Marketing notifications is low | Fyno Documentation'
+og:description: 'Delivery rates of WhatsApp Marketing notifications could be low due to the following reasons -  Marketing template limit exceeded or recipient under integration experiment or recipient has blocked your number or Integration Service Rate limit exceeded'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Many businesses are encountering WhatsApp failures with error codes 131026, 1026, 131049, or 130472.
+
+According to [WhatsApp's official policy](https://developers.facebook.com/docs/whatsapp/message-templates/creation#per-user-marketing-template-message-limits), they now limit marketing template messages across all businesses to enhance user experience. Messages deemed less likely to be read will fail delivery.
+
+These restrictions only affect new marketing conversations—ongoing conversations remain unaffected.
+Meta has implemented these measures specifically to protect user experience, which is why your WhatsApp marketing notifications may be failing with these error codes.
+
+## Common errors thrown by WhatsApp
+
+Given below are some of the common errors that you might encounter while trying to send out a WhatsApp campaign.
+
+
+- **Marketing Template Limit Exceeded**
+    ![](/images/meta_error_code_131049.png)
+
+    - If you send over 2 marketing messages to a user within 24 hours, you will receive this error message. You will not be able to send the next message until they reply. 
+    - If a marketing template message is not sent due to per-user marketing template limit enforcement, you will see the response status set to failed and (error) code set to **131049 (for Cloud API) or 1026 (for On-Premises API)**. [Learn more about WhatsApp’s Per-User Marketing Template Message Limits](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates#per-user-marketing-template-message-limits) 
+    - WhatsApp’s help documentation suggests that if you encounter this error, it is ideal to refrain from immediately sending further messages. This could lead to another error as the limit might still be in place. You can attempt to send the messages again, by gradually increasing the time gap, until all messages are successfully delivered. 
+- **Recipient under integration experiment**
+    ![](/images/meta_error_code_130472.png)
+    - WhatsApp is running an experiment where 1% of users will not receive any marketing messages from businesses unless a chat already exists between them.
+    - You’ll face this error if you try to send messages to such users. If you send a marketing template message to a customer who is part of the experiment group, your message will not be sent and you will not be billed for it since no conversation was created.
+    - Instead, you will receive a message status containing **error code 130472**, notifying you of the failure. [Learn more about WhatsApp Experiments](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/experiments/).
+    - You can reach out to them outside WhatsApp and ask them to initiate a WhatsApp chat with you so you can resend the message to them.
+- **Message Undeliverable** - You will receive an **error code 131026** when one of the below condition is met.
+    ![](/images/meta_error_code_131026.png)
+    - The recipient phone number is not a WhatsApp phone number.
+    - Recipient has not accepted our new Terms of Service and Privacy Policy.
+    - Recipient using an old WhatsApp version
+- **Recipient isn't receiving messages from you right now** – You'll get this error if the recipient has blocked the number you are currently using to send WhatsApp messages. 
+- **Integration Service Rate limit exceed** – You'll get this error if you've exceeded the WhatsApp sending limit.

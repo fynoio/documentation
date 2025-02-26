@@ -260,6 +260,8 @@ navigation:
                                     path: "pages/templates/whatsapp/interactive-message.mdx"
                                   - page: "URL Clicks"
                                     path: "pages/templates/whatsapp/track-url.mdx"
+                                  - page: "Low Delivery Rates for Marketing notification"
+                                    path: "pages/templates/whatsapp/whatsapp-marketing-delivery.mdx"
                             - section: "Email Templates"
                               path: "pages/templates/template-creation/email.mdx"
                               contents:
