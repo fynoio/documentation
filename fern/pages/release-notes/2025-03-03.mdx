@@ -16,23 +16,25 @@ hide-nav-links: true
 
 - **SPAMREPORT Status for Email**: We've added a "SPAMREPORT" status for emails. If a user marks an email as spam and the email service provider supports sending this status, you will see the "SPAMREPORT" status in the delivery tab and in the callback.
 
-- **Provider Template ID in Reports and Callbacks**: When you download a report or receive a callback for RCS, SMS, or WhatsApp messages, a new "Provider Template ID" field will be included.
+- **Provider Template ID in Reports and Callbacks**: When you [download a report](./report-extraction) or receive a callback for RCS, SMS, or WhatsApp messages, a new "Provider Template ID" field will be included.
 
   - This field will display the DLT template ID (for Indian users) for SMS, the WhatsApp template name (`templatename_lang`), and the RCS template name.
 
-- **Integrations**: We've added support for syncing and creating Karix WhatsApp templates directly from Fyno.
+- **Integrations**: We've added support for syncing and creating [Karix WhatsApp](./whatsapp-karix) templates directly from Fyno.
 
 ### ⚡ Feature Enhancements
 
-- **Reduced Duplicate Check TTL**: You can now set the duplicate check with a Time-To-Live (TTL) as low as 5 seconds.
+- **Reduced Duplicate Check TTL**: You can now set the [duplicate check](./duplicate-message-check) with a Time-To-Live (TTL) as low as 5 seconds.
 
 - **Access Denied from Source IP**: Error messages for access denied from source IP now include the IP address, making it easier to troubleshoot IP-related issues.
 
-- **Omni-Channel Route Interface Update**: The Omni-channel route has received a new, sleeker layout for an improved user experience.
+- **Omni-Channel Route Interface Update**: The [Omni-channel route](./omnichannel-routing-introduction) has received a new, sleeker layout for an improved user experience.
 
-- **DND Support for RCS Messages**: We've added Do Not Disturb (DND) support for RCS messages.
+- **DND Support for RCS Messages**: We've added [Do Not Disturb (DND)](./delivery-limit) support for RCS messages.
 
-- **Support for V3 Payload for MSG91**: We now accept MSG91 callback payloads in the V3 format.
+- **Support for V3 Payload for MSG91**: We now accept [MSG91](./sms-msg91) callback payloads in the V3 format.
+
+- **50-Character Limit for Notification Event and Template Name in One API**: The character limit for [Notification Event](./events-overview) and [Template](./templates-getting-started) names in One API has been reduced from 100 to 50 characters for B2B users.
 
 ### 🛠 Bug Fixes
 
