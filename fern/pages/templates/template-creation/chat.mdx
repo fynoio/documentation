@@ -12,7 +12,7 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 The message body can be in Text or JSON depending on the kind of input. Text allows you to send simple message text whereas JSON message body is used with the Slack Block kit Builder. In case you want to use JSON, a great place to start is [Slack Block Kit Builder](https://app.slack.com/block-kit-builder). You can design your slack message at Block Kit Builder and simply copy the JSON block to Fyno Template and paste it under JSON tab. Please note: You only need to copy the JSON array start with "[" until the closing array block "]" as shown below:-
 
-![](/images/5d9b395-image.png)
+![](/images/template_slack_json.png)
 
 <Note>Handlebars do not work on Slack's block kit builder!</Note>
 
@@ -44,7 +44,7 @@ The message body can be in Text or JSON depending on the kind of input. Text all
 
 ### How to test a Slack template?
 
-![](/images/75e6ab0-slack_test.png)
+![](/images/template_slack_test.png)
 
 - To send a DM, you can use `@name` in the Slack Recipient and choose the Slack provider
 
@@ -52,7 +52,7 @@ The message body can be in Text or JSON depending on the kind of input. Text all
 
 ## Discord
 
-![](/images/template-discord.png)
+![](/images/template_discord.png)
 
 - Discord Template: The message body can be in Text or JSON depending on the kind of input.
 
@@ -64,7 +64,7 @@ The message body can be in Text or JSON depending on the kind of input. Text all
 
 ## Teams
 
-![](/images/template-teams.png)
+![](/images/template_teams.png)
 
 - Teams Template: The message body can be in Text or JSON depending on the kind of input.
 
@@ -89,7 +89,7 @@ You can use this feature to conduct thorough testing of a template prior to its 
 
 <Steps>
   <Step>Click 'Run Test' on the top right hand side of the template.</Step>
-  <Step>It opens the pop up as shown below. ![](/images/c0f70f2-slack_test_template.png)</Step>
+  <Step>It opens the pop up as shown below. ![](/images/template_teams_test.png)</Step>
   <Step>Enter the destination where the message should be sent.</Step>
   <Step>Select a provider which is already configured in Fyno.</Step>
   <Step>When you click 'TEST', it will send chat message to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.</Step>
