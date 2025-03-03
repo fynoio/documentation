@@ -1,0 +1,51 @@
+---
+hide-nav-links: true
+---
+
+## 25.1.4
+
+### 🔹 New Features
+
+- **Alarm Management (Beta Feature)**: We've introduced a new feature to detect, track, and manage alarms in real-time. An alarm is triggered when any failure occurs within the workspace. This feature is currently in Beta and can be enabled in your workspace upon request.
+
+- **Webhook Call on Campaign Completion (Beta Feature)**: You can now receive a callback on your API when a campaign is completed. This feature is particularly useful for our B2B customers who run campaigns directly from their applications.
+
+- **WhatsApp Business App Integration (Beta Feature)**: This new feature allows you to send WhatsApp messages via API while simultaneously using the same number with the WhatsApp Business App. All messages sent via API will appear in the WhatsApp Business App in real time.
+
+  - **Unsupported Countries:** Australia, India, Japan, Nigeria, Philippines, Russia, South Korea, South Africa, Turkey, European Economic Area, European Union, United Kingdom.
+
+- **SPAMREPORT Status for Email**: We've added a "SPAMREPORT" status for emails. If a user marks an email as spam and the email service provider supports sending this status, you will see the "SPAMREPORT" status in the delivery tab and in the callback.
+
+- **Provider Template ID in Reports and Callbacks**: When you download a report or receive a callback for RCS, SMS, or WhatsApp messages, a new "Provider Template ID" field will be included.
+
+  - This field will display the DLT template ID (for Indian users) for SMS, the WhatsApp template name (`templatename_lang`), and the RCS template name.
+
+- **Integrations**: We've added support for syncing and creating Karix WhatsApp templates directly from Fyno.
+
+### ⚡ Feature Enhancements
+
+- **Reduced Duplicate Check TTL**: You can now set the duplicate check with a Time-To-Live (TTL) as low as 5 seconds.
+
+- **Access Denied from Source IP**: Error messages for access denied from source IP now include the IP address, making it easier to troubleshoot IP-related issues.
+
+- **Omni-Channel Route Interface Update**: The Omni-channel route has received a new, sleeker layout for an improved user experience.
+
+- **DND Support for RCS Messages**: We've added Do Not Disturb (DND) support for RCS messages.
+
+- **Support for V3 Payload for MSG91**: We now accept MSG91 callback payloads in the V3 format.
+
+### 🛠 Bug Fixes
+
+- **CSS Bug in Stripo Editor**: Resolved an issue where saving email templates created with the Stripo editor would alter the CSS unexpectedly.
+
+- **Email Dynamic Attachment Issue**: Fixed a bug that caused dynamic attachments to fail when sending emails.
+
+- **Nested Keys in Duplicate Check and Analytics Label**: Addressed a bug that prevented dynamic nested keys from being added in duplicate checks and analytics labels.
+
+- **New User Walkthrough Improvements**: Fixed an issue causing excessive API calls during new user onboarding and resolved a bug that crashed the verification page for new users.
+
+- **Campaign Invalid File Download Issue**: Corrected an issue preventing the download of invalid rows in the campaign file.
+
+- **Invalid Pages Returning 500 Error**: Pages that were previously returning a 500 error now correctly return a 404 error.
+
+- **Fyno Verify with Omni-Channel Route**: Resolved a bug that prevented Fyno Verify from functioning properly when using the Omni-channel route.
