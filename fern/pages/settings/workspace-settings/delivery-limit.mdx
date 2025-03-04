@@ -16,22 +16,27 @@ You can now configure your Do Not Disturb settings for all channels from the fol
 
 Engaging your users with notifications is one of the most effective ways to drive increased adoption, retention and conversions. However, there are instances when you'd prefer your notifications not to reach them at inconvenient times, such as 3:00 am when your users are sound asleep..
 
+<Tip>According to regulations, the "Do Not Disturb" (DND) time for sending **SMS marketing messages is between 9 PM and 9 AM**</Tip>
+
+<Tip>According to regulations, the "Do Not Disturb" (DND) time for sending **RCS marketing messages is between 10 PM and 7 AM**</Tip>
+
+
 ### How it works?
 
-You now have the option to configure "Do Not Disturb" (DND) hours for both transactional and marketing communications. Currently, this feature is applicable to SMS, WhatsApp, Email, and Push channels.
+You now have the option to configure "Do Not Disturb" (DND) hours for both transactional and marketing communications. Currently, this feature is applicable to SMS, WhatsApp, Email, Push and RCS channels.
 
 When DND is active, Fyno will not trigger notification during the specified hours. You have the flexibility to decide whether to **drop** (discard) notifications that were triggered during the DND period or **queue** their delivery until after the DND window. Queued messages will be sent at the end of DND period with 30 seconds additional delay.
 
-For example, if you want to set DND time for Marketing notifications from 11 PM till 7 AM for SMS and send notifications after the DND window, follow these steps.
+For example, if you want to set DND time for Marketing notifications from 8 PM till 10 AM for SMS and send notifications after the DND window, follow these steps.
 
 <Steps>
   <Step>Under SMS channel, select Marketing from Notification Type drop down.</Step>
-  <Step>Set DND Start Time as 11:00 PM</Step>
-  <Step>Set DND End Time as 7:00 AM.</Step>
+  <Step>Set DND Start Time as 8 PM</Step>
+  <Step>Set DND End Time as 10 AM.</Step>
   <Step>Select **DROP IT** if you don't want to send notifications during DND hours and discard it. Select **QUEUE IT**, if you want to queue the notifications triggered during DND hours and send it after the DND window.</Step>
 </Steps>
 
-![](/images/4c216c5-DND_Marketing.png)
+![](/images/delivery_limit_dnd.png)
 
 If you want to add DND settings for Transactional notification also for SMS, you can do it by clicking the '+ Add Another' button.
 
@@ -61,6 +66,6 @@ For example, if you want to set Frequency Capping as "_10 Notifications per dest
 
 <Info>We support time frames ranging from a minimum of 30 seconds to a maximum of 30 days. The Notification Count can range from a minimum of 2 to a maximum of 255.</Info>
 
-![](/images/4211224-Marketing_Frequency_Capping.png)
+![](/images/delivery_limit_frequency_cap.png)
 
 <Info>This setting will only apply to Notification Events triggered in LIVE environment.</Info>
