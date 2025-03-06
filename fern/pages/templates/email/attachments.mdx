@@ -40,7 +40,7 @@ curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
     "data": {
        "attachment":
         {
-            "base64": "<Preassigned_URL>",
+            "preassigned_URL": "<preassigned_URL>",
             "filename": "<attachement_file_name>",
             "filetype": "application/pdf"
        }
@@ -53,7 +53,7 @@ In the above command:
 <Steps>
 <Step>Replace `<WorkspaceID>` with your actual Workspace ID.</Step>
 <Step>Replace `<API_KEY>` with your actual API key.</Step> 
-<Step>Replace `<Preassigned_URL>` with the Preassigned URL of your file.</Step>
+<Step>Replace `<preassigned_URL>` with the Preassigned URL of your file.</Step>
 <Step>Replace `<filename>` with the name of the file attached.</Step>
 </Steps>
 
@@ -73,12 +73,12 @@ To add multiple attachments in email, add them in the placeholders as shown belo
 <Step>For file 1, you can give the below placeholders,
    <ul><li>Filename - `{{attachment.filename.0}}`</li>
    <li>File Type - `{{attachment.filetype.0}}`</li>
-   <li>Content - `{{attachment.public_url.0}}`</li></ul></Step>
+   <li>Content - `{{attachment.preassigned_URL.0}}`</li></ul></Step>
 <Step>Click 'Add Key'</Step>
 <Step>For file 2, you can give the below placeholders
    <ul><li>Filename - `{{attachment.filename.1}}`</li>
    <li>File Type - `{{attachment.filetype.1}}`</li>
-   <li>Content - `{{attachment.public_url.1}}`</li></ul></Step>
+   <li>Content - `{{attachment.preassigned_URL.1}}`</li></ul></Step>
 <Step>You can keep adding as many files. The total file size should not exceed 10MB.</Step>
 </Steps>
 
