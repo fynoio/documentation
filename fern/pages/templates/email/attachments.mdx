@@ -14,7 +14,7 @@ You can add static as well as dynamic attachments to emails
 
 On clicking on the attach button (highlighted below) on the to right corner of the either Email editor, you will see:
 
-![](/images/138f239-template_email_attachment.png)
+![](/images/email_add_attachment.png)
 
 - **Upload Files**: Allows you to attach files from the system. This then stays as a static attachment in the body of the email and is sent along with the email as an attachment every time it's triggered.
 
@@ -22,14 +22,14 @@ On clicking on the attach button (highlighted below) on the to right corner of t
 
   - Filename - provide a static value like 'Invoice.pdf' (if you are testing it manually) or a placeholder like `{{attachment.filename}}`(if your are triggering notification event via API)
   - File type - provide a static value like 'application/pdf' (if you are testing it manually) or a placeholder like `{{attachment.filetype}}`(if your are triggering notification event via API). _File type should be MIME type_. You can get all the MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
-  - Content - provide the converted BASE64 file content (if you are testing it manually) or a placeholder like `{{attachment.base64}}`(if your are triggering notification event via API). _You can also use any Presigned URL_ in the content.
+  - Content - provide the Preasigned public URL link here using a placeholder like `{{attachment.public_url}}`. You can also provide base64 content, but its not recommended as it will increase your payload size.
 
-<Note>Please note that if you are using Presigned S3 URL, then the URL should trigger a download of the file immediately when opened.</Note>
+<Tip>Please note that if you are using Presigned S3 URL, then the URL should trigger a download of the file immediately when opened.</Tip>
 
 Placeholders should be used if the attachment information is dynamic (for instance, a personalized attachment depending on the recipient). Typically such attachments are sent via an API call. To send dynamic attachments in the event payload, make sure that the `data` section of the payload has an object called `attachment` as shown below.
 
 ```curl title="Send Attachment via Email" wordWrap
-curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/test/event' \
+curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
 -H 'Authorization: Bearer <API_KEY>' \
 -H 'Content-Type: application/json' \
 -d '{
@@ -40,7 +40,7 @@ curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/test/event' \
     "data": {
        "attachment":
         {
-            "base64": "<BASE64 content>",
+            "base64": "<Preassigned_URL>",
             "filename": "<attachement_file_name>",
             "filetype": "application/pdf"
        }
@@ -53,7 +53,7 @@ In the above command:
 <Steps>
 <Step>Replace `<WorkspaceID>` with your actual Workspace ID.</Step>
 <Step>Replace `<API_KEY>` with your actual API key.</Step> 
-<Step>Replace `<BASE64 content>` with the base64-encoded content of the attachment file..</Step>
+<Step>Replace `<Preassigned_URL>` with the Preassigned URL of your file.</Step>
 <Step>Replace `<filename>` with the name of the file attached.</Step>
 </Steps>
 
@@ -61,7 +61,7 @@ Ensure to provide the correct filename and filetype for the attachment.
 
 When sending dynamic attachments in the payload, we need to configure the dynamic placeholders as shown below.
 
-![](/images/04ac879-image.png)
+![](/images/email_attachment_config.png)
 
 <Note>You cannot use only numeric values as placeholder keys!</Note>
 
@@ -73,12 +73,12 @@ To add multiple attachments in email, add them in the placeholders as shown belo
 <Step>For file 1, you can give the below placeholders,
    <ul><li>Filename - `{{attachment.filename.0}}`</li>
    <li>File Type - `{{attachment.filetype.0}}`</li>
-   <li>Content - `{{attachment.base64.0}}`</li></ul></Step>
+   <li>Content - `{{attachment.public_url.0}}`</li></ul></Step>
 <Step>Click 'Add Key'</Step>
 <Step>For file 2, you can give the below placeholders
    <ul><li>Filename - `{{attachment.filename.1}}`</li>
    <li>File Type - `{{attachment.filetype.1}}`</li>
-   <li>Content - `{{attachment.base64.1}}`</li></ul></Step>
+   <li>Content - `{{attachment.public_url.1}}`</li></ul></Step>
 <Step>You can keep adding as many files. The total file size should not exceed 10MB.</Step>
 </Steps>
 
