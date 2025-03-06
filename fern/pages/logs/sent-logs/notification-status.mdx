@@ -60,3 +60,12 @@ The following statuses are received after the notification is successfully sent 
 | REPLIED      | Message was replied to by the user                                         |  ❌   |    ✅    | ❌  | ❌  |  ❌   |  ❌  |   ❌    |  ❌   |         ❌          |
 | UNSUBSCRIBED | The user unsubscribed for notifications from this particular message       |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
 | UNKNOWN      | The status received is UNKNOWN. Please report to Fyno in such cases        |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
+
+## Converted & Verified Notification Status
+
+The following statuses are received after the notification is sent from the service provider to the recipient and if its marked as Converted (Conversion Tracking enabled) or Verified (OTP/Link verified via Fyno Verify).
+
+| Status      | Description                                                                       | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :---------- | :-------------------------------------------------------------------------------- | :---: | :------: | :-: | :-: | :---: | :--: | :-----: | :---: | :-----------------: |
+| Converted | Notification status will be marked as Converted, if the Conversion tracking is enabled for a notification event and API is triggered to mart it as converted                                                         |  ✅    |   ✅     | ✅  | ✅   |  ✅    |  ✅   |   ✅     |  ✅    |         ✅           |
+| Verified    | Notification status will be marked as Verified if a user successfully verifies OTP/Link generated through Fyno Verify              |  ✅   |    ✅    | ✅  | ✅   |  ✅    |  ✅   |   ✅     |  ✅    |         ✅           |
