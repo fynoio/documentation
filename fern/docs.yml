@@ -467,6 +467,8 @@ navigation:
                       path: "pages/settings/push-token-cleanup.mdx"
                     - page: "Report Extraction"
                       path: "pages/settings/report-extraction.mdx"
+                    - page: "Report Details"
+                      path: "pages/settings/report-details.mdx"
                     - page: "Data Retention"
                       path: "pages/settings/workspace-settings/data-retention.mdx"
                     - page: "Suppression List"
