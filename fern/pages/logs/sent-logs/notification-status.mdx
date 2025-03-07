@@ -59,7 +59,8 @@ The following statuses are received after the notification is successfully sent 
 | KEYPRESS     | Call was answered and a key was pressed by the user during the call        |  ❌   |    ❌    | ❌  | ❌  |  ❌   |  ❌  |   ❌    |  ✅   |         ❌          |
 | REPLIED      | Message was replied to by the user                                         |  ❌   |    ✅    | ❌  | ❌  |  ❌   |  ❌  |   ❌    |  ❌   |         ❌          |
 | UNSUBSCRIBED | The user unsubscribed for notifications from this particular message       |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
-| UNKNOWN      | The status received is UNKNOWN. Please report to Fyno in such cases        |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
+| SPAMREPORT   | This status is received when a recipient marks an email as SPAM.     |  ✅   |    ❌    | ❌ | ❌  |  ❌  |  ❌  |   ❌   |  ❌  |         ❌          |
+| UNKNOWN      | The status received is UNKNOWN. Please report to Fyno in such cases      |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
 
 ## Converted & Verified Notification Status
 
@@ -67,5 +68,5 @@ The following statuses are received after the notification is sent from the serv
 
 | Status      | Description                                                                       | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
 | :---------- | :-------------------------------------------------------------------------------- | :---: | :------: | :-: | :-: | :---: | :--: | :-----: | :---: | :-----------------: |
-| Converted | Notification status will be marked as Converted, if the Conversion tracking is enabled for a notification event and API is triggered to mart it as converted                                                         |  ✅    |   ✅     | ✅  | ✅   |  ✅    |  ✅   |   ✅     |  ✅    |         ✅           |
-| Verified    | Notification status will be marked as Verified if a user successfully verifies OTP/Link generated through Fyno Verify              |  ✅   |    ✅    | ✅  | ✅   |  ✅    |  ✅   |   ✅     |  ✅    |         ✅           |
+| CONVERTED | Notification status will be marked as Converted, if the Conversion tracking is enabled for a notification event and API is triggered to mart it as converted                                                         |  ✅    |   ✅     | ✅  | ✅   |  ✅    |  ✅   |   ✅     |  ✅    |         ✅           |
+| VERIFIED    | Notification status will be marked as Verified if a user successfully verifies OTP/Link generated through Fyno Verify              |  ✅   |    ✅    | ✅  | ✅   |  ✅    |  ✅   |   ✅     |  ✅    |         ✅           |

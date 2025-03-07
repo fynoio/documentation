@@ -22,7 +22,7 @@ On clicking on the attach button (highlighted below) on the to right corner of t
 
   - Filename - provide a static value like 'Invoice.pdf' (if you are testing it manually) or a placeholder like `{{attachment.filename}}`(if your are triggering notification event via API)
   - File type - provide a static value like 'application/pdf' (if you are testing it manually) or a placeholder like `{{attachment.filetype}}`(if your are triggering notification event via API). _File type should be MIME type_. You can get all the MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
-  - Content - provide the Preasigned public URL link here using a placeholder like `{{attachment.public_url}}`. You can also provide base64 content, but its not recommended as it will increase your payload size.
+  - Content - provide the Presigned URL link here using a placeholder like `{{attachment.presigned_url}}`. You can provide a Public URL instead of Presigned URL. You can also provide base64 content, but its not recommended as it will increase your payload size.
 
 <Tip>Please note that if you are using Presigned S3 URL, then the URL should trigger a download of the file immediately when opened.</Tip>
 
@@ -40,8 +40,8 @@ curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
     "data": {
        "attachment":
         {
-            "preassigned_URL": "<preassigned_URL>",
-            "filename": "<attachement_file_name>",
+            "presigned_URL": "<presigned_URL>",
+            "filename": "<attachment_file_name>",
             "filetype": "application/pdf"
        }
     }
@@ -53,7 +53,7 @@ In the above command:
 <Steps>
 <Step>Replace `<WorkspaceID>` with your actual Workspace ID.</Step>
 <Step>Replace `<API_KEY>` with your actual API key.</Step> 
-<Step>Replace `<preassigned_URL>` with the Preassigned URL of your file.</Step>
+<Step>Replace `<presigned_URL>` with the Presigned URL of your file.</Step>
 <Step>Replace `<filename>` with the name of the file attached.</Step>
 </Steps>
 
@@ -73,12 +73,12 @@ To add multiple attachments in email, add them in the placeholders as shown belo
 <Step>For file 1, you can give the below placeholders,
    <ul><li>Filename - `{{attachment.filename.0}}`</li>
    <li>File Type - `{{attachment.filetype.0}}`</li>
-   <li>Content - `{{attachment.preassigned_URL.0}}`</li></ul></Step>
+   <li>Content - `{{attachment.presigned_URL.0}}`</li></ul></Step>
 <Step>Click 'Add Key'</Step>
 <Step>For file 2, you can give the below placeholders
    <ul><li>Filename - `{{attachment.filename.1}}`</li>
    <li>File Type - `{{attachment.filetype.1}}`</li>
-   <li>Content - `{{attachment.preassigned_URL.1}}`</li></ul></Step>
+   <li>Content - `{{attachment.presigned_URL.1}}`</li></ul></Step>
 <Step>You can keep adding as many files. The total file size should not exceed 10MB.</Step>
 </Steps>
 
