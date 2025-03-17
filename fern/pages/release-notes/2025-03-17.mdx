@@ -1,0 +1,45 @@
+---
+hide-nav-links: true
+---
+
+## 25.1.5
+
+### 🔹 New Features
+
+- **Alarm Management**: The Alarms feature is now available for all users, enabling real-time detection, tracking, and management of alarms. An alarm is triggered whenever a failure occurs within the workspace.
+- **New Integration**: Added support for **MSG91 RCS Integration**.
+- **JSON Payload Support in CSV Campaigns (Beta Feature)**: Now, JSON payloads can be used within CSV campaigns. If you'd like to try this Beta feature, reach out to us, and we'll help you set it up.
+- **DND for RCS**: Introduced **Do Not Disturb (DND)** feature for the RCS channel.
+- **Delivery Distribution Chart**: Added within **Notification Events Analytics** to help users track how many channels a particular notification event was delivered through. This aids in identifying potential over-communication with customers.
+- **Notification Event Delivery Rate Chart**: The **Top Events** chart on the dashboard now shows the **notification event delivery rate** instead.
+- **Channel-wise Record Count in Campaigns**: When uploading a campaign, users can now view the **channel-wise count of records**, helping determine the maximum messages a campaign could send when multiple channels are used.
+- **Dynamic Meta Flow Workflow Builder for Data Exchange (Beta Feature)**: Introduced a new feature enabling **Dynamic Meta Flow** users to easily power **data exchange API interactions** using **Fyno Workflows**. This feature is in **Beta**, and interested users can reach out to try it.
+- **Reply to WhatsApp Message Thread**: Added support for replying within a WhatsApp message thread.
+- **Message Reactions in WhatsApp**: Users can now react to messages in WhatsApp.
+- **WhatsApp CTA with Static & Dynamic Values + Shorty Support**: **Fyno Shorty** now supports a combination of **static and dynamic values** in CTAs. Example: `https://fyno.io/{{var1}}/{{var2}}`. Previously, only dynamic placeholders were allowed.
+- **Single-Channel Routes for In-App & RCS**: You can now create **Single-Channel Routes** for **In-App** and **RCS**.
+
+### ⚡ Feature Enhancements
+
+- **WhatsApp Template Editor Updates**: Major updates, including the introduction of **CTA Interactive Templates**.
+- **Renaming "Routing" to "Routes"**: For better consistency, **Routing** has been renamed to **Routes**.
+- **Data Retention Information**: Added retention period details for **Fyno Shorty, Analytics, and In-App messages** in the **Data Retention table**.
+- **Sent by Time of Day Chart Update**: Improved clarity and visualization in the **Sent by Time of Day Heatmap**.
+- **Campaign Enhancements**:
+  - **Canceled Campaign Banner**: A **"Canceled"** banner is now shown when a campaign is canceled by the user.
+  - **Hidden Distinct ID Field**: The **Distinct ID field** is now hidden in the Campaign **Test feature** when user profiles are not being used.
+- **Omni-Channel Routes**: Added **READ** and **CLICKED** statuses for **RCS success criteria** in **Omni-Channel Routes**.
+- **Sent Logs Prioritization**: **Delivered** messages now take higher priority over **Undelivered**. This change ensures better accuracy in cases where **WhatsApp sends both DELIVERED and UNDELIVERED statuses** for the same message when delivered to one device but undelivered on another.
+- **Fyno Connect Rebranding**: The **Fyno Connect** application now reflects **new branding and colors**.
+- **Live Trace Logs Disabled for Successful Workflows**: **Live Trace Logs** are now **disabled** by default for **successful workflows**, while input data payloads remain accessible.
+
+### 🛠 Bug Fixes
+
+- **Template Preview Formatting**: Fixed **formatting issues** in Template previews.
+- **Dynamic Attachments Deletion**: Resolved a bug that prevented **deleting dynamic attachments** from placeholders.
+- **External Template UI Fixes**: Fixed **UI bugs** in **External Templates for WhatsApp**.
+- **Walkthrough API Performance Optimization**: Reduced **walkthrough API calls** by implementing **caching**.
+- **Fixed "Open in New Tab" Issue**: Resolved a bug where **Cmd/Ctrl + Click** opened links in both **the same tab** and **a new tab**.
+- **Shorty Configuration Duplication Fix**: Shorty configuration now correctly **duplicates** when **duplicating a template**.
+- **Notification Event Playground Fixes**: Resolved issues with **conditional templates** and **preview functionality**.
+- **Notification Event Analytics Fix**: Fixed a bug that prevented **all templates** from appearing in the **Notification Event Analytics template list**.
