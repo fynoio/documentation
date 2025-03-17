@@ -46,6 +46,8 @@ navigation:
                   icon: fa-regular fa-bolt
                 - page: "Dashboard"
                   path: "pages/dashboard/dashboard.mdx"
+                - page: "Alarms"
+                  path: "pages/dashboard/alarms.mdx"
                   icon: fa-regular fa-chart-simple
                 - page: "Alarms"
                   path: "pages/dashboard/alarms.mdx"
