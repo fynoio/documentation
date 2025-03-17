@@ -14,22 +14,17 @@ To understand the value add each component brings to the dashboard, let's have a
 
 Typically, whenever you sign into the Fyno App, the first page you will land on is the **Dashboard**.
 
-You will see the welcome screen and a button to take you to the **Integrations** page, the **Start Integrating** button since that's the logical starting point for any great notification journey!
+## Workspace Overview
 
-<Tip>In case you are a seasoned Fyno user, you will only see "**View Integrations**".</Tip>
+The top section shows the summary of your workspace. You will see the following details.
 
-## Account Overview
+![](/images/dashboard_overview_new.png)
 
-You can also have an overview of your account on the **Dashboard**.
-
-![](/images/Dashboard_Overview.png)
-
-This is basically a ticker to track the count of:
-
-1. Notification Events created
-2. Templates made
-3. API Keys generated
-4. Routes configured
+1. Notification Events Fired
+2. Total notifications Sent
+3. Delivery Rate (Overall and Channel level)
+4. SMS Credits Used (Overall and Service provider level)
+5. [Alarms](./alarms)
 
 ## Filters
 
@@ -43,7 +38,7 @@ A time filter, allowing you to toggle between the below-mentioned options helps 
 2. Yesterday
 3. Last 7 days
 4. Last 28 days
-5. Custom
+5. Custom (Maximum 90 days)
 
 ### Version Filter
 
@@ -54,6 +49,53 @@ On the top right corner, you can also toggle between versions, that is, **Live**
 ## Visualizations
 
 To get the best out of each of the visualizations, let's run through each one to understand how they work.
+
+## Channel Engagement
+
+**Channel Engagement** provides you with a detailed view of each channel used to send out notifications along with the outcomes of the notifications sent.
+
+Outcomes can be anything from:
+
+- **Sent** - When a notification is successfully sent from Fyno's platform
+- **Delivered** - When a notification gets successfully delivered to the destination (mobile number, email address, or device tokens like in the case of Push).
+- **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as "Read" for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially "opened", this will be tagged as "Open" and tracked on Fyno's App.
+- **Clicked** - When a notification is clicked on, this will be tracked as a "Clicked" notification. This applies to In-App, Push, Emails with links, etc.
+- **Deleted** - When a Push notification is rendered in user's device and user dismiss it by swiping left.
+- **Keypress** - When a user receives a voice IVR call and presses a key to proceed with the call.
+- **Replied** - When a user replies to a WhatsApp a notification he/she receives in their device.
+
+You can read about all the different notification statuses for each channel [here](./notification-status).
+
+The count for each can be seen on hovering over the bar graphs.
+
+<Tip>You can highlight a single status to look at! Simply click on the other statuses from the legend list at the bottom of the graph to un-select them!</Tip>
+
+## Delivery Status
+
+The delivery status graph shows you the delivery status by the channel that you have selected from the drop-down in the top right corner of the card.
+
+The list will populate the **Channels** based on usage and in chronological order of the count of each channel.
+
+You can toggle on or off the statuses you would like to see by clicking on the legends at the bottom of the graph. Let's have a look at some of these statuses to understand it better.
+
+- **Sent** - All notifications that have left the Fyno App successfully towards the destination are marked as "Sent". In scenarios where there is no delivery confirmation received from the provider, this status will remain as "Sent".
+- **Delivered** - When a notification is delivered successfully to the Destination, then these messages are considered "Delivered"
+- **Error** - All notifications that fail to be triggered from the Fyno App due to some error (it may be any from an issue on a template to not choosing a provider for a channel), will be tagged as "Error"
+- **Failed** - When a notification is tagged as "Failed" this is most probably due to conditions that are mandatory from the provider that are not being met, due to which the notification execution has been tagged as "Failed"
+- **Bounce** - Bounce is a status that would be seen only in the case of an "Email" channel. This happens when
+  - The email address is incorrect
+  - The email address requires senders to be whitelisted in their domain to receive emails.
+  - The email address' mailbox is full and unable to receive any more notifications.
+
+<Info>
+  Undelivered statuses are tracked when they are:
+  <ul>
+    <li>Invalid-Subscriber</li>
+    <li>Blacklist</li>
+    <li>Rejected</li>
+    <li>Bounce</li>
+  </ul>
+</Info>
 
 ### Activity Trend
 
@@ -73,39 +115,6 @@ Easily toggle between any one of the below trackable elements to visualize their
 
 <Tip title="Hover over the graphs for more details!">Hovering over any graph gives you more details about that point on the visualization. Go head, try it!</Tip>
 
-### Usage Overview
-
-Usage Overview has been designed to give you an understanding of the overall usage of each channel, for a time period of your choosing.
-
-![](/images/Dashboard_DeliveryStatus.png)
-
-Overall, you will get quick insights into which channel was utilized as well as how much was used.
-
-The graph is auto-sorted based on the usage of each channel.
-
-### Overall Status
-
-Overall Status gives you an understanding of what exactly the success rate of the entire volume of traffic for a set period of time.
-
-![](/images/Dashboard_ProviderPerformance.png)
-
-On hovering over each aspect of this graph, you can also see the percentage of each status, relative to the overall traffic.
-
-### Status Overview
-
-The Status Overview gives you a stacked view of any selected element, relative to the statuses that we have received for each.
-
-![](/images/Dashboard_ActivityTrends.png)
-
-You can change or toggle the drop-down to select:
-
-1. Channel
-2. Integrations
-3. Providers
-4. Routing
-5. Templates
-6. API Keys
-
 ### Sent by Time of Day
 
 Sent by time of day shows you the data of every notification sent via the application, relative to the time of day that it was sent.
@@ -115,3 +124,16 @@ Sent by time of day shows you the data of every notification sent via the applic
 By choosing your time range, you can see trends of usage by time of day, which is a super important feature, since this gives you an understanding of your end customer behaviour.
 
 When you look at the plotted graph, you will see the legends as **Low**, **Medium** and **High**. These are calculated based on the overall volumes of traffic of your account and are relative to it.
+
+### Notification Event Delivery Rates
+
+This section shows the delivery rate of each and every notification event. By default you will see only the top 5 notification events in terms of Sent Volume. In the next version, we are planning to add an option to view the delivery rates of all the notification events. 
+You can also go to respective notification event and notification event logs. 
+
+![](/images/dashboard_event_delivery_rate.png)
+
+### Workflow Actions
+
+This section shows the success and failure of all the workflow actions
+
+![](/images/dashboard_workflow_actions.png)
