@@ -1,0 +1,97 @@
+---
+title: 'Alarms'
+slug: 'alarms'
+og:title: "All the alarms raised by Fyno AI | Fyno Documentation"
+og:description: 'Fix the alarms raised by Fyno AI to improve your delivery rate'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Fyno's **Alarms** gives you the summary of all the issues which happened while sending notifications to your users. The alarms are broadly classified into **High, Medium, Low** based on the severity. 
+Its recommended to fix these issues to improve your deliverability. 
+![](/images/alarms_list.png)
+
+
+## Filters
+
+You can filter and view alarms based on different criteria
+
+### Status 
+
+1. Open - All the alarms which are in Open status. 
+2. Reopened - Alarms which are resolved in the past but occurred again. 
+3. Resolved - Alarms which are resolved by the customer. 
+
+### Severity
+
+1. High
+2. Medium
+3. Low
+
+### Module
+
+Module filter will help you to understand in which module the alarm occurred. 
+
+1. Notification Event
+2. Webhook
+3. Workflow
+4. Provider
+5. Integration
+
+To further understand this page, let's have a look at what exactly each column means and the data they contain.
+
+#### Description
+
+Shows you the why the Alarm has been raised such as Invalid request format, Maximum sending rate exceeded etc. 
+
+#### Started
+
+Shows when the alarm occurred for the first time. Ex - 1 hour ago, 2 days ago etc. 
+
+#### Last Occurrence
+
+Shows when the alarm occurred for the last time. Ex - 1 hour ago, 2 days ago etc. 
+
+#### Occurrences
+
+Shows the total occurrences of an alarm.
+
+#### Severity
+
+Shows the severity of the alarm such as High, Medium and Low. 
+
+#### Module
+
+Shows in which module the alarm occurred. 
+
+# Alarm Details
+
+You can click any alarm to see the more granular information about each alarm. 
+
+The top left section will show you the summary of what you have seen the previous page. 
+![](/images/alarm_details_summary.png)
+
+The right hand section shows the trend line of the alarm occurred since it started. 
+![](/images/alarm_trendline.png)
+
+The bottom section shows the log details of each occurrence of the alarm. Clicking each log details will take you to the [sent logs page](./sent-log-details).
+![](/images/alarm_details_list.png)
+
+#### Status
+
+Shows you the status of the notification event triggered.  
+
+#### Timestamp
+
+Shows the when the notification event is triggered  
+
+#### Template
+
+Shows the template which is linked to the notification event triggered. 
+
+#### Notification Event
+
+Shows the notification event which is triggered. 
+
+#### Destination
+
+Shows the destination such as mobile no, email etc. 
