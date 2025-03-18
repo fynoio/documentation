@@ -107,7 +107,7 @@ navigation:
                         - page: "ValueFirst"
                           path: "pages/integrations/sms/valuefirst.mdx"
                   - section: "RCS"
-                    path: "pages/integrations/srcs-channel.mdx"
+                    path: "pages/integrations/rcs-channel.mdx"
                     contents:
                         - page: "Gupshup Enterprise"
                           path: "pages/integrations/rcs/gupshup.mdx"
