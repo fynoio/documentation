@@ -68,3 +68,71 @@ You can configure Fyno Verify in 2 ways.
 <Tip>Use `{{$fyno.$link}}` as the Link placeholder in your Fyno template.
 ![](/images/fyno_verify_4.png)</Tip>
 <Tip>The generated URL will follow this format: `https://fy1.in/verify/x`, where x is a 32-character string.</Tip>
+
+## Sample Fyno Verify API requests
+
+1. If '_Use destination as id_' is `No` and '_Same OTP for all channels_' then: `https://api.fyno.io/v1/{{WSID}}/live/verify/validate?request_id=0b59df61-c587-4f44-a669-f0177a161b81&otp=2811`
+
+For instance, if a user from Bank XYZ attempts to log in using their customer ID, the bank will send an OTP via SMS and email. The user can retrieve the OTP from either channel and enter it on the bank's login page.
+
+- If the OTP validation is successful, Fyno will update it as 'Verified' for both Email and SMS in logs.
+- If the OTP validation fails, Fyno will update it as 'Failed to Verify' for both Email and SMS in logs.
+
+2. If '_Use destination as id_' is `No` and '_Different OTP for all channels_' then: `https://api.fyno.io/v1/{{WSID}}/live/verify/validate?request_id=0b59df61-c587-4f44-a669-f0177a161b81&otp=2811`
+
+For instance, if a user from Bank XYZ attempts to log in using their customer ID, the bank will send different OTP via SMS and email, say '4561' in SMS and '7891' in Email.
+
+- If the user enters '4561' and OTP validation is successful, Fyno will update it as 'Verified' for SMS in logs.
+- If the user enters '7891' and OTP validation is successful, Fyno will update it as 'Verified' for Email in logs.
+- If the OTP validation fails, Fyno will update it as 'Failed to Verify' for both Email and SMS in logs.
+
+3. If '_Use destination as id_' is `Yes` and '_Same OTP for all channels_', then: `https://api.fyno.io/v1/{{WSID}}/live/verify/validate?otp=2811&destination=91xxxxxxxxxx`'
+
+For instance, if a user from Bank ABC attempts to log in using their customer ID, the bank will send an OTP via SMS and email. The user can retrieve the OTP from either channel and enter it on the bank's login page.
+
+- If the OTP validation is successful, Fyno will update it as 'Verified' for both Email and SMS in logs.
+- If the OTP validation fails, Fyno will update it as 'Failed to Verify' for both Email and SMS in logs.
+
+4. If 'Use destination as id' is `Yes` and 'Different OTP for all channels', then: `https://api.fyno.io/v1/{{WSID}}/live/verify/validate?otp=2811&destination=91xxxxxxxxxx`'
+
+For instance, if a user from Bank ABC attempts to log in using their customer ID, the bank will send different OTP via SMS and email, say '4561' in SMS and '7891' in Email.
+
+- If the user enters '4561' and OTP validation is successful, Fyno will update it as 'Verified' for SMS in logs.
+- If the user enters '7891' and OTP validation is successful, Fyno will update it as 'Verified' for Email in logs.
+- If the OTP validation fails, Fyno will update it as 'Failed to Verify' for both Email and SMS in logs.
+
+<Info>`WSID` - _Workspace Id_</Info>
+<Info>Use `{{$fyno.$otp}}` as the OTP placeholder in your Fyno template.</Info>
+
+## How Fyno Verify Works? - A User's Perspective
+
+For instance, brand ABC is using Fyno Verify to authenticate their users.
+
+![](/images/c4062a9-Fyno_Verify_Illustration.png)
+
+1. User enters their phone number or email in the ABC's app/website.
+2. ABC triggers Fyno’s Notification event from their backend which generates an OTP
+3. Fyno sends the OTP via selected channel(s) configured in the notification event to the user
+4. User enters the OTP in the brand ABC's app/website.
+5. ABC backend calls Fyno Verify API to validate the OTP(sample request in the previous section)
+6. Fyno verifies the user-entered OTP and forwards the response to the ABC's application, yielding four potential outcomes/statuses:
+   1. `200: {
+"status": "ok",
+"_message": "verified"
+}`
+   2. `400: {
+    "status": "error",
+    "_message": "verify-attempt-failed",
+    "attempt_left": 2
+}`
+   3. `400: {
+    "status": "error",
+    "_message": "verify-attempt-exceeded",
+    "attempt_left": 0
+}`
+   4. `400: {
+    "status": "error",
+    "_message": "Not a valid request"
+}`
+7. If the OTP validation fails, the user will have the opportunity to retry. The number of retries allowed is based on the option configured.
+8. Once the user has exhausted all the retries, it is at the discretion of brand ABC to determine the waiting period before allowing the same user to retry.

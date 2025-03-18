@@ -466,8 +466,6 @@ navigation:
                 - section: "Add-Ons"
                   icon: fa-regular fa-wand-magic-sparkles
                   contents:
-                    - page: "Fyno Verify"
-                      path: "pages/settings/fyno-verify.mdx"
                     - page: "Push Token Cleanup"
                       path: "pages/settings/push-token-cleanup.mdx"
                     - page: "Report Extraction"
