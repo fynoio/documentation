@@ -111,6 +111,8 @@ navigation:
                     contents:
                         - page: "Gupshup Enterprise"
                           path: "pages/integrations/rcs/gupshup.mdx"
+                        - page: "MSG91"
+                          path: "pages/integrations/rcs/msg91.mdx"
                   - section: "WhatsApp"
                     path: "pages/integrations/whatsapp-channel.mdx"
                     contents:

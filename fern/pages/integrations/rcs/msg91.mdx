@@ -1,0 +1,36 @@
+---
+title: 'MSG91'
+slug: 'rcs-msg91'
+og:title: 'How to send RCS notification using MSG91 & Fyno | Fyno Documentation'
+og:description: 'How to send RCS notification using MSG91 & Fyno'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Before we get started, you will need to have a Gupshup Enterprise account already set up, along with SenderID and Templates.
+
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. Under "RCS" section, click on the "MSG91" button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+- **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+- **API Key**: Log in to your MSG91 RCS account, navigate to the Authkey settings, and copy the Authkey
+- **Project ID**: Fetch Project ID from your account settings.
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, MSG91 requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+<Steps>
+  <Step>Copy the Callback URL in the Integrations popup.</Step>
+  <Step>Send the Callback URL to your MSG91 account manager to add it in your MSG91 account.</Step>
+</Steps>
