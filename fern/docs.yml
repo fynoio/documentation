@@ -107,10 +107,12 @@ navigation:
                         - page: "ValueFirst"
                           path: "pages/integrations/sms/valuefirst.mdx"
                   - section: "RCS"
-                    path: "pages/integrations/rcs-channel.mdx"
+                    path: "pages/integrations/srcs-channel.mdx"
                     contents:
                         - page: "Gupshup Enterprise"
                           path: "pages/integrations/rcs/gupshup.mdx"
+                        - page: "MSG91"
+                          path: "pages/integrations/rcs/msg91.mdx"
                   - section: "WhatsApp"
                     path: "pages/integrations/whatsapp-channel.mdx"
                     contents:
