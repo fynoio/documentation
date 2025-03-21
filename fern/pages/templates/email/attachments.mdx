@@ -21,12 +21,15 @@ On clicking on the attach button (highlighted below) on the to right corner of t
 - **Dynamic Placeholders**: Allows you to include dynamic files within the email, when the notification event is triggered. You can use placeholders to specify the:
 
   - Filename - provide a static value like 'Invoice.pdf' (if you are testing it manually) or a placeholder like `{{attachment.filename}}`(if your are triggering notification event via API)
-  - File type - provide a static value like 'application/pdf' (if you are testing it manually) or a placeholder like `{{attachment.filetype}}`(if your are triggering notification event via API). _File type should be MIME type_. You can get all the MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
+  - File type - provide a static value like 'application/pdf' (for pdf) or 'image/jpg' (for jpg image) etc. (if you are testing it manually) or a placeholder like `{{attachment.filetype}}`(if your are triggering notification event via API). _File type should be MIME type_. You can get all the MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
   - Content - provide the Presigned URL link here using a placeholder like `{{attachment.presigned_url}}`. You can provide a Public URL instead of Presigned URL. You can also provide base64 content, but its not recommended as it will increase your payload size.
 
 <Tip>Please note that if you are using Presigned S3 URL, then the URL should trigger a download of the file immediately when opened.</Tip>
 
 Placeholders should be used if the attachment information is dynamic (for instance, a personalized attachment depending on the recipient). Typically such attachments are sent via an API call. To send dynamic attachments in the event payload, make sure that the `data` section of the payload has an object called `attachment` as shown below.
+
+<Note>For file type, use [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types/Common_types) depending on your attachment's file type</Note>
+
 
 ```curl title="Send Attachment via Email" wordWrap
 curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
@@ -71,14 +74,14 @@ To add multiple attachments in email, add them in the placeholders as shown belo
 
 <Steps>
 <Step>For file 1, you can give the below placeholders,
-   <ul><li>Filename - `{{attachment.filename.0}}`</li>
-   <li>File Type - `{{attachment.filetype.0}}`</li>
-   <li>Content - `{{attachment.presigned_URL.0}}`</li></ul></Step>
+   <ul><li>Filename - `{{attachment.0.filename}}`</li>
+   <li>File Type - `{{attachment.0.filetype}}`</li>
+   <li>Content - `{{attachment.0.presigned_URL}}`</li></ul></Step>
 <Step>Click 'Add Key'</Step>
 <Step>For file 2, you can give the below placeholders
-   <ul><li>Filename - `{{attachment.filename.1}}`</li>
-   <li>File Type - `{{attachment.filetype.1}}`</li>
-   <li>Content - `{{attachment.presigned_URL.1}}`</li></ul></Step>
+   <ul><li>Filename - `{{attachment.1.filename}}`</li>
+   <li>File Type - `{{attachment.1.filetype}}`</li>
+   <li>Content - `{{attachment.1.presigned_URL}}`</li></ul></Step>
 <Step>You can keep adding as many files. The total file size should not exceed 10MB.</Step>
 </Steps>
 
