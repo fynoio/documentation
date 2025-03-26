@@ -12,12 +12,13 @@ Interactive templates can only be used for replies. They cannot be the first mes
 
 There are different types of interactive templates you can create based on your use case.
 
-- [Common](#common)
+- [Menu](#menu)
 - [Request Location](#request-location)
-- [Address](#address)
-- [Flow](#flow)
+- [Request Address](#request-address)
+- [Trigger Meta Flow](#trigger-meta-flow)
 - [Order Status](#order-status)
 - [Order Details](#order-details)
+- [Call to Action](#call-to-action)
 
 ## Service Providers support for different Interactive message types
 
@@ -29,7 +30,7 @@ There are different types of interactive templates you can create based on your 
 | Interakt, WATI                                                                                                                  |  ❌  |     ✅      |       ❌       |      ❌       |      ❌      |        ❌        |       ❌        |  ❌  |
 | Twilio, ValueFirst, Freshchat, AiSensy, Yellow.ai                                                                               |  ❌  |     ❌      |       ❌       |      ❌       |      ❌      |        ❌        |       ❌        |  ❌  |
 
-### Common
+### Menu
 
 #### Message Type
 
@@ -67,7 +68,7 @@ This message sub-type has a default CTA - 'Send Location'.
 
 This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
 
-### Address
+### Request Address
 
 This message sub-type has a default CTA - 'Provide Address'.
 
@@ -75,7 +76,7 @@ This message sub-type has a default CTA - 'Provide Address'.
 
 This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
 
-### Flow
+### Trigger Meta Flow
 
 #### Message Type
 
@@ -180,6 +181,36 @@ This is an optional field. You can add any footer elements here. You can also ad
 - Shipping Cost
 - Tax
 - Discount
+
+### Call to action
+
+#### Header Type
+
+- **Text**: Add any text content in the header.
+
+#### Title
+
+- Title - This is a mandatory field if you have selected Text as Header type. You can give any title to this interactive message.
+
+#### Body
+
+This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
+
+#### Footer
+
+This is an optional field. You can add any footer elements here. You can also add any placeholders.
+
+#### WhatsApp Message ID
+
+To send this message as a reply, provide the whatsapp message ID of the corresponding message. You can provide a static value or enter a placeholder. 
+
+#### Buttons
+
+Allows you to add call to action buttons. This is mandatory field. 
+
+- **Button Title** - This is CTA users will see as part of the interactive message. 
+- **URL** - This is the URL where the users will be redirected when they click the CTA button.
+
 
 ## Placeholders
 
