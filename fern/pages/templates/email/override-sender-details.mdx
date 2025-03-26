@@ -17,9 +17,9 @@ During the integration setup, you would have specified a 'From_Email' address. I
 
 <Steps>
 ### Define Default Email
-Within the integrations popup, include 'from_email' as shown below. In this example, `support@fyno.io` will serve as the default From Email if the provided email ID in the payload is not valid. If you prefer not to use the default email, simply specify 'from_email' in the respective field.
+Within the integrations popup, include 'from_email' as shown below. In this example, `tech@fyno.io` will serve as the default From Email if the provided email ID in the payload is not valid. If you prefer not to use the default email, simply specify 'from_email' in the respective field.
 
-<Note>Adding a default 'from_email' is advisable to ensure uninterrupted communication. ![](/images/f113aab-Email_Integration_From.png)</Note>
+<Note>Adding a default 'from_email' is advisable to ensure uninterrupted communication. ![](/images/email_default_from_email.png)</Note>
 
 ### Override Sender Details via API
 
@@ -57,11 +57,11 @@ curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/test/event' \
 To override the sender details configured in the Service Provider integration, follow the below steps
 
 <Steps>
-  <Step>Click 'Enter From and CC/BCC details' above the Subject line. ![](/images/f23a645-sender_details_email.png)</Step>
-  <Step>You will see the sender details as shown below. ![](/images/4691bba-from_email.png)</Step>
-  <Step>Once you enter the sender details, it will look as shown. ![](/images/7bdf36f-from_details_entered.png)</Step>
-  <Step>To override CC/BCC details, click the CC/BCC tab and enter the details as shown. ![](/images/754967d-ccbcc_details.png)</Step>
-  <Step>Once you entered CC and BCC details, it will look like shown below ![](/images/de8ad07-ccbcc_entered.png)</Step>
+  <Step>Click 'Enter From and CC/BCC details' above the Subject line. ![](/images/email_template_override.png)</Step>
+  <Step>You will see the sender details as shown below. ![](/images/email_template_override_details.png)</Step>
+  <Step>Once you enter the sender details, it will look as shown. ![](/images/email_template_override_from.png)</Step>
+  <Step>To override CC/BCC details, click the CC/BCC tab and enter the details as shown. ![](/images/email_template_cc_bcc.png)</Step>
+  <Step>Once you entered CC and BCC details, it will look like shown below ![](/images/email_template_override_cc_bcc.png)</Step>
 </Steps>
 
 <Note>CC and BCC details provided in Email template will override the CC and BCC details provided in the Notification Event API</Note>
