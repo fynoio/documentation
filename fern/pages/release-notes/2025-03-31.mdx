@@ -1,0 +1,107 @@
+---
+hide-nav-links: true
+---
+
+## 25.1.6
+
+### 🔹 New Features
+
+- **`unidecode` Handlebars Helper**  
+  Introduced a new `{{unidecode text}}` helper that automatically converts Unicode characters to their ASCII equivalents. This helps ensure non-Unicode messages are sent even if the original input contains special characters.  
+  _Example: `José Ángel Núñez` → `Jose Angel Nunez`_
+
+### ⚡ Feature Enhancements
+
+- **Revamped UX for Fyno Workflows**  
+  Major UI updates to the Workflows canvas:
+
+  - Drag-and-drop components are now positioned on the left, offering a larger workspace.
+  - Search functionality added to quickly find condition nodes within your workflow.
+
+- **Improved Dashboard Analytics**
+
+  - Removed low-value metrics for a cleaner view.
+  - Added detailed breakdowns of processing numbers.
+  - Introduced anomaly banners for easier detection of irregularities.
+  - Notification chart now supports delivery rates across more events (previously limited to top five).
+
+- **Meta Flows UX Upgrade**
+
+  - Enhanced data exchange widget now mirrors actual WhatsApp flows, making them more intuitive.
+
+- **Alarms UI Improvements**
+
+  - Refined UI and UX based on user feedback for better usability.
+
+- **External Templates Page Enhancements**
+
+  - Streamlined user experience and interface improvements based on community feedback.
+
+- **Campaign Module Enhancements**
+
+  - Duplicate check re-enabled for all campaign types.
+  - Failed and invalid counts are now visible on the campaign detail page post-launch.
+
+- **Enhanced Alarm Sampling Logic**
+
+  - Sampling now includes logs from varied time periods for broader visibility.
+
+- **Optimized External Template APIs**
+
+  - Improved response times and processing efficiency.
+
+- **Domain Redirect Removal**
+
+  - Redirect from `fy1.in` to `fyno.io` has been removed.
+
+- **Callback Requests Enhancement**
+
+  - Implemented `keep-alive` headers to improve performance of callback API calls.
+
+- **Detailed Alarm Email Alerts**
+  - Alarm emails now include Provider Name, Channel, and Workspace Name for better context.
+
+### 🛠 Bug Fixes
+
+- **Workflow Duplication Bug**
+
+  - Fixed an issue where duplicating an incoming number workflow deactivated the original.
+  - Now prompts for a number before duplicating and warns if the number is already in use.
+
+- **Broken Link in Notification Events**
+
+  - Resolved an issue with broken links from Notification Events to Single-Channel routes.
+
+- **WhatsApp External Templates**
+
+  - Fixed missing helper text under the Phone Number button.
+
+- **Incorrect Time Display in Data Grid**
+
+  - Resolved issue where the “since” time always showed `0` regardless of actual time.
+
+- **Alarm Page Access Fix**
+
+  - Fixed direct URL access issue for the alarm page.
+
+- **Data Retention Link Fix**
+
+  - Corrected broken link from Add-Ons page to Data Retention page.
+
+- **Conditional Template Channel Bug**
+
+  - Fixed a bug that restricted channel visibility based on the first selected template.
+
+- **Run Test Crash Fix**
+
+  - Resolved issue where "Run Test" led to a “Whoops!” page if no integration was set.
+
+- **Single-Channel Route Bugs**
+
+  - Fixed multiple bugs:
+    - Route not reflecting integration name changes
+    - “Integrate a Provider” button not working when no integration exists
+    - “Restore Unsaved Changes” button not functioning
+
+- **Subscription Message Drop Bug**
+  - Fixed issue where messages were dropped if the channel wasn't configured in preferences and no distinct ID was provided.
