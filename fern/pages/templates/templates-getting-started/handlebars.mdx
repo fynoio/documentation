@@ -988,4 +988,25 @@ one hundred million
 ```
 
 </Accordion>
+
+<Accordion title="Convert Unicode to Non Unicode characters">
+
+```hbs title="Format" wordWrap
+{{unidecode variable_name}}
+```
+
+```hbs title="Example" wordWrap
+{{unidecode Hello® |®|™}}
+{{unidecode Ryyúuy}}
+{{unidecode नमस्ते, आप कैसे हैं?}}
+```
+
+```text title="Output" wordWrap
+Hello(r) |(r)|tm
+Ryyuuy
+nmste, aap kaise haiN?
+```
+
+</Accordion>
+
 </AccordionGroup>
