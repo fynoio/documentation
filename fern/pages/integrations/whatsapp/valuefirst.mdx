@@ -19,7 +19,12 @@ In the pop-up, fill in:
 - **Custom name**: Provide a name to help you identify the configured account in Fyno's portal.
 - **Username:** Provide the username that you use to sign into your ValueFirst Account.
 - **Password:** Provide the password that you use to sign in, corresponding to the same ValueFirst account
-- **Token**: A token needs to be created, following the [guide](https://fynodocs.s3.ap-south-1.amazonaws.com/files/UserGuide_ValueFirst_Channel_v1.2.1.pdf) provided by Value First (Page 6, Token Generation)
+- **Token**: Generate the token using this cURL command 
+```
+curl --location 'https://api.myvfirst.com/psms/api/messages/token?action=generate' \
+--header 'Authorization: Basic Base64(USERNAME:PASSWORD)'
+```
+![](/images/whatsapp_valuefirst_token.png)
 - **From Number**: Enter the from number that you want to integrate and trigger messages through.
 
 ### Complete the Integration

@@ -22,8 +22,16 @@ In the pop-up, fill in:
 
 - **Username**: Enter the username you use to log into your ValueFirst account.
 
-- **API Key**: On your ValueFirst Account, navigate to the Key Management tab and either Generate a New Key or use an existing Key.
+- **API Key**: To generate a permanent API Key, use the below cURL command.
 
+```
+curl --location 'https://http.myvfirst.com/smpp/api/sendsms/token?action=generate' \
+--header 'Content-Type: application/json' \
+--header 'apikey: {{apikey-from-ui}} \
+--data '{
+    "old_token": "{{old-token-from-ui}}"
+}'
+```
 - **Sender**: Enter the Sender ID that you want to use.
 
 - **Account Type**: Select the account type that you want to use. You can choose either SMPP (Short Message Peer-to-Peer) or PSMS (Platform Service Management System)
