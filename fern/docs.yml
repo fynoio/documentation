@@ -182,6 +182,8 @@ navigation:
                           path: "pages/integrations/email/smtp.mdx"
                         - page: "Sparkpost"
                           path: "pages/integrations/email/sparkpost.mdx"
+                        - page: "ValueFirst"
+                          path: "pages/integrations/email/valuefirst.mdx"
                   - section: "Chat"
                     path: "pages/integrations/chat-channel.mdx"
                     contents:
