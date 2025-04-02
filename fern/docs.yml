@@ -411,10 +411,10 @@ navigation:
                 path: "pages/campaigns/overview.mdx"
                 icon: fa-regular fa-bullhorn
                 contents:
-                    - page: "Campaign Analytics"
-                      path: "pages/campaigns/analytics.mdx"
                     - page: "Creating a campaign"
                       path: "pages/campaigns/creation.mdx"
+                    - page: "Campaign Analytics"
+                      path: "pages/campaigns/analytics.mdx"    
               - section: "User Profiles"
                 path: "pages/user-profiles/overview.mdx"
                 icon: fa-regular fa-user-group
