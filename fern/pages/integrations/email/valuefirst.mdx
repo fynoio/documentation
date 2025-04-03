@@ -1,0 +1,38 @@
+---
+title: 'ValueFirst'
+slug: 'email-valuefirst'
+og:title: 'How to send Email through ValueFirst and Fyno | Fyno Documentation'
+og:description: "This document provides instructions on how to integrate ValueFirst with Fyno, including setting up the account in Fyno's portal and updating the Fyno Callback Endpoint in ValueFirst for message delivery status tracking."
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Before integrating ValueFirst with Fyno, you will need to have an account already set up with ValueFirst.
+
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. Under "Email" section, click on the "ValueFirst" button.
+
+### Configure the Integration
+
+In the pop-up that appears, fill in:
+
+- **Custom name:** Provide a name that would help you identify the configured account in Fyno's portal.
+- **Client Id:** From your ValueFirst account, navigate to Developers -> Authentication and copy Client Id.
+- **Client Password:** From your ValueFirst account, navigate to Developers -> Authentication and copy Client Password.
+![](/images/integration_valuefirst.png)
+- **From Email:** Enter the Email ID from which the emails will be sent from. This must be an email ID with a domain that is already registered with ValueFirst.
+- **From Name:** Enter the name that you want to be displayed to the recipient on receiving this email.
+- **Content type:** You can choose either "Text/Plain" (no rich content in emails, simple plain text) or "Text/HTML" (Rich content including images, buttons and links will be supported) depending on the type of content you intend on pushing in the templates.
+- **Reply To:** This is an optional field. You may enter an alternate email ID so that when the recipient clicks on "Reply", the email ID you have entered in the "Reply To" will be populated. This can be different from the "From" email ID.
+
+### Complete the Integration
+
+Click on "Add Account" once done and you are all set!
+
+</Steps>
+
+## Message Delivery Status
+
+ValueFirst, by default, provides the status of the message without any additional setup needed.
+
+Once the above integration is complete, the status of the notification, which will be shared by ValueFirst will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.
