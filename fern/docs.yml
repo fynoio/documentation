@@ -312,11 +312,11 @@ navigation:
                               path: "pages/templates/external-templates/sms/create.mdx"
                       - page: "Reusable Components"
                         path: "pages/templates/components.mdx"
-                - section: "Routing"
+                - section: "Routes"
                   icon: fa-regular fa-code-merge
                   path: "pages/routing/routing.mdx"
                   contents:
-                      - section: "Single Channel Routing"
+                      - section: "Single Channel Route"
                         path: "pages/routing/singlechannel/introduction.mdx"
                         contents:
                         - page: "Creating a Single Channel Route"
@@ -327,7 +327,7 @@ navigation:
                           path: "pages/routing/singlechannel/condition.mdx"
                         - page: "Integrating a Single Channel Route"
                           path: "pages/routing/singlechannel/integration.mdx"
-                      - section: "Omnichannel Routing"
+                      - section: "Omnichannel Route"
                         path: "pages/routing/omnichannel/introduction.mdx"
                         contents:
                             - page: "Create an Omnichannel Route"
