@@ -208,18 +208,6 @@ On drag & drop of the **API** component, you'll see the following:
 
 <Tip title="The response of an API call can be used to configure notification events.">For instance, if your API call returns a key `email` which contains the email address which you would like to use in the preceding notification event, then you can use a custom variable with value `{{$http_response.data.email}}` to configure the email in the notification event.</Tip>
 
-### Subscription
-
-The subscription widget activates the process for subscribing or unsubscribing. This happens when a user clicks "Stop Promotions" in a WhatsApp message or when a user consents to receive WhatsApp marketing notifications.
-
-For example, to unsubscribe a user from WhatsApp notification, follow the below steps.
-
-<Steps>
-  <Step>In the Workflow, configure the WABA no by adding 'Virtual No' trigger. ![](/images/966ff8a-virtual_no.png)</Step>
-  <Step>Drag and drop a Condition block and configure it as shown below. Its critical to use the variable '**$input.body.simplified.message.text**' and value as '**Stop promotions**' ![](/images/b386c56-subs_if.png)</Step>
-  <Step>Drag and drop 'Subscription' action and attach it to if block. Then add Subscription key as 'simplified.message.button.payload' and action as 'Opted-Out'. ![](/images/9d34db2-sub_key.png)</Step>
-</Steps>
-
 ## Condition
 
 The **Condition** feature within Workflow allows you to write all the conditional-based logical triggering that you would need to address different situations within a single workflow.
