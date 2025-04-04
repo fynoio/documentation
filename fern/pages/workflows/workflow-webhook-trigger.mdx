@@ -30,7 +30,8 @@ To create a workflow, you need to choose a trigger. This is based on how you wan
 ## How to configure a Webhook
 
 <Steps>
-  <Step>Drag and drop 'Webhook' under Triggers into the Workflow canvas. ![](/images/0868954-workflow_trigger_webhook.png)</Step>
+  <Step> When you create a new workflow, you will see the canvas with the of triggers ![](/images/workflow_triggers.png)</Step>
+  <Step>Drag and drop 'Webhook' under Triggers into the Workflow canvas. ![](/images/workflow_add_webhook.png)</Step>
   <Step>
     **HTTP Method** - Select the HTTP method which will call the workflow. There are 2 options.
     <ul>
@@ -49,7 +50,7 @@ To create a workflow, you need to choose a trigger. This is based on how you wan
     </ul>
   </Step>
   <Step>**Sample Payload** - If you have selected JSON or Form Data or URL Encoded Form, then you need to add sample payload as shown below. ![](/images/4365960-add_sample_payload.png)</Step>
-  <Step>Once you click 'Add Sample Payload', a page will open where you can enter the sample payload. ![](/images/c6a56a1-payload_json.png)</Step>
+  <Step>Once you click 'Add Sample Payload', a page will open where you can enter the sample payload. ![](/images/workflow_webhook_sample_payload.png)</Step>
   <Step>**Simplify** - Using complex payloads for placeholder mapping can be challenging. Additionally, employing a payload variable repeatedly for conditional checks in Workflow is a cumbersome task. To streamline this process, we've introduced the '_Simplify_' feature. This feature allows you to create custom variables, map payload fields to these variables, assign complex expressions to these variables using the payload fields and seamlessly use these new variables throughout the Workflow. You can click 'Simplify' on the top right hand side.</Step>
   <Step>
     The Simplify popup will look as shown below.
@@ -57,7 +58,7 @@ To create a workflow, you need to choose a trigger. This is based on how you wan
       <li>When directly mapping payload data, you can achieve it by linking, for example, 'acquirer_data.authentication_reference_number' to the variable 'ref_no'.</li>
       <li>However, if you're using Handlebars (HBS), the correct syntax involves using the payload data as '$input.body.status' to map it to a variable like payment_status. Attempting to use just 'payload.status' will result in an error. To know more about Handlebars, please refer our [documentation](./templates-handlebars)</li>
     </ul>
-    ![](/images/aa6b101-simplify_payload_mapper.png)
+    ![](/images/workflow_simplify_mapper.png)
     <Info>There is no restriction on the number of mapper variables created. All mapper variable names need to be unique.</Info>
     <Warning>Mapper variable name must not be any of the following: 'body,' 'headers,' 'formdata,' 'query,' or 'method.'</Warning>
   </Step>
@@ -105,7 +106,7 @@ Once we save the initial component, the next step of the flow opens up. You have
 - **Condition:** Condition applies a condition to the details that were shared in the payload and helps further refine your query with a series of conditions. Conditions are added as If-else blocks.
 
 Once a **Trigger** has been successfully set up and saved, you can drag and drop any action block or condition block.
-![](/images/90897e9-workflow_actions.png)
+![](/images/workflow_controls_actions.png)
 
 To understand each of these components, a deep dive into the same is needed, which will be covered in the next sections.
 
@@ -183,12 +184,12 @@ On drag & drop of the **API** component, you'll see the following:
   ![](/images/4365960-add_sample_payload.png)
 
   Once you click 'Add Payload', a page will open as shown below.
-  ![](/images/ee47f7e-Call_API_Sample.png)
+  ![](/images/workflow_call_api.png)
 
   1. You can either paste the payload in the json window (or)
   2. You can select 'Use sections of the sample payload submitted during trigger configuration' checkbox. If you select this option, then you need to select one of the sections as shown below
 
-![](/images/1408c85-Call_API_Payload.png)
+![](/images/workflow_api_response_content.png)
 
 - **Query Parameters** - This is an optional field. This is primarily used with GET requests. They are appended to the URL path after a ? character. Example - /users?page=1&per_page=20
 - **Headers**- This is an optional field. In API requests, request headers are used to provide additional information for a server to process an API request. API headers typically have a key and a value. For example, a Cache-Control header might be structured like this: _Cache-Control:no-store, no-cache, must-revalidate_
@@ -276,13 +277,13 @@ You should select this option while creating a condition based on the HTTP statu
 
 ## Workflow URL
 
-Once you saved or saved and promoted your workflow, you need to copy the Workflow URL.
+Once you saved or Go Live your workflow, you will see a popup as shown below .
 
-You can do that by clicking the ellipsis icon at the top right side next to 'Save' button.
-
-![](/images/69664ee-workflow_url.png)
+![](/images/workflow_url_copy.png)
 
 The URL is auto-generated when you create the workflow. You will need to use this URL to invoke this Workflow.
+
+You can also access the Workflow URL by clicking the 'Copy Workflow URL' icon at the top right side next to 'Go Live' button.
 
 We provide URLs for both Test and Live. Please copy both the URLs and configure it in your system or any third party tool where the webhook will be triggered.
 
@@ -294,7 +295,7 @@ If you are using Public URL, you can select one of these 2 options.
 
 - **Token Auth** - the URL includes a query parameter `token=<Fyno_generated_token>`.
 
-![](/images/db9f18f-workflow_url_public.png)
+![](/images/workflow_basic_url.png)
 
 <Info>Workflows are public by default. If you enable the "Restricted" option after the workflow is created and save it with this setting, you must use "Restricted" URLs (Live & Test) when funning the workflow.</Info>
 
@@ -306,6 +307,6 @@ If you want to use Restricted access, enable the Restricted Toggle as shown belo
 - **Basic Auth** - the URL consists of the combination of your workspace ID and API Key which Fyno uses for authentication.  
    Example: `https://<WORKSPACE_ID>:<API_KEY>@api.fyno.io/v1/automation/XXXXXXX`
 
-![](/images/b81bbac-workflow_url_restricted.png)
+![](/images/workflow_restricted_url.png)
 
 <Tip title='You can update the token using the "Customize Token" option in the Workflow details page header.'>Since you can invoke the workflow URL from anywhere, it is a good idea to update the token if you feel it has been compromised. You must always remember to update the workflow URL (with the new token) at the source from where the workflow is called.</Tip>
