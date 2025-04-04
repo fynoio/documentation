@@ -61,9 +61,9 @@ This use case can be implemented with the below steps.
 
 In the template, you will find System variable on the LHS of the template editor.
 
-For example, if you want to use the users' who have liked your post in the notification. You can do it as shown:
+For example, if you want to show the notify the users with the list of failed SIPs, you can do it as shown:
 
-![](/images/35f57e72724b934abb71335708773889680ee38baf8897b006d5648f1043bf2c-Screenshot_2024-12-16_at_12.08.42_PM.png)
+![](/images/workflow_digest_example.png)
 
 - `$digest.head` will give you the top 5 payloads by default. You can see the payload in logs section
 - `$digest.tail` will give you the last 5 payloads by default. You can see the payload in logs section
@@ -75,7 +75,7 @@ In this example. `$digest.head.SIP_name` will give you the SIP which failed.
 
 You can see the Digest logs in Logs -> Workflow. Sample logs below
 
-![](/images/a58e07486e26b5b7f2a1e6017279fcc4b1d80cd4112231241098d6fbfc675d5e-digest_logs.png)
+![](/images/workflow_digest_logs.png)
 
 - **Summary** - You will see the Digest Key and count will show the no of requests digested. Total time taken will be updated once the Digest is completed and shows the total time taken.
 - **Head** - It will show the first 5 payloads received for Digest
