@@ -1,0 +1,20 @@
+---
+title: 'Creating a Workflow with Subscription'
+slug: 'workflow-webhook-trigger'
+og:title: 'How to create a workflow with Subscription widget| Fyno Documentation'
+og:description: 'How to create a workflow with Subscription widget which will enable you to add or remove users from a subscription topic'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+
+### Subscription
+
+The subscription widget activates the process for subscribing or unsubscribing. This happens when a user clicks "Stop Promotions" in a WhatsApp message or when a user consents to receive WhatsApp marketing notifications.
+
+For example, to unsubscribe a user from WhatsApp notification, follow the below steps.
+
+<Steps>
+  <Step>In the Workflow, configure the WABA no by adding 'Virtual No' trigger. ![](/images/workflow_subscription_incoming_message.png)</Step>
+  <Step>Drag and drop a Condition block and configure it as shown below. Its critical to use the variable '**$input.body.simplified.message.text**' and value as '**Stop promotions**' ![](/images/workflow_subscription_condition.png)</Step>
+  <Step>Drag and drop 'Subscription' action and attach it to if block. Then add Subscription key as 'simplified.message.button.payload' and action as 'Opted-Out'. ![](/images/workflow_subscription_optout.png)</Step>
+</Steps>
