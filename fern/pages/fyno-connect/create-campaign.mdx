@@ -65,7 +65,7 @@ Frequency - Select the periodicity of the campaign. You can choose from four opt
 | Month     | You can select a particular day of the month and particular days in a month and also the time slots.                                                                                   |
 
 When the campaign ends - Select after how many times you want the campaign to end.
-![](/images/77bb912-FynoConnect_Recurring.png)
+![](/images/connect_campaign_creation.png)
 
 <Info title="Your logs are safe with us!">For every campaign triggered by you via Fyno Connect, the logs will be visible on **Notification Event logs** as well as **Sent Logs**. Head on over to the **Logs** section and find insights about your campaign.</Info>
 
@@ -77,9 +77,9 @@ By sending delivery reports to your preferred systems or analytics platforms, yo
 
 - To configure callbacks to receive delivery reports, select the checkbox - 'Receive delivery report from Fyno to my allow-listed endpoint(s)'.
 - This option allows you to receive Delivery reports of each notification triggered in any URL you have allowlisted in Fyno.
-- You can select upto 3 delivery report endpoints from verified Allowlist URLs. If you didn't allowlist any URL, you can refer this [doc](./configuring-allowlist-url-sqs-to-receive-delivery-report) and add a new URL
+- You can select up to 3 delivery report endpoints from verified Allowlist URLs. If you didn't allowlist any URL, you can refer this [doc](./configuring-allowlist-url-sqs-to-receive-delivery-report) and add a new URL
 
-  ![](/images/0825e22024b4bae3a1a1df556f4090ef128c5b4b94c73e891fe0d35ffd76ac9e-allowlist_URL_connect.png)
+  ![](/images/connect_delivery_report.png)
 
 Once the Delivery Endpoint URL(s) is selected, you can select upto 3 additional placeholders to be sent back in the callback URL.
 
@@ -97,10 +97,10 @@ Throttle is optional but we recommend using it. Throttling allows you to control
 
 You can specify a duration for which the campaign should run. You can have a minimum of 15 minutes and a maximum of 180 minutes. For example, if you want to execute the campaign for an hour, you can do that by entering 60 minutes.
 
-![](/images/07a13e07a8a77044386417cf60613de7805e4618388ebb71becf8ce5c96b1689-time_throttle.png)
+![](/images/connect_throttle_time.png)
 
 ### By Batch
 
 In this option, you can throttle the number of records the campaign should send for a specific duration. You can have a batch size between 1000 and 5000 and time limit between 1 and 60 minutes. For example you want to send a execute a batch of 1000 records in the csv file every minute, then you can enter 1000 records and 1 minute
 
-![](/images/9f266ea14dfe6c8fefc3519d36fb37b4dfbd856753a6d81f54e0d9c30d6cac3d-batch_throttle.png)
+![](/images/connect_throttle_batch.png)
