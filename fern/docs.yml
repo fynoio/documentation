@@ -561,6 +561,8 @@ navigation:
                 path: "pages/fyno-connect/databases/postgres.mdx"
               - page: "Snowflake"
                 path: "pages/fyno-connect/databases/snowflake.mdx"
+              - page: "Athena"
+                path: "pages/fyno-connect/databases/athena.mdx"
           - section: "Using Fyno Connect"
             contents:
             - page: "Create Cohorts"
