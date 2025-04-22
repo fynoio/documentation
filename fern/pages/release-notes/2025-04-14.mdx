@@ -1,0 +1,37 @@
+---
+hide-nav-links: true
+---
+
+## 25.1.7
+
+### 🔹 New Features
+
+- **Password Expiry Enforcement**: Users will now be required to reset passwords every 6 months. Warnings will be shown 14 days prior to expiry. Expired passwords will prompt users to reset before logging in.
+- **2FA Enablement Nudge**: Banner will be shown to users who haven't enabled 2FA. It can be dismissed for 30 days and disappears once 2FA is enabled.
+- **Route Linking in Campaigns**: Routes used in campaigns are now linked and visible directly from the campaign detail page.
+- **Routing Nudges**: Users now receive nudges to create omni-channel routes when adding integrations within Notification Events.
+- **Upload KeyPair for Metaflow**: Support added for uploading existing keypairs.
+
+### ⚡ Feature Enhancements
+
+- **Report Download by Filter**: Users can now download filtered reports based on destinations, events, etc.
+- **Events Fired Chart (Beta)**: Added detailed Dropped/Delivered/Undelivered breakdown in dashboard analytics.
+- **Extended TTL in Omni Routes**: Max TTL for success criteria increased to 24 hours to support enterprise use cases.
+- **Named Placeholders (Beta)**: External templates now support named placeholder variables.
+- **Failover Enhancement**: Failovers can now include the same providers used in round-robin or distribute-between setups.
+- **Remove Fyno Verify & Shorty from Add-ons**: These features have been moved under Templates and are no longer accessible via Add-ons.
+- **Alarm UX Enhancements**: Filters moved inline, new filter for alarm description, links to routes and events added in traces.
+- **Alarms in Event Details**: Event pages now show related alarms, with clickable counts and detailed drawers.
+- **Alarm Lifecycle Enhancements**: Weekly summaries, alarm cleanup, and severity realignment introduced.
+- **Handle Undefined Omnichannel Destinations**: If a destination is undefined in payload, failure (dropped) flow is now triggered as per route config.
+
+### 🛠 Bug Fixes
+
+- **URI Encoding in Preferences API**: Fixed issue with `+` in usernames not being encoded.
+- **Campaign Fix for Number/Email Type**: Corrected handling of campaign types based on identifier.
+- **Status Breakdown Fix**: Success counts are now accurately reflected in the analytics menu.
+- **Event ID Optional in Campaign API**: Made `event_id` optional for campaign creation.
+- **Fyno Verify URL Bug**: Resolved issue where an extra slash was added after the domain.
+- **Distinct ID Filter in Reports**: Fixed filter not working for `distinct_id` in exports.
+- **Fixes in Workflow Conditions**: Payload key in conditions no longer duplicates `http_response.data`.
+- **Validation Issue**: Empty reply node validation issue resolved.
