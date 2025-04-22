@@ -1707,8 +1707,8 @@ components:
           type: string
         sms:
           description: Enter the mobile number of the user. The number must start with
-            the country code (without +). For example&#58; 919879XXXXXX.
-          example: 919879XXXXXX
+            the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
+          example: +919879XXXXXX
           type: string
         teams:
           description: Enter the channel name. For teams, we currently support sending
@@ -1718,13 +1718,13 @@ components:
           type: string
         voice:
           description: Enter the mobile number of the user. The number must start with
-            the country code (without +). For example&#58; 919879XXXXXX.
-          example: 919879XXXXXX
+            the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
+          example: +919879XXXXXX
           type: string
         whatsapp:
           description: Enter the WhatsApp mobile number of the user. The number must start
-            with the country code (without +). For example&#58; 919879XXXXXX
-          example: 919879XXXXXX
+            with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX
+          example: +919879XXXXXX
           type: string
       type: object
     WSIDversionprofiles_channel_inapp:
@@ -1807,8 +1807,8 @@ components:
           type: string
         sms:
           description: Enter the new mobile number of the user. The number must start
-            with the country code (without +). For example&#58; 919879XXXXXX.
-          example: 919879XXXXXX
+            with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
+          example: +919879XXXXXX
           type: string
         teams:
           description: Enter the new channel name. For teams, we currently support sending
@@ -1818,13 +1818,13 @@ components:
           type: string
         voice:
           description: Enter the new mobile number of the user. The number must start
-            with the country code (without +). For example&#58; 919879XXXXXX.
-          example: 919879XXXXXX
+            with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
+          example: +919879XXXXXX
           type: string
         whatsapp:
           description: Enter the new WhatsApp mobile number of the user. The number must
-            start with the country code (without +). For example&#58; 919879XXXXXX
-          example: 919879XXXXXX
+            start with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX
+          example: +919879XXXXXX
           type: string
       type: object
     WSIDversionprofilesdistinct_id_channel_inapp:
@@ -1907,9 +1907,9 @@ components:
           type: string
         sms:
           description: Enter the new mobile number of the user. The number must start
-            with the country code (without +). For example&#58; 919879XXXXXX. If you do
+            with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX. If you do
             not wish to change this value, remove this key from the payload.
-          example: 919879XXXXXX
+          example: +919879XXXXXX
           type: string
         teams:
           description: Enter the new channel name. For teams, we currently support sending
@@ -1920,15 +1920,15 @@ components:
           type: string
         voice:
           description: Enter the new mobile number of the user. The number must start
-            with the country code (without +). For example&#58; 919879XXXXXX. If you do
+            with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX. If you do
             not wish to change this value, remove this key from the payload.
-          example: 919879XXXXXX
+          example: +919879XXXXXX
           type: string
         whatsapp:
           description: Enter the new WhatsApp mobile number of the user. The number must
-            start with the country code (without +). For example&#58; 919879XXXXXX. If
+            start with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX. If
             you do not wish to change this value, remove this key from the payload.
-          example: 919879XXXXXX
+          example: +919879XXXXXX
           type: string
       type: object
     WSIDversionprofilesdistinct_idchannel_channel_inapp:
@@ -2367,7 +2367,7 @@ components:
     inline_response_202_response_sms:
       properties:
         destination:
-          example: 919879XXXXXX
+          example: +919879XXXXXX
           type: string
         msg_id:
           example: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX:XXXX
@@ -3374,8 +3374,8 @@ components:
           type: string
         sms:
           description: Enter the mobile number of the user. The number must start with
-            the country code (without +). For example&#58; 919879XXXXXX.
-          example: 919879XXXXXX
+            the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
+          example: +919879XXXXXX
           type: string
         teams:
           description: Enter the channel name. For teams, we currently support sending
@@ -3385,13 +3385,13 @@ components:
           type: string
         voice:
           description: Enter the mobile number of the user. The number must start with
-            the country code (without +). For example&#58; 919879XXXXXX.
-          example: 919879XXXXXX
+            the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
+          example: +919879XXXXXX
           type: string
         whatsapp:
           description: Enter the WhatsApp mobile number of the user. The number must start
-            with the country code (without +). For example&#58; 919879XXXXXX
-          example: 919879XXXXXX
+            with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX
+          example: +919879XXXXXX
           type: string
       type: object
     update_subscription_multiple:
