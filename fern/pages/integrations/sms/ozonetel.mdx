@@ -1,0 +1,44 @@
+---
+title: 'Ozonetel'
+slug: 'sms-ozonetel'
+og:title: 'How to send SMS using Ozonetel & Fyno | Fyno Documentation'
+og:description: 'A quick introduction about integrating your Ozonetel SMS account into Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Before we get started, you will need to have a Ozonetel account already set up, along with SenderID and Templates.
+
+<Steps>
+
+### Find the Provider
+
+Navigate to the Integrations page. Under “SMS” section, click on the “Ozonetel” button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+- **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+
+- **API Key**: From your Ozonetel platform, find "**Power API**" and click on "API Keys". On the page that opens, create a new API Key or use an existing one.
+
+- **Sender**: Enter the Sender ID that you want to use.
+
+- **Entity ID**: Enter your DLT registered Entity ID number.
+
+- **Type of SMS**: Select the SMS type from the options:
+  - Transactional
+  - Promotional
+  - OTP
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
+
+## Message Delivery Status
+
+Ozonetel does not provide the status of the message by default.
+
+Once the above integration is complete, the status of the notification, which will be shared by Ozonetel will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.
