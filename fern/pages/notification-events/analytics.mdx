@@ -6,7 +6,7 @@ og:description: "Fyno's Notification Event Analytics provides visual insights in
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno's **Notification Event Analytics** allows you to visualise the performance as well as gain insights into your **Notification Events** in the form of graphs and charts in one place, which helps improve the overall experience as well as outcomes pertaining to that notification event.
+Fyno's **Notification Event Analytics** allows you to visualise the performance as well as gain insights into your **Notification Events** in the form of charts in one place, which helps improve the overall experience as well as outcomes pertaining to that notification event.
 
 To get started with **Notification Event Analytics**, you will need to have created a **Notification Event**. Once a **Notification Event** is created and is in use, the triggered notifications would be summarised into the Analytics.
 
@@ -17,7 +17,7 @@ You can find your way to **Notification Event Analytics** by:
 
 On clicking on the "Bar Chart" icon for **Notification Event Analytics**, a new page opens up with details. For ease of understanding, an **Notification Events Analytics** page with pre-populated data is visualised below.
 
-![](/images/event_analytics.png)
+![](/images/analytics_overview.png)
 
 ### Time Filter
 
@@ -37,10 +37,11 @@ The **Overview** section of the **Notification Event Analytics** section provide
 
 On this card, you will see:
 
-- The number of times the notification event was fired
-- The number of notifications submitted via this notification event
-- The number of notifications delivered via this notification event.
-- The no of conversions for this notification event (if you have enabled Track Conversion in your notification event). You can read more about it [here](./notification-event-creation#track-conversion-optional).
+- Fired - The number of times the notification event was fired. This data is split into Delivered, Undelivered and Dropped. 
+- Notifications Requested - The number of notifications requests sent to Fyno for this notification event.
+- Notifications Sent - The number of notifications successfully sent from Fyno to Service Providers via this notification event .
+- Delivered - The number of notifications delivered via this notification event.
+- Converted - The no of conversions for this notification event (if you have enabled Track Conversion in your notification event). You can read more about it [here](./notification-event-creation#track-conversion-optional).
 
 <Info title="Count of notifications higher than number of times the notification event was fired?">Thats completely normal! It all depends on the number of channels and providers added for the route or notification event itself. In case you have more than 1 channel or provider configured, you will have exponentially more number of notifications, compared to the number of times the notification event was triggered.</Info>
 
