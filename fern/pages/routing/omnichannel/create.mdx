@@ -48,6 +48,8 @@ Each Channel block has "**Success**" and "**Failure**" operations. - classify th
 - **Success**: When a notification satisfies a success criteria within the configured 'wait for' time ,then the Success flow will be executed
 - **Failure**: When a notification doesn't satisfy a success criteria within the configured 'wait for' time ,then the Failure flow will be executed
 
+
+
 ## Controls
 
 Controls allow you to shape the direction that your Omnichannel Route takes with multiple functions to help you achieve this.
@@ -85,3 +87,13 @@ On creating this on Fyno's Omnichannel Route builder, it would look like this.
 ![](/images/omnichannel_example.png)
 
 <Tip title="Proximity Matters!">Our workflow builders are so receptive, we have proximity connectors that automatically connects to the component closest to it, which has a free connection node!</Tip>
+
+## How it works if destination is not available
+
+If a destination is missing, its automatically considered as failure and executes the next step linked to failure.
+
+For example, a Omnichannel route is defined as follows - Send SMS, if successful, then send email, and on failure send WhatsApp. 
+If the SMS destination is not available, it should trigger the WhatsApp as defined in the failure section.
+
+
+
