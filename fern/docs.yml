@@ -122,6 +122,8 @@ navigation:
                           path: "pages/integrations/whatsapp/connectly.mdx"
                         - page: "Freshchat"
                           path: "pages/integrations/whatsapp/freshchat.mdx"
+                        - page: "Fyno WA Plus"
+                          path: "pages/integrations/whatsapp/fyno-whatsapp-plus.mdx"
                         - section: "Fyno WhatsApp"
                           path: "pages/integrations/whatsapp/fyno-whatsapp.mdx"
                           contents:
