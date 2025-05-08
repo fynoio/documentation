@@ -543,6 +543,10 @@ navigation:
                   path: "pages/sdks/inapp/react-native.mdx"
                 - page: "Flutter In-App SDK"
                   path: "pages/sdks/inapp/flutter.mdx"
+          - section: "Web Push"
+            contents:
+              - page: "Web Push SDK"
+                path: "pages/sdks/webpush/web-push-sdk.mdx"
     - tab: fyno-connect
       layout:
           - section: "Getting Started"
