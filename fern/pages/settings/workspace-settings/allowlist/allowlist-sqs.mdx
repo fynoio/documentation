@@ -6,6 +6,15 @@ og:description: "The document provides a step-by-step guide on creating and conf
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
+Allowlist SQS (also commonly called as Webhooks) in its definition itself is a list of SQS that you would need to add to the Fyno platform and verify before you use it on the application and in your workflows.
+
+You need to add Allowlist SQS in 2 cases.
+
+<ul>
+   <li>When you want to receive a delivery report from Fyno to your system</li>
+   <li>When you want to call your API from Fyno's Workflow</li>
+</ul>
+
 You may use AWS SQS to receive delivery reports when:
 
 1. **Handling Traffic Spikes**: SQS is ideal when you experience sudden surges in traffic. For instance, if you launch a campaign targeting 500,000 or more users, SQS is the recommended solution.

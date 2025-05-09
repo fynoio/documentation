@@ -14,15 +14,17 @@ You can add static as well as dynamic attachments to emails
 
 On clicking on the attach button (highlighted below) on the to right corner of the either Email editor, you will see:
 
-![](/images/email_add_attachment.png)
+![](/images/email_template_add_component.png)
 
 - **Upload Files**: Allows you to attach files from the system. This then stays as a static attachment in the body of the email and is sent along with the email as an attachment every time it's triggered.
 
 - **Dynamic Placeholders**: Allows you to include dynamic files within the email, when the notification event is triggered. You can use placeholders to specify the:
 
-  - Filename - provide a static value like 'Invoice.pdf' (if you are testing it manually) or a placeholder like `{{attachment.filename}}`(if your are triggering notification event via API)
-  - File type - provide a static value like 'application/pdf' (for pdf) or 'image/jpg' (for jpg image) etc. (if you are testing it manually) or a placeholder like `{{attachment.filetype}}`(if your are triggering notification event via API). _File type should be MIME type_. You can get all the MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
-  - Content - provide the Presigned URL link here using a placeholder like `{{attachment.presigned_url}}`. You can provide a Public URL instead of Presigned URL. You can also provide base64 content, but its not recommended as it will increase your payload size.
+  - File Name - Provide a static value like 'Invoice.pdf' (if you are testing it manually) or a placeholder like `{{attachment.filename}}`(if your are triggering notification event via API)
+  - Type - Select the file type from the dropdown or you can enter a placeholder like `{{attachment.filetype}}` You can see all the MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
+  - URL - Provide a static URL or Dynamic URL using a placeholder like `{{attachment.presigned_url}}`. The URL should be wither pre-signed or public URL.
+
+![](/images/email_template_file_url.png)
 
 <Tip>Please note that if you are using Presigned S3 URL, then the URL should trigger a download of the file immediately when opened.</Tip>
 
@@ -60,11 +62,6 @@ In the above command:
 <Step>Replace `<filename>` with the name of the file attached.</Step>
 </Steps>
 
-Ensure to provide the correct filename and filetype for the attachment.
-
-When sending dynamic attachments in the payload, we need to configure the dynamic placeholders as shown below.
-
-![](/images/email_attachment_config.png)
 
 <Note>You cannot use only numeric values as placeholder keys!</Note>
 
