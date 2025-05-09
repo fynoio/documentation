@@ -6,9 +6,14 @@ og:description: 'This document explains the concept of an Allowlist, which is a 
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Allowlist in its definition itself is a list of URLs or SQS that you would need to add to the Fyno platform and verify before you use it on the application and in your workflows.
+Allowlist (also commonly called as Webhooks) in its definition itself is a list of URLs or SQS that you would need to add to the Fyno platform and verify before you use it on the application and in your workflows.
 
-All URLs that you intend on using within the Fyno Application need to be added to the **Allowlist** before being plugged into the application.
+You need to add Allowlist URL or SQS in 2 cases.
+
+<ul>
+   <li>When you want to receive a delivery report from Fyno to your system</li>
+   <li>When you want to call your API from Fyno's Workflow</li>
+</ul>
 
 ## The need for an Allowlist
 
