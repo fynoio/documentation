@@ -50,3 +50,53 @@ For example, to add a Header in email editor, you need to follow the below steps
   <Step>You can also use our Handlebars to add components based on any condition. For example, if you want to add a Header based on a brand name (as every brand will have its own logo), then you can add a condition to check brand name and add Header based on that.</Step>
   <Step>In the below example, if the brand equals Myntra, it will add the Header , 'Myntra_Header' otherwise it will add the default Fyno Header. ![](/images/components_with_handlebar.png)</Step>
 </Steps>
+
+## How to create a PDF component
+
+To create a component, go to Templates -> Fyno from the navigation.
+
+<Steps>
+  <Step>Click 'Components' and it opens up the Components page.</Step>
+  <Step>Click 'Create'. You will see a popup as shown below ![](/images/component_pdf_create.png)</Step>
+  <Step>Give a unique name for your component and choose a component type. In this example, I am creating a PDF component called 'pdf_component'</Step>
+  <Step>
+    We support 6 different type of components now.
+    <ul>
+      <li>Header</li>
+      <li>Footer</li>
+      <li>Banner</li>
+      <li>Socials (Any social media icons like Twitter, LinkedIn, FB etc)</li>
+      <li>Paragraph</li>
+      <li>PDF</li>
+    </ul>
+  </Step>
+  <Step>Once you click 'Submit', it opens the HTML editor as shown. ![](/images/component_pdf_add_html.png)</Step>
+  <Step>To create a pdf component, you can copy and paste HTML code into the editor.</Step>
+  <Step>
+    You can configure the pdf file with the below parameters
+    <ul>
+      <li>File Name - The component name will be used as default file name. You can change it either add a file name manually or add a placeholder</li>
+      <li>Layout - You can choose either Portrait or Landscape. Portrait is the default option.</li>
+      <li>Paper Size - You can choose a paper size from dropdown. A4 is the default size. </li>
+      <li>Margins - You can add margins (Top, Bottom, Left, Right) if you want to add any margins to the pdf file.</li>
+      <li>Protect with Password - You can check this box to enable Password protection for your pdf file. You can either manually enter a password or add a placeholder</li>
+      <li>Include Header</li>
+      <li>Include Footer</li>
+    </ul>
+  </Step>
+  <Step>Click 'Save and Preview PDF' to see the preview.</Step>
+  <Step>Click 'Save' to create a test version of the component or click 'Go live' to create a live version.</Step>
+  <Step>Once a pdf component is successfully created, you can access it in Components page. ![](/images/component_created.png)</Step>
+</Steps>
+
+## How to use a PDF Component in Email template
+
+For example, to add a PDF component in email editor, you need to follow the below steps.
+
+<Steps>
+  <Step>Click the attachment icon which will show the options as shown below ![](/images/email_template_add_component.png)</Step>
+  <Step>Click 'Select from component' option.</Step>
+  <Step>Select a pdf component from the dropdown.You can add more pdf files by clicking 'Add files'. ![](/images/pdf_add_component.png)</Step>
+  <Step>You can override the filename by selecting the checkbox. Enter a filename manually or add a placeholder. ![](/images/pdf_component_override_filename.png) </Step>
+  <Step>Once you have added all the attachments, you will see it as shown below in Email editor. ![](/images/pdf_component_attachment.png) </Step>
+</Steps>
