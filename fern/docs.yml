@@ -122,9 +122,9 @@ navigation:
                           path: "pages/integrations/whatsapp/connectly.mdx"
                         - page: "Freshchat"
                           path: "pages/integrations/whatsapp/freshchat.mdx"
-                        - page: "Fyno WA Plus"
+                        - page: "Meta Direct Plus"
                           path: "pages/integrations/whatsapp/fyno-whatsapp-plus.mdx"
-                        - section: "Fyno WhatsApp"
+                        - section: "Meta Direct"
                           path: "pages/integrations/whatsapp/fyno-whatsapp.mdx"
                           contents:
                               - page: "How to get Green Tick Verified for WhatsApp Business account"
