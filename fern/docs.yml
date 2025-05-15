@@ -138,6 +138,8 @@ navigation:
                           path: "pages/integrations/whatsapp/karix.mdx"
                         - page: "MessageBird"
                           path: "pages/integrations/whatsapp/messagebird.mdx"
+                        - page: "Meta CoX"
+                          path: "pages/integrations/whatsapp/fyno-business-whatsapp.mdx"
                         - section: "Meta Direct"
                           path: "pages/integrations/whatsapp/fyno-whatsapp.mdx"
                           contents:
