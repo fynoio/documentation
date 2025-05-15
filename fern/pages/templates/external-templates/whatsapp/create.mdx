@@ -93,38 +93,39 @@ Flow allows you to create trigger a Meta flow from WhatsApp template.
 Call-to-action buttons allow customers to call a phone number or visit a website (e.g., payment link, order tracking link etc) at the touch of a button. A template can have a maximum of four call-to-action buttons, two “visit website”, one “call phone number” and one “copy coupon code”.
 
 - **Visit Website**
-<Steps>
-  <Step>
-    You can add 2 types of URL - Static and Dynamic.
-    <ul>
-      <li>**Static** - You can use static URL, when you send same URL to all your users like your website URL etc.</li>
+
+  <Steps>
+    <Step>
+      You can add 2 types of URL - Static and Dynamic.
+      <ul>
+        <li>**Static** - You can use static URL, when you send same URL to all your users like your website URL etc.</li>
+        <ol>
+          <li>Add a button text which will appear as CTA in your WhatsApp message</li>
+          <li>Provide a valid website URL.</li>
+          <li>Enable 'Track URL' checkbox.</li>
+        </ol>
+        <li>**Dynamic** - You can use Dynamic URL when you have to send different URLs to different users like Payment links etc.</li>
+        <ol>
+          <li>Enable 'Dynamic URL' toggle</li>
+          <li>Add a button text which will appear as CTA in your WhatsApp message</li>
+          <li>Provide a valid website URL.</li>
+          <li>Enable 'Track URL' checkbox.</li>
+        </ol>
+      </ul>
+    </Step>
+    <Step>Click 'Save' and send it to Meta for approval.</Step>
+    <Step>Once the template is approved, go to **Templates -> Fyno** and create a Meta Direct template.</Step>
+    <Step>Select 'Synced' and choose the template you got approved in Step 4.</Step>
+    <Step>In the buttons section, if you added dynamic URL, add the placeholder which you want to track. In case, if you have added static URL, you don't have to do anything. ![](/images/91a10205f804447f1958b57b2a6969d406123d9b270266ee69146bd63858c757-dynamic_url_fyno.png)</Step>
+    <Step>Make sure to add the placeholder in the 'Placeholder' section on the LHS of the template editor.</Step>
+    <Step>
+      URL Tracking type - There are 2 ways you can track a URL click.
       <ol>
-        <li>Add a button text which will appear as CTA in your WhatsApp message</li>
-        <li>Provide a valid website URL.</li>
-        <li>Enable 'Track URL' checkbox.</li>
+        <li>**General**: Choose this option if you want to track URL clicks only at Notification Event level and not at channel or user level. This is recommended for use cases like creating product URLs for Google/FB Ads and or you want to track only clicks. If you choose this option, you won't see the 'Click' status in the Sent logs or in 'Engagement funnel' chart in Analytics. You will see the cumulative no of clicks under 'URL engagement' chart in analytics.</li>
+        <li>**User-Level**: Choose this option, if you want to track URL at user and channel level. This is recommended for use cases like sending unique payment links to users and or you want to track the click event at the message level. If you choose this option, you will see the 'Click' status in the Sent logs and in 'Engagement funnel' chart in Analytics.</li>
       </ol>
-      <li>**Dynamic** - You can use Dynamic URL when you have to send different URLs to different users like Payment links etc.</li>
-      <ol>
-        <li>Enable 'Dynamic URL' toggle</li>
-        <li>Add a button text which will appear as CTA in your WhatsApp message</li>
-        <li>Provide a valid website URL.</li>
-        <li>Enable 'Track URL' checkbox.</li>
-      </ol>
-    </ul>
-  </Step>
-  <Step>Click 'Save' and send it to Meta for approval.</Step>
-  <Step>Once the template is approved, go to **Templates -> Fyno** and create a Fyno WhatsApp template.</Step>
-  <Step>Select 'Synced' and choose the template you got approved in Step 4.</Step>
-  <Step>In the buttons section, if you added dynamic URL, add the placeholder which you want to track. In case, if you have added static URL, you don't have to do anything. ![](/images/91a10205f804447f1958b57b2a6969d406123d9b270266ee69146bd63858c757-dynamic_url_fyno.png)</Step>
-  <Step>Make sure to add the placeholder in the 'Placeholder' section on the LHS of the template editor.</Step>
-  <Step>
-    URL Tracking type - There are 2 ways you can track a URL click.
-    <ol>
-      <li>**General**: Choose this option if you want to track URL clicks only at Notification Event level and not at channel or user level. This is recommended for use cases like creating product URLs for Google/FB Ads and or you want to track only clicks. If you choose this option, you won't see the 'Click' status in the Sent logs or in 'Engagement funnel' chart in Analytics. You will see the cumulative no of clicks under 'URL engagement' chart in analytics.</li>
-      <li>**User-Level**: Choose this option, if you want to track URL at user and channel level. This is recommended for use cases like sending unique payment links to users and or you want to track the click event at the message level. If you choose this option, you will see the 'Click' status in the Sent logs and in 'Engagement funnel' chart in Analytics.</li>
-    </ol>
-  </Step>
-</Steps>
+    </Step>
+  </Steps>
   ![](/images/305eaa3-Fyno_Shorty.png)
 
 - **Call Phone Number**

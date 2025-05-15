@@ -1,0 +1,39 @@
+---
+hide-nav-links: true
+---
+
+## 25.2.2
+
+### 🔹 New Features
+
+- **Super Admin Role** – Empowered workspaces with a new top-level role.
+- **Enhanced Callback Management** – Manual retry support added for failed requests.
+- **Integration Updates**:
+  - AWS Pinpoint SMS integration has been added (Beta).
+  - MMLite APIs support has been added in WhatsApp (Beta).
+- **PDF Support** – Components can now generate PDFs.
+
+### ⚡ Feature Enhancements
+
+- **Workflows** – Added the option to configure multiple action-condition blocks for workflows using the Meta Flows trigger; simplified the HTTP widget.
+- **Alarms** – Added support for campaign-based alarms and new statuses for alarms.
+- **External Templates** – Improved the UI to display appropriate error messages.
+- **Dashboard** – Enhanced dark mode UI, added a breakdown of fired events, statuses, and counts.
+- **Frequency Capping** – Reduced the minimum marketing notification limit from 2 to 1.
+- **Workflow Logs** – UI improvements in the listing page.
+- **Allowlist** – Added a changelog for DLR configuration.
+- **Settings** – Removed 'Alerts' from workspace settings.
+- **Workflow Enhancements** – Improved error handling and processing efficiency.
+
+### 🛠 Bug Fixes
+
+- **Alarms** – Fixed UI issues with the anomaly chart.
+- **Campaigns** – Added fallback if the omni-channel route in the selected event is empty.
+- **Event Logs** – Fixed an issue with scroll behavior on the listing page.
+- **Templates** – Fixed a template grouping issue and resolved problems with JSON templates in Slack.
+- **Omni-channel Routes** – Fixed an issue with route creation from the Notification Events page.
+- **Incoming Logs** – Gracefully handled cases where the incoming source number is not a valid destination.
+- **Disable Auto Promote** – Prevented templates and routes from being auto-promoted when promoting an event with Maker Checker enabled.
+- **External Template Media Upload Error** – Addressed a bug causing media upload errors in a specific Meta use case.
+- **Workflow ElseIf Bug Fix** – Resolved a bug preventing the ElseIf condition from working properly when a node was not attached.
+- **Fyno Shorty Override URL Bug** – Fyno Shorty now works correctly when used in buttons with placeholders.
