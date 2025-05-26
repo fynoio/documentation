@@ -46,6 +46,7 @@ To create a workflow, you need to choose a trigger. This is based on how you wan
       <li>JSON - content will be set to application/json</li>
       <li>Form Data - content will be set to multipart/form-data</li>
       <li>URL Encoded Form - content will be set to application/x-www-form-urlencoded</li>
+      <li>XML - content will be set to application/xml</li>
       <li>Text - content will be set to text/plain</li>
     </ul>
   </Step>
@@ -163,9 +164,17 @@ The first step to calling an external API in an Workflow is to allowlist the API
 
 On drag & drop of the **API** component, you'll see the following:
 
-![](/images/1202247-Call_API_Config.png)
+![](/images/workflow_call_api_request.png)
 
 - **Allowlist URL Name:** Select a URL from the allowlist
+
+- **Cache response of this API?**: - Its an optional field. We will cache API responses for a specified timeframe based on the key value. The workflow will use this cached response until either the timeframe expires or the key value changes, eliminating unnecessary API calls.
+![](/images/workflow_API_response_cache.png)
+
+<Steps>
+  <Step>Cache Key - Select the key value which you want to cache.</Step>
+  <Step>Time & Unit - You can select a duration between 1 minute and 1 day</Step>
+</Steps>
 
 - **Method:** Specify the method of input. It may be
 
