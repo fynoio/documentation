@@ -100,3 +100,20 @@ To enable Approval flow for Templates, Notification events and Workflows, follow
   <Step>Select the users whom you want to choose as Approvers and click 'Save'. ![](/images/144bbaf-add_approvers.png)</Step>
   <Step>The Approval card will look like shown below. You can click 'Edit Approvers' to add or remove approvers. ![](/images/b32530f-approval_final.png)</Step>
 </Steps>
+
+## Secure Allowlist Endpoints
+
+This feature adds a security layer to verify that the API request originated from Fyno by generating Signature using HMAC key. 
+
+The signature will be included in the API request header as **x-fyno-hmac-signature**
+
+To enable the **Secure Allowlist Endpoints** feature for your account,
+
+<Steps>
+  <Step>Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Security**' which opens up the Security page.</Step>
+  <Step>Then find the **HMAC Key for API Calls** option and toggle it "on".</Step>
+  <Step>Add a secret key and save.</Step>
+</Steps>
+
+Fyno will use the secret key to encrypt the JSON payload and create a signature and send it as part of the API request header.
+The customers can then decrypt using the Key to check if the payload remained intact and not corrupted. 
