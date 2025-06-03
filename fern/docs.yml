@@ -44,9 +44,11 @@ navigation:
                 - page: "Quickstart"
                   path: "pages/get-started/fyno-quickstart.mdx"
                   icon: fa-regular fa-bolt
+                - page: "Tutorials"
+                  path: "pages/tutorials/tutorials.mdx"
                 - page: "Dashboard"
                   path: "pages/dashboard/dashboard.mdx"
-                  icon: fa-regular fa-chart-simple
+                  icon: fa-regular fa-chart-simple 
                 - page: "Alarms"
                   path: "pages/dashboard/alarms.mdx"
                   icon: fa-regular fa-triangle-exclamation
