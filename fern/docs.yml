@@ -45,6 +45,7 @@ navigation:
                   path: "pages/get-started/fyno-quickstart.mdx"
                   icon: fa-regular fa-bolt
                 - section: "Tutorials"
+                  icon: fa-regular fa-book-open
                   contents:
                       - page: "How to receive delivery reports"
                         path: "pages/tutorials/how-to-receive-delivery-reports.mdx"
