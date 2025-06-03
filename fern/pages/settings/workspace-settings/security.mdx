@@ -103,7 +103,7 @@ To enable Approval flow for Templates, Notification events and Workflows, follow
 
 ## Secure Allowlist Endpoints
 
-This feature adds a security layer to verify that the API request originated from Fyno by generating Signature using HMAC key. 
+This feature adds a security layer to verify that the API request originated from Fyno by generating Signature using HMAC key. You can leverage this feature when you call your APIs from workflows and also when you receive delivery reports from Fyno to your endpoint.
 
 The signature will be included in the API request header as **X-fyno-hmac-signature**.
 
@@ -116,6 +116,9 @@ To enable the **Secure Allowlist Endpoints** feature for your account,
   <Step>Then find the **Secure Allowlist Endpoints** option and toggle it "on".</Step>
   <Step>Either use the already available secret key or add a new secret key and save.</Step>
 </Steps>
+
+<Note> This is supported only for POST method and for content-types -  application/JSON and form-URL-encoded. </Note>
+
 
 Fyno will use the secret key to encrypt the JSON payload (using SHA-256 algorithm) and create a signature and send it as part of the API request header.
 The customers can then decrypt using the Key to check if the payload remained intact and not corrupted. 
