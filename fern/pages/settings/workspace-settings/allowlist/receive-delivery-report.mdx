@@ -11,12 +11,12 @@ A **Delivery Webhook** is nothing but an **Allowlist** URL that can receive upda
 An **Allowlist** URL can be converted anytime to a **Delivery Webhook**, once it is successfully verified by following the below steps while adding Allowlist URL/SQS.
 
 <Steps>
-  <Step>Select the 'Update Configuration' by clicking the ellipsis as shown. ![](/images/allowlist_configure_delivery.png)</Step>
+  <Step>Select the 'Configure as Delivery Endpoint' by clicking the ellipsis as shown. ![](/images/allowlist_configure_delivery_endpoint.png)</Step>
   <Step>In the window that opens, you can select the checkbox 'Set as default endpoint to receive delivery endpoints'</Step>
   <Step>Select the Method as 'POST'</Step>
   <Step>Optionally you can add any Header params</Step>
-  <Step>Choose Content Type from one of the options : `application/x-www-form-urlencoded` | `application/json`</Step>
-  <Step>You can add the data points you want to receive in the Payload section.</Step>
+  <Step>Choose Content Type from one of the options : `application/json` | `multipart/form-data` | `application/x-www-form-urlencoded`</Step>
+  <Step>You can add the data points you want to receive in the Payload section and click 'Confirm'</Step>
 </Steps>
 
 ![](/images/allowlist_configure_endpoint.png)
