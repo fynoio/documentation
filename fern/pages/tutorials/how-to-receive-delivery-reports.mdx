@@ -12,13 +12,13 @@ To receive delivery reports in your system, you need to follow the below steps
 1. Add an Allowlist URL and get it verified.
 2. Configure the delivery data points you want to receive
 3. Configure the Allowlist URL to receive delivery report
-    1. Through API
-    2. Through Campaign
-    3. Through Workflow
+    a. Through API
+    b. Through Campaign
+    c. Through Workflow
 
 
-## Add an Allowlist URL and get it verified
-Allowlist (also commonly called as Webhooks) in its definition itself is a list of URLs or SQS that you would need to add to the Fyno platform and verify before you use it on the application and in your workflows.
+## 1. Add an Allowlist URL and get it verified
+Allowlist (also commonly called as Webhooks) is a list of URLs or SQS that you would need to add to the Fyno platform and verify before you use it on the application and in your workflows.
 
 You need to add Allowlist URL or SQS in 2 cases.
 
@@ -31,8 +31,6 @@ You need to add Allowlist URL or SQS in 2 cases.
 
 Allowlists were designed for Fyno's app users to ensure security for the information that is being plugged into the system, by having verified URLs/SQS and thus help avoid unnecessary security hassles.
 
-Pre-approving the URLs/SQS that you need to use in your integration ensures that no changes can happen in the integrations without actively making the changes and thus leaves very little room for error.
-
 ### Types of Allowlist
 
 You can add Allowlists as:
@@ -41,9 +39,9 @@ You can add Allowlists as:
 2. [SQS](./allowlist-sqs)
 
 
-## Configure the delivery data points you want to receive
+## 2. Configure the delivery data points you want to receive
 
-A **Delivery Webhook** is nothing but an **Allowlist** URL that can receive updates from Fyno regarding the delivery status of the notifications sent out and easily share the delivery details with you, to a location of your convenience, pre-decided by you.
+A **Delivery Webhook** is nothing but an **Allowlist** URL that can receive updates from Fyno regarding the delivery status of the notifications sent out and easily share the delivery details with you, to any verified endpoint, pre-decided by you.
 
 An **Allowlist** URL can be converted anytime to a **Delivery Webhook**, once it is successfully verified by following the below steps while adding Allowlist URL/SQS.
 
@@ -103,7 +101,7 @@ Once this is done, all the delivery statuses for every notification triggered wi
 
 <Info>Not all Providers and Channels give you delivery notifications and updates. Check here for a detailed [list](./log-details-delivery#delivery-status-sent-no-extra-configuration).</Info>
 
-## Configure the Allowlist URL to receive delivery report
+## 3. Configure the Allowlist URL to receive delivery report
 
 You can configure delivery callback when you are triggering through
 
@@ -183,7 +181,7 @@ To enable receiving delivery reports from Fyno, select the checkbox 'Receive del
 
 <ParamField path="Allowlisted Endpoints" type="string" required={false}>
   <ul>
-    <li>Specify one or more allowlisted URL names (upto 3) where you want to receive delivery reports.</li>
+    <li>Specify one or more allowlisted URL names (up to 3) where you want to receive delivery reports.</li>
     <li>If no URL name(s) are specified here, the system will use your default URL (if one exists).</li>
     <li>If no URL name(s) are specified here AND no default URL is set, delivery reports cannot be sent.</li>
     <li>**Example**: `["DynamicWebhookSite", "Mixpanel"]`</li>
@@ -262,13 +260,11 @@ More values can be added in the callback. For a list of additional available val
 
 ## Callback Response
 
-The following contains list of default fields which will be sent if the payload for the delivery status callback is not defined.
-
 The **Delivery Webhook** will be sent using:
 
-**Method**: POST | GET
-**Content-Type** : `application/x-www-form-urlencoded` | `application/json`
-**Data**: Default Parameters + Additional Parameters
+- **Method**: POST | GET
+- **Content-Type** : `application/x-www-form-urlencoded` | `application/json`
+- **Data**: Default Parameters + Additional Parameters
 
 
 ### Sample Webhook Configuration and Response
