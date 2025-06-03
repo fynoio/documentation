@@ -55,7 +55,8 @@ navigation:
                   path: "pages/versioning/versioning-overview.mdx"
           - section: "Tutorials"
             contents:
-                  path: "pages/tutorials/fyno-tutorials.mdx"
+                  - page: "How to receive delivery reports"
+                    path: "pages/tutorials/how-to-receive-delivery-reports.mdx"
           - section: "Core Features"
             contents:
                 - section: "Integrations"
