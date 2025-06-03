@@ -44,8 +44,6 @@ navigation:
                 - page: "Quickstart"
                   path: "pages/get-started/fyno-quickstart.mdx"
                   icon: fa-regular fa-bolt
-                - section: "Tutorials"
-                  path: "pages/tutorials/fyno-tutorials.mdx"
                 - page: "Dashboard"
                   path: "pages/dashboard/dashboard.mdx"
                   icon: fa-regular fa-chart-simple 
@@ -55,6 +53,9 @@ navigation:
                 - page: "Versioning"
                   icon: fa-regular fa-code-pull-request
                   path: "pages/versioning/versioning-overview.mdx"
+          - section: "Tutorials"
+            contents:
+                  path: "pages/tutorials/fyno-tutorials.mdx"
           - section: "Core Features"
             contents:
                 - section: "Integrations"
