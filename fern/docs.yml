@@ -44,9 +44,6 @@ navigation:
                 - page: "Quickstart"
                   path: "pages/get-started/fyno-quickstart.mdx"
                   icon: fa-regular fa-bolt
-                - section: "Tutorials"
-                  path: "pages/tutorials/fyno-tutorials.mdx"
-                  icon: fa-regular fa-book-open
                 - page: "Dashboard"
                   path: "pages/dashboard/dashboard.mdx"
                   icon: fa-regular fa-chart-simple
