@@ -1,0 +1,49 @@
+---
+hide-nav-links: true
+---
+
+## 25.2.4
+
+### 🔹 New Features
+
+- **HMAC Signature** – Added configurable HMAC key support. When enabled under security section, all outbound API calls include an `x-fyno-hmac-signature` header for verifying request authenticity and integrity.
+- **DLR Service** – Added support for `template_category_update` events. Once received from Meta, these updates will be reflected in the external template.
+
+### ⚡ Feature Enhancements
+
+- **Analytics**
+  - Improved user experience across the dashboard for better clarity.
+  - Fixed banner styles for **dark mode**.
+- **Alarms**
+  - Added **grouping of alarms** based on the description to reduce noise.
+  - UI refinements for better readability.
+- **Workflows**
+  - Added **boolean comparison** support in condition builder using a new `isbool` operator.
+- **Templates**
+  - Added a link to the **Handlebars Builder Tool** for easier access.
+  - External template errors now show **detailed reasons** instead of generic messages, aiding debugging.
+- **Password Expiration**
+  - Introduced **reset password via email** link flow for expired credentials.
+
+### 🛠 Bug Fixes
+
+- **Workflows**
+  - Fixed integration selection issues for **MoEngage** and **Meta Flows**.
+  - Fixed routing condition bug related to destination emails.
+- **Alarms**
+  - Resolved various UI issues.
+- **Integrations**
+  - Fixed **WhatsApp QR code issue** on iOS devices for configuring incoming numbers.
+  - Fixed issue causing **token regeneration failures** for push providers.
+  - Fixed APNS failures caused by **ExpiredProviderToken** (stale tokens).
+- **In-App UI**
+  - Fixed occasional UI crashes due to inconsistent data formats
+- **Maker Checker**
+  - Fixed several minor UI bugs.
+
+### 🧹 Cleanup & Deprecations
+
+- **Deprecated API**
+  - Removed already deprecated log-fetching endpoints:
+    - `/v1/<WORKSPACE_ID>/logs/:id`
+    - `/v1/<WORKSPACE_ID>/<TEST_OR_LIVE>/logs/:id`
