@@ -94,6 +94,8 @@ navigation:
                           path: "pages/integrations/sms/msg91.mdx"
                         - page: "Mtalkz"
                           path: "pages/integrations/sms/mtalkz.mdx"
+                        - page: "Netcore"
+                          path: "pages/integrations/sms/netcore.mdx"  
                         - page: "Plivo"
                           path: "pages/integrations/sms/plivo.mdx"
                         - page: "Route Mobile"
