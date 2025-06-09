@@ -1,0 +1,50 @@
+---
+hide-nav-links: true
+---
+
+## 25.2.4
+
+### 🔹 New Features
+
+- **Settings** – Added an option to configure **HMAC** for enhanced request validation and security.
+- **Callback** – Added support to **retry failed callback requests**.
+- **DLR Service** – Added support for `template_category_update` events.
+
+### ⚡ Feature Enhancements
+
+- **Analytics**
+  - Improved copy across the dashboard for better clarity.
+  - Fixed banner styles for **dark mode**.
+- **Alarms**
+  - Added **grouping of alarms** based on the description to reduce noise.
+  - UI refinements for better readability.
+- **Workflows**
+  - Added **boolean comparison** support in condition builder using a new `isbool` operator.
+- **Templates**
+  - Added a link to the **Handlebars Builder Tool** for easier access.
+  - External template errors now show **detailed reasons** instead of generic messages, aiding debugging.
+- **Password Expiration**
+  - Introduced **reset password via email** link flow for expired credentials.
+
+### 🛠 Bug Fixes
+
+- **Workflows**
+  - Fixed integration selection issues for **MoEngage** and **Meta Flows**.
+  - Fixed routing condition bug related to destination emails.
+- **Alarms**
+  - Resolved various UI issues.
+- **Integrations**
+  - Fixed **WhatsApp QR code issue** on iOS.
+  - Handled **token regeneration failures** gracefully for custom providers.
+  - Fixed APNS failures caused by **ExpiredProviderToken** (stale tokens).
+- **In-App UI**
+  - Fixed occasional UI crashes due to inconsistent data formats
+- **Maker Checker**
+  - Fixed several minor UI bugs.
+
+### 🧹 Cleanup & Deprecations
+
+- **Deprecated API**
+  - Removed already deprecated log-fetching endpoints:
+    - `/v1/:wsid/logs/:id`
+    - `/v1/:wsid/:version(live|test|dev|prod)/logs/:id`
