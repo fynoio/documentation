@@ -6,14 +6,13 @@ hide-nav-links: true
 
 ### 🔹 New Features
 
-- **Settings** – Added an option to configure **HMAC** for enhanced request validation and security.
-- **Callback** – Added support to **retry failed callback requests**.
-- **DLR Service** – Added support for `template_category_update` events.
+- **HMAC Signature** – Added configurable HMAC key support. When enabled under security section, all outbound API calls include an `x-fyno-hmac-signature` header for verifying request authenticity and integrity.
+- **DLR Service** – Added support for `template_category_update` events. Once received from Meta, these updates will be reflected in the external template.
 
 ### ⚡ Feature Enhancements
 
 - **Analytics**
-  - Improved copy across the dashboard for better clarity.
+  - Improved user experience across the dashboard for better clarity.
   - Fixed banner styles for **dark mode**.
 - **Alarms**
   - Added **grouping of alarms** based on the description to reduce noise.
@@ -34,8 +33,8 @@ hide-nav-links: true
 - **Alarms**
   - Resolved various UI issues.
 - **Integrations**
-  - Fixed **WhatsApp QR code issue** on iOS.
-  - Handled **token regeneration failures** gracefully for custom providers.
+  - Fixed **WhatsApp QR code issue** on iOS devices for configuring incoming numbers.
+  - Fixed issue causing **token regeneration failures** for push providers.
   - Fixed APNS failures caused by **ExpiredProviderToken** (stale tokens).
 - **In-App UI**
   - Fixed occasional UI crashes due to inconsistent data formats
@@ -46,5 +45,5 @@ hide-nav-links: true
 
 - **Deprecated API**
   - Removed already deprecated log-fetching endpoints:
-    - `/v1/:wsid/logs/:id`
-    - `/v1/:wsid/:version(live|test|dev|prod)/logs/:id`
+    - `/v1/<WORKSPACE_ID>/logs/:id`
+    - `/v1/<WORKSPACE_ID>/<TEST_OR_LIVE>/logs/:id`
