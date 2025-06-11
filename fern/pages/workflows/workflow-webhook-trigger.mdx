@@ -243,7 +243,7 @@ the initial **Trigger** and will help orchestrate the flow based on these parame
   - Less than or Equal
   - Is
   - Is Empty
-  - Nin 
+  - nin 
   - is boolean
 - **Value:** Specify the value for the condition, based on which the "If-else" condition will be applied.
 
@@ -253,6 +253,7 @@ You should select this option while creating a condition based on the HTTP statu
 
 - **Operator:** Select an operator that you want to define the condition with. It can be any of the following:
   - Equals
+  - Note Equals
   - Starts With
   - Ends With
   - Contains
@@ -262,11 +263,16 @@ You should select this option while creating a condition based on the HTTP statu
   - Greater than or Equal
   - Less than or Equal
   - Is
+  - Is Empty
+  - nin 
+  - is boolean
+
 - **Value:** Specify the value for the condition, based on which the "If-else" condition will be applied.
 - **HTTP Response:** You should select this option while creating a condition based on the HTTP response of an **API Call** action. The response can be a string or a JSON key. On selecting **HTTP Response**, field-specific data points will be seen as below:
   - **HTTP Response:** Specify the condition based on the response of the API call. For instance, if the response looks like `{status: "ok"}`, then the value of the **HTTP Response** field will be `status`. If the response is nested like `{status: {response: "ok"}}`, the value of the field will be `status.response`.
   - **Operator:** Select an operator that you want to define the condition with. It can be any of the following:
     - Equals
+    - Note Equals
     - Starts With
     - Ends With
     - Contains
@@ -276,6 +282,10 @@ You should select this option while creating a condition based on the HTTP statu
     - Greater than or Equal
     - Less than or Equal
     - Is
+    - Is Empty
+    - nin 
+    - is boolean
+
   - **Custom Value:** Specify the value for the condition, based on which the "If-else" condition will be applied.
 
 ## Workflow URL
