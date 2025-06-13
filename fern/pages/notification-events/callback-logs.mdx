@@ -49,3 +49,13 @@ On clicking the individual Callback log, you will see the Request and Response p
 In the logs section, the **Test** and **Live** versions are uniquely partitioned, to show you the details notifications sent in that particular version of the API that has been generated.
 
 <Tip title="Can't find a notification log?">Check the environment that the notification was triggered in. Notification triggered in **Test** environment cannot be seen in **Live** and vice versa.</Tip>
+
+## How to retry failed callbacks
+
+By default, Fyno will attempt 3 times to send delivery callback. 
+
+Post that, if the delivery callback still fails due to any downtime at your end,you can retry the same by clicking 'Retry Failed Callback' CTA. 
+
+![](/images/delivery_callback_retry.png)
+
+You will see a popup which shows the #of delivery callbacks failed based on the filters selected. Click 'Retry' button to retry all the failed delivery callback
