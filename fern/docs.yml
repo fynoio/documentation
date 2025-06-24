@@ -161,6 +161,8 @@ navigation:
                           path: "pages/integrations/whatsapp/twilio.mdx"
                         - page: "ValueFirst"
                           path: "pages/integrations/whatsapp/valuefirst.mdx"
+                        - page: "Verloop"
+                          path: "pages/integrations/whatsapp/verloop.mdx"
                         - page: "WATI"
                           path: "pages/integrations/whatsapp/wati.mdx"
                         - page: "Yellow.ai"

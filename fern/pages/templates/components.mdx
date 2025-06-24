@@ -100,3 +100,31 @@ For example, to add a PDF component in email editor, you need to follow the belo
   <Step>You can override the filename by selecting the checkbox. Enter a filename manually or add a placeholder. ![](/images/pdf_component_override_filename.png) </Step>
   <Step>Once you have added all the attachments, you will see it as shown below in Email editor. ![](/images/pdf_component_attachment.png) </Step>
 </Steps>
+
+## How to use a PDF Component in WhatsApp template
+
+You can use a PDF Component in WhatsApp template in 2 ways
+- as a Document file in the Header
+- as part of the website CTA button
+
+### How to use a PDF Component as Header in WhatsApp template
+
+- From left nav, go to a WhatsApp template (Templates -> Fyno) .
+- Copy the component you want to add from the Components section in the navigation. 
+- Paste the value in the Header textbox. It will be added as `{{Component '<Component_name>'}}`
+- The added component will look as shown below. ![](/images/whatsapp_header_pdf.png)
+
+### How to use a PDF Component as part of website CTA button
+
+Things to be done in WhatsApp External Template 
+
+- In the external template, make sure to add a website button 
+- Enable Dynamic URL toggle.
+- Enable Track URL check box.
+
+Things to be done in Fyno Template 
+
+- From left nav, go to a WhatsApp template (Templates -> Fyno) .
+- Copy the component you want to add from the Components section in the navigation. 
+- Paste the value in the button textbox. It will be added as `{{Component '<Component_name>'}}`
+- The added component will look as shown below. ![](/images/whatsapp_button_pdf.png)
