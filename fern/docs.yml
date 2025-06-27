@@ -100,6 +100,8 @@ navigation:
                           path: "pages/integrations/sms/plivo.mdx"
                         - page: "Route Mobile"
                           path: "pages/integrations/sms/route-mobile.mdx"
+                        - page: "Sinch"
+                          path: "pages/integrations/sms/sinch.mdx"
                         - page: "Syniverse"
                           path: "pages/integrations/sms/syniverse.mdx"
                         - page: "telSpiel"

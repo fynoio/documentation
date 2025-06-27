@@ -1,0 +1,41 @@
+---
+title: 'Sinch.io'
+slug: 'sms-sinch'
+og:title: 'How to send SMS using Sinch & Fyno | Fyno Documentation'
+og:description: 'A quick introduction about integrating your Sinch SMS account into Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Before we get started, you will need to have a Sinch account already set up, along with SenderID and Templates.
+
+<Steps>
+
+### Find the Provider
+
+Navigate to the Integrations page. Under "SMS" section and click on the "Sinch" button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+- **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+
+- **Route Type**: Select the type of route based on the configuration added in Sinch application. You have 2 options - OTP and Transaction.
+
+- **Application Id**: Login into your Sinch portal. Go to profile icon in the top right corner and click **Access Keys** option. You will find all the Application Id (Project Ids) there. 
+
+- **subappid**: Login into your Sinch portal. Go to profile icon in the top right corner and click **Access Keys** option. You will find all the Sub application ids (subproject ids) there.
+
+- **UserId**: Enter the user id. 
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
+
+## Message Delivery Status
+
+Sinch, by default, provides the status of the message without any additional setup needed.
+
+Once the above integration is complete, the status of the notification, which will be shared by Sinch will be displayed in the logs, when you click on it, under the **[Delivery](./log-details-delivery)** tab.
