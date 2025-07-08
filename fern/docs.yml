@@ -95,7 +95,7 @@ navigation:
                         - page: "Mtalkz"
                           path: "pages/integrations/sms/mtalkz.mdx"
                         - page: "Netcore"
-                          path: "pages/integrations/sms/netcore.mdx"  
+                          path: "pages/integrations/sms/netcore.mdx" 
                         - page: "Plivo"
                           path: "pages/integrations/sms/plivo.mdx"
                         - page: "Route Mobile"
@@ -119,6 +119,8 @@ navigation:
                           path: "pages/integrations/rcs/gupshup.mdx"
                         - page: "MSG91"
                           path: "pages/integrations/rcs/msg91.mdx"
+                        - page: "ValueFirst"
+                          path: "pages/integrations/rcs/valuefirst.mdx"
                   - section: "WhatsApp"
                     path: "pages/integrations/whatsapp-channel.mdx"
                     contents:
