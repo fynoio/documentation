@@ -1,0 +1,46 @@
+---
+hide-nav-links: true
+---
+
+## 25.2.6
+
+### 🔹 New Features
+
+- **Notification Status based condition in Journey (Workflow) **
+  - Introduced support to **branch workflow based on previous notification event status**. This enables users to configure workflows to conditionally based on the status of previous notification event(s).
+
+### ⚡ Feature Enhancements
+
+- **Integrations**
+
+  - Added an option to **enable MM Lite API usage** for marketing messages, providing more control over vendor-specific behavior.
+  - **Voice Integrations** now support `recording_url` for **Kaleyra Voice** and **Exotel**, enabling retrieval of call recordings for audit or reference purposes.
+
+- **Templates**
+
+  - Added a direct **link to the Handlebars Builder Tool** for quick and easy template editing.
+  - **Named Placeholder** support added for **WhatsApp unsynced templates**, enabling compatibility with vendors that use placeholder-based rendering.
+
+- **Notification Events**
+
+  - Introduced a **loader before log rendering** during event testing to enhance user experience.
+
+- **Shorty Page Enhancements**
+  - Fixed and improved the **Shorty redirection behavior**, resolving previous issues where users encountered 404 errors.
+
+### 🛠 Bug Fixes
+
+- **Analytics**
+
+  - Fixed an issue causing **missing data in multi-day campaigns**, ensuring complete and accurate delivery metrics.
+
+- **Workflows**
+
+  - Resolved issues with **opt-in/opt-out selections** in the Subscription widget, ensuring user preferences are properly recorded.
+
+- **Auth**
+
+  - Fixed **incorrect redirection** after login, ensuring users are reliably taken to the dashboard.
+
+- **Routing**
+  - Corrected **branding color issues** within routing configuration forms for improved visual consistency.
