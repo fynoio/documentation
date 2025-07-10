@@ -121,6 +121,8 @@ navigation:
                           path: "pages/integrations/rcs/msg91.mdx"
                         - page: "ValueFirst"
                           path: "pages/integrations/rcs/valuefirst.mdx"
+                        - page: "Wisely"
+                          path: "pages/integrations/rcs/wisely.mdx"
                   - section: "WhatsApp"
                     path: "pages/integrations/whatsapp-channel.mdx"
                     contents:

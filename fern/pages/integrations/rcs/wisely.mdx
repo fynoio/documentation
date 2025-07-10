@@ -1,0 +1,36 @@
+---
+title: 'Wisely'
+slug: 'rcs-wisely'
+og:title: 'How to send RCS notification using Wisely & Fyno | Fyno Documentation'
+og:description: 'How to send RCS notification using Wisely & Fyno'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Before we get started, you will need to have a Wisely account already set up, along with SenderID and Templates.
+
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. Under "RCS" section, click on the "Wisely" button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+- **Custom name**: Provide a name that would help you identify the configured account in Fyno's portal.
+- **Sender**: In your Wisely account, from left nav, go to Channels -> RCS -> My Agents. Fetch the Agent Id and enter here. ![](/images/rcs_wisely_source.png)
+- **Access Key**: In your Wisely account, from left nav, go to API -> Access Accounts. Click the key icon and get the Access Key, if you already have any existing Accounts or click 'Create New'. ![](/images/rcs_wisely_accesskey.png)
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, Wisely requires a manual update of the Fyno Callback Endpoint in order to receive these reports. To update the Callback manually follow these steps:
+
+<Steps>
+  <Step>Copy the Callback URL in the Integrations popup.</Step>
+  <Step>Send the Callback URL to your Wisely account manager to add it in your MSG91 account.</Step>
+</Steps>
