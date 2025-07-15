@@ -973,7 +973,7 @@ paths:
     delete:
       tags:
         - Suppression List
-      summary: "Add User to Suppression List"
+      summary: "Delete User from Suppression List"
       description: "Delete a suppression entry using its `_id`, `distinct_id`, `destination`.<br/><br/><strong>Note:</strong> If all three values (`distinct_id`, `destination`, `_id`) are provided, `_id` takes precedence followed by `distinct_id`."
       parameters:
         - name: WSID
