@@ -31,7 +31,14 @@ A Journey can be delivered at any stage of the user's lifecycle. Few examples be
 
 ## Use Case
 
-Let's take the example of ABC, a fintech company that aims to ensure users complete their SIP payments even after an initial failure. To achieve this goal, ABC plans to implement a multi-step reminder system. The system will send payment reminders at various intervals following the payment failure, such as 1 day, 2 days, 3 days etc after the initial failure. These reminders will continue until the user successfully makes the payment. However, if the user does not complete the payment within 10 days of the original payment failure, ABC will discontinue the reminder notifications. If the user makes the payment within 10 days, they will stop getting reminders.
+Let's take the example of ABC, a fintech company that aims to ensure users complete their SIP payments even after an initial failure. 
+To achieve this goal, ABC plans to implement a multi-step reminder system. 
+- The system will send payment reminders at various intervals following the payment failures.
+- The first reminder will go 1 day after Payment failure through SMS and WhatsApp channels. 
+- If user clicks payment link in either of the channels, then wait for 1 more day and send reminder in the same channels.
+- If the user doesn't click payment link in either of the channels, then send a payment reminder using Email as a channel. 
+- These reminders will continue until the user successfully makes the payment. However, if the user does not complete the payment within 10 days of the original payment failure, ABC will discontinue the reminder notifications. 
+- If the user makes the payment within 10 days, they will stop getting reminders.
 
 Let's assume ABC send these payment reminders via WhatsApp. Visual representation for the flow is shown below.
 
@@ -42,18 +49,18 @@ To achieve the above use case, you need to follow the below steps.
 <Steps>
   <Step>Go to Navigation menu -> Workflow.</Step>
   <Step>Click 'Create+' to create a new workflow.</Step>
-  <Step>Enter an appropriate name for your workspace and click 'Create'. ![](/images/f2ec2e7-create_wf_journey.png)</Step>
-  <Step>You will see an empty canvas as shown below. ![](/images/432ae69-empty_canvas.png)</Step>
+  <Step>Enter an appropriate name for your journey and click 'Create'. ![](/images/journey_creation.png)</Step>
+  <Step>You will see an empty canvas as shown below. ![](/images/journey_canvas.png)</Step>
   <Step>
     From the panel on the right hand side, drag and drop 'Notification Event' into the canvas. You need to configure the following:
     <ul>
       <li>**Journey Start** - Select the notification event which will start the journey. In this use case, SIP payment failure notification event will start the journey</li>
-      <li>**Unique Key** - You need to select one or more keys as Unique Key which will unique identify your user. Every SIP will have a unique Transaction Id. So, in this use case, we will choose it as Unique Key. ![](/images/2a0b07b-SIP_Journey_start.png)</li>
-      <li>**Journey Success Criteria based on Notification Event** - Select the notification event which will successfully end the journey for the user. In this use case, SIP payment success notification event will end the journey for the user. ![](/images/e8dad0f-SIP_Journey_end.png)</li>
-      <li>**Journey Success Criteria based on Notification Event Status** - You can end Journeys based on the status of notifications. For instance, you can set up a journey to end when a user has either read the 'SIP_Payment_Success' notification on WhatsApp or opened the corresponding email. This can be configured as shown below: ![](/images/4f12411-SIP_Journey_end_status.png)</li>
+      <li>**Unique Key** - You need to select one or more keys as Unique Key which will unique identify your user. Every SIP will have a unique Transaction Id. So, in this use case, we will choose it as Unique Key. ![](/images/journey_start_config.png)</li>
+      <li>**Journey Success Criteria based on Notification Event** - Select the notification event which will successfully end the journey for the user. In this use case, SIP payment success notification event will end the journey for the user. ![](/images/journey_end.png)</li>
+      <li>**Journey Success Criteria based on Notification Event Status** - You can end Journeys based on the status of notifications. For instance, you can set up a journey to end when a user has either read the 'SIP_Payment_Success' notification on WhatsApp or opened the corresponding email. This can be configured as shown below: ![](/images/journey_end_status.png)</li>
     </ul>
   </Step>
-  <Step>Drag & drop, 'Wait for' under Action and configure wait for as shown below. Now you are giving 1 day time to users to make the SIP payment. If the user makes the payment within 1 day, then 'sip+payment_success' event will fire and users will exit the journey successfully. ![](/images/2aee498-wait_for.png)</Step>
+  <Step>Drag & drop, 'Wait for' under Action and configure wait for as shown below. Now you are giving 1 day time to users to make the SIP payment. If the user makes the payment within 1 day, then 'sip+payment_success' event will fire and users will exit the journey successfully. ![](/images/journey_wait_for.png)</Step>
   <Step>
     Drag & drop notification event below 'Wait for' as shown below.
     <ol>
@@ -62,7 +69,7 @@ To achieve the above use case, you need to follow the below steps.
       <li>Data - This will have the list of placeholders configured in the template linked to the notification event selected.</li>
       <li>Additional Data - if you want to add any other variables which is not added as part of the template, you can add it here.</li>
     </ol>
-    ![](/images/96dbe89-notif_event_step.png)
+    ![](/images/journey_next_event_config.png)
   </Step>
   <Step>
     Follow Steps 6 & 7 depending on the no of reminders you are planning to send. In this use case, we want to send 3 reminders. So you need to add it as shown below. ![](/images/1736af1-full_journey_flow.png)
@@ -84,13 +91,13 @@ To achieve the above use case, you need to follow the below steps.
 
 To view users in the journey, pls enable View Users as shown below.
 
-![](/images/7d7266e-view_users-2.png)
+![](/images/journey_view_users_enable.png)
 
 Once you enable '**View Users**', then you can see no of users at each step (Wait for) of the Journey.
 
 When you click the user count as shown below, it will open up the list of users in the Journey.
 
-![](/images/d092846-view_users_count_1.png)
+![](/images/journey_view_users_updated.png)
 
 ## How to fast forward users in the Journey?
 
@@ -99,7 +106,7 @@ The 'Fast Forward' feature helps you to move the users to the next step in the j
 For instance, if your journey includes a 1-day wait period between notifications, you can use Fast Forward to skip this wait time instead of waiting 24 hours to test the next step.
 
 <Steps>
-  <Step>Click 'Fast Forward Users' in the top right corner. You will see a popup as shown ![](/images/a756936bba7bb672278959a56e354c080660e1d79c89961cf6a4fe98cc4faa80-fast_forward_users.png)</Step>
+  <Step>Click 'Fast Forward Users' in the top right corner. You will see a popup as shown ![](/images/journey_fast_forward_users.png)</Step>
   <Step>Enter the Unique Identifiers for the users you want to fast forward (up to 10 at a time). For example, if you configured 'Mobile Number' as your Unique Identifier while creating the journey, enter the mobile numbers here. Click 'Confirm' to proceed."</Step>
   <Step>All these users will be automatically moved to the next step in the journey.</Step>
 </Steps>
