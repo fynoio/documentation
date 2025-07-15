@@ -328,6 +328,8 @@ navigation:
                               path: "pages/templates/external-templates/sms/create.mdx"
                       - page: "Reusable Components"
                         path: "pages/templates/components.mdx"
+                      - page: "Maker Checker Approval"
+                        path: "pages/templates/approval-flow.mdx"
                 - section: "Routes"
                   icon: fa-regular fa-code-merge
                   path: "pages/routing/routing.mdx"
