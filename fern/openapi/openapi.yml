@@ -40,15 +40,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/version_event_body'
+              $ref: "#/components/schemas/version_event_body"
         required: true
       responses:
-        '202':
+        "202":
           $ref: "#/components/responses/EventRequestAccepted"
-        '400':
+        "400":
           $ref: "#/components/responses/EventNameDoesNotExist"
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/event/bulk:
     post:
       tags:
@@ -81,15 +81,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/event_bulk_body'
+              $ref: "#/components/schemas/event_bulk_body"
         required: true
       responses:
-        '202':
+        "202":
           $ref: "#/components/responses/BulkEventRequestAccepted"
-        '400':
-          $ref: '#/components/responses/EventNameDoesNotExist'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "400":
+          $ref: "#/components/responses/EventNameDoesNotExist"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles:
     post:
       tags:
@@ -122,15 +122,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/version_profiles_body'
+              $ref: "#/components/schemas/version_profiles_body"
         required: true
       responses:
-        '201':
-          $ref: '#/components/responses/ProfileCreatedSuccessfully'
-        '400':
-          $ref: '#/components/responses/DistinctIDAlreadyExists'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "201":
+          $ref: "#/components/responses/ProfileCreatedSuccessfully"
+        "400":
+          $ref: "#/components/responses/DistinctIDAlreadyExists"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/{distinct_id}:
     get:
       tags:
@@ -169,12 +169,12 @@ paths:
             type: string
           example: XXXXXXXX
       responses:
-        '200':
-          $ref: '#/components/responses/ProfileFetched'
-        '400':
-          $ref: '#/components/responses/DistinctIDDoesNotExist'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "200":
+          $ref: "#/components/responses/ProfileFetched"
+        "400":
+          $ref: "#/components/responses/DistinctIDDoesNotExist"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
     put:
       tags:
         - Manage User Profiles
@@ -215,15 +215,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/profiles_distinct_id_body'
+              $ref: "#/components/schemas/profiles_distinct_id_body"
         required: true
       responses:
-        '200':
-          $ref: '#/components/responses/ProfileUpdated'
-        '400':
-          $ref: '#/components/responses/DistinctIDDoesNotExist3'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "200":
+          $ref: "#/components/responses/ProfileUpdated"
+        "400":
+          $ref: "#/components/responses/DistinctIDDoesNotExist3"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/{source_distinct_id}/merge/{target_distinct_id}:
     patch:
       tags:
@@ -271,12 +271,12 @@ paths:
             type: string
           example: XXXXXXXX
       responses:
-        '200':
-          $ref: '#/components/responses/ProfileMergedSuccessfully'
-        '400':
-          $ref: '#/components/responses/SourceDistinctIDDoesNotExist'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "200":
+          $ref: "#/components/responses/ProfileMergedSuccessfully"
+        "400":
+          $ref: "#/components/responses/SourceDistinctIDDoesNotExist"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/delete:
     post:
       tags:
@@ -309,15 +309,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/profiles_delete_body'
+              $ref: "#/components/schemas/profiles_delete_body"
         required: true
       responses:
-        '200':
+        "200":
           $ref: "#/components/responses/ProfileDeletedSuccessfully"
-        '400':
+        "400":
           $ref: "#/components/responses/DistinctIDDoesNotExist2"
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/{distinct_id}/channel:
     patch:
       tags:
@@ -359,15 +359,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/distinct_id_channel_body'
+              $ref: "#/components/schemas/distinct_id_channel_body"
         required: true
       responses:
-        '200':
-          $ref: '#/components/responses/ProfileChannelUpdated'
-        '400':
-          $ref: '#/components/responses/DistinctIDDoesNotExist'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "200":
+          $ref: "#/components/responses/ProfileChannelUpdated"
+        "400":
+          $ref: "#/components/responses/DistinctIDDoesNotExist"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/{distinct_id}/channel/delete:
     post:
       tags:
@@ -409,15 +409,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/channel_delete_body'
+              $ref: "#/components/schemas/channel_delete_body"
         required: true
       responses:
-        '200':
-          $ref: '#/components/responses/ProfileChannelUpdated'
-        '400':
-          $ref: '#/components/responses/DistinctIDOrChannelDataDoesNotExist'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "200":
+          $ref: "#/components/responses/ProfileChannelUpdated"
+        "400":
+          $ref: "#/components/responses/DistinctIDOrChannelDataDoesNotExist"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/subscriptions/preference:
     get:
       tags:
@@ -469,12 +469,12 @@ paths:
               - false
           example: false
       responses:
-        '200':
-          $ref: '#/components/responses/PrefProfileFetched'
-        '400':
+        "200":
+          $ref: "#/components/responses/PrefProfileFetched"
+        "400":
           $ref: "#/components/responses/DistinctIDMissing"
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
     put:
       tags:
         - Manage User Subscriptions & Preferences
@@ -515,15 +515,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/update_subscription_multiple'
+              $ref: "#/components/schemas/update_subscription_multiple"
         required: true
       responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionUpdated'
-        '400':
-          $ref: '#/components/responses/DistinctIDChannelStatusMissing'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "200":
+          $ref: "#/components/responses/SubscriptionUpdated"
+        "400":
+          $ref: "#/components/responses/DistinctIDChannelStatusMissing"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/subscriptions/list/{subscription_id}/user:
     post:
       tags:
@@ -565,15 +565,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/update_subscription_single'
+              $ref: "#/components/schemas/update_subscription_single"
         required: true
       responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionUpdated'
-        '400':
-          $ref: '#/components/responses/DistinctIDChannelStatusMissing'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "200":
+          $ref: "#/components/responses/SubscriptionUpdated"
+        "400":
+          $ref: "#/components/responses/DistinctIDChannelStatusMissing"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/verify/validate:
     post:
       tags:
@@ -630,17 +630,17 @@ paths:
             type: string
           example: 1234
       responses:
-        '200':
-          $ref: '#/components/responses/OTPSuccess'
-        '400':
-          $ref: '#/components/responses/OTPInvalid'
-        '401':
-          $ref: '#/components/responses/APIKeyInvalid'
+        "200":
+          $ref: "#/components/responses/OTPSuccess"
+        "400":
+          $ref: "#/components/responses/OTPInvalid"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/properties/set:
     post:
       tags:
         - User Properties
-      summary: 'Update User Property'
+      summary: "Update User Property"
       description: "This API enables you to update user properties of your users listed in your [User Profiles](../../user-profiles-overview). If the user with distinct ID doesn't exist, it creates a new user with the provided distinct ID and updates values for all the provided properties.<br/><br/>**Note:** If a [property was not created earlier](../../adding-new-user-property#how-to-add-a-new-user-property-from-user-profile-page), it will create a new property and the data type of the property will be determined based on the data type of the value. For example, if you `$set` a new property called `premium_user=true`, it will create the `premium_user` property with `Boolean` type and value `true`.<br/><br/>The property values can take the following data types:<ul> <li>**String:** Can be alphanumeric and contain a maximum of 255 characters. Example: `user_type=Premium` or `membership_number=ABC123`.</li> <li>**Number:** Can be an integer or a decimal. Example: `ltv=23000` or `cost=20.34`.</li> <li>**Boolean:** Can only contain `true` or `false` values.</li> <li>**Date:** Must be in ISO 8601 format. Example: `membership_date=2020-10-01T18:30:00.000Z` or `membership_date=2020-10-01T18:30:00Z` or `membership_date=2020-10-01T18:30:00.000+05:30` or `membership_date=2020-10-01T18:30:00+02:00` or `membership_date=2020-10-01`.</li> <li>**List:** Can contain an array of strings, numbers, and dates. Example: `products_ordered=['iPhone 16 Pro', 'iPad 32 GB']` or `purchase_amount=[23000, 20.34]` or `purchase_date=['2020-10-01T18:30:00Z', '2021-11-01T13:35:00+02:00', '2023-12-05']`</li></ul>If you try to set a value with a data type that does not match the predefined property type, the API will accept the request but ignore the invalid value. For example, if a predefined property `cost` expects a numeric value and you try to set it to `ABC`, the API will not store the value.<br/><br/>These user properties can be used to filter your users for creating [user cohorts](../../creating-cohorts) and [campaigns](../../campaign_creation#creating-a-campaign-using-cohort)."
       parameters:
         - name: WSID
@@ -668,20 +668,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/set_user_property'
+              $ref: "#/components/schemas/set_user_property"
         required: true
       responses:
-        '202':
-          $ref: '#/components/responses/PropertyUpdateRequestAccepted'
-        '400':
-          $ref: '#/components/responses/EmptySetObject'
-        '401':
-            $ref: '#/components/responses/APIKeyInvalid'
+        "202":
+          $ref: "#/components/responses/PropertyUpdateRequestAccepted"
+        "400":
+          $ref: "#/components/responses/EmptySetObject"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/properties/set-once:
     post:
       tags:
         - User Properties
-      summary: 'Set an Unset Property'
+      summary: "Set an Unset Property"
       description: "This API enables you to set user properties of your users listed in your [User Profiles](../../user-profiles-overview) **only if it is currently unset.** If the given payload contains a mix of properties that are currently set and unset, then it will only add values to the properties that are currently unset and ignore the other properties. If the user with distinct ID doesn't exist, it creates a new user with the provided distinct ID and sets values for all the provided properties.<br/><br/>**Note:** If a [property was not created earlier](../../adding-new-user-property#how-to-add-a-new-user-property-from-user-profile-page), it will create a new property and the data type of the property will be determined based on the data type of the value. For example, if you `$once` a new property called `premium_user=true`, it will create the `premium_user` property with `Boolean` type and value `true`.<br/><br/>The property values can take the following data types:<ul> <li>**String:** Can be alphanumeric and contain a maximum of 255 characters. Example: `user_type=Premium` or `membership_number=ABC123`.</li> <li>**Number:** Can be an integer or a decimal. Example: `ltv=23000` or `cost=20.34`.</li> <li>**Boolean:** Can only contain `true` or `false` values.</li> <li>**Date:** Must be in ISO 8601 format. Example: `membership_date=2020-10-01T18:30:00.000Z` or `membership_date=2020-10-01T18:30:00Z` or `membership_date=2020-10-01T18:30:00.000+05:30` or `membership_date=2020-10-01T18:30:00+02:00` or `membership_date=2020-10-01`.</li> <li>**List:** Can contain an array of strings, numbers, and dates. Example: `products_ordered=['iPhone 16 Pro', 'iPad 32 GB']` or `purchase_amount=[23000, 20.34]` or `purchase_date=['2020-10-01T18:30:00Z', '2021-11-01T13:35:00+02:00', '2023-12-05']`</li> </ul>If you try to set a value with a data type that does not match the predefined property type, the API will accept the request but ignore the invalid value. For example, if a predefined property `cost` expects a numeric value and you try to set it to `ABC`, the API will not store the value.<br/><br/>These user properties can be used to filter your users for creating [user cohorts](../../creating-cohorts) and [campaigns](../../campaign_creation#creating-a-campaign-using-cohort)."
       parameters:
         - name: WSID
@@ -709,20 +709,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/set_user_property_once'
+              $ref: "#/components/schemas/set_user_property_once"
         required: true
       responses:
-        '202':
-          $ref: '#/components/responses/PropertyUpdateRequestAccepted'
-        '400':
-          $ref: '#/components/responses/EmptySetOnceObject'
-        '401':
-            $ref: '#/components/responses/APIKeyInvalid'
+        "202":
+          $ref: "#/components/responses/PropertyUpdateRequestAccepted"
+        "400":
+          $ref: "#/components/responses/EmptySetOnceObject"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/properties/numerical-add:
     post:
       tags:
         - User Properties
-      summary: 'Increment/Decrement Numeric Property'
+      summary: "Increment/Decrement Numeric Property"
       description: "This API enables you to increment/decrement values of numeric properties of your users listed in your [User Profiles](../../user-profiles-overview). If the user with distinct ID doesn't exist, it creates a new user with the provided distinct ID and updates values for all the provided properties. To decrement property values, you can pass a negative value.<br/><br/>**Note:** If a [property was not created earlier](../../adding-new-user-property#how-to-add-a-new-user-property-from-user-profile-page), it will create a new property and the data type of the property will set to `Number`. For example, if you `$add` a new property called `ltv=1200`, it will create the `ltv` property with `Number` type and value `1200`. Do not enclose the value in double quotes as they must be of numeric type.<br/><br/>These user properties can be used to filter your users for creating [user cohorts](../../creating-cohorts) and [campaigns](../../campaign_creation#creating-a-campaign-using-cohort)."
       parameters:
         - name: WSID
@@ -750,20 +750,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/increment_user_property'
+              $ref: "#/components/schemas/increment_user_property"
         required: true
       responses:
-        '202':
-          $ref: '#/components/responses/PropertyUpdateRequestAccepted'
-        '400':
-          $ref: '#/components/responses/EmptyAddObject'
-        '401':
-            $ref: '#/components/responses/APIKeyInvalid'
+        "202":
+          $ref: "#/components/responses/PropertyUpdateRequestAccepted"
+        "400":
+          $ref: "#/components/responses/EmptyAddObject"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/properties/list-append:
     post:
       tags:
         - User Properties
-      summary: 'Append Values to List'
+      summary: "Append Values to List"
       description: "This API enables you to append values to list type properties of your users listed in your [User Profiles](../../user-profiles-overview). If the user with distinct ID doesn't exist, it creates a new user with the provided distinct ID and updates values for all the provided properties.<br/><br/>**Note:** If a [property was not created earlier](../../adding-new-user-property#how-to-add-a-new-user-property-from-user-profile-page), it will create a new property and the data type of the property will set to `List`. For example, if you `$append` a new property called `order_ids=245`, it will create the `order_ids` property with `List` type and value `[245]`. A list may contain only unique values, so if a value already exists, and you try to add the same value, it will be ignored. <br/><br/>You can append values with the following data types:<ul> <li>**String:** Can be alphanumeric and contain a maximum of 255 characters. Example: `products_order=['iPhone 16 Pro', 'iPad 32 GB']`.</li> <li>**Number:** Can be an integer or a decimal. Example: `purchase_amount=[23000, 20.34]`.</li> <li>**Date:** Must be in ISO 8601 format: `YYYY-MM-DDTHH:MM:SS.sssZ`. Example: `membership_date=2020-10-01T18:30:00.000Z` or `membership_date=2020-10-01T18:30:00Z` or `membership_date=2020-10-01T18:30:00.000+05:30` or `membership_date=2020-10-01T18:30:00+02:00` or `membership_date=2020-10-01`.</li> </ul>You can append only one value to a property at a time. Although not recommended, a list property can contain a mix of different data types.<br/><br/>These user properties can be used to filter your users for creating [user cohorts](../../creating-cohorts) and [campaigns](../../campaign_creation#creating-a-campaign-using-cohort)."
       parameters:
         - name: WSID
@@ -791,20 +791,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/append_to_user_property'
+              $ref: "#/components/schemas/append_to_user_property"
         required: true
       responses:
-        '202':
-          $ref: '#/components/responses/PropertyUpdateRequestAccepted'
-        '400':
-          $ref: '#/components/responses/EmptyAppendObject'
-        '401':
-            $ref: '#/components/responses/APIKeyInvalid'
+        "202":
+          $ref: "#/components/responses/PropertyUpdateRequestAccepted"
+        "400":
+          $ref: "#/components/responses/EmptyAppendObject"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/properties/list-remove:
     post:
       tags:
         - User Properties
-      summary: 'Remove Value From List'
+      summary: "Remove Value From List"
       description: "This API enables you to remove existing values from the list type properties of your users listed in your [User Profiles](../../user-profiles-overview). If the specified distinct ID or list property doesn't exist, it simply accepts the remove request and ignores it.<br/><br/>**Note:** This API can only be used to remove values from list and can remove only one value from a property at a time. To unset (nullify) other property types, please use [Unset User Property API.](./unset-user-property)"
       parameters:
         - name: WSID
@@ -832,20 +832,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/remove_from_user_property_list'
+              $ref: "#/components/schemas/remove_from_user_property_list"
         required: true
       responses:
-        '202':
-          $ref: '#/components/responses/PropertyUpdateRequestAccepted'
-        '400':
-          $ref: '#/components/responses/EmptyRemoveObject'
-        '401':
-            $ref: '#/components/responses/APIKeyInvalid'
+        "202":
+          $ref: "#/components/responses/PropertyUpdateRequestAccepted"
+        "400":
+          $ref: "#/components/responses/EmptyRemoveObject"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/properties/unset:
     post:
       tags:
         - User Properties
-      summary: 'Unset User Property'
+      summary: "Unset User Property"
       description: "This API enables you to unset (nullify) user properties of your users listed in your [User Profiles](../../user-profiles-overview). If the specified distinct ID or property doesn't exist, it simply accepts the unset request and ignores it. This API can be used to unset all property data types: String, Number, Boolean, Date, List."
       parameters:
         - name: WSID
@@ -873,20 +873,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/unset_user_property'
+              $ref: "#/components/schemas/unset_user_property"
         required: true
       responses:
-        '202':
-          $ref: '#/components/responses/PropertyUpdateRequestAccepted'
-        '400':
-          $ref: '#/components/responses/EmptyUnsetObject'
-        '401':
-            $ref: '#/components/responses/APIKeyInvalid'
+        "202":
+          $ref: "#/components/responses/PropertyUpdateRequestAccepted"
+        "400":
+          $ref: "#/components/responses/EmptyUnsetObject"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
   /{WSID}/{version}/profiles/properties/batch:
     post:
       tags:
         - User Properties
-      summary: 'Batch Update User Properties'
+      summary: "Batch Update User Properties"
       description: "This API enables you to modify user properties of your users listed in your [User Profiles](../../user-profiles-overview) in bulk:<br/><ul><li>[Update User Properties](./update-user-property) - `$set`</li><li>[Set Unset Properties](./set-an-unset-property) - `$once`</li><li>[Increment/Decrement Numeric Properties](./increment-decrement-numeric-property) - `$add`</li><li>[Append Values to List](./append-values-to-list) - `$append`</li><li>[Remove Values From List](./remove-value-from-list) - `$remove`, and</li><li>[Unset User Properties](./unset-user-property) `$unset`</li></ul><strong>Please refer to function specific API documentation for [&#36;set](./update-user-property), [&#36;once](./set-an-unset-property), [&#36;add](./increment-decrement-numeric-property), [&#36;append](./append-values-to-list), [&#36;remove](./remove-value-from-list), [&#36;unset](./unset-user-property) before using this API.</strong><br/></br><br/>**Note:** The user properties in User Profiles can be used to filter your users for creating [user cohorts](../../creating-cohorts) and [campaigns](../../campaign_creation#creating-a-campaign-using-cohort)."
       parameters:
         - name: WSID
@@ -914,14 +914,105 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/user_property_bulk'
+              $ref: "#/components/schemas/user_property_bulk"
       responses:
-        '202':
-          $ref: '#/components/responses/PropertyUpdateRequestAcceptedBulk'
-        '400':
-          $ref: '#/components/responses/EmptyActionBulkProperty'
-        '401':
-            $ref: '#/components/responses/APIKeyInvalid'
+        "202":
+          $ref: "#/components/responses/PropertyUpdateRequestAcceptedBulk"
+        "400":
+          $ref: "#/components/responses/EmptyActionBulkProperty"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
+  /{WSID}/suppressions:
+    get:
+      tags:
+        - Suppression List
+      summary: "Get Suppression List"
+      description: "The Suppression List API enables you to manage users who should be excluded from receiving communications on specific channels.<br/><br/>This API enables you to retrieve the list of all suppressed users across various channels."
+      parameters:
+        - name: WSID
+          in: path
+          description: Enter your workspace ID. You can obtain this value from the API Keys page within your Fyno account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: FYXXXXXXXX
+      responses:
+        "200":
+          $ref: "#/components/responses/SuppressionListSuccess"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
+    post:
+      tags:
+        - Suppression List
+      summary: "Add User to Suppression List"
+      description: "Add a user to the suppression list for a given channel.<br/><br/><strong>Note:</strong> If both `distinct_id` and `destination` are provided, `distinct_id` takes precedence, and `destination` is ignored."
+      parameters:
+        - name: WSID
+          in: path
+          description: Enter your workspace ID. You can obtain this value from the API Keys page within your Fyno account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: FYXXXXXXXX
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/add_suppression_list"
+      responses:
+        "200":
+          $ref: "#/components/responses/SuppressionListUpdated"
+        "400":
+          $ref: "#/components/responses/SuppressionListError"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
+    delete:
+      tags:
+        - Suppression List
+      summary: "Delete User from Suppression List"
+      description: "Delete a suppression entry using its `_id`, `distinct_id`, `destination`.<br/><br/><strong>Note:</strong> If all three values (`distinct_id`, `destination`, `_id`) are provided, `_id` takes precedence followed by `distinct_id`."
+      parameters:
+        - name: WSID
+          in: path
+          description: Enter your workspace ID. You can obtain this value from the API Keys page within your Fyno account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: FYXXXXXXXX
+        - name: _id
+          in: query
+          description: Unique identifier of the suppression record to delete.
+          required: false
+          schema:
+            type: string
+          example: 68763be4b8cee01156d9fa8a
+        - name: distinct_id
+          in: query
+          description: Unique identifier (used as an alternative to destination)
+          required: false
+          schema:
+            type: string
+          example: XXXX-XXX-XXXX
+        - name: destination
+          in: query
+          description: Phone number or email of the suppressed user
+          required: false
+          schema:
+            type: string
+          example: 919XXXXXXXX
+      responses:
+        "200":
+          $ref: "#/components/responses/SuppressionListDeleted"
+        "400":
+          $ref: "#/components/responses/SuppressionDeleteError"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
 components:
   securitySchemes:
     BearerAuth:
@@ -1049,7 +1140,8 @@ components:
               channel:
                 "$ref": "#/components/schemas/inline_response_200_channel"
               country_code:
-                description: The country code of the user. This value is automatically determined
+                description:
+                  The country code of the user. This value is automatically determined
                   based on the number provided in the SMS channel of the profile. For a list
                   of possible values, please <a href="https://fynodocs.s3.ap-south-1.amazonaws.com/files/country_code.json"
                   target="_blank">click here</a>.
@@ -1057,7 +1149,7 @@ components:
                 type: string
               created_at:
                 description: The timestamp when the profile was created in ISO Date Time Format.
-                example: '2023-04-21T06:34:01.386Z'
+                example: "2023-04-21T06:34:01.386Z"
                 type: string
               distinct_id:
                 description: The distinct ID used to identify the user.
@@ -1077,34 +1169,38 @@ components:
                 example: 6442XXXXXXXXXXXXXXXXc685
                 type: string
               status:
-                description: The status of the user. If `1`, the user is active and should receive
+                description:
+                  The status of the user. If `1`, the user is active and should receive
                   notifications. If `0`, the user in inactive and should not receive notifications.
                 enum:
-                - 1
-                - 0
+                  - 1
+                  - 0
                 example: 1
                 type: integer
               timezone:
-                description: The timezone of the user. For a list of possible values, please
+                description:
+                  The timezone of the user. For a list of possible values, please
                   <a href="https://fynodocs.s3.ap-south-1.amazonaws.com/files/timezones.json"
                   target="_blank">click here</a>.
                 example: Asia/Kolkata
                 type: string
               timezone_offset:
-                description: The timezone offset of the user. The value is automatically determined
+                description:
+                  The timezone offset of the user. The value is automatically determined
                   based on the timezone provided for the user in the profile.
                 example: "+05:30"
                 type: string
               updated_at:
-                description: The timestamp when the profile was last updated in ISO Date Time
+                description:
+                  The timestamp when the profile was last updated in ISO Date Time
                   Format.
-                example: '2023-04-21T08:42:30.235Z'
+                example: "2023-04-21T08:42:30.235Z"
                 type: string
               version:
                 description: The version where the user profile is available.
                 enum:
-                - live
-                - test
+                  - live
+                  - test
                 example: test
                 type: string
             type: object
@@ -1165,74 +1261,74 @@ components:
                         channel_config:
                           properties:
                             discord:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                             email:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                             inapp:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                             push:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                             slack:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                             sms:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                             teams:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                             voice:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                             webpush:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                             whatsapp:
-                              default: 'on'
+                              default: "on"
                               enum:
-                              - 'on'
-                              - 'off'
-                              - required
+                                - "on"
+                                - "off"
+                                - required
                               type: string
                           type: object
                         description:
@@ -1241,43 +1337,43 @@ components:
                           properties:
                             discord:
                               enum:
-                              - true
+                                - true
                               type: boolean
                             email:
                               enum:
-                              - true
+                                - true
                               type: boolean
                             inapp:
                               enum:
-                              - true
+                                - true
                               type: boolean
                             push:
                               enum:
-                              - true
+                                - true
                               type: boolean
                             slack:
                               enum:
-                              - true
+                                - true
                               type: boolean
                             sms:
                               enum:
-                              - true
+                                - true
                               type: boolean
                             teams:
                               enum:
-                              - true
+                                - true
                               type: boolean
                             voice:
                               enum:
-                              - true
+                                - true
                               type: boolean
                             webpush:
                               enum:
-                              - true
+                                - true
                               type: boolean
                             whatsapp:
                               enum:
-                              - true
+                                - true
                               type: boolean
                           type: object
                         name:
@@ -1350,21 +1446,21 @@ components:
               - _message
               - status
     ProfileDeletedSuccessfully:
-        description: Profile deleted successfully
-        content:
-          application/json:
-            schema:
-              properties:
-                _message:
-                  example: 1 User(s) deleted successfully
-                  type: string
-                status:
-                  example: ok
-                  type: string
-              type: object
-              required:
-                - _message
-                - status
+      description: Profile deleted successfully
+      content:
+        application/json:
+          schema:
+            properties:
+              _message:
+                example: 1 User(s) deleted successfully
+                type: string
+              status:
+                example: ok
+                type: string
+            type: object
+            required:
+              - _message
+              - status
     SubscriptionUpdated:
       description: Subscription updated successfully
       content:
@@ -1479,7 +1575,8 @@ components:
           schema:
             properties:
               _message:
-                example: Distinct ID 'distinct_id' already exists in the 'version' version of
+                example:
+                  Distinct ID 'distinct_id' already exists in the 'version' version of
                   your workspace
                 type: string
               status:
@@ -1490,21 +1587,21 @@ components:
               - _message
               - status
     DistinctIDMissing:
-          description: Distinct ID is not provided
-          content:
-            application/json:
-              schema:
-                properties:
-                  _message:
-                    example: distinct_id is required to list preference!
-                    type: string
-                  status:
-                    example: error
-                    type: string
-                type: object
-                required:
-                  - _message
-                  - status
+      description: Distinct ID is not provided
+      content:
+        application/json:
+          schema:
+            properties:
+              _message:
+                example: distinct_id is required to list preference!
+                type: string
+              status:
+                example: error
+                type: string
+            type: object
+            required:
+              - _message
+              - status
     DistinctIDChannelStatusMissing:
       description: Distinct ID, channel, or status is not provided
       content:
@@ -1528,7 +1625,8 @@ components:
           schema:
             properties:
               _message:
-                example: The notification event name 'event_name' is invalid or does not exists
+                example:
+                  The notification event name 'event_name' is invalid or does not exists
                   on prod
                 type: string
               status:
@@ -1666,6 +1764,66 @@ components:
             required:
               - _message
               - status
+    SuppressionListSuccess:
+      description: Suppression list fetched.
+      content:
+        application/json:
+          schema:
+            items:
+              "$ref": "#/components/schemas/fetch_suppression_list"
+            type: array
+    SuppressionListUpdated:
+      description: Suppression list updated.
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                example: ok
+                type: string
+              _message:
+                type: string
+                example: User has been added to the suppression!
+            type: object
+    SuppressionListDeleted:
+      description: Suppression list updated.
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                example: ok
+                type: string
+              _message:
+                type: string
+                example: 1 record(s) has been deleted!
+            type: object
+    SuppressionListError:
+      description: Destination is invalid
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                example: error
+                type: string
+              _message:
+                type: string
+                example: Invalid destination for channel sms
+            type: object
+    SuppressionDeleteError:
+      description: The provided `_id` does not exist.
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                example: error
+                type: string
+              _message:
+                type: string
+                example: Unable to delete non existing data!
+            type: object
     APIKeyInvalid:
       description: API Key or Workspace ID is invalid. User is unauthorised.
       content:
@@ -1706,23 +1864,27 @@ components:
           example: CXXXXXXXXXX
           type: string
         sms:
-          description: Enter the mobile number of the user. The number must start with
+          description:
+            Enter the mobile number of the user. The number must start with
             the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
           example: +919879XXXXXX
           type: string
         teams:
-          description: Enter the channel name. For teams, we currently support sending
+          description:
+            Enter the channel name. For teams, we currently support sending
             to one channel only. To send to multiple channels, do get in touch
             and we can share a workaround.
           example: General
           type: string
         voice:
-          description: Enter the mobile number of the user. The number must start with
+          description:
+            Enter the mobile number of the user. The number must start with
             the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
           example: +919879XXXXXX
           type: string
         whatsapp:
-          description: Enter the WhatsApp mobile number of the user. The number must start
+          description:
+            Enter the WhatsApp mobile number of the user. The number must start
             with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX
           example: +919879XXXXXX
           type: string
@@ -1730,7 +1892,8 @@ components:
     WSIDversionprofiles_channel_inapp:
       properties:
         integration_id:
-          description: "(Optional) Enter the integration ID that was used to generate
+          description:
+            "(Optional) Enter the integration ID that was used to generate
             the above token. This is helpful in identifying which integration to use when
             an account has multiple InApp integrations. If this value is null, then the
             above token is used for all InApp integrations.<br/><br/>The integration ID
@@ -1738,24 +1901,26 @@ components:
           example: IXXXXXXX
           type: string
         status:
-          description: "(Optional) Enter 1 to specify that this token must be active and
+          description:
+            "(Optional) Enter 1 to specify that this token must be active and
             should receive notifications. Enter 0 to specify that this token must be inactive
             and should not receive any notifications. If null, the default value is 1."
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           type: integer
         token:
           description: Enter the distinct ID or the generated token of the user.
           example: XXXXXXXX
           type: string
       required:
-      - token
+        - token
       type: object
     WSIDversionprofiles_channel_push:
       properties:
         integration_id:
-          description: "(Optional) Enter the integration ID that was used to generate
+          description:
+            "(Optional) Enter the integration ID that was used to generate
             the above token. This is helpful in identifying which integration to use when
             an account has multiple push integrations. If this value is null, then the
             above token is used for all push integrations.<br/><br/>The integration ID
@@ -1763,25 +1928,28 @@ components:
           example: IXXXXXXX
           type: string
         status:
-          description: "(Optional) Enter 1 to specify that this token must be active and
+          description:
+            "(Optional) Enter 1 to specify that this token must be active and
             should receive notifications. Enter 0 to specify that this token must be inactive
             and should not receive any notifications. If null, the default value is 1."
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           type: integer
         token:
-          description: Enter the push token of the user. If you use OneSignal, you must
+          description:
+            Enter the push token of the user. If you use OneSignal, you must
             add the following prefix to the token:<br/><br/>- <b>For OneSignal playerId&#58;</b>
             `onesignal_player_id:`<enter_playerid><br/>- <b>For OneSignal externalId&#58;</b>
             `onesignal_external_id:`<enter_externalid><br/>
           example: ExponentPushToken[XXXXX]
           type: string
       required:
-      - token
+        - token
       type: object
     WSIDversionprofilesdistinct_id_channel:
-      description: "(Optional) If you do not wish to change any channel values, remove
+      description:
+        "(Optional) If you do not wish to change any channel values, remove
         this key from the payload. **Note&#58;** If you change any value in the `channel`
         key, the entire channel data is replaced."
       properties:
@@ -1806,23 +1974,27 @@ components:
           example: CXXXXXXXXXX
           type: string
         sms:
-          description: Enter the new mobile number of the user. The number must start
+          description:
+            Enter the new mobile number of the user. The number must start
             with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
           example: +919879XXXXXX
           type: string
         teams:
-          description: Enter the new channel name. For teams, we currently support sending
+          description:
+            Enter the new channel name. For teams, we currently support sending
             to one channel only. To send to multiple channels, do get in touch
             and we can share a workaround.
           example: General
           type: string
         voice:
-          description: Enter the new mobile number of the user. The number must start
+          description:
+            Enter the new mobile number of the user. The number must start
             with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
           example: +919879XXXXXX
           type: string
         whatsapp:
-          description: Enter the new WhatsApp mobile number of the user. The number must
+          description:
+            Enter the new WhatsApp mobile number of the user. The number must
             start with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX
           example: +919879XXXXXX
           type: string
@@ -1830,7 +2002,8 @@ components:
     WSIDversionprofilesdistinct_id_channel_inapp:
       properties:
         integration_id:
-          description: "(Optional) Enter the integration ID that was used to generate
+          description:
+            "(Optional) Enter the integration ID that was used to generate
             the above token. This is helpful in identifying which integration to use when
             an account has multiple InApp integrations. If this value is null, then the
             above token is used for all InApp integrations.<br/><br/>The integration ID
@@ -1838,24 +2011,26 @@ components:
           example: IXXXXXXX
           type: string
         status:
-          description: "(Optional) Enter 1 to specify that this token must be active and
+          description:
+            "(Optional) Enter 1 to specify that this token must be active and
             should receive notifications. Enter 0 to specify that this token must be inactive
             and should not receive any notifications. If null, the default value is 1."
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           type: integer
         token:
           description: Enter the new distinct ID or the generated token of the user.
           example: XXXXXXXX
           type: string
       required:
-      - token
+        - token
       type: object
     WSIDversionprofilesdistinct_id_channel_push:
       properties:
         integration_id:
-          description: "(Optional) Enter the integration ID that was used to generate
+          description:
+            "(Optional) Enter the integration ID that was used to generate
             the above token. This is helpful in identifying which integration to use when
             an account has multiple push integrations. If this value is null, then the
             above token is used for all push integrations.<br/><br/>The integration ID
@@ -1863,32 +2038,36 @@ components:
           example: IXXXXXXX
           type: string
         status:
-          description: "(Optional) Enter 1 to specify that this token must be active and
+          description:
+            "(Optional) Enter 1 to specify that this token must be active and
             should receive notifications. Enter 0 to specify that this token must be inactive
             and should not receive any notifications. If null, the default value is 1."
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           type: integer
         token:
-          description: Enter the new push token of the user. If you use OneSignal, you
+          description:
+            Enter the new push token of the user. If you use OneSignal, you
             must add the following prefix to the token:<br/><br/>- <b>For OneSignal playerId&#58;</b>
             `onesignal_player_id:`<enter_playerid><br/>- <b>For OneSignal externalId&#58;</b>
             `onesignal_external_id:`<enter_externalid><br/>
           example: ExponentPushToken[XXXXX]
           type: string
       required:
-      - token
+        - token
       type: object
     WSIDversionprofilesdistinct_idchannel_channel:
       properties:
         discord:
-          description: Enter the new discord ID of the user. If you do not wish to change
+          description:
+            Enter the new discord ID of the user. If you do not wish to change
             this value, remove this key from the payload.
           example: 101XXXXXXXXXX7XXXXX
           type: string
         email:
-          description: Enter the new email address of the user. If you do not wish to
+          description:
+            Enter the new email address of the user. If you do not wish to
             change this value, remove this key from the payload.
           example: abcde@fghi.com
           type: string
@@ -1901,31 +2080,36 @@ components:
             "$ref": "#/components/schemas/WSIDversionprofilesdistinct_idchannel_channel_push"
           type: array
         slack:
-          description: Enter the new channel ID, user ID, or email address of the user.
+          description:
+            Enter the new channel ID, user ID, or email address of the user.
             If you do not wish to change this value, remove this key from the payload.
           example: CXXXXXXXXXX
           type: string
         sms:
-          description: Enter the new mobile number of the user. The number must start
+          description:
+            Enter the new mobile number of the user. The number must start
             with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX. If you do
             not wish to change this value, remove this key from the payload.
           example: +919879XXXXXX
           type: string
         teams:
-          description: Enter the new channel name. For teams, we currently support sending
+          description:
+            Enter the new channel name. For teams, we currently support sending
             to one channel only. If you wish to send to multiple channels, do get in touch
             and we can share a workaround. If you do not wish to change this value, remove
             this key from the payload.
           example: General
           type: string
         voice:
-          description: Enter the new mobile number of the user. The number must start
+          description:
+            Enter the new mobile number of the user. The number must start
             with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX. If you do
             not wish to change this value, remove this key from the payload.
           example: +919879XXXXXX
           type: string
         whatsapp:
-          description: Enter the new WhatsApp mobile number of the user. The number must
+          description:
+            Enter the new WhatsApp mobile number of the user. The number must
             start with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX. If
             you do not wish to change this value, remove this key from the payload.
           example: +919879XXXXXX
@@ -1934,7 +2118,8 @@ components:
     WSIDversionprofilesdistinct_idchannel_channel_inapp:
       properties:
         integration_id:
-          description: "(Optional) Enter the integration ID that was used to generate
+          description:
+            "(Optional) Enter the integration ID that was used to generate
             the above token. This is helpful in identifying which integration to use when
             an account has multiple InApp integrations. If this value is null, then the
             above token is used for all InApp integrations.<br/><br/>The integration ID
@@ -1942,24 +2127,26 @@ components:
           example: IXXXXXXX
           type: string
         status:
-          description: "(Optional) Enter 1 to specify that this token must be active and
+          description:
+            "(Optional) Enter 1 to specify that this token must be active and
             should receive notifications. Enter 0 to specify that this token must be inactive
             and should not receive any notifications. If null, the default value is 1."
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           type: integer
         token:
           description: Enter the new distinct ID or the generated token to add for the user.<br/><br/>**Note&#58;** This value would get added (and not updated) to the channel data.
           example: XXXXXXXX
           type: string
       required:
-      - token
+        - token
       type: object
     WSIDversionprofilesdistinct_idchannel_channel_push:
       properties:
         integration_id:
-          description: "(Optional) Enter the integration ID that was used to generate
+          description:
+            "(Optional) Enter the integration ID that was used to generate
             the above token. This is helpful in identifying which integration to use when
             an account has multiple push integrations. If this value is null, then the
             above token is used for all push integrations.<br/><br/>The integration ID
@@ -1967,12 +2154,13 @@ components:
           example: IXXXXXXX
           type: string
         status:
-          description: "(Optional) Enter 1 to specify that this token must be active and
+          description:
+            "(Optional) Enter 1 to specify that this token must be active and
             should receive notifications. Enter 0 to specify that this token must be inactive
             and should not receive any notifications. If null, the default value is 1."
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           type: integer
         token:
           description: Enter the new push token that to add for the user. If
@@ -1984,97 +2172,104 @@ components:
           example: ExponentPushToken[XXXXX]
           type: string
       required:
-      - token
+        - token
       type: object
     callback:
-      description: (Optional) You can enable callback for an event by specifying the `callback`
+      description:
+        (Optional) You can enable callback for an event by specifying the `callback`
         attribute in the payload of the event. By enabling callback, you will be able
         to receive delivery status of the events onto your webhook URL specified in the
         "Allowlist URL" section of the application. See [Configuring Allowlist URL/SQS to receive Delivery Report](../../configuring-allowlist-url-sqs-to-receive-delivery-report) for more details.
       properties:
         custom_id:
-          description: Use this parameter to send an ID that you would want to receive
+          description:
+            Use this parameter to send an ID that you would want to receive
             as a response (for reconciliation) in your delivery callback.
           example: ID001
           type: string
         custom1:
-          description: "(Optional) Use this parameter to send another ID that you want
+          description:
+            "(Optional) Use this parameter to send another ID that you want
             to receive as a response (for reconciliation) in your delivery callback."
           example: EV001
           type: string
         custom2:
-          description: "(Optional) Use this parameter to send yet another ID that you
+          description:
+            "(Optional) Use this parameter to send yet another ID that you
             want to receive as a response (for reconciliation) in your delivery callback."
           example: P001
           type: string
         enable:
-          description: "(Optional) Set `true` to enable delivery callback or `false` to
+          description:
+            "(Optional) Set `true` to enable delivery callback or `false` to
             disable delivery callback. The default value is `true` if `custom_id` is specified."
           enum:
-          - true
-          - false
+            - true
+            - false
           example: true
           type: boolean
         allowlist_url:
           description: "(Optional) Allowlist URL name where you want to receive delivery reports. Can be array of Allowlist URL names too if you want the delivery reports in multiple URLs. If `allowlist_url` is not specified, but callback object has `enable=true` and `custom_id` is specified, then the delivery reports will be sent to the default endpoint set to receive delivery reports in the [Configuring Allowlist URL](../../configuring-allowlist-url-sqs-to-receive-delivery-report) settings."
           example: ["WebhookURL1", "WebhookURL2"]
           oneOf:
-          - type: string
-          - type: array
-            items:
-              type: string
+            - type: string
+            - type: array
+              items:
+                type: string
       required:
-      - custom_id
+        - custom_id
       type: object
     channel_delete_body:
       oneOf:
-      - properties:
-          channel:
-            description: Enter all channels for which you wish to delete the data. For
-              example&#58; `sms`, `whatsapp`, `email`, `slack`, `discord`, `teams`, `voice``push`,
-              `inapp`.
-            example:
-            - sms
-            - whatsapp
-            - email
-            - slack
-            - discord
-            - teams
-            - voice
-            - push
+        - properties:
+            channel:
+              description:
+                Enter all channels for which you wish to delete the data. For
+                example&#58; `sms`, `whatsapp`, `email`, `slack`, `discord`, `teams`, `voice``push`,
+                `inapp`.
+              example:
+                - sms
+                - whatsapp
+                - email
+                - slack
+                - discord
+                - teams
+                - voice
+                - push
+                - inapp
+              items:
+                example: '["sms","whatsapp","email","slack","discord","teams","voice","push","inapp"]'
+                type: string
+              type: array
+          required:
+            - channel
+          type: object
+        - properties:
+            inapp:
+              description: Enter the tokens to delete from within the InApp channel.
+              example:
+                - token1
+                - token2
+              items:
+                example: '["token1","token2"]'
+                type: string
+              type: array
+            push:
+              description: Enter the tokens to delete from within the Push channel.
+              example:
+                - token1
+                - token2
+              items:
+                example: '["token1","token2"]'
+                type: string
+              type: array
+          required:
             - inapp
-            items:
-              example: '["sms","whatsapp","email","slack","discord","teams","voice","push","inapp"]'
-              type: string
-            type: array
-        required:
-        - channel
-        type: object
-      - properties:
-          inapp:
-            description: Enter the tokens to delete from within the InApp channel.
-            example:
-            - token1
-            - token2
-            items:
-              example: '["token1","token2"]'
-              type: string
-            type: array
-          push:
-            description: Enter the tokens to delete from within the Push channel.
-            example:
-            - token1
-            - token2
-            items:
-              example: '["token1","token2"]'
-              type: string
-            type: array
-        required:
-        - inapp
-        - push
-        type: object
+            - push
+          type: object
     data:
-      description: "(Optional) Enter the keys and values of your replaceabale placeholders.
+      description:
+        "(Optional) Enter the keys and values of your replaceabale placeholders.
         These values are replaced in the respective keys of the template when the notification
         is sent."
       example:
@@ -2090,7 +2285,7 @@ components:
         channel:
           "$ref": "#/components/schemas/WSIDversionprofilesdistinct_idchannel_channel"
       required:
-      - channel
+        - channel
       type: object
     event:
       description: Enter the name of the event you wish to fire.
@@ -2099,7 +2294,8 @@ components:
     event_bulk_body:
       properties:
         batch:
-          description: Your batch payload must specify at least *`distinct_id`* or *`to`*
+          description:
+            Your batch payload must specify at least *`distinct_id`* or *`to`*
             while firing a notification event.<br/><br/>If the payload contains&#58;<br/><br/>-
             <b>Option 1&#58;</b> ONLY *`to`* (and no *`distinct_id`*) - the event uses
             all destination values from the *`to`* object (as it is).<br/><br/>- <b>Option
@@ -2111,48 +2307,48 @@ components:
             the ID specified, which can be then used to search the logs by using `distinct_id`.
           items:
             oneOf:
-            - properties:
-                callback:
-                  "$ref": "#/components/schemas/callback"
-                data:
-                  "$ref": "#/components/schemas/data"
-                to:
-                  "$ref": "#/components/schemas/to"
-              required:
-              - event
-              - to
-              type: object
-            - properties:
-                callback:
-                  "$ref": "#/components/schemas/callback"
-                data:
-                  "$ref": "#/components/schemas/data"
-                distinct_id:
-                  "$ref": "#/components/schemas/distinct_id"
-              required:
-              - distinct_id
-              - event
-              type: object
-            - properties:
-                callback:
-                  "$ref": "#/components/schemas/callback"
-                data:
-                  "$ref": "#/components/schemas/data"
-                distinct_id:
-                  "$ref": "#/components/schemas/distinct_id"
-                to:
-                  "$ref": "#/components/schemas/to"
-              required:
-              - distinct_id
-              - event
-              - to
-              type: object
+              - properties:
+                  callback:
+                    "$ref": "#/components/schemas/callback"
+                  data:
+                    "$ref": "#/components/schemas/data"
+                  to:
+                    "$ref": "#/components/schemas/to"
+                required:
+                  - event
+                  - to
+                type: object
+              - properties:
+                  callback:
+                    "$ref": "#/components/schemas/callback"
+                  data:
+                    "$ref": "#/components/schemas/data"
+                  distinct_id:
+                    "$ref": "#/components/schemas/distinct_id"
+                required:
+                  - distinct_id
+                  - event
+                type: object
+              - properties:
+                  callback:
+                    "$ref": "#/components/schemas/callback"
+                  data:
+                    "$ref": "#/components/schemas/data"
+                  distinct_id:
+                    "$ref": "#/components/schemas/distinct_id"
+                  to:
+                    "$ref": "#/components/schemas/to"
+                required:
+                  - distinct_id
+                  - event
+                  - to
+                type: object
           type: array
         event:
           "$ref": "#/components/schemas/event"
       required:
-      - batch
-      - event
+        - batch
+        - event
       type: object
     inline_response_200_channel:
       properties:
@@ -2196,18 +2392,20 @@ components:
     inline_response_200_channel_inapp:
       properties:
         integration_id:
-          description: The integration ID that was used to generate the above token. If
+          description:
+            The integration ID that was used to generate the above token. If
             this value is null, then the above token is used for all InApp integrations.<br/><br/>The
             integration ID can be verified from Fyno's integrations page.
           example: IXXXXXXX
           type: string
         status:
-          description: The status of the token. If `1`, the token is active and should
+          description:
+            The status of the token. If `1`, the token is active and should
             receive notifications. If `0`, the token in inactive and should not receive
             notifications.
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           example: 1
           type: integer
         token:
@@ -2220,18 +2418,20 @@ components:
     inline_response_200_channel_push:
       properties:
         integration_id:
-          description: The integration ID that was used to generate the above token. If
+          description:
+            The integration ID that was used to generate the above token. If
             this value is null, then the above token is used for all push integrations.<br/><br/>The
             integration ID can be verified from Fyno's integrations page.
           example: IXXXXXXX
           type: string
         status:
-          description: The status of the token. If `1`, the token is active and should
+          description:
+            The status of the token. If `1`, the token is active and should
             receive notifications. If `0`, the token in inactive and should not receive
             notifications.
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           example: 1
           type: integer
         token:
@@ -2319,7 +2519,7 @@ components:
     inline_response_202_response_inapp:
       properties:
         destination:
-          example: '12345'
+          example: "12345"
           type: string
         msg_id:
           example: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX:XXXX
@@ -2401,101 +2601,101 @@ components:
         discord:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
         email:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
         inapp:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
         push:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
         slack:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
         sms:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
         teams:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
         voice:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
         webpush:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
         whatsapp:
           default: opted-in
           enum:
-          - opted-out
-          - opted-in
+            - opted-out
+            - opted-in
           type: string
       type: object
     preference_channels_opted_out:
       properties:
         discord:
           enum:
-          - opted-out
+            - opted-out
           type: string
         email:
           enum:
-          - opted-out
+            - opted-out
           type: string
         inapp:
           enum:
-          - opted-out
+            - opted-out
           type: string
         push:
           enum:
-          - opted-out
+            - opted-out
           type: string
         slack:
           enum:
-          - opted-out
+            - opted-out
           type: string
         sms:
           enum:
-          - opted-out
+            - opted-out
           type: string
         teams:
           enum:
-          - opted-out
+            - opted-out
           type: string
         voice:
           enum:
-          - opted-out
+            - opted-out
           type: string
         whatsapp:
           enum:
-          - opted-out
+            - opted-out
           type: string
       type: object
     profiles_delete_body:
@@ -2503,639 +2703,643 @@ components:
         distinct_id:
           description: Enter the `distinct_id` of all user profiles that you wish to delete.
           example:
-          - U00001
-          - U00002
+            - U00001
+            - U00002
           items:
             example: '["U00001","U00002"]'
             type: string
           type: array
       required:
-      - distinct_id
+        - distinct_id
       type: object
     profiles_distinct_id_body:
       properties:
         channel:
           "$ref": "#/components/schemas/WSIDversionprofilesdistinct_id_channel"
         distinct_id:
-          description: "(Optional) Enter the new distinct ID that you wish to use to identify
+          description:
+            "(Optional) Enter the new distinct ID that you wish to use to identify
             the user. If you do not wish to change this value, remove this key from the
             payload."
           example: new_distinct_id
           type: string
         name:
-          description: "(Optional) Enter the new full name of the user. If you do not
+          description:
+            "(Optional) Enter the new full name of the user. If you do not
             wish to change this value, remove this key from the payload."
           example: John Doe
           type: string
         status:
-          description: "(Optional) Enter 1 to change the user's status to active so that
+          description:
+            "(Optional) Enter 1 to change the user's status to active so that
             the user can receive notifications. Enter 0 to change the user's status to
             inactive so that the user does not receive any notification. If you do not
             wish to change this value, remove this key from the payload. If null, the
             default value is 1."
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           type: integer
         timezone:
-          description: (Optional) Enter the new timezone of the user. For a list of possible
+          description:
+            (Optional) Enter the new timezone of the user. For a list of possible
             values, please <a href="https://fynodocs.s3.ap-south-1.amazonaws.com/files/timezones.json"
             target="_blank">click here</a>.
           enum:
-          - Africa/Abidjan
-          - Africa/Accra
-          - Africa/Addis_Ababa
-          - Africa/Algiers
-          - Africa/Asmara
-          - Africa/Asmera
-          - Africa/Bamako
-          - Africa/Bangui
-          - Africa/Banjul
-          - Africa/Bissau
-          - Africa/Blantyre
-          - Africa/Brazzaville
-          - Africa/Bujumbura
-          - Africa/Cairo
-          - Africa/Casablanca
-          - Africa/Ceuta
-          - Africa/Conakry
-          - Africa/Dakar
-          - Africa/Dar_es_Salaam
-          - Africa/Djibouti
-          - Africa/Douala
-          - Africa/El_Aaiun
-          - Africa/Freetown
-          - Africa/Gaborone
-          - Africa/Harare
-          - Africa/Johannesburg
-          - Africa/Juba
-          - Africa/Kampala
-          - Africa/Khartoum
-          - Africa/Kigali
-          - Africa/Kinshasa
-          - Africa/Lagos
-          - Africa/Libreville
-          - Africa/Lome
-          - Africa/Luanda
-          - Africa/Lubumbashi
-          - Africa/Lusaka
-          - Africa/Malabo
-          - Africa/Maputo
-          - Africa/Maseru
-          - Africa/Mbabane
-          - Africa/Mogadishu
-          - Africa/Monrovia
-          - Africa/Nairobi
-          - Africa/Ndjamena
-          - Africa/Niamey
-          - Africa/Nouakchott
-          - Africa/Ouagadougou
-          - Africa/Porto-Novo
-          - Africa/Sao_Tome
-          - Africa/Timbuktu
-          - Africa/Tripoli
-          - Africa/Tunis
-          - Africa/Windhoek
-          - America/Adak
-          - America/Anchorage
-          - America/Anguilla
-          - America/Antigua
-          - America/Araguaina
-          - America/Argentina/Buenos_Aires
-          - America/Argentina/Catamarca
-          - America/Argentina/ComodRivadavia
-          - America/Argentina/Cordoba
-          - America/Argentina/Jujuy
-          - America/Argentina/La_Rioja
-          - America/Argentina/Mendoza
-          - America/Argentina/Rio_Gallegos
-          - America/Argentina/Salta
-          - America/Argentina/San_Juan
-          - America/Argentina/San_Luis
-          - America/Argentina/Tucuman
-          - America/Argentina/Ushuaia
-          - America/Aruba
-          - America/Asuncion
-          - America/Atikokan
-          - America/Atka
-          - America/Bahia
-          - America/Bahia_Banderas
-          - America/Barbados
-          - America/Belem
-          - America/Belize
-          - America/Blanc-Sablon
-          - America/Boa_Vista
-          - America/Bogota
-          - America/Boise
-          - America/Buenos_Aires
-          - America/Cambridge_Bay
-          - America/Campo_Grande
-          - America/Cancun
-          - America/Caracas
-          - America/Catamarca
-          - America/Cayenne
-          - America/Cayman
-          - America/Chicago
-          - America/Chihuahua
-          - America/Coral_Harbour
-          - America/Cordoba
-          - America/Costa_Rica
-          - America/Creston
-          - America/Cuiaba
-          - America/Curacao
-          - America/Danmarkshavn
-          - America/Dawson
-          - America/Dawson_Creek
-          - America/Denver
-          - America/Detroit
-          - America/Dominica
-          - America/Edmonton
-          - America/Eirunepe
-          - America/El_Salvador
-          - America/Ensenada
-          - America/Fort_Nelson
-          - America/Fort_Wayne
-          - America/Fortaleza
-          - America/Glace_Bay
-          - America/Godthab
-          - America/Goose_Bay
-          - America/Grand_Turk
-          - America/Grenada
-          - America/Guadeloupe
-          - America/Guatemala
-          - America/Guayaquil
-          - America/Guyana
-          - America/Halifax
-          - America/Havana
-          - America/Hermosillo
-          - America/Indiana/Indianapolis
-          - America/Indiana/Knox
-          - America/Indiana/Marengo
-          - America/Indiana/Petersburg
-          - America/Indiana/Tell_City
-          - America/Indiana/Vevay
-          - America/Indiana/Vincennes
-          - America/Indiana/Winamac
-          - America/Indianapolis
-          - America/Inuvik
-          - America/Iqaluit
-          - America/Jamaica
-          - America/Jujuy
-          - America/Juneau
-          - America/Kentucky/Louisville
-          - America/Kentucky/Monticello
-          - America/Knox_IN
-          - America/Kralendijk
-          - America/La_Paz
-          - America/Lima
-          - America/Los_Angeles
-          - America/Louisville
-          - America/Lower_Princes
-          - America/Maceio
-          - America/Managua
-          - America/Manaus
-          - America/Marigot
-          - America/Martinique
-          - America/Matamoros
-          - America/Mazatlan
-          - America/Mendoza
-          - America/Menominee
-          - America/Merida
-          - America/Metlakatla
-          - America/Mexico_City
-          - America/Miquelon
-          - America/Moncton
-          - America/Monterrey
-          - America/Montevideo
-          - America/Montreal
-          - America/Montserrat
-          - America/Nassau
-          - America/New_York
-          - America/Nipigon
-          - America/Nome
-          - America/Noronha
-          - America/North_Dakota/Beulah
-          - America/North_Dakota/Center
-          - America/North_Dakota/New_Salem
-          - America/Nuuk
-          - America/Ojinaga
-          - America/Panama
-          - America/Pangnirtung
-          - America/Paramaribo
-          - America/Phoenix
-          - America/Port-au-Prince
-          - America/Port_of_Spain
-          - America/Porto_Acre
-          - America/Porto_Velho
-          - America/Puerto_Rico
-          - America/Punta_Arenas
-          - America/Rainy_River
-          - America/Rankin_Inlet
-          - America/Recife
-          - America/Regina
-          - America/Resolute
-          - America/Rio_Branco
-          - America/Rosario
-          - America/Santa_Isabel
-          - America/Santarem
-          - America/Santiago
-          - America/Santo_Domingo
-          - America/Sao_Paulo
-          - America/Scoresbysund
-          - America/Shiprock
-          - America/Sitka
-          - America/St_Barthelemy
-          - America/St_Johns
-          - America/St_Kitts
-          - America/St_Lucia
-          - America/St_Thomas
-          - America/St_Vincent
-          - America/Swift_Current
-          - America/Tegucigalpa
-          - America/Thule
-          - America/Thunder_Bay
-          - America/Tijuana
-          - America/Toronto
-          - America/Tortola
-          - America/Vancouver
-          - America/Virgin
-          - America/Whitehorse
-          - America/Winnipeg
-          - America/Yakutat
-          - America/Yellowknife
-          - Antarctica/Casey
-          - Antarctica/Davis
-          - Antarctica/DumontDUrville
-          - Antarctica/Macquarie
-          - Antarctica/Mawson
-          - Antarctica/McMurdo
-          - Antarctica/Palmer
-          - Antarctica/Rothera
-          - Antarctica/South_Pole
-          - Antarctica/Syowa
-          - Antarctica/Troll
-          - Antarctica/Vostok
-          - Arctic/Longyearbyen
-          - Asia/Aden
-          - Asia/Almaty
-          - Asia/Amman
-          - Asia/Anadyr
-          - Asia/Aqtau
-          - Asia/Aqtobe
-          - Asia/Ashgabat
-          - Asia/Ashkhabad
-          - Asia/Atyrau
-          - Asia/Baghdad
-          - Asia/Bahrain
-          - Asia/Baku
-          - Asia/Bangkok
-          - Asia/Barnaul
-          - Asia/Beirut
-          - Asia/Bishkek
-          - Asia/Brunei
-          - Asia/Calcutta
-          - Asia/Chita
-          - Asia/Choibalsan
-          - Asia/Chongqing
-          - Asia/Chungking
-          - Asia/Colombo
-          - Asia/Dacca
-          - Asia/Damascus
-          - Asia/Dhaka
-          - Asia/Dili
-          - Asia/Dubai
-          - Asia/Dushanbe
-          - Asia/Famagusta
-          - Asia/Gaza
-          - Asia/Harbin
-          - Asia/Hebron
-          - Asia/Ho_Chi_Minh
-          - Asia/Hong_Kong
-          - Asia/Hovd
-          - Asia/Irkutsk
-          - Asia/Istanbul
-          - Asia/Jakarta
-          - Asia/Jayapura
-          - Asia/Jerusalem
-          - Asia/Kabul
-          - Asia/Kamchatka
-          - Asia/Karachi
-          - Asia/Kashgar
-          - Asia/Kathmandu
-          - Asia/Katmandu
-          - Asia/Khandyga
-          - Asia/Kolkata
-          - Asia/Krasnoyarsk
-          - Asia/Kuala_Lumpur
-          - Asia/Kuching
-          - Asia/Kuwait
-          - Asia/Macao
-          - Asia/Macau
-          - Asia/Magadan
-          - Asia/Makassar
-          - Asia/Manila
-          - Asia/Muscat
-          - Asia/Nicosia
-          - Asia/Novokuznetsk
-          - Asia/Novosibirsk
-          - Asia/Omsk
-          - Asia/Oral
-          - Asia/Phnom_Penh
-          - Asia/Pontianak
-          - Asia/Pyongyang
-          - Asia/Qatar
-          - Asia/Qostanay
-          - Asia/Qyzylorda
-          - Asia/Rangoon
-          - Asia/Riyadh
-          - Asia/Saigon
-          - Asia/Sakhalin
-          - Asia/Samarkand
-          - Asia/Seoul
-          - Asia/Shanghai
-          - Asia/Singapore
-          - Asia/Srednekolymsk
-          - Asia/Taipei
-          - Asia/Tashkent
-          - Asia/Tbilisi
-          - Asia/Tehran
-          - Asia/Tel_Aviv
-          - Asia/Thimbu
-          - Asia/Thimphu
-          - Asia/Tokyo
-          - Asia/Tomsk
-          - Asia/Ujung_Pandang
-          - Asia/Ulaanbaatar
-          - Asia/Ulan_Bator
-          - Asia/Urumqi
-          - Asia/Ust-Nera
-          - Asia/Vientiane
-          - Asia/Vladivostok
-          - Asia/Yakutsk
-          - Asia/Yangon
-          - Asia/Yekaterinburg
-          - Asia/Yerevan
-          - Atlantic/Azores
-          - Atlantic/Bermuda
-          - Atlantic/Canary
-          - Atlantic/Cape_Verde
-          - Atlantic/Faeroe
-          - Atlantic/Faroe
-          - Atlantic/Jan_Mayen
-          - Atlantic/Madeira
-          - Atlantic/Reykjavik
-          - Atlantic/South_Georgia
-          - Atlantic/St_Helena
-          - Atlantic/Stanley
-          - Australia/ACT
-          - Australia/Adelaide
-          - Australia/Brisbane
-          - Australia/Broken_Hill
-          - Australia/Canberra
-          - Australia/Currie
-          - Australia/Darwin
-          - Australia/Eucla
-          - Australia/Hobart
-          - Australia/LHI
-          - Australia/Lindeman
-          - Australia/Lord_Howe
-          - Australia/Melbourne
-          - Australia/North
-          - Australia/NSW
-          - Australia/Perth
-          - Australia/Queensland
-          - Australia/South
-          - Australia/Sydney
-          - Australia/Tasmania
-          - Australia/Victoria
-          - Australia/West
-          - Australia/Yancowinna
-          - Brazil/Acre
-          - Brazil/DeNoronha
-          - Brazil/East
-          - Brazil/West
-          - Canada/Atlantic
-          - Canada/Central
-          - Canada/Eastern
-          - Canada/Mountain
-          - Canada/Newfoundland
-          - Canada/Pacific
-          - Canada/Saskatchewan
-          - Canada/Yukon
-          - CET
-          - Chile/Continental
-          - Chile/EasterIsland
-          - CST6CDT
-          - Cuba
-          - EET
-          - Egypt
-          - Eire
-          - EST
-          - EST5EDT
-          - Etc/GMT+0
-          - Etc/GMT+1
-          - Etc/GMT+10
-          - Etc/GMT+11
-          - Etc/GMT+12
-          - Etc/GMT+2
-          - Etc/GMT+3
-          - Etc/GMT+4
-          - Etc/GMT+5
-          - Etc/GMT+6
-          - Etc/GMT+7
-          - Etc/GMT+8
-          - Etc/GMT+9
-          - Etc/GMT
-          - Etc/GMT-0
-          - Etc/GMT-1
-          - Etc/GMT-10
-          - Etc/GMT-11
-          - Etc/GMT-12
-          - Etc/GMT-13
-          - Etc/GMT-14
-          - Etc/GMT-2
-          - Etc/GMT-3
-          - Etc/GMT-4
-          - Etc/GMT-5
-          - Etc/GMT-6
-          - Etc/GMT-7
-          - Etc/GMT-8
-          - Etc/GMT-9
-          - Etc/GMT0
-          - Etc/Greenwich
-          - Etc/UCT
-          - Etc/Universal
-          - Etc/UTC
-          - Etc/Zulu
-          - Europe/Amsterdam
-          - Europe/Andorra
-          - Europe/Astrakhan
-          - Europe/Athens
-          - Europe/Belfast
-          - Europe/Belgrade
-          - Europe/Berlin
-          - Europe/Bratislava
-          - Europe/Brussels
-          - Europe/Bucharest
-          - Europe/Budapest
-          - Europe/Busingen
-          - Europe/Chisinau
-          - Europe/Copenhagen
-          - Europe/Dublin
-          - Europe/Gibraltar
-          - Europe/Guernsey
-          - Europe/Helsinki
-          - Europe/Isle_of_Man
-          - Europe/Istanbul
-          - Europe/Jersey
-          - Europe/Kaliningrad
-          - Europe/Kiev
-          - Europe/Kirov
-          - Europe/Lisbon
-          - Europe/Ljubljana
-          - Europe/London
-          - Europe/Luxembourg
-          - Europe/Madrid
-          - Europe/Malta
-          - Europe/Mariehamn
-          - Europe/Minsk
-          - Europe/Monaco
-          - Europe/Moscow
-          - Europe/Nicosia
-          - Europe/Oslo
-          - Europe/Paris
-          - Europe/Podgorica
-          - Europe/Prague
-          - Europe/Riga
-          - Europe/Rome
-          - Europe/Samara
-          - Europe/San_Marino
-          - Europe/Sarajevo
-          - Europe/Saratov
-          - Europe/Simferopol
-          - Europe/Skopje
-          - Europe/Sofia
-          - Europe/Stockholm
-          - Europe/Tallinn
-          - Europe/Tirane
-          - Europe/Tiraspol
-          - Europe/Ulyanovsk
-          - Europe/Uzhgorod
-          - Europe/Vaduz
-          - Europe/Vatican
-          - Europe/Vienna
-          - Europe/Vilnius
-          - Europe/Volgograd
-          - Europe/Warsaw
-          - Europe/Zagreb
-          - Europe/Zaporozhye
-          - Europe/Zurich
-          - GB
-          - GB-Eire
-          - GMT+0
-          - GMT
-          - GMT-0
-          - GMT0
-          - Greenwich
-          - Hongkong
-          - HST
-          - Iceland
-          - Indian/Antananarivo
-          - Indian/Chagos
-          - Indian/Christmas
-          - Indian/Cocos
-          - Indian/Comoro
-          - Indian/Kerguelen
-          - Indian/Mahe
-          - Indian/Maldives
-          - Indian/Mauritius
-          - Indian/Mayotte
-          - Indian/Reunion
-          - Iran
-          - Israel
-          - Jamaica
-          - Japan
-          - Kwajalein
-          - Libya
-          - MET
-          - Mexico/BajaNorte
-          - Mexico/BajaSur
-          - Mexico/General
-          - MST
-          - MST7MDT
-          - Navajo
-          - NZ
-          - NZ-CHAT
-          - Pacific/Apia
-          - Pacific/Auckland
-          - Pacific/Bougainville
-          - Pacific/Chatham
-          - Pacific/Chuuk
-          - Pacific/Easter
-          - Pacific/Efate
-          - Pacific/Enderbury
-          - Pacific/Fakaofo
-          - Pacific/Fiji
-          - Pacific/Funafuti
-          - Pacific/Galapagos
-          - Pacific/Gambier
-          - Pacific/Guadalcanal
-          - Pacific/Guam
-          - Pacific/Honolulu
-          - Pacific/Johnston
-          - Pacific/Kanton
-          - Pacific/Kiritimati
-          - Pacific/Kosrae
-          - Pacific/Kwajalein
-          - Pacific/Majuro
-          - Pacific/Marquesas
-          - Pacific/Midway
-          - Pacific/Nauru
-          - Pacific/Niue
-          - Pacific/Norfolk
-          - Pacific/Noumea
-          - Pacific/Pago_Pago
-          - Pacific/Palau
-          - Pacific/Pitcairn
-          - Pacific/Pohnpei
-          - Pacific/Ponape
-          - Pacific/Port_Moresby
-          - Pacific/Rarotonga
-          - Pacific/Saipan
-          - Pacific/Samoa
-          - Pacific/Tahiti
-          - Pacific/Tarawa
-          - Pacific/Tongatapu
-          - Pacific/Truk
-          - Pacific/Wake
-          - Pacific/Wallis
-          - Pacific/Yap
-          - Poland
-          - Portugal
-          - PRC
-          - PST8PDT
-          - ROC
-          - ROK
-          - Singapore
-          - Turkey
-          - UCT
-          - Universal
-          - US/Alaska
-          - US/Aleutian
-          - US/Arizona
-          - US/Central
-          - US/East-Indiana
-          - US/Eastern
-          - US/Hawaii
-          - US/Indiana-Starke
-          - US/Michigan
-          - US/Mountain
-          - US/Pacific
-          - US/Samoa
-          - UTC
-          - W-SU
-          - WET
-          - Zulu
+            - Africa/Abidjan
+            - Africa/Accra
+            - Africa/Addis_Ababa
+            - Africa/Algiers
+            - Africa/Asmara
+            - Africa/Asmera
+            - Africa/Bamako
+            - Africa/Bangui
+            - Africa/Banjul
+            - Africa/Bissau
+            - Africa/Blantyre
+            - Africa/Brazzaville
+            - Africa/Bujumbura
+            - Africa/Cairo
+            - Africa/Casablanca
+            - Africa/Ceuta
+            - Africa/Conakry
+            - Africa/Dakar
+            - Africa/Dar_es_Salaam
+            - Africa/Djibouti
+            - Africa/Douala
+            - Africa/El_Aaiun
+            - Africa/Freetown
+            - Africa/Gaborone
+            - Africa/Harare
+            - Africa/Johannesburg
+            - Africa/Juba
+            - Africa/Kampala
+            - Africa/Khartoum
+            - Africa/Kigali
+            - Africa/Kinshasa
+            - Africa/Lagos
+            - Africa/Libreville
+            - Africa/Lome
+            - Africa/Luanda
+            - Africa/Lubumbashi
+            - Africa/Lusaka
+            - Africa/Malabo
+            - Africa/Maputo
+            - Africa/Maseru
+            - Africa/Mbabane
+            - Africa/Mogadishu
+            - Africa/Monrovia
+            - Africa/Nairobi
+            - Africa/Ndjamena
+            - Africa/Niamey
+            - Africa/Nouakchott
+            - Africa/Ouagadougou
+            - Africa/Porto-Novo
+            - Africa/Sao_Tome
+            - Africa/Timbuktu
+            - Africa/Tripoli
+            - Africa/Tunis
+            - Africa/Windhoek
+            - America/Adak
+            - America/Anchorage
+            - America/Anguilla
+            - America/Antigua
+            - America/Araguaina
+            - America/Argentina/Buenos_Aires
+            - America/Argentina/Catamarca
+            - America/Argentina/ComodRivadavia
+            - America/Argentina/Cordoba
+            - America/Argentina/Jujuy
+            - America/Argentina/La_Rioja
+            - America/Argentina/Mendoza
+            - America/Argentina/Rio_Gallegos
+            - America/Argentina/Salta
+            - America/Argentina/San_Juan
+            - America/Argentina/San_Luis
+            - America/Argentina/Tucuman
+            - America/Argentina/Ushuaia
+            - America/Aruba
+            - America/Asuncion
+            - America/Atikokan
+            - America/Atka
+            - America/Bahia
+            - America/Bahia_Banderas
+            - America/Barbados
+            - America/Belem
+            - America/Belize
+            - America/Blanc-Sablon
+            - America/Boa_Vista
+            - America/Bogota
+            - America/Boise
+            - America/Buenos_Aires
+            - America/Cambridge_Bay
+            - America/Campo_Grande
+            - America/Cancun
+            - America/Caracas
+            - America/Catamarca
+            - America/Cayenne
+            - America/Cayman
+            - America/Chicago
+            - America/Chihuahua
+            - America/Coral_Harbour
+            - America/Cordoba
+            - America/Costa_Rica
+            - America/Creston
+            - America/Cuiaba
+            - America/Curacao
+            - America/Danmarkshavn
+            - America/Dawson
+            - America/Dawson_Creek
+            - America/Denver
+            - America/Detroit
+            - America/Dominica
+            - America/Edmonton
+            - America/Eirunepe
+            - America/El_Salvador
+            - America/Ensenada
+            - America/Fort_Nelson
+            - America/Fort_Wayne
+            - America/Fortaleza
+            - America/Glace_Bay
+            - America/Godthab
+            - America/Goose_Bay
+            - America/Grand_Turk
+            - America/Grenada
+            - America/Guadeloupe
+            - America/Guatemala
+            - America/Guayaquil
+            - America/Guyana
+            - America/Halifax
+            - America/Havana
+            - America/Hermosillo
+            - America/Indiana/Indianapolis
+            - America/Indiana/Knox
+            - America/Indiana/Marengo
+            - America/Indiana/Petersburg
+            - America/Indiana/Tell_City
+            - America/Indiana/Vevay
+            - America/Indiana/Vincennes
+            - America/Indiana/Winamac
+            - America/Indianapolis
+            - America/Inuvik
+            - America/Iqaluit
+            - America/Jamaica
+            - America/Jujuy
+            - America/Juneau
+            - America/Kentucky/Louisville
+            - America/Kentucky/Monticello
+            - America/Knox_IN
+            - America/Kralendijk
+            - America/La_Paz
+            - America/Lima
+            - America/Los_Angeles
+            - America/Louisville
+            - America/Lower_Princes
+            - America/Maceio
+            - America/Managua
+            - America/Manaus
+            - America/Marigot
+            - America/Martinique
+            - America/Matamoros
+            - America/Mazatlan
+            - America/Mendoza
+            - America/Menominee
+            - America/Merida
+            - America/Metlakatla
+            - America/Mexico_City
+            - America/Miquelon
+            - America/Moncton
+            - America/Monterrey
+            - America/Montevideo
+            - America/Montreal
+            - America/Montserrat
+            - America/Nassau
+            - America/New_York
+            - America/Nipigon
+            - America/Nome
+            - America/Noronha
+            - America/North_Dakota/Beulah
+            - America/North_Dakota/Center
+            - America/North_Dakota/New_Salem
+            - America/Nuuk
+            - America/Ojinaga
+            - America/Panama
+            - America/Pangnirtung
+            - America/Paramaribo
+            - America/Phoenix
+            - America/Port-au-Prince
+            - America/Port_of_Spain
+            - America/Porto_Acre
+            - America/Porto_Velho
+            - America/Puerto_Rico
+            - America/Punta_Arenas
+            - America/Rainy_River
+            - America/Rankin_Inlet
+            - America/Recife
+            - America/Regina
+            - America/Resolute
+            - America/Rio_Branco
+            - America/Rosario
+            - America/Santa_Isabel
+            - America/Santarem
+            - America/Santiago
+            - America/Santo_Domingo
+            - America/Sao_Paulo
+            - America/Scoresbysund
+            - America/Shiprock
+            - America/Sitka
+            - America/St_Barthelemy
+            - America/St_Johns
+            - America/St_Kitts
+            - America/St_Lucia
+            - America/St_Thomas
+            - America/St_Vincent
+            - America/Swift_Current
+            - America/Tegucigalpa
+            - America/Thule
+            - America/Thunder_Bay
+            - America/Tijuana
+            - America/Toronto
+            - America/Tortola
+            - America/Vancouver
+            - America/Virgin
+            - America/Whitehorse
+            - America/Winnipeg
+            - America/Yakutat
+            - America/Yellowknife
+            - Antarctica/Casey
+            - Antarctica/Davis
+            - Antarctica/DumontDUrville
+            - Antarctica/Macquarie
+            - Antarctica/Mawson
+            - Antarctica/McMurdo
+            - Antarctica/Palmer
+            - Antarctica/Rothera
+            - Antarctica/South_Pole
+            - Antarctica/Syowa
+            - Antarctica/Troll
+            - Antarctica/Vostok
+            - Arctic/Longyearbyen
+            - Asia/Aden
+            - Asia/Almaty
+            - Asia/Amman
+            - Asia/Anadyr
+            - Asia/Aqtau
+            - Asia/Aqtobe
+            - Asia/Ashgabat
+            - Asia/Ashkhabad
+            - Asia/Atyrau
+            - Asia/Baghdad
+            - Asia/Bahrain
+            - Asia/Baku
+            - Asia/Bangkok
+            - Asia/Barnaul
+            - Asia/Beirut
+            - Asia/Bishkek
+            - Asia/Brunei
+            - Asia/Calcutta
+            - Asia/Chita
+            - Asia/Choibalsan
+            - Asia/Chongqing
+            - Asia/Chungking
+            - Asia/Colombo
+            - Asia/Dacca
+            - Asia/Damascus
+            - Asia/Dhaka
+            - Asia/Dili
+            - Asia/Dubai
+            - Asia/Dushanbe
+            - Asia/Famagusta
+            - Asia/Gaza
+            - Asia/Harbin
+            - Asia/Hebron
+            - Asia/Ho_Chi_Minh
+            - Asia/Hong_Kong
+            - Asia/Hovd
+            - Asia/Irkutsk
+            - Asia/Istanbul
+            - Asia/Jakarta
+            - Asia/Jayapura
+            - Asia/Jerusalem
+            - Asia/Kabul
+            - Asia/Kamchatka
+            - Asia/Karachi
+            - Asia/Kashgar
+            - Asia/Kathmandu
+            - Asia/Katmandu
+            - Asia/Khandyga
+            - Asia/Kolkata
+            - Asia/Krasnoyarsk
+            - Asia/Kuala_Lumpur
+            - Asia/Kuching
+            - Asia/Kuwait
+            - Asia/Macao
+            - Asia/Macau
+            - Asia/Magadan
+            - Asia/Makassar
+            - Asia/Manila
+            - Asia/Muscat
+            - Asia/Nicosia
+            - Asia/Novokuznetsk
+            - Asia/Novosibirsk
+            - Asia/Omsk
+            - Asia/Oral
+            - Asia/Phnom_Penh
+            - Asia/Pontianak
+            - Asia/Pyongyang
+            - Asia/Qatar
+            - Asia/Qostanay
+            - Asia/Qyzylorda
+            - Asia/Rangoon
+            - Asia/Riyadh
+            - Asia/Saigon
+            - Asia/Sakhalin
+            - Asia/Samarkand
+            - Asia/Seoul
+            - Asia/Shanghai
+            - Asia/Singapore
+            - Asia/Srednekolymsk
+            - Asia/Taipei
+            - Asia/Tashkent
+            - Asia/Tbilisi
+            - Asia/Tehran
+            - Asia/Tel_Aviv
+            - Asia/Thimbu
+            - Asia/Thimphu
+            - Asia/Tokyo
+            - Asia/Tomsk
+            - Asia/Ujung_Pandang
+            - Asia/Ulaanbaatar
+            - Asia/Ulan_Bator
+            - Asia/Urumqi
+            - Asia/Ust-Nera
+            - Asia/Vientiane
+            - Asia/Vladivostok
+            - Asia/Yakutsk
+            - Asia/Yangon
+            - Asia/Yekaterinburg
+            - Asia/Yerevan
+            - Atlantic/Azores
+            - Atlantic/Bermuda
+            - Atlantic/Canary
+            - Atlantic/Cape_Verde
+            - Atlantic/Faeroe
+            - Atlantic/Faroe
+            - Atlantic/Jan_Mayen
+            - Atlantic/Madeira
+            - Atlantic/Reykjavik
+            - Atlantic/South_Georgia
+            - Atlantic/St_Helena
+            - Atlantic/Stanley
+            - Australia/ACT
+            - Australia/Adelaide
+            - Australia/Brisbane
+            - Australia/Broken_Hill
+            - Australia/Canberra
+            - Australia/Currie
+            - Australia/Darwin
+            - Australia/Eucla
+            - Australia/Hobart
+            - Australia/LHI
+            - Australia/Lindeman
+            - Australia/Lord_Howe
+            - Australia/Melbourne
+            - Australia/North
+            - Australia/NSW
+            - Australia/Perth
+            - Australia/Queensland
+            - Australia/South
+            - Australia/Sydney
+            - Australia/Tasmania
+            - Australia/Victoria
+            - Australia/West
+            - Australia/Yancowinna
+            - Brazil/Acre
+            - Brazil/DeNoronha
+            - Brazil/East
+            - Brazil/West
+            - Canada/Atlantic
+            - Canada/Central
+            - Canada/Eastern
+            - Canada/Mountain
+            - Canada/Newfoundland
+            - Canada/Pacific
+            - Canada/Saskatchewan
+            - Canada/Yukon
+            - CET
+            - Chile/Continental
+            - Chile/EasterIsland
+            - CST6CDT
+            - Cuba
+            - EET
+            - Egypt
+            - Eire
+            - EST
+            - EST5EDT
+            - Etc/GMT+0
+            - Etc/GMT+1
+            - Etc/GMT+10
+            - Etc/GMT+11
+            - Etc/GMT+12
+            - Etc/GMT+2
+            - Etc/GMT+3
+            - Etc/GMT+4
+            - Etc/GMT+5
+            - Etc/GMT+6
+            - Etc/GMT+7
+            - Etc/GMT+8
+            - Etc/GMT+9
+            - Etc/GMT
+            - Etc/GMT-0
+            - Etc/GMT-1
+            - Etc/GMT-10
+            - Etc/GMT-11
+            - Etc/GMT-12
+            - Etc/GMT-13
+            - Etc/GMT-14
+            - Etc/GMT-2
+            - Etc/GMT-3
+            - Etc/GMT-4
+            - Etc/GMT-5
+            - Etc/GMT-6
+            - Etc/GMT-7
+            - Etc/GMT-8
+            - Etc/GMT-9
+            - Etc/GMT0
+            - Etc/Greenwich
+            - Etc/UCT
+            - Etc/Universal
+            - Etc/UTC
+            - Etc/Zulu
+            - Europe/Amsterdam
+            - Europe/Andorra
+            - Europe/Astrakhan
+            - Europe/Athens
+            - Europe/Belfast
+            - Europe/Belgrade
+            - Europe/Berlin
+            - Europe/Bratislava
+            - Europe/Brussels
+            - Europe/Bucharest
+            - Europe/Budapest
+            - Europe/Busingen
+            - Europe/Chisinau
+            - Europe/Copenhagen
+            - Europe/Dublin
+            - Europe/Gibraltar
+            - Europe/Guernsey
+            - Europe/Helsinki
+            - Europe/Isle_of_Man
+            - Europe/Istanbul
+            - Europe/Jersey
+            - Europe/Kaliningrad
+            - Europe/Kiev
+            - Europe/Kirov
+            - Europe/Lisbon
+            - Europe/Ljubljana
+            - Europe/London
+            - Europe/Luxembourg
+            - Europe/Madrid
+            - Europe/Malta
+            - Europe/Mariehamn
+            - Europe/Minsk
+            - Europe/Monaco
+            - Europe/Moscow
+            - Europe/Nicosia
+            - Europe/Oslo
+            - Europe/Paris
+            - Europe/Podgorica
+            - Europe/Prague
+            - Europe/Riga
+            - Europe/Rome
+            - Europe/Samara
+            - Europe/San_Marino
+            - Europe/Sarajevo
+            - Europe/Saratov
+            - Europe/Simferopol
+            - Europe/Skopje
+            - Europe/Sofia
+            - Europe/Stockholm
+            - Europe/Tallinn
+            - Europe/Tirane
+            - Europe/Tiraspol
+            - Europe/Ulyanovsk
+            - Europe/Uzhgorod
+            - Europe/Vaduz
+            - Europe/Vatican
+            - Europe/Vienna
+            - Europe/Vilnius
+            - Europe/Volgograd
+            - Europe/Warsaw
+            - Europe/Zagreb
+            - Europe/Zaporozhye
+            - Europe/Zurich
+            - GB
+            - GB-Eire
+            - GMT+0
+            - GMT
+            - GMT-0
+            - GMT0
+            - Greenwich
+            - Hongkong
+            - HST
+            - Iceland
+            - Indian/Antananarivo
+            - Indian/Chagos
+            - Indian/Christmas
+            - Indian/Cocos
+            - Indian/Comoro
+            - Indian/Kerguelen
+            - Indian/Mahe
+            - Indian/Maldives
+            - Indian/Mauritius
+            - Indian/Mayotte
+            - Indian/Reunion
+            - Iran
+            - Israel
+            - Jamaica
+            - Japan
+            - Kwajalein
+            - Libya
+            - MET
+            - Mexico/BajaNorte
+            - Mexico/BajaSur
+            - Mexico/General
+            - MST
+            - MST7MDT
+            - Navajo
+            - NZ
+            - NZ-CHAT
+            - Pacific/Apia
+            - Pacific/Auckland
+            - Pacific/Bougainville
+            - Pacific/Chatham
+            - Pacific/Chuuk
+            - Pacific/Easter
+            - Pacific/Efate
+            - Pacific/Enderbury
+            - Pacific/Fakaofo
+            - Pacific/Fiji
+            - Pacific/Funafuti
+            - Pacific/Galapagos
+            - Pacific/Gambier
+            - Pacific/Guadalcanal
+            - Pacific/Guam
+            - Pacific/Honolulu
+            - Pacific/Johnston
+            - Pacific/Kanton
+            - Pacific/Kiritimati
+            - Pacific/Kosrae
+            - Pacific/Kwajalein
+            - Pacific/Majuro
+            - Pacific/Marquesas
+            - Pacific/Midway
+            - Pacific/Nauru
+            - Pacific/Niue
+            - Pacific/Norfolk
+            - Pacific/Noumea
+            - Pacific/Pago_Pago
+            - Pacific/Palau
+            - Pacific/Pitcairn
+            - Pacific/Pohnpei
+            - Pacific/Ponape
+            - Pacific/Port_Moresby
+            - Pacific/Rarotonga
+            - Pacific/Saipan
+            - Pacific/Samoa
+            - Pacific/Tahiti
+            - Pacific/Tarawa
+            - Pacific/Tongatapu
+            - Pacific/Truk
+            - Pacific/Wake
+            - Pacific/Wallis
+            - Pacific/Yap
+            - Poland
+            - Portugal
+            - PRC
+            - PST8PDT
+            - ROC
+            - ROK
+            - Singapore
+            - Turkey
+            - UCT
+            - Universal
+            - US/Alaska
+            - US/Aleutian
+            - US/Arizona
+            - US/Central
+            - US/East-Indiana
+            - US/Eastern
+            - US/Hawaii
+            - US/Indiana-Starke
+            - US/Michigan
+            - US/Mountain
+            - US/Pacific
+            - US/Samoa
+            - UTC
+            - W-SU
+            - WET
+            - Zulu
           example: Asia/Kolkata
           type: string
       type: object
@@ -3146,11 +3350,11 @@ components:
         distinct_id:
           "$ref": "#/components/schemas/distinct_id"
       required:
-      - distinct_id
-      - $set
+        - distinct_id
+        - $set
       type: object
     set_user_property_fields:
-      description: 'Enter the property name as JSON key and the value to set as JSON value'
+      description: "Enter the property name as JSON key and the value to set as JSON value"
       additionalProperties:
         oneOf:
           - type: string
@@ -3169,7 +3373,8 @@ components:
         property_7: "2021-12-01"
         property_8: ["iPhone 16 Pro", "iPad 32 GB"]
         property_9: [23000, 20.34]
-        property_n: ['2020-10-01T18:30:00Z', '2021-11-01T13:35:00+02:00', '2023-12-05']
+        property_n:
+          ["2020-10-01T18:30:00Z", "2021-11-01T13:35:00+02:00", "2023-12-05"]
       type: object
     set_user_property_once:
       properties:
@@ -3178,8 +3383,8 @@ components:
         distinct_id:
           "$ref": "#/components/schemas/distinct_id"
       required:
-      - distinct_id
-      - $once
+        - distinct_id
+        - $once
       type: object
     set_user_property_once_fields:
       description: Enter the property name as JSON key and the value to set as JSON value
@@ -3201,7 +3406,8 @@ components:
         property_7: "2021-12-01"
         property_8: ["iPhone 16 Pro", "iPad 32 GB"]
         property_9: [23000, 20.34]
-        property_n: ['2020-10-01T18:30:00Z', '2021-11-01T13:35:00+02:00', '2023-12-05']
+        property_n:
+          ["2020-10-01T18:30:00Z", "2021-11-01T13:35:00+02:00", "2023-12-05"]
       type: object
     increment_user_property:
       properties:
@@ -3210,8 +3416,8 @@ components:
         distinct_id:
           "$ref": "#/components/schemas/distinct_id"
       required:
-      - distinct_id
-      - $add
+        - distinct_id
+        - $add
       type: object
     increment_user_property_fields:
       description: Enter the property name as JSON key and the numeric value to increment/decrement as JSON value
@@ -3229,8 +3435,8 @@ components:
         distinct_id:
           "$ref": "#/components/schemas/distinct_id"
       required:
-      - distinct_id
-      - $append
+        - distinct_id
+        - $append
       type: object
     append_to_user_property_fields:
       description: Enter the property name as JSON key and the numeric or string value to append as JSON value
@@ -3255,8 +3461,8 @@ components:
         distinct_id:
           "$ref": "#/components/schemas/distinct_id"
       required:
-      - distinct_id
-      - $remove
+        - distinct_id
+        - $remove
       type: object
     remove_from_user_property_list_fields:
       description: Enter the property name as JSON key and the value to remove as JSON value
@@ -3281,8 +3487,8 @@ components:
         distinct_id:
           "$ref": "#/components/schemas/distinct_id"
       required:
-      - distinct_id
-      - $unset
+        - distinct_id
+        - $unset
       type: object
     unset_user_property_fields:
       description: Enter the property names to unset in an array
@@ -3293,7 +3499,7 @@ components:
     user_property_bulk:
       properties:
         batch:
-          description: 'Enter an array of objects with `distinct_id` and `action` to perform on the user properties'
+          description: "Enter an array of objects with `distinct_id` and `action` to perform on the user properties"
           items:
             type: object
             properties:
@@ -3315,7 +3521,7 @@ components:
                   "$unset":
                     "$ref": "#/components/schemas/unset_user_property_fields"
             example:
-              distinct_id: 'XXXXX'
+              distinct_id: "XXXXX"
               action:
                 $set:
                   property_1: "some text"
@@ -3356,10 +3562,11 @@ components:
           type: string
         inapp:
           description: Enter the distinct ID or the generated token of the user.
-          example: '12345'
+          example: "12345"
           type: string
         push:
-          description: If you use multiple Push providers, add the following prefix for
+          description:
+            If you use multiple Push providers, add the following prefix for
             the respective provider tokens:<br/><br/>- <b>For Expo&#58;</b> `expo_token:`<your_pushtoken><br/>-
             <b>For FCM&#58;</b> `fcm_token:`<your_pushtoken><br/>- <b>For OneSignal playerId&#58;</b>
             `onesignal_player_id:`<enter_playerid><br/>- <b>For OneSignal externalId&#58;</b>
@@ -3373,23 +3580,27 @@ components:
           example: CXXXXXXXXXX
           type: string
         sms:
-          description: Enter the mobile number of the user. The number must start with
+          description:
+            Enter the mobile number of the user. The number must start with
             the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
           example: +919879XXXXXX
           type: string
         teams:
-          description: Enter the channel name. For teams, we currently support sending
+          description:
+            Enter the channel name. For teams, we currently support sending
             to one channel only. To send to multiple channels, do get in touch
             and we can share a workaround.
           example: General
           type: string
         voice:
-          description: Enter the mobile number of the user. The number must start with
+          description:
+            Enter the mobile number of the user. The number must start with
             the country code (preferably in E.164 format). For example&#58; +919879XXXXXX.
           example: +919879XXXXXX
           type: string
         whatsapp:
-          description: Enter the WhatsApp mobile number of the user. The number must start
+          description:
+            Enter the WhatsApp mobile number of the user. The number must start
             with the country code (preferably in E.164 format). For example&#58; +919879XXXXXX
           example: +919879XXXXXX
           type: string
@@ -3408,23 +3619,23 @@ components:
       properties:
         channel:
           enum:
-          - sms
-          - whatsapp
-          - email
-          - discord
-          - slack
-          - teams
-          - push
-          - voice
-          - inapp
-          - webpush
+            - sms
+            - whatsapp
+            - email
+            - discord
+            - slack
+            - teams
+            - push
+            - voice
+            - inapp
+            - webpush
           type: string
         distinct_id:
           type: string
         status:
           enum:
-          - opted-in
-          - opted-out
+            - opted-in
+            - opted-out
           type: string
       type: object
       required:
@@ -3456,48 +3667,48 @@ components:
       type: object
     version_event_body:
       oneOf:
-      - properties:
-          callback:
-            "$ref": "#/components/schemas/callback"
-          data:
-            "$ref": "#/components/schemas/data"
-          event:
-            "$ref": "#/components/schemas/event"
-          to:
-            "$ref": "#/components/schemas/to"
-        required:
-        - event
-        - to
-        type: object
-      - properties:
-          callback:
-            "$ref": "#/components/schemas/callback"
-          data:
-            "$ref": "#/components/schemas/data"
-          distinct_id:
-            "$ref": "#/components/schemas/distinct_id"
-          event:
-            "$ref": "#/components/schemas/event"
-        required:
-        - distinct_id
-        - event
-        type: object
-      - properties:
-          callback:
-            "$ref": "#/components/schemas/callback"
-          data:
-            "$ref": "#/components/schemas/data"
-          distinct_id:
-            "$ref": "#/components/schemas/distinct_id"
-          event:
-            "$ref": "#/components/schemas/event"
-          to:
-            "$ref": "#/components/schemas/to"
-        required:
-        - distinct_id
-        - event
-        - to
-        type: object
+        - properties:
+            callback:
+              "$ref": "#/components/schemas/callback"
+            data:
+              "$ref": "#/components/schemas/data"
+            event:
+              "$ref": "#/components/schemas/event"
+            to:
+              "$ref": "#/components/schemas/to"
+          required:
+            - event
+            - to
+          type: object
+        - properties:
+            callback:
+              "$ref": "#/components/schemas/callback"
+            data:
+              "$ref": "#/components/schemas/data"
+            distinct_id:
+              "$ref": "#/components/schemas/distinct_id"
+            event:
+              "$ref": "#/components/schemas/event"
+          required:
+            - distinct_id
+            - event
+          type: object
+        - properties:
+            callback:
+              "$ref": "#/components/schemas/callback"
+            data:
+              "$ref": "#/components/schemas/data"
+            distinct_id:
+              "$ref": "#/components/schemas/distinct_id"
+            event:
+              "$ref": "#/components/schemas/event"
+            to:
+              "$ref": "#/components/schemas/to"
+          required:
+            - distinct_id
+            - event
+            - to
+          type: object
     version_profiles_body:
       properties:
         channel:
@@ -3511,614 +3722,683 @@ components:
           example: John Doe
           type: string
         status:
-          description: "(Optional) Enter 1 to specify that the user is active and should
+          description:
+            "(Optional) Enter 1 to specify that the user is active and should
             receive notifications. Enter 0 to specify that the user in inactive and should
             not receive any notifications. If null, the default value is 1."
           enum:
-          - 1
-          - 0
+            - 1
+            - 0
           type: integer
         timezone:
-          description: (Optional) Enter the timezone of the user. For a list of possible
+          description:
+            (Optional) Enter the timezone of the user. For a list of possible
             values, please <a href="https://fynodocs.s3.ap-south-1.amazonaws.com/files/timezones.json"
             target="_blank">click here</a>.
           enum:
-          - Africa/Abidjan
-          - Africa/Accra
-          - Africa/Addis_Ababa
-          - Africa/Algiers
-          - Africa/Asmara
-          - Africa/Asmera
-          - Africa/Bamako
-          - Africa/Bangui
-          - Africa/Banjul
-          - Africa/Bissau
-          - Africa/Blantyre
-          - Africa/Brazzaville
-          - Africa/Bujumbura
-          - Africa/Cairo
-          - Africa/Casablanca
-          - Africa/Ceuta
-          - Africa/Conakry
-          - Africa/Dakar
-          - Africa/Dar_es_Salaam
-          - Africa/Djibouti
-          - Africa/Douala
-          - Africa/El_Aaiun
-          - Africa/Freetown
-          - Africa/Gaborone
-          - Africa/Harare
-          - Africa/Johannesburg
-          - Africa/Juba
-          - Africa/Kampala
-          - Africa/Khartoum
-          - Africa/Kigali
-          - Africa/Kinshasa
-          - Africa/Lagos
-          - Africa/Libreville
-          - Africa/Lome
-          - Africa/Luanda
-          - Africa/Lubumbashi
-          - Africa/Lusaka
-          - Africa/Malabo
-          - Africa/Maputo
-          - Africa/Maseru
-          - Africa/Mbabane
-          - Africa/Mogadishu
-          - Africa/Monrovia
-          - Africa/Nairobi
-          - Africa/Ndjamena
-          - Africa/Niamey
-          - Africa/Nouakchott
-          - Africa/Ouagadougou
-          - Africa/Porto-Novo
-          - Africa/Sao_Tome
-          - Africa/Timbuktu
-          - Africa/Tripoli
-          - Africa/Tunis
-          - Africa/Windhoek
-          - America/Adak
-          - America/Anchorage
-          - America/Anguilla
-          - America/Antigua
-          - America/Araguaina
-          - America/Argentina/Buenos_Aires
-          - America/Argentina/Catamarca
-          - America/Argentina/ComodRivadavia
-          - America/Argentina/Cordoba
-          - America/Argentina/Jujuy
-          - America/Argentina/La_Rioja
-          - America/Argentina/Mendoza
-          - America/Argentina/Rio_Gallegos
-          - America/Argentina/Salta
-          - America/Argentina/San_Juan
-          - America/Argentina/San_Luis
-          - America/Argentina/Tucuman
-          - America/Argentina/Ushuaia
-          - America/Aruba
-          - America/Asuncion
-          - America/Atikokan
-          - America/Atka
-          - America/Bahia
-          - America/Bahia_Banderas
-          - America/Barbados
-          - America/Belem
-          - America/Belize
-          - America/Blanc-Sablon
-          - America/Boa_Vista
-          - America/Bogota
-          - America/Boise
-          - America/Buenos_Aires
-          - America/Cambridge_Bay
-          - America/Campo_Grande
-          - America/Cancun
-          - America/Caracas
-          - America/Catamarca
-          - America/Cayenne
-          - America/Cayman
-          - America/Chicago
-          - America/Chihuahua
-          - America/Coral_Harbour
-          - America/Cordoba
-          - America/Costa_Rica
-          - America/Creston
-          - America/Cuiaba
-          - America/Curacao
-          - America/Danmarkshavn
-          - America/Dawson
-          - America/Dawson_Creek
-          - America/Denver
-          - America/Detroit
-          - America/Dominica
-          - America/Edmonton
-          - America/Eirunepe
-          - America/El_Salvador
-          - America/Ensenada
-          - America/Fort_Nelson
-          - America/Fort_Wayne
-          - America/Fortaleza
-          - America/Glace_Bay
-          - America/Godthab
-          - America/Goose_Bay
-          - America/Grand_Turk
-          - America/Grenada
-          - America/Guadeloupe
-          - America/Guatemala
-          - America/Guayaquil
-          - America/Guyana
-          - America/Halifax
-          - America/Havana
-          - America/Hermosillo
-          - America/Indiana/Indianapolis
-          - America/Indiana/Knox
-          - America/Indiana/Marengo
-          - America/Indiana/Petersburg
-          - America/Indiana/Tell_City
-          - America/Indiana/Vevay
-          - America/Indiana/Vincennes
-          - America/Indiana/Winamac
-          - America/Indianapolis
-          - America/Inuvik
-          - America/Iqaluit
-          - America/Jamaica
-          - America/Jujuy
-          - America/Juneau
-          - America/Kentucky/Louisville
-          - America/Kentucky/Monticello
-          - America/Knox_IN
-          - America/Kralendijk
-          - America/La_Paz
-          - America/Lima
-          - America/Los_Angeles
-          - America/Louisville
-          - America/Lower_Princes
-          - America/Maceio
-          - America/Managua
-          - America/Manaus
-          - America/Marigot
-          - America/Martinique
-          - America/Matamoros
-          - America/Mazatlan
-          - America/Mendoza
-          - America/Menominee
-          - America/Merida
-          - America/Metlakatla
-          - America/Mexico_City
-          - America/Miquelon
-          - America/Moncton
-          - America/Monterrey
-          - America/Montevideo
-          - America/Montreal
-          - America/Montserrat
-          - America/Nassau
-          - America/New_York
-          - America/Nipigon
-          - America/Nome
-          - America/Noronha
-          - America/North_Dakota/Beulah
-          - America/North_Dakota/Center
-          - America/North_Dakota/New_Salem
-          - America/Nuuk
-          - America/Ojinaga
-          - America/Panama
-          - America/Pangnirtung
-          - America/Paramaribo
-          - America/Phoenix
-          - America/Port-au-Prince
-          - America/Port_of_Spain
-          - America/Porto_Acre
-          - America/Porto_Velho
-          - America/Puerto_Rico
-          - America/Punta_Arenas
-          - America/Rainy_River
-          - America/Rankin_Inlet
-          - America/Recife
-          - America/Regina
-          - America/Resolute
-          - America/Rio_Branco
-          - America/Rosario
-          - America/Santa_Isabel
-          - America/Santarem
-          - America/Santiago
-          - America/Santo_Domingo
-          - America/Sao_Paulo
-          - America/Scoresbysund
-          - America/Shiprock
-          - America/Sitka
-          - America/St_Barthelemy
-          - America/St_Johns
-          - America/St_Kitts
-          - America/St_Lucia
-          - America/St_Thomas
-          - America/St_Vincent
-          - America/Swift_Current
-          - America/Tegucigalpa
-          - America/Thule
-          - America/Thunder_Bay
-          - America/Tijuana
-          - America/Toronto
-          - America/Tortola
-          - America/Vancouver
-          - America/Virgin
-          - America/Whitehorse
-          - America/Winnipeg
-          - America/Yakutat
-          - America/Yellowknife
-          - Antarctica/Casey
-          - Antarctica/Davis
-          - Antarctica/DumontDUrville
-          - Antarctica/Macquarie
-          - Antarctica/Mawson
-          - Antarctica/McMurdo
-          - Antarctica/Palmer
-          - Antarctica/Rothera
-          - Antarctica/South_Pole
-          - Antarctica/Syowa
-          - Antarctica/Troll
-          - Antarctica/Vostok
-          - Arctic/Longyearbyen
-          - Asia/Aden
-          - Asia/Almaty
-          - Asia/Amman
-          - Asia/Anadyr
-          - Asia/Aqtau
-          - Asia/Aqtobe
-          - Asia/Ashgabat
-          - Asia/Ashkhabad
-          - Asia/Atyrau
-          - Asia/Baghdad
-          - Asia/Bahrain
-          - Asia/Baku
-          - Asia/Bangkok
-          - Asia/Barnaul
-          - Asia/Beirut
-          - Asia/Bishkek
-          - Asia/Brunei
-          - Asia/Calcutta
-          - Asia/Chita
-          - Asia/Choibalsan
-          - Asia/Chongqing
-          - Asia/Chungking
-          - Asia/Colombo
-          - Asia/Dacca
-          - Asia/Damascus
-          - Asia/Dhaka
-          - Asia/Dili
-          - Asia/Dubai
-          - Asia/Dushanbe
-          - Asia/Famagusta
-          - Asia/Gaza
-          - Asia/Harbin
-          - Asia/Hebron
-          - Asia/Ho_Chi_Minh
-          - Asia/Hong_Kong
-          - Asia/Hovd
-          - Asia/Irkutsk
-          - Asia/Istanbul
-          - Asia/Jakarta
-          - Asia/Jayapura
-          - Asia/Jerusalem
-          - Asia/Kabul
-          - Asia/Kamchatka
-          - Asia/Karachi
-          - Asia/Kashgar
-          - Asia/Kathmandu
-          - Asia/Katmandu
-          - Asia/Khandyga
-          - Asia/Kolkata
-          - Asia/Krasnoyarsk
-          - Asia/Kuala_Lumpur
-          - Asia/Kuching
-          - Asia/Kuwait
-          - Asia/Macao
-          - Asia/Macau
-          - Asia/Magadan
-          - Asia/Makassar
-          - Asia/Manila
-          - Asia/Muscat
-          - Asia/Nicosia
-          - Asia/Novokuznetsk
-          - Asia/Novosibirsk
-          - Asia/Omsk
-          - Asia/Oral
-          - Asia/Phnom_Penh
-          - Asia/Pontianak
-          - Asia/Pyongyang
-          - Asia/Qatar
-          - Asia/Qostanay
-          - Asia/Qyzylorda
-          - Asia/Rangoon
-          - Asia/Riyadh
-          - Asia/Saigon
-          - Asia/Sakhalin
-          - Asia/Samarkand
-          - Asia/Seoul
-          - Asia/Shanghai
-          - Asia/Singapore
-          - Asia/Srednekolymsk
-          - Asia/Taipei
-          - Asia/Tashkent
-          - Asia/Tbilisi
-          - Asia/Tehran
-          - Asia/Tel_Aviv
-          - Asia/Thimbu
-          - Asia/Thimphu
-          - Asia/Tokyo
-          - Asia/Tomsk
-          - Asia/Ujung_Pandang
-          - Asia/Ulaanbaatar
-          - Asia/Ulan_Bator
-          - Asia/Urumqi
-          - Asia/Ust-Nera
-          - Asia/Vientiane
-          - Asia/Vladivostok
-          - Asia/Yakutsk
-          - Asia/Yangon
-          - Asia/Yekaterinburg
-          - Asia/Yerevan
-          - Atlantic/Azores
-          - Atlantic/Bermuda
-          - Atlantic/Canary
-          - Atlantic/Cape_Verde
-          - Atlantic/Faeroe
-          - Atlantic/Faroe
-          - Atlantic/Jan_Mayen
-          - Atlantic/Madeira
-          - Atlantic/Reykjavik
-          - Atlantic/South_Georgia
-          - Atlantic/St_Helena
-          - Atlantic/Stanley
-          - Australia/ACT
-          - Australia/Adelaide
-          - Australia/Brisbane
-          - Australia/Broken_Hill
-          - Australia/Canberra
-          - Australia/Currie
-          - Australia/Darwin
-          - Australia/Eucla
-          - Australia/Hobart
-          - Australia/LHI
-          - Australia/Lindeman
-          - Australia/Lord_Howe
-          - Australia/Melbourne
-          - Australia/North
-          - Australia/NSW
-          - Australia/Perth
-          - Australia/Queensland
-          - Australia/South
-          - Australia/Sydney
-          - Australia/Tasmania
-          - Australia/Victoria
-          - Australia/West
-          - Australia/Yancowinna
-          - Brazil/Acre
-          - Brazil/DeNoronha
-          - Brazil/East
-          - Brazil/West
-          - Canada/Atlantic
-          - Canada/Central
-          - Canada/Eastern
-          - Canada/Mountain
-          - Canada/Newfoundland
-          - Canada/Pacific
-          - Canada/Saskatchewan
-          - Canada/Yukon
-          - CET
-          - Chile/Continental
-          - Chile/EasterIsland
-          - CST6CDT
-          - Cuba
-          - EET
-          - Egypt
-          - Eire
-          - EST
-          - EST5EDT
-          - Etc/GMT+0
-          - Etc/GMT+1
-          - Etc/GMT+10
-          - Etc/GMT+11
-          - Etc/GMT+12
-          - Etc/GMT+2
-          - Etc/GMT+3
-          - Etc/GMT+4
-          - Etc/GMT+5
-          - Etc/GMT+6
-          - Etc/GMT+7
-          - Etc/GMT+8
-          - Etc/GMT+9
-          - Etc/GMT
-          - Etc/GMT-0
-          - Etc/GMT-1
-          - Etc/GMT-10
-          - Etc/GMT-11
-          - Etc/GMT-12
-          - Etc/GMT-13
-          - Etc/GMT-14
-          - Etc/GMT-2
-          - Etc/GMT-3
-          - Etc/GMT-4
-          - Etc/GMT-5
-          - Etc/GMT-6
-          - Etc/GMT-7
-          - Etc/GMT-8
-          - Etc/GMT-9
-          - Etc/GMT0
-          - Etc/Greenwich
-          - Etc/UCT
-          - Etc/Universal
-          - Etc/UTC
-          - Etc/Zulu
-          - Europe/Amsterdam
-          - Europe/Andorra
-          - Europe/Astrakhan
-          - Europe/Athens
-          - Europe/Belfast
-          - Europe/Belgrade
-          - Europe/Berlin
-          - Europe/Bratislava
-          - Europe/Brussels
-          - Europe/Bucharest
-          - Europe/Budapest
-          - Europe/Busingen
-          - Europe/Chisinau
-          - Europe/Copenhagen
-          - Europe/Dublin
-          - Europe/Gibraltar
-          - Europe/Guernsey
-          - Europe/Helsinki
-          - Europe/Isle_of_Man
-          - Europe/Istanbul
-          - Europe/Jersey
-          - Europe/Kaliningrad
-          - Europe/Kiev
-          - Europe/Kirov
-          - Europe/Lisbon
-          - Europe/Ljubljana
-          - Europe/London
-          - Europe/Luxembourg
-          - Europe/Madrid
-          - Europe/Malta
-          - Europe/Mariehamn
-          - Europe/Minsk
-          - Europe/Monaco
-          - Europe/Moscow
-          - Europe/Nicosia
-          - Europe/Oslo
-          - Europe/Paris
-          - Europe/Podgorica
-          - Europe/Prague
-          - Europe/Riga
-          - Europe/Rome
-          - Europe/Samara
-          - Europe/San_Marino
-          - Europe/Sarajevo
-          - Europe/Saratov
-          - Europe/Simferopol
-          - Europe/Skopje
-          - Europe/Sofia
-          - Europe/Stockholm
-          - Europe/Tallinn
-          - Europe/Tirane
-          - Europe/Tiraspol
-          - Europe/Ulyanovsk
-          - Europe/Uzhgorod
-          - Europe/Vaduz
-          - Europe/Vatican
-          - Europe/Vienna
-          - Europe/Vilnius
-          - Europe/Volgograd
-          - Europe/Warsaw
-          - Europe/Zagreb
-          - Europe/Zaporozhye
-          - Europe/Zurich
-          - GB
-          - GB-Eire
-          - GMT+0
-          - GMT
-          - GMT-0
-          - GMT0
-          - Greenwich
-          - Hongkong
-          - HST
-          - Iceland
-          - Indian/Antananarivo
-          - Indian/Chagos
-          - Indian/Christmas
-          - Indian/Cocos
-          - Indian/Comoro
-          - Indian/Kerguelen
-          - Indian/Mahe
-          - Indian/Maldives
-          - Indian/Mauritius
-          - Indian/Mayotte
-          - Indian/Reunion
-          - Iran
-          - Israel
-          - Jamaica
-          - Japan
-          - Kwajalein
-          - Libya
-          - MET
-          - Mexico/BajaNorte
-          - Mexico/BajaSur
-          - Mexico/General
-          - MST
-          - MST7MDT
-          - Navajo
-          - NZ
-          - NZ-CHAT
-          - Pacific/Apia
-          - Pacific/Auckland
-          - Pacific/Bougainville
-          - Pacific/Chatham
-          - Pacific/Chuuk
-          - Pacific/Easter
-          - Pacific/Efate
-          - Pacific/Enderbury
-          - Pacific/Fakaofo
-          - Pacific/Fiji
-          - Pacific/Funafuti
-          - Pacific/Galapagos
-          - Pacific/Gambier
-          - Pacific/Guadalcanal
-          - Pacific/Guam
-          - Pacific/Honolulu
-          - Pacific/Johnston
-          - Pacific/Kanton
-          - Pacific/Kiritimati
-          - Pacific/Kosrae
-          - Pacific/Kwajalein
-          - Pacific/Majuro
-          - Pacific/Marquesas
-          - Pacific/Midway
-          - Pacific/Nauru
-          - Pacific/Niue
-          - Pacific/Norfolk
-          - Pacific/Noumea
-          - Pacific/Pago_Pago
-          - Pacific/Palau
-          - Pacific/Pitcairn
-          - Pacific/Pohnpei
-          - Pacific/Ponape
-          - Pacific/Port_Moresby
-          - Pacific/Rarotonga
-          - Pacific/Saipan
-          - Pacific/Samoa
-          - Pacific/Tahiti
-          - Pacific/Tarawa
-          - Pacific/Tongatapu
-          - Pacific/Truk
-          - Pacific/Wake
-          - Pacific/Wallis
-          - Pacific/Yap
-          - Poland
-          - Portugal
-          - PRC
-          - PST8PDT
-          - ROC
-          - ROK
-          - Singapore
-          - Turkey
-          - UCT
-          - Universal
-          - US/Alaska
-          - US/Aleutian
-          - US/Arizona
-          - US/Central
-          - US/East-Indiana
-          - US/Eastern
-          - US/Hawaii
-          - US/Indiana-Starke
-          - US/Michigan
-          - US/Mountain
-          - US/Pacific
-          - US/Samoa
-          - UTC
-          - W-SU
-          - WET
-          - Zulu
+            - Africa/Abidjan
+            - Africa/Accra
+            - Africa/Addis_Ababa
+            - Africa/Algiers
+            - Africa/Asmara
+            - Africa/Asmera
+            - Africa/Bamako
+            - Africa/Bangui
+            - Africa/Banjul
+            - Africa/Bissau
+            - Africa/Blantyre
+            - Africa/Brazzaville
+            - Africa/Bujumbura
+            - Africa/Cairo
+            - Africa/Casablanca
+            - Africa/Ceuta
+            - Africa/Conakry
+            - Africa/Dakar
+            - Africa/Dar_es_Salaam
+            - Africa/Djibouti
+            - Africa/Douala
+            - Africa/El_Aaiun
+            - Africa/Freetown
+            - Africa/Gaborone
+            - Africa/Harare
+            - Africa/Johannesburg
+            - Africa/Juba
+            - Africa/Kampala
+            - Africa/Khartoum
+            - Africa/Kigali
+            - Africa/Kinshasa
+            - Africa/Lagos
+            - Africa/Libreville
+            - Africa/Lome
+            - Africa/Luanda
+            - Africa/Lubumbashi
+            - Africa/Lusaka
+            - Africa/Malabo
+            - Africa/Maputo
+            - Africa/Maseru
+            - Africa/Mbabane
+            - Africa/Mogadishu
+            - Africa/Monrovia
+            - Africa/Nairobi
+            - Africa/Ndjamena
+            - Africa/Niamey
+            - Africa/Nouakchott
+            - Africa/Ouagadougou
+            - Africa/Porto-Novo
+            - Africa/Sao_Tome
+            - Africa/Timbuktu
+            - Africa/Tripoli
+            - Africa/Tunis
+            - Africa/Windhoek
+            - America/Adak
+            - America/Anchorage
+            - America/Anguilla
+            - America/Antigua
+            - America/Araguaina
+            - America/Argentina/Buenos_Aires
+            - America/Argentina/Catamarca
+            - America/Argentina/ComodRivadavia
+            - America/Argentina/Cordoba
+            - America/Argentina/Jujuy
+            - America/Argentina/La_Rioja
+            - America/Argentina/Mendoza
+            - America/Argentina/Rio_Gallegos
+            - America/Argentina/Salta
+            - America/Argentina/San_Juan
+            - America/Argentina/San_Luis
+            - America/Argentina/Tucuman
+            - America/Argentina/Ushuaia
+            - America/Aruba
+            - America/Asuncion
+            - America/Atikokan
+            - America/Atka
+            - America/Bahia
+            - America/Bahia_Banderas
+            - America/Barbados
+            - America/Belem
+            - America/Belize
+            - America/Blanc-Sablon
+            - America/Boa_Vista
+            - America/Bogota
+            - America/Boise
+            - America/Buenos_Aires
+            - America/Cambridge_Bay
+            - America/Campo_Grande
+            - America/Cancun
+            - America/Caracas
+            - America/Catamarca
+            - America/Cayenne
+            - America/Cayman
+            - America/Chicago
+            - America/Chihuahua
+            - America/Coral_Harbour
+            - America/Cordoba
+            - America/Costa_Rica
+            - America/Creston
+            - America/Cuiaba
+            - America/Curacao
+            - America/Danmarkshavn
+            - America/Dawson
+            - America/Dawson_Creek
+            - America/Denver
+            - America/Detroit
+            - America/Dominica
+            - America/Edmonton
+            - America/Eirunepe
+            - America/El_Salvador
+            - America/Ensenada
+            - America/Fort_Nelson
+            - America/Fort_Wayne
+            - America/Fortaleza
+            - America/Glace_Bay
+            - America/Godthab
+            - America/Goose_Bay
+            - America/Grand_Turk
+            - America/Grenada
+            - America/Guadeloupe
+            - America/Guatemala
+            - America/Guayaquil
+            - America/Guyana
+            - America/Halifax
+            - America/Havana
+            - America/Hermosillo
+            - America/Indiana/Indianapolis
+            - America/Indiana/Knox
+            - America/Indiana/Marengo
+            - America/Indiana/Petersburg
+            - America/Indiana/Tell_City
+            - America/Indiana/Vevay
+            - America/Indiana/Vincennes
+            - America/Indiana/Winamac
+            - America/Indianapolis
+            - America/Inuvik
+            - America/Iqaluit
+            - America/Jamaica
+            - America/Jujuy
+            - America/Juneau
+            - America/Kentucky/Louisville
+            - America/Kentucky/Monticello
+            - America/Knox_IN
+            - America/Kralendijk
+            - America/La_Paz
+            - America/Lima
+            - America/Los_Angeles
+            - America/Louisville
+            - America/Lower_Princes
+            - America/Maceio
+            - America/Managua
+            - America/Manaus
+            - America/Marigot
+            - America/Martinique
+            - America/Matamoros
+            - America/Mazatlan
+            - America/Mendoza
+            - America/Menominee
+            - America/Merida
+            - America/Metlakatla
+            - America/Mexico_City
+            - America/Miquelon
+            - America/Moncton
+            - America/Monterrey
+            - America/Montevideo
+            - America/Montreal
+            - America/Montserrat
+            - America/Nassau
+            - America/New_York
+            - America/Nipigon
+            - America/Nome
+            - America/Noronha
+            - America/North_Dakota/Beulah
+            - America/North_Dakota/Center
+            - America/North_Dakota/New_Salem
+            - America/Nuuk
+            - America/Ojinaga
+            - America/Panama
+            - America/Pangnirtung
+            - America/Paramaribo
+            - America/Phoenix
+            - America/Port-au-Prince
+            - America/Port_of_Spain
+            - America/Porto_Acre
+            - America/Porto_Velho
+            - America/Puerto_Rico
+            - America/Punta_Arenas
+            - America/Rainy_River
+            - America/Rankin_Inlet
+            - America/Recife
+            - America/Regina
+            - America/Resolute
+            - America/Rio_Branco
+            - America/Rosario
+            - America/Santa_Isabel
+            - America/Santarem
+            - America/Santiago
+            - America/Santo_Domingo
+            - America/Sao_Paulo
+            - America/Scoresbysund
+            - America/Shiprock
+            - America/Sitka
+            - America/St_Barthelemy
+            - America/St_Johns
+            - America/St_Kitts
+            - America/St_Lucia
+            - America/St_Thomas
+            - America/St_Vincent
+            - America/Swift_Current
+            - America/Tegucigalpa
+            - America/Thule
+            - America/Thunder_Bay
+            - America/Tijuana
+            - America/Toronto
+            - America/Tortola
+            - America/Vancouver
+            - America/Virgin
+            - America/Whitehorse
+            - America/Winnipeg
+            - America/Yakutat
+            - America/Yellowknife
+            - Antarctica/Casey
+            - Antarctica/Davis
+            - Antarctica/DumontDUrville
+            - Antarctica/Macquarie
+            - Antarctica/Mawson
+            - Antarctica/McMurdo
+            - Antarctica/Palmer
+            - Antarctica/Rothera
+            - Antarctica/South_Pole
+            - Antarctica/Syowa
+            - Antarctica/Troll
+            - Antarctica/Vostok
+            - Arctic/Longyearbyen
+            - Asia/Aden
+            - Asia/Almaty
+            - Asia/Amman
+            - Asia/Anadyr
+            - Asia/Aqtau
+            - Asia/Aqtobe
+            - Asia/Ashgabat
+            - Asia/Ashkhabad
+            - Asia/Atyrau
+            - Asia/Baghdad
+            - Asia/Bahrain
+            - Asia/Baku
+            - Asia/Bangkok
+            - Asia/Barnaul
+            - Asia/Beirut
+            - Asia/Bishkek
+            - Asia/Brunei
+            - Asia/Calcutta
+            - Asia/Chita
+            - Asia/Choibalsan
+            - Asia/Chongqing
+            - Asia/Chungking
+            - Asia/Colombo
+            - Asia/Dacca
+            - Asia/Damascus
+            - Asia/Dhaka
+            - Asia/Dili
+            - Asia/Dubai
+            - Asia/Dushanbe
+            - Asia/Famagusta
+            - Asia/Gaza
+            - Asia/Harbin
+            - Asia/Hebron
+            - Asia/Ho_Chi_Minh
+            - Asia/Hong_Kong
+            - Asia/Hovd
+            - Asia/Irkutsk
+            - Asia/Istanbul
+            - Asia/Jakarta
+            - Asia/Jayapura
+            - Asia/Jerusalem
+            - Asia/Kabul
+            - Asia/Kamchatka
+            - Asia/Karachi
+            - Asia/Kashgar
+            - Asia/Kathmandu
+            - Asia/Katmandu
+            - Asia/Khandyga
+            - Asia/Kolkata
+            - Asia/Krasnoyarsk
+            - Asia/Kuala_Lumpur
+            - Asia/Kuching
+            - Asia/Kuwait
+            - Asia/Macao
+            - Asia/Macau
+            - Asia/Magadan
+            - Asia/Makassar
+            - Asia/Manila
+            - Asia/Muscat
+            - Asia/Nicosia
+            - Asia/Novokuznetsk
+            - Asia/Novosibirsk
+            - Asia/Omsk
+            - Asia/Oral
+            - Asia/Phnom_Penh
+            - Asia/Pontianak
+            - Asia/Pyongyang
+            - Asia/Qatar
+            - Asia/Qostanay
+            - Asia/Qyzylorda
+            - Asia/Rangoon
+            - Asia/Riyadh
+            - Asia/Saigon
+            - Asia/Sakhalin
+            - Asia/Samarkand
+            - Asia/Seoul
+            - Asia/Shanghai
+            - Asia/Singapore
+            - Asia/Srednekolymsk
+            - Asia/Taipei
+            - Asia/Tashkent
+            - Asia/Tbilisi
+            - Asia/Tehran
+            - Asia/Tel_Aviv
+            - Asia/Thimbu
+            - Asia/Thimphu
+            - Asia/Tokyo
+            - Asia/Tomsk
+            - Asia/Ujung_Pandang
+            - Asia/Ulaanbaatar
+            - Asia/Ulan_Bator
+            - Asia/Urumqi
+            - Asia/Ust-Nera
+            - Asia/Vientiane
+            - Asia/Vladivostok
+            - Asia/Yakutsk
+            - Asia/Yangon
+            - Asia/Yekaterinburg
+            - Asia/Yerevan
+            - Atlantic/Azores
+            - Atlantic/Bermuda
+            - Atlantic/Canary
+            - Atlantic/Cape_Verde
+            - Atlantic/Faeroe
+            - Atlantic/Faroe
+            - Atlantic/Jan_Mayen
+            - Atlantic/Madeira
+            - Atlantic/Reykjavik
+            - Atlantic/South_Georgia
+            - Atlantic/St_Helena
+            - Atlantic/Stanley
+            - Australia/ACT
+            - Australia/Adelaide
+            - Australia/Brisbane
+            - Australia/Broken_Hill
+            - Australia/Canberra
+            - Australia/Currie
+            - Australia/Darwin
+            - Australia/Eucla
+            - Australia/Hobart
+            - Australia/LHI
+            - Australia/Lindeman
+            - Australia/Lord_Howe
+            - Australia/Melbourne
+            - Australia/North
+            - Australia/NSW
+            - Australia/Perth
+            - Australia/Queensland
+            - Australia/South
+            - Australia/Sydney
+            - Australia/Tasmania
+            - Australia/Victoria
+            - Australia/West
+            - Australia/Yancowinna
+            - Brazil/Acre
+            - Brazil/DeNoronha
+            - Brazil/East
+            - Brazil/West
+            - Canada/Atlantic
+            - Canada/Central
+            - Canada/Eastern
+            - Canada/Mountain
+            - Canada/Newfoundland
+            - Canada/Pacific
+            - Canada/Saskatchewan
+            - Canada/Yukon
+            - CET
+            - Chile/Continental
+            - Chile/EasterIsland
+            - CST6CDT
+            - Cuba
+            - EET
+            - Egypt
+            - Eire
+            - EST
+            - EST5EDT
+            - Etc/GMT+0
+            - Etc/GMT+1
+            - Etc/GMT+10
+            - Etc/GMT+11
+            - Etc/GMT+12
+            - Etc/GMT+2
+            - Etc/GMT+3
+            - Etc/GMT+4
+            - Etc/GMT+5
+            - Etc/GMT+6
+            - Etc/GMT+7
+            - Etc/GMT+8
+            - Etc/GMT+9
+            - Etc/GMT
+            - Etc/GMT-0
+            - Etc/GMT-1
+            - Etc/GMT-10
+            - Etc/GMT-11
+            - Etc/GMT-12
+            - Etc/GMT-13
+            - Etc/GMT-14
+            - Etc/GMT-2
+            - Etc/GMT-3
+            - Etc/GMT-4
+            - Etc/GMT-5
+            - Etc/GMT-6
+            - Etc/GMT-7
+            - Etc/GMT-8
+            - Etc/GMT-9
+            - Etc/GMT0
+            - Etc/Greenwich
+            - Etc/UCT
+            - Etc/Universal
+            - Etc/UTC
+            - Etc/Zulu
+            - Europe/Amsterdam
+            - Europe/Andorra
+            - Europe/Astrakhan
+            - Europe/Athens
+            - Europe/Belfast
+            - Europe/Belgrade
+            - Europe/Berlin
+            - Europe/Bratislava
+            - Europe/Brussels
+            - Europe/Bucharest
+            - Europe/Budapest
+            - Europe/Busingen
+            - Europe/Chisinau
+            - Europe/Copenhagen
+            - Europe/Dublin
+            - Europe/Gibraltar
+            - Europe/Guernsey
+            - Europe/Helsinki
+            - Europe/Isle_of_Man
+            - Europe/Istanbul
+            - Europe/Jersey
+            - Europe/Kaliningrad
+            - Europe/Kiev
+            - Europe/Kirov
+            - Europe/Lisbon
+            - Europe/Ljubljana
+            - Europe/London
+            - Europe/Luxembourg
+            - Europe/Madrid
+            - Europe/Malta
+            - Europe/Mariehamn
+            - Europe/Minsk
+            - Europe/Monaco
+            - Europe/Moscow
+            - Europe/Nicosia
+            - Europe/Oslo
+            - Europe/Paris
+            - Europe/Podgorica
+            - Europe/Prague
+            - Europe/Riga
+            - Europe/Rome
+            - Europe/Samara
+            - Europe/San_Marino
+            - Europe/Sarajevo
+            - Europe/Saratov
+            - Europe/Simferopol
+            - Europe/Skopje
+            - Europe/Sofia
+            - Europe/Stockholm
+            - Europe/Tallinn
+            - Europe/Tirane
+            - Europe/Tiraspol
+            - Europe/Ulyanovsk
+            - Europe/Uzhgorod
+            - Europe/Vaduz
+            - Europe/Vatican
+            - Europe/Vienna
+            - Europe/Vilnius
+            - Europe/Volgograd
+            - Europe/Warsaw
+            - Europe/Zagreb
+            - Europe/Zaporozhye
+            - Europe/Zurich
+            - GB
+            - GB-Eire
+            - GMT+0
+            - GMT
+            - GMT-0
+            - GMT0
+            - Greenwich
+            - Hongkong
+            - HST
+            - Iceland
+            - Indian/Antananarivo
+            - Indian/Chagos
+            - Indian/Christmas
+            - Indian/Cocos
+            - Indian/Comoro
+            - Indian/Kerguelen
+            - Indian/Mahe
+            - Indian/Maldives
+            - Indian/Mauritius
+            - Indian/Mayotte
+            - Indian/Reunion
+            - Iran
+            - Israel
+            - Jamaica
+            - Japan
+            - Kwajalein
+            - Libya
+            - MET
+            - Mexico/BajaNorte
+            - Mexico/BajaSur
+            - Mexico/General
+            - MST
+            - MST7MDT
+            - Navajo
+            - NZ
+            - NZ-CHAT
+            - Pacific/Apia
+            - Pacific/Auckland
+            - Pacific/Bougainville
+            - Pacific/Chatham
+            - Pacific/Chuuk
+            - Pacific/Easter
+            - Pacific/Efate
+            - Pacific/Enderbury
+            - Pacific/Fakaofo
+            - Pacific/Fiji
+            - Pacific/Funafuti
+            - Pacific/Galapagos
+            - Pacific/Gambier
+            - Pacific/Guadalcanal
+            - Pacific/Guam
+            - Pacific/Honolulu
+            - Pacific/Johnston
+            - Pacific/Kanton
+            - Pacific/Kiritimati
+            - Pacific/Kosrae
+            - Pacific/Kwajalein
+            - Pacific/Majuro
+            - Pacific/Marquesas
+            - Pacific/Midway
+            - Pacific/Nauru
+            - Pacific/Niue
+            - Pacific/Norfolk
+            - Pacific/Noumea
+            - Pacific/Pago_Pago
+            - Pacific/Palau
+            - Pacific/Pitcairn
+            - Pacific/Pohnpei
+            - Pacific/Ponape
+            - Pacific/Port_Moresby
+            - Pacific/Rarotonga
+            - Pacific/Saipan
+            - Pacific/Samoa
+            - Pacific/Tahiti
+            - Pacific/Tarawa
+            - Pacific/Tongatapu
+            - Pacific/Truk
+            - Pacific/Wake
+            - Pacific/Wallis
+            - Pacific/Yap
+            - Poland
+            - Portugal
+            - PRC
+            - PST8PDT
+            - ROC
+            - ROK
+            - Singapore
+            - Turkey
+            - UCT
+            - Universal
+            - US/Alaska
+            - US/Aleutian
+            - US/Arizona
+            - US/Central
+            - US/East-Indiana
+            - US/Eastern
+            - US/Hawaii
+            - US/Indiana-Starke
+            - US/Michigan
+            - US/Mountain
+            - US/Pacific
+            - US/Samoa
+            - UTC
+            - W-SU
+            - WET
+            - Zulu
           example: Asia/Kolkata
           type: string
       required:
-      - distinct_id
+        - distinct_id
       type: object
+    fetch_suppression_list:
+      properties:
+        _id:
+          type: string
+          example: 68763be4b8cee01156d9fa8a
+          description: Unique identifier of the suppression record
+        destination:
+          type: string
+          example: 919XXXXXXXX
+          description: Phone number or email of the suppressed user
+        distinct_id:
+          type: string
+          example: XXXX-XXX-XXXX
+          description: Unique identifier (used as an alternative to destination)
+        channel:
+          type: string
+          example: sms
+          description: Communication channel (e.g., sms, whatsapp, email)
+        description:
+          type: string
+          example: DND
+          description: Reason or tag for suppression (e.g., "DND", "Testing").
+        created_at:
+          type: string
+          example: "2025-07-15T16:20:16.302+05:30"
+          description: Timestamp when the suppression was created
+        expiry_ts:
+          type: string
+          example: "2025-07-15T16:25:16.302+05:30"
+          description: Optional timestamp for expiration of suppression
+      type: object
+    add_suppression_list:
+      oneOf:
+        - properties:
+            distinct_id:
+              type: string
+              example: XXXX-XXX-XXXX
+              description: Unique identifier (used as an alternative to destination)
+            channel:
+              type: string
+              example: sms
+              description: Communication channel (e.g., sms, whatsapp, email)
+            description:
+              type: string
+              example: DND
+              description: Reason or tag for suppression (e.g., "DND", "Testing").
+          type: object
+          required:
+            - distinct_id
+            - channel
+        - properties:
+            destination:
+              type: string
+              example: 919XXXXXXXX
+              description: Phone number or email of the suppressed user
+            channel:
+              type: string
+              example: sms
+              description: Communication channel (e.g., sms, whatsapp, email)
+            description:
+              type: string
+              example: DND
+              description: Reason or tag for suppression (e.g., "DND", "Testing").
+          type: object
+          required:
+            - destination
+            - channel
