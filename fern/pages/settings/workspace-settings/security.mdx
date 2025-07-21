@@ -123,3 +123,41 @@ To enable the **Secure Allowlist Endpoints** feature for your account,
 
 Fyno will use the secret key to encrypt the JSON payload (using SHA-256 algorithm) and create a signature and send it as part of the API request header.
 The customers can then decrypt using the Key to check if the payload remained intact and not corrupted. 
+
+## How to configure custom media storage
+
+This feature enables you to store any media files in your private S3 bucket to make sure all the media file are secure. ¸
+
+The prerequisite for enabling secure media storage is to Create custom AWS S3 storage. 
+
+### How to Create custom AWS S3 storage
+
+   - Create a S3 bucket with a custom name ![](/images/s3bucket_public_access.png)
+   - Create an IAM user with S3 bucket permissions (putObject) ![](/images/secure_media_storage_iamuser.png) ![](/images/secure_media_storage_iamuser_permission.png)
+   - Create IAM policy
+   - Create access key ![](/images/secure_media_storage_accesskeys.png)
+
+To enable the **Secure Media Storage** feature for your account,
+
+<Steps>
+  <Step>Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Security**' which opens up the Security page.</Step>
+  <Step>Then find the **Secure Media Storage** option and toggle it "on".</Step>
+  <Step>Provide Access Key Id and Secret Access Key, which are credentials set up on AWS for IAM user ![](/images/settings_secure_media_storage.png) </Step>
+</Steps>
+
+### How to configure for Fyno generated PDFs
+
+   ![](/images/settings_secure_media_storage_pdf.png)
+
+  - Base URL : Provide the URL where the Fyno generated PDF files will be stored. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/LRN
+  - Bucket Name : Provide the bucket name where the files will be stored. 
+  - Folder Path : Provide the Folder path where the files will be stored. Example - LRN/pdf
+
+
+### How to configure for Incoming Media
+
+  ![](/images/settings_secure_media_storage_incoming.png)
+
+  - Base URL : Provide the URL where all the incoming media files (pdf, jpeg, png etc) will be stored. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/incoming
+  - Bucket Name : Provide the bucket name where the files will be stored. 
+  - Folder Path : Provide the Folder path where the files will be stored. Example - incoming/media
