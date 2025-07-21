@@ -132,7 +132,8 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
 
 ### How to Create custom AWS S3 storage
 
-   - Create a S3 bucket with a custom name ![](/images/s3bucket_public_access.png)
+   - Create a S3 bucket with a custom name ![](/images/s3bucket_public_access.png) ![](/images/s3bucket_policy.png) 
+   <Note> Bucket should be **public** and Bucket region should be **ap-south-1** </Note>
    - Create an IAM user with S3 bucket permissions (putObject) ![](/images/secure_media_storage_iamuser.png) ![](/images/secure_media_storage_iamuser_permission.png)
    - Create IAM policy
    - Create access key ![](/images/secure_media_storage_accesskeys.png)
