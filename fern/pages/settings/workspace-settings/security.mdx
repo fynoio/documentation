@@ -143,7 +143,7 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
     <Step>Create access key ![](/images/secure_media_storage_accesskeys.png)</Step>
   </Steps>
 
-<Note> Bucket should be **public** and Bucket region should be **ap-south-1** </Note>
+<Note> Bucket region should be **ap-south-1** </Note>
   
 ### How to make S3 bucket private
 
@@ -152,7 +152,7 @@ To make the S3 bucket private, you need to create a Cloudfront URL and access th
 <Steps>
   <Step> Create a CloudFront Distribution by going to CloudFront -> Distribution -> Create Distribution ![](/images/cloudfront_url_distribution.png)</Step>
   <Step> Provide a Distribution name and provide a custom domain name (optional).</Step>
-  <Step> Select Origin Type as Amazon S3. Provide S3 bucket URL in S3 origin type and origin path where the files are stored. ![](/images/cloudfront_url_source.png)</Step>
+  <Step> Select Origin Type as Amazon S3. Provide S3 bucket Domain name in S3 origin type and origin path where the files are stored. ![](/images/cloudfront_url_source.png)</Step>
   <Step> Enable WAF or you can choose not to enable security.![](/images/cloudfront_security.png)</Step>
   <Step> Review and click 'Create Distribution'.![](/images/cloudfront_review.png) </Step>
 </Steps>
@@ -175,9 +175,9 @@ To enable the **Secure Media Storage** feature for your account,
 
    ![](/images/settings_secure_media_storage_pdf.png)
 
-  - Base URL : Provide the URL where the Fyno generated PDF files will be stored. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/LRN
+  - Base URL : Provide the URL where the Fyno generated PDF files will be stored. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/pdf
   - Bucket Name : Provide the bucket name where the files will be stored. 
-  - Folder Path : Provide the Folder path where the files will be stored. Example - LRN/pdf
+  - Folder Path : Provide the Folder path where the files will be stored. Example - pdf/LRN
 
 
 ### How to configure for Incoming Media
