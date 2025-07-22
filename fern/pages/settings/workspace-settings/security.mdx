@@ -126,19 +126,44 @@ The customers can then decrypt using the Key to check if the payload remained in
 
 ## How to configure custom media storage
 
-This feature enables you to store any media files in your private S3 bucket to make sure all the media file are secure. ¸
+This feature enables you to store media files sent using Fyno's PDF component or any incoming media (like jpeg, png, pdf etc) received from your customers via WhatsApp in your private S3 bucket to make sure all the media file are secure. ¸
+
+<Note> We will store Incoming media messages received only from Meta Direct and Meta Direct Plus integrations in private S3 bucket </Note>
+
 
 The prerequisite for enabling secure media storage is to Create custom AWS S3 storage. 
 
 ### How to Create custom AWS S3 storage
 
-   - Create a S3 bucket with a custom name ![](/images/s3bucket_public_access.png) ![](/images/s3bucket_policy.png) 
-   <Note> Bucket should be **public** and Bucket region should be **ap-south-1** </Note>
-   - Create an IAM user with S3 bucket permissions (putObject) ![](/images/secure_media_storage_iamuser.png) ![](/images/secure_media_storage_iamuser_permission.png)
-   - Create IAM policy
-   - Create access key ![](/images/secure_media_storage_accesskeys.png)
+  <Steps>
+    <Step>Create a S3 bucket with a custom name ![](/images/s3bucket_creation.png) </Step>
+    <Step>Configure permissions for the bucket created. ![](/images/s3bucket_public_access.png) ![](/images/s3bucket_policy.png) </Step>
+    <Step>Create an IAM user with S3 bucket permissions (putObject) ![](/images/secure_media_storage_iamuser.png)</Step>
+    <Step>Create IAM policy ![](/images/secure_media_storage_iamuser_permission.png)</Step>
+    <Step>Create access key ![](/images/secure_media_storage_accesskeys.png)</Step>
+  </Steps>
+
+<Note> Bucket should be **public** and Bucket region should be **ap-south-1** </Note>
+  
+### How to make S3 bucket private
+
+To make the S3 bucket private, you need to create a Cloudfront URL and access the S3 bucket using it. 
+
+<Steps>
+  <Step> Create a CloudFront Distribution by going to CloudFront -> Distribution -> Create Distribution ![](/images/cloudfront_url_distribution.png)</Step>
+  <Step> Provide a Distribution name and provide a custom domain name (optional).</Step>
+  <Step> Select Origin Type as Amazon S3. Provide S3 bucket URL in S3 origin type and origin path where the files are stored. ![](/images/cloudfront_url_source.png)</Step>
+  <Step> Enable WAF or you can choose not to enable security.![](/images/cloudfront_security.png)</Step>
+  <Step> Review and click 'Create Distribution'.![](/images/cloudfront_review.png) </Step>
+</Steps>
 
 To enable the **Secure Media Storage** feature for your account,
+
+<Steps>
+  <Step>Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Security**' which opens up the Security page.</Step>
+  <Step>Then find the **Secure Media Storage** option and toggle it "on".</Step>
+  <Step>Provide Access Key Id and Secret Access Key, which are credentials set up on AWS for IAM user ![](/images/settings_secure_media_storage.png) </Step>
+</Steps>
 
 <Steps>
   <Step>Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Security**' which opens up the Security page.</Step>
