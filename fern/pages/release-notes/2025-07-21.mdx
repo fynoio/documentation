@@ -1,0 +1,76 @@
+---
+hide-nav-links: true
+---
+
+## 25.2.7
+
+### 🔹 New Features
+
+- **Maker-Checker: Minimum Approvers**
+
+  - Introduced ability to **set a minimum number of required approvers** per module (e.g., templates, workflows), offering stricter review control in critical environments.
+
+- **Dynamic Shorty URLs with Placeholders**
+
+  - Added support to **create short links with dynamic placeholders**, enabling personalized URLs in templates (e.g., `/track/{{user_id}}`).
+
+- **SMS PDF Support**
+
+  - Users can now **send PDF attachments via SMS** (in addition to Email and WhatsApp), enhancing transactional use cases like **bills, tickets, and receipts**.
+
+- **Workspace Settings** **[Beta]**
+
+  - Added ability to **configure custom S3 buckets** for storing media and PDF assets. This allows organizations to align with their own storage policies and data segregation requirements.
+  - This feature can be enabled under **Workspace Settings** and is currently available in **_beta_**.
+
+- **Wisely RCS Integration**
+  - Introduced **Wisely RCS** as a new vendor integration, enhancing rich messaging support within the platform.
+
+---
+
+### ⚡ Feature Enhancements
+
+- **Templates**
+
+  - Enabled **manual List-Unsubscribe header** configuration for email templates without preference center support.
+  - Updated **system variable list** in the UI for easier access and improved usability.
+  - Migrated external WhatsApp templates to support **WABA-compliant formats** for better vendor compatibility.
+
+- **Voice Integrations**
+
+  - Now support `recording_url` for **Kaleyra Voice** and **Exotel**, enabling call recording access directly in event logs or callbacks.
+
+- **Workflows**
+
+  - Enhanced the **WhatsApp Reply widget** to support **wait duration settings**, allowing smarter message chaining in journeys.
+
+- **Settings**
+  - Enhanced security by **masking AWS credentials** display.
+
+---
+
+### 🛠 Bug Fixes
+
+- **Analytics**
+
+  - Fixed **broken campaign page loading** and **chart rendering** on custom date ranges.
+  - Resolved **tooltip display issues** for time series charts.
+
+- **Auth**
+
+  - Addressed bug where **users with expired passwords** couldn't reset them reliably.
+
+- **Maker-Checker**
+
+  - Fixed issue with the **cancel button** being incorrectly disabled in certain approval states.
+
+- **Templates**
+
+  - Resolved rendering issues in **Fyno WhatsApp templates** and fixed broken links in external template views.
+
+- **Notification Events**
+
+  - Corrected **template selection dropdown** display issues.
+
+- **Workflows**
+  - Fixed **scrolling issues** in multi-condition widgets and improved rendering logic for condition-based splits.
