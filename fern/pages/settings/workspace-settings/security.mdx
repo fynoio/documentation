@@ -141,7 +141,7 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
       - Enter a bucket name to identify the bucket uniquely.
       - Select Object Ownership as **ACLs disabled**
       ![](/images/s3bucket_creation.png) </Step>
-    <Step>Configure permissions for the bucket created. ![](/images/s3bucket_public_access.png) ![](/images/s3bucket_policy.png) 
+    <Step>Configure permissions for the bucket created. ![](/images/s3bucket_public_access.png) ![](/images/s3bucket_policy.png) </Step>
     ```curl title="Allow Read in Bucket Policy" wordWrap
     {
     "Version": "2012-10-17",
@@ -158,10 +158,10 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
         }
      ]
     }
-   ```
-  </Step>
+    ```
+  
     <Step>Create an IAM user with S3 bucket permissions (putObject) ![](/images/secure_media_storage_iamuser.png)</Step>
-    <Step>Create IAM policy ![](/images/secure_media_storage_iamuser_permission.png)
+    <Step>Create IAM policy ![](/images/secure_media_storage_iamuser_permission.png)</Step>
     ```curl title="Specify Permissions" wordWrap
     {
     "Version": "2012-10-17",
@@ -174,8 +174,8 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
         }
       ]
     }
-   ```
-    </Step>
+    ```
+    
     <Step>Create access key ![](/images/secure_media_storage_accesskeys.png)</Step>
   </Steps>
 
