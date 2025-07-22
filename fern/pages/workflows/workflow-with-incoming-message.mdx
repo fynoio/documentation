@@ -59,7 +59,7 @@ To achieve this, you need to do the following steps:
 <Step>If the HTTP status code is 200, send a notification to the user confirming the status of the order. ![](/images/5cd9346-Screenshot_2024-07-15_at_3.36.02_PM.png)</Step>
 <Step>Map the mobile no in the destination section. You can choose 'simplified.source' from the dropdown.</Step>
 <Step>You can map all the placeholders used in the template as shown in the data section as shown above. Make sure to add it in the format `{{$http_response.data.<variable>}}`.</Step>
-<Step>You can add a **Reply widget** to store the user response and use it further in the flow as shown below. In this example, we are saving the user response for whether they want to change the phone no or not. ![](/images/6fa3c3dd2577765a97671f0ae8744c59994d8ede6fd6b861edca7c616bd24932-wait_for_reply.png)</Step>
+<Step>You can add a **Reply widget** to store the user response and use it further in the flow as shown below. You can also specify how long you want to wait for the user's reply. In this example, we are waiting for 30 minutes and we are saving the user response for whether they want to change the phone no or not. ![](/images/workflow_wait_for_reply.png)</Step>
 <Step>Using this, you can decide whether you need to call an API to update the phone no (if user clicked Yes) or end the flow. ![](/images/c274d5f382b278e5d984a7edcf3dabf60a0f0aba618625809d93f2b7d954b4cb-flow_reply.png)</Step>
 </Steps>
 
