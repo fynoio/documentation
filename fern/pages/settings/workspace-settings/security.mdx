@@ -178,7 +178,7 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
     <Step> Enter a policy name and click 'Create Policy'. ![](/images/s3_iam_user_create_policy.png) </Step>
     <Step> Go to IAM -> Users. Click 'Create User'. </Step>
     <Step> Add Permissions to the user. Select 'Attach Policies directly' permission option. Search for the Policy created in the previous step and select the policy and click Next. ![](/images/s3_add_policy_to_user.png) </Step>
-    <Step>now the user is created and the added policy will appear as shown ![](/images/s3_policy_added.png) </Step>
+    <Step> Now the user is created and the added policy will appear as shown ![](/images/s3_policy_added.png) </Step>
     <Step>To create access key, go to IAM -> Users. Select the user for whom you want to create Access key. Click 'Create access key' ![](/images/s3_create_access_key.png)</Step>
     <Step> Select the use case for the access key. For this use case, choose 'Other' and click Next ![](/images/s3_select_permission.png)</Step>
     <Step> Access key is created as shown. You can download the csv file for future reference. ![](/images/s3_access_key_created.png) </Step>
@@ -207,25 +207,20 @@ To enable the **Secure Media Storage** feature for your account,
   <Step>Provide Access Key Id and Secret Access Key, which are credentials set up on AWS for IAM user ![](/images/settings_secure_media_storage.png) </Step>
 </Steps>
 
-<Steps>
-  <Step>Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Security**' which opens up the Security page.</Step>
-  <Step>Then find the **Secure Media Storage** option and toggle it "on".</Step>
-  <Step>Provide Access Key Id and Secret Access Key, which are credentials set up on AWS for IAM user ![](/images/settings_secure_media_storage.png) </Step>
-</Steps>
-
 ### How to configure for Fyno generated PDFs
 
    ![](/images/settings_secure_media_storage_pdf.png)
 
-  - Base URL : Provide the URL where the Fyno generated PDF files will be stored. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/pdf
+  - Base URL : Provide the URL where the Fyno generated PDF files will be stored in this format - base_url/folder/subfolder
+  Example - https://example-bucket.s3.ap-south-1.amazonaws.com/pdf/lrn
   - Bucket Name : Provide the bucket name where the files will be stored. 
-  - Folder Path : Provide the Folder path where the files will be stored. Example - pdf/LRN
+  - Folder Path : Provide the Folder path where the files will be stored. Example - pdf/lrn
 
 
 ### How to configure for Incoming Media
 
   ![](/images/settings_secure_media_storage_incoming.png)
 
-  - Base URL : Provide the URL where all the incoming media files (pdf, jpeg, png etc) will be stored. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/incoming
+  - Base URL : Provide the URL where all the incoming media files (pdf, jpeg, png etc) will be stored in this format - base_url/folder/subfolder. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/incoming/media
   - Bucket Name : Provide the bucket name where the files will be stored. 
   - Folder Path : Provide the Folder path where the files will be stored. Example - incoming/media
