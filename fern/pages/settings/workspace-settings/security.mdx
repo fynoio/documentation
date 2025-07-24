@@ -161,11 +161,8 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
      ]
     }
     ```
-  
-    <Step> Go to IAM -> Users. Click 'Create User'. Set Permissions to the user. Its recommended to select 'Add user to group' permission option. Click 'Create User'. Create an IAM user with S3 bucket permissions (putObject) ![](/images/secure_media_storage_iamuser.png)</Step>
     <Step>Go to IAM -> Policies. Click 'Create Policy'. In the policy editor, select JSON and paste the JSON shown below. ![](/images/s3_iam_user_permissions.png)</Step>
-    <Step> Enter a policy name and click 'Create Policy'. ![](/images/s3_iam_user_create_policy.png) </Step>
-    ```curl title="Specify Permissions" wordWrap
+     ```curl title="Specify Permissions" wordWrap
     {
     "Version": "2012-10-17",
     "Statement": [
@@ -178,9 +175,10 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
       ]
     }
     ```
-    <Step>Now add the policy created to the user. Go to IAM -> User and select the user for whom you want to add the policy.</Step>
-    <Step>Click 'Add permissions' and search for the policy you want to add. Now add the policy created to the user. Go to IAM -> User and select the user for whom you want to add the policy. ![](/images/s3_add_policy_to_user.png) ![](/images/s3_search_policy.png) </Step>
-    <Step>The added policy will appear as shown ![](/images/s3_policy_added.png) </Step>
+    <Step> Enter a policy name and click 'Create Policy'. ![](/images/s3_iam_user_create_policy.png) </Step>
+    <Step> Go to IAM -> Users. Click 'Create User'. </Step>
+    <Step> Add Permissions to the user. Select 'Attach Policies directly' permission option. Search for the Policy created in the previous step and select the policy and click Next. ![](/images/s3_add_policy_to_user.png) </Step>
+    <Step>now the user is created and the added policy will appear as shown ![](/images/s3_policy_added.png) </Step>
     <Step>To create access key, go to IAM -> Users. Select the user for whom you want to create Access key. Click 'Create access key' ![](/images/s3_create_access_key.png)</Step>
     <Step> Select the use case for the access key. For this use case, choose 'Other' and click Next ![](/images/s3_select_permission.png)</Step>
     <Step> Access key is created as shown. You can download the csv file for future reference. ![](/images/s3_access_key_created.png) </Step>
