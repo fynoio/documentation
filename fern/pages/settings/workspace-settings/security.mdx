@@ -136,12 +136,14 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
 ### How to Create custom AWS S3 storage
 
   <Steps>
-    <Step>Create a S3 bucket with a custom name.
-      - Choose Bucket Type as General purpose.
-      - Enter a bucket name to identify the bucket uniquely.
-      - Select Object Ownership as **ACLs disabled**
-      ![](/images/s3bucket_creation.png) </Step>
-    <Step>Configure permissions for the bucket created. ![](/images/s3bucket_public_access.png) ![](/images/s3bucket_policy.png) </Step>
+    <Step>Create a S3 bucket with a custom name. Choose Bucket Type as General purpose. Enter a bucket name to identify the bucket uniquely.Select Object Ownership as **ACLs disabled** ![](/images/s3bucket_creation.png) </Step>
+    <Step> Configure if the bucket should be Public or Private. If you want the bucket to be Public, unselect the checkbox. If you want the bucket to be Private, select the Checkbox ![](/images/s3_public_access_settings.png) ![](/images/s3bucket_policy.png) </Step>
+    <Step> Enable or Disable Bucket Versioning. By default its disabled. ![](/images/s3bucket_versioning.png) </Step>
+    <Step> You can add bucket tags to track storage costs and organize buckets. Its Optional. You can add up to 50 tags. ![](/images/s3bucket_tags.png) </Step>
+    <Step> Select the Encryption Type ![](/images/s3bucket_default_encryption.png) </Step>
+    <Step> Click 'Create Bucket'. The bucket created will appear like shown. ![](/images/s3_buckets_list.png) </Step>
+    <Step> Click the bucket Created and navigate to Permissions tab. Add the JSON shown below in the Bucket Policy section and Save changes.![](/images/s3_bucket_policy.png) </Step>
+
     ```curl title="Allow Read in Bucket Policy" wordWrap
     {
     "Version": "2012-10-17",
@@ -154,7 +156,7 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
                 "s3:GetObject",
                 "s3:GetObjectVersion"
             ],
-            "Resource": "arn:aws:s3:::fyno-bucket/pdf/*"
+            "Resource": "arn:aws:s3:::<bucket_name>>/<tag>/*"
         }
      ]
     }
