@@ -194,9 +194,10 @@ To make the S3 bucket private, you need to create a Cloudfront URL and access th
 <Steps>
   <Step> Create a CloudFront Distribution by going to CloudFront -> Distribution -> Create Distribution ![](/images/cloudfront_url_distribution.png)</Step>
   <Step> Provide a Distribution name and provide a custom domain name (optional).</Step>
-  <Step> Select Origin Type as Amazon S3. Provide S3 bucket Domain name in S3 origin type and origin path where the files are stored. ![](/images/cloudfront_url_source.png)</Step>
+  <Step> Select Origin Type as Amazon S3. Provide S3 bucket Domain name in S3 origin type and origin path (optional) where the files are stored. For example you want to add pdf files under pdf folder, you can add /pdf as origin path. ![](/images/cloudfront_url_source.png)</Step>
   <Step> Enable WAF or you can choose not to enable security.![](/images/cloudfront_security.png)</Step>
   <Step> Review and click 'Create Distribution'.![](/images/cloudfront_review.png) </Step>
+  <Step> You need to use 'Distribution Domain name' shown in Fyno security settings while adding Base URL ![](/images/s3_cloudfront_url.png)
 </Steps>
 
 To enable the **Secure Media Storage** feature for your account,
@@ -212,7 +213,8 @@ To enable the **Secure Media Storage** feature for your account,
    ![](/images/settings_secure_media_storage_pdf.png)
 
   - Base URL : Provide the URL where the Fyno generated PDF files will be stored in this format - base_url/folder/subfolder
-  Example - https://example-bucket.s3.ap-south-1.amazonaws.com/pdf/lrn
+  Example - https://example-bucket.s3.ap-south-1.amazonaws.com/pdf/lrn . 
+   If you are using CloudFront URL to access S3 bucket and if you have added origin path as /pdf, then you need to add <Distribution_Domain_name>/<subfolder>. Example - abcdefgh.cloudfront.net/lrn
   - Bucket Name : Provide the bucket name where the files will be stored. 
   - Folder Path : Provide the Folder path where the files will be stored. Example - pdf/lrn
 
@@ -221,6 +223,7 @@ To enable the **Secure Media Storage** feature for your account,
 
   ![](/images/settings_secure_media_storage_incoming.png)
 
-  - Base URL : Provide the URL where all the incoming media files (pdf, jpeg, png etc) will be stored in this format - base_url/folder/subfolder. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/incoming/media
+  - Base URL : Provide the URL where all the incoming media files (pdf, jpeg, png etc) will be stored in this format - <base_url>/<folder>/<subfolder>. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/incoming/media . 
+   If you are using CloudFront URL to access S3 bucket and if you have added origin path as /incoming, then you need to add <Distribution_Domain_name>/<subfolder>. Example - abcdefgh.cloudfront.net/media
   - Bucket Name : Provide the bucket name where the files will be stored. 
   - Folder Path : Provide the Folder path where the files will be stored. Example - incoming/media
