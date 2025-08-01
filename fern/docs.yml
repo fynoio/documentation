@@ -591,6 +591,8 @@ navigation:
               path: "pages/fyno-connect/create-cohort.mdx"
             - page: "Create Campaigns"
               path: "pages/fyno-connect/create-campaign.mdx"
+            - page: "Create Campaigns"
+              path: "pages/fyno-connect/content-api.mdx"
             - page: "Invite Team Members"
               path: "pages/fyno-connect/invite-team.mdx"
             - page: "Enable Alerts"
