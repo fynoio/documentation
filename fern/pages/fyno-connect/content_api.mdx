@@ -1,0 +1,38 @@
+---
+title: 'Content API'
+slug: 'how-to-add-content-apis-in-fyno-connect'
+og:title: 'Content API - Fyno Connect | Fyno Documentation'
+og:description: 'The document outlines how you can configure your API end points in Connect and use it to fetch any data and use it in your campaigns.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Content API feature enables you to configure your API end points in Connect and use it to fetch any data and use it in your campaigns.
+
+To add a content API, go to Profile (top right corner) -> Settings -> Content API.
+
+## How to add and test a Content API
+
+<Steps>
+  <Step>Click '+Content API' to add a new content API.</Step>
+  <Step>In the popup, enter a API name and add API cuRL request with placeholders (if any) and click Validate. ![](/images/content_api_sample_request.png)</Step>
+  <Step>If there any placeholders present in the API Request, then its recommended to add a description for the same.This will help your marketing/product teams to use these parameters properly in campaign. Click Continue.</Step>
+  <Step>Add the cURL request with sample values to test the API. Click 'Test CURL'![](/images/content_api_sample_request_1.png) </Step>
+  <Step>You will see API response with Status, Response Size and Response Time. ![](/images/content_api_response.png)</Step>
+  <Step>Select the response fields you want to use it in your campaign. ![](/images/content_api_response_fields.png)</Step>
+  <Step>By default, all the selected response fields will have a mapper variable. This is to make sure complex nested API responses are handled. You can change the mapper variable names as per your requirement.![](/images/content_api_mapper_variable.png) </Step>
+  <Step>Click 'Save Configuration' and you will see it in the Content API listing page.</Step>
+</Steps>
+
+<Note>If the response time is between 100 and 500 ms, we show it as 'Slightly High' and >500 ms is VERY HIGH. Its recommended to have response time less than 100ms.</Note>
+
+
+## How to use Content API in Campaigns
+
+Once you have added and tested a Content API, you can use it to fetch data and use the response data in any campaigns.
+
+<Steps>
+  <Step>While creating a campaign, you will see an option to select Content APIs</Step>
+  <Step>You can select the Content API(s) from dropdown. ![](/images/content_api_select_apis.png)</Step>
+  <Step>If the selected Content API has any input parameters, you can assign it from the cohort data.![](/images/content_api_config_input.png)</Step>
+  <Step>Click 'Go to Testing' to test the campaign. </Step>
+</Steps>
