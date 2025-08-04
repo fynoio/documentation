@@ -2,7 +2,7 @@
 title: 'SMS Templates'
 slug: 'template-creation-sms'
 og:title: 'Templates - Creating SMS Templates | Fyno Documentation'
-og:description: 'Here are some instructions on how to create or edit an SMS template.'
+og:description: 'Here are some instructions on how to create or edit a Synced or Non-synced SMS template.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
@@ -12,34 +12,48 @@ You need to follow the below steps to create a SMS template
 
 ## Template Types
 
-- Synced - Select this option, if you have synced/uploaded all DLT approved SMS templates into Fyno. All these templates will be available under Templates -> External -> SMS
-- Not Synced - Select this option if your SMS templates are not synced with Fyno.
+- Synced - If you have synced/uploaded all DLT approved SMS templates into Fyno. All these templates will be available under Templates -> External -> SMS
+- Not Synced - If your SMS templates are not synced with Fyno.
 
 ### Synced SMS Template
 
 <Steps>
-  <Step>If you choose Synced template type, you can select the template from the dropdown. If your template has any placeholders, it will appear under 'Body variables' as shown below. Once you provide sample values for the placeholders, they will reflect in the Preview section.</Step>
+  <Step>**External Template Name/Id** - If your templates are SYNCED, you can select the template from the dropdown. </Step>
+  <Step> - You will see the below details for the SMS selected
+    - Encoding : GSM-7
+    - 1 Credit equals 160 characters (This will change for Unicode messages)
+    - Credits Used : This will change based on no of characters in your SMS content
+    - Characters Used : This will show the no of characters present in your SMS content.
+  </Step>
+  <Step>If your template has any placeholders, it will appear under 'Body variables' as shown below. Once you provide sample values for the placeholders, they will reflect in the Preview section.</Step>
   <Step>Click **Save** which will save the template in **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version. ![](/images/template_sms_preview.png)</Step>
 </Steps>
 
-### Not Synced SMS Template
+<Note>External Template Name/Id is required only if you are sending it to Indian mobile numbers. If not, select 'Not Applicable'</Note>
+
+### Non Synced SMS Template
 
 <Steps>
-  <Step>If you choose 'Not Synced Template', you will have an overview of your message details such as Encoding type, length of the message (character count) per part, and credits being used. ![](/images/template_sms_not synced.png)</Step>
-  <Step>You can enter the content of the message in the SMS template.</Step>
-  <Step>**Override Sender Id**: You can specify any approved SenderId/Header here to override the default one configured in your Integration. E.g., using SenderId CLXYZA instead of the configured CLABCD in the integration.</Step>
-  <Step>
-    Create Text, Unicode or Flash (checkboxes to select) messages.
-    <ul>
-      <li>Unicode: Unicode SMS allows you to send messages in any foreign and regional language other than English</li>
-      <li>Flash:A flash message appears on the mobile device’s screen, without having to access the SMS storage application on the device.</li>
-    </ul>
+  <Step>**External Template Name/Id** - If your templates are NOT SYNCED, you will need to enter the DLT Template name or Template Id.</Step>
+  <Step>**SMS Content** - You can enter the content of the message in the SMS Content section.</Step>
+  <Step> - You will see the below details once you entered the SMS content. 
+    - Encoding : GSM-7
+    - 1 Credit equals 160 characters (This will change for Unicode messages)
+    - Credits Used : This will change based on no of characters in your SMS content
+    - Characters Used : This will show the no of characters present in your SMS content.
   </Step>
-  <Step>Enter the DLT template ID for Indian Customers.</Step>
+  <Step>**Unicode Message** (Optional) - Enable this to send unicode message, if the content or placeholder values may contain unicode or non-English characters.</Step>
   <Step>Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by `{{}}`. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"</Step>
   <Step>Review your content and take a look at what your message would look like in the Preview section on the right.</Step>
   <Step>Click **Save** which will save the template in **Test** version. Use **Go Live** when you are ready to move your template into the "**Live**" version</Step>
 </Steps>
+
+
+
+### Additional Configuration (Optional)
+
+  - **Override Sender Id**: You can specify any approved SenderId/Header here to override the default one configured in your Integration. E.g., using SenderId CLXYZA instead of the configured CLABCD in the integration.
+  - **Send as a Flash Message**:A flash message appears on the mobile device’s screen, without having to access the SMS storage application on the device.
 
 <Note>To use any user property in your templates, you can add it in this format - `{{$user.$<user_property>}}`. For example, to add Name as placeholder from User profile, you can add it as `{{$user.$name}}`</Note>
 
