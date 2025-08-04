@@ -12,19 +12,13 @@ You need to follow the below steps to create a SMS template
 
 ## Template Types
 
-- Synced - If you have synced/uploaded all DLT approved SMS templates into Fyno. All these templates will be available under Templates -> External -> SMS
-- Not Synced - If your SMS templates are not synced with Fyno.
+- Synced : If you have synced/uploaded all DLT approved SMS templates into Fyno. All these templates will be available under Templates -> External -> SMS
+- Not Synced : If your SMS templates are not synced with Fyno.
 
 ### Synced SMS Template
 
 <Steps>
   <Step>**External Template Name/Id** - If your templates are SYNCED, you can select the template from the dropdown.</Step>
-  <Step> You will see the below details for the SMS selected
-    - Encoding : GSM-7
-    - 1 Credit equals 160 characters (This will change for Unicode messages)
-    - Credits Used : This will change based on no of characters in your SMS content
-    - Characters Used : This will show the no of characters present in your SMS content.
-  </Step>
   <Step>If your template has any placeholders, it will appear under 'Body variables' as shown below. Once you provide sample values for the placeholders, they will reflect in the Preview section.</Step>
   <Step>Click **Save** which will save the template in **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version. ![](/images/template_sms_preview.png)</Step>
 </Steps>
@@ -36,19 +30,11 @@ You need to follow the below steps to create a SMS template
 <Steps>
   <Step>**External Template Name/Id** - If your templates are NOT SYNCED, you will need to enter the DLT Template name or Template Id.</Step>
   <Step>**SMS Content** - You can enter the content of the message in the SMS Content section.</Step>
-  <Step> You will see the below details once you entered the SMS content. 
-    - Encoding : GSM-7
-    - 1 Credit equals 160 characters (This will change for Unicode messages)
-    - Credits Used : This will change based on no of characters in your SMS content
-    - Characters Used : This will show the no of characters present in your SMS content.
-  </Step>
   <Step>**Unicode Message** (Optional) - Enable this to send unicode message, if the content or placeholder values may contain unicode or non-English characters.</Step>
   <Step>Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by `{{}}`. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"</Step>
   <Step>Review your content and take a look at what your message would look like in the Preview section on the right.</Step>
   <Step>Click **Save** which will save the template in **Test** version. Use **Go Live** when you are ready to move your template into the "**Live**" version</Step>
 </Steps>
-
-
 
 ### Additional Configuration (Optional)
 
