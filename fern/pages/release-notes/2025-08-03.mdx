@@ -1,0 +1,76 @@
+---
+hide-nav-links: true
+---
+
+## 25.2.8
+
+### 🔹 New Features
+
+- **New Native Integrations**
+
+  - Added support for **BSNL** and **TeSync** as native integrations for SMS delivery.
+
+- **Fyno Connect**
+
+  - Introduced **Content API** to fetch dynamic data from external APIs and use it in campaigns for real-time personalization.
+
+---
+
+### ⚡ Feature Enhancements
+
+- **Reports UX**
+
+  - Improved filter selection UX for reports in both Settings and Logs for easier configuration.
+
+- **Character Restrictions**
+
+  - Enforced stricter validations on `distinct_id` and `event` payloads to ensure consistent formatting and prevent invalid characters.
+
+- **Optional URL Shortening for Custom S3 (FynoDocs)**
+  - You can now choose to enable or disable Shorty for SMS links when using custom S3, with new config options: `use_shorty` and `filename_len`.
+
+---
+
+### 🛠 Bug Fixes
+
+- **Authentication**
+
+  - Fixed an issue where users with a single workspace were redirected to the homepage in new tabs, preventing report download.
+
+- **Workflows**
+
+  - Resolved error when manually providing payloads in the Event widget.
+
+- **Campaigns**
+
+  - Fixed campaign renaming inconsistencies.
+
+- **Templates**
+
+  - WhatsApp: Ensured `template_id` is included in payload for delivery.
+  - Preview: Fixed missing rendering for `{{...}}` placeholders.
+
+- **Routing**
+
+  - Corrected tooltip behavior and visual glitches when setting up omni-channel routing.
+
+- **Journeys**
+
+  - Fixed incorrect handling of “Journey Start” condition evaluations.
+
+- **UI/General**
+  - Fixed dropdown focus lock issue.
+  - Improved item addition experience in large group lists.
+
+---
+
+### 🛡️ Security & Infrastructure
+
+- **Security Enhancements**
+
+  - Strengthened input validation and role-based access boundaries.
+
+- **Performance & Reliability Enhancements**
+  - Optimized backend systems to improve stability, reduce latency, and ensure smoother overall performance.
+
+---
