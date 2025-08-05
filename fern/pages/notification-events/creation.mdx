@@ -8,33 +8,21 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 A notification event is the single most important part of Fyno's application design.
 
-This stitches all the pieces that have been created by you and put them into a configuration flow or "**Notification Event**" that becomes executable in a single API.
+**Notification Event = Template + (Providers or Route) **
 
 For a notification event to be successfully created, you will need to have pre-configured:
 
 1. Providers
-2. Routing (optional)
-3. Templates
-
-The basic concept of a notification event is:
-
-**Notification Event = Template + (Providers or Route) **
-
-Let's have a quick look around the landing page of Notification Events.
-
-You will find an easy toggle to change your view between a card grid and a list view, for your convenience.
-
-Your option to filter out only the **Live** routes is at the top of the page.
-
-On this page, you can quickly search for any of the notification events by the name given to them at the time of creation.
-
-<Tip title='Create "Notification Events" with significant titles or names to help search for them easily.'>A detailed description can also be added at the time of creation.</Tip>
+2. Templates
+3. Routing (optional)
 
 To create a new Notification Event, click on the "**Create+**" on the right side of the page.
 
 <Steps>
   <Step>Provide a name for your notification event</Step>
+  <Step>Select the Notification Event Types from one of the 3 options - OTP, Transactional, Marketing.</Step>
   <Step>Provide a description of your notification event. This helps in the future when you want to review and change things up in your "**Notification Event**"</Step>
+  <Step>Select or add a group. This will help you to organize all the notification events.
   <Step>Select Subscription topic from the list of subscriptions created in User Preferences. This is an optional field. Please refer this [documentation](./user-preferences) on how to create subscription</Step>
   <Step>Click on "**Submit**" once done.</Step>
 </Steps>
@@ -46,7 +34,7 @@ To create a new Notification Event, click on the "**Create+**" on the right side
 On creating a notification event, on each **Notification Event** card you will see:
 
 - Notification Event Analytics button which will take you the analytics page of that notification event. 
-- Run Test Button, which will open up the Notification Event Playground Window
+- **Run Test** Button, which will open up the Notification Event Playground Window
 - When the notification event was last updated.
 - Icon which represents the live or test version of a notification event.
 - Group to which a notification event belongs. In this example, Payment_Reminder is the group name. 
