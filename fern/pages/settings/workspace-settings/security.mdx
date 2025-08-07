@@ -100,8 +100,7 @@ To enable Approval flow for Templates, Notification events and Workflows, follow
 
 <Steps>
   <Step>Enable the toggle button. ![](/images/settings_enable_maker_checker.png)</Step>
-  <Step>Select the users whom you want to choose as Approvers and select for which modules you want to enable it. You can also select Minimum Approvals required.
-  For example, if you want at least 2 Approvers to approve any change in Templates, then select Approval Required as 2 and click 'Save'. ![](/images/settings_maker_checker.png)</Step>
+  <Step>Select the users whom you want to choose as Approvers and select for which modules you want to enable it. You can also select Minimum Approvals required. For example, if you want at least 2 Approvers to approve any change in Templates, then select Approval Required as 2 and click 'Save'. ![](/images/settings_maker_checker.png)</Step>
   <Step>The Approval card will look like shown below. You can click 'Edit Approvers' to add or remove approvers. ![](/images/settings_post_maker_checker.png)</Step>
 </Steps>
 
@@ -139,7 +138,7 @@ The prerequisite for enabling secure media storage is to Create custom AWS S3 st
 ### How to Create custom AWS S3 storage
 
   <Steps>
-    <Step>Create a S3 bucket with a custom name. Choose Bucket Type as General purpose. Enter a bucket name to identify the bucket uniquely.Select Object Ownership as **ACLs disabled** ![](/images/s3bucket_creation.png) </Step>
+    <Step> Create a S3 bucket with a custom name. Choose Bucket Type as General purpose. Enter a bucket name to identify the bucket uniquely.Select Object Ownership as **ACLs disabled** ![](/images/s3bucket_creation.png) </Step>
     <Step> Configure if the bucket should be Public or Private. If you want the bucket to be Public, unselect the checkbox. If you want the bucket to be Private, select the Checkbox. If you want to keep the bucket private, you need to create CloudFront URL to access it. You can refer this [doc](https://fyno.io/docs/security#step-19) ![](/images/s3_public_access_settings.png) ![](/images/s3bucket_policy.png) </Step>
     <Step> Enable or Disable Bucket Versioning. By default its disabled. ![](/images/s3bucket_versioning.png) </Step>
     <Step> You can add bucket tags to track storage costs and organize buckets. Its Optional. You can add up to 50 tags. ![](/images/s3bucket_tags.png) </Step>
