@@ -68,6 +68,8 @@ navigation:
                   - section: "SMS"
                     path: "pages/integrations/sms-channel.mdx"
                     contents:
+                        - page: "BSNL"
+                          path: "pages/integrations/sms/bsnl.mdx"
                         - page: "Exotel"
                           path: "pages/integrations/sms/exotel.mdx"                        
                         - page: "Gupshup"
