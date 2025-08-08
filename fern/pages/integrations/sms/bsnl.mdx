@@ -1,0 +1,46 @@
+---
+title: 'BSNL'
+slug: 'sms-bsnl'
+og:title: 'How to send SMS using BSNL & Fyno | Fyno Documentation'
+og:description: 'A guide to integrate your BSNL SMS account into Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Before we get started, you will need to have an BSNL account already set up, along with SenderID added.
+
+<Steps>
+
+### Find the Provider
+
+Navigate to the Integrations page. Under “SMS” section, click on the “BSNL” button.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+- **Custom name**: Provide a name to help you identify the configured account in Fyno's portal.
+
+- **Username**: Enter the User name of your BSNL account.
+
+- **Password**: Enter the Password of your BSNL account.
+
+- **Sender**: Enter the Sender ID that you want to use.
+
+- **Entity ID**: Enter your DLT registered Entity ID.
+
+- **Circle**: Enter the region or area code.  Example - MH
+
+
+### Complete the Integration
+
+Click on "Add Account" once done, and you are all set!
+
+</Steps>
+
+## Message Delivery Status
+
+While Fyno has the capacity to track the notification delivery status, BSNL requires a manual update of the Fyno Callback Endpoint in order to receive these reports.
+
+Share the Callback URL from the integration page with your BSNL account manager to configure it in your BSNL account settings. 
+
+After the configuration is done, you can now send a test message from Fyno using BSNL as the **Provider** and see the delivery logs updated in your **Sent logs**.

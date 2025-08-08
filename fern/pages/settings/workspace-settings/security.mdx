@@ -18,7 +18,7 @@ Fyno has 5 **Security** features that can be enabled for your account:
 4. Secure Allowlist Endpoints
 5. Secure Media Storage
 
-<Note>Only users with 'Owner' or 'Super Admin' as role can enable these features.</Note>
+<Note>Only users with 'Owner' or 'Super Admin' role can enable these security settings. Also these features are NOT AVAILABLE for Free Plan.</Note>
 
 Before you enable any of these features, it is important to understand what each one does, to ensure your use case is being covered and you are achieving the security data protection.
 
@@ -51,7 +51,6 @@ To enable the **Masking** feature for your account,
   <Step>Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Security**' which opens up the Security page.</Step>
   <Step>Then find the **Masking** option and toggle it "on".</Step>
 </Steps>
-And you are all set!
 
 Once done, all your **Data Payload** and **Destination** details will be masked across the application. You can see this in the following places:
 
@@ -65,7 +64,7 @@ You will be able to see the masked data as a string of "xxxxx" where the sensiti
 
 You can decide whether you want to store the data payload you send to Fyno or not using this setting.
 
-### When and How it Works?
+### How it Works?
 
 Data Payload storage, when activated, will be implemented on the below data point that we receive from you:
 
@@ -77,7 +76,7 @@ Fyno's **Data Payload Storage** feature works as below:
 - Fyno receives an API request from your end with the data payload.
 - On receiving the API Request, if **Data Payload Storage** is toggled on, then we will store the data payload at our end.
 
-If its disabled, you wont see any Placeholders data in the logs.
+If its disabled, you won't see any Placeholders data in the logs.
 
 ### Enabling Data Payload Storage
 
@@ -88,11 +87,7 @@ To enable the **Data Payload Storage** feature for your account,
   <Step>Then find the **Data Payload Storage** option and toggle it "on".</Step>
 </Steps>
 
-And you are all set!
-
 ## Approval
-
-<Info>This feature is NOT available for Free plan. Only Workspace Owner can enable this setting.</Info>
 
 This feature will enable you to add a approval process when anyone promotes a feature from Test to Live. This additional step ensures to prevent incorrect or unintended communications from reaching users.
 
