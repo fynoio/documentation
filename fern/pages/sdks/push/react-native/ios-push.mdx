@@ -23,9 +23,9 @@ Run `pod install` in the ios folder of your React Native application to install/
 
 4. In Background Modes, select the Remote Notifications option. This is required to receive background push notifications. Learn more about background notifications [here](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app).
 
-### Register for push notification in AppDelegate.mm file
+### Register for push notification in the AppDelegate file
 
-To handle push notifications in your iOS app, add the following code to `AppDelegate.mm`:
+To handle push notifications in your iOS app, add the following code to the `AppDelegate` file:
 
 1. Import the required packages:
 
@@ -133,7 +133,7 @@ To ensure rich push notifications and proper handling of incoming messages, add 
 
 1. In Xcode go to **File** > **New** > **Target**.
 2. Select `Notification Service Extension` from the template list.
-3. Provide a product name, select your development team, choose Objective-C as the language, and click Finish.
+3. Provide a product name, select your development team, choose the approrpiate language, and click Finish.
 
 ![](/images/react_ios_2.png)
 ![](/images/react_ios_4.png)
@@ -148,19 +148,22 @@ Replace the contents of the generated `NotificationService` file with the follow
   #import <fyno/fyno-Swift.h>
   #import <FirebaseCore/FirebaseCore.h>
   #import <FirebaseMessaging/FirebaseMessaging.h>
+  
   @interface NotificationService ()
-  @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
-  @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
+    @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
+    @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
   @end
+  
   @implementation NotificationService
-  - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
-    [[fyno app] handleDidReceive:request withContentHandler:contentHandler];
-  }
-  - (void)serviceExtensionTimeWillExpire {
+    - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+      [[fyno app] handleDidReceive:request withContentHandler:contentHandler];
+    }
+  
+    - (void)serviceExtensionTimeWillExpire {
       // Called just before the extension will be terminated by the system.
       // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
       self.contentHandler(self.bestAttemptContent);
-  }
+    }
   @end
 
   ```
@@ -191,23 +194,33 @@ Replace the contents of the generated `NotificationService` file with the follow
 
 ### Add Fyno SDK to the Notification Service Extension
 
-In order for the Notification Service Extension to be able to access **fyno** and the **Firebase SDKs**, you will have to import it by following the below steps:
+In order for the Notification Service Extension to be able to access **fyno**, you will have to import it by following the below steps:
 
-![](/images/react_ios_5.png)
+<Tabs>
+  <Tab title = "Objective-C">
+  1. In Xcode, select your Notification Service Extension target.
+  2. Under `Frameworks and Libraries`, click on the **+** button.
+    ![](/images/react_ios_5.png)
+  3. Select the framework named **fyno.xcframework** and click on **Add**
+    ![](/images/react_ios_6.png)
+  </Tab>
 
-Select the framework named **fyno.xcframework** and click on **Add**
+  <Tab title = "Swift">
+  1. In Xcode, select your Notification Service Extension target.
+  2. Under `Frameworks and Libraries`, click on the **+** button.
+    ![](/images/react_ios_5.png)
 
-![](/images/react_ios_6.png)
+  3. Under `Add Other`, click on the `Add Package Dependency`.
+    ![](/images/react_ios_7.png)
 
-![](/images/react_ios_7.png)
+  4. Search for `https://github.com/fynoio/ios-sdk` in the text box.
+  5. Select and add the `ios-sdk` package.
+    ![](/images/react_ios_8.png)
 
-Search for `https://github.com/firebase/firebase-ios-sdk` in the text box. Select and add the package named **firebase-ios-sdk**.
-
-![](/images/react_ios_8.png)
-
-Scroll down to find **FirebaseMessaging** and add it to the Notification Service Extension you had created.
-
-![](/images/react_ios_9.png)
+  6. Ensure the target is set to the Notification Service Extension you created, then click `Add Package`.
+    ![](/images/react_ios_9.png)
+  </Tab>
+</Tabs>
 
 </Steps>
 
