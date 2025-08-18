@@ -29,47 +29,103 @@ To handle push notifications in your iOS app, add the following code to `AppDele
 
 1. Import the required packages:
 
-```objc title="AppDelegate.mm" wordWrap
-#import "AppDelegate.h"
+<Tabs>
+  <Tab title = "AppDelegate.mm">
+  ```objc
+  #import "AppDelegate.h"
+  #import <React/RCTBundleURLProvider.h>
+  #import <UserNotifications/UserNotifications.h>
+  #import <fyno/fyno-Swift.h>
+  ```
+  </Tab>
+  <Tab title = "AppDelegate.swift">
+  ```swift
+  import UIKit
+  import React
+  import React_RCTAppDelegate
+  import ReactAppDependencyProvider
+  import fyno_push_ios
+  ```
+  </Tab>
+</Tabs>
 
-#import <React/RCTBundleURLProvider.h>
+2. If you are using Firebase Cloud Messaging (FCM), add the Firebase imports:
 
-#import <UserNotifications/UserNotifications.h>
-#import <FirebaseMessaging/FirebaseMessaging.h>
-#import <FirebaseCore/FirebaseCore.h>
-#import <fyno/fyno-Swift.h>
-```
+<Tabs>
+  <Tab title = "AppDelegate.mm">
+  ```objc
+  #import <FirebaseMessaging/FirebaseMessaging.h>
+  #import <FirebaseCore/FirebaseCore.h> 
+  ```
+  </Tab>
+  <Tab title = "AppDelegate.swift">
+  ```swift
+  import FirebaseCore
+  import FirebaseMessaging
+  ```
+  </Tab>
+</Tabs>
 
-2. In `AppDelegate.m` file, copy paste the below code:
+3. Make the required changes in the AppDelegate file
 
-```objc title="AppDelegate.m" wordWrap
-@interface AppDelegate () <UNUserNotificationCenterDelegate>
-@property (nonatomic, strong) fyno *fynosdk;
-@end
+<Tabs>
+  <Tab title = "AppDelegate.mm">
+  ```objc
+  @interface AppDelegate () <UNUserNotificationCenterDelegate>
+  @property (nonatomic, strong) fyno *fynosdk;
+  @end
+  @implementation AppDelegate
+  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+  {
+    ...
+    UNUserNotificationCenter.currentNotificationCenter.delegate = self.fynosdk;
+    self.fynosdk = [fyno app];
+    [self.fynosdk registerForRemoteNotifications];
+    ...
+  }
+  - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Failed to register for remote notifications: %@", error.localizedDescription);
+  }
+  - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Send the device token to fynoServer
+    [self.fynosdk setdeviceTokenWithDeviceToken:deviceToken];
+  }
 
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
   ...
-  UNUserNotificationCenter.currentNotificationCenter.delegate = self.fynosdk;
-  self.fynosdk = [fyno app];
-
-  [self.fynosdk registerForRemoteNotifications];
+  ```
+  </Tab>
+  <Tab title = "AppDelegate.swift">
+  ```swift
+  class AppDelegate: UIResponder, UIApplicationDelegate {
   ...
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-  NSLog(@"Failed to register for remote notifications: %@", error.localizedDescription);
-}
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  // Send the device token to fynoServer
-  [self.fynosdk setdeviceTokenWithDeviceToken:deviceToken];
-}
-
-...
-```
+  
+  let fynosdk = fyno.app
+  
+  ..
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    ...
+    
+    self.fynosdk.registerForRemoteNotifications()
+    fynosdk.requestNotificationAuthorization { _ in 
+    ...
+    
+    return true
+  }
+  
+  func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    print("Failed to register for remote notifications: \(error.localizedDescription)")
+  }
+  
+  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    fynosdk.setdeviceToken(deviceToken: deviceToken)
+  }
+  
+  ```
+  </Tab>
+</Tabs>
 
 ### Add a Notification Service Extension
 
@@ -82,36 +138,56 @@ To ensure rich push notifications and proper handling of incoming messages, add 
 ![](/images/react_ios_2.png)
 ![](/images/react_ios_4.png)
 
-Replace the contents of the generated `NotificationService.m` file with the following code:
+Replace the contents of the generated `NotificationService` file with the following code:
 
-```objc title="NotificationService.m" wordWrap
-#import "NotificationService.h"
-#import <fyno/fyno-Swift.h>
-#import <FirebaseCore/FirebaseCore.h>
-#import <FirebaseMessaging/FirebaseMessaging.h>
+<Tabs>
+  <Tab title ="NotificationService.m">
 
-@interface NotificationService ()
+  ```objc
+  #import "NotificationService.h"
+  #import <fyno/fyno-Swift.h>
+  #import <FirebaseCore/FirebaseCore.h>
+  #import <FirebaseMessaging/FirebaseMessaging.h>
+  @interface NotificationService ()
+  @property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
+  @property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
+  @end
+  @implementation NotificationService
+  - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
+    [[fyno app] handleDidReceive:request withContentHandler:contentHandler];
+  }
+  - (void)serviceExtensionTimeWillExpire {
+      // Called just before the extension will be terminated by the system.
+      // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
+      self.contentHandler(self.bestAttemptContent);
+  }
+  @end
 
-@property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
-@property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
+  ```
+  </Tab>
+  <Tab title ="NotificationService.swift">
+  ```swift
+  import UserNotifications
+  import UIKit
+  import fyno
 
-@end
+  class NotificationService: UNNotificationServiceExtension {
+      var contentHandler: ((UNNotificationContent) -> Void)?
+      var bestAttemptContent: UNMutableNotificationContent?
 
-@implementation NotificationService
+      override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+          fyno.app.handleDidReceive(request, withContentHandler: contentHandler)
+      }
 
-- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
-  [[fyno app] handleDidReceive:request withContentHandler:contentHandler];
-}
-
-- (void)serviceExtensionTimeWillExpire {
-    // Called just before the extension will be terminated by the system.
-    // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
-    self.contentHandler(self.bestAttemptContent);
-}
-
-@end
-
-```
+      override func serviceExtensionTimeWillExpire() {
+          if let contentHandler = contentHandler, let bestAttemptContent = bestAttemptContent {
+              contentHandler(bestAttemptContent)
+          }
+      }
+  } 
+  ```
+  </Tab>
+</Tabs>
 
 ### Add Fyno SDK to the Notification Service Extension
 
