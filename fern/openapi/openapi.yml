@@ -1143,7 +1143,7 @@ components:
                 description:
                   The country code of the user. This value is automatically determined
                   based on the number provided in the SMS channel of the profile. For a list
-                  of possible values, please <a href="https://fynodocs.s3.ap-south-1.amazonaws.com/files/country_code.json"
+                  of possible values, please <a href="https://content.fyno.io/docs/files/country_code.json"
                   target="_blank">click here</a>.
                 example: IN
                 type: string
@@ -1180,7 +1180,7 @@ components:
               timezone:
                 description:
                   The timezone of the user. For a list of possible values, please
-                  <a href="https://fynodocs.s3.ap-south-1.amazonaws.com/files/timezones.json"
+                  <a href="https://content.fyno.io/docs/files/timezones.json"
                   target="_blank">click here</a>.
                 example: Asia/Kolkata
                 type: string
@@ -2743,7 +2743,7 @@ components:
         timezone:
           description:
             (Optional) Enter the new timezone of the user. For a list of possible
-            values, please <a href="https://fynodocs.s3.ap-south-1.amazonaws.com/files/timezones.json"
+            values, please <a href="https://content.fyno.io/docs/files/timezones.json"
             target="_blank">click here</a>.
           enum:
             - Africa/Abidjan
@@ -3733,7 +3733,7 @@ components:
         timezone:
           description:
             (Optional) Enter the timezone of the user. For a list of possible
-            values, please <a href="https://fynodocs.s3.ap-south-1.amazonaws.com/files/timezones.json"
+            values, please <a href="https://content.fyno.io/docs/files/timezones.json"
             target="_blank">click here</a>.
           enum:
             - Africa/Abidjan
