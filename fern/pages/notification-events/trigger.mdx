@@ -93,7 +93,7 @@ If you want to receive delivery reports in your system or any third party tool, 
 <ParamField path="custom_id" type="string" required={true}>
   <ul>
     <li>Unique identifier of your notification</li>
-    <li>**Length**: 200 characters if string</li>
+    <li>**Length**: 200 characters if string. No special characters allowed.</li>
     <li>**Length**: 20 digits if numeric</li>
   </ul>
 </ParamField>
@@ -101,7 +101,7 @@ If you want to receive delivery reports in your system or any third party tool, 
 <ParamField path="custom1" type="string" required={false}>
   <ul>
     <li>Additional information to tag your notification</li>
-    <li>**Length**: 50 characters</li>
+    <li>**Length**: 50 characters. No special characters allowed.</li>
     <li>**Example:** `order-id`</li>
   </ul>
 </ParamField>
@@ -109,7 +109,7 @@ If you want to receive delivery reports in your system or any third party tool, 
 <ParamField path="custom2" type="string" required={false}>
   <ul>
     <li>Additional information to tag your notification</li>
-    <li>**Length**: 50 characters</li>
+    <li>**Length**: 50 characters. No special characters allowed.</li>
     <li>**Example:** `category`</li>
   </ul>
 </ParamField>
