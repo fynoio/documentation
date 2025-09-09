@@ -93,6 +93,19 @@ try {
 }
 ```
 
+### Fetch Push Notification Token
+
+If you want to fetch the push notification token for the current device, use `FynoReactNative.getNotificationToken()`
+
+```jsx title="jsx" wordWrap
+try {
+  const notificationToken = await FynoReactNative.getNotificationToken();
+  console.log("Notification token = " , notificationToken);
+} catch (e) {
+  console.error(e);
+}
+```
+
 ### Check if notification received is from Fyno and also handle it
 
 To check if the push notification received is from Fyno, use `FynoReactNative.isFynoNotification(remoteMessage)` and to handle it, use `FynoReactNative.handleFynoNotification(remoteMessage)`
