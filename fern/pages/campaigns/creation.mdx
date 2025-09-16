@@ -13,7 +13,7 @@ To create a Campaign, you will first need to have a few things in place:
 - A provider integration in Fyno's platform
 - A notification [template](./template-creation) (it may be any channel)
 - A Notification [Event](./notification-event-creation)
-- A CSV file or Google sheet or Public URL or a Cohort with the user base to whom you would be triggering the campaign.
+- A CSV file or xlsx file or Google sheet or Public URL or a Cohort with the user base to whom you would be triggering the campaign.
 
 `Once` we have these in place, we are all set to go with campaigns!
 
@@ -25,11 +25,11 @@ To create a campaign,
   <Step>Login to your Fyno account and find **Campaigns** from the left navigation bar under 'Advanced' section.</Step>
   <Step>On the landing page of **Campaigns**, click on the 'New Campaign' CTA at the top right corner. It will open a popup as shown below. ![](/images/campaign_new.png)</Step>
   <Step>Enter a name for your **Campaign** and select the notification event you want to fire using this campaign from the dropdown.</Step>
-  <Step>Once you have selected the event, you will see the channels linked to that event and also you will see a sample file structure which you need to upload (as shown below). For ex - The selected notification event has only SMS and WhatsApp channel, thats why you see only SMS and WhatsApp channel in the sample file structure. ![](/images/campaign_creation.png)</Step>
+  <Step>Once you have selected the event, you will see the channels linked to that event and also you will see a sample file structure which you need to upload (as shown below). For ex - The selected notification event has only SMS and WhatsApp channel, thats why you see only SMS and WhatsApp channel in the sample file structure. ![](/images/campaign_creation_new.png)</Step>
   <Step>
     You can create a campaign in any of the following ways:
     <ol>
-      <li>CSV upload</li>
+      <li>File upload</li>
       <li>Google sheet</li>
       <li>Public URL</li>
       <li>Cohort</li>
@@ -37,13 +37,13 @@ To create a campaign,
   </Step>
 </Steps>
 
-## Creating a campaign using CSV upload
+## Creating a campaign using File (CSV/Excel) upload
 
-If you want to create a campaign using csv upload,
+If you want to create a campaign using csv/excel(.xlsx) upload,
 
 <Steps>
-  <Step>You can also download the sample CSV file by click 'CSV for selected notification event' .</Step>
-  <Step>Once you have your CSV file ready, click 'Upload CSV file' or Drag and drop the CSV from your device. ![](/images/campaign_csv.png)</Step>
+  <Step>You can also download the sample CSV/XLSX file by click 'Download sample file' .</Step>
+  <Step>Once you have your CSV/XLSX file ready, click 'Upload file' or Drag and drop the CSV/XLSX from your device. ![](/images/campaign_csv.png)</Step>
   <Step>
     Once the file is uploaded, you will see a few important details: ![](/images/campaign_validate_csv.png)
     <ol>
@@ -54,7 +54,7 @@ If you want to create a campaign using csv upload,
       <li>If there are any duplicates present in the csv uploaded and if you still want to include the duplicate data, then select the checkbox 'Include duplicates in campaign'.</li>
     </ol>
   </Step>
-  <Step>Click 'Create Campaign' to import the valid records from CSV.</Step>
+  <Step>Click 'Create Campaign' to import the valid records from CSV/XLSX file.</Step>
 </Steps>
 
 <Info>If you are using **Distinct IDs**, ensure that this data matches the pre-existing distinct Ids in **User Profiles** on Fyno.</Info>
