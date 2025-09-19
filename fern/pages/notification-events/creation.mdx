@@ -33,16 +33,16 @@ To create a new Notification Event, click on the "**Create+**" on the right side
 
 On creating a notification event, on each **Notification Event** card you will see:
 
-- Notification Event Analytics button which will take you the analytics page of that notification event. 
+- Notification Event Analytics button which will take you the analytics page of that notification event.
 - **Run Test** Button, which will open up the Notification Event Playground Window
 - When the notification event was last updated.
 - Icon which represents the live or test version of a notification event.
-- Group to which a notification event belongs. In this example, Payment_Reminder is the group name. 
-- A "**Vertical Ellipsis**"  at the top right corner, that gives you the option to
+- Group to which a notification event belongs. In this example, Payment_Reminder is the group name.
+- A "**Vertical Ellipsis**" at the top right corner, that gives you the option to
   - "Rename" the **Notification Event**
   - "Duplicate" the **Notification Event**
   - "Delete" the **Notification Event**
-  - Option to 'Go Live' if the latest changes are still in test version. 
+  - Option to 'Go Live' if the latest changes are still in test version.
 
 ## Template
 
@@ -125,7 +125,7 @@ curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
 ```
 
 ```curl title="InTransit" wordWrap
-curl -X POST 'https://api.dev.fyno.io/v1/<WorkspaceID>/event' \
+curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
 -H 'Authorization: Bearer <YOUR_FYNO_API_KEY>' \
 -H 'Content-Type: application/json' \
 -d '{
@@ -149,7 +149,7 @@ curl -X POST 'https://api.dev.fyno.io/v1/<WorkspaceID>/event' \
 ```
 
 ```curl title="Delivered" wordWrap
-curl -X POST 'https://api.dev.fyno.io/v1/<WorkspaceID>/event' \
+curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
 -H 'Authorization: Bearer <YOUR_FYNO_API_KEY>' \
 -H 'Content-Type: application/json' \
 -d '{
