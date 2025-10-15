@@ -23,34 +23,25 @@ To create a Campaign, you will first need to have a few things in place:
 
 Once we have these in place, we are all set to go with campaigns!
 
-## Step 1 - Creating a SMS Template
+## Creating a SMS Template
 
-To create a SMS template, from the left nav, select **Templates → Fyno**. 
+To create a SMS template, from the left nav, select **Templates→Fyno**
 
 You will land on Templates Listing Page. 
 
 Click ‘**+Create**’ and select ‘SMS’ as channel and provide a name for your Template and click ‘Create’
 <Steps>
   <Step>**Template Id** - Enter your approved DLT template Id.</Step>
-  <Step>**SMS Content** - Copy & Paste the SMS content from your DLT platform in this section. Once you have added the content, you will see the the following fields 
-    - Encoding - GSM-7
-    - 1 Credit equals 160 characters
-    - Credits Used - This will change based on no of characters in your SMS content
-    - Characters Used - This will show the no of characters present in your SMS content.
-  </Step>
+  <Step>**SMS Content** - Copy & Paste the SMS content from your DLT platform in this section. Once you have added the content, you will see the the following fields </Step>
   <Step>**Unicode** - Enable this, if the SMS content or placeholder values contain Unicode or non-English characters. If the message isn't marked as unicode and either the content or placeholder values contain unicode characters, it might not be delivered correctly. SMS providers may charge you more for unicode messages.</Step>
-  <Step>**Additional Configuration**
-    -  **Override Sender Id** -  ****Enables this, if you want to override the SenderID configured in the Integration. Enter the SenderID you want to use for this template.
-    -  **Send as a Flash message** - Enable this, if you want to send this SMS as a flash message. A flash message appears on the mobile device screen, without having to access the SMS storage application on the device.
-  </Step>
+  <Step>**Additional Configuration**</Step>
   <Step>Placeholders - Below the “Channels” section on the left, you can find placeholders. Placeholders are denoted by {{}}. You can add the parameters of Placeholders by clicking on it, which opens up a pop-up window where you can add them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. You can refer this doc for Handlebars.</Step>
-  <Step>**Preview -** Once you have done all the steps, you will see the Preview on the Right Hand Side. All the placeholders you defined (like name, loan_amount etc) will be replaced with sample values added. </Step>
-  <Step>**Run Test -** To make sure, the SMS template works as expected, you can click ‘Run Test’. A pop up opens up. Enter the mobile no where you want to send the SMS and select the Integration through which you want to send the SMS.</Step>
+  <Step>**Preview** - Once you have done all the steps, you will see the Preview on the Right Hand Side. All the placeholders you defined (like name, loan_amount etc) will be replaced with sample values added. </Step>
+  <Step>**Run Test** - To make sure, the SMS template works as expected, you can click ‘Run Test’. A pop up opens up. Enter the mobile no where you want to send the SMS and select the Integration through which you want to send the SMS.</Step>
   <Step>Save & Go Live - Clicking ‘Save’ will create a Test version of the template. Clicking ‘Go Live’ will create a Live version of the template. </Step>
-
 </Steps>
 
-## Step 2 - Creating a Notification Event
+## Creating a Notification Event
 
 Notification Event = Template + Service Providers (integrations)
 <Steps>
@@ -71,7 +62,8 @@ Notification Event = Template + Service Providers (integrations)
   <Step>**Code** - This will give you the cURL command for both Test and Live versions. This is the cURL command you need if you trigger the notification from your backend. </Step>
   <Step>**Save & Go Live -** Clicking ‘Save’ will create a Test version of the Notification Event. Clicking ‘Go Live’ will create a Live version of the Notification Event.</Step>
 </Steps>
-## Step 3 - Creating and Triggering a Campaign
+
+## Creating and Triggering a Campaign
 
 Now we have all the Pre-requisites to create a campaign
 
@@ -94,14 +86,14 @@ To create a campaign,
 10. Click ‘Create Campaign’ to import the valid records from CSV.
 
 
-### **Configuring Campaign**
+### Configuring Campaign
 
 1. The notification event is preselected based on the value selected.
 2. **Map destinations & Placeholders -** In this step, you will need to configure the details needed for the event to be successfully triggered. This includes the mapping of the Channels and Placeholders. You can select each item’s corresponding data field from the uploaded CSV file by clicking on the drop-down and selecting one. In case you do not want to trigger a notification to a specific channel, you can remove it by deleting that row from this section.
 3. Ensure all placeholders are properly mapped to your columns. For WhatsApp specifically, notifications will fail to deliver if any placeholder remains unmapped.
 4. **Preview** -  Preview allows you to visualize how the data from a CSV upload appears within the template, ensuring the uploaded data aligns with your expectations. You will see the preview as shown below. You can click ’&lt;’ and ’&gt;’ to see a preview based on the first 10 records from the uploaded CSV file.
 
-### **How to test a campaign?**
+### How to test a campaign?
 
 Just before you send out a campaign to all your customers, running a test is always a good idea, since you will be able to preview the look and feel of your notifications before they go out.
 
@@ -113,13 +105,13 @@ To do this, once you have set up your campaign, simply:
     2. **Map Placeholders**: Map the placeholders that are there in the template of the corresponding Notification event to successfully simulate the notification.
 3. Once ready, click on run test to get the notification delivered to the corresponding test recipients.
 
-### **Save as Draft**
+### Save as Draft
 
 Once an event is configured with the details of the **Notification Event**, mapped Channels and Placeholders and scheduled time, this can now be saved to use or edit at a later time.
 
 Simply click on the **Save** at any point in time of configuring the campaign and this will be saved for later use!
 
-### **How to Fire or Schedule a campaign?**
+### How to Fire or Schedule a campaign?
 
 Once you have done with all the configuration, you can click Schedule/Fire CTA. You can fire it in 2 ways.
 
@@ -128,13 +120,13 @@ Once you have done with all the configuration, you can click Schedule/Fire CTA. 
 
 You can select a date up to 30 days from the time of selecting the schedule.
 
-### **How to stop a campaign?**
+### How to stop a campaign?
 
 If you want to pause a campaign after its fired, you can click the Stop Campaign and status of the campaign will show as Stopped.
 
 Please note that ‘Stop Campaign’ will be enabled only for CSV with more than 1000 records.
 
-## **Step 4 - Viewing campaign logs & analytics**
+## Viewing campaign logs & analytics
 
 Fyno’s **Campaign Analytics** allows you to visualise the performance as well as gain insights into your **Campaign** in the form of graphs and charts in one place, which helps improve the overall experience as well as outcomes pertaining to that notification event linked to that campaign.
 
@@ -143,7 +135,7 @@ You can find your way to **Campaign Analytics** by:
 1. Navigating to the **Campaign** page and clicking the “Bar Chart” icon corresponding to that particular campaign. OR
 2. By clicking on a **Campaign** and clicking on the “View Analytics” CTA on the top right corner of the campaign.
 
-### **Overview**
+### Overview
 
 The **Overview** section of the **Campaign Analytics** section provides an eagle-eye view of the campaign’s performance.
 
@@ -153,7 +145,7 @@ On this card, you will see:
 - The number of notifications submitted via this notification event
 - The number of notifications delivered via this notification event.
 
-### **Channel Engagement**
+### Channel Engagement
 
 **Channel Engagement** provides you with a detailed view of each channel used to send out notifications along with the outcomes of the notifications sent.
 
@@ -164,7 +156,7 @@ Outcomes can be anything from:
 - **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as “Read” for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially “opened”, this will be tagged as “Open” and tracked on Fyno’s App.
 - **Clicked** - When a notification is clicked on, this will be tracked as a “Clicked” notification. This applies to In-App, Push, Emails with links, etc.
 
-### **Undelivered statuses are tracked when they are:**
+### Undelivered statuses are tracked when they are:
 
 - Invalid-Subscriber
 - Blacklist
@@ -175,7 +167,7 @@ The count for each can be seen on hovering over the bar graphs.
 
 **You can highlight a single status to look at!**Simply click on the other statuses from the legend list at the bottom of the graph to un-select them!
 
-### **Delivery Status**
+### Delivery Status
 
 The delivery status graph shows you the delivery status by the channel that you have selected from the drop-down in the top right corner of the card.
 
@@ -192,7 +184,7 @@ You can toggle on or off the statuses you would like to see by clicking on the l
     2. The email address requires senders to be whitelisted in their domain to receive emails.
     3. The email address’ mailbox is full and unable to receive any more notifications.
 
-### **Download Report**
+### Download Report
 
 You can download a report of a campaign by clicking ‘**Download Report**’ CTA.
 
