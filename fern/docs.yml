@@ -48,7 +48,7 @@ navigation:
                   icon: fa-regular fa-book-open
                   contents:
                       - page: "How to create campaign"
-                        path: "pages/tutorials/how-to-create-campaign.mdx"
+                        path: "pages/tutorials/how-to-create-a-campaign.mdx"
                       - page: "How to trigger workflow using webhook"
                         path: "pages/tutorials/how-to-trigger-workflow-with-webhook.mdx"
                       - page: "How to receive delivery reports"
