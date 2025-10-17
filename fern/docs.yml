@@ -425,6 +425,8 @@ navigation:
                             path: "pages/workflows/journey/analytics.mdx"
                     - page: "Creating a Workflow using Digest"
                       path: "pages/workflows/workflow-with-digest.mdx"
+                    - page: "How to use User profile in Workflow"
+                      path: "pages/workflows/workflow-user-profile.mdx"
                     - page: "Creating a Workflow using Subscription"
                       path: "pages/workflows/workflow-with-subscription.mdx"
                     - page: "How to receive delivery reports"
