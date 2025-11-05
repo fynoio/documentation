@@ -11,31 +11,39 @@ hide-nav-links: true
 ### 🔹 New Features
 
 - **Workflows**
-
-  - Added a **User Profiles widget** to create and update user properties directly from workflows.
-
-- **Suppression**
-  - Introduced an option to **specify custom suppression reasons** for improved tracking and flexibility.
+  - Added the ability to **expand and collapse conditions**, providing a cleaner and more organized UI experience when configuring workflow logic.
 
 ### ⚡ Feature Enhancements
 
-- **Alarms**
+- **Campaigns**
 
-  - Added **alarms support for external templates** to improve visibility and monitoring.
+  - Updated the **campaign details page route** to work seamlessly with or without the campaign name.
 
-- **External Templates**
-  - Added an option to specify a **Time-to-Live (TTL)** for **WhatsApp templates**.
-  - Introduced a **Call-to-Action (CTA)** for **voice calling** within WhatsApp templates.
+- **Workflows**
+  - Added **logs for the User Profile widget** to improve visibility of additions and updates to user profiles and properties made through workflows.
 
 ### 🛠 Bug Fixes
 
-- **Workflows**
+- **Campaigns**
 
-  - Fixed **UI issues** on the **Journey Analytics page** for a smoother experience.
+  - Fixed an issue with the **preview** when a **synced template** was deleted.
+
+- **Alarms**
+
+  - Fixed an issue with **populating dynamic content** in the **recommended solution** section.
+
+- **Unsubscribe**
+
+  - Fixed **image rendering and navigation issues** on the **404 page**.
 
 - **Templates**
 
-  - Fixed an issue with the **preview of WhatsApp interactive templates**.
+  - Fixed **WhatsApp preview** and **template testing** issues when using **nested placeholders**.
+  - Fixed an issue where the **TTL was being reset** for **WhatsApp external templates**.
 
-- **External Templates**
-  - Resolved **UI issues** on the **templates listing page**.
+- **Analytics**
+
+  - Fixed an issue preventing **event analytics view** when an event was linked to an **external template**.
+
+- **Workflows**
+  - Fixed multiple issues in the **User Profile widget** to make the UI and UX experience consistent with other workflow widgets.
