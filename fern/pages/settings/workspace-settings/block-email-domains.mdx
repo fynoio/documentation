@@ -1,0 +1,51 @@
+---
+title: 'Block Email Domains'
+slug: 'block-email-domains'
+og:title: 'How to block email domains - Add-Ons | Fyno Documentation'
+og:description: 'Fyno allows you to create a list of up to 20 domains that you do not want to send email notifications to. Additionally, Fyno uses a list of over 6000 known malicious domains to which you can opt not to send email messages.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+You can now curate a list of up to 20 disposable domains to which sending emails should be restricted. Preventing the sending of email messages to such disposable domains offers benefits such as improved deliverability scores and reduced bounces, which can hurt sender reputation.
+
+In addition to the 20 custom domains, you can also opt to avoid sending emails to over 100K potentially malicious domains. See the complete list [here](https://raw.githubusercontent.com/ivolo/disposable-email-domains/refs/heads/master/index.json)
+
+## How to enable the disposable email domain check?
+
+<Steps>
+  <Step>To enable a disposable email domains check, go to Workspace Settings (bottom left corner in menu) -> Add On's -> Block Email Domains.</Step>
+  <Step>Enable the toggle. You will see the pop-up as shown below. ![](/images/disposable-email-domains/disposable_domains_popup_empty.png)</Step>
+</Steps>
+
+## How to configure disposable email domains?
+
+<Steps>
+  <Step>
+    When you enable the <strong>Drop all emails sent to the default list of disposable domains</strong> toggle, you opt not to send emails to the known list of over 100K disposable domains.
+  </Step>
+  <Step>To add custom disposable domains (not in the default list), enter the domain names (in the format abc.com) in the "Custom email domains to block" section.</Step>
+  <Step>
+    Once you configure either or both options, click on <strong>CONFIRM</strong>.
+  </Step>
+  <Step>Now, any email notifications triggered to a default or custom disposable domain will be automatically dropped.</Step>
+</Steps>
+
+## How this works
+
+<Steps>
+  <Step>
+    Let's say you want to block sending emails to the domains <code>ptcu.dev</code> (from the default list) and <code>malicious-domain.xyz</code> (from your custom list).
+  </Step>
+  <Step>
+    Next, enter <code>malicious-domain.xyz</code> in the <strong>Custom email domains to block</strong> section.
+  </Step>
+  <Step>
+    Click <strong>CONFIRM</strong>. ![](/images/disposable-email-domains/disposable_domains_popup_filled.png)
+  </Step>
+  <Step>
+    Now, any email notifications triggered to <code>ptcu.dev</code> or <code>malicious-domain.xyz</code> are dropped automatically. ![](/images/disposable-email-domains/disposable_domains_logs.png)
+  </Step>
+  <Step>
+    To change the configuration or add new custom disposable domains, click <strong>CONFIGURE</strong>. ![](/images/disposable-email-domains/disposable_domains_reconfigure.png)
+  </Step>
+</Steps>

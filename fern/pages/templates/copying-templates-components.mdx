@@ -1,0 +1,52 @@
+---
+title: 'Copying Templates and Components'
+slug: 'copying-templates-components'
+og:title: 'Copying Templates & Components | Fyno Documentation'
+og:description: 'A guide to copying templates and reusable components from one Fyno workspace to another.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+You can now copy Fyno templates and components from your workspace to other workspaces that you own. You cannot use the copy process to copy templates and components to workspaces where you <u>do not</u> have the **Owner** role.
+
+Note that External Templates (Templates → External from the navigation) cannot be copied using this process. The copy option is available only for Fyno Templates (Templates → Fyno from the navigation).
+
+## Steps to copy Fyno templates
+
+### 1. Prepare your destination workspace
+
+It is important to note that when copying templates, only the template-related data will be copied to the destination workspace. Any dependencies must be created or copied manually in the destination workspace.
+
+<Steps>
+  <Step>Manually create the required integrations in the workspace. This step will help you test your template once copied.</Step>
+  <Step>If the template uses reusable components, copy them to the workspace using the same process specified in the section below.</Step>
+</Steps>
+
+### 2. Copy your template(s)
+
+<Steps>
+  <Step>Ensure you are in the workspace from where you would like to copy the template or component.</Step>
+  <Step>Navigate to the templates listing page by selecting Templates → Fyno from the navigation.</Step>
+  <Step>If copying a component, click on the "Components" button in the page header.</Step>
+  <Step>Click the "Three Dots" icon on the template (or component) that you would like to copy. This step will open a menu.</Step>
+  <Step>In the menu options, select “Copy to another workspace”. ![](/images/workspace-copy/options-menu.png)</Step>
+  <Step>You will now see a checkbox next to every template listed on the page. You can select multiple templates to copy if needed.</Step>
+  <Step>Once you have completed your selection, click “Copy Selected Templates” in the alert above the listing.</Step>
+  <Step>When copying a single template that has a live version, you will see an option to copy either the latest live or test version. If your template only has a test version, that version will be copied.</Step>
+  <Step>When copying multiple templates, the latest live or the latest test version will be copied, depending on the template.</Step>
+  <Step>You will now see a dialog box with an option to select destination workspaces. In the “Destination Workspace(s)” dropdown menu, you will see all the workspaces you are a member of, but only the ones in which you have the “Owner” role will be available for selection. You can select up to five applicable workspaces.</Step>
+  <Step>Once all the workspaces are selected, click “Confirm”. This step will initiate the copy process.</Step>
+  <Step>Now, in all the selected workspaces, you will see the copied Fyno templates.</Step>
+</Steps>
+
+## How versioning works
+
+Let's say we are copying a template from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
+
+<Steps>
+  <Step>
+    If the template does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
+  </Step>
+  <Step>
+    If the template already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the template name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied template.
+  </Step>
+</Steps>
