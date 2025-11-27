@@ -1,692 +1,701 @@
 instances:
-    - url: fyno.docs.buildwithfern.com/docs
-      custom-domain: fyno.io/docs
-    - url: dev-fyno.docs.buildwithfern.com/docs
-      # edit-this-page:
-      #     github:
-      #         owner: fynoio
-      #         repo: documentation
-      #         branch: main
+  - url: fyno.docs.buildwithfern.com/docs
+    custom-domain: fyno.io/docs
+  - url: dev-fyno.docs.buildwithfern.com/docs
+    # edit-this-page:
+    #     github:
+    #         owner: fynoio
+    #         repo: documentation
+    #         branch: main
 title: Fyno Documentation
 
 experimental:
   openapi-parser-v2: true
 
 tabs:
-    docs:
-        display-name: Documentation
-        icon: fa-regular fa-browser
-        skip-slug: true
-    sdks:
-        display-name: SDKs
-        icon: fa-brands fa-codepen
-        skip-slug: true
-    fyno-connect:
-        display-name: Connect
-        icon: fa-regular fa-plug
-        skip-slug: true
-    api:
-        display-name: API Reference
-        icon: fa-regular fa-code
-        skip-slug: true
+  docs:
+    display-name: Documentation
+    icon: fa-regular fa-browser
+    skip-slug: true
+  sdks:
+    display-name: SDKs
+    icon: fa-brands fa-codepen
+    skip-slug: true
+  fyno-connect:
+    display-name: Connect
+    icon: fa-regular fa-plug
+    skip-slug: true
+  api:
+    display-name: API Reference
+    icon: fa-regular fa-code
+    skip-slug: true
 
 navigation:
-    - tab: docs
-      layout:
-          - page: Home
-            icon: fa-regular fa-home
-            path: pages/home.mdx
-          - changelog: pages/release-notes
-            icon: fa-regular fa-sparkles
-            title: Release Notes
-          - section: "Getting Started"
+  - tab: docs
+    layout:
+      - page: Home
+        icon: fa-regular fa-home
+        path: pages/home.mdx
+      - changelog: pages/release-notes
+        icon: fa-regular fa-sparkles
+        title: Release Notes
+      - section: "Getting Started"
+        contents:
+          - page: "Quickstart"
+            path: "pages/get-started/fyno-quickstart.mdx"
+            icon: fa-regular fa-bolt
+          - section: "Tutorials"
+            icon: fa-regular fa-book-open
             contents:
-                - page: "Quickstart"
-                  path: "pages/get-started/fyno-quickstart.mdx"
-                  icon: fa-regular fa-bolt
-                - section: "Tutorials"
-                  icon: fa-regular fa-book-open
-                  contents:
-                      - page: "How to create a campaign with CSV"
-                        path: "pages/tutorials/how-to-create-a-campaign-with-csv.mdx"
-                      - page: "How to trigger workflow using webhook"
-                        path: "pages/tutorials/how-to-trigger-workflow-with-webhook.mdx"
-                      - page: "How to receive delivery reports"
-                        path: "pages/tutorials/how-to-receive-delivery-reports.mdx"
-                - page: "Dashboard"
-                  path: "pages/dashboard/dashboard.mdx"
-                  icon: fa-regular fa-chart-simple 
-                - page: "Alarms"
-                  path: "pages/dashboard/alarms.mdx"
-                  icon: fa-regular fa-triangle-exclamation
-                - page: "Versioning"
-                  icon: fa-regular fa-code-pull-request
-                  path: "pages/versioning/versioning-overview.mdx"
-          
-          - section: "Core Features"
+              - page: "How to create a campaign with CSV"
+                path: "pages/tutorials/how-to-create-a-campaign-with-csv.mdx"
+              - page: "How to trigger workflow using webhook"
+                path: "pages/tutorials/how-to-trigger-workflow-with-webhook.mdx"
+              - page: "How to receive delivery reports"
+                path: "pages/tutorials/how-to-receive-delivery-reports.mdx"
+          - page: "Dashboard"
+            path: "pages/dashboard/dashboard.mdx"
+            icon: fa-regular fa-chart-simple
+          - page: "Alarms"
+            path: "pages/dashboard/alarms.mdx"
+            icon: fa-regular fa-triangle-exclamation
+          - page: "Versioning"
+            icon: fa-regular fa-code-pull-request
+            path: "pages/versioning/versioning-overview.mdx"
+
+      - section: "Core Features"
+        contents:
+          - section: "Integrations"
+            path: "pages/integrations/introduction.mdx"
+            icon: fa-regular fa-puzzle-piece
             contents:
-                - section: "Integrations"
-                  path: "pages/integrations/introduction.mdx"
-                  icon: fa-regular fa-puzzle-piece
-                  contents:
-                  - section: "SMS"
-                    path: "pages/integrations/sms-channel.mdx"
-                    contents:
-                        - page: "BSNL"
-                          path: "pages/integrations/sms/bsnl.mdx"
-                        - page: "Exotel"
-                          path: "pages/integrations/sms/exotel.mdx"                        
-                        - page: "Gupshup"
-                          path: "pages/integrations/sms/gupshup.mdx"
-                        - page: "ICS"
-                          path: "pages/integrations/sms/ics.mdx"
-                        - page: "India SMS"
-                          path: "pages/integrations/sms/indiasms.mdx"
-                        - page: "Infobip"
-                          path: "pages/integrations/sms/infobip.mdx"
-                        - page: "Infronics"
-                          path: "pages/integrations/sms/infronics.mdx"
-                        - page: "JioCx"
-                          path: "pages/integrations/sms/jiocx.mdx"                        
-                        - page: "Kaleyra Global"
-                          path: "pages/integrations/sms/kaleyra-global.mdx"
-                        - page: "Kaleyra.io"
-                          path: "pages/integrations/sms/kaleyraio.mdx"
-                        - page: "Karix"
-                          path: "pages/integrations/sms/karix.mdx"
-                        - page: "MessageBird"
-                          path: "pages/integrations/sms/messagebird.mdx"
-                        - page: "MSG91"
-                          path: "pages/integrations/sms/msg91.mdx"
-                        - page: "Mtalkz"
-                          path: "pages/integrations/sms/mtalkz.mdx"
-                        - page: "Netcore"
-                          path: "pages/integrations/sms/netcore.mdx" 
-                        - page: "Plivo"
-                          path: "pages/integrations/sms/plivo.mdx"
-                        - page: "Route Mobile"
-                          path: "pages/integrations/sms/route-mobile.mdx"
-                        - page: "Sinch"
-                          path: "pages/integrations/sms/sinch.mdx"
-                        - page: "Syniverse"
-                          path: "pages/integrations/sms/syniverse.mdx"
-                        - page: "telSpiel"
-                          path: "pages/integrations/sms/telspiel.mdx"
-                        - page: "TrustSignal"
-                          path: "pages/integrations/sms/trustsignal.mdx"
-                        - page: "Twilio"
-                          path: "pages/integrations/sms/twilio.mdx"
-                        - page: "ValueFirst"
-                          path: "pages/integrations/sms/valuefirst.mdx"
-                  - section: "RCS"
-                    path: "pages/integrations/rcs-channel.mdx"
-                    contents:
-                        - page: "Gupshup Enterprise"
-                          path: "pages/integrations/rcs/gupshup.mdx"
-                        - page: "MSG91"
-                          path: "pages/integrations/rcs/msg91.mdx"
-                        - page: "ValueFirst"
-                          path: "pages/integrations/rcs/valuefirst.mdx"
-                        - page: "Wisely"
-                          path: "pages/integrations/rcs/wisely.mdx"
-                  - section: "WhatsApp"
-                    path: "pages/integrations/whatsapp-channel.mdx"
-                    contents:
-                        - page: "AiSensy"
-                          path: "pages/integrations/whatsapp/aisensy.mdx"
-                        - page: "Connectly"
-                          path: "pages/integrations/whatsapp/connectly.mdx"
-                        - page: "Freshchat"
-                          path: "pages/integrations/whatsapp/freshchat.mdx"
-                        - page: "Gallabox"
-                          path: "pages/integrations/whatsapp/gallabox.mdx"
-                        - page: "Gupshup Enterprise"
-                          path: "pages/integrations/whatsapp/gupshup-enterprise.mdx"
-                        - page: "Gupshup"
-                          path: "pages/integrations/whatsapp/gupshup.mdx"
-                        - page: "Infobip"
-                          path: "pages/integrations/whatsapp/infobip.mdx"
-                        - page: "Interakt"
-                          path: "pages/integrations/whatsapp/interakt.mdx"
-                        - page: "Kaleyra.io"
-                          path: "pages/integrations/whatsapp/kaleyraio.mdx"
-                        - page: "Karix"
-                          path: "pages/integrations/whatsapp/karix.mdx"
-                        - page: "MessageBird"
-                          path: "pages/integrations/whatsapp/messagebird.mdx"
-                        - page: "Meta CoX"
-                          path: "pages/integrations/whatsapp/fyno-business-whatsapp.mdx"
-                        - section: "Meta Direct"
-                          path: "pages/integrations/whatsapp/fyno-whatsapp.mdx"
-                          contents:
-                              - page: "How to get Green Tick Verified for WhatsApp Business account"
-                                path: "pages/integrations/whatsapp/green-tick-verification.mdx"
-                        - page: "Meta Direct Plus"
-                          path: "pages/integrations/whatsapp/fyno-whatsapp-plus.mdx"
-                        - page: "Meta"
-                          path: "pages/integrations/whatsapp/meta.mdx"
-                        - page: "MSG91"
-                          path: "pages/integrations/whatsapp/msg91.mdx"
-                        - page: "Route Mobile"
-                          path: "pages/integrations/whatsapp/route-mobile.mdx"
-                        - page: "Twilio"
-                          path: "pages/integrations/whatsapp/twilio.mdx"
-                        - page: "ValueFirst"
-                          path: "pages/integrations/whatsapp/valuefirst.mdx"
-                        - page: "Verloop"
-                          path: "pages/integrations/whatsapp/verloop.mdx"
-                        - page: "WATI"
-                          path: "pages/integrations/whatsapp/wati.mdx"
-                        - page: "Yellow.ai"
-                          path: "pages/integrations/whatsapp/yellowai.mdx"
-                  - section: "Email"
-                    path: "pages/integrations/email-channel.mdx"
-                    contents:
-                        - page: "Gmail"
-                          path: "pages/integrations/email/gmail.mdx"
-                        - page: "Mailchimp (Mandrill)"
-                          path: "pages/integrations/email/mailchimp.mdx"
-                        - page: "Mailgun"
-                          path: "pages/integrations/email/mailgun.mdx"
-                        - page: "Mailmodo"
-                          path: "pages/integrations/email/mailmodo.mdx"
-                        - page: "Netcore"
-                          path: "pages/integrations/email/netcore.mdx"
-                        - page: "Outlook"
-                          path: "pages/integrations/email/outlook.mdx"
-                        - page: "Postmark"
-                          path: "pages/integrations/email/postmark.mdx"
-                        - page: "SendGrid"
-                          path: "pages/integrations/email/sendgrid.mdx"
-                        - page: "SES"
-                          path: "pages/integrations/email/ses.mdx"
-                        - page: "SMTP"
-                          path: "pages/integrations/email/smtp.mdx"
-                        - page: "Sparkpost"
-                          path: "pages/integrations/email/sparkpost.mdx"
-                        - page: "ValueFirst"
-                          path: "pages/integrations/email/valuefirst.mdx"
-                  - section: "Chat"
-                    path: "pages/integrations/chat-channel.mdx"
-                    contents:
-                        - page: "Slack"
-                          path: "pages/integrations/chat/slack.mdx"
-                        - page: "Teams"
-                          path: "pages/integrations/chat/teams.mdx"
-                  - section: "Push"
-                    path: "pages/integrations/push-channel.mdx"
-                    contents:
-                        - page: "APNs"
-                          path: "pages/integrations/push/apns.mdx"
-                        - page: "Expo"
-                          path: "pages/integrations/push/expo.mdx"
-                        - page: "Fyno Push"
-                          path: "pages/integrations/push/fyno.mdx"
-                        - page: "Google FCM"
-                          path: "pages/integrations/push/fcm.mdx"
-                        - page: "Mi Push"
-                          path: "pages/integrations/push/mi-push.mdx"
-                        - page: "OneSignal"
-                          path: "pages/integrations/push/onesignal.mdx"
-                  - section: "Voice"
-                    path: "pages/integrations/voice-channel.mdx"
-                    contents:
-                        - page: "Exotel"
-                          path: "pages/integrations/voice/exotel.mdx"
-                        - page: "Kaleyra"
-                          path: "pages/integrations/voice/kaleyra.mdx"
-                        - page: "Ozonetel"
-                          path: "pages/integrations/voice/ozonetel.mdx"
-                        - page: "Plivo"
-                          path: "pages/integrations/voice/plivo.mdx"
-                        - page: "Twilio"
-                          path: "pages/integrations/voice/twilio.mdx"
-                  - page: "In-App"
-                    path: "pages/integrations/inapp-channel.mdx"
-                  - page: "Web Push"
-                    path: "pages/integrations/web-push-channel.mdx"
-                  - section: "DLT"
-                    path: "pages/integrations/dlt.mdx"
-                    contents:
-                        - page: "Airtel Commercial Communications"
-                          path: "pages/integrations/dlt/airtel-commercial.mdx"
-                        - page: "Jio"
-                          path: "pages/integrations/dlt/jio.mdx"
-                        - page: "Videocon"
-                          path: "pages/integrations/dlt/videocon.mdx"
-                        - page: "Vodafone Idea"
-                          path: "pages/integrations/dlt/vodafone-idea.mdx"
-                - section: "Templates"
-                  path: "pages/templates/templates-getting-started.mdx"
-                  icon: fa-regular fa-pen-ruler
-                  contents:
-                      - page: "Handlebars"
-                        path: "pages/templates/templates-getting-started/handlebars.mdx"
-                      - page: "Fyno Shorty"
-                        path: "pages/templates/templates-getting-started/shorty.mdx"
-                      - page: "Fyno Verify"
-                        path: "pages/templates/templates-getting-started/verify.mdx"
-                      - page: "Dynamic Content"
-                        path: "pages/templates/templates-getting-started/dynamic-content.mdx"
-                      - page: "Template Group"
-                        path: "pages/templates/templates-getting-started/group.mdx"
-                      - section: "Creating a Template"
-                        path: "pages/templates/template-creation.mdx"
-                        contents:
-                            - section: "SMS Templates"
-                              path: "pages/templates/template-creation/sms.mdx"
-                              contents:
-                                  - page: "DLT Templates"
-                                    path: "pages/templates/sms/dlt.mdx"
-                            - section: "WhatsApp Templates"
-                              path: "pages/templates/template-creation/whatsapp.mdx"
-                              contents:
-                                  - page: "Template Message"
-                                    path: "pages/templates/whatsapp/template-message.mdx"
-                                  - page: "Simple"
-                                    path: "pages/templates/whatsapp/simple-message.mdx"
-                                  - page: "Interactive"
-                                    path: "pages/templates/whatsapp/interactive-message.mdx"
-                                  - page: "Track URL Clicks"
-                                    path: "pages/templates/whatsapp/track-url.mdx"
-                                  - page: "Low Delivery Rates for Marketing notification"
-                                    path: "pages/templates/whatsapp/whatsapp-marketing-delivery.mdx"
-                            - section: "Email Templates"
-                              path: "pages/templates/template-creation/email.mdx"
-                              contents:
-                                  - page: "Add Attachments"
-                                    path: "pages/templates/email/attachments.mdx"
-                                  - page: "Add CC and BCC Recipients"
-                                    path: "pages/templates/email/cc-bcc.mdx"
-                                  - page: "Override Email Sender Details"
-                                    path: "pages/templates/email/override-sender-details.mdx"
-                            - page: "Chat Templates"
-                              path: "pages/templates/template-creation/chat.mdx"
-                            - page: "Push Templates"
-                              path: "pages/templates/template-creation/push.mdx"
-                            - page: "InApp Templates"
-                              path: "pages/templates/template-creation/inapp.mdx"
-                            - page: "Voice Templates"
-                              path: "pages/templates/template-creation/voice.mdx"
-                            - page: "Web Push Template"
-                              path: "pages/templates/template-creation/web-push.mdx"
-                            - page: "AMP Email Template"
-                              path: "pages/templates/template-creation/amp-email.mdx"
-                            - page: "RCS Template"
-                              path: "pages/templates/template-creation/rcs.mdx"
-                      - section: "External Templates"
-                        path: "pages/templates/external-templates.mdx"
-                        contents:
-                            - section: "Create a WhatsApp template from Fyno"
-                              path: "pages/templates/external-templates/whatsapp/create.mdx"
-                              contents:
-                                - page: "Create an Authentication WhatsApp template"
-                                  path: "pages/templates/external-templates/whatsapp/auth.mdx"
-                            - page: "Sync SMS templates to Fyno"
-                              path: "pages/templates/external-templates/sms/sync.mdx"
-                            - page: "Sync WhatsApp templates to Fyno"
-                              path: "pages/templates/external-templates/whatsapp/sync.mdx"
-                            - page: "Sync WhatsApp Flows to Fyno"
-                              path: "pages/templates/external-templates/whatsapp/flows.mdx"
-                            - page: "Create a WhatsApp template with carousel"
-                              path: "pages/templates/external-templates/whatsapp/carousel.mdx"
-                            - page: "Create a SMS template from Fyno"
-                              path: "pages/templates/external-templates/sms/create.mdx"
-                      - page: "Reusable Components"
-                        path: "pages/templates/components.mdx"
-                      - page: "Maker Checker Approval"
-                        path: "pages/templates/approval-flow.mdx"
-                - section: "Routes"
-                  icon: fa-regular fa-code-merge
-                  path: "pages/routing/routing.mdx"
-                  contents:
-                      - section: "Single Channel Route"
-                        path: "pages/routing/singlechannel/introduction.mdx"
-                        contents:
-                        - page: "Creating a Single Channel Route"
-                          path: "pages/routing/singlechannel/creation.mdx"
-                        - page: '"Action" Operator'
-                          path: "pages/routing/singlechannel/action.mdx"
-                        - page: '"Condition" Operator'
-                          path: "pages/routing/singlechannel/condition.mdx"
-                        - page: "Integrating a Single Channel Route"
-                          path: "pages/routing/singlechannel/integration.mdx"
-                      - section: "Omnichannel Route"
-                        path: "pages/routing/omnichannel/introduction.mdx"
-                        contents:
-                            - page: "Create an Omnichannel Route"
-                              path: "pages/routing/omnichannel/create.mdx"
-                - section: "Notification Events"
-                  icon: fa-regular fa-sitemap
-                  path: "pages/notification-events/overview.mdx"
-                  contents:
-                      - section: "Creating a Notification Event"
-                        path: "pages/notification-events/creation.mdx"
-                        contents:
-                            - page: "Triggering a Notification Event"
-                              path: "pages/notification-events/trigger.mdx"
-                            - page: "Notification Event Group"
-                              path: "pages/notification-events/group.mdx"
-                      - page: "Notification Event Analytics"
-                        path: "pages/notification-events/analytics.mdx"
-                      - page: "Notification Event Logs"
-                        path: "pages/notification-events/logs.mdx"
-                      - page: "Delivery Callback Logs"
-                        path: "pages/notification-events/callback-logs.mdx"
-                      - page: "Idempotent Requests"
-                        path: "pages/notification-events/idempotent-requests.mdx"
-                - page: "Requests/Go Live"
-                  icon: fa-regular fa-mouse-pointer
-                  path: "pages/requests-golive/request-go-live.mdx"
-                - section: "Logs"
-                  path: "pages/logs/logs.mdx"
-                  icon: fa-regular fa-database
-                  contents:
-                      - section: "Sent Logs"
-                        path: "pages/logs/sent-logs.mdx"
-                        contents:
-                            - page: "Filters"
-                              path: "pages/logs/sent-logs/sent-logs-filters.mdx"
-                            - page: "Notification Status"
-                              path: "pages/logs/sent-logs/notification-status.mdx"
-                      - section: "Log Details"
-                        path: "pages/logs/sent-log-details.mdx"
-                        contents:
-                            - page: "Trace"
-                              path: "pages/logs/sent-log-details/trace.mdx"
-                            - page: "Summary"
-                              path: "pages/logs/sent-log-details/summary.mdx"
-                            - page: "Placeholders"
-                              path: "pages/logs/sent-log-details/placeholders.mdx"
-                            - page: "Content"
-                              path: "pages/logs/sent-log-details/content.mdx"
-                            - page: "Response"
-                              path: "pages/logs/sent-log-details/response.mdx"
-                            - page: "Delivery"
-                              path: "pages/logs/sent-log-details/delivery.mdx"
-                      - page: "Inbound logs"
-                        path: "pages/logs/inbound-logs.mdx"
-          - section: "Advanced Features"
-            contents:
-              - section: "Workflows"
-                path: "pages/workflows/workflows.mdx"
-                icon: fa-regular fa-diagram-project
+              - section: "SMS"
+                path: "pages/integrations/sms-channel.mdx"
                 contents:
-                    - page: "Creating a Workflow with webhook trigger"
-                      path: "pages/workflows/workflow-webhook-trigger.mdx"
-                    - page: "Creating a workflow with Incoming message"
-                      path: "pages/workflows/workflow-with-incoming-message.mdx"
-                    - page: "Creating a workflow with Mixpanel Cohort"
-                      path: "pages/workflows/workflow-using-mixpanel-cohort.mdx"
-                    - section: "Creating a journey"
-                      path: "pages/workflows/create-journey.mdx"
-                      contents:
-                          - page: "Journey Analytics"
-                            path: "pages/workflows/journey/analytics.mdx"
-                    - page: "Creating a Workflow using Digest"
-                      path: "pages/workflows/workflow-with-digest.mdx"
-                    - page: "How to use User profile in Workflow"
-                      path: "pages/workflows/workflow-user-profile.mdx"
-                    - page: "Creating a Workflow using Subscription"
-                      path: "pages/workflows/workflow-with-subscription.mdx"
-                    - page: "How to receive delivery reports"
-                      path: "pages/workflows/receive-delivery-reports.mdx"
-                    - page: "How to configure overrides"
-                      path: "pages/workflows/configure-overrides-workflow.mdx"
-                    - page: "Workflow Logs"
-                      path: "pages/workflows/workflow-logs.mdx"
-                    - page: "How to configure Idempotent Key"
-                      path: "pages/workflows/idempotent-key.mdx"
-              - section: "Campaigns"
-                path: "pages/campaigns/overview.mdx"
-                icon: fa-regular fa-bullhorn
+                  - page: "BSNL"
+                    path: "pages/integrations/sms/bsnl.mdx"
+                  - page: "Exotel"
+                    path: "pages/integrations/sms/exotel.mdx"
+                  - page: "Gupshup"
+                    path: "pages/integrations/sms/gupshup.mdx"
+                  - page: "ICS"
+                    path: "pages/integrations/sms/ics.mdx"
+                  - page: "India SMS"
+                    path: "pages/integrations/sms/indiasms.mdx"
+                  - page: "Infobip"
+                    path: "pages/integrations/sms/infobip.mdx"
+                  - page: "Infronics"
+                    path: "pages/integrations/sms/infronics.mdx"
+                  - page: "JioCx"
+                    path: "pages/integrations/sms/jiocx.mdx"
+                  - page: "Kaleyra Global"
+                    path: "pages/integrations/sms/kaleyra-global.mdx"
+                  - page: "Kaleyra.io"
+                    path: "pages/integrations/sms/kaleyraio.mdx"
+                  - page: "Karix"
+                    path: "pages/integrations/sms/karix.mdx"
+                  - page: "MessageBird"
+                    path: "pages/integrations/sms/messagebird.mdx"
+                  - page: "MSG91"
+                    path: "pages/integrations/sms/msg91.mdx"
+                  - page: "Mtalkz"
+                    path: "pages/integrations/sms/mtalkz.mdx"
+                  - page: "Netcore"
+                    path: "pages/integrations/sms/netcore.mdx"
+                  - page: "Plivo"
+                    path: "pages/integrations/sms/plivo.mdx"
+                  - page: "Route Mobile"
+                    path: "pages/integrations/sms/route-mobile.mdx"
+                  - page: "Sinch"
+                    path: "pages/integrations/sms/sinch.mdx"
+                  - page: "Syniverse"
+                    path: "pages/integrations/sms/syniverse.mdx"
+                  - page: "telSpiel"
+                    path: "pages/integrations/sms/telspiel.mdx"
+                  - page: "TrustSignal"
+                    path: "pages/integrations/sms/trustsignal.mdx"
+                  - page: "Twilio"
+                    path: "pages/integrations/sms/twilio.mdx"
+                  - page: "ValueFirst"
+                    path: "pages/integrations/sms/valuefirst.mdx"
+              - section: "RCS"
+                path: "pages/integrations/rcs-channel.mdx"
                 contents:
-                    - page: "Creating a campaign"
-                      path: "pages/campaigns/creation.mdx"
-                    - page: "Campaign Analytics"
-                      path: "pages/campaigns/analytics.mdx"
-              - section: "User Profiles"
-                path: "pages/user-profiles/overview.mdx"
-                icon: fa-regular fa-user-group
+                  - page: "Gupshup Enterprise"
+                    path: "pages/integrations/rcs/gupshup.mdx"
+                  - page: "MSG91"
+                    path: "pages/integrations/rcs/msg91.mdx"
+                  - page: "ValueFirst"
+                    path: "pages/integrations/rcs/valuefirst.mdx"
+                  - page: "Wisely"
+                    path: "pages/integrations/rcs/wisely.mdx"
+              - section: "WhatsApp"
+                path: "pages/integrations/whatsapp-channel.mdx"
                 contents:
-                    - section: "Creating User Profiles"
-                      path: "pages/user-profiles/profiles-overview/creation.mdx"
-                      contents:
-                          - page: "Adding new user property"
-                            path: "pages/user-profiles/profiles-overview/user-property.mdx"
-                    - page: "User Profile Details"
-                      path: "pages/user-profiles/profiles-overview/details.mdx"
-                    - page: "Creating Cohorts"
-                      path: "pages/user-profiles/profiles-overview/creating-cohorts.mdx"
-                    - page: "Updating and Deleting User Profile"
-                      path: "pages/user-profiles/updation-deletion.mdx"
-                    - page: "Preferences"
-                      path: "pages/user-profiles/preferences.mdx"
-          - section: "Settings"
+                  - page: "AiSensy"
+                    path: "pages/integrations/whatsapp/aisensy.mdx"
+                  - page: "Connectly"
+                    path: "pages/integrations/whatsapp/connectly.mdx"
+                  - page: "Freshchat"
+                    path: "pages/integrations/whatsapp/freshchat.mdx"
+                  - page: "Gallabox"
+                    path: "pages/integrations/whatsapp/gallabox.mdx"
+                  - page: "Gupshup Enterprise"
+                    path: "pages/integrations/whatsapp/gupshup-enterprise.mdx"
+                  - page: "Gupshup"
+                    path: "pages/integrations/whatsapp/gupshup.mdx"
+                  - page: "Infobip"
+                    path: "pages/integrations/whatsapp/infobip.mdx"
+                  - page: "Interakt"
+                    path: "pages/integrations/whatsapp/interakt.mdx"
+                  - page: "Kaleyra.io"
+                    path: "pages/integrations/whatsapp/kaleyraio.mdx"
+                  - page: "Karix"
+                    path: "pages/integrations/whatsapp/karix.mdx"
+                  - page: "MessageBird"
+                    path: "pages/integrations/whatsapp/messagebird.mdx"
+                  - page: "Meta CoX"
+                    path: "pages/integrations/whatsapp/fyno-business-whatsapp.mdx"
+                  - section: "Meta Direct"
+                    path: "pages/integrations/whatsapp/fyno-whatsapp.mdx"
+                    contents:
+                      - page: "How to get Green Tick Verified for WhatsApp Business account"
+                        path: "pages/integrations/whatsapp/green-tick-verification.mdx"
+                  - page: "Meta Direct Plus"
+                    path: "pages/integrations/whatsapp/fyno-whatsapp-plus.mdx"
+                  - page: "Meta"
+                    path: "pages/integrations/whatsapp/meta.mdx"
+                  - page: "MSG91"
+                    path: "pages/integrations/whatsapp/msg91.mdx"
+                  - page: "Route Mobile"
+                    path: "pages/integrations/whatsapp/route-mobile.mdx"
+                  - page: "Twilio"
+                    path: "pages/integrations/whatsapp/twilio.mdx"
+                  - page: "ValueFirst"
+                    path: "pages/integrations/whatsapp/valuefirst.mdx"
+                  - page: "Verloop"
+                    path: "pages/integrations/whatsapp/verloop.mdx"
+                  - page: "WATI"
+                    path: "pages/integrations/whatsapp/wati.mdx"
+                  - page: "Yellow.ai"
+                    path: "pages/integrations/whatsapp/yellowai.mdx"
+              - section: "Email"
+                path: "pages/integrations/email-channel.mdx"
+                contents:
+                  - page: "Gmail"
+                    path: "pages/integrations/email/gmail.mdx"
+                  - page: "Mailchimp (Mandrill)"
+                    path: "pages/integrations/email/mailchimp.mdx"
+                  - page: "Mailgun"
+                    path: "pages/integrations/email/mailgun.mdx"
+                  - page: "Mailmodo"
+                    path: "pages/integrations/email/mailmodo.mdx"
+                  - page: "Netcore"
+                    path: "pages/integrations/email/netcore.mdx"
+                  - page: "Outlook"
+                    path: "pages/integrations/email/outlook.mdx"
+                  - page: "Postmark"
+                    path: "pages/integrations/email/postmark.mdx"
+                  - page: "SendGrid"
+                    path: "pages/integrations/email/sendgrid.mdx"
+                  - page: "SES"
+                    path: "pages/integrations/email/ses.mdx"
+                  - page: "SMTP"
+                    path: "pages/integrations/email/smtp.mdx"
+                  - page: "Sparkpost"
+                    path: "pages/integrations/email/sparkpost.mdx"
+                  - page: "ValueFirst"
+                    path: "pages/integrations/email/valuefirst.mdx"
+              - section: "Chat"
+                path: "pages/integrations/chat-channel.mdx"
+                contents:
+                  - page: "Slack"
+                    path: "pages/integrations/chat/slack.mdx"
+                  - page: "Teams"
+                    path: "pages/integrations/chat/teams.mdx"
+              - section: "Push"
+                path: "pages/integrations/push-channel.mdx"
+                contents:
+                  - page: "APNs"
+                    path: "pages/integrations/push/apns.mdx"
+                  - page: "Expo"
+                    path: "pages/integrations/push/expo.mdx"
+                  - page: "Fyno Push"
+                    path: "pages/integrations/push/fyno.mdx"
+                  - page: "Google FCM"
+                    path: "pages/integrations/push/fcm.mdx"
+                  - page: "Mi Push"
+                    path: "pages/integrations/push/mi-push.mdx"
+                  - page: "OneSignal"
+                    path: "pages/integrations/push/onesignal.mdx"
+              - section: "Voice"
+                path: "pages/integrations/voice-channel.mdx"
+                contents:
+                  - page: "Exotel"
+                    path: "pages/integrations/voice/exotel.mdx"
+                  - page: "Kaleyra"
+                    path: "pages/integrations/voice/kaleyra.mdx"
+                  - page: "Ozonetel"
+                    path: "pages/integrations/voice/ozonetel.mdx"
+                  - page: "Plivo"
+                    path: "pages/integrations/voice/plivo.mdx"
+                  - page: "Twilio"
+                    path: "pages/integrations/voice/twilio.mdx"
+              - page: "In-App"
+                path: "pages/integrations/inapp-channel.mdx"
+              - page: "Web Push"
+                path: "pages/integrations/web-push-channel.mdx"
+              - section: "DLT"
+                path: "pages/integrations/dlt.mdx"
+                contents:
+                  - page: "Airtel Commercial Communications"
+                    path: "pages/integrations/dlt/airtel-commercial.mdx"
+                  - page: "Jio"
+                    path: "pages/integrations/dlt/jio.mdx"
+                  - page: "Videocon"
+                    path: "pages/integrations/dlt/videocon.mdx"
+                  - page: "Vodafone Idea"
+                    path: "pages/integrations/dlt/vodafone-idea.mdx"
+          - section: "Templates"
+            path: "pages/templates/templates-getting-started.mdx"
+            icon: fa-regular fa-pen-ruler
             contents:
-                - page: "Profile Settings"
-                  icon: fa-regular fa-user-gear
-                  path: "pages/settings/profile.mdx"
-                - page: "Workspaces"
-                  icon: fa-regular fa-shapes
-                  path: "pages/settings/workspace-introduction.mdx"
-                - section: "Workspace Settings"
-                  icon: fa-regular fa-gear
-                  path: "pages/settings/workspace-settings.mdx"
-                  contents:
-                      - page: "Team"
-                        path: "pages/settings/workspace-settings/team.mdx"
-                      - page: "API Keys"
-                        path: "pages/settings/workspace-settings/api-keys.mdx"
-                      - section: "Allowlist"
-                        path: "pages/settings/workspace-settings/allowlist.mdx"
-                        contents:
-                            - page: "Allowlist URL"
-                              path: "pages/settings/workspace-settings/allowlist/allowlist-url.mdx"
-                            - page: "Allowlist SQS"
-                              path: "pages/settings/workspace-settings/allowlist/allowlist-sqs.mdx"
-                            - page: "Configuring Allowlist URL/SQS to receive Delivery Report"
-                              path: "pages/settings/workspace-settings/allowlist/receive-delivery-report.mdx"
-                      - page: "Alerts"
-                        path: "pages/settings/workspace-settings/alerts.mdx"
-                      - page: "Security"
-                        path: "pages/settings/workspace-settings/security.mdx"
-                      - page: "Delivery Limit"
-                        path: "pages/settings/workspace-settings/delivery-limit.mdx"
-                - section: "Add-Ons"
-                  icon: fa-regular fa-wand-magic-sparkles
-                  contents:
-                    - page: "Push Token Cleanup"
-                      path: "pages/settings/push-token-cleanup.mdx"
-                    - page: "Report Extraction"
-                      path: "pages/settings/report-extraction.mdx"
-                    - page: "Report Details"
-                      path: "pages/settings/report-details.mdx"
-                    - page: "Data Retention"
-                      path: "pages/settings/workspace-settings/data-retention.mdx"
-                    - page: "Suppression List"
-                      path: "pages/settings/workspace-settings/suppression.mdx"
-                    - page: "Conversation Logs"
-                      path: "pages/settings/workspace-settings/conversation-logs.mdx"
-                    - page: "Conversion Tracking"
-                      path: "pages/settings/workspace-settings/conversion-tracking.mdx"
-                    - page: "Analytics Label"
-                      path: "pages/settings/workspace-settings/analytics-label.mdx"
-                    - page: "Duplicate Message Check"
-                      path: "pages/settings/workspace-settings/duplicate-check.mdx"
-    - tab: sdks
-      layout:
-          - section: "Introduction"
+              - page: "Handlebars"
+                path: "pages/templates/templates-getting-started/handlebars.mdx"
+              - page: "Fyno Shorty"
+                path: "pages/templates/templates-getting-started/shorty.mdx"
+              - page: "Fyno Verify"
+                path: "pages/templates/templates-getting-started/verify.mdx"
+              - page: "Dynamic Content"
+                path: "pages/templates/templates-getting-started/dynamic-content.mdx"
+              - page: "Template Group"
+                path: "pages/templates/templates-getting-started/group.mdx"
+              - section: "Creating a Template"
+                path: "pages/templates/template-creation.mdx"
+                contents:
+                  - section: "SMS Templates"
+                    path: "pages/templates/template-creation/sms.mdx"
+                    contents:
+                      - page: "DLT Templates"
+                        path: "pages/templates/sms/dlt.mdx"
+                  - section: "WhatsApp Templates"
+                    path: "pages/templates/template-creation/whatsapp.mdx"
+                    contents:
+                      - page: "Template Message"
+                        path: "pages/templates/whatsapp/template-message.mdx"
+                      - page: "Simple"
+                        path: "pages/templates/whatsapp/simple-message.mdx"
+                      - page: "Interactive"
+                        path: "pages/templates/whatsapp/interactive-message.mdx"
+                      - page: "Track URL Clicks"
+                        path: "pages/templates/whatsapp/track-url.mdx"
+                      - page: "Low Delivery Rates for Marketing notification"
+                        path: "pages/templates/whatsapp/whatsapp-marketing-delivery.mdx"
+                  - section: "Email Templates"
+                    path: "pages/templates/template-creation/email.mdx"
+                    contents:
+                      - page: "Add Attachments"
+                        path: "pages/templates/email/attachments.mdx"
+                      - page: "Add CC and BCC Recipients"
+                        path: "pages/templates/email/cc-bcc.mdx"
+                      - page: "Override Email Sender Details"
+                        path: "pages/templates/email/override-sender-details.mdx"
+                  - page: "Chat Templates"
+                    path: "pages/templates/template-creation/chat.mdx"
+                  - page: "Push Templates"
+                    path: "pages/templates/template-creation/push.mdx"
+                  - page: "InApp Templates"
+                    path: "pages/templates/template-creation/inapp.mdx"
+                  - page: "Voice Templates"
+                    path: "pages/templates/template-creation/voice.mdx"
+                  - page: "Web Push Template"
+                    path: "pages/templates/template-creation/web-push.mdx"
+                  - page: "AMP Email Template"
+                    path: "pages/templates/template-creation/amp-email.mdx"
+                  - page: "RCS Template"
+                    path: "pages/templates/template-creation/rcs.mdx"
+              - section: "External Templates"
+                path: "pages/templates/external-templates.mdx"
+                contents:
+                  - section: "Create a WhatsApp template from Fyno"
+                    path: "pages/templates/external-templates/whatsapp/create.mdx"
+                    contents:
+                      - page: "Create an Authentication WhatsApp template"
+                        path: "pages/templates/external-templates/whatsapp/auth.mdx"
+                  - page: "Sync SMS templates to Fyno"
+                    path: "pages/templates/external-templates/sms/sync.mdx"
+                  - page: "Sync WhatsApp templates to Fyno"
+                    path: "pages/templates/external-templates/whatsapp/sync.mdx"
+                  - page: "Sync WhatsApp Flows to Fyno"
+                    path: "pages/templates/external-templates/whatsapp/flows.mdx"
+                  - page: "Create a WhatsApp template with carousel"
+                    path: "pages/templates/external-templates/whatsapp/carousel.mdx"
+                  - page: "Create a SMS template from Fyno"
+                    path: "pages/templates/external-templates/sms/create.mdx"
+              - page: "Reusable Components"
+                path: "pages/templates/components.mdx"
+              - page: "Maker Checker Approval"
+                path: "pages/templates/approval-flow.mdx"
+              - page: "Copying Templates & Components"
+                path: "pages/templates/copying-templates-components.mdx"
+          - section: "Routes"
+            icon: fa-regular fa-code-merge
+            path: "pages/routing/routing.mdx"
             contents:
-            - page: "Overview"
-              path: "pages/sdks/overview.mdx"
-          - section: "Mobile Push"
+              - section: "Single Channel Route"
+                path: "pages/routing/singlechannel/introduction.mdx"
+                contents:
+                  - page: "Creating a Single Channel Route"
+                    path: "pages/routing/singlechannel/creation.mdx"
+                  - page: '"Action" Operator'
+                    path: "pages/routing/singlechannel/action.mdx"
+                  - page: '"Condition" Operator'
+                    path: "pages/routing/singlechannel/condition.mdx"
+                  - page: "Integrating a Single Channel Route"
+                    path: "pages/routing/singlechannel/integration.mdx"
+              - section: "Omnichannel Route"
+                path: "pages/routing/omnichannel/introduction.mdx"
+                contents:
+                  - page: "Create an Omnichannel Route"
+                    path: "pages/routing/omnichannel/create.mdx"
+              - page: "Copying Routes"
+                path: "pages/routing/copying-routes.mdx"
+
+          - section: "Notification Events"
+            icon: fa-regular fa-sitemap
+            path: "pages/notification-events/overview.mdx"
             contents:
-                - section: "Flutter Push SDK"
-                  path: "pages/sdks/push/flutter.mdx"
-                  contents:
-                      - page: "Prerequisites"
-                        path: "pages/sdks/push/flutter/prerequisites.mdx"
-                      - page: "Installation"
-                        path: "pages/sdks/push/flutter/installation.mdx"
-                      - page: "Usage"
-                        path: "pages/sdks/push/flutter/usage.mdx"
-                      - page: "Android specific configuration"
-                        path: "pages/sdks/push/flutter/android-push.mdx"
-                      - page: "iOS specific configuration"
-                        path: "pages/sdks/push/flutter/ios-push.mdx"
-                      - page: "FAQs"
-                        path: "pages/sdks/push/flutter/faqs.mdx"
-                - section: "React Native Push SDK"
-                  path: "pages/sdks/push/react-native.mdx"
-                  contents:
-                      - page: "Prerequisites"
-                        path: "pages/sdks/push/react-native/prerequisites.mdx"
-                      - page: "Installation"
-                        path: "pages/sdks/push/react-native/installation.mdx"
-                      - page: "Usage"
-                        path: "pages/sdks/push/react-native/usage.mdx"
-                      - page: "Android specific configuration"
-                        path: "pages/sdks/push/react-native/android-push.mdx"
-                      - page: "iOS specific configuration"
-                        path: "pages/sdks/push/react-native/ios-push.mdx"
-                      - page: "FAQs"
-                        path: "pages/sdks/push/react-native/faqs.mdx"
-                - page: "Kotlin Push SDK"
-                  path: "pages/sdks/push/kotlin.mdx"
-                - page: "Swift Push SDK"
-                  path: "pages/sdks/push/swift.mdx"
-          - section: "In-App"
+              - section: "Creating a Notification Event"
+                path: "pages/notification-events/creation.mdx"
+                contents:
+                  - page: "Triggering a Notification Event"
+                    path: "pages/notification-events/trigger.mdx"
+                  - page: "Notification Event Group"
+                    path: "pages/notification-events/group.mdx"
+              - page: "Notification Event Analytics"
+                path: "pages/notification-events/analytics.mdx"
+              - page: "Notification Event Logs"
+                path: "pages/notification-events/logs.mdx"
+              - page: "Delivery Callback Logs"
+                path: "pages/notification-events/callback-logs.mdx"
+              - page: "Idempotent Requests"
+                path: "pages/notification-events/idempotent-requests.mdx"
+              - page: "Copying Notification Events"
+                path: "pages/notification-events/copying-notification-events.mdx"
+          - page: "Requests/Go Live"
+            icon: fa-regular fa-mouse-pointer
+            path: "pages/requests-golive/request-go-live.mdx"
+          - section: "Logs"
+            path: "pages/logs/logs.mdx"
+            icon: fa-regular fa-database
             contents:
-                - section: "React In-App SDK"
-                  path: "pages/sdks/inapp/react.mdx"
-                  contents:
-                  - page: "Silent / Background InApp Notifications"
-                    path: "pages/sdks/inapp/silent-notifications.mdx"
-                - page: "React Native In-App SDK"
-                  path: "pages/sdks/inapp/react-native.mdx"
-                - page: "Flutter In-App SDK"
-                  path: "pages/sdks/inapp/flutter.mdx"
-          - section: "Web Push"
+              - section: "Sent Logs"
+                path: "pages/logs/sent-logs.mdx"
+                contents:
+                  - page: "Filters"
+                    path: "pages/logs/sent-logs/sent-logs-filters.mdx"
+                  - page: "Notification Status"
+                    path: "pages/logs/sent-logs/notification-status.mdx"
+              - section: "Log Details"
+                path: "pages/logs/sent-log-details.mdx"
+                contents:
+                  - page: "Trace"
+                    path: "pages/logs/sent-log-details/trace.mdx"
+                  - page: "Summary"
+                    path: "pages/logs/sent-log-details/summary.mdx"
+                  - page: "Placeholders"
+                    path: "pages/logs/sent-log-details/placeholders.mdx"
+                  - page: "Content"
+                    path: "pages/logs/sent-log-details/content.mdx"
+                  - page: "Response"
+                    path: "pages/logs/sent-log-details/response.mdx"
+                  - page: "Delivery"
+                    path: "pages/logs/sent-log-details/delivery.mdx"
+              - page: "Inbound logs"
+                path: "pages/logs/inbound-logs.mdx"
+      - section: "Advanced Features"
+        contents:
+          - section: "Workflows"
+            path: "pages/workflows/workflows.mdx"
+            icon: fa-regular fa-diagram-project
             contents:
-              - page: "Web Push SDK"
-                path: "pages/sdks/webpush/web-push-sdk.mdx"
-    - tab: fyno-connect
-      layout:
-          - section: "Getting Started"
+              - page: "Creating a Workflow with webhook trigger"
+                path: "pages/workflows/workflow-webhook-trigger.mdx"
+              - page: "Creating a workflow with Incoming message"
+                path: "pages/workflows/workflow-with-incoming-message.mdx"
+              - page: "Creating a workflow with Mixpanel Cohort"
+                path: "pages/workflows/workflow-using-mixpanel-cohort.mdx"
+              - section: "Creating a journey"
+                path: "pages/workflows/create-journey.mdx"
+                contents:
+                  - page: "Journey Analytics"
+                    path: "pages/workflows/journey/analytics.mdx"
+              - page: "Creating a Workflow using Digest"
+                path: "pages/workflows/workflow-with-digest.mdx"
+              - page: "How to use User profile in Workflow"
+                path: "pages/workflows/workflow-user-profile.mdx"
+              - page: "Creating a Workflow using Subscription"
+                path: "pages/workflows/workflow-with-subscription.mdx"
+              - page: "How to receive delivery reports"
+                path: "pages/workflows/receive-delivery-reports.mdx"
+              - page: "How to configure overrides"
+                path: "pages/workflows/configure-overrides-workflow.mdx"
+              - page: "Workflow Logs"
+                path: "pages/workflows/workflow-logs.mdx"
+              - page: "How to configure Idempotent Key"
+                path: "pages/workflows/idempotent-key.mdx"
+              - page: "Copying Workflows"
+                path: "pages/workflows/copying-workflows.mdx"
+          - section: "Campaigns"
+            path: "pages/campaigns/overview.mdx"
+            icon: fa-regular fa-bullhorn
             contents:
-              - page: "Introduction"
-                path: "pages/fyno-connect/introduction.mdx"
+              - page: "Creating a campaign"
+                path: "pages/campaigns/creation.mdx"
+              - page: "Campaign Analytics"
+                path: "pages/campaigns/analytics.mdx"
+          - section: "User Profiles"
+            path: "pages/user-profiles/overview.mdx"
+            icon: fa-regular fa-user-group
+            contents:
+              - section: "Creating User Profiles"
+                path: "pages/user-profiles/profiles-overview/creation.mdx"
+                contents:
+                  - page: "Adding new user property"
+                    path: "pages/user-profiles/profiles-overview/user-property.mdx"
+              - page: "User Profile Details"
+                path: "pages/user-profiles/profiles-overview/details.mdx"
+              - page: "Creating Cohorts"
+                path: "pages/user-profiles/profiles-overview/creating-cohorts.mdx"
+              - page: "Updating and Deleting User Profile"
+                path: "pages/user-profiles/updation-deletion.mdx"
+              - page: "Preferences"
+                path: "pages/user-profiles/preferences.mdx"
+      - section: "Settings"
+        contents:
+          - page: "Profile Settings"
+            icon: fa-regular fa-user-gear
+            path: "pages/settings/profile.mdx"
+          - page: "Workspaces"
+            icon: fa-regular fa-shapes
+            path: "pages/settings/workspace-introduction.mdx"
+          - section: "Workspace Settings"
+            icon: fa-regular fa-gear
+            path: "pages/settings/workspace-settings.mdx"
+            contents:
+              - page: "Team"
+                path: "pages/settings/workspace-settings/team.mdx"
+              - page: "API Keys"
+                path: "pages/settings/workspace-settings/api-keys.mdx"
+              - section: "Allowlist"
+                path: "pages/settings/workspace-settings/allowlist.mdx"
+                contents:
+                  - page: "Allowlist URL"
+                    path: "pages/settings/workspace-settings/allowlist/allowlist-url.mdx"
+                  - page: "Allowlist SQS"
+                    path: "pages/settings/workspace-settings/allowlist/allowlist-sqs.mdx"
+                  - page: "Configuring Allowlist URL/SQS to receive Delivery Report"
+                    path: "pages/settings/workspace-settings/allowlist/receive-delivery-report.mdx"
+              - page: "Alerts"
+                path: "pages/settings/workspace-settings/alerts.mdx"
+              - page: "Security"
+                path: "pages/settings/workspace-settings/security.mdx"
+              - page: "Delivery Limit"
+                path: "pages/settings/workspace-settings/delivery-limit.mdx"
+          - section: "Add-Ons"
+            icon: fa-regular fa-wand-magic-sparkles
+            contents:
+              - page: "Push Token Cleanup"
+                path: "pages/settings/push-token-cleanup.mdx"
+              - page: "Report Extraction"
+                path: "pages/settings/report-extraction.mdx"
+              - page: "Report Details"
+                path: "pages/settings/report-details.mdx"
+              - page: "Data Retention"
+                path: "pages/settings/workspace-settings/data-retention.mdx"
+              - page: "Suppression List"
+                path: "pages/settings/workspace-settings/suppression.mdx"
+              - page: "Conversation Logs"
+                path: "pages/settings/workspace-settings/conversation-logs.mdx"
+              - page: "Conversion Tracking"
+                path: "pages/settings/workspace-settings/conversion-tracking.mdx"
+              - page: "Analytics Label"
+                path: "pages/settings/workspace-settings/analytics-label.mdx"
+              - page: "Duplicate Message Check"
+                path: "pages/settings/workspace-settings/duplicate-check.mdx"
+  - tab: sdks
+    layout:
+      - section: "Introduction"
+        contents:
+          - page: "Overview"
+            path: "pages/sdks/overview.mdx"
+      - section: "Mobile Push"
+        contents:
+          - section: "Flutter Push SDK"
+            path: "pages/sdks/push/flutter.mdx"
+            contents:
+              - page: "Prerequisites"
+                path: "pages/sdks/push/flutter/prerequisites.mdx"
               - page: "Installation"
-                path: "pages/fyno-connect/set-up.mdx"
-          - section: "Supported Databases"
+                path: "pages/sdks/push/flutter/installation.mdx"
+              - page: "Usage"
+                path: "pages/sdks/push/flutter/usage.mdx"
+              - page: "Android specific configuration"
+                path: "pages/sdks/push/flutter/android-push.mdx"
+              - page: "iOS specific configuration"
+                path: "pages/sdks/push/flutter/ios-push.mdx"
+              - page: "FAQs"
+                path: "pages/sdks/push/flutter/faqs.mdx"
+          - section: "React Native Push SDK"
+            path: "pages/sdks/push/react-native.mdx"
             contents:
-              - page: "MongoDB"
-                path: "pages/fyno-connect/databases/mongodb.mdx"
-              - page: "MsSQL"
-                path: "pages/fyno-connect/databases/mssql.mdx"
-              - page: "MySQL"
-                path: "pages/fyno-connect/databases/mysql.mdx"
-              - page: "Postgres"
-                path: "pages/fyno-connect/databases/postgres.mdx"
-              - page: "Snowflake"
-                path: "pages/fyno-connect/databases/snowflake.mdx"
-              - page: "Athena"
-                path: "pages/fyno-connect/databases/athena.mdx"
-          - section: "Using Fyno Connect"
+              - page: "Prerequisites"
+                path: "pages/sdks/push/react-native/prerequisites.mdx"
+              - page: "Installation"
+                path: "pages/sdks/push/react-native/installation.mdx"
+              - page: "Usage"
+                path: "pages/sdks/push/react-native/usage.mdx"
+              - page: "Android specific configuration"
+                path: "pages/sdks/push/react-native/android-push.mdx"
+              - page: "iOS specific configuration"
+                path: "pages/sdks/push/react-native/ios-push.mdx"
+              - page: "FAQs"
+                path: "pages/sdks/push/react-native/faqs.mdx"
+          - page: "Kotlin Push SDK"
+            path: "pages/sdks/push/kotlin.mdx"
+          - page: "Swift Push SDK"
+            path: "pages/sdks/push/swift.mdx"
+      - section: "In-App"
+        contents:
+          - section: "React In-App SDK"
+            path: "pages/sdks/inapp/react.mdx"
             contents:
-            - page: "Create Cohorts"
-              path: "pages/fyno-connect/create-cohort.mdx"
-            - page: "Create Campaigns"
-              path: "pages/fyno-connect/create-campaign.mdx"
-            - page: "Create Content API"
-              path: "pages/fyno-connect/content-api.mdx"
-            - page: "Invite Team Members"
-              path: "pages/fyno-connect/invite-team.mdx"
-            - page: "Enable Alerts"
-              path: "pages/fyno-connect/enable-alerts.mdx"
-    - tab: api
-      layout:
-          - api: API Reference
-            # alphabetized: true
-            layout:
-              - section: Notification Event
-                skip-slug: true
-                contents:
-                  - POST /{WSID}/{version}/event
-                  - POST /{WSID}/{version}/event/bulk
-              - section: Fyno Verify
-                skip-slug: true
-                contents:
-                  - POST /{WSID}/{version}/verify/validate
-              - section: User Profiles
-                skip-slug: true
-                contents:
-                  - GET /{WSID}/{version}/profiles/{distinct_id}
-                  - POST /{WSID}/{version}/profiles
-                  - PUT /{WSID}/{version}/profiles/{distinct_id}
-                  - PATCH /{WSID}/{version}/profiles/{source_distinct_id}/merge/{target_distinct_id}
-                  - PATCH /{WSID}/{version}/profiles/{distinct_id}/channel
-                  - POST /{WSID}/{version}/profiles/{distinct_id}/channel/delete
-                  - POST /{WSID}/{version}/profiles/delete
-              - section: User Subscriptions
-                skip-slug: true
-                contents:
-                  - GET /{WSID}/{version}/subscriptions/preference
-                  - PUT /{WSID}/{version}/subscriptions/preference
-                  - POST /{WSID}/{version}/subscriptions/list/{subscription_id}/user
-              - section: User Properties
-                skip-slug: true
-                contents:
-                  - POST /{WSID}/{version}/profiles/properties/set
-                  - POST /{WSID}/{version}/profiles/properties/set-once
-                  - POST /{WSID}/{version}/profiles/properties/numerical-add
-                  - POST /{WSID}/{version}/profiles/properties/list-append
-                  - POST /{WSID}/{version}/profiles/properties/list-remove
-                  - POST /{WSID}/{version}/profiles/properties/unset
-                  - POST /{WSID}/{version}/profiles/properties/batch
+              - page: "Silent / Background InApp Notifications"
+                path: "pages/sdks/inapp/silent-notifications.mdx"
+          - page: "React Native In-App SDK"
+            path: "pages/sdks/inapp/react-native.mdx"
+          - page: "Flutter In-App SDK"
+            path: "pages/sdks/inapp/flutter.mdx"
+      - section: "Web Push"
+        contents:
+          - page: "Web Push SDK"
+            path: "pages/sdks/webpush/web-push-sdk.mdx"
+  - tab: fyno-connect
+    layout:
+      - section: "Getting Started"
+        contents:
+          - page: "Introduction"
+            path: "pages/fyno-connect/introduction.mdx"
+          - page: "Installation"
+            path: "pages/fyno-connect/set-up.mdx"
+      - section: "Supported Databases"
+        contents:
+          - page: "MongoDB"
+            path: "pages/fyno-connect/databases/mongodb.mdx"
+          - page: "MsSQL"
+            path: "pages/fyno-connect/databases/mssql.mdx"
+          - page: "MySQL"
+            path: "pages/fyno-connect/databases/mysql.mdx"
+          - page: "Postgres"
+            path: "pages/fyno-connect/databases/postgres.mdx"
+          - page: "Snowflake"
+            path: "pages/fyno-connect/databases/snowflake.mdx"
+          - page: "Athena"
+            path: "pages/fyno-connect/databases/athena.mdx"
+      - section: "Using Fyno Connect"
+        contents:
+          - page: "Create Cohorts"
+            path: "pages/fyno-connect/create-cohort.mdx"
+          - page: "Create Campaigns"
+            path: "pages/fyno-connect/create-campaign.mdx"
+          - page: "Create Content API"
+            path: "pages/fyno-connect/content-api.mdx"
+          - page: "Invite Team Members"
+            path: "pages/fyno-connect/invite-team.mdx"
+          - page: "Enable Alerts"
+            path: "pages/fyno-connect/enable-alerts.mdx"
+  - tab: api
+    layout:
+      - api: API Reference
+        # alphabetized: true
+        layout:
+          - section: Notification Event
+            skip-slug: true
+            contents:
+              - POST /{WSID}/{version}/event
+              - POST /{WSID}/{version}/event/bulk
+          - section: Fyno Verify
+            skip-slug: true
+            contents:
+              - POST /{WSID}/{version}/verify/validate
+          - section: User Profiles
+            skip-slug: true
+            contents:
+              - GET /{WSID}/{version}/profiles/{distinct_id}
+              - POST /{WSID}/{version}/profiles
+              - PUT /{WSID}/{version}/profiles/{distinct_id}
+              - PATCH /{WSID}/{version}/profiles/{source_distinct_id}/merge/{target_distinct_id}
+              - PATCH /{WSID}/{version}/profiles/{distinct_id}/channel
+              - POST /{WSID}/{version}/profiles/{distinct_id}/channel/delete
+              - POST /{WSID}/{version}/profiles/delete
+          - section: User Subscriptions
+            skip-slug: true
+            contents:
+              - GET /{WSID}/{version}/subscriptions/preference
+              - PUT /{WSID}/{version}/subscriptions/preference
+              - POST /{WSID}/{version}/subscriptions/list/{subscription_id}/user
+          - section: User Properties
+            skip-slug: true
+            contents:
+              - POST /{WSID}/{version}/profiles/properties/set
+              - POST /{WSID}/{version}/profiles/properties/set-once
+              - POST /{WSID}/{version}/profiles/properties/numerical-add
+              - POST /{WSID}/{version}/profiles/properties/list-append
+              - POST /{WSID}/{version}/profiles/properties/list-remove
+              - POST /{WSID}/{version}/profiles/properties/unset
+              - POST /{WSID}/{version}/profiles/properties/batch
 navbar-links:
-    - type: minimal
-      text: Login
-      url: https://app.fyno.io/login
-    - type: filled
-      text: Talk to us
-      url: https://www.fyno.io/schedule-demo
+  - type: minimal
+    text: Login
+    url: https://app.fyno.io/login
+  - type: filled
+    text: Talk to us
+    url: https://www.fyno.io/schedule-demo
 typography:
-    bodyFont:
-        name: NotoSans
-        paths:
-            - path: ./assets/NotoSans-Regular.ttf
-              weight: 400
-            - path: ./assets/NotoSans-Medium.ttf
-              weight: 500
-            - path: ./assets/NotoSans-SemiBold.ttf
-              weight: 600
-    headingsFont:
-        name: RedditSans
-        path: ./assets/RedditSans-Bold.ttf
+  bodyFont:
+    name: NotoSans
+    paths:
+      - path: ./assets/NotoSans-Regular.ttf
+        weight: 400
+      - path: ./assets/NotoSans-Medium.ttf
+        weight: 500
+      - path: ./assets/NotoSans-SemiBold.ttf
         weight: 600
+  headingsFont:
+    name: RedditSans
+    path: ./assets/RedditSans-Bold.ttf
+    weight: 600
 logo:
-    href: https://www.fyno.io
-    light: ./assets/fyno-logo-primary.svg
-    dark: ./assets/fyno-logo-white.svg
-    height: 30
+  href: https://www.fyno.io
+  light: ./assets/fyno-logo-primary.svg
+  dark: ./assets/fyno-logo-white.svg
+  height: 30
 colors:
-    accentPrimary:
-        dark: "#18A5A5"
-        light: "#008080"
-    background:
-        dark: "#030303"
-        light: "#FCFCFC"
-    header-background:
-        dark: "#030303"
-        light: "#FCFCFC"
+  accentPrimary:
+    dark: "#18A5A5"
+    light: "#008080"
+  background:
+    dark: "#030303"
+    light: "#FCFCFC"
+  header-background:
+    dark: "#030303"
+    light: "#FCFCFC"
 favicon: ./assets/favicon.ico
 layout:
-    page-width: 1504px
-    header-height: 75px
-    searchbar-placement: header
-    tabs-placement: header
+  page-width: 1504px
+  header-height: 75px
+  searchbar-placement: header
+  tabs-placement: header
 css: "./style.css"
 analytics:
   ga4:
