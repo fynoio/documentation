@@ -502,6 +502,8 @@ navigation:
                 path: "pages/settings/workspace-settings/security.mdx"
               - page: "Delivery Limit"
                 path: "pages/settings/workspace-settings/delivery-limit.mdx"
+              - page: "Block Email Domains"
+                path: "pages/settings/workspace-settings/block-email-domains.mdx"
           - section: "Add-Ons"
             icon: fa-regular fa-wand-magic-sparkles
             contents:
