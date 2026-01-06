@@ -213,7 +213,7 @@ To enable the **Secure Media Storage** feature for your account,
   Example - https://example-bucket.s3.ap-south-1.amazonaws.com/pdf/lrn . 
    If you are using CloudFront URL to access S3 bucket and if you have added origin path as /pdf, then you need to add &lt;Distribution_Domain_name&gt;/&lt;subfolder&gt;. Example - abcdefgh.cloudfront.net/lrn
   - Bucket Name : Provide the bucket name where the files will be stored. 
-  - Folder Path : Provide the Folder path where the files will be stored. Example - pdf/lrn
+  - Folder Path : Provide the Folder path where the files will be stored. Example - pdf/lrn.
 
 
 ### How to configure for Incoming Media
@@ -221,6 +221,39 @@ To enable the **Secure Media Storage** feature for your account,
   ![](/images/settings_secure_media_storage_incoming.png)
 
   - Base URL : Provide the URL where all the incoming media files (pdf, jpeg, png etc) will be stored in this format - &lt;base_url&gt;/&lt;folder&gt;/&lt;subfolder&gt;. Example - https://example-bucket.s3.ap-south-1.amazonaws.com/incoming/media . 
-   If you are using CloudFront URL to access S3 bucket and if you have added origin path as /incoming, then you need to add &lt;Distribution_Domain_name&gt;/&lt;subfolder&gt;. Example - abcdefgh.cloudfront.net/media
+   If you are using CloudFront URL to access S3 bucket and if you have added origin path as /incoming, then you need to add &lt;Distribution_Domain_name&gt;/&lt;subfolder&gt;. Example - abcdefgh.cloudfront.net/media.
   - Bucket Name : Provide the bucket name where the files will be stored. 
-  - Folder Path : Provide the Folder path where the files will be stored. Example - incoming/media
+  - Folder Path : Provide the Folder path where the files will be stored. Example - incoming/media.
+
+  ## Authentication
+
+Fyno supports multiple authentication mechanisms to securely manage access across organizations.
+
+### Supported Authentication Options
+
+### Social Login (Google, Microsoft)
+
+Social Login enables authentication using third-party identity providers such as **Google** and **Microsoft**.  
+This method simplifies credential management and accelerates user onboarding by eliminating the need to create and remember separate passwords.
+
+
+### SAML Single Sign-On (SSO)
+
+SAML-based **Single Sign-On (SSO)** allows authentication through an organization's existing **Identity Provider (IdP)**, offering centralized access control and enhanced security.  
+Users can log into Fyno using corporate identity tools such as **OKTA**, **AWS**, or other SAML-compliant IdPs.
+
+Once SSO is enabled, all workspace members are redirected through the IdP login flow, ensuring secure and policy-driven access management across the organization.
+
+To learn more, visit the **[SAML Single Sign-On (SSO)](./security/saml-single-sign-on)** documentation.
+
+<Info>
+<strong>Important Note:</strong>  
+SAML SSO is available only on the **Enterprise plan**.  
+To enable SSO for your organization, contact Fyno Support at <a href="mailto:support@fyno.io">support@fyno.io</a>.
+
+Support assistance includes:
+<ul>
+  <li>Enabling SAML SSO for the account.</li>
+  <li>Providing a step-by-step setup guide based on your company’s IdP.</li>
+</ul>
+</Info>

@@ -76,25 +76,46 @@ Without these cookies, we cannot improve your browsing experience or know when y
 
 ## Security (Two-Factor Authentication)
 
-Two-Factor Authentication is an additional layer of security that can be enabled on your Fyno account.
+Two-Factor Authentication (2FA) adds an extra layer of security to your Fyno account. Users can enable or disable 2FA from the **Security** section under **Profile Settings**.
 
-The first layer of security is your own password, that has been set for the account. Additional to your account password, we recommend you enable Two-Factor Authentication, because:
+2FA works alongside **SAML-based login**, giving you better control over how users access the Fyno dashboard. Even if a password is compromised, the extra authentication step helps prevent unauthorized access. Enabling 2FA also helps meet compliance requirements for standards such as **GDPR and ISO**.
 
-- It gives you additional security on your Fyno account. So even if your account password is compromised, the additional layer of authentication will prevent access into your account from unwanted persons.
-- Most compliance bodies like GDPR and ISO require two-factor authentication to be a part of and enabled on applications and tools.
 
-So, how do we set it up on Fyno?
+### Enable Two-Factor Authentication (2FA)
 
-To enable your Two Factor Authentication:
+Two-Factor Authentication is recommended for accounts not using SAML or for administrative access.
+
+#### Steps to Enable 2FA
 
 <Steps>
-  <Step>Log into your Fyno account and click on your profile image at the top right corner to open settings.</Step>
-  <Step>Select **Profile Settings**. On the page that opens, find **Two-Factor Authentication** toggle button. On switching it on, a dialog box would appear.</Step>
-  <Step>In this, find the QR code, which can be scanned onto your authenticator app (Google Authenticator, Microsoft Authenticator, Authy, etc.).</Step>
-  <Step>On scanning the QR code, your Fyno account will be added to the authenticator app and a token will be generated. Enter this token in the window and click on "Submit" to verify it. With this you have successfully enabled **Two-Factor Authentication** on your account.</Step>
-  <Step>Alternatively, if you are unable to scan the QR code, click on "Copy this code instead" in the dialog box, which will copy the secret code to your clipboard. Enter this copied code into your Authenticator app to add your Fyno account to it and generate a token. Enter this token in the window and click on "Submit" to verify it. With this you have successfully enabled **Two-Factor Authentication** on your account.</Step>
+  <Step>Log in to your Fyno account and click your profile image at the top-right corner to open **Settings**.</Step>
+  <Step>Go to **Profile Settings** and enable the toggle for **Two-Factor Authentication**. A dialog box will appear.</Step>
+  <Step>Scan the QR code displayed using an authenticator app such as **Google Authenticator**, **Microsoft Authenticator**, or **Authy**.</Step>
+  <Step>After scanning, your authenticator app will generate a token. Enter this token in the dialog box and click **Submit** to verify.</Step>
+  <Step><b>Alternative setup:</b> If you are unable to scan the QR code, click **"Copy this code instead"** to copy the secret. Paste it into the authenticator app, generate a token, and enter it to complete verification.</Step>
 </Steps>
 
-Now, every time you login, you will be prompted to enter the authentication token after successful verification with your email and password.
+<Info>After enabling 2FA, you will be prompted to enter an authentication token each time you log in. A login session lasts for **24 hours**, after which you must re-authenticate.</Info>
 
-<Info>Each time you log into your Fyno account, the login session will last for 24 hours. You will need to log back in after this window expires.</Info>
+
+### Use 2FA with SAML Authentication
+
+When **2FA is enabled**:
+
+- Log in using your company credentials via SAML.
+- After successful SAML authentication, Fyno will request a verification token.
+- Enter the token from your authenticator app to access the dashboard.
+
+When **2FA is disabled**:
+
+- Authenticate using company SAML login.
+- You will be logged in directly without additional verification.
+
+### Layered Security Approach
+
+Fyno allows flexible access control using both **SAML SSO** and **2FA**:
+
+- **SAML** provides centralized identity management.
+- **2FA** adds an extra security layer at the Fyno level.
+- Together, they provide a **layered, high-security access model**.
+

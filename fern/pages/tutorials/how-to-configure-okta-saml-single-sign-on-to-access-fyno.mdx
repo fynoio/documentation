@@ -1,0 +1,81 @@
+---
+title: 'How to configure Okta SAML Single Sign-On to Access Fyno'
+slug: 'how-to-configure-okta-saml-single-sign-on-to-access-fyno'
+og:title: 'How to configure Okta SAML Single Sign-On | Fyno Documentation'
+og:description: "This document describes how to configure SAML-based Single Sign-On (SSO) between Okta and Fyno"
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+# Overview
+
+With this example, you will learn how to configure SAML-based Single Sign-On (SSO) between **Okta** and **Fyno**. This walkthrough explains the end-to-end setup, what each step accomplishes, and how centralized access management improves security and reduces operational overhead.
+
+With **SAML SSO**, users can sign in to Fyno using their company login instead of managing separate credentials. **Okta acts as the Identity Provider (IdP)**, and **Fyno acts as the Service Provider (SP)**.
+
+
+## Prerequisites
+
+Before starting, ensure the following:
+
+- Admin access to the **Okta Admin Console**.
+- Access to **Fyno dashboard** with permission to configure SAML.
+- Your **Fyno tenant ID** (provided by Fyno).
+
+## 1. Create a SAML App Integration in Okta
+
+In this step, you will create an application in Okta that represents Fyno, allowing Okta to authenticate users and send a trusted SAML response.
+
+1. In the Okta Admin Console, navigate to **Applications**.
+2. Click **Create App Integration**.
+3. Select **SAML 2.0** as the sign-in method.
+4. Click **Next**.
+5. Enter a name for the integration (e.g., `YourOrg - Fyno`).
+6. Click **Next**.
+
+## 2. Configure SAML Settings
+
+This section defines how Okta and Fyno communicate during authentication.
+
+### **SAML Configuration Table**
+
+| Setting | Description | Notes |
+|--------|-------------|-------|
+| **Single Sign-On URL (ACS URL)** | Endpoint where Okta sends SAML responses after authentication | Example format: `https://..{tenant_id}` — contact **support@fyno.io** for your tenant URL. |
+| **Audience URI (SP Entity ID)** | Identifies Fyno as the Service Provider | Static value — copy from Fyno SAML settings. |
+| **Name ID Format** | Defines how the user identity is passed | Use **Unspecified** unless instructed otherwise. |
+| **Default RelayState (Optional)** | Controls post-login redirect | Leave empty — defaults to dashboard. |
+
+## Assigning Users
+
+| Action | Purpose |
+|--------|----------|
+| Assign users or groups to the SAML application | Controls who can access Fyno using SSO. |
+
+Only assigned users will be able to authenticate.
+
+## 3. Configure Trust Between Okta and Fyno
+
+To establish secure communication:
+
+1. Download the **SAML signing certificate** from Okta.
+2. Upload this certificate in **Fyno SAML configuration**.
+3. Fyno will then verify SAML assertions are signed and trusted.
+
+## 4. Verify the Integration
+
+1. Log out of Fyno.
+2. Initiate login via Okta.
+3. After successful authentication, you should be redirected to the Fyno dashboard.
+
+**If access is revoked in Okta, users will automatically lose access to Fyno**.
+
+## How This Helps Organizations
+
+By using **SAML SSO**:
+
+- No separate username/password management.
+- Centralized access control via Okta.
+- Automated onboarding/offboarding.
+- Immediate access revocation when removed in Okta.
+- Reduced security risk and easier auditing.
+This streamlines identity management and improves operational security across the organization.
