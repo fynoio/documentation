@@ -53,6 +53,8 @@ navigation:
                 path: "pages/tutorials/how-to-trigger-workflow-with-webhook.mdx"
               - page: "How to receive delivery reports"
                 path: "pages/tutorials/how-to-receive-delivery-reports.mdx"
+              - page: "How to configure Okta SAML Single Sign-On"
+                path: "pages/tutorials/how-to-configure-okta-saml-single-sign-on-to-access-fyno.mdx"
           - page: "Dashboard"
             path: "pages/dashboard/dashboard.mdx"
             icon: fa-regular fa-chart-simple
@@ -498,8 +500,11 @@ navigation:
                     path: "pages/settings/workspace-settings/allowlist/receive-delivery-report.mdx"
               - page: "Alerts"
                 path: "pages/settings/workspace-settings/alerts.mdx"
-              - page: "Security"
+              - section: "Security"
                 path: "pages/settings/workspace-settings/security.mdx"
+                contents:
+                  - page: "SAML Single Sign-On (SSO)"
+                    path: "pages/settings/workspace-settings/security/saml-single-sign-on.mdx"
               - page: "Delivery Limit"
                 path: "pages/settings/workspace-settings/delivery-limit.mdx"
               - page: "Block Email Domains"

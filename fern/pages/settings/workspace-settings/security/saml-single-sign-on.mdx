@@ -1,0 +1,130 @@
+---
+title: 'SAML Single Sign-On (SSO)'
+slug: 'security/saml-single-sign-on'
+og:title: 'SAML Single Sign-On (SSO) | Fyno Security'
+og:description: "Configure SAML SSO for Fyno using your Identity Provider for centralized authentication."
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Fyno supports SAML-based federated authentication so that users can authenticate using their organization’s **Identity Provider (IdP)**. With SAML authentication, Fyno delegates authentication fully to your identity system.
+
+With this:
+
+- Credentials are managed through your IdP. 
+- Fyno does not store or manage passwords.  
+- Users log in with the same credentials used for internal tools.  
+- Existing security policies and identity rules apply automatically.  
+
+This approach simplifies access management and improves organizational security.
+
+## Authentication Model
+
+Fyno follows the Federated Identity Management (FIM) model.
+
+- Your Identity Provider (Okta, AWS, or any SAML-compliant IdP) acts as the IdP.  
+- Fyno functions as the Service Provider (SP).  
+- Fyno requests authentication from the IdP.  
+- IdP validates user identity and sends a signed SAML assertion.  
+- Fyno verifies the assertion and grants access.  
+
+**Important:** Enabling SAML disables password-based login.
+
+## Required Access
+
+To configure SAML authentication for Fyno, you need:
+
+- Admin access to your Identity Provider.  
+- Permission to create and manage SAML applications.  
+- Access to Fyno organization or tenant settings.  
+
+## Access Fyno via Organizational Access Portal
+
+Your organization's access portal acts as the central hub for SSO-enabled applications.
+
+How it works:
+
+- Applications appear as assigned tiles.  
+- Authenticate once to access multiple tools.  
+- Access control is managed through your IdP.  
+- Fyno opens directly through the SSO flow.  
+
+## Example: Using SSO to Sign In
+
+1. Open your organization's access portal.  
+2. Select the **Fyno** application.  
+3. You are signed into the Fyno dashboard automatically.  
+
+**No Fyno-specific password is required.**
+
+## Central Access Management with SAML
+
+When SAML is enabled, access to Fyno is managed entirely through your Identity Provider.
+
+You can:
+
+- Grant access by assigning the Fyno application.  
+- Revoke access instantly by removing assignment.  
+- Enforce organizational security policies such as MFA, conditional access rules, device/location restrictions.  
+
+**Changes take effect immediately.**
+## Important Access Behavior
+
+| Scenario | Result |
+|---|---|
+| Seeing Fyno in the portal | Does not guarantee access unless assigned |
+| User is authenticated at IdP | Fyno still blocks access without assignment |
+| Assigned users/groups only | Have access; removing assignment revokes it |
+
+## Configure SAML Single Sign-On (SSO)
+
+Configuration requires values on both sides:
+
+- Fyno needs IdP configuration values.  
+- IdP needs parameters from Fyno.  
+
+### 1. Create the SAML Application
+
+- Create a SAML 2.0 app in your Identity Provider.  
+- Use placeholder values initially.  
+- Save the application.  
+
+### 2. Configure Required SAML Settings
+
+| Setting | Requirement |
+|---|---|
+| Signature Algorithm | SHA-256 (recommended) |
+| Name ID Format | Unspecified |
+| Name ID Value | Email Address |
+| SAML Response | Must be signed |
+| Assertion Binding | HTTP POST |
+
+**Save configuration once completed**.
+
+### 3. Retrieve Fyno SAML Details
+
+Fyno provides:
+
+- Assertion Consumer Service (ACS) details.  
+- Audience / Entity ID.  
+
+**Request these from the Fyno Support team**.
+
+### 4. Complete Integration
+
+Share the following IdP details with Fyno:
+
+- Issuer  
+- SSO Endpoint  
+- Signing Certificate  
+
+**Support will finalize the configuration and enable SSO for your account**.
+
+## Next Steps After Setup
+
+- Assign Fyno to users or groups.  
+- Validate login using the access portal.  
+- Monitor sign-in logs through your **Identity Provider**.  
+
+## **Example: How to configure**:
+- [Okta SAML Single Sign-On to Access Fyno](../how-to-configure-okta-saml-single-sign-on-to-access-fyno)
+
