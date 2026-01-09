@@ -1,0 +1,235 @@
+---
+title: 'Smartping'
+slug: 'sms-smartping'
+og:title: 'How to send SMS using Smartping & Fyno | Fyno Documentation'
+og:description: 'A quick introduction about integrating your Smartping SMS account into Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+This guide walks you through configuring **Smartping** as an SMS provider in **Fyno**, including credential setup, DLT compliance requirements, delivery status configuration, and verification steps.
+
+Before proceeding, ensure that your Smartping account is fully activated and that you have completed **DLT registration** (mandatory for India SMS traffic).
+
+
+## Prerequisites
+
+Before starting the integration, confirm that you have the following details from Smartping:
+
+- Client Domain (API endpoint domain).
+- Username associated with your Smartping account.
+- API Password (API-level credential, not dashboard login password).
+- Sender/Header approved on DLT.
+- Entity ID registered on the DLT platform.
+- Access or permission to configure Delivery Report (DLR) callbacks on Smartping.
+
+> **IMPORTANT NOTE**  
+> Messages will fail or be blocked by operators if **Sender ID**, **Entity ID**, or **templates** are not DLT-approved.
+
+
+## Setup Steps
+
+<Steps>
+
+<Step title="Find the Provider">
+
+1. Log in to the **Fyno Dashboard**.
+2. Navigate to **Integrations** from the left navigation menu.
+3. Scroll to the **SMS** section.
+4. Locate **Smartping (SMS)** and click on it.
+
+The **Add new account** configuration panel will open.
+
+</Step>
+
+<Step title="Add a New Smartping Account">
+
+The **Add new account** screen allows you to configure a Smartping account that Fyno will use for sending SMS.
+
+- You can configure **up to 5 Smartping accounts per workspace**.
+
+</Step>
+
+<Step title="Configure the Integration">
+
+Fill in the following fields carefully:
+
+<Steps>
+
+<Step title="Custom Name">
+
+**Required**
+
+Enter a descriptive name to identify this Smartping account inside Fyno.  
+This name is internal to Fyno and does not affect message delivery.
+
+**Best practices**
+- Use names based on use case or traffic type.
+
+**Examples**
+- `Smartping–OTP`
+- `Smartping–Transactional`
+- `Smartping–Promotions`
+
+</Step>
+
+<Step title="Client Domain">
+
+**Required**
+
+Enter the **Client Domain** provided by Smartping.  
+This domain is used as the base URL for all API requests sent by Fyno.
+
+**Example format**
+api.smartping.io
+
+pgsql
+Copy code
+
+**Important notes**
+- Do not include `https://` unless explicitly instructed by Smartping.
+- Do not add trailing slashes.
+- Ensure the domain exactly matches what Smartping has shared.
+
+</Step>
+
+<Step title="Username">
+
+**Required**
+
+Enter the **API Username** provided by Smartping.  
+This is used to authenticate API requests originating from Fyno.
+
+**Common mistake**
+- Using the dashboard login email instead of the API username.
+
+</Step>
+
+<Step title="API Password">
+
+**Required**
+
+Enter the **API Password** associated with your Smartping username.  
+This password is used only for API authentication.
+
+**Security note**
+- Copy and paste carefully to avoid leading or trailing spaces.
+- If the password is regenerated in Smartping, this field must be updated in Fyno.
+
+</Step>
+
+<Step title="Sender / Header">
+
+**Required**
+
+Enter the **Sender ID / Header** approved on your DLT platform.
+
+**Typical format (India)**
+- 6-character alphanumeric
+- Uppercase recommended
+
+**Example**
+FYNOTP
+
+**Compliance requirements**
+
+The Sender must be:
+- Approved on the DLT platform.
+- Mapped to your Entity ID.
+- Linked to the SMS templates you plan to use.
+
+</Step>
+
+<Step title="Entity ID">
+
+**Required for India traffic**
+
+Enter the **Entity ID** registered with your DLT provider.  
+This Entity ID represents your organization on the telecom network.
+
+**Why this matters**
+
+Operators validate **Entity ID**, **Sender ID**, and **Template ID** together.  
+Mismatched or missing Entity IDs will cause message rejection.
+
+**Example (illustrative)**
+1201163456789123456
+
+</Step>
+
+</Steps>
+
+
+</Step>
+
+<Step title="Configure Delivery Callback URL">
+
+At the bottom of the configuration screen, Fyno displays a **Delivery Callback URL**.
+
+**Example**
+
+
+https://callback.fyno.io/smartping?transactionId={transactionId}&recipient={recipient}&from={sender}&description={description}&pdu={messagePdu}&deliverystatus={statusDlr}&deliverytime={donetime}&fynomsgId={corelationId}
+
+
+### What is the Delivery Callback URL?
+
+This URL allows Smartping to notify Fyno about message delivery events and statuses such as:
+
+- Sent
+- Delivered
+- Failed
+- Rejected
+
+### How to Use the Callback URL
+
+1. Copy the **Delivery Callback URL** from the Fyno UI.
+2. Log in to your Smartping dashboard or contact Smartping support.
+3. Configure this URL as the **DLR / Delivery Report Callback** endpoint.
+
+Ensure that:
+- The HTTP method is supported (GET or POST).
+- No authentication blocks Smartping from calling the URL.
+
+> **Note**  
+> This step is optional but **strongly recommended** for production usage.
+
+</Step>
+
+<Step title="Save and Activate the Account">
+
+1. Double-check all entered fields.
+2. Click **Add Account**.
+
+The Smartping account will now appear under **Accounts** in the **SMS Integrations** section and becomes immediately available for use.
+
+</Step>
+
+</Steps>
+
+
+## Sending a Test Message
+
+After configuration:
+
+1. Create a test notification in Fyno using **SMS** as the channel.
+2. Select **Smartping** as the provider.
+3. Use:
+   - A DLT-approved template.
+
+   - A valid mobile number.
+4. Send the message.
+
+
+## Verifying Delivery Status
+
+If the callback URL is configured correctly:
+
+1. Navigate to **Sent Logs** in Fyno.
+2. Open the message entry.
+3. Review:
+   - Operator response
+   - Final delivery state
+   - Delivery timestamps
+
+
+Once configured, **Smartping (SMS)** enables reliable, DLT-compliant SMS delivery through Fyno with full support for delivery tracking and production-scale messaging.

@@ -29,6 +29,7 @@ For your integration convenience, here's a quick step-by-step guide to connectin
   <Card title="Plivo" icon={<img src="https://images.fyno.io/partners/plivio.png" alt="Plivo Logo" />} href="./sms-plivo"></Card>
   <Card title="Route Mobile" icon={<img src="https://images.fyno.io/partners/routemobile.png" alt="Route Mobile Logo" />} href="./sms-route-mobile"></Card>
   <Card title="Sinch" icon={<img src="https://images.fyno.io/partners/sinch.png" alt="Sinch Logo" />} href="./sms-sinch"></Card>
+  <Card title="Smartping" icon={<img src="https://images.fyno.io/partners/smartping.png" alt="Smartping Logo" />} href="./sms-smartping"></Card>
   <Card title="Syniverse" icon={<img src="https://images.fyno.io/partners/syniverse.png" alt="Syniverse Logo" />} href="./sms-syniverse"></Card>
   <Card title="telSpiel" icon={<img src="https://images.fyno.io/partners/telspiel.png" alt="telSpiel Logo" />} href="./sms-telspiel"></Card>
   <Card title="TrustSignal" icon={<img src="https://images.fyno.io/partners/trustsignal.png" alt="TrustSignal Logo" />} href="./sms-trustsignal"></Card>
@@ -64,3 +65,21 @@ And you are all set to go!
 - You will save credits from your live account when testing
 
 <Info>The Simulator lets you test notification flows without actual delivery.</Info>
+
+## Common Errors and Troubleshooting
+
+### Messages not delivered
+- Verify Sender ID approval on DLT.
+- Ensure Entity ID is correct and mapped.
+- Confirm template ID matches the message content.
+
+### Authentication errors
+- Recheck API Username and Password.
+- Ensure credentials are API-level, not dashboard login credentials.
+
+### Delivery status not updating
+- Ensure the callback URL is configured in Smartping.
+- Confirm Smartping can reach external URLs.
+- Verify DLRs are enabled for your account.
+
+
