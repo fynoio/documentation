@@ -1,0 +1,68 @@
+---
+hide-nav-links: true
+---
+
+## 26.1.1
+
+**Release Date:** 19-Jan-2026
+
+---
+
+### ⚡ Feature Enhancements
+
+- **Global Suppression**
+
+  - **Event-type–level user overrides:** Global Suppression now supports overriding event types at the user level. While adding or editing a user in the suppression list, specific globally enabled event types can be selected per user, allowing different suppression behavior for different users using the same list.
+  - **Obey global settings option:** Added support for users in the suppression list to follow global suppression settings. When enabled, updates to global event-type configurations are automatically applied while still allowing custom overrides where needed.
+
+- **Approval Requests**
+
+  - **Bulk approve support:** Approvers can now approve multiple requests at once using row-level checkboxes or a Select All option for the current filtered view. A bulk action bar appears with Approve selected as the primary action.
+  - Bulk approvals follow the same validation logic and audit logging as individual approvals. In case of partial failures, successful approvals are completed while clear feedback is shown for failed items.
+
+- **Workspace Management**
+
+  - **Expanded Workspace Copy permissions:** Workspace Copy is now available to Workspace Admins and Super Admins, in addition to Owners. Eligible users can copy templates, routes, reusable components, notification events, and workflows between workspaces where they hold the same elevated role.
+
+- **WhatsApp Templates**
+
+  - **Support for mixed button combinations:** Updated the WhatsApp external template builder to align with Meta’s latest guidelines, allowing mixed button combinations such as Quick Replies with Call-to-Action or Flow buttons in the same template.
+  - Validation rules now exactly mirror Meta’s supported combinations, ensuring Meta-approved templates can be recreated accurately in Fyno and preventing valid templates from being blocked or misconfigured.
+
+---
+
+### 🛠 Bug Fixes
+
+
+- **Integrations**
+
+  - **Persistent change log visibility:** Fixed an issue where change logs on the Integrations page disappeared after navigating into and back from an integration. Change logs now remain visible across navigation and page reloads.
+
+- **Templates**
+
+  - **Fixed Create button for conditional templates:** Resolved an issue where the Create button in the conditional template selector (default condition in notification events) did not open the template creation pop-up. The button now works as expected.
+
+- **Workflows**
+
+  - **Fixed template preview text alignment:** Resolved a CSS issue where template previews in the Send Message widget were center-aligned while the editor preview showed correct alignment. Text alignment is now consistent across both views.
+  - **Context-aware actions and improved Journey Users table:** The Copy to another workspace option is now hidden when a workflow is disabled, ensuring only valid actions are shown. Alignment issues in the Journey → Users table (including Wait For screens) have also been fixed for improved readability.
+
+- **Campaigns**
+
+  - **Accurate failed message count in Campaign Details banner:** Fixed an issue where the Campaign Details banner always displayed 0 failed messages. The banner now correctly reflects the failed message count from `campaignDetails.meta_data.p_count.submit_failed`.
+
+- **Listings**
+
+  - **Fixed random closing of menus and dialogs after refresh:** Resolved an issue where menus and dialogs on listing pages could close unexpectedly immediately after a page refresh due to unnecessary re-renders. Components are now memoized to ensure stable behavior.
+
+- **Integrations (Windows)**
+
+  - **Fixed excessive scrolling in configuration pop-up:** Resolved a responsiveness issue on Windows where integration configuration pop-ups showed excessive spacing, causing unnecessary scrolling. The layout now adapts correctly for Windows screens.
+
+- **Notifications**
+
+  - **Fixed trigger disablement for unlimited limits:** Resolved an issue where notification and campaign triggers were disabled when `notifications_upper_limit` was null. A null value is now correctly treated as unlimited.
+
+- **User Suppression**
+
+  - **Fixed UI crash caused by race condition:** Resolved an intermittent crash caused by accessing `reasonsByChannel` before the API response was available. The UI now safely handles loading and undefined states.
