@@ -26,13 +26,12 @@ hide-nav-links: true
 
 - **WhatsApp Templates**
 
-  - **Support for mixed button combinations:** Updated the WhatsApp external template builder to align with Meta’s latest guidelines, allowing mixed button combinations such as Quick Replies with Call-to-Action or Flow buttons in the same template.
-  - Validation rules now exactly mirror Meta’s supported combinations, ensuring Meta-approved templates can be recreated accurately in Fyno and preventing valid templates from being blocked or misconfigured.
+  - **Support for mixed button combinations:** WhatsApp templates now support more flexible button combinations as per Meta’s latest guidelines. You can now combine Quick Replies with Call-to-Action or Flow buttons in the same template.
+  - This ensures all Meta-supported templates can be created in Fyno without limitations or incorrect validation errors.
 
 ---
 
 ### 🛠 Bug Fixes
-
 
 - **Integrations**
 
@@ -49,7 +48,7 @@ hide-nav-links: true
 
 - **Campaigns**
 
-  - **Accurate failed message count in Campaign Details banner:** Fixed an issue where the Campaign Details banner always displayed 0 failed messages. The banner now correctly reflects the failed message count from `campaignDetails.meta_data.p_count.submit_failed`.
+  - **Accurate failed message count in Campaign Details banner:** Fixed an issue where the Campaign Details banner always showed 0 failed messages. The banner now correctly reflects the actual number of failed messages.
 
 - **Listings**
 
@@ -61,8 +60,8 @@ hide-nav-links: true
 
 - **Notifications**
 
-  - **Fixed trigger disablement for unlimited limits:** Resolved an issue where notification and campaign triggers were disabled when `notifications_upper_limit` was null. A null value is now correctly treated as unlimited.
+  - **Fixed trigger disablement for unlimited limits:** Resolved an issue where notification and campaign triggers were disabled when the upper limit was unset. An empty limit is now correctly treated as unlimited.
 
 - **User Suppression**
 
-  - **Fixed UI crash caused by race condition:** Resolved an intermittent crash caused by accessing `reasonsByChannel` before the API response was available. The UI now safely handles loading and undefined states.
+  - **Fixed UI crash caused by race condition:** Resolved an intermittent crash caused by the UI accessing data before it was fully loaded. The screen now handles loading states safely.
