@@ -1,0 +1,292 @@
+---
+title: 'Approval Request'
+slug: 'approval-request'
+og:title: 'Approval Request | Fyno Documentation'
+og:description: "Approval Requests help teams review and control changes before they impact live traffic in Fyno."
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+## Overview
+
+Approval Requests help teams review and control changes before they impact live traffic in Fyno. Instead of applying sensitive updates immediately, Fyno introduces an approval step where designated approvers review the change and decide whether it should proceed.  
+This adds an extra layer of safety, ensuring that critical changes are auditable, reviewed, and approved before going live.
+
+## Why Use Approval Requests
+
+Approval Requests help teams:
+
+- Prevent accidental or unauthorised changes.
+- Ensure critical updates are reviewed by the right stakeholders.
+- Maintain consistency and accountability across teams.
+- Reduce risk when making changes that affect live users.
+
+Approval Requests are especially useful for teams working in shared environments where multiple users can create or modify live configurations.
+
+## Flow Comparison: Approval Requests OFF vs ON
+
+### When Approval Requests Are OFF
+
+- You make a change (for example, update a template).
+- You click Go Live.
+- The change is applied immediately.
+- Live traffic is affected right away
+
+### When Approval Requests Are ON
+
+- You make a change.
+- You click Go Live.
+- An Approval Request is created.
+- Approvers review the request.
+- The change is applied only after approval.
+
+This ensures that changes are reviewed before they impact production.
+
+> NOTE: Approval Requests Are Turned Off by default.
+
+Approval Requests must be explicitly enabled for each supported feature where you want review and control.
+
+## Supported Features
+
+Approval Requests can be enabled individually for the following features:
+
+- Templates
+- Notification Events
+- Workflows
+- Routes
+- Components
+- Campaigns
+
+You can enable approvals for one, many, or all of these features independently.
+
+## How Approval Requests Work
+
+Approval Requests follow a consistent lifecycle across all supported features.
+
+- A user makes a change to a feature where approvals are enabled and clicks Go Live.
+- Instead of going live immediately, an Approval Request is created.
+- The user selects approvers and submits the request.
+- Selected approvers review the request and either approve or reject it.
+- Once the required number of approvals is met, or if any approver rejects:
+  - The request is completed.
+  - Fyno applies the outcome based on the request configuration (auto go-live or manual publish).
+
+## Where to Manage Approval Requests
+
+Approval Requests are managed across two key pages:
+
+- Approval Requests – manage the approval settings and approval requests.
+- Team > Approval Settings – manage approval settings and users with approval roles.
+
+## Approval Requests Page
+
+On the dedicated Approval Requests page, you can manage all approval settings and view all approval requests in their respective states. All approval activity is tracked on this page.
+
+This page allows approvers to:
+
+- View all approval requests.
+- Review request details.
+- Track request status.
+- Approve, reject, or cancel requests.
+
+## Team Settings Page
+
+This page allows users to:
+
+- View all team members along with their respective roles.
+- See who is assigned as an approver by checking the badge next to their role.
+- View and edit approval settings.
+
+Both pages allow you to manage approval settings.  
+These settings include:
+
+- List of approvers: Add or remove team members from this list.
+- Supported features with minimum required approvers: Enable or disable approval requests for features and configure the minimum number of required approvers.
+
+## Approval Settings
+
+Approval Settings define who can approve and what requires approval.
+
+Admins use Approval Settings to:
+
+- Select approvers.
+- Enable approvals for specific features.
+- Define how many approvals are required.
+
+Approval rules take effect only after they are saved.
+
+## Approval Settings Dialog
+
+The Approval Settings dialog contains three main sections.
+
+## Team Members
+
+This section is used to choose who can approve requests.
+
+| Element | Description |
+|--------|-------------|
+| Team members invited | Shows invited but inactive users. |
+| Selected counter (X/Y) | Shows how many approvers are selected. |
+| Profile avatar | Helps visually identify team members. |
+| Name | Displays the team member’s name. |
+| Email | Displays the registered email. |
+| Checkbox | Assigns or removes approver permissions. |
+
+## Approval Role Behavior
+
+Users added with an Approval role are automatically included in the approvers list.  
+These users cannot be unchecked from the approver list.  
+To remove such a user from the approver list, their user role must be changed or the user must be removed from the workspace.
+
+NOTE: To add the user back as an approver, the approver role must be reassigned by selecting the checkbox again in Approval Settings.
+
+## Modules
+
+Use this section to decide which features require approval.
+
+| Element | Description |
+|--------|-------------|
+| Module name | Identifies the feature. |
+| Enable toggle | Turns approvals on or off for the feature. |
+| Approvals Required | Sets the minimum number of approvals. |
+
+## Approvals Required
+
+This setting defines how many approvals are needed for a request to be approved.
+
+| Element | Description |
+|--------|-------------|
+| Dropdown (1–5) | Sets the minimum number of required approvals. |
+
+## Important Behavior
+
+- You can send a request to more approvers than the minimum.
+- Any subset meeting the minimum can approve the request.
+- Only one rejection is required to reject a request.
+
+Example:
+
+- Minimum approvals set to 2.  
+- Request sent to 5 approvers.  
+- Any 2 approvals → request approved.  
+- Any 1 rejection → request rejected.
+
+## Saving Changes
+
+| Action | Description |
+|--------|-------------|
+| Cancel | Closes without saving. |
+| Save | Applies approval rules and settings. |
+
+NOTE: Approval rules apply only after saving.  
+
+## Approval Requests Page
+
+The Approval Requests page provides a centralized view of all approval activity.
+
+Approvers use this page to:
+
+- Review assigned requests.
+- Track request status.
+- Approve or reject changes.
+
+## Request Status Tabs
+
+| Tab | Description |
+|-----|-------------|
+| Open | Requests waiting for action. |
+| Approved | Requests that met approval requirements. |
+| Rejected | Requests that were rejected. |
+| Closed | Successfully completed requests. |
+
+## Search and Filters
+
+| Element | Description |
+|--------|-------------|
+| Search | Find requests by name. |
+| Feature | Filter by module. |
+| Request Type | Filter by request category. |
+
+## Acting on a Request
+
+When reviewing a request, approvers can perform the following actions.
+
+### Approve
+
+- Confirms the change is acceptable.  
+- Counts toward the required approvals.  
+- Does not automatically publish unless specified during request creation.
+
+### Reject
+
+- Approval request is rejected immediately.  
+- Changes do not go live.
+
+### Cancel
+
+- Available to the request creator.  
+- Withdraws the request before completion.
+
+## What Happens After Approval
+
+Approval does not always mean the change goes live immediately.
+
+**Two Possible Outcomes**
+
+### Go Live on Approval Enabled
+
+- The change is automatically published once approvals are complete.
+
+### Go Live on Approval Disabled
+
+- The request is approved.  
+- The change remains unpublished.  
+- **Optional**: The requester can manually make it go live after approval. 
+
+This behavior is controlled while creating the approval request.
+
+## Example: Template Approval Request Flow
+
+The following example walks through an end-to-end approval flow using Templates.
+
+### Step 1: Enable Approvals
+
+- Admin enables approvals for Templates.  
+- Minimum approvals set to 2.  
+- Five team members are selected as approvers.
+
+### Step 2: Create a Change
+
+- A user edits a template.  
+- Click Go Live.  
+- Approval Requests are enabled, so the template does not go live immediately.
+
+### Step 3: Create Approval Request
+
+- User selects approvers (can select all five).  
+- Adds a message explaining the change.  
+- Chooses whether the template should go live automatically on approval.  
+- Submit the request.
+
+### Step 4: Review by Approvers
+
+- The request can be approved by the selected approvers, and at least 2 approvals are required.
+- If any one of the selected approvers rejects the request, it is rejected immediately.
+
+### Step 5: Outcome
+
+If approved:  
+- Template goes live automatically only if “auto Go live” was enabled.
+
+If rejected:  
+- The template remains unchanged.  
+- Request is marked as rejected.
+
+IMPORTANT NOTE:  
+- Multiple approvers can approve an item, but only one approver is required to reject it.
+- If any one approver rejects, the item moves to the Rejected state.
+
+## Summary
+
+Approval Requests give teams control over how and when changes go live. By enabling approvals only when needed, choosing the right approvers, and setting the right approval thresholds, teams can reduce risk without slowing down their work.
+
+Approval Requests are off by default, but when enabled, they ensure every critical change is reviewed, intentional, and auditable.
