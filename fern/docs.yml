@@ -260,6 +260,8 @@ navigation:
                     path: "pages/integrations/dlt/videocon.mdx"
                   - page: "Vodafone Idea"
                     path: "pages/integrations/dlt/vodafone-idea.mdx"
+              - page: "Verification"
+                path: "pages/integrations/verification.mdx"
           - section: "Templates"
             path: "pages/templates/templates-getting-started.mdx"
             icon: fa-regular fa-pen-ruler
@@ -475,6 +477,9 @@ navigation:
                 path: "pages/user-profiles/updation-deletion.mdx"
               - page: "Preferences"
                 path: "pages/user-profiles/preferences.mdx"
+          - page: "Approval Request"
+            path: "pages/approval-request/approval-request.mdx"
+            icon: fa-solid fa-list-check
       - section: "Settings"
         contents:
           - page: "Profile Settings"

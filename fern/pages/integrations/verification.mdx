@@ -1,0 +1,81 @@
+---
+title: 'Fyno TOTP'
+slug: 'verification'
+og:title: 'Fyno TOTP | Fyno Documentation'
+og:description: 'Verification porvides secure two-factor authentication using Fyno-generated time-based one-time passwords (TOTP).'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+## Overview
+
+Time-based One-Time Password (TOTP) is a secure authentication mechanism used as part of multi-factor authentication (MFA). It generates a temporary, one-time password based on a shared secret and the current time. Each OTP is valid only for a short duration, reducing the risk of replay attacks and unauthorized access.
+
+## Configuration
+
+The Configuration section lets you define the behavior of TOTP for a specific tenant. These settings apply to all users and authentication flows associated with the tenant.
+
+> ::: You must first navigate to **Integrations → Verification → Fyno TOTP** before you can configure TOTP settings.
+:::
+
+This pop-up window allows you to configure OTP generation and verification rules for a tenant or application. These settings define how OTPs are created, how long they remain valid, and how strictly they are verified during user authentication and activation.
+
+### TOTP Settings
+
+| Field Name | Required | Description | Helper / Notes |
+|-----------|----------|-------------|----------------|
+| Tenant Name | Yes | A unique name to identify the application or tenant for which TOTP is configured. | Used to distinguish multiple TOTP configurations. |
+| Algorithm | Yes | Cryptographic algorithm used to generate OTPs by encoding plaintext into ciphertext.|
+| Characters/digits | Yes | Number of digits in the generated one-time password. | Must be between 6 and 9 digits. |
+| Generation Period | Yes | Time interval after which a new OTP is generated. | Common value: 30 seconds |
+| Verification Padding | Yes | Number of previous OTP intervals accepted during verification to handle clock drift. | 0 = only current OTP is valid |
+| Verification Count | Yes | Number of OTP verifications required during user activation. | None = no additional verification required |
+| Toggle Option | No | Allows users to scan a QR code using third-party authenticator apps such as Google Authenticator or Authy. | — |
+
+
+### **NOTE**:
+
+#### When this QR code toggle is **Enabled**:
+
+> - The system generates a QR code for the user during TOTP setup.
+> - Users can scan this QR code using third-party authenticator apps.
+> - The authenticator app is automatically configured with the correct account and secret.
+> - This makes setup faster, easier, and less error-prone for users.
+> - Users do not need to manually enter any secret key.
+
+#### When this QR code toggle is **Disabled**:
+
+> - No QR code is shown during TOTP setup.
+> - Users must manually enter the secret key into their authenticator app.
+> - This is more manual and may increase the chance of configuration errors.
+> - This mode is useful in environments where QR codes are not allowed for security or policy reasons.
+
+Once the configuration is saved, a **Tenant ID** is generated. This system-generated identifier is required to associate authentication requests with the configured TOTP rules.
+
+## System Fields
+
+These fields are system-generated or system-managed and cannot be directly edited by the user.
+
+| Field Name | Type | Description |
+|-----------|------|-------------|
+| Tenant ID | Identifier | A unique system-generated identifier created after saving the configuration. Used to associate OTP requests with this tenant. |
+
+
+## Verification Logs
+
+The Verification Logs provides a centralized view of recent verification activity, allowing users to monitor, audit, and troubleshoot verification events within the system. Logs are retained for up to two days after creation and can be filtered using multiple criteria such as verification status, a unique distinct ID, tenant, and timestamp.
+
+These filters help users quickly narrow down results to specific users, organizations, or time periods. When no logs match the selected filters, an empty-state message is displayed to indicate that no data is available.
+
+### Verification Logs Fields
+
+| Field Name | Type | Default Value | Description |
+|-----------|------|---------------|-------------|
+| Log Retention Notice | Text | — | Logs are available for 2 days after creation |
+| Status | Dropdown | All | Filters logs by verification status (e.g., All, Success, Failed) |
+| Distinct ID | Text Input (Search) | Empty | Search logs using a unique identifier (User’s Distinct ID) |
+| Tenant | Dropdown | All | Filters logs by tenant |
+| Timestamp | Dropdown with Date Picker | Today | Filters logs based on time range |
+| Logs Table | Table | — | Displays logs matching selected filters |
+| Empty State Message | Text | — | Shown when no logs match filters (“No logs based on selected filters”) |
+
+
