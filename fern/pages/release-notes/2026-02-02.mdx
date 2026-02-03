@@ -1,0 +1,42 @@
+---
+hide-nav-links: true
+---
+
+## 26.1.2
+
+**Release Date:** 02-Feb-2026
+
+---
+
+### 🔹 New Features
+
+- **TOTP**
+
+  - **TOTP Integration Configuration**: Users can now configure TOTP integrations directly from the **Integrations** page, removing the need for API-only setup.
+  - **Verification Logs**: A new **Verification Logs** page has been added to track all TOTP verification attempts, including request details and verification outcomes.
+
+### ⚡ Feature Enhancements
+
+- **DLT Templates**
+
+  - **Dynamic Variable Tagging for DLT Templates**: DLT templates now support typed variables (OTP, numeric, URL, email, and more) during creation and upload, preserving provider-specific variable formats. Fyno automatically maps these tagged variables to indexed placeholders and retains the mappings, enabling seamless template reuse and DLT compliance.
+
+  - **Async Search for DLT Templates in SMS Editor**: You can now search and select DLT/Meta templates directly in the SMS editor using template name or ID, even if they’re not part of the initially loaded list. The editor dynamically fetches matching templates as you type, making template selection faster and more reliable.
+
+- **Suppression List**
+
+  - **Granular Suppression by Channel and Destination**: Suppression can now be configured at a channel level for specific users or destinations instead of relying only on global event types. This allows you to suppress Marketing messages while continuing OTP and Transactional traffic, or override global suppression rules for specific customers.
+
+### 🛠 Bug Fixes
+
+- **Templates**
+
+  - **Template Sidebar Search Duplication**: Fixed an issue where searching for keys in the template sidebar caused duplicate entries to appear on repeated searches.
+
+- **User Profiles**
+
+  - **UI Crash for API-Created Profiles**: Fixed a UI crash that occurred when opening user profiles created via API where numeric values were included in list-type user properties. Parsing logic has been updated across the product to correctly handle numeric values.
+
+- **Test Event**
+
+  - Playground **Test Event** Mismatch: Fixed an issue where clicking the Test Event button did not open the correct event in the playground on the first attempt.  
