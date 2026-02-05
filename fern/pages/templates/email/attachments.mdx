@@ -83,3 +83,71 @@ To add multiple attachments in email, add them in the placeholders as shown belo
 </Steps>
 
 <Note>Please note that the content can be base64-encoded content or a Presigned URL</Note>
+
+## Configuring File Attachments Using Dynamic Mode
+
+Dynamic mode is used when the number of files is not fixed and is provided at runtime as a JSON array (for example, from a previous step’s output).
+
+Instead of manually adding **File 1**, **File 2**, **File 3**, and so on, you define mappings that tell the system:
+
+> “For each item in this array, get the file name from here and the URL from there.”
+
+### When to Use Dynamic Mode
+
+Use **Dynamic** mode when:
+
+- The number of files varies per execution.  
+- Files come from an API response, loop, or previous ste.  
+- You don’t know in advance how many files there will be. 
+
+![](/images/dynamic_url.png)
+
+### Dynamic File Attachment Fields
+
+This section explains all fields used to configure dynamic file attachments.
+
+| Field | Purpose | How to Configure | Example |
+|------|--------|------------------|---------|
+| **Number of Files** | Enables array-based (dynamic) file creation. | Select **Dynamic**. | — |
+| **File Mapper** | Defines one template mapping that applies to every item in the array. | Configure once; the system automatically applies it to all items. | — |
+| **File Name (Dynamic)** | Specifies where to get the file name for each item. | Reference the array item using a placeholder. | `{{files.0.filename}}` or `{{array_path.0.filename}}` |
+| **MIME Type** | Specifies the type of file being attached. | Reference a placeholder that resolves to a valid MIME type (not a file extension). | `{{files.0.mime_type}}` → `image/png`, `application/xml` |
+| **URL (Dynamic)** | Specifies where to get the file URL for each item. | Reference the array item’s URL field. | `{{files.0.url}}` |
+
+### Important Notes
+
+- Dynamic placeholders must strictly follow the `a.0.b` format (for example, `{{documents.0.name}}`).
+- The `.0.` segment is required and acts as a schema hint that allows the system to identify array items.
+- Nested arrays or nested objects are not supported.  
+  If the filename or URL is not a direct property of the array item, dynamic mapping will not work.
+
+### Sample Body
+
+```json
+{
+  "documents": [
+    {
+      "name": "a.pdf",
+      "link": "https://x/a.pdf",
+      "mime_type": "application/pdf"
+    },
+    {
+      "name": "b.pdf",
+      "link": "https://x/b.pdf",
+      "mime_type": "application/pdf"
+    }
+  ]
+}
+``` 
+
+### Dynamic Field Configuration
+
+- File Name (Dynamic): `{{documents.0.name}}`
+- MIME Type: `{{documents.0.mime_type}}`
+- URL (Dynamic): `{{documents.0.link}}`
+
+### Result
+
+Two files are automatically added:
+- a.pdf
+- b.pdf
