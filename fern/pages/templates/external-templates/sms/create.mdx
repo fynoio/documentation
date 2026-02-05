@@ -47,8 +47,6 @@ You will see the below screen where you need to configure your Header and Conten
 ![](/images/sms_external_template_details.png)
 
 - Header - Its a mandatory field. It should be one of the DLT Headers configured in the DLT Integrations. Header should be 6 characters.
-- Content - Its a mandatory field. You can see the preview on the right hand side. You can add placeholders as `{{1}}`, `{{2}}` etc. Placeholders should be in numerical order. For example: `{{1}}` should be used before `{{2}}` and so on
-
+- Content – It’s a mandatory field. Templates can now be created and uploaded using DLT-style variable tags (e.g., `{{#otp#}}`, `{{#alphanumeric#}}`). Variable types are preserved, mapped to indexed placeholders, and stored in `meta_data` to ensure DLT-compliant template generation.
 ![](/images/sms_external_template_content.png)
-
 - Unicode - Its optional field. Select this checkbox if you want to send messages in any foreign and regional language other than English
