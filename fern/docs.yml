@@ -594,6 +594,12 @@ navigation:
         contents:
           - page: "Web Push SDK"
             path: "pages/sdks/webpush/web-push-sdk.mdx"
+      - section: "TOTP"
+        contents:
+          - page: "TOTP Swift SDK"
+            path: "pages/sdks/totp/swift-sdk.mdx"
+          - page: "TOTP Kotlin SDK"
+            path: "pages/sdks/totp/kotlin-sdk.mdx"
   - tab: fyno-connect
     layout:
       - section: "Getting Started"

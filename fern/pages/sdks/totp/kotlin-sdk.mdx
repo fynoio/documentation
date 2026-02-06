@@ -1,0 +1,550 @@
+---
+title: 'Kotlin SDK'
+slug: 'totp-kotlin-sdk'
+og:title: 'TOTP Android (Kotlin) SDK | Fyno Documentation'
+og:description: 'A guide to integrating your  Fyno Android Push Notification SDK into Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The Fyno TOTP (Time-based One-Time Password) SDK is an Android library that provides secure TOTP generation and management capabilities. It handles tenant enrollment, secret key encryption, TOTP generation with configurable algorithms and parameters, and secure key revocation.
+
+**Package Name:** `io.fyno.kotlin-sdk.totp`
+
+> **Min SDK:** 23  
+> **Target SDK:** 33+  
+> **Language:** Kotlin
+
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Core Components](#core-components)
+3. [API Reference](#api-reference)
+4. [Usage Examples](#usage-examples)
+5. [Data Models](#data-models)
+6. [Error Handling](#error-handling)
+7. [Security Considerations](#security-considerations)
+
+## Installation
+
+### Gradle Dependency
+
+Add to your `build.gradle` file:
+
+```gradle
+dependencies {
+    implementation 'io.fyno.kotlin-sdk:totp:1.0.0'
+}
+```
+
+### Minimum Requirements
+
+- **API Level:** 23+
+- **Android SDK:** API 33+ for compilation
+- **Java/Kotlin:** Java 8+
+
+## Core Components
+
+### FynoTOTP Class
+
+The main entry point for all TOTP operations. Handles initialization, tenant management, and OTP generation.
+
+**Constructor:**
+```kotlin
+FynoTOTP(context: Context)
+```
+
+## API Reference
+
+### init()
+
+Initializes the SDK with workspace and user identifiers.
+
+**Signature:**
+```kotlin
+fun init(
+    wsid: String,
+    distinctId: String,
+    callback: (Result<Unit>) -> Unit
+): Unit
+```
+
+**Parameters:**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `wsid` | String | Workspace ID for the application |
+| `distinctId` | String | Unique identifier for the user/device |
+| `callback` | `(Result) -> Unit` | Callback executed on Main thread with initialization result |
+
+**Returns:** Unit (asynchronous via callback)
+
+**Throws:** Exception details passed via `Result.failure()`
+
+**Example:**
+```kotlin
+val fynoTotp = FynoTOTP(context)
+fynoTotp.init("workspace_123", "user_456") { result ->
+    result.onSuccess {
+        Log.d("TOTP", "Initialization successful")
+    }
+    result.onFailure { error ->
+        Log.e("TOTP", "Initialization failed: ${error.message}")
+    }
+}
+```
+
+### registerTenant()
+
+Registers a tenant and stores their TOTP secret securely.
+
+**Signature:**
+```kotlin
+fun registerTenant(
+    tenantId: String,
+    tenantLabel: String,
+    totpToken: String,
+    callback: (Result<Unit>) -> Unit
+): Unit
+```
+
+**Parameters:**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `tenantId` | String | Unique identifier for the tenant |
+| `tenantLabel` | String | Human-readable label/name for the tenant |
+| `totpToken` | String | TOTP secret key received from Fyno |
+| `callback` | `(Result) -> Unit` | Callback executed on Main thread with registration result |
+
+**Returns:** Unit (asynchronous via callback)
+
+**Throws:** Exception details passed via `Result.failure()`
+
+**Notes:**
+- The TOTP secret is encrypted using Android KeyStore before storage
+- The tenant is automatically marked as ACTIVE upon successful registration
+- This operation requires API 23+ due to KeyStore requirements
+
+**Example:**
+```kotlin
+fynoTotp.registerTenant(
+    tenantId = "tenant_001",
+    tenantLabel = "My App Account",
+    totpToken = "JBSWY3DPEBLW64TMMQQ======",
+    callback = { result ->
+        result.onSuccess {
+            Toast.makeText(context, "Tenant registered", Toast.LENGTH_SHORT).show()
+        }
+        result.onFailure { error ->
+            Toast.makeText(context, "Registration failed: ${error.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+)
+```
+
+### setConfig()
+
+Sets TOTP configuration parameters for a registered tenant.
+
+**Signature:**
+```kotlin
+fun setConfig(
+    tenantId: String,
+    config: TotpConfig,
+    callback: (Result<Unit>) -> Unit
+): Unit
+```
+
+**Parameters:**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `tenantId` | String | Unique identifier for the tenant |
+| `config` | TotpConfig | Configuration object with TOTP parameters |
+| `callback` | `(Result) -> Unit` | Callback executed on Main thread with result |
+
+**Returns:** Unit (asynchronous via callback)
+
+**Throws:** Exception details passed via `Result.failure()`
+
+**Notes:**
+- Tenant must be registered before setting config
+- Common algorithms: `SHA1`, `SHA256`, `SHA512`
+- Default values: digits=6, period=30, algorithm=SHA1
+
+**Example:**
+```kotlin
+val config = TotpConfig(
+    tenant_name = "My App Account",
+    digits = 6,
+    algorithm = "SHA1",
+    period = 30
+)
+
+fynoTotp.setConfig(
+    tenantId = "tenant_001",
+    config = config,
+    callback = { result ->
+        result.onSuccess {
+            Log.d("TOTP", "Config updated successfully")
+        }
+        result.onFailure { error ->
+            Log.e("TOTP", "Config update failed: ${error.message}")
+        }
+    }
+)
+```
+
+### getTotp()
+
+Generates and retrieves the current TOTP code for a tenant.
+
+**Signature:**
+```kotlin
+@RequiresApi(Build.VERSION_CODES.M)
+fun getTotp(
+    tenantId: String,
+    callback: (Result<Unit>) -> Unit
+)
+```
+
+**Parameters:**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `tenantId` | String | Unique identifier for the tenant |
+| `callback` | `(Result) -> Unit` | Callback executed on Main thread with OTP or null if inactive|
+
+**Returns:** Unit (asynchronous via callback)
+
+**Returns in Callback:**
+- `String`: TOTP code
+- `null`: If tenant is inactive or not found
+- Exception in `Result.failure()` if generation fails
+
+**Notes:**
+- Requires API 23+ (uses KeyStore for decryption)
+- Returns `null` if tenant status is INACTIVE
+- Current server time is used for generation (client-side)
+- Generated code changes every 30 seconds (or configured period)
+- Automatically decrypts the stored secret
+
+**Example:**
+```kotlin
+fynoTotp.getTotp(
+    tenantId = "tenant_001",
+    callback = { result ->
+        result.onSuccess { otp ->
+            if (otp != null) {
+                etOtpInput.setText(otp)
+                Log.d("TOTP", "OTP: $otp")
+            } else {
+                Log.d("TOTP", "Tenant is inactive")
+            }
+        }
+        result.onFailure { error ->
+            Log.e("TOTP", "Failed to get OTP: ${error.message}")
+        }
+    }
+)
+```
+
+### revokeTenant()
+
+Revokes a tenant's TOTP enrollment and permanently deletes the stored secret.
+
+**Signature:**
+```kotlin
+@RequiresApi(Build.VERSION_CODES.M)
+fun revokeTenant(
+    tenantId: String,
+    callback: (Result<Unit>) -> Unit
+): Unit
+```
+
+**Parameters:**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `tenantId` | String | Unique identifier for the tenant to revoke |
+| `callback` | `(Result) -> Unit` | Callback executed on Main thread with revocation result |
+
+**Returns:** Unit (asynchronous via callback)
+
+**Throws:** Exception details passed via `Result.failure()`
+
+**Example:**
+```kotlin
+fynoTotp.revokeTenant(
+    tenantId = "tenant_001",
+    callback = { result ->
+        result.onSuccess {
+            Log.d("TOTP", "Tenant revoked successfully")
+            // Update UI to remove tenant from list
+        }
+        result.onFailure { error ->
+            Log.e("TOTP", "Revocation failed: ${error.message}")
+        }
+    }
+)
+```
+
+## Usage Examples
+
+### Complete Integration Flow
+
+```kotlin
+class TotpSetupActivity : AppCompatActivity() {
+
+    private lateinit var fynoTotp: FynoTOTP
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        // Initialize SDK
+        fynoTotp = FynoTOTP(this)
+        fynoTotp.init("workspace_id", "user_id") { result ->
+            result.onSuccess {
+                Log.d("Setup", "SDK initialized")
+            }
+            result.onFailure { e ->
+                Log.e("Setup", "Init failed", e)
+            }
+        }
+    }
+
+    private fun enrollTenant() {
+        val tenantId = "tenant_001"
+        val totpSecret = "JBSWY3DPEBLW64TMMQQ======" // Base32 encoded
+        
+        fynoTotp.registerTenant(
+            tenantId = tenantId,
+            tenantLabel = "Primary Account",
+            totpToken = totpSecret
+        ) { result ->
+            result.onSuccess {
+                setupTotpConfig(tenantId)
+            }
+            result.onFailure { error ->
+                showError("Enrollment failed: ${error.message}")
+            }
+        }
+    }
+
+    private fun setupTotpConfig(tenantId: String) {
+        val config = TotpConfig(
+            tenant_name = "Primary Account",
+            digits = 6,
+            algorithm = "SHA1",
+            period = 30
+        )
+        
+        fynoTotp.setConfig(tenantId, config) { result ->
+            result.onSuccess {
+                Log.d("Setup", "Config set successfully")
+                displayTotpCode(tenantId)
+            }
+            result.onFailure { error ->
+                showError("Config failed: ${error.message}")
+            }
+        }
+    }
+
+    private fun displayTotpCode(tenantId: String) {
+        fynoTotp.getTotp(tenantId) { result ->
+            result.onSuccess { otp ->
+                if (otp != null) {
+                    findViewById<TextView>(R.id.tvOtpCode).text = otp
+                }
+            }
+            result.onFailure { error ->
+                Log.e("TOTP", "Failed to get OTP", error)
+            }
+        }
+    }
+
+    private fun revokeTenant(tenantId: String) {
+        fynoTotp.revokeTenant(tenantId) { result ->
+            result.onSuccess {
+                Log.d("Revoke", "Tenant revoked")
+            }
+            result.onFailure { error ->
+                Log.e("Revoke", "Revocation failed", error)
+            }
+        }
+    }
+}
+```
+
+### Periodic OTP Refresh
+
+```kotlin
+class TotpRefreshService {
+    
+    private lateinit var fynoTotp: FynoTOTP
+    private val handler = Handler(Looper.getMainLooper())
+    private val refreshInterval = 1000L // 1 second
+    
+    fun startPeriodicRefresh(tenantId: String, onCodeUpdate: (String?) -> Unit) {
+        val runnable = object : Runnable {
+            override fun run() {
+                fynoTotp.getTotp(tenantId) { result ->
+                    result.onSuccess { otp ->
+                        onCodeUpdate(otp)
+                    }
+                }
+                handler.postDelayed(this, refreshInterval)
+            }
+        }
+        handler.post(runnable)
+    }
+}
+```
+
+## Data Models
+
+### TotpConfig
+
+Configuration model for TOTP generation parameters.
+
+```kotlin
+data class TotpConfig(
+    val tenant_name: String,      // Human-readable tenant name
+    val digits: Int = 6,           // Number of digits in OTP (typically 6-8)
+    val algorithm: String = "SHA1", // Hash algorithm (SHA1, SHA256, SHA512)
+    val period: Int = 30           // Time period in seconds (typically 30)
+)
+```
+
+**Field Descriptions:**
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `tenant_name` | String | - | Display name for the tenant |
+| `digits` | Int | 6 | Length of generated OTP code |
+| `algorithm` | String | SHA1 | HMAC algorithm for OTP generation |
+| `period` | Int | 30 | Time window for OTP validity (seconds) |
+
+**Common Configurations:**
+
+```kotlin
+// Standard Google Authenticator style
+val standard = TotpConfig(
+    tenant_name = "Google Account",
+    digits = 6,
+    algorithm = "SHA1",
+    period = 30
+)
+
+// Enhanced security with SHA256
+val enhanced = TotpConfig(
+    tenant_name = "Banking App",
+    digits = 8,
+    algorithm = "SHA256",
+    period = 30
+)
+
+// Custom period (60 seconds)
+val custom = TotpConfig(
+    tenant_name = "Custom Service",
+    digits = 6,
+    algorithm = "SHA1",
+    period = 60
+)
+```
+
+## Error Handling
+
+### Exception Types
+
+The SDK passes exceptions through `Result.failure()`. Common exceptions include:
+
+| Exception | Cause | Handling |
+|-----------|-------|----------|
+| `InvalidKeyException` | Encryption/decryption key error | Check KeyStore availability |
+| `NoSuchAlgorithmException` | Algorithm not supported | Verify algorithm parameter |
+| `SQLException` | Database error | Check storage permissions |
+| `KeyPermanentlyInvalidatedException` | Device unlock invalidated key | Re-register tenant |
+| `IOException` | Network or storage I/O error | Retry operation |
+
+### Proper Error Handling Pattern
+
+```kotlin
+fynoTotp.getTotp(tenantId) { result ->
+    result.onSuccess { otp ->
+        // Handle success
+        displayOtp(otp)
+    }
+    result.onFailure { error ->
+        when (error) {
+            is KeyPermanentlyInvalidatedException -> {
+                // Device was unlocked and key was invalidated
+                Toast.makeText(context, "Please re-enroll", Toast.LENGTH_SHORT).show()
+                revokeTenant(tenantId)
+            }
+            is InvalidKeyException -> {
+                Toast.makeText(context, "Security error", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(context, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
+```
+
+## Security Considerations
+
+### Encryption
+
+- **Storage**: TOTP secrets are encrypted using Android KeyStore before being saved to the database
+- **Algorithm**: Uses Android's default encryption (AES-GCM on API 23+)
+- **Key Generation**: Hardware-backed keys when available
+- **IV (Initialization Vector)**: Unique IV generated for each secret and stored separately
+
+### Key Management
+
+- Secrets are never stored in plain text
+- Keys are stored with `PURPOSE_DECRYPT` and `PURPOSE_ENCRYPT` only
+- Biometric authentication can be enforced per-key for additional security
+- KeyStore integration requires API 23+
+
+### Best Practices
+
+1. **Always check for null results** when calling `getTotp()` for inactive tenants
+2. **Handle `KeyPermanentlyInvalidatedException`** after device unlock changes
+3. **Use HTTPS only** for tenant registration communication (not handled by SDK)
+4. **Implement timeout logic** for OTP input validation
+5. **Do not log or share TOTP secrets** in production code
+6. **Regularly audit** tenant revocations and enrollments
+7. **Test on both physical and emulated devices** for encryption behavior
+
+### API Level Considerations
+
+- **API < 23**: KeyStore encryption unavailable; SDK requires API 23+ for full functionality
+- **API 23-27**: Basic KeyStore support
+- **API 28+**: Enhanced KeyStore features and performance
+- **API 30+**: Biometric integration possible
+
+### Database Security
+
+- Database is stored in app-private storage directory
+- No sensitive data is cached in SharedPreferences
+- All queries use parameterized statements to prevent SQL injection
+
+## Changelog
+
+### Version 1.0.0
+- Initial release
+- Core TOTP generation (SHA1, SHA256, SHA512)
+- Tenant enrollment and revocation
+- Secure secret storage using Android KeyStore
+- Support for customizable TOTP parameters
+- API 23+ support
+
+## Support & Documentation
+
+For additional support, refer to:
+- Android KeyStore documentation
+- TOTP RFC 6238 specification
+- Fyno SDK integration guides
+
+> **Last Updated:** January 2026  
+> **SDK Version:** 1.0.0  
+> **Min API Level:** 23  
+> **Target API Level:** 33+
