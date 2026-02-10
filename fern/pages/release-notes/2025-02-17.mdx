@@ -8,7 +8,7 @@ hide-nav-links: true
 
 - **YAML-based Backend APIs** (Beta): Introduced support for creating backend APIs via YAML configuration, enabling multiple API calls with a single request.
 - **Rebranding**: Updated brand colors and logo across the application.
-- **Templates**: Added a Handlebars function to [convert numbers into words](./templates-handlebars#convert-number-to-words).
+- **Templates**: Added a Handlebars function to convert numbers into words.
 - **Integrations**: Added support for **[Route Mobile WhatsApp](./whatsapp-route-mobile)** and [Gupshup.io](./whatsapp-gupshup).
 - **In-App Messaging**: Automatically marks **queued messages as DELIVERED** when the user comes online.
 
@@ -18,8 +18,8 @@ hide-nav-links: true
   - Users can now test templates using `distinct_id` from the [User Profile](./user-profiles-overview), eliminating the need to send messages to a destination.
   - Implemented an [archival policy](./data-retention) — templates older than one year (and not live) will be **automatically deleted**.
 - **React Native Push SDK**: Added [`isFynoNotification()`](usage-1#check-if-notification-received-is-from-fyno-and-also-handle-it) and [`handleFynoNotification()`](usage-1#check-if-notification-received-is-from-fyno-and-also-handle-it) functions.
-- **User Profiles**: Now supports all **ISO 8601 date-time formats** for [date type properties](./api-reference/user-properties/post-wsid-version-profiles-properties-set).
-- **Dashboard**: **Notification Event analytics** now shows "Verified" Data if you use [Fyno Verify](./fyno-verify).
+- **User Profiles**: Now supports all **ISO 8601 date-time formats** for [date type properties](./api-reference/unset-user-property).
+- **Dashboard**: **Notification Event analytics** now shows "Verified" Data if you use [Fyno Verify](./fyno-verify-otp-link).
 - **Digest**: Added support for **numeric values in string format** for sum calculations.
 - **Logs**: Workflow names are now visible in Inbound logs.
 - **Campaigns**: Improved CSV validation—incorrect file formats **no longer break campaigns**.
@@ -36,7 +36,7 @@ hide-nav-links: true
   - Fixed hidden tabs issue on Windows devices.
   - Expanded campaign dropdown width to accommodate more data.
   - **Allowlist URL values** now appear correctly in callback logs.
-- **Suppression**: Fixed a bug preventing **deletion of entries** from the [suppression list](suppression).
+- **Suppression**: Fixed a bug preventing **deletion of entries** from the [suppression list](./suppression).
 - **[Duplicate Message Check](./duplicate-message-check) & [Conversion Tracking](./conversion-tracking)**:
   - Added validation for **negative TTL values**.
   - Fixed incorrect URL issue in **conversion tracking**.
