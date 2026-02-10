@@ -96,6 +96,8 @@ navigation:
                     path: "pages/integrations/sms/kaleyraio.mdx"
                   - page: "Karix"
                     path: "pages/integrations/sms/karix.mdx"
+                  - page: "Ozonetel"
+                    path: "pages/integrations/sms/ozonetel.mdx"
                   - page: "MessageBird"
                     path: "pages/integrations/sms/messagebird.mdx"
                   - page: "MSG91"
