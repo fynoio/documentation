@@ -6,56 +6,177 @@ og:description: 'A suppression list is a list of users you do not want to send n
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-A suppression list is a list of destinations (users) that you do not want to send notifications because sending to these destinations will hurt delivery rates.
+The **Suppression List** allows you to prevent specific users from receiving certain types of notifications. This is useful to protect delivery rates and avoid sending notifications to unreachable customers.
 
-For example, users whose emails have bounced, those without WhatsApp who cannot receive messages, those with incorrectly captured mobile numbers preventing them from receiving WhatsApp or SMS, and users who have complained about excessive notifications and requested to stop sending any notifications to them will be placed on the suppression list. They will be excluded from any notifications triggered from Fyno.
+Users added to the suppression list are excluded from notifications based on the configured event types, channels, and duration.
 
-## How to create a Suppression List?
+## How it works
 
-<Steps>
-  <Step>To create a Suppression List, go to Workspace Settings(bottom left corner in menu) -> Add On's -> Suppression List.</Step>
-  <Step>Enable the toggle. You will see the popup as shown below. ![](/images/supression_list_category.png)</Step>
-  <Step>For example, if you select Marketing, all the notification events with event type as Marketing will be suppressed for the users present in the list.</Step>
-</Steps>
+When the Suppression List is enabled, you can choose which types of notifications to block for the users added to this list. Any user included will not receive the selected notification types.
 
-## How to add users to Suppression List?
+### To manage a Suppression List:
 
-<Steps>
-  <Step>When you click 'View Users', you will see the page as shown below. ![](/images/suppression_list_empty.png)</Step>
-  <Step>When you click 'Add Users', the below popup opens up where you can add the users to the list. ![](/images/suppression_list_add.png)</Step>
-  <Step>
-    You can add users to Suppression list by:
-    <ul>
-      <li>Distinct Id</li>
-      <li>Destination.</li>
-    </ul>
-    <Tip>Select Distinct Id if you manage User Profiles in Fyno. Otherwise, select Destination</Tip>
-  </Step>
-  <Step>
-    **Channels** - If you choose Destination, you can add the below channels.
-    <ul>
-      <li>SMS</li>
-      <li>WhatsApp</li>
-      <li>Email</li>
-      <li>Push</li>
-      <li>Web Push</li>
-      <li>InApp</li>
-    </ul>
-  </Step>
-  <Step>**Time to Live (TTL)** - You have the option to set the TTL (Time to Live) as 'ever' or customize it. If you opt for customization, you can specify the TTL ranging from a minimum of 5 minutes to a maximum of 90 days.</Step>
-  <Step>
-    **Suppression Reasons** - We have the below 4 reasons by default. You can add up to 20 custom reasons. To add custom reasons, go to Suppression list -> configure -> Add reasons ![](/images/supression_reasons_configure.png)
-    <ul>
-      <li>User complained about Spam</li>
-      <li>DND</li>
-      <li>Email bounced</li>
-      <li>Invalid number</li>
-    </ul>
-  </Step>
-  <Step>For example, if you want to exclude a destination `abc@gmail.com` from receiving any email notifications for a period of 30 days as their email has bounced, it can done as shown below. ![](/images/suppression_list_user_added.png)</Step>
-  <Step>You can add more destination or distinct ids by click 'ADD+'.</Step>
-  <Step>Once you click 'Add Users' the destination or distinct id will be added to the Suppression List and the list will look as show below. ![](/images/suppression_list_view.png)</Step>
-  <Step>When you try to send an email to `abc@gmail.com`, it will be Suppressed by Fyno and won't be sent to the user till the TTL expires.</Step>
-</Steps>
+1. Navigate to **Add Ons > Suppression List**.
+2. Enable **Suppression List**.
+![](/images/SuppressionListView.jpeg)
 
-<Note> Suppression Reason will be sent in Delivery Callback reports (in the {{message}} field) </Note>
+The **Suppression List Configuration** modal opens.
+![](/images/SuppressionListConfiguration.jpeg)
+
+## Notification types you can suppress
+
+You can select one or more of the following:
+
+### OTP (One-Time Password)
+Blocks users from receiving authentication or verification codes.  
+
+> **Important Note:** Suppressing OTP notifications is not recommended, as OTPs are critical for authentication and other essential user communications. Enable this option only if you fully understand the impact.
+
+### Transactional
+Blocks system-related messages such as order confirmations, receipts, or account updates.
+
+### Marketing
+Blocks promotional messages, offers, newsletters, and campaigns.
+
+Once confirmed, the Suppression List is enabled with the selected event types and reasons.
+
+The dialog includes a **Reasons** section where users can:
+- Select from five default suppression reasons.  
+- Add up to **20 custom suppression reasons** as needed.  
+
+## View List
+
+The **View List** section allows you to see and manage all users whose notifications are currently suppressed.
+
+When you click **View List**, the Suppression List dashboard is displayed, where each row represents a user (**Destination / Distinct ID**) that has been blocked from receiving certain notification types.
+
+## What you see in the list
+
+| Column | Description |
+|--------|------------|
+| **Destination** | The contact information being suppressed, such as an email address or phone number. |
+| **Distinct ID** | The unique identifier associated with the user, if available. |
+| **Channel** | The communication channel being blocked, such as Email, SMS, Push, or WhatsApp. |
+| **Reason** | The reason the user was added to the suppression list (for example, “user complained about spam”). |
+| **Notification Event Type** | The types of notifications suppressed for this user (OTP, Transactional, Marketing, or a combination). |
+| **Added** | The date or time when the user was added to the suppression list. |
+| **Expiry** | The date when the suppression ends, if set. If empty, the suppression remains until the user is removed. |
+
+> **NOTE:** Select **Distinct ID** if you manage User Profiles in Fyno. Otherwise, select **Destination**.
+
+## Suppression List Configuration in the View List
+
+The **Configure** option allows you to add, update, or delete suppression settings after the Suppression List has been enabled. Once saved, these settings apply as the global suppression list configuration for the workspace.
+
+When you first enable the Suppression List, you select which notification types (**OTP, Transactional, Marketing**) should be blocked. However, business needs and communication policies can change over time.
+
+The **Configure** option allows you to:
+
+- **Correct initial settings**  
+  If the wrong notification types were selected during setup, you can quickly fix them.
+
+- **Adapt to policy or compliance changes**  
+  If your organization updates its communication rules, you can adjust the suppressed notification types without recreating the list.
+
+- **Respond to user preferences**  
+  You may decide to allow transactional messages again while keeping marketing messages blocked.
+
+- **Avoid rebuilding the suppression list**  
+  Instead of removing users and starting over, you can simply update the notification types in one place.
+
+> **NOTE:** Custom suppression reasons cannot be edited once created. They can only be deleted. If a custom reason is deleted, any users previously associated with that reason must be added again with the correct suppression reason.
+
+## Add Users to the Suppression List
+
+The **Add Users** option allows you to manually add one or more users to the Suppression List. Any user added here will be blocked from receiving the notification types defined in your suppression configuration.
+
+This is useful when:
+- A user needs to be blocked from certain notifications.  
+- A user reports spam.  
+- A user should temporarily or permanently stop receiving specific notifications.  
+
+## Fields in the Suppression List Dashboard
+
+| Field | Description |
+|-------|------------|
+| **Destination / Distinct ID** | Choose how you want to identify the user. Add them by contact information (Destination, such as email or phone number) or by their unique Distinct ID. |
+| **Channel** | Select the communication channel to suppress for this user (Email, SMS, Push, or WhatsApp). |
+| **Reason** | Select why the user is being added to the suppression list (for example, spam complaint or user request). |
+| **Duration** | Choose how long the suppression should apply (e.g., Forever or for a specific time period). |
+| **Adhere to the notification event types in the configuration** | Controls whether the user follows global suppression settings or custom rules. |
+
+## Adhere to the notification event types in the configuration
+
+When this option is checked, the user will be suppressed based on the notification types selected in the **Configure** settings (OTP, Transactional, Marketing).
+
+**Checked (Default)**: The user follows the same rules as the global suppression list.
+![](/images/GlobalSuppressionListEnabled.jpeg)
+
+**Unchecked**: You can manually choose the notification event types for this specific user.
+![](/images/GlobalSuppressionListDisabled.jpeg)
+The user will:
+- Not follow the global configuration.  
+- Be suppressed only for the types selected in the **Notification Event Type** field. 
+
+Uncheck this box when:
+
+- You want different suppression rules for a specific user. 
+- You need to block only certain notification types for that user.  
+- You are handling a special request or exception.  
+
+## How suppression works when adding users
+
+There are three possible scenarios depending on how the **“Adhere to the notification event types in the configuration”** option is used.
+
+## Scenario 1: User follows the global suppression settings (Checkbox enabled)
+
+When the checkbox is enabled, the user automatically follows the global suppression configuration.
+
+You do not need to manually choose notification types.
+
+### Result
+
+The user will be blocked from receiving the same notification types defined in the global configuration.
+
+**Example:**  
+If the global configuration suppresses **Transactional** and **Marketing** notifications, any user added with the checkbox enabled will be blocked from those two types.
+
+## Scenario 2: User uses custom suppression (Checkbox disabled)
+
+Assume the global suppression configuration is set to suppress **OTP** and **Transactional** notifications.
+
+When the checkbox is disabled:
+
+- The user does **not** automatically inherit the global configuration.  
+- You manually select which notification event types should be suppressed.  
+
+### In this mode:
+
+- Only event types enabled in the global configuration are available for selection.  
+- Event types not included in the global configuration are not selectable.  
+- You can choose one or more of the globally configured types.  
+
+### Result
+
+The user will be suppressed only for the manually selected notification types.
+
+**Example:**  
+If the global configuration suppresses **OTP** and **Transactional**, and you disable the checkbox and select only **OTP**:
+
+- The user will be suppressed only from OTP notifications.  
+- The user will still receive Transactional notifications.  
+
+## Scenario 3: Global settings change after the user is added
+
+When the checkbox is enabled, the user does not have individual suppression settings. Their suppression behavior is always determined by the current global configuration.
+
+If the global configuration is updated after the user is added, the user’s suppression settings automatically update to match the new global configuration.
+
+### Result
+
+The user is suppressed only for the notification types currently selected in the global configuration.
+
+**Example:**
+
+- If the global configuration suppresses only **Marketing**, the user will receive OTP and Transactional notifications.
+- If later the global configuration is updated to suppress **OTP** and **Marketing**, the same user will now also be blocked from OTP notifications.
