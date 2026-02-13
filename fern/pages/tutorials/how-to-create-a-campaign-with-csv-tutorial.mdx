@@ -8,8 +8,8 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 In this tutorial, we will:
 
-1. Create a Fyno notification template (for SMS)
-2. Create a Notification Event to link the template and the integration. 
+1. Create a Fyno notification template (for SMS)
+2. Create a Notification Event to link the template and the integration. 
 3. Create and trigger the campaign.
 4. View campaign logs and analytics.
 
@@ -35,7 +35,7 @@ Click ‘**+Create**’ and select ‘SMS’ as channel and provide a name for y
   <Step>**SMS Content** - Copy & Paste the SMS content from your DLT platform in this section. Once you have added the content, you will see the the following fields </Step>
   <Step>**Unicode** - Enable this, if the SMS content or placeholder values contain Unicode or non-English characters. If the message isn't marked as unicode and either the content or placeholder values contain unicode characters, it might not be delivered correctly. SMS providers may charge you more for unicode messages.![](/images/campaign_tutorial_1.png)</Step>
   <Step>**Additional Configuration** ![](/images/campaign_tutorial_2.png)</Step>
-  <Step>**Placeholders** - Below the “Channels” section on the left, you can find placeholders. Placeholders are denoted by {{}}. You can add the parameters of Placeholders by clicking on it, which opens up a pop-up window where you can add them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. You can refer this doc for Handlebars.![](/images/campaign_tutorial_3.png)![](/images/campaign_tutorial_4.png)</Step>
+  <Step>**Placeholders** - Below the “Channels” section on the left, you can find placeholders. Placeholders are denoted by {{}}. You can add the parameters of Placeholders by clicking on it, which opens up a pop-up window where you can add them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. You can refer this doc for Handlebars.![](/images/campaign_tutorial_3.png)![](/images/campaign_tutorial_4.png)</Step>
   <Step>**Preview** - Once you have done all the steps, you will see the Preview on the Right Hand Side. All the placeholders you defined (like name, loan_amount etc) will be replaced with sample values added. </Step>
   <Step>**Run Test** - To make sure, the SMS template works as expected, you can click ‘Run Test’. A pop up opens up. Enter the mobile no where you want to send the SMS and select the Integration through which you want to send the SMS.![](/images/campaign_tutorial_5.png)</Step>
   <Step>Save & Go Live - Clicking ‘Save’ will create a Test version of the template. Clicking ‘Go Live’ will create a Live version of the template. </Step>
@@ -69,9 +69,9 @@ Now we have all the Pre-requisites to create a campaign
 
 To create a campaign,
 
-1. Go to **Campaigns** from the left navigation bar under ‘Advanced’ section.
+1. Go to **Campaigns** from the left navigation bar under ‘Advanced’ section.
 2. On the landing page of Campaigns, click on the ‘New Campaign’ CTA at the top right corner. It will open a popup as shown below.
-3. Enter a name for your **Campaign** and select the notification event you want to fire using this campaign from the dropdown.
+3. Enter a name for your **Campaign** and select the notification event you want to fire using this campaign from the dropdown.
 4. Once you have selected the event, you will see the channels linked to that event and also you will see a sample file structure which you need to upload. For ex - The selected notification event has only SMS channel, then you will see only SMS in the sample file structure.![](/images/campaign_tutorial_10.png)
 5. Under ‘Create a campaign using’ select ‘CSV Upload’. 
 6. You can also download the sample CSV file by click ‘CSV for selected notification event’ .
@@ -101,7 +101,7 @@ Just before you send out a campaign to all your customers, running a test is alw
 
 To do this, once you have set up your campaign, simply:
 
-1. Scroll to the top of the campaign configuration page to find the **Run Test** button and click on it.
+1. Scroll to the top of the campaign configuration page to find the **Run Test** button and click on it.
 2. A new pop-up requesting the below information to run the test will come up:
     1. **Send Using (Channel Details)**: Map the channels that are there in the notification event to run the test on.
     2. **Map Placeholders**: Map the placeholders that are there in the template of the corresponding Notification event to successfully simulate the notification.
@@ -109,16 +109,16 @@ To do this, once you have set up your campaign, simply:
 
 ### Save as Draft
 
-Once an event is configured with the details of the **Notification Event**, mapped Channels and Placeholders and scheduled time, this can now be saved to use or edit at a later time.
+Once an event is configured with the details of the **Notification Event**, mapped Channels and Placeholders and scheduled time, this can now be saved to use or edit at a later time.
 
-Simply click on the **Save** at any point in time of configuring the campaign and this will be saved for later use!
+Simply click on the **Save** at any point in time of configuring the campaign and this will be saved for later use!
 
 ### How to Fire or Schedule a campaign?
 
 Once you have done with all the configuration, you can click Schedule/Fire CTA. You can fire it in 2 ways.
 
-1. **Now** - If you select Now and click ‘Fire’, the campaign will be fired immediately and your users will start getting notifications. ![](/images/campaign_tutorial_13.png)
-2. **Later** - If you select Later, you will be asked to select a date and time when you want to fire the campaign. ![](/images/campaign_tutorial_14.png)
+1. **Now** - If you select Now and click ‘Fire’, the campaign will be fired immediately and your users will start getting notifications. ![](/images/campaign_tutorial_13.png)
+2. **Later** - If you select Later, you will be asked to select a date and time when you want to fire the campaign. ![](/images/campaign_tutorial_14.png)
 
 You can select a date up to 30 days from the time of selecting the schedule.
 
@@ -130,16 +130,16 @@ Please note that ‘Stop Campaign’ will be enabled only for CSV with more than
 
 ## Viewing campaign logs & analytics
 
-Fyno’s **Campaign Analytics** allows you to visualise the performance as well as gain insights into your **Campaign** in the form of graphs and charts in one place, which helps improve the overall experience as well as outcomes pertaining to that notification event linked to that campaign.
+Fyno’s **Campaign Analytics** allows you to visualise the performance as well as gain insights into your **Campaign** in the form of graphs and charts in one place, which helps improve the overall experience as well as outcomes pertaining to that notification event linked to that campaign.
 
-You can find your way to **Campaign Analytics** by:
+You can find your way to **Campaign Analytics** by:
 
-1. Navigating to the **Campaign** page and clicking the “Bar Chart” icon corresponding to that particular campaign. OR
-2. By clicking on a **Campaign** and clicking on the “View Analytics” CTA on the top right corner of the campaign.
+1. Navigating to the **Campaign** page and clicking the “Bar Chart” icon corresponding to that particular campaign. OR
+2. By clicking on a **Campaign** and clicking on the “View Analytics” CTA on the top right corner of the campaign.
 
 ### Overview
 
-The **Overview** section of the **Campaign Analytics** section provides an eagle-eye view of the campaign’s performance.
+The **Overview** section of the **Campaign Analytics** section provides an eagle-eye view of the campaign’s performance.
 
 On this card, you will see:
 
@@ -149,14 +149,14 @@ On this card, you will see:
 
 ### Channel Engagement
 
-**Channel Engagement** provides you with a detailed view of each channel used to send out notifications along with the outcomes of the notifications sent.
+**Channel Engagement** provides you with a detailed view of each channel used to send out notifications along with the outcomes of the notifications sent.
 
 Outcomes can be anything from:
 
-- **Submitted** - When a notification is successfully sent from Fyno’s platform
-- **Delivered** - When a notification gets successfully delivered to the destination (mobile number, email address, or device tokens like in the case of Push).
-- **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as “Read” for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially “opened”, this will be tagged as “Open” and tracked on Fyno’s App.
-- **Clicked** - When a notification is clicked on, this will be tracked as a “Clicked” notification. This applies to In-App, Push, Emails with links, etc.
+- **Submitted** - When a notification is successfully sent from Fyno’s platform
+- **Delivered** - When a notification gets successfully delivered to the destination (mobile number, email address, or device tokens like in the case of Push).
+- **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as “Read” for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially “opened”, this will be tagged as “Open” and tracked on Fyno’s App.
+- **Clicked** - When a notification is clicked on, this will be tracked as a “Clicked” notification. This applies to In-App, Push, Emails with links, etc.
 
 ### Undelivered statuses are tracked when they are:
 
@@ -173,15 +173,15 @@ The count for each can be seen on hovering over the bar graphs.
 
 The delivery status graph shows you the delivery status by the channel that you have selected from the drop-down in the top right corner of the card.
 
-The list will populate the **Channels** based on usage and in chronological order of the count of each channel.
+The list will populate the **Channels** based on usage and in chronological order of the count of each channel.
 
 You can toggle on or off the statuses you would like to see by clicking on the legends at the bottom of the graph. Let’s have a look at some of these statuses to understand it better.
 
-- **Sent** - All notifications that have left the Fyno App successfully towards the destination are marked as “Sent”. In scenarios where there is no delivery confirmation received from the provider, this status will remain as “Sent”.
-- **Delivered** - When a notification is delivered successfully to the Destination, then these messages are considered “Delivered”
-- **Error** - All notifications that fail to be triggered from the Fyno App due to some error (it may be any from an issue on a template to not choosing a provider for a channel), will be tagged as “Error”
-- **Failed** - When a notification is tagged as “Failed” this is most probably due to conditions that are mandatory from the provider that are not being met, due to which the notification execution has been tagged as “Failed”
-- **Bounce** - Bounce is a status that would be seen only in the case of an “Email” channel. This happens when
+- **Sent** - All notifications that have left the Fyno App successfully towards the destination are marked as “Sent”. In scenarios where there is no delivery confirmation received from the provider, this status will remain as “Sent”.
+- **Delivered** - When a notification is delivered successfully to the Destination, then these messages are considered “Delivered”
+- **Error** - All notifications that fail to be triggered from the Fyno App due to some error (it may be any from an issue on a template to not choosing a provider for a channel), will be tagged as “Error”
+- **Failed** - When a notification is tagged as “Failed” this is most probably due to conditions that are mandatory from the provider that are not being met, due to which the notification execution has been tagged as “Failed”
+- **Bounce** - Bounce is a status that would be seen only in the case of an “Email” channel. This happens when
     1. The email address is incorrect
     2. The email address requires senders to be whitelisted in their domain to receive emails.
     3. The email address’ mailbox is full and unable to receive any more notifications.
@@ -195,13 +195,14 @@ You can download a report of a campaign by clicking ‘**Download Report**’ CT
 
 The campaign report contains the following
 
-- **Request_ts** - When the campaign was fired.
-- **Request_id** - A unique id for each notification sent.
-- **Template** - Template name which is linked to the notification event fired via Campaign.
-- **Distinct_id** - A unique id for every user profile created in Fyno. If you are not using Fyno’s User Profile, this field will be blank.
-- **SMS_credits_use** - No of credits used for the SMS sent via this campaign. If SMS is not sent via the Campaign, this field won’t be there in the report.
-- **Email_credits_use** - No of credits used for the Email sent via this campaign. If Email is not sent via the Campaign, this field won’t be there in the report.
-- **&lt;Channel&gt;** - This will have the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS and WhatsApp.
-- **&lt;Channel_submission_statuses&gt;** - This will have the submission status of the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS_submission_status and WhatsApp_submission_status.
-- **&lt;Channel_dlr_final_status&gt;** - This will have the final status of the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS_dlr_final_status and WhatsApp_dlr_final_status.
-- **&lt;Channel_dlr_statuses&gt;** - This will have the all the statuses of the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS_dlr_statuses and WhatsApp_dlr_statuses.
+- **Request_ts** - When the campaign was fired.
+- **Request_id** - A unique id for each notification sent.
+- **Template** - Template name which is linked to the notification event fired via Campaign.
+- **Distinct_id** - A unique id for every user profile created in Fyno. If you are not using Fyno’s User Profile, this field will be blank.
+- **SMS_credits_use** - No of credits used for the SMS sent via this campaign. If SMS is not sent via the Campaign, this field won’t be there in the report.
+- **Email_credits_use** - No of credits used for the Email sent via this campaign. If Email is not sent via the Campaign, this field won’t be there in the report.
+- **&lt;Channel&gt;** - This will have the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS and WhatsApp.
+- **&lt;Channel_submission_statuses&gt;** - This will have the submission status of the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS_submission_status and WhatsApp_submission_status.
+- **&lt;Channel_dlr_final_status&gt;** - This will have the final status of the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS_dlr_final_status and WhatsApp_dlr_final_status.
+- **&lt;Channel_dlr_statuses&gt;** - This will have the all the statuses of the channel used in the template which is sent via Campaign. If your template has SMS, WhatsApp and message is sent to both the channels, then you will have 2 columns, SMS_dlr_statuses and WhatsApp_dlr_statuses.
+
