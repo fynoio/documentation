@@ -82,6 +82,7 @@ If you want to receive delivery reports in your system or any third party tool, 
        "custom_id": "YOUR_CUSTOM_ID_VALUE",
        "custom1": "YOUR_CUSTOM_VARIABLE_1",
        "custom2": "YOUR_CUSTOM_VARIABLE_2",
+       "custom3": "YOUR_CUSTOM_VARIABLE_3",
        "allowlist_url": ["DynamicWebhookSite", "Mixpanel"]
     }
 }
@@ -111,6 +112,14 @@ If you want to receive delivery reports in your system or any third party tool, 
     <li>Additional information to tag your notification</li>
     <li>**Length**: 50 characters. No special characters allowed.</li>
     <li>**Example:** `category`</li>
+  </ul>
+</ParamField>
+
+<ParamField path="custom3" type="string" required={false}>
+  <ul>
+    <li>Additional information to tag your notification</li>
+    <li>**Length**: 50 characters. No special characters allowed.</li>
+    <li>**Example:** `message-id`</li>
   </ul>
 </ParamField>
 
