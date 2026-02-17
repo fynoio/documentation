@@ -115,6 +115,15 @@ Deletes all tenant data and the stored secret.
 ```swift
 func deleteTenantData(tenantId: String)
 ```
+### fetchActiveTenants
+
+```swift
+Fetches the active tenants.
+
+func fetchActiveTenants(
+    completion: @escaping (Result<[ActiveTenant], Error>) -> Void
+)
+```
 
 ## Data Models
 

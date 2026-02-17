@@ -258,6 +258,13 @@ fun revokeTenant(
 ): Unit
 ```
 
+```kotlin
+Fetches the active tenants.
+
+func fetchActiveTenants(
+    completion: @escaping (Result<[ActiveTenant], Error>) -> Void
+)
+```
 **Parameters:**
 | Parameter | Type | Description |
 |-----------|------|-------------|

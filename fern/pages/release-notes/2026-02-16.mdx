@@ -1,0 +1,73 @@
+## 26.1.3
+
+**Release Date:** 16-Feb-2026
+
+### 🔹 New Features
+
+- **Email**
+
+  - **Dynamic Email Attachments Mapping**: Email attachments now support a **Dynamic mode** that automatically processes attachment arrays without manual indexing.
+  - Previously, users had to reference each attachment individually (e.g., `attachments.0.fileName`, `attachments.1.fileName`). With Dynamic mode, users define the field mapping once and the system iterates through the entire array to generate all attachments.
+  - The previous behavior is preserved as **Fixed mode** to ensure full backward compatibility while simplifying configuration for payloads containing multiple attachments.
+
+### ⚡ Feature Enhancements
+
+- **Templates**
+
+  - **Template Group Deletion**: Users can now delete template groups directly from the group menu in the UI. A confirmation prompt appears explaining the impact of deletion.
+   If the group is still linked to templates, notification events, or workflows, deletion is blocked. The UI displays where the group is currently being used so users can decide their next action (for example, cancel or proceed after resolving dependencies).
+
+- **Provider Callbacks**
+
+  - **Additional Custom Field Support (custom3)**: Provider callbacks now support an additional configurable field `custom3` alongside `custom_id`, `custom1`, and `custom2`.
+  - This field is available across Notification Events, Campaigns, and Workflows, and appears in payload previews and allowlisted endpoint deliveries.
+  - Validation and payload behavior remain aligned with existing custom fields for backward compatibility.
+
+- **Integrations – Meta Direct**
+
+  - **MM Lite API Opt-In**: The “Use MM Lite API for marketing messages” option in Meta Direct and Meta Direct Plus integrations is now disabled by default. It must be explicitly enabled to use this API for marketing messages.
+
+- **SMS Editor**
+
+  - **Unicode Validation and Compilation**: The SMS editor now validates and compiles Unicode content before sending to detect encoding issues early, ensure accurate message segmentation, and prevent unexpected delivery behavior for non-Latin characters.
+
+- **User Profiles**
+
+  - **Clear Channel Status Indicators**: Push, In-App, and Web Push channels are now clearly shown as enabled or disabled even when configuration data exists on the profile. The profile listing now accurately reflects channel availability for a distinct ID.
+
+- **User Activity**
+
+  - **SAML Login Initiator Visibility**: The User Activity table now shows the email address of the person who initiated the SAML login when it differs from the logged-in user.
+
+- **Templates**
+
+  - **Correct Placeholder Copy Format for Array Indexing**: Placeholders copied from the placeholder list now use bracket notation (e.g., `{{hello.[0]}}`) instead of dot notation (`{{hello.0}}`) to prevent Handlebars configuration errors.
+
+### 🛠 Bug Fixes
+
+- **Authentication**
+
+  - **Improved Login Error Messages**: The login form now shows accurate error messages instead of always displaying “Email or Password is invalid.”
+
+- **User Profiles**
+
+  - **Profile Page Crash – Missing Consent Object**: Resolved a runtime error (`generateDefaultConsentObject is not defined`) when opening the profile page.
+
+- **Campaigns**
+
+  - **Google Sheet Download Fixed**: Files uploaded via Google Sheets during campaign creation can now be downloaded correctly.
+  - **Improved Error Messaging**: Any errors encountered during campaign file download now return clearer and more accurate messages.
+
+- **Campaign Analytics**
+
+  - **Complete Multi-Day Campaign Metrics**: Analytics now fetch data from the campaign start date (00:00:00) through today (23:59:59), ensuring full lifecycle reporting.
+
+- **Templates**
+
+  - **Persistent “New Placeholders Detected” Banner**: The banner now appears only when actual placeholder changes are detected.
+  - **Strict Handlebars Template Validation**: Template validation now uses the same Handlebars parser and helper set as runtime delivery, rejecting invalid syntax and showing clear inline error messages before sending.
+
+- **Notification Events Playground**
+
+  - **Accurate Template Previews**: Conditional templates now render the correct variation based on provided values instead of always showing fallback content.
+

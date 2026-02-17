@@ -33,38 +33,39 @@ If you didn't any parameters in the payload, Fyno will send the below default pa
 
 | Parameter Name | Type & Value                                                                                                                              |
 | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| custom_id      | **String or Number**; an alpha-numeric or numeric unique identifier that is provided in the callback object during the submission request |
-| msg_id         | **String**; Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5          |
-| status         | **String**; It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc         |
+| custom_id      | **String or Number**; an alpha-numeric or numeric unique identifier that is provided in the callback object during the submission request. |
+| msg_id         | **String**; Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5.          |
+| status         | **String**; It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc.         |
 
 
 Below is a list of all the parameters that Fyno can send you as data points. However, each one of these will need to be specified if you need them.
 
 | Parameter Name       | Type & Value                                                                                                                                                                                                                                                                                                                                                                                 |
 | :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| request_id           | **String**; request_id parameter in response which is generated during the submission request<br/>example: 17f7e491-f51f-4e1e-881c-794f838c7c3c                                                                                                                                                                                                                                                  |
+| request_id           | **String**; request_id parameter in response which is generated during the submission request<br/>example: 17f7e491-f51f-4e1e-881c-794f838c7c3c.                                                                                                                                                                                                                                                  |
 | custom_id            | **String or Number**; an alpha-numeric or numeric unique identifier that is provided in the callback object during the submission request.                                                                                                                                                                                                                                                   |
-| msg_id               | **String**; Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5                                                                                                                                                                                                                                                             |
-| status               | **String**; It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc                                                                                                                                                                                                                                                            |
-| destination          | **String**; destinations like email, mobile no sent during submission request.<br/>example : [abc@gmail.com](mailto:abc@gmail.com), 919876543210                                                                                                                                                                                                                                             |
-| distinct_id          | **String**; It holds the distinct_id of the user, if specified in the request                                                                                                                                                                                                                                                                                                                |
-| message              | **String**; This is an error message given by the provider if any delivery failure occurs.<br/>Note: all provider does not give this information                                                                                                                                                                                                                                             |
-| senttime             | **String**; Submission time of the request, YYYY-MM-DD HH:mm:ss UTC                                                                                                                                                                                                                                                                                                                          |
-| senttime_epoch       | **String**; Submission time of the request in epoch format (Unix time)                                                                                                                                                                                                                                                                                                                       |
-| dlrtime              | **String**; The time when the delivery report status was received, YYYY-MM-DD HH:mm:ss UTC                                                                                                                                                                                                                                                                                                   |
-| dlrtime_epoch        | **String**; The time when the delivery report status was received in epoch format (Unix time)                                                                                                                                                                                                                                                                                                |
-| integration_name     | **String**; Integration account name through which the notification was sent                                                                                                                                                                                                                                                                                                                 |
-| channel              | **String**; the name of the channel through which the notification was sent                                                                                                                                                                                                                                                                                                                  |
-| provider             | **String**; the name of the provider via which the notification was sent                                                                                                                                                                                                                                                                                                                     |
-| provider_msg_id      | **String**; the msg ID (if available) of the provider via which the notification was sent                                                                                                                                                                                                                                                                                                    |
+| msg_id               | **String**; Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5.                                                                                                                                                                                                                                                             |
+| status               | **String**; It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc.                                                                                                                                                                                                                                                            |
+| destination          | **String**; destinations like email, mobile no sent during submission request.<br/>example : [abc@gmail.com](mailto:abc@gmail.com), 919876543210.                                                                                                                                                                                                                                             |
+| distinct_id          | **String**; It holds the distinct_id of the user, if specified in the request.                                                                                                                                                                                                                                                                                                                |
+| message              | **String**; This is an error message given by the provider if any delivery failure occurs.<br/>Note: all provider does not give this information.                                                                                                                                                                                                                                             |
+| senttime             | **String**; Submission time of the request, YYYY-MM-DD HH:mm:ss UTC.                                                                                                                                                                                                                                                                                                                          |
+| senttime_epoch       | **String**; Submission time of the request in epoch format (Unix time).                                                                                                                                                                                                                                                                                                                       |
+| dlrtime              | **String**; The time when the delivery report status was received, YYYY-MM-DD HH:mm:ss UTC.                                                                                                                                                                                                                                                                                                   |
+| dlrtime_epoch        | **String**; The time when the delivery report status was received in epoch format (Unix time).                                                                                                                                                                                                                                                                                                |
+| integration_name     | **String**; Integration account name through which the notification was sent.                                                                                                                                                                                                                                                                                                                 |
+| channel              | **String**; the name of the channel through which the notification was sent.                                                                                                                                                                                                                                                                                                                  |
+| provider             | **String**; the name of the provider via which the notification was sent.                                                                                                                                                                                                                                                                                                                     |
+| provider_msg_id      | **String**; the msg ID (if available) of the provider via which the notification was sent.                                                                                                                                                                                                                                                                                                    |
 | provider_template_id | **String**; the provider template ID that was sent.<br/>For SMS, the DLT template ID is sent (for Indian businesses).<br/>For WhatsApp, the template name and language is sent (`templatename_lang`).<br/>For RCS, the template name is sent.                                                                                                                                                |
-| event_name           | **String**; the name of the Notification Event that is being triggered                                                                                                                                                                                                                                                                                                                       |
-| template             | **String**; the name of the Template, whose content is sent out delivery and ideally it is being configured in the notification event                                                                                                                                                                                                                                                        |
+| event_name           | **String**; the name of the Notification Event that is being triggered.                                                                                                                                                                                                                                                                                                                       |
+| template             | **String**; the name of the Template, whose content is sent out delivery and ideally it is being configured in the notification event.                                                                                                                                                                                                                                                        |
 | msg_content          | **JSON Object**; Contains information of the template sent.<br/>For SMS, it will include the SMS text and template ID (if available).<br/>For WhatsApp, it will include the template_name, language, and placeholder mapping.<br/>For Email, it will include the subject line, body content, and attachments (only if Presigned/Public URLs are used).From Name, From Email and Reply To data points also will be received only if they are configured in the Email template.<br/>**Note:** This variable is enabled on request and is available only for SMS, WhatsApp and Email. If enabled, only the first webhook call will contain this variable. |
-| version              | **String**: API version that is used to trigger a notification event<br/>test or live                                                                                                                                                                                                                                                                                                        |
-| custom1              | **String**: custom1 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string                                                                                                                                                                                                                                        |
-| custom2              | **String**: custom2 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string  
-| params.useragent     | **String**: It holds the user agent info for Email channel. Supported only for SES and Sendgrid providers.  Ex - "UserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko)  Chrome/35.0.1916.153 Safari/537.36"                                                                                                                                                                                                                                      |
+| version              | **String**: API version that is used to trigger a notification event<br/>test or live.                                                                                                                                                                                                                                                                                                        |
+| custom1              | **String**: custom1 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string.                                                                                                                                                                                                                                        |
+| custom2              | **String**: custom2 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string.  
+| custom3              | **String**: custom3 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string.                                                                                                                                                                                                                                        |
+| params.useragent     | **String**: It holds the user agent info for Email channel. Supported only for SES and Sendgrid providers.  Ex - "UserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko)  Chrome/35.0.1916.153 Safari/537.36".                                                                                                                                                                                                                                      |
 | params.ip            | **String**: It holds IP address of the user clicking the URL sent as part of Email.  
 | params.url           | **String**: It holds URL clicked by the users sent as part of Email. 
 | params.duration      | **String**: It holds call duration of a Voice call in seconds. 
@@ -75,32 +76,40 @@ Below is a list of all the parameters that Fyno can send you as data points. How
 
 <ParamField path="custom_id" type="string" required={true}>
   <ul>
-    <li>Unique identifier of your notification</li>
+    <li>Unique identifier of your notification.</li>
     <li>**Length**: 200 characters if string. No special characters allowed. </li>
-    <li>**Length**: 20 digits if numeric</li>
+    <li>**Length**: 20 digits if numeric.</li>
   </ul>
 </ParamField>
 
 <ParamField path="custom1" type="string" required={false}>
   <ul>
-    <li>Additional information to tag your notification</li>
+    <li>Additional information to tag your notification.</li>
     <li>**Length**: 50 characters. No special characters allowed.</li>
-    <li>**Example:** `order-id`</li>
+    <li>**Example:** `order-id`.</li>
   </ul>
 </ParamField>
 
 <ParamField path="custom2" type="string" required={false}>
   <ul>
-    <li>Additional information to tag your notification</li>
+    <li>Additional information to tag your notification.</li>
     <li>**Length**: 50 characters. No special characters allowed.</li>
-    <li>**Example:** `category`</li>
+    <li>**Example:** `category`.</li>
+  </ul>
+</ParamField>
+
+<ParamField path="custom3" type="string" required={false}>
+  <ul>
+    <li>Additional information to tag your notification.</li>
+    <li>**Length**: 50 characters. No special characters allowed.</li>
+    <li>**Example:** `message-id`.</li>
   </ul>
 </ParamField>
 
 <ParamField path="enable" type="enum" required={false} default="true">
   <ul>
     <li>**true**: enable delivery status over callback.</li>
-    <li>**false**: disable delivery status over callback</li>
+    <li>**false**: disable delivery status over callback.</li>
     <li>The default value is **true** if custom_id is specified.</li>
   </ul>
 </ParamField>
@@ -172,20 +181,33 @@ Once this is successfully configured, here is a sample of the Callback Response 
 
 ```json title="Sample Callback Response" wordWrap
 {
-  "msg_id": "FYNO_MSG_ID_UUID",
-  "status": "DELIVERED",
-  "custom_id": "YOUR_CUSTOM_ID_VALUE",
-  "recipent": "user1@email.com",
-  "providername": "sendgrid",
-  "provider_msg_id": "1234567890",
-  "provider_template_id": "",
-  "message": "",
-  "requesttime": "2023-03-24 10:23:39",
-  "deliverytime": "2023-03-24 10:23:50",
-  "account_name": "EmailProduction",
-  "reference_msg_id": "YOUR_CUSTOM_ID_VALUE",
-  "order_id": "YOUR_CUSTOM1_VALUE",
-  "category": "YOUR_CUSTOM2_VALUE",
-  "channel": "email"
+  "custom_id": "YOUR_CUSTOM_ID_VALUE",
+  "msg_id": "FYNO_MSG_ID_UUID",
+  "status": "DELIVERED",
+  "channel": "email",
+  "custom1": "YOUR_CUSTOM1_VALUE",
+  "custom2": "YOUR_CUSTOM2_VALUE",
+  "custom3": "YOUR_CUSTOM_ID_VALUE",
+  "destination": "user1@email.com",
+  "distinct_id": "user1@email.com",
+  "dlrtime": "2023-03-24 10:23:50",
+  "dlrtime_epoch": 1679653430,
+  "event_name": "DELIVERED",
+  "integration_name": "sendgrid",
+  "message": "",
+  "msg_content": "",
+  "params_duration": "",
+  "params_ip": "",
+  "params_recording_link": "",
+  "params_url": "",
+  "params_useragent": "",
+  "provider": "sendgrid",
+  "provider_msg_id": "1234567890",
+  "provider_template_id": "",
+  "request_id": "FYNO_MSG_ID_UUID",
+  "senttime": "2023-03-24 10:23:39",
+  "senttime_epoch": 1679653419,
+  "template": "",
+  "version": "1"
 }
 ```

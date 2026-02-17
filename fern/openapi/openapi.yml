@@ -2199,6 +2199,12 @@ components:
             want to receive as a response (for reconciliation) in your delivery callback."
           example: P001
           type: string
+        custom3:
+          description:
+            "(Optional) Use this parameter to send yet another ID that you
+            want to receive as a response (for reconciliation) in your delivery callback."
+          example: C001
+          type: string
         enable:
           description:
             "(Optional) Set `true` to enable delivery callback or `false` to
