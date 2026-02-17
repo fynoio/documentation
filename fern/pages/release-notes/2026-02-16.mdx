@@ -47,11 +47,11 @@
 
 - **Authentication**
 
-  - **Improved Login Error Messages**: The login form now shows accurate error messages instead of always displaying “Email or Password is invalid.”
+  - **Generic Login Error Message**: Fixed an issue where the login form always displayed “Email or Password is invalid” regardless of the actual error. The UI now correctly reflects the specific error returned by the system.
 
 - **User Profiles**
 
-  - **Profile Page Crash – Missing Consent Object**: Resolved a runtime error (`generateDefaultConsentObject is not defined`) when opening the profile page.
+  - **Profile Page Crash: Fixed a runtime error that occurred when opening the user profile page due to missing consent data initialization. The profile now loads reliably without console errors.
 
 - **Campaigns**
 
