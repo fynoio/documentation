@@ -84,6 +84,67 @@ To add multiple attachments in email, add them in the placeholders as shown belo
 
 <Note>Please note that the content can be base64-encoded content or a Presigned URL</Note>
 
+## Configuring File Attachments Using Fixed Mode
+
+**Fixed Mode** is used when the number of files is predefined and does not change at runtime.  
+You manually configure each file (**File 1**, **File 2**, etc.) by specifying its **name**, **MIME type**, and **URL** individually.
+
+![](/images/fixed-mode-url.png)
+## When to Use Fixed Mode
+Use Fixed Mode when:
+
+- The number of files is known in advance.
+- The same files are sent to all users.
+- Files are static (for example, brochure, invoice template, product catalog).
+- You need full control over each file configuration.
+
+## Example Static Configuration
+
+### File 1
+- **File Name:** `invoice.pdf`  
+- **MIME Type:** `application/pdf`  
+- **URL:** `https://example.com/invoice.pdf`
+
+### File 2
+- **File Name:** `coupon.jpg`  
+- **MIME Type:** `image/jpeg`  
+- **URL:** `https://example.com/coupon.jpg`
+
+**Result:**  
+Both files will always be attached exactly as configured.
+
+## Fields Explained
+
+| Field | Purpose | How to Configure | Example |
+|-------|----------|-----------------|----------|
+| **Number of Files** | Defines how many files will be attached. | Select **Fixed** and manually add each file. | — |
+| **File Name** | Specifies the name shown to the user. | Enter a static file name or placeholder. | `invoice.pdf` |
+| **MIME Type** | Defines the file type being sent (must be valid MIME type). | Select from dropdown or enter a valid value (e.g., `image/png`, `application/pdf`). | `application/pdf`, `image/jpeg` |
+| **URL** | Specifies the file location. | Enter a publicly accessible URL or a valid pre-signed URL. | `https://example.com/file.pdf` |
+
+## Important Notes
+
+- Each file must be configured separately.
+- The URL must be publicly accessible or pre-signed.
+- The MIME type must be valid (for example, `application/pdf`, `image/png`).
+- The number of files will remain fixed for every execution.
+- If the file count needs to vary dynamically, use **Dynamic Mode** instead.
+
+## Sample Configuration Summary
+
+If you configure:
+
+| File | File Name | MIME Type | URL |
+|------|-----------|------------|------|
+| File 1 | `product_catalog.pdf` | `application/pdf` | `https://example.com/catalog.pdf` |
+| File 2 | `pricing_sheet.pdf` | `application/pdf` | `https://example.com/pricing.pdf` |
+
+**Result:**  
+2 files will always be attached:
+
+- `product_catalog.pdf`  
+- `pricing_sheet.pdf`
+
 ## Configuring File Attachments Using Dynamic Mode
 
 Dynamic mode is used when the number of files is not fixed and is provided at runtime as a JSON array (for example, from a previous step’s output).
