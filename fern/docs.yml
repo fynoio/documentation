@@ -325,19 +325,21 @@ navigation:
               - section: "External Templates"
                 path: "pages/templates/external-templates.mdx"
                 contents:
-                  - section: "Create a WhatsApp template from Fyno"
-                    path: "pages/templates/external-templates/whatsapp/create.mdx"
+                  - section: "WhatsApp Templates"
+                    path: "pages/templates/external-templates/whatsapp/create-external-whatsapp-template-from-fyno.mdx"
                     contents:
-                      - page: "Create an Authentication WhatsApp template"
-                        path: "pages/templates/external-templates/whatsapp/auth.mdx"
-                  - page: "Sync SMS templates to Fyno"
+                      - page: "Create Marketing Templates"
+                        path: "pages/templates/external-templates/whatsapp/create-a-marketing-whatsapp-template.mdx"
+                      - page: "Create Utility Templates"
+                        path: "pages/templates/external-templates/whatsapp/create-an-utility-whatsapp-template.mdx"
+                      - page: "Create Authentication Templates"
+                        path: "pages/templates/external-templates/whatsapp/create-an-authentication-whatsapp-template.mdx"
+                      - page: "Save / Send for Approval"
+                        path: "pages/templates/external-templates/whatsapp/save-as-draft-vs-send-for-approval.mdx"
+                      - page: "Sync / Re-sync Templates"
+                        path: "pages/templates/external-templates/whatsapp/sync-resync-whatsapp-template.mdx"  
+                  - page: "SMS Sync / Re-sync templates"
                     path: "pages/templates/external-templates/sms/sync.mdx"
-                  - page: "Sync WhatsApp templates to Fyno"
-                    path: "pages/templates/external-templates/whatsapp/sync.mdx"
-                  - page: "Sync WhatsApp Flows to Fyno"
-                    path: "pages/templates/external-templates/whatsapp/flows.mdx"
-                  - page: "Create a WhatsApp template with carousel"
-                    path: "pages/templates/external-templates/whatsapp/carousel.mdx"
                   - page: "Create a SMS template from Fyno"
                     path: "pages/templates/external-templates/sms/create.mdx"
               - page: "Reusable Components"
@@ -772,3 +774,21 @@ redirects:
   - source: "/docs/reference/post_wsid-version-verify-validate-1"
     destination: "/docs/api-reference/verify/verify-otp"
     permanent: true
+  - source: "/docs/external-whatsapp-template"
+    destination: "/docs/external-templates/whatsapp"
+    permanent: true
+  - source: "/docs/carousel-whatsapp-template"
+    destination: "/docs/external-templates/whatsapp/create-marketing-whatsapp-templates"
+    permanent: true
+  - source: "/docs/utility-whatsapp-template"
+    destination: "/docs/external-templates/whatsapp/create-utility-whatsapp-templates"
+    permanent: true  
+  - source: "/docs/create-an-authentication-whatsapp-template"
+    destination: "/docs/external-templates/whatsapp/create-authentication-whatsapp-templates"
+    permanent: true  
+  - source: "/docs/save-or-send-for-approval-external-whatsapp-templates"
+    destination: "/docs/external-templates/whatsapp/save-or-send-for-approval"
+    permanent: true   
+  - source: "/docs/sync-whatsapp-templates-to-fyno"
+    destination: "/docs/external-templates/whatsapp/sync-resync-templates"
+    permanent: true   
