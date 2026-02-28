@@ -43,3 +43,164 @@ Given below are some of the common errors that you might encounter while trying 
     - Recipient using an old WhatsApp version
 - **Recipient isn't receiving messages from you right now** – You'll get this error if the recipient has blocked the number you are currently using to send WhatsApp messages. 
 - **Integration Service Rate limit exceed** – You'll get this error if you've exceeded the WhatsApp sending limit.
+
+## What Happens if a Template Is Recategorized After Approval?
+
+Meta may periodically update a template’s category if its content better matches a different use-case (for example: **UTILITY → MARKETING** or **MARKETING → AUTHENTICATION**).
+
+### Pricing Changes
+
+- Billing immediately follows the new category’s conversation rate.  
+- Future conversations triggered by that template are charged at the new category price.  
+- Historical conversations remain billed at the original category (no retroactive adjustments).  
+
+### Delivery Behavior Changes
+
+- Delivery eligibility rules update to match the new category.  
+  - Example: Marketing templates require an open marketing window / opt-in eligibility.  
+- Message reach and delivery rates may increase or decrease depending on the category rules.  
+- If a template moves into **Marketing**, it becomes subject to stricter engagement and frequency controls.  
+
+> **Important:** Recategorization does not break the template or require re-approval — but it can affect both cost and deliverability, so monitoring category status is recommended.
+
+## How Meta Assigns Categories
+
+Templates can be reclassified into a different category after submission if Meta determines the content better fits another use-case.
+
+- Meta automatically analyzes the message content and assigns the final category using internal classifiers.  
+- Approved templates may be re-evaluated later and updated again.  
+- A template submitted as **Utility** may be approved or later changed to **Marketing**, or vice versa, depending on how the message reads.  
+
+> **Important:** There is no checklist that guarantees approval. In practice, this behaves like a black box — you adjust wording and observe results.
+
+Meta categorizes templates based on the **purpose of the message as experienced by the user**, not your internal workflow.
+
+## Meta Template Categories (Detailed)
+
+### Utility — Expected service notifications
+
+Utility messages inform the user about something related to an existing account, transaction, or request they already made. They are **status updates, not opportunities**.
+
+#### WhatsApp evaluation logic
+
+Utility templates generally:
+
+- Are non-promotional  
+- Relate to a specific user or transaction  
+- Are triggered by a user action, account state, or request  
+
+If the message **helps the user understand their situation → Utility**
+
+#### Reference examples
+
+- ₹4,200 debited from A/C ending 4582.  
+- EMI due on 12 Feb.  
+- KYC pending for verification.  
+- Loan application approved.  
+- Payment failed for bill #8842.  
+- Refund processed.  
+- Auto-debit scheduled.  
+
+These describe **account state, not choices**.
+
+### Marketing — Decision influencing messages
+
+Marketing messages encourage a user to **act, explore, or choose**.  
+If the message helps the user **make a decision**, it is Marketing.
+
+This applies:
+
+- Even if relevant  
+- Even if helpful  
+- Even if the user opted in  
+
+#### WhatsApp evaluation logic
+
+Anything that:
+
+- Promotes  
+- Suggests  
+- Recommends  
+- Nudges  
+- Encourages action  
+
+is categorized as **Marketing**.
+
+#### Reference examples
+
+- You are eligible for a ₹50,000 loan.  
+- Increase your credit limit today.  
+- Upgrade to a premium card.  
+- Invest in our FD plan.  
+- Activate cashback offer.  
+- Pay now to avoid a penalty.  
+- Complete KYC to unlock benefits.  
+
+These **influence behaviour**, not just inform.
+
+### Authentication — Identity verification only
+
+Messages used **only** to verify the user’s identity.  
+Anything beyond verification moves it out of Authentication.
+
+#### Strict rules
+
+- OTP only  
+- No links  
+- No media  
+- No promotional text  
+
+#### Examples
+
+- 482193 is your verification code.  
+- Use 884221 to reset your password.  
+
+## Why wording matters (same situation, different category)
+
+This shows how small persuasion changes the category.
+
+| Message | Category |
+|--------|----------|
+| Payment due on 12 Feb | Utility |
+| Pay now to avoid late fee | Marketing |
+| KYC pending for verification | Utility |
+| Complete KYC to unlock benefits | Marketing |
+| Loan approved | Utility |
+| Accept your approved loan today | Marketing |
+
+## Patterns Commonly Seen in Utility Classifications
+
+Meta’s categorization is not rule-based and cannot be predicted with certainty. However, templates approved as Utility frequently share these patterns:
+
+- The message completes or confirms something the user already initiated.  
+- Information is personalized to the specific recipient (order, account, booking, request).  
+- The communication would reasonably be expected by the user at that moment.  
+- Content stays informational rather than persuasive.  
+- Optional elements (links or buttons) support the transaction rather than discovery.  
+
+### Common structural characteristics observed
+
+- Clearly anchored to a user action.  
+  - Example: *“You’re receiving this because you enabled account alerts.”*  
+- Includes concrete reference details such as:  
+  - ID / reference number  
+  - Date  
+  - Amount  
+  - Status  
+  - Expiry  
+- Avoids promotional tone or persuasive language  
+  *(for example: book now, hurry, best, unlock, offer, grab)*  
+
+## Requesting a template category review
+
+### Steps
+
+1. Open **WhatsApp Manager**.  
+2. Go to **Message Templates**.  
+3. Click **Business Support Home**.  
+4. Select **Template Category Updates**.  
+5. Choose the template you want reviewed.  
+6. Click **Request Review**.  
+
+For official Meta details and policy reference, see:
+[Template Categorization](https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/template-categorization).
