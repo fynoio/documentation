@@ -1,0 +1,37 @@
+## 26.1.4
+
+**Release Date:** 02-Mar-2026
+
+### ⚡ Feature Enhancements
+
+- **WhatsApp External Templates**
+
+  - **Mixed Button Support**: Template validation and the builder are now aligned with Meta’s latest mixed button capabilities. You can combine Custom Quick Replies with Call-to-Action and Flow buttons in a single template wherever supported. Contextual limit guidance (for example, Flow button maximum) is now shown, and earlier either/or restrictions have been removed.  
+    **Note:** Existing templates continue to work without changes unless edited.
+  - **Utility templates – Button support**: The Copy coupon code button option has been removed to align with supported use cases.  
+  - **Synced templates – Cleaner layout**: The Buttons section is now hidden when no buttons are present.  
+  - **Synced templates – Header display**: Header types now display correctly.  
+  - **Form action label update**: “Reset form” has been renamed to **“Clear form”** to reflect the actual behavior.  
+  - **Send for approval – Improved validation messaging**: Clear guidance is now shown for valid and draft languages.  
+  - **Draft language management**: You can now delete draft versions of individual languages. Deleted drafts return to the default state.
+  - **Dynamic URL Field**: Fixed dynamic URL inconsistencies. Variables are no longer auto-inserted into the Website URL field when the corresponding language is not selected. Validation now runs immediately on save, and the dynamic state remains consistent throughout the experience.
+
+- **Workflows**
+
+  - **“Wait For” in Webhook-Triggered Flows**: Workflows using a webhook trigger now support a *Wait For* action. This action can be used to add a delay prior to or after the execution of any step in the workflow.
+
+### 🛠 Bug Fixes
+
+- **Workflows – HTTP Step Detection**
+
+  - Steps now correctly identify when they directly follow an HTTP step, ensuring response data is available only when there is a true direct connection.  
+  - Workflow behavior remains reliable even after steps are removed, re-added, or arranged in different paths.  
+  - Improved reliability of data mapping between connected steps.
+
+- **Analytics – UX and Clarity Improvements**
+
+  - **Smarter pagination:** Pagination is hidden when tables contain fewer than five records.  
+  - **Predictable chart zoom behavior:** Charts now provide a clear way to reset the view (or disable zoom where reset is not available).  
+  - **Consistent undelivered status color:** A single visual standard is used across charts, legends, and tooltips.  
+  - **Clearer tooltips:** Generic labels have been replaced with meaningful, metric-based descriptions and percentages for better context.  
+  - **Contextual delivery insights:** Channel tooltips now explain what the data represents, helping you interpret delivery behavior more easily.
