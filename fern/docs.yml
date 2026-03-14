@@ -791,4 +791,13 @@ redirects:
     permanent: true   
   - source: "/docs/sync-whatsapp-templates-to-fyno"
     destination: "/docs/external-templates/whatsapp/sync-resync-templates"
-    permanent: true   
+    permanent: true  
+  - source: "/docs/sync-whatsapp-templates-to-fyno"
+    destination: "/docs/external-templates/whatsapp/sync-resync-templates"
+    permanent: true  
+  - source: "/docs/release-notes/2025/2/17"
+    destination: "/docs/release-notes#2513"
+    permanent: true
+  - source: "/docs/release-notes/2025/3/3"
+    destination: "/docs/release-notes#2514"
+    permanent: true
