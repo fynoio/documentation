@@ -31,10 +31,26 @@ In the pop-up, fill in:
   - Promotional
   - OTP
 
+- **Delivery callback payload structure**: Send an email to the Karix support team with the delivery callback URL and the below sample payload to set up callback's in your Karix account. 
+ Sample Payload:
+ ```json
+ {
+    "reason": "XXXXXX",
+    "dtime": "YYYY-MM-DD hh:mm:ss",
+    "mid": "201051790526XXXXXX",
+    "stime": "YYYY-MM-DD hh:mm:ss",
+    "dest": "XXXXXXXXXXXXXXXXXX",
+    "type": "0",
+    "circle": "XXXXX",
+    "send": "SENDER",
+    "cust_ref": "FYNO_REFERENCE_ID",
+    "operator": "OPERATOR",
+    "status": "XXX"
+   }
+```
 ### Complete the Integration
 
 Click on "Add Account" once done, and you are all set!
-
 </Steps>
 
 ## Message Delivery Status
