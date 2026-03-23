@@ -795,9 +795,146 @@ redirects:
   - source: "/docs/sync-whatsapp-templates-to-fyno"
     destination: "/docs/external-templates/whatsapp/sync-resync-templates"
     permanent: true  
+  - source: "/docs/release-notes/2026/3/2"
+    destination: "/docs/release-notes#2614"
+    permanent: true
+
+  - source: "/docs/release-notes/2026/2/16"
+    destination: "/docs/release-notes#2613"
+    permanent: true
+
+  - source: "/docs/release-notes/2026/2/2"
+    destination: "/docs/release-notes#2612"
+    permanent: true
+
+  - source: "/docs/release-notes/2026/1/19"
+    destination: "/docs/release-notes#2611"
+    permanent: true
+
+  - source: "/docs/release-notes/2026/1/5"
+    destination: "/docs/release-notes#2547"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/12/22"
+    destination: "/docs/release-notes#2546"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/12/9"
+    destination: "/docs/release-notes#2545"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/11/23"
+    destination: "/docs/release-notes#2544"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/11/10"
+    destination: "/docs/release-notes#2543"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/10/23"
+    destination: "/docs/release-notes#2542"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/10/13"
+    destination: "/docs/release-notes#2541"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/9/29"
+    destination: "/docs/release-notes#2538"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/9/15"
+    destination: "/docs/release-notes#2537"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/9/1"
+    destination: "/docs/release-notes#2536"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/8/18"
+    destination: "/docs/release-notes#2535"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/8/3"
+    destination: "/docs/release-notes#2534"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/7/21"
+    destination: "/docs/release-notes#2533"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/7/7"
+    destination: "/docs/release-notes#2532"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/6/23"
+    destination: "/docs/release-notes#2531"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/6/8"
+    destination: "/docs/release-notes#2524"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/5/26"
+    destination: "/docs/release-notes#2523"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/5/12"
+    destination: "/docs/release-notes#2522"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/4/28"
+    destination: "/docs/release-notes#2521"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/4/14"
+    destination: "/docs/release-notes#2517"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/3/31"
+    destination: "/docs/release-notes#2516"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/3/17"
+    destination: "/docs/release-notes#2515"
+    permanent: true
+  
   - source: "/docs/release-notes/2025/2/17"
     destination: "/docs/release-notes#2513"
     permanent: true
   - source: "/docs/release-notes/2025/3/3"
     destination: "/docs/release-notes#2514"
+    permanent: true
+  - source: "/docs/event-analytics" 
+    destination: "/docs/notification-event-analytics"
+    permanent: true
+  - source: "/docs/release-notes/2025/:slug*"
+    destination: "/docs/release-notes/"
+    permanent: true
+  - source: "/docs/automation-creation"
+    destination: "/docs/workflows"
+    permanent: true
+
+  - source: "/docs/event-analytics"
+    destination: "/docs/notification-event-analytics"
+    permanent: true
+
+  - source: "/docs/event-creation"
+    destination: "/docs/notification-event-creation"
+    permanent: true
+
+  - source: "/docs/event-triggering"
+    destination: "/docs/notification-event-triggering"
+    permanent: true
+
+  - source: "/docs/fyno-verify"
+    destination: "/docs/fyno-verify-otp-link"
+    permanent: true
+
+  - source: "/docs/log-details"
+    destination: "/docs/logs-overview"
+    permanent: true
+
+  - source: "/docs/release-notes/2025/2/api-reference/unset-user-property"
+    destination: "/docs/api-reference/unset-user-property"
     permanent: true
