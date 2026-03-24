@@ -1,0 +1,118 @@
+---
+title: 'How to Configure AWS - SAML Single Sign-On to Access Fyno'
+slug: 'how-to-configure-aws-iam-identity-center-saml-single-sign-on-to-access-fyno'
+og:title: 'How to configure AWS IAM Identity SAML Single Sign-On | Fyno Documentation'
+og:description: "This document describes how to configure SAML-based Single Sign-On (SSO) between AWS and Fyno"
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+## Overview
+
+With this example, you will learn how to configure **SAML-based Single Sign-On (SSO)** between AWS IAM Identity Center and Fyno.
+
+This walkthrough explains the end-to-end setup, what each step accomplishes, and how centralized access management improves security and reduces operational overhead.
+
+With SAML SSO:
+
+- Users can sign in to Fyno using their company login.  
+- **AWS IAM Identity Center** acts as the Identity Provider (IdP).  
+- **Fyno** acts as the Service Provider (SP).  
+
+## Prerequisites
+
+Before starting, ensure the following:
+
+- Admin access to the **AWS Console** with permission to manage IAM Identity Center.  
+- To configure SAML, please reach out to **support@fyno.io**.  
+- Your **Fyno tenant ID** (provided by Fyno).  
+
+## 1. Create a SAML Application in AWS IAM Identity Center
+
+In this step, you will create an application in AWS that represents Fyno.
+
+1. Log in to the **AWS Console**. 
+2. Navigate to **IAM Identity Center**. 
+3. Open **Applications**.  
+4. Click **Add application**.  
+5. Select **Add custom SAML 2.0 application**.  
+6. Enter a name (e.g., *YourOrg - Fyno*).  
+7. Click **Submit**. 
+
+## 2. Configure SAML Settings
+
+This section defines how AWS and Fyno communicate during authentication.
+
+### SAML Configuration Table
+
+| Setting | Description | Notes |
+|--------|------------|------|
+| Application ACS URL | Endpoint where AWS sends SAML responses after authentication. | Obtain from Fyno SAML configuration. Contact support if unsure. <br/>Example: `https://app-api…/saml/acs/fyno`. |
+| Application SAML Audience | Identifies Fyno as the Service Provider. | Static value. Copy from Fyno config or request from support. <br/>Example: `https://app-api…/saml/metadata`. |
+| Name ID Format | Defines how user identity is passed. | Set to **Email Address**. |
+| Application Start URL (Optional) | Landing page after login. | Leave empty |
+| Relay State (Optional) | Pass additional state after authentication. | Leave empty unless required. |
+
+### Assigning Users
+
+| Action | Purpose |
+|-------|--------|
+| Assign users or groups to the SAML application. | Controls who can access Fyno using SSO. |
+
+> **IMPORTANT**: Only assigned users will be able to authenticate.
+
+## 3. Configure Trust Between AWS and Fyno
+
+To establish secure communication:
+
+1. Navigate to:  
+   **IAM Identity Center → Fyno Application → IAM Identity Center metadata**.  
+2. Download the **SAML metadata file**.
+
+### Note the following values:
+
+- **Sign-in URL**  
+- **Issuer URL**  
+- **Signing Certificate**
+
+> To upload the metadata file in Fyno, contact **support@fyno.io**.
+
+Fyno will use this to verify signed SAML assertions.
+
+>  Metadata and sign-in URLs vary depending on your AWS region (e.g., `ap-south-1`, `us-east-1`).
+
+## 4. Configure Attribute Mapping
+
+AWS must send user identity attributes inside the SAML assertion.
+
+Navigate to:  
+**IAM Identity Center → Applications → Fyno → Attribute mappings**.
+
+### Attribute Mapping Table
+
+| User attribute in the application. | Maps to this string value. | Format |
+|---------------------------------|---------------------------|--------|
+| Subject | `${user:subject}` | unspecified |
+| tenantId | `${user:email}` | unspecified |
+
+Fyno identifies users using the **email value** sent in the `tenantId` attribute.
+
+## 5. Verify the Integration
+
+1. Assign a test user in AWS IAM Identity Center.  
+2. Log out of Fyno.  
+3. Open the **AWS Access Portal**.  
+4. Launch the **Fyno application**.  
+5. Confirm redirection to the Fyno dashboard.  
+
+> If access is revoked in AWS, users will automatically lose access to Fyno.
+
+## Notes
+
+- Users must launch Fyno from the **AWS Access Portal** (IdP-initiated login).  
+- SP-initiated login may be enabled depending on configuration.  
+- Do **not** configure Relay State or Start URL unless instructed by Fyno.  
+- Session duration (default **12 hours**) is controlled by AWS IAM Identity Center.  
+- Logging out of Fyno does **not** log out the AWS SSO session.  
+- Metadata and login URLs vary based on region and tenant.  
+
+ 

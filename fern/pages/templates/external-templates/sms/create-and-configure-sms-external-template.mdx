@@ -1,0 +1,110 @@
+---
+title: 'Create and Configure SMS Template'
+slug: 'external-templates/sms/create-and-configure-sms-external-template'
+og:title: 'Create and Configure SMS Template | Fyno Documentation'
+og:description: "Learn how to create and configure sms template with basic required details, mandatory feilds, and content to fill to complate the form and save the template."
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+## Navigation  
+Go to → **Templates → External → SMS → Create**
+![](/images/create-sms-external-template.png)
+
+## Configure Template Content
+
+### Basic Details
+
+| Field | Description |
+|------|------------|
+| **Template Name** | Unique name for internal identification. |
+| **DLT Integration** | DLT account where the template will be registered. |
+| **Category** | Defines the SMS use case (e.g., service, promotional, transactional) as specified on the DLT platform. |
+| **Template Type** | The classification of the template as defined by the DLT provider. |
+
+![](/images/create-your-sms-external-template-service-explicit.png)
+
+## Header
+
+Select a sender header that is already approved in your chosen DLT integration.
+
+## SMS Content
+
+This is the main message body.
+
+You can:
+- Enter plain text
+- Insert variables using ```{variable}```
+
+Templates can now be created and uploaded using **DLT-style variable tags** (e.g., ```{#otp#}, {#alphanumeric#}```).  
+Variable types are preserved and mapped to indexed placeholders.
+
+### Variable Types
+
+![](/images/sms-content-variables.png)
+
+#### Numeric
+Use when the variable should contain only numbers.  
+**Examples:** OTP codes, transaction IDs, numeric amounts  
+- ```{#otp#} or {#numeric#}``` → `458921`
+
+#### Alphanumeric
+Use when the variable contains both letters and numbers.  
+**Examples:** Order IDs, usernames, reference codes  
+- ```{#alphanumeric#}``` → `ORD12345`
+
+#### URL
+Use for regular website links.  
+**Examples:** Product pages, help center links, tracking pages  
+- ```{#url#}``` → `https://example.com`
+
+#### URL OTT (Deep Links)
+Use for OTT or deep links that open apps or trigger app downloads.
+
+**Examples:**
+- `myapp://home` (opens the app directly)  
+- `https://myapp.com/open?screen=home` (deep link to a specific screen)  
+- `https://play.google.com/store/apps/details?id=com.myapp` (app download link)
+
+#### CBN (Callback Number)
+Use to include a support phone number.  
+**Example:**  
+- `For assistance, call us at ```{cbn}```  
+- Sample value: `1800-123-4567`
+
+#### Email
+Use when the variable contains an email address.  
+**Example:**  
+- ```{#email#}``` → `support@example.com`
+
+## SMS Preview
+
+The preview panel shows how the SMS will appear on a mobile device. You can:
+- Validate formatting  
+- Check variable placement  
+- Review message length  
+
+The system automatically calculates:
+- Character count  
+- Number of SMS credits  
+
+## Encoding and Credits
+
+### GSM-7 Encoding
+
+- **1 credit = 160 characters**
+
+| No. of Messages | Text Characters | Unicode Characters |
+|----------------|----------------|-------------------|
+| 1 SMS | 160 | 70 |
+| 2 SMS | 306 | 134 |
+| 3 SMS | 459 | 201 |
+| 4 SMS | 612 | 268 |
+| 5 SMS | 765 | — |
+
+## Unicode Encoding
+
+Unicode is automatically enabled when the message contains non-GSM characters.
+
+### Enable Unicode Message When:
+- Using regional languages.  
+- Variables may contain Unicode text.  

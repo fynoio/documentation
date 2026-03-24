@@ -1,0 +1,111 @@
+---
+title: 'How to Configure Arcon SAML Single Sign-On to Access Fyno'
+slug: 'how-to-configure-arcon-saml-single-sign-on-to-access-fyno'
+og:title: 'How to configure Arcon SAML Single Sign-On | Fyno Documentation'
+og:description: "This document describes how to configure SAML-based Single Sign-On (SSO) between Arcon and Fyno"
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+## Overview
+
+With this example, you’ll learn how to configure **SAML-based Single Sign-On (SSO)** between Arcon and Fyno. Once configured, users can securely access Fyno using their corporate credentials managed in Arcon, eliminating the need for separate usernames and passwords.
+
+In this setup:
+
+- **Arcon** acts as the Identity Provider (IdP).  
+- **Fyno** acts as the Service Provider (SP).  
+
+SAML SSO enables centralized authentication, improved security, and simplified user lifecycle management.
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- Admin access to the **Arcon Admin Console**.
+- The Fyno SAML endpoints (**ACS URL, Audience URL**).
+- The IdP signing certificate from Arcon (**.pfx format with password**).
+
+## Configure a SAML Application in Arcon
+
+In this step, you create and configure a SAML application in Arcon that represents Fyno.
+
+1. Log in to the **Arcon Admin Console**.
+2. Navigate to **Applications** or **SSO Configuration**.
+3. Select **Method of Single Sign-On** as **SAML**.
+4. Choose **Configure SAML** (not *Insert Metadata*).
+
+This opens the SAML configuration screen where Arcon will be set up to communicate with Fyno.
+
+## Configure SAML Endpoint Settings
+
+These settings define where Arcon sends SAML assertions and how Fyno validates them.
+
+### SAML Configuration Fields
+
+| Setting | Value | Description |
+|--------|------|-------------|
+| Application URL / ACS URL | `https://… saml/acs/fyno-esaf` | Endpoint where ARCON sends SAML responses after authentication. |
+| Recipient URL | `https://… saml/acs/fyno-esaf` | Intended recipient of the SAML assertion. |
+| Destination URL | `https://… saml/acs/fyno-esaf` | Destination attribute in the SAML response. |
+| Audience URL | `https://… saml/metadata` | Identifies Fyno as the Service Provider. |
+
+> You can obtain the ACS URL from the SAML/SSO configuration section in the Fyno platform.
+
+> **IMPORTANT**: All three URLs (**ACS, Recipient, Destination**) must match exactly to avoid SAML validation errors.
+
+## Upload the Arcon Signature Certificate
+
+To establish trust between Arcon and Fyno:
+
+1. In **Signature Certificate**, upload the Arcon IdP certificate.  
+2. Format: `.pfx`.  
+3. Enter the **Certificate Password**.  
+4. Confirm the certificate is successfully uploaded.  
+
+Fyno will use this certificate to verify that SAML assertions are signed by Arcon.
+
+## Configure Identity and Username Mapping
+
+These settings determine how user identity is passed from Arcon to Fyno.
+
+| Setting | Value |
+|--------|------|
+| Name ID Format | Email |
+| Application UserName | Email |
+| Update Application UserName | Create & Modify |
+
+This ensures users are identified by their email address.
+
+## Configure Security and Signing Options
+
+These options control how SAML responses are protected.
+
+| Setting | Value |
+|--------|------|
+| Response | Unsigned |
+| Assertion Signature | Signed |
+| Signature Algorithm | RSA-SHA256 |
+| Assertion Encryption | Encrypted (or UnEncrypted, based on Fyno configuration) |
+| Bindings | POST |
+| Enable Single Logout | Disabled |
+
+## Save and Activate the Configuration
+
+1. Save the SAML configuration in Arcon.  
+2. Assign users or groups to the application (if applicable).  
+3. Ensure the application is enabled.  
+
+> Only assigned users will be able to authenticate into Fyno using SSO.
+
+## Verify the Integration
+
+To validate the setup:
+
+1. Log out of Fyno.  
+2. Log in to the Arcon access portal and locate the Fyno application assigned to you.  
+3. Click the Fyno application in Arcon and authenticate using your corporate credentials (if prompted).  
+4. Confirm you are redirected to the Fyno dashboard.  
+
+## Notes
+
+> If a user is removed or access is revoked in Arcon, they will immediately lose access to Fyno.
