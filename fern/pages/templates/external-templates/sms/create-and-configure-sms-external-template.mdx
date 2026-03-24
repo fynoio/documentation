@@ -21,61 +21,6 @@ Go to → **Templates → External → SMS → Create**
 | **Category** | Defines the SMS use case (e.g., service, promotional, transactional) as specified on the DLT platform. |
 | **Template Type** | The classification of the template as defined by the DLT provider. |
 
-![](/images/create-your-sms-external-template-service-explicit.png)
-
-## Header
-
-Select a sender header that is already approved in your chosen DLT integration.
-
-## SMS Content
-
-This is the main message body.
-
-You can:
-- Enter plain text
-- Insert variables using ```{variable}```
-
-Templates can now be created and uploaded using **DLT-style variable tags** (e.g., ```{#otp#}, {#alphanumeric#}```).  
-Variable types are preserved and mapped to indexed placeholders.
-
-### Variable Types
-
-![](/images/sms-content-variables.png)
-
-#### Numeric
-Use when the variable should contain only numbers.  
-**Examples:** OTP codes, transaction IDs, numeric amounts  
-- ```{#otp#} or {#numeric#}``` → `458921`
-
-#### Alphanumeric
-Use when the variable contains both letters and numbers.  
-**Examples:** Order IDs, usernames, reference codes  
-- ```{#alphanumeric#}``` → `ORD12345`
-
-#### URL
-Use for regular website links.  
-**Examples:** Product pages, help center links, tracking pages  
-- ```{#url#}``` → `https://example.com`
-
-#### URL OTT (Deep Links)
-Use for OTT or deep links that open apps or trigger app downloads.
-
-**Examples:**
-- `myapp://home` (opens the app directly)  
-- `https://myapp.com/open?screen=home` (deep link to a specific screen)  
-- `https://play.google.com/store/apps/details?id=com.myapp` (app download link)
-
-#### CBN (Callback Number)
-Use to include a support phone number.  
-**Example:**  
-- `For assistance, call us at ```{cbn}```  
-- Sample value: `1800-123-4567`
-
-#### Email
-Use when the variable contains an email address.  
-**Example:**  
-- ```{#email#}``` → `support@example.com`
-
 ## SMS Preview
 
 The preview panel shows how the SMS will appear on a mobile device. You can:
