@@ -55,6 +55,10 @@ navigation:
                 path: "pages/tutorials/how-to-receive-delivery-reports.mdx"
               - page: "How to configure Okta SAML Single Sign-On"
                 path: "pages/tutorials/how-to-configure-okta-saml-single-sign-on-to-access-fyno.mdx"
+              - page: "How to configure Arcon SAML Single Sign-On"
+                path: "pages/tutorials/how-to-configure-arcon-saml-single-sign-on-to-access-fyno.mdx"
+              - page: "How to Configure AWS - SAML Single Sign-On to Access Fyno"
+                path: "pages/tutorials/how-to-configure-aws-iam-identity-center-saml-single-sign-on-to-access-fyno.mdx"
           - page: "Dashboard"
             path: "pages/dashboard/dashboard.mdx"
             icon: fa-regular fa-chart-simple
@@ -338,10 +342,17 @@ navigation:
                         path: "pages/templates/external-templates/whatsapp/save-as-draft-vs-send-for-approval.mdx"
                       - page: "Sync / Re-sync Templates"
                         path: "pages/templates/external-templates/whatsapp/sync-resync-whatsapp-template.mdx"  
-                  - page: "SMS Sync / Re-sync templates"
-                    path: "pages/templates/external-templates/sms/sync.mdx"
-                  - page: "Create a SMS template from Fyno"
-                    path: "pages/templates/external-templates/sms/create.mdx"
+                  - section: "SMS Templates"
+                    path: "pages/templates/external-templates/sms/create-sms-external-template.mdx"
+                    contents:
+                    - page: "Template Types"
+                      path: "pages/templates/external-templates/sms/sms-template-type.mdx"
+                    - page: "Create and Configure SMS Template"
+                      path: "pages/templates/external-templates/sms/create-and-configure-sms-external-template.mdx"
+                    - page: "SMS - Save / Send for Approval"
+                      path: "pages/templates/external-templates/sms/save-as-draft-vs-send-for-approval-for-sms.mdx"
+                    - page: "SMS - Sync / Re-sync Templates"
+                      path: "pages/templates/external-templates/sms/sync-resync-templates.mdx"
               - page: "Reusable Components"
                 path: "pages/templates/components.mdx"
               - page: "Maker Checker Approval"
@@ -798,63 +809,48 @@ redirects:
   - source: "/docs/release-notes/2026/3/2"
     destination: "/docs/release-notes#2614"
     permanent: true
-
   - source: "/docs/release-notes/2026/2/16"
     destination: "/docs/release-notes#2613"
     permanent: true
-
   - source: "/docs/release-notes/2026/2/2"
     destination: "/docs/release-notes#2612"
     permanent: true
-
   - source: "/docs/release-notes/2026/1/19"
     destination: "/docs/release-notes#2611"
     permanent: true
-
   - source: "/docs/release-notes/2026/1/5"
     destination: "/docs/release-notes#2547"
     permanent: true
-
   - source: "/docs/release-notes/2025/12/22"
     destination: "/docs/release-notes#2546"
     permanent: true
-
   - source: "/docs/release-notes/2025/12/9"
     destination: "/docs/release-notes#2545"
     permanent: true
-
   - source: "/docs/release-notes/2025/11/23"
     destination: "/docs/release-notes#2544"
     permanent: true
-
   - source: "/docs/release-notes/2025/11/10"
     destination: "/docs/release-notes#2543"
     permanent: true
-
   - source: "/docs/release-notes/2025/10/23"
     destination: "/docs/release-notes#2542"
     permanent: true
-
   - source: "/docs/release-notes/2025/10/13"
     destination: "/docs/release-notes#2541"
     permanent: true
-
   - source: "/docs/release-notes/2025/9/29"
     destination: "/docs/release-notes#2538"
     permanent: true
-
   - source: "/docs/release-notes/2025/9/15"
     destination: "/docs/release-notes#2537"
     permanent: true
-
   - source: "/docs/release-notes/2025/9/1"
     destination: "/docs/release-notes#2536"
     permanent: true
-
   - source: "/docs/release-notes/2025/8/18"
     destination: "/docs/release-notes#2535"
     permanent: true
-
   - source: "/docs/release-notes/2025/8/3"
     destination: "/docs/release-notes#2534"
     permanent: true

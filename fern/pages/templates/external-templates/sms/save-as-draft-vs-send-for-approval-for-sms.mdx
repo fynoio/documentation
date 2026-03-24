@@ -1,0 +1,42 @@
+---
+title: 'SMS - Save as Draft vs Send for Approval'
+slug: 'external-templates/sms/save-or-send-for-approval-for-sms'
+og:title: 'SMS - Save as Draft vs Send for Approval - External Templates | Fyno Documentation'
+og:description: 'When creating an sms template, you can either save it as a draft or submit it to Meta for review.  
+These two actions define the template lifecycle.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+## Save as Draft
+- Stores the template only in Fyno.
+- Fully editable.
+- Not sent to DLT.
+- Cannot be used for messaging.
+- Use this when the content is still under review.
+
+## Submit for Approval (Send to Provider)
+- Submits the template to the selected DLT integration.
+- Locks the template for editing during review.
+- Approval status is updated after sync.
+- Once approved, the template becomes available for sending SMS.
+
+## Template List Overview
+
+Each template in the list displays:
+
+| Field           | Description                                                  |
+|----------------|--------------------------------------------------------------|
+| Template Name  | Name of the DLT template.                                    |
+| Status         | Current approval state.                                      |
+| Last Synced    | Last time the status was fetched.                            |
+| DLT Provider   | Connected DLT integration.                                   |
+| Type           | Transactional, Service Implicit, Service Explicit, or Promotional. |
+
+## Template Statuses
+
+| Status                      | Description                                                                 |
+|---------------------------|-----------------------------------------------------------------------------|
+| Draft (Saved as Draft)    | Created in Fyno but not submitted to DLT and not usable.                   |
+| Pending                   | Submitted to DLT and waiting for approval.                                 |
+| Approved                  | Verified and approved by DLT and ready to use for sending messages.        |
+| Rejected                  | Not approved by DLT.                                                       |

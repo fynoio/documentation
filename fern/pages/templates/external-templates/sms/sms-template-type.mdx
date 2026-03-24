@@ -1,0 +1,104 @@
+---
+title: 'SMS Template Types'
+slug: 'external-templates/sms/template-type'
+og:title: 'SMS templates types | Fyno Documentation'
+og:description: "Learn about SMS template types such as Transactional, Service Implicit, Service Explicit, and Promotional, including examples and DLT-compliant formats."
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+## Transactional
+
+Transactional templates are used for sending critical, system-generated messages that are essential for completing a user action or ensuring account security. These communications are not promotional and are triggered in real time by a specific event in the system.
+
+Typical use cases include:
+- One-time passwords (OTPs) for authentication.  
+- Banking and payment alerts.  
+- Security notifications such as password changes or login attempts.  
+
+These messages have the highest delivery priority because they are time-sensitive and directly impact the user’s ability to access or protect their account. They are delivered even to numbers registered under Do Not Disturb (DND), as they fall under essential service communication.
+
+### Examples
+- OTP message required for completing a Net-banking transaction.  
+- OTP message required for completing credit/debit card transaction at a merchant location.  
+
+### Message Format
+
+| Actual Message | Required Template Format (DLT) |
+|---------------|-------------------------------|
+| 012345 is your OTP for fund transfer for amount Rs.5,000 to Rahul. OTP is valid for 1 minute. Do not share this OTP with anyone. | \{#var#} is your OTP for fund transfer for amount \{#var#} to \{#var#}. OTP is valid for \{#var#} minute(s). Do not share this OTP with anyone. |
+
+
+## Service Implicit
+
+Service Implicit templates are meant for service-related notifications that are sent as a direct result of an action performed by the user. These messages are not promotional; instead, they provide important updates that the user is already expecting.
+
+Their purpose is to keep the user informed about the status or progress of a service they have already engaged with.
+
+### Examples
+
+- Confirmation messages for Net-banking and credit/debit card transactions.  
+- Product purchase confirmation and delivery updates from e-commerce websites.  
+- OTPs for app logins, authentication, verification, KYC, etc.  
+- Telecom/ISP service messages.  
+- Billing updates, recharge confirmations, due date reminders.  
+- Delivery notifications and service updates.  
+- Messages from retail stores related to bill and warranty.  
+- Messages from schools (attendance and transport alerts).  
+- Messages from hospitals, clinics, pharmacies, radiologists, and pathologists about registration, appointments, discharge, and reports.  
+- Confirmatory messages from app-based services.  
+- Government/DOT/TRAI mandated messages.  
+- Service updates from car workshops, repair shops, and gadget service centers.  
+- Directory services like Justdial and yellow pages.  
+- Day-end/month-end settlement alerts to securities/account holders.  
+
+### Message Format
+
+| Actual Message | Required Template Format (DLT) |
+|---------------|-------------------------------|
+| Thank you for using EMI Facility on your HDFC Bank Credit Card ending with 3495. EMI request for Rs. 100000.00 executed on 20/06/2024. | Thank you for using EMI Facility on your HDFC Bank Credit Card ending with \{#var#}. EMI request for \{#var#} executed on \{#var#}. |
+
+
+## Service Explicit
+
+Service Explicit templates are used for sending engagement or promotional messages to users who have consciously opted in to receive such communication.
+
+Unlike service implicit messages, these are not triggered by a specific transaction but are still sent to users who have provided clear consent.
+
+### Typical Use Cases
+
+- Special offers for subscribed customers.  
+- Promotional renewal reminders.  
+- Feature or product announcements.  
+- Re-engagement campaigns.  
+
+### Examples
+
+- Messages to existing customers recommending or promoting other products or services.  
+- Re-engagement messages like:  
+  _“It’s been 30 days since you last visited our platform. Visit now and explore our new products.”_  
+
+### Message Format
+
+| Actual Message | Required Template Format (DLT) |
+|---------------|-------------------------------|
+| Your Rs.1000 exclusive coupon is UNUSED!! Redeem it on purchase of Rs.2,000 and above at SuperDry. Use code XYZABC Valid till 31st Jul 2024! T&C. | Your Rs.\{#var#} exclusive coupon is UNUSED!! Redeem it on purchase of Rs.\{#var#} and above at SuperDry. Use code \{#var#} Valid till \{#var#}! T&C. |
+
+
+## Promotional
+
+Promotional templates are designed for large-scale marketing campaigns where the primary objective is to promote a product, service, or offer.
+
+These messages are not tied to any specific user action or prior transaction and are generally sent in bulk to a wide audience.
+
+### Examples
+
+- Offer messages to new users:  
+  _“Shop for 3999 and get 10% off on our App. Limited time offer. T&C. Download the App now.”_  
+- Pack upgrade messages to existing customers:  
+  _“Upgrade to our pro plan. Get a credit limit of 1k and pay once in 30 days. Click here.”_  
+
+### Message Format
+
+| Actual Message | Required Template Format (DLT) |
+|---------------|-------------------------------|
+| Explore our latest Winter Collection Launch. Exclusive 10% discount for you. Valid till 10/07/2024. Use Coupon - XYZABC. | Explore our latest Winter Collection Launch. Exclusive \{#var#} discount for you. Valid till \{#var#}. Use Coupon - \{#var#}. |
