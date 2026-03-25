@@ -37,6 +37,7 @@ Variables can represent different types of values, such as:
 All variable fields used in an SMS template must be pre-tagged with a defined data type and purpose. Only the data permitted by the respective tag can be populated at runtime.
 
 Approved Variable Tags:
+
 ```
 - {#numeric#} – OTPs, amounts, numbers.
 - {#alphanumeric#} – Reference IDs, ticket numbers.
@@ -47,11 +48,10 @@ Approved Variable Tags:
 ```
 
 All existing templates must be reviewed and updated to comply with these mandatory variable tagging norms.
-
 > **Examples**
-> OTP (Numeric Variable): Your OTP is {{OTP}}. Do not share it with anyone. (Example value: 483921).
-> Numeric Value (Transaction/Amount): Your payment of ₹{{amount}} has been successfully processed. (Example value: 1500).
-> Alphanumeric Value (Order ID / Reference ID): Your order {{order_id}} has been shipped and will arrive soon. (Example value: ORD12345XYZ).
+> OTP (Numeric Variable): Your OTP is ```{#var#}```. Do not share it with anyone. (Example value: 483921).
+> Numeric Value (Transaction/Amount): Your payment of ₹```{#var#}``` has been successfully processed. (Example value: 1500).
+> Alphanumeric Value (Order ID / Reference ID): Your order ```{#var#}``` has been shipped and will arrive soon. (Example value: ORD12345XYZ).
 
 All the SMS providers are listed here:
 <CardGroup cols={3}>
