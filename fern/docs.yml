@@ -194,6 +194,8 @@ navigation:
                 contents:
                   - page: "Gmail"
                     path: "pages/integrations/email/gmail.mdx"
+                  - page: "Karix"
+                    path: "pages/integrations/email/karix.mdx"
                   - page: "Mailchimp (Mandrill)"
                     path: "pages/integrations/email/mailchimp.mdx"
                   - page: "Mailgun"
@@ -900,37 +902,4 @@ redirects:
     permanent: true
   - source: "/docs/release-notes/2025/3/3"
     destination: "/docs/release-notes#2514"
-    permanent: true
-  - source: "/docs/event-analytics" 
-    destination: "/docs/notification-event-analytics"
-    permanent: true
-  - source: "/docs/release-notes/2025/:slug*"
-    destination: "/docs/release-notes/"
-    permanent: true
-  - source: "/docs/automation-creation"
-    destination: "/docs/workflows"
-    permanent: true
-
-  - source: "/docs/event-analytics"
-    destination: "/docs/notification-event-analytics"
-    permanent: true
-
-  - source: "/docs/event-creation"
-    destination: "/docs/notification-event-creation"
-    permanent: true
-
-  - source: "/docs/event-triggering"
-    destination: "/docs/notification-event-triggering"
-    permanent: true
-
-  - source: "/docs/fyno-verify"
-    destination: "/docs/fyno-verify-otp-link"
-    permanent: true
-
-  - source: "/docs/log-details"
-    destination: "/docs/logs-overview"
-    permanent: true
-
-  - source: "/docs/release-notes/2025/2/api-reference/unset-user-property"
-    destination: "/docs/api-reference/unset-user-property"
     permanent: true

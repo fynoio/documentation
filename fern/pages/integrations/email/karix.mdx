@@ -1,0 +1,62 @@
+---
+title: 'Karix'
+slug: 'email-karix'
+og:title: 'How to send Email notification using Karix & Fyno | Fyno Documentation'
+og:description: 'A guide to integrate your Karix Email account into Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Before integrating Karix Email with Fyno, ensure you have an active Karix account with SMTP credentials enabled.
+
+<Steps>
+### Find the Provider
+Navigate to the Integrations page. Under the "Email" section, click on the "Karix (Email)" button.
+
+### Configure the Integration
+
+In the setup panel, fill in:
+
+- **Custom Name:** Provide a recognizable name for this account.  
+  _Example: Karix - Production_
+
+- **SMTP User:** Enter your Karix SMTP username. You can obtain it from the Karix support team.
+
+- **Password:** Enter the SMTP password associated with the above user.
+
+- **From Name:** This is the sender name visible to recipients.  
+  _Example: Fyno Support_
+
+- **From Email:** Enter the email address used to send emails.  
+  **Note:** This must be a verified email/domain in Karix.  
+  _Example: support@fyno.io_
+
+- **Content Type:** Defines the email format:  
+  • `text/html` → Recommended (supports rich email templates)  
+  • `text/plain` → Plain text emails only  
+
+- **Reply To:** Specify the email address where replies should be sent.
+
+- **Delivery Callback URL:** Fyno provides a callback URL like:  
+  https://callback.fyno.io/karixemail  
+  This must be configured in Karix to receive delivery updates.
+
+### Complete the Integration
+Click on "Add Account" once done and your Karix Email account will be connected to Fyno.
+
+### Enable Delivery Tracking
+To receive delivery reports from Karix, you need to enable and configure a callback (webhook) URL on your account.
+
+### Configure Callback in Karix
+1. Log in to your Karix dashboard  
+2. Navigate to **Settings → Webhooks / Callback Configuration**  
+3. Enter Fyno’s Callback URL and save: https://callback.fyno.io/karixemail  
+
+</Steps>
+
+<Info>Karix requires manual configuration of the callback URL to enable delivery tracking. Without this step, delivery status will not be available in Fyno.</Info>
+
+## Message Delivery Status
+
+Fyno can track email delivery statuses only after the callback URL is configured in Karix.
+
+To receive delivery reports, ensure the Fyno Callback Endpoint is correctly set in your Karix account.
