@@ -1,41 +1,50 @@
 ## 26.1.5
 
-**Release Date:** 16-Mar-2026
+**Release Date:** 13-Mar-2026
 
-### 🔹 New Feature
+## 🔹 New Feature
 
-- **Email Template Upload via ZIP**
-  - Users can now upload a `.zip` file containing an HTML email template and its local image assets directly in the HTML Editor.  
-  - The system automatically extracts files, uploads the assets, replaces local paths with hosted URLs, and populates the updated HTML in the editor.  
-  - **Impact:** Reduces a manual 20–30 minute setup process to just seconds.
+- **Email Template Upload via ZIP**:
+  - Users can now upload a .zip file containing an HTML email template and its local image assets directly in the HTML Editor.
+  - The system automatically extracts files, uploads the assets, replaces local paths with hosted URLs, and populates the updated HTML in the editor.
+    Impact: Reduces a manual 20–30 minute setup process to just seconds.
 
-### ⚡ Feature Enhancements
+## ⚡ Feature Enhancements
 
-- **TOTP**
-  - **TOTP Verification Logs:** Users can now view detailed log entries including request traces, summary information, and response payloads for each verification event.  
-    **Impact:** Makes it easier to troubleshoot OTP failures, monitor verification activity, and debug issues directly from the logs interface.
+### TOTP
 
-- **WhatsApp**
-  - **WhatsApp Media File Size Validation (Meta Limits):** Updated template handling to support Meta’s latest WhatsApp media file size limits. Validation is now automatic when media is provided via URL.  
-  - **Improved WhatsApp Flow Workflows:** Removed the form-based UI and enabled workflows to be built using standard widgets such as HTTP, Condition, and User Profile.  
-    **Impact:** Aligns WhatsApp Flow workflows with other workflow types, reduces complexity, and ensures correct data mapping from Flow responses.
-  - **WhatsApp Named Variables Support in Synced Templates:** Added support for named parameters in WhatsApp synced templates, resolving previous template creation failures due to unsupported variable formats.
-  - **Simplified Marketing Template Creation:** Removed the “Custom” and “Product Messages” options under marketing template types to streamline the creation flow.
-  - **WhatsApp External Template Versioning:** Introduced version visibility and sync controls for external (synced) templates. Users are advised to create new templates instead of editing existing ones, receive notifications for updates, and can refresh synced templates directly. Draft and Last Synced details are now displayed.
+- **TOTP Verification Logs**: Users can now view detailed log entries including request traces, summary information, and response payloads for each verification event.
+  **Impact**: Makes it easier to troubleshoot OTP failures, monitor verification activity, and debug issues directly from the logs interface.
 
-- **Integration and Compatibility**
-  - **Callback Payload Structure Visibility:** Added UI support under the Integrations page to display the callback (DLR) payload structure for providers requiring configuration on the provider portal. The displayed payload is an FYI to help avoid mismatches.
-  - **Workflow Widget Compatibility:** Updated the workflow builder to prevent unsupported configurations where Digest and Delay widgets are used together in webhook-triggered workflows.
-  - **Configurable Dynamic Email Attachment Limits:** Default limit of 25 attachments introduced. Workspaces supporting more attachments can configure a higher limit during template creation (e.g., 25–100).
-  - **Improved Text Field Scroll Alignment:** Scrollbar in body content input fields now aligns with the edge of the input field. Character count moved below the input field when alignment is not feasible.
-  - **Campaign Custom Fields for Reporting:** Users can now configure and save campaign custom fields without requiring a callback URL. Fields appear in downloadable campaign reports, with the primary identifier required only when callbacks are enabled.
+### WhatsApp
 
-### 🛠 Bug Fixes
+- **WhatsApp Media File Size Validation (Meta Limits)**: Updated template handling to support Meta’s latest WhatsApp media file size limits. Validation is now automatic when media is provided via URL.
+- **Improved WhatsApp Flow Workflows**: Removed the form-based UI and enabled workflows to be built using standard widgets such as HTTP, Condition, and User Profile.
+  **Impact: Aligns WhatsApp Flow workflows with other workflow types, reduces complexity, and ensures correct data mapping from Flow responses.
+- **WhatsApp Named Variables Support in Synced Templates***: Added support for named parameters in WhatsApp synced templates, resolving previous template creation failures due to unsupported variable formats.
+- **Simplified Marketing Template Creation: Removed the “Custom” and “Product Messages” options under marketing template types to streamline the creation flow.
+WhatsApp External Template Versioning: Introduced version visibility and sync controls for external (synced) templates. Users are advised to create new templates instead of editing existing ones, receive notifications for updates, and can refresh synced templates directly. Draft and Last Synced details are now displayed.
 
-- **JSON Flatten/Unflatten Handling:** Enhanced support for complex placeholders (JSON with arrays) in Templates and Components. Users can use either JSON or Form options to define placeholders, avoiding ambiguity and errors.
-- **Workflow Notification Additional Data Not Saving:** Fixed an issue where additional key-value data in Notification Event nodes was not saved, causing placeholder values to be missing. Configured data is now properly stored and included.
-- **Duplicate Country Code in Phone Numbers:** Fixed extra “91” country code issue in user profiles. Phone numbers now display correct country codes without duplication.
-- **Date Filter Reset on Workspace Switch:** Fixed logs page date filter inconsistency when switching workspaces with different data retention periods. Original selection is now retained.
-- **DLT Template Header Not Showing in Preview:** Fixed issue where templates with a single header option did not display correctly in phone preview.
-- **DLT Template Import Handling:** Improved upload flow to handle multiple DLT templates sharing the same name.
-- **Workflow Event Node Crash:** Fixed sporadic crashes in the Workflow Builder when using Notification Event nodes.
+### Integration and Compatibility
+
+- **Callback Payload Structure Visibility**: Added UI support under the Integrations page to display the callback (DLR) payload structure for providers requiring configuration on the provider portal. The displayed payload is an FYI to help avoid mismatches.
+- **Workflow Widget Compatibility**: Updated the workflow builder to prevent unsupported configurations where Digest and Delay widgets are used together in webhook-triggered workflows.
+- **Configurable Dynamic Email Attachment Limits**: Default limit of 25 attachments introduced. Workspaces supporting more attachments can configure a higher limit during template creation (e.g., 25–100).
+- **Improved Text Field Scroll Alignment**: Scrollbar in body content input fields now aligns with the edge of the input field. Character count moved below the input field when alignment is not feasible.
+- **Campaign Custom Fields for Reporting**: Users can now configure and save campaign custom fields without requiring a callback URL. Fields appear in downloadable campaign reports, with the primary identifier required only when callbacks are enabled.
+
+## 🛠 Bug Fixes
+
+- **JSON Flatten/Unflatten Handling**: Enhanced support for complex placeholders (JSON with arrays) in Templates and Components. Users can use either JSON or Form options to define placeholders, avoiding ambiguity and errors.
+
+- **Workflow Notification Additional Data Not Saving**: Fixed an issue where additional key-value data in Notification Event nodes was not saved. Configured data is now properly stored and included.
+
+- **Duplicate Country Code in Phone Numbers**: Fixed extra “91” country code issue in user profiles. Phone numbers now display correct country codes without duplication.
+
+- **Date Filter Reset on Workspace Switch**: Fixed logs page date filter inconsistency when switching workspaces with different data retention periods. Original selection is now retained.
+
+- **DLT Template Header Not Showing in Preview**: Fixed issue where templates with a single header option did not display correctly in phone preview.
+
+- **DLT Template Import Handling**: Improved upload flow to handle multiple DLT templates sharing the same name.
+
+- **Workflow Event Node Crash**: Fixed sporadic crashes in the Workflow Builder when using Notification Event nodes.
