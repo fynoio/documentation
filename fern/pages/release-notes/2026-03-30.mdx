@@ -1,0 +1,106 @@
+# 26.1.6
+
+**Release Date:** 30-Mar-2026
+
+## ⚡ Feature Enhancements
+
+- **Enhanced Accessibility for Actions and Key Columns**:
+  - We’ve addressed issues caused by horizontal scrolling that made it difficult to access important actions and menus across the platform.
+
+- **Pinned Elements for Better Usability**:
+  - Key columns and actions are now pinned in place, so they remain visible while scrolling horizontally.
+  - **Updated Sections**:
+    - Templates
+    - Components
+    - External Templates
+    - Routes Listing
+    - Events
+    - Workflows
+    - Campaigns
+    - User Profiles
+    - User Lists (Subscription Topics & Global Opt-outs)
+    - Cohort List
+    - Team
+    - API Keys
+    - Allowlist
+
+- **Enhanced Email and Component Preview Experience**:
+
+  - **Dark and Light Mode in Preview**:
+    - Added support for dark and light modes in the preview experience, enabling better visualization across themes.
+    - This enhancement is available for email and component previews, and is also extended to email previews for consistency across those views.
+
+  - **Improved Editor Styling**:
+    - Introduced a background for the Stripo editor, improving visual clarity and overall editing experience.
+
+- **Improved Tooltip for “Invite Team Member” Button**:
+  - The tooltip on the Invite Team Member button now dynamically reflects the correct reason when the button is disabled.
+  - **Scenarios when**:
+    - Plan Limit Reached – Shows a message indicating the workspace has reached its maximum team members.
+    - Insufficient Permissions – Shows the message related to user role restrictions.
+
+- **Scroll Indicator Added**:
+  - Added a scroll icon to the properties list on the User Profiles page.
+  - The icon makes it clear that the list is scrollable, improving discoverability and usability.
+
+- **Custom Fields for Reporting Without Callbacks (available in both, Fyno Cloud and Fyno Connect)**:
+  - Users can now configure and save campaign custom fields without needing to provide a callback URL.
+  - Custom fields are now fully usable for reporting and internal tracking, even when callbacks are not enabled.
+
+- **Body Content Scroll Alignment**:
+  - Fixed the scroll position in body content input fields so that the scrollbar appears at the right edge of the input box, improving alignment and usability.
+  - If the character count component prevents proper scroll placement, the character count has been moved below the input box.
+  - This update has been applied consistently to all body content input fields across the platform.
+
+## 🛠 Bug Fixes
+
+- **Improved Template Grouping and Category Selection Logic**:
+  - We’ve refined how external WhatsApp (WA) templates are managed to better handle multi-language scenarios:
+
+  - **Template Grouping**:
+    - Templates are still grouped by name.
+    - Previously, templates with the same name but different languages and categories were grouped together without distinction. This behavior remains, but category handling has been improved.
+
+  - **Smart Category Selection**:
+    - If all existing language variants under a template name share the same category, that category will now be auto-selected by default when adding a new language.
+
+  - **Category Conflict Handling**:
+    - If language variants under the same template name have different categories, the system will now prompt the user with a category selection pop-up each time a new language is added.
+
+- **Cohort Listing Fixes**:
+  - Removed Invalid Column: The “Version” column has been removed from the Cohort listing in list layout, as it was not applicable.
+  - Improved Responsiveness: Fixed an issue where the “Layout Change” button would disappear on smaller screens. The button is now consistently accessible across all screen sizes.
+
+- **Run Test Button State for Templates**:
+  - Fixed an issue where the “Run Test” button remained disabled even when there were no pending changes.
+  - The button now correctly reflects the current state and is enabled when applicable.
+
+- **Improved Validation for Custom Name Field**:
+  - We’ve improved form validation when creating integrations.
+
+  - **Real-time Input Validation**:
+    - Users now get immediate feedback when entering invalid or incomplete values in any field.
+    - Helps catch errors early, reducing failed submissions.
+
+  - **Scoped Validation Logic**:
+    - Validation is applied only to relevant integration types, ensuring flexibility where validation is not applicable.
+
+  - **Better Form Experience**:
+    - Prevents unnecessary trial-and-error by surfacing issues before submission.
+    - Makes the configuration process smoother and more intuitive.
+
+- **Allowlist Endpoint Selection for Campaigns**:
+  - Fixed an issue where the “Send data to my allowlisted endpoint(s)” option was automatically enabled on save, even when users had explicitly turned it off.
+  - The checkbox state is now accurately preserved based on the user’s selection.
+
+- **Marketing Opt-Out Button Visibility**:
+  - Fixed an issue where the Marketing Opt-Out CTA was not visible in the dropdown when editing existing WhatsApp templates.
+  - The CTA is now consistently available both when creating and editing templates, ensuring users can manage opt-out options at any time.
+
+- **Resolved Report Download Issue**:
+  - Fixed a bug where inbound logs report downloads were producing empty CSV files.
+
+- **Prevent Unintended Updates for Duplicate Template Names**:
+  - Fixed an issue where uploading a DLT template with a name that already exists would update the wrong template if two templates share the same name.
+  - The system now correctly allows insertion of multiple templates with the same name without overwriting existing ones.
+  - Ensures that template uniqueness in Fyno does not conflict with DLT requirements, preventing data loss or unintended updates.
