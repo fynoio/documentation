@@ -1,0 +1,81 @@
+---
+title: 'Whatsapp Sinch Integration'
+slug: 'whatsapp-sinch'
+og:title: 'How to send WhatsApp channel notification using Sinch & Fyno | Fyno Documentation'
+og:description: 'A guide to integrate your Sinch WhatsApp account into Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Before getting started, ensure you have an active WhatsApp number and access to credentials from Sinch. You will also need approved WhatsApp templates under your Meta WhatsApp Business Account (WABA).
+
+> **Note:** All required credentials (Username, Password, API Token, WABA details) will be provided by the Sinch team upon request.
+
+<Steps>
+
+### Find the Provider
+
+Navigate to the **Integrations** page.
+Under the **WhatsApp** section, click on the **Sinch (WhatsApp)** provider.
+
+### Configure the Integration
+
+In the pop-up that appears, fill in the following details:
+
+- **Custom Name**
+Provide a name that helps you identify the configured account in Fyno.
+*Example:* `Sinch-WhatsApp-Prod`
+
+- **API Type**
+Select one of the following:
+- **OAuth** (recommended for production)
+- **Legacy** (not recommended for production; intended only for testing APIs)
+
+- **Username & Password**
+Required when **API Type = OAuth**.
+Provided by the Sinch team and used for secure authentication.
+
+- **API Token**
+Required when **API Type = Legacy**.
+Provided by the Sinch team and used for authentication in legacy integrations.
+
+- **WABA / Template Namespace**
+Required to fetch external templates.
+Provided by Sinch / Meta.
+Ensures templates are available for sending WhatsApp messages.
+
+- **Delivery Callback URL**
+Copy the following URL and configure it in your Sinch dashboard to receive delivery reports:
+`https://callback.fyno.io/sinch`
+
+### Update Account and Run Test
+
+- **Update Account:** You can edit and update your details here.
+> *Note:* Fields that are greyed out cannot be modified.
+
+- **Run Test:** Use this option to test the integration and verify that the saved configuration is correct.
+
+### Complete the Integration
+
+Click on **Add Account** once all required fields are filled.
+
+</Steps>
+
+### Message Delivery Status
+
+To enable delivery tracking:
+
+- Configure the callback URL in your Sinch account.
+- Ensure delivery/reporting webhooks are enabled.
+
+Once set up:
+
+- Message status updates (**sent, delivered, failed, read**) will be available in Fyno.
+- You can view them under the **Delivery** tab in logs.
+
+### Important Notes
+
+- **OAuth** is strongly recommended for production use.
+- **Legacy API** is only for testing purposes.
+- **WABA details** are mandatory for template syncing.
+- Templates must be approved in Meta before use.
+- All integration credentials must be requested from the Sinch team. 
