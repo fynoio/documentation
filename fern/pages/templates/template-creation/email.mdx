@@ -130,7 +130,39 @@ You can also add a Unsubscribe link in the footer by following these steps.
    ![](/images/40de23c-unsub_response.png)</Step>
 </Steps>
 
-# How to view change logs?
+## Uploading Email HTML Templates
+
+You can upload custom email templates using a `.zip` file. This method allows you to include your HTML file along with all required assets (such as images).
+
+### What to Include in the ZIP File
+
+Your `.zip` file must contain:
+
+- One HTML file (this will be used as the email template).
+- All static assets referenced in the HTML (e.g., images, CSS files).
+
+**Example:**: If your HTML contains: [here] (https://example.com/images/my_image.jpg)
+
+Make sure `my_image.jpg` is also included inside the `.zip` file.
+
+> **Important Guidelines**
+> - Ensure all asset references in the HTML are correctly linked to files inside the `.zip`.
+> - Keep the structure simple to avoid broken references.
+
+### Error Scenarios
+
+The upload will fail if:
+
+- The `.zip` file does not contain an HTML file.
+- The `.zip` file contains more than one HTML file.
+
+### Warning Scenario
+
+- If any image or asset is missing:
+  - You will see a warning message.
+  - You will be prompted to re-upload a corrected `.zip` file with all required assets included.
+
+## How to view change logs?
 
 To view the history of all the modifications made to a template, you can utilize the change logs feature.
 
@@ -143,7 +175,7 @@ It shows the following details
 - At what date & time its updated.
   ![](/images/email_template_changelog.png)
 
-# How to raise Approval requests
+## How to raise Approval requests
 
 If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
 
