@@ -64,10 +64,23 @@ The first Delivery Endpoint you create will be considered as 'Default' and you w
 If you didn't any parameters in the payload, Fyno will send the below default parameters. 
 
 > **IMPORTANT NOTE**:
+> Custom fields (custom_id, custom1, and custom2) can now be used independently of delivery webhooks (Allowlist URLs).
 
-> - You can now use custom_id, custom1, and custom2 without linking them to an allow-listed URL in Fyno Connect.
-> - These fields are available in a separate section, so you can configure them easily for reporting.
-> - The values you set for these fields will appear in campaign-related reports available on Fyno (app.fyno.io) when downloaded.
+> What changed:
+
+> Earlier, custom fields were only available when configuring delivery reports, which made it mandatory to set up an Allowlist URL.
+> Now, custom fields are available in a separate section in the UI and can be configured without enabling delivery callbacks.
+> What this means:
+> - You can use custom_id, custom1, and custom2 even if you are not using delivery webhooks.
+> - Allowlist configuration is no longer required to use these fields.
+> - These fields will still be captured and made available in campaign reports and analytics downloads.
+> Supported fields for reporting:
+> - custom_id: Supported
+> - custom1: Supported
+> - custom2: Supported
+> - custom3: Not supported for reporting (only available when configuring delivery callbacks)
+
+Note: Support for custom3 in reporting may be added in future.
 
 ### Default Parameters
 
@@ -245,7 +258,7 @@ More values can be added in the callback. For a list of additional available val
 
 <Steps>
   <Step>To configure callbacks to receive delivery reports, click the Settings icon while configuring notification event within a workflow as shown below. ![](/images/7377b31-workflow_event_settings.png)</Step>
-  <Step>It opens the page as shown below. Select the 'Do you want to receive a delivery report?' checkbox. ![](/images/allowlisted-endpoints.png)</Step>
+  <Step>It opens the page as shown below. Select the 'Do you want to receive a delivery report?' checkbox. ![](/images/create-campaigns-custom.png)</Step>
   <Step>
     This option allows you to receive Delivery reports of each notification triggered in any URL you have allowlisted in Fyno. It can be done in 2 ways.
     <ol>
