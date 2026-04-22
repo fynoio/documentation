@@ -61,13 +61,26 @@ The first Delivery Endpoint you create will be considered as 'Default' and you w
 
 ![](/images/configure-delivery-endpoint.png)
 
-If you didn't any parameters in the payload, Fyno will send the below default parameters. 
+If you didn't include any parameters in the payload, Fyno will send the following default parameters. 
 
 > **IMPORTANT NOTE**:
+> Custom fields (custom_id, custom1, custom2, and custom3) can now be used independently of delivery webhooks (Allowlist URLs).
 
-> - You can now use custom_id, custom1, and custom2 without linking them to an allow-listed URL in Fyno Connect.
-> - These fields are available in a separate section, so you can configure them easily for reporting.
-> - The values you set for these fields will appear in campaign-related reports available on Fyno (app.fyno.io) when downloaded.
+> What changed:
+
+> Earlier, custom fields were only available when configuring delivery reports, which made it mandatory to set up an Allowlist URL.
+> Now, custom fields are available in a separate section in the UI and can be configured without enabling delivery callbacks.
+> What this means:
+> - You can use custom_id, custom1, and custom2 even if you are not using delivery webhooks.
+> - Allowlist configuration is no longer required to use these fields.
+> - These fields will still be captured and made available in campaign reports and analytics downloads.
+> Supported fields for reporting:
+> - custom_id: Supported
+> - custom1: Supported
+> - custom2: Supported
+> - custom3: Not supported for reporting (only available when configuring delivery callbacks)
+
+Note: Support for custom3 in reporting may be added in future.
 
 ### Default Parameters
 
@@ -135,7 +148,7 @@ When you are triggering a notification event using API, you need to pass additio
        "custom_id": "YOUR_CUSTOM_ID_VALUE",
        "custom1":"3d066514-c55d-48f8-b7ff",
        "custom2":"3d066514-c55d-48f8-b7ff-3981a43c20d4",
-       "custom3": ATTEMPT-1",
+       "custom3": "ATTEMPT-1",
        "allowlist_url": ["DynamicWebhookSite", "Mixpanel"],
        "enable":true
     }
@@ -195,7 +208,7 @@ When you are triggering a notification event using API, you need to pass additio
 
 To enable receiving delivery reports from Fyno, select the checkbox 'Receive delivery report from Fyno to my allowlisted endpoint(s)'. This enables the callbacks for the channels and essentially sends back the delivery updates about each notification triggered. On checking this box, 3 additional placeholder details will need to be configured.
 
-![](/images/campaign-delivery-report-endpoint.png)
+![](/images/campaign-delivery-report-endpoint-updated.png)
 
 <ParamField path="Allowlisted Endpoints" type="string" required={false}>
   <ul>
@@ -245,12 +258,13 @@ More values can be added in the callback. For a list of additional available val
 
 <Steps>
   <Step>To configure callbacks to receive delivery reports, click the Settings icon while configuring notification event within a workflow as shown below. ![](/images/7377b31-workflow_event_settings.png)</Step>
-  <Step>It opens the page as shown below. Select the 'Do you want to receive a delivery report?' checkbox. ![](/images/allowlisted-endpoints.png)</Step>
+  <Step>It opens the page as shown below. Select the 'Do you want to receive a delivery report?' checkbox. ![](/images/create-campaigns-custom.png)</Step>
   <Step>
     This option allows you to receive Delivery reports of each notification triggered in any URL you have allowlisted in Fyno. It can be done in 2 ways.
     <ol>
       <li>From Allowlist - Selecting Delivery Report Endpoint(s) from Verified Allowlist URLs (Maximum 3 can be selected).</li>
       <li>Custom - Selecting Delivery Report Endpoint from payload or a simplified custom variable. (Only 1 can be selected).</li>
+      <li>You can also configure custom parameters to be sent along with delivery reports. The supported fields are: custom_id, custom1, custom2, and custom3. These can be passed via the workflow payload or mapped using variables, and will be included in the delivery callback for downstream tracking and reporting.</li>
     </ol>
   </Step>
 </Steps>
@@ -292,13 +306,49 @@ Once the Delivery Endpoint URL(s) is selected, 3 additional placeholder details 
 
 More values can be added in the callback. For a list of additional available values, click [here](./allowlist-url#callback-response).
 
+## Testing Callback Delivery from Playground
+
+First, allowlist your endpoint(s), then configure delivery callbacks. After completing these steps, validate the setup on the `/notification-events/playground/` page.
+
+This helps ensure that:
+- Your endpoint is reachable
+- The payload structure is correct
+- Custom parameters (`custom_id`, `custom1`, `custom2`, etc.) are being sent as expected
+
+### Steps to Test
+
+1. Navigate to a specific notification event, then access the **Notification Events Playground** page from there.
+2. Trigger a test notification event.
+
+### Before sending the test event, ensure that:
+
+- You are working with the intended event (for example, OTP or Marketing) and that the correct version (test or live) is selected
+- The **Receive delivery report from Fyno to my allowlisted endpoint(s)** option is enabled
+
+3. Send the test event.
+
+### What to Verify
+
+- The callback is received at your allowlisted endpoint
+
+### The payload includes:
+
+- Default delivery report fields
+- Any configured custom parameters (`custom_id`, `custom1`, `custom2`, etc.)
+
+### Troubleshooting Tips
+
+**If no callback is received**:
+
+- Verify that the allowlisted endpoint configuration is correct (method, content type, headers, and payload)
+- Check that the payload key mappings are correctly defined so the required data is sent to your endpoint
 
 ## Callback Response
 
 The **Delivery Webhook** will be sent using:
 
 - **Method**: POST | GET
-- **Content-Type** : `application/x-www-form-urlencoded` | `application/json`
+- **Content-Type** : `application/x-www-form-urlencoded` | `application/json` | `multipart/form-data`
 - **Data**: Default Parameters + Additional Parameters
 
 
