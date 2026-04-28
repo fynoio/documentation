@@ -82,6 +82,23 @@ If you didn't include any parameters in the payload, Fyno will send the followin
 
 Note: Support for custom3 in reporting may be added in future.
 
+> **IMPORTANT NOTE**:
+> Custom fields (custom_id, custom1, and custom2) can now be used independently of delivery webhooks (Allowlist URLs).
+> What changed:
+> Earlier, custom fields were only available when configuring delivery reports, which made it mandatory to set up an Allowlist URL.
+> Now, custom fields are available in a separate section in the UI and can be configured without enabling delivery callbacks.
+> What this means:
+> - You can use custom_id, custom1, and custom2 even if you are not using delivery webhooks.
+> - Allowlist configuration is no longer required to use these fields.
+> - These fields will still be captured and made available in campaign reports and analytics downloads.
+> Supported fields for reporting:
+> - custom_id: Supported
+> - custom1: Supported
+> - custom2: Supported
+> - custom3: Not supported for reporting (only available when configuring delivery callbacks)
+
+Note: Support for custom3 in reporting may be added in future.
+
 ### Default Parameters
 
 | Parameter Name | Type & Value                                                                                                                              |
