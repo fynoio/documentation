@@ -1,0 +1,56 @@
+## 26.2.1
+
+**Release Date:** 11-May-2026
+
+### 🚀 New Features
+
+- **Global API Encryption**:
+  - Introduced advanced API encryption capabilities to provide stronger protection for sensitive data shared across integrations and platform communications.
+  - Users can now configure encryption settings for Allowlist endpoints to encrypt selected payload fields and headers before transmission, improving security for request and response handling.
+
+- **Secret Manager Enhancements**:
+  - Enhanced the Secret Manager experience with improved usability and more dependable secret handling.
+  - Users can now manage secrets seamlessly, access saved secret keys directly from dropdown selections, and reuse stored secrets within the Allowlist Encryption configuration.
+
+- **Sub-Workflows, Loops, and Retries Improvements**:
+  - Added sub-workflows, loop handling, and retry behavior to improve workflow stability and execution consistency.
+  - These updates provide a smoother experience when building and managing advanced workflow journeys.
+
+### ⚡ Feature Enhancements
+
+- **DND-Aware Execution Warnings Across Campaigns, Events, and Logs**:
+  - Added clearer visibility when campaign or event executions are delayed due to Do Not Disturb (DND) rules.
+  - Users will now see informative warning messages, pending execution statuses in logs, and better visibility into queued deliveries and expected execution timing.
+
+- **Logs Retention – Message Content Storage Improvements**:
+  - Improved the data retention interface with better organization and clearer visibility for report-related settings.
+  - Managing report extraction actions and retention policies is now more intuitive and streamlined.
+
+- **Workflow Session Timeout Controls for Incoming Messages**:
+  - Added session timeout controls to help workflows respond intelligently when users do not reply within a configured timeframe.
+  - This enables automated follow-ups, reminder handling, and graceful workflow exits based on inactivity.
+
+- **Distinct ID Validation for Subscription-Based Events**:
+  - Added enhanced validations and guidance for subscription-based events and campaigns to ensure recipient identification details are configured correctly before execution.
+  - This helps reduce setup errors and improves campaign reliability.
+
+- **Improved Unsubscribe Handling for Email Communications**:
+  - Enhanced unsubscribe handling for email communications to ensure recipients consistently receive valid unsubscribe options, even when recipient information is limited.
+
+- **Consistent Delivery Status Across WhatsApp Event Logs**:
+  - Standardized delivery state mapping across WhatsApp event log summary cards and detailed views.
+  - Delivery statuses now display consistently across both views, including for marketing messages sent after the conversation window is opened.
+
+### 🛠 Bug Fixes
+
+- **Dashboard Event Delivery Chart for Deleted Events**:
+  - Fixed an issue where deleted or outdated events could continue appearing incorrectly in dashboard delivery charts.
+  - This update also prevents navigation to inactive event details, improving reporting accuracy and reducing confusion.
+
+- **Workflow Validation Improvements for Reply Handling**:
+  - Fixed workflow validation behavior to automatically remove unused reply-related paths when reply timeout actions are disabled.
+  - This keeps workflows cleaner, visually accurate, and aligned with the configured user journey.
+
+- **Logs – Custom Date Range Improvements**:
+  - Fixed issues with custom date range selection across logs to correctly respect workspace retention settings.
+  - Users can now reliably access the full range of available log data without unexpected filtering limitations.
