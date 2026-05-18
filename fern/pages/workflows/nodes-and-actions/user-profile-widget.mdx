@@ -1,0 +1,84 @@
+---
+title: 'User Profile widget within a workflow'
+slug: 'workflows/nodes-and-actions/user-profile-widget'
+og:title: 'How to use User Profile widget within a workflow | Fyno Documentation'
+og:description: "How to use User Profile widget within a workflow to fetch or update a user profile and its properties"
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Fyno allows you to update a user profile or fetch a user profile details within a workflow. This is helpful when you need to decide what notifications to send based on a user property or Update a channel/user property linked to a profile based on the data received in the webhook.
+
+To add a user profile within a workflow, drag and drop User profile widget to the workflow.
+You can perform 5 different actions using User profile widget within a workflow. ![](/images/user_profile_actions.png)
+
+ - Update/add channel
+ - Remove channel
+ - Update profile details
+ - Fetch profile details
+ - Delete profile
+
+### Update/add channel
+
+To add a new channel or update the existing channel details, you can use this action. ![](/images/user_profile_add_update.png)
+
+- Distinct Id : Map user's distinct id from the payload
+- Action Type : Update/add channel
+- Channel : Select the channel you want to add or update
+- Variable value from payload : If you want to update SMS channel, then select mobile number from the payload. 
+
+<Note> You can add multiple channel details to add or update </Note>
+
+### Remove channel
+
+To remove a channel details from user profile, you can use this action. ![](/images/user_profile_remove.png)
+
+- Distinct Id : Map user's distinct id from the payload
+- Action Type : Remove channel
+- Channel : Select the channel(s) you want to remove
+
+### Update profile details
+
+To update the profile details of an existing user profile, you can use this action. 
+
+- Distinct Id : Map user's distinct id from the payload
+- Action Type : Update profile details
+
+**Action**
+
+1. Create Property - Select this if you want to add a new property
+  - Property Name : Enter the user property name
+  - Property Type : Select the property's data type - String, Boolean, Date, List or Number
+  - Property value from payload : select the property value from payload
+
+2. Update Property - Select this if you want to update an existing  property
+  - Property Name : Select the user property name from the drop down
+  - Property value from payload : select the property value from payload
+
+3. Update Property only if empty - Select this if you want to update an existing  property which is empty. 
+  - Property Name : Select the user property name from the drop down
+  - Property value from payload : select the property value from payload
+
+4. Leave empty - Select this if you want to update an existing  property with empty value. 
+  - Property Name : Select the user property name from the drop down
+
+5. Increment/Decrement numeric value - Select this if you want to increase or decrease the value of a  numerical property
+  - Property Name : Select the user property name from the drop down
+  - Property value from payload : select the property value from payload
+
+
+### Fetch profile details
+
+To remove a channel details from user profile, you can use this action. ![](/images/user_profile_fetch.png)
+
+- Distinct Id : Map user's distinct id from the payload
+- Action Type : Fetch profile details
+- Select properties to fetch : Select one or more user properties from dropdown
+
+
+### Delete Profile
+
+To delete a user profile, you can use this action. ![](/images/user_profile_delete.png)
+
+- Distinct Id : Map user's distinct id from the payload
+- Action Type : Remove channel
+- Channel : Select the channel(s) you want to remove
