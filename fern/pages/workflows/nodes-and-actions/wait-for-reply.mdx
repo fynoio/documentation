@@ -1,0 +1,83 @@
+---
+title: 'Wait for Reply Widget within a Workflow'
+slug: 'workflows/nodes-and-actions/wait-for-reply'
+og:title: 'Wait for Reply Widget in Workflow | Fyno Documentation'
+og:description: 'Learn how to configure the Wait for Reply widget in workflows to pause execution until a user response is received and store reply payloads in custom variables.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The **Wait for Reply** widget is used to pause workflow execution until a user response is received within a specified duration.
+
+This widget is commonly used in conversational workflows such as WhatsApp journeys, feedback collection, approvals, and user interaction flows.
+
+Users can configure:
+- Wait duration.
+- Action when no reply is received.
+- Stored variables for saving reply payload data.
+
+## Steps to configure Wait for Reply Widget
+
+<Steps>
+  <Step>
+    Drag and drop the **Wait for Reply** widget into the workflow and connect it to the required workflow step.
+  </Step>
+
+  <Step>
+    Configure the wait duration.
+
+    Specify:
+    
+    - <b>Time</b> — Numeric value for the waiting period.
+    - <b>Unit</b> — Duration unit such as minutes, hours, or days.
+
+    Example:
+
+    | Time | Unit |
+    | --- | --- |
+    | 1 | days |
+
+  </Step>
+
+  <Step>
+    Enable <b>Define action when reply is not received</b> if you want the workflow to handle timeout scenarios.
+
+    This allows workflows to trigger alternate actions when the user does not respond within the configured duration.
+  </Step>
+
+  <Step>
+    Configure <b>Stored Variables</b>.
+
+    Stored variables are used to save the response payload received from WhatsApp or other supported channels.
+
+    Configure:
+    
+    | Field | Description |
+    | --- | --- |
+    | Stored Variable | Name of the custom variable where the response will be stored. |
+    | Payload | Payload field selected from the mapper to store in the variable. |
+
+  </Step>
+
+  <Step>
+    Use the <b>Add Another (+)</b> option to create multiple stored variable mappings.
+
+    This is useful when multiple payload fields need to be saved separately.
+  </Step>
+
+  <Step>
+    Save the workflow configuration.
+
+    During workflow execution, the workflow waits for the configured reply duration and stores the received response payload in the mapped variables.
+  </Step>
+</Steps>
+
+## Example
+
+| Stored Variable | Payload |
+| --- | --- |
+| user_reply | `$input.body.message` |
+| selected_option | `$input.body.button.payload` |
+
+<Note>
+If no reply is received within the configured duration, the workflow can proceed with the fallback or timeout action if configured.
+</Note>
