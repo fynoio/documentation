@@ -22,35 +22,106 @@ Workflow can be used to:
 - Enables you to call any APIs and the response can be used to determine any conditional flow.
 - Send Delivery reports back to your backend system or third party analytics tools like Mixpanel through callbacks.
 
-
-## Workflow as a Transformation Layer
+**Workflow as a Transformation Layer**
 
 Migrating to Fyno from your current service provider requires no modifications to your existing payload structure. Our workflow is designed to accept any payload format and provides flexible transformation capabilities to match your specific requirements. This migration can be completed without any technical development work on your end.
 
 **Key benefits**:
 
-- Maintain your current payload structure
-- Utilize built-in transformation tools
-- Complete migration without coding requirements
-- Preserve existing integrations and data formats
+- Maintain your current payload structure.
+- Utilize built-in transformation tools.
+- Complete migration without coding requirements.
+- Preserve existing integrations and data formats.
 
-## Workflow Triggers
+## Core Concept
 
-To create a workflow, you need to choose a trigger. This is based on how you want to send payload to workflow. We support multiple triggers in workflows now:
+To effectively use workflows, it is important to understand the core building blocks that define how they function.
 
-- [Webhooks](./workflow-webhook-trigger) - Create the Workflow using a Webhook as the trigger.
+### Triggers
+
+A trigger defines how a workflow starts. It is the entry point through which data enters the workflow and execution begins. Every workflow must have exactly one trigger. Without a trigger, the workflow will not run.
+
+Triggers determine:
+- When the workflow is activated.
+- What data is passed into the workflow.
+- How the workflow connects to external or internal systems.
+- Different trigger types are designed for different use cases. Some are event-driven, some are based on user behavior, and others rely on external integrations.
+- Choosing the right trigger is important because it directly impacts how real-time, flexible, and scalable your workflow will be.
+
+We support multiple triggers in workflows now:
+
+![](/images/all-workflow-widgets.png)
+
+- [Meta Flow](./workflow-using-meta) - Allows workflows to start based on user interactions within Meta platforms such as WhatsApp flows.
+- [Webhook](./workflow-webhook-trigger-setup) - Allows workflows to be initiated through real-time API calls from external systems.
 - [Virtual No](./creating-a-workflow-with-incoming-message-trigger) - A virtual mobile number with the capability to receive incoming messages can be configured here. If you want to design a workflow based on user's response in WhatsApp or SMS, then this trigger should be used. Contact [support@fyno.io](mailto:support@fyno.io) for configuring a virtual number.
 - [Mixpanel](./workflow-using-mixpanel-cohort) - Create the Workflow using a mixpanel cohort as the trigger.
-- [Journey](./create-journey) - Create a Journey using notification event as the trigger. This will be helpful if you have a predefined journey with a end goal like SIP reminders to complete payment, KYC completion etc.
-- [Webhooks with Digest](./creating-a-workflow-with-digest) - Create a workflow with digest. Digest Notifications work by collecting multiple notification events, aggregating them into a single message, and delivering it to the user.
+- [Moengage](./workflow-using-moengage) - Enables workflows to start based on events and user activity tracked in MoEngage.
+- [Notification Event](./workflow-notification-event-trigger) - Allows workflows to start based on the lifecycle of a notification.
 
-## Understanding Workflows
+**How to Choose the Right Trigger**
+
+Selecting the correct trigger depends on your use case, data source, and desired behavior.
+
+Use the following guidelines to decide:
+- If your workflow needs to start based on backend or system events, use the Webhook trigger.
+- If your workflow depends on user behavior tracked in analytics tools, use Mixpanel or MoEngage.
+- If your workflow is part of a conversational or interactive flow, use Meta Flow or Virtual Number.
+- If your workflow depends on notification delivery or engagement status, use Notification Events.
+
+**Considerations**
+
+When choosing a trigger, consider the following:
+
+- Data Source: Identify where the event is coming from, such as backend systems, user interactions, or analytics platforms.
+- Real-Time Requirement: Determine whether the workflow needs to run instantly when the event occurs.
+- Level of Control: Assess whether you need full control over the payload and structure. Webhook is best suited for this.
+- Interaction Type: Decide whether the workflow is part of a one-way notification or a two-way conversation.
+
+### Nodes
+
+Nodes are the individual steps inside a workflow. Each node performs a specific function and represents a stage in the workflow execution.
+
+A workflow is essentially a sequence (or network) of nodes connected together.
+
+**Common types of nodes include**:
+- Trigger Node: The first node, where the workflow begins.
+- Action Nodes: Perform tasks such as sending notifications or calling APIs.
+- Condition Nodes: Evaluate logic and create branching paths.
+- Nodes allow you to break down complex processes into smaller, manageable steps. By connecting nodes, you define the overall flow of the workflow.
+
+### Actions
+
+Actions represent the actual operations performed within a workflow.
+
+These are the steps where something happens as a result of the trigger and logic defined in the workflow.
+
+**Examples of actions include**:
+- Sending notifications (SMS, Email, Push, WhatsApp).
+- Calling external APIs via webhooks.
+- Updating user data or attributes.
+- Triggering downstream systems.
+- Actions are executed in sequence unless modified by conditions. They are responsible for delivering value to the end user or interacting with other systems.
+
+### Conditions
+
+Conditions allow you to introduce decision-making into your workflow.
+
+They evaluate data and determine which path the workflow should take next. This enables you to create different experiences for different users based on their attributes or behavior.
+Conditions typically follow an if/else structure.
+
+Examples:
+- If a user is a premium customer, send a premium offer; otherwise, send a standard offer
+- If payment fails due to insufficient balance, retry later; otherwise, notify the user immediately
+- Conditions make workflows dynamic and personalized, ensuring that users receive relevant communication instead of generic messages.
+
+## How Workflows Work
 
 The best way to explain the full scope and capability of Workflows is with an example. So, let’s dive right in.
 
 Company ABC handles payments on its website via an external payment gateway.
 
-The requirement is
+The requirement is:
 
 - To send a notification to the customer whenever an online payment succeeds or fails.
 - If a payment fails, the Workflow should handle the failure scenario differently depending on the type of customer.
@@ -83,3 +154,145 @@ For this example, let’s assume that company ABC has two API endpoints -
 </Steps>
 
 What would have otherwise required more than a few lines of code to configure, is being addressed with Fyno's Workflow feature, allowing you to add triggers, provide conditions and decide outcomes, all with a visual understanding of how the entire flow will work.
+
+## Workflow vs Campaigns vs Journeys
+
+Campaigns are designed for controlled message delivery to a predefined audience.
+
+Unlike workflows, campaigns are not triggered by system events. Instead, they are initiated either manually by a user or scheduled to run at a specific time.
+
+A campaign does not process real-time incoming data at execution time. Instead, it relies on a predefined audience or segment that is selected before execution begins.
+
+**Execution Characteristics**
+- Execution is initiated manually or through scheduling.
+- The audience is fixed at the time of execution.
+- Messages are sent in a single run.
+- There is no dependency on real-time events.
+- There is minimal or no branching logic.
+
+Campaigns are proactive. They are initiated intentionally, rather than in response to an event.
+
+They are primarily used when the goal is to broadcast a message, not to react to user behavior.
+
+**Typical Use Cases**:
+- Sending promotional messages.
+- Announcing new features or products.
+- Running marketing campaigns.
+- Communicating with a predefined user segment.
+
+## Workflow Groups
+
+Workflow Groups help you organize related workflows together. For instance, if you have multiple workflows for different stages of a customer journey (Welcome, Onboarding, Engagement, Retention, Re-engagement), you can create a Customer Journey group and assign all these workflows to it. This makes workflow filtering and management more efficient.
+
+![](/images/workflow-group.png)
+
+### How to create a Workflow Group
+![](/images/create-workflow-group.png)
+<Steps>
+  <Step>Navigate to the <b>Workflows</b> page from the left navigation.</Step> 
+  <Step>Locate the <b>Groups</b> section on the left side of the Workflows page.</Step>
+  <Step>Click the <b>+</b> icon to create a new group.</Step>
+  <Step>Enter a <b>Group Name</b> and optionally select the workflows you want to include in the group.</Step>
+  <Step>Click <b>Create Group</b>.</Step>
+  <Step>A new group (for example, <code>Customer_Journey</code>) will be created and the selected workflows will be added to it.</Step>
+  <Step>You can view the newly created group under the <b>Groups</b> section along with the number of workflows included in that group.</Step>
+</Steps>
+
+> You can create up to **20 Workflow Groups** in each workspace.
+
+### How to edit a Workflow Group
+
+<Steps>
+  <Step>Navigate to the <b>Workflows</b> page from the left navigation.</Step>
+  <Step>Under the <b>Groups</b> section, locate the group you want to modify.</Step>
+  <Step>Click the <b>⋮ (three-dot menu)</b> beside the group name.</Step>
+  <Step>Select <b>Edit</b>.</Step>
+  <Step>Update the group name or modify the workflows assigned to the group.</Step>
+  <Step>Click <b>Save</b>.</Step>
+</Steps>
+
+The changes will be reflected immediately across all workflows in the group.
+
+### How to delete a Workflow Group
+
+<Steps>
+  <Step>Navigate to the <b>Workflows</b> page from the left navigation.</Step>
+  <Step>Under the <b>Groups</b> section, locate the group you want to remove.</Step>
+  <Step>Click the <b>⋮ (three-dot menu)</b> beside the group name.</Step>
+  <Step>Select <b>Delete</b>.</Step>
+  <Step>Confirm the deletion in the confirmation popup.</Step>
+</Steps>
+
+> **Warning**:
+> - Deleting a group permanently removes the group and unassigns all workflows from it.
+> - The workflows themselves are **not deleted** and will continue to remain available under **All Workflows**.
+
+This gives users full control to organize, update, and manage workflow groups efficiently.
+
+## Copying Workflows
+
+Workflows can be copied from your workspace to other workspaces you own. The copy process is only available in workspaces where you have the <strong>Owner</strong> role.
+
+### Steps to copy workflows
+
+#### 1. Prepare your destination workspace
+
+It is important to note that when copying workflows, only the workflow-related data will be copied to the destination workspace. Any dependencies must be created or copied manually in the destination workspace.
+
+<Steps>
+  <Step>Manually create the required integrations in the workspace.</Step>
+  <Step>If your workflows use allowlisted URLs (in the API or Notification Event widgets), then you should manually create those as well.</Step>
+  <Step>Go to the templates page (Templates → Fyno from the navigation) and copy the templates and components (if applicable) used by any of the notification events in the workflow via the [copy process](./copying-templates-components).</Step>
+  <Step>If applicable, go to the "Routes" pages (Routes → Single Channel and Routes → Omni-Channel from the navigation) and copy the routes used by any of the notification events in the workflow via the [copy process](./copying-routes).</Step>
+  <Step>Go to the notification events page and copy the notification events used in the workflow via the copy process.</Step>
+</Steps>
+
+#### 2. Copy your workflow(s)
+![](/images/copy-to-another-workspace.png)
+<Steps>
+  <Step>Ensure you are in the workspace from where you would like to copy the workflow.</Step>
+  <Step>Navigate to the workflows listing page by selecting Workflows from the navigation.</Step>
+  <Step>Click the "Three Dots" icon on the workflow that you would like to copy. This step will open a menu.</Step>
+  <Step>In the menu options, select “Copy to another workspace”.</Step>
+  <Step>You will now see a checkbox next to every workflow listed on the page. You can select multiple workflows to copy if needed.</Step>
+  <Step>Once you have completed your selection, click “Copy Selected Workflows” in the alert above the listing. ![](/images/copy-destination.png)</Step>
+  <Step>When copying a single workflow that has a live version, you will see an option to copy either the latest live or test version. If your workflow only has a test version, that version will be copied.</Step>
+  <Step>When copying multiple workflows, the latest live or the latest test version will be copied, depending on the workflow.</Step>
+  <Step>You will now see a dialog box with an option to select destination workspaces. In the “Destination Workspace(s)” dropdown menu, you will see all the workspaces you are a member of, but only the ones in which you have the “Owner” role will be available for selection. You can select up to five applicable workspaces.</Step>
+  <Step>Once all the workspaces are selected, click “Confirm”. This step will initiate the copy process.</Step>
+  <Step>Now, in all the selected workspaces, you will see the copied workflows.</Step>
+</Steps>
+
+#### 3. Post copy checklist
+
+<Steps>
+  <Step>If allowlist URLs were manually created in the destination workspace, then you need to open each API or Notification Event widget, re-select the URL and save the workflow to ensure that the workflows work correctly.</Step>
+  <Step>Similar steps are needed in other copied dependencies. Please see the post copy checklist for [events](./copying-notification-events#3-post-copy-checklist) and [routes](./copying-routes#3-post-copy-to-do).</Step>
+</Steps>
+
+### How versioning works
+
+Let's say we are copying a workflow from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
+![](/images/workflow-versions.png)
+<Steps>
+  <Step>
+    If the workflow does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
+  </Step>
+  <Step>
+    If the workflow already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the workflow name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied workflow.
+  </Step>
+</Steps>
+
+## How to view change logs?
+
+To view the history of all the modifications made to a template, you can utilize the change logs feature.
+
+To do so, locate the history icon positioned at the top right corner of the template page, as shown in the image below, and click on it to view the change logs.
+
+It shows the following details
+
+- Who updated it
+- Which version was updated
+- At what date & time its updated.
+  ![](/images/email_template_changelog.png)
+
