@@ -1,0 +1,56 @@
+---
+title: 'Cohort Widget within a Workflow'
+slug: 'workflows/nodes-and-actions/cohort-widget'
+og:title: 'Cohort Widget in Workflow | Fyno Documentation'
+og:description: 'Learn how to configure the Cohort widget in workflows by mapping cohort names for user segmentation and audience management.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The **Cohort** widget is used to manage user segmentation within workflows. It allows users to add or remove users from cohorts configured in Mixpanel.
+
+The cohort name configured in the widget must exactly match the cohort name available in Mixpanel.
+
+The widget supports the following actions:
+
+- First Run
+- Added
+- Removed
+
+These actions help track user movement within cohorts during workflow execution.
+
+## Steps to configure Cohort Widget
+
+<Steps>
+  <Step>
+    Drag and drop the **Cohort** widget into the workflow and connect it to the required workflow step.
+  </Step>
+
+  <Step>
+    In the <b>Enter Cohort Name</b> field, provide the cohort name.
+
+    The entered value should exactly match the cohort name configured in Mixpanel.
+  </Step>
+
+  <Step>
+    Configure the cohort action based on the workflow requirement.
+
+    Supported actions include:
+
+    | Action | Description |
+    | --- | --- |
+    | First Run | Adds the user to the cohort only during the first workflow execution. |
+    | Added | Adds the user to the cohort. |
+    | Removed | Removes the user from the cohort. |
+
+  </Step>
+
+  <Step>
+    Save the workflow configuration.
+
+    During workflow execution, users will automatically be added or removed from the configured Mixpanel cohort based on the selected action.
+  </Step>
+</Steps>
+
+<Note>
+The cohort name is case-sensitive and must exactly match the cohort configured in Mixpanel.
+</Note>
