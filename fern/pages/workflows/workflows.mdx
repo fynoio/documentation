@@ -5,8 +5,7 @@ og:title: 'Overview - Workflow | Fyno Documentation'
 og:description: "Fyno's Workflow builder allows users to create intelligent notification flows without coding, connecting to third-party tools and using conditional blocks to determine notifications. An example is provided where a company uses the Workflow to handle different scenarios for payment failures based on customer type."
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
-
-Workflows lets you create an automated omnichannel notification experience for your users using a visual workflow builder.
+Workflows let you create an automated omnichannel notification experience for your users using a visual workflow builder.
 
 This feature has the flexibility to connect to any third party tool like Mixpanel, Amplitude, MoEngage, Segment or to any web hooks and use conditional blocks to decide who should receive what notifications. You can also design a pre-defined chat workflow where you can send notifications based on user reply. All these can be achieved with ZERO code.
 
@@ -15,7 +14,6 @@ This feature has the flexibility to connect to any third party tool like Mixpane
 Workflows in Fyno is a notifications orchestration service that allows anyone to easily design intelligent notification flows without coding.
 
 Workflow can be used to:
-
 - Deliver notifications based on notification events created from and data sources like Segment, Mixpanel, Amplitude or any webhooks .
 - Deliver notifications based on a user response to a SMS or WhatsApp notification.
 - Design a transactional journey flow based on Notification event trigger
@@ -39,16 +37,16 @@ To effectively use workflows, it is important to understand the core building bl
 
 ### Triggers
 
-A trigger defines how a workflow starts. It is the entry point through which data enters the workflow and execution begins. Every workflow must have exactly one trigger. Without a trigger, the workflow will not run.
+A trigger is the entry point of a workflow that starts execution and passes data into it. Every workflow must have exactly one trigger; without it, the workflow cannot run.
 
 Triggers determine:
+
 - When the workflow is activated.
 - What data is passed into the workflow.
-- How the workflow connects to external or internal systems.
-- Different trigger types are designed for different use cases. Some are event-driven, some are based on user behavior, and others rely on external integrations.
-- Choosing the right trigger is important because it directly impacts how real-time, flexible, and scalable your workflow will be.
+- How the workflow connects to internal or external systems.
+- Different trigger types are designed for different use cases. Some are event-driven, some are based on user behavior, and others rely on external integrations. Choosing the right trigger ensures that workflows run at the appropriate time, receive the required data, and scale effectively.
+- We support the following trigger types in workflows:
 
-We support multiple triggers in workflows now:
 
 ![](/images/all-workflow-widgets.png)
 
@@ -68,27 +66,6 @@ Use the following guidelines to decide:
 - If your workflow depends on user behavior tracked in analytics tools, use Mixpanel or MoEngage.
 - If your workflow is part of a conversational or interactive flow, use Meta Flow or Virtual Number.
 - If your workflow depends on notification delivery or engagement status, use Notification Events.
-
-**Considerations**
-
-When choosing a trigger, consider the following:
-
-- Data Source: Identify where the event is coming from, such as backend systems, user interactions, or analytics platforms.
-- Real-Time Requirement: Determine whether the workflow needs to run instantly when the event occurs.
-- Level of Control: Assess whether you need full control over the payload and structure. Webhook is best suited for this.
-- Interaction Type: Decide whether the workflow is part of a one-way notification or a two-way conversation.
-
-### Nodes
-
-Nodes are the individual steps inside a workflow. Each node performs a specific function and represents a stage in the workflow execution.
-
-A workflow is essentially a sequence (or network) of nodes connected together.
-
-**Common types of nodes include**:
-- Trigger Node: The first node, where the workflow begins.
-- Action Nodes: Perform tasks such as sending notifications or calling APIs.
-- Condition Nodes: Evaluate logic and create branching paths.
-- Nodes allow you to break down complex processes into smaller, manageable steps. By connecting nodes, you define the overall flow of the workflow.
 
 ### Actions
 
@@ -155,83 +132,22 @@ For this example, let’s assume that company ABC has two API endpoints -
 
 What would have otherwise required more than a few lines of code to configure, is being addressed with Fyno's Workflow feature, allowing you to add triggers, provide conditions and decide outcomes, all with a visual understanding of how the entire flow will work.
 
-## Workflow vs Campaigns vs Journeys
+## Groups
 
-Campaigns are designed for controlled message delivery to a predefined audience.
-
-Unlike workflows, campaigns are not triggered by system events. Instead, they are initiated either manually by a user or scheduled to run at a specific time.
-
-A campaign does not process real-time incoming data at execution time. Instead, it relies on a predefined audience or segment that is selected before execution begins.
-
-**Execution Characteristics**
-- Execution is initiated manually or through scheduling.
-- The audience is fixed at the time of execution.
-- Messages are sent in a single run.
-- There is no dependency on real-time events.
-- There is minimal or no branching logic.
-
-Campaigns are proactive. They are initiated intentionally, rather than in response to an event.
-
-They are primarily used when the goal is to broadcast a message, not to react to user behavior.
-
-**Typical Use Cases**:
-- Sending promotional messages.
-- Announcing new features or products.
-- Running marketing campaigns.
-- Communicating with a predefined user segment.
-
-## Workflow Groups
-
-Workflow Groups help you organize related workflows together. For instance, if you have multiple workflows for different stages of a customer journey (Welcome, Onboarding, Engagement, Retention, Re-engagement), you can create a Customer Journey group and assign all these workflows to it. This makes workflow filtering and management more efficient.
+Groups help you organize related workflows together. For instance, if you have multiple workflows for different stages of a customer journey (Welcome, Onboarding, Engagement, Retention, Re-engagement), you can create a Customer Journey group and assign all these workflows to it. This makes workflow filtering and management more efficient.
 
 ![](/images/workflow-group.png)
 
-### How to create a Workflow Group
+### How to create a Group
 ![](/images/create-workflow-group.png)
-<Steps>
-  <Step>Navigate to the <b>Workflows</b> page from the left navigation.</Step> 
-  <Step>Locate the <b>Groups</b> section on the left side of the Workflows page.</Step>
-  <Step>Click the <b>+</b> icon to create a new group.</Step>
-  <Step>Enter a <b>Group Name</b> and optionally select the workflows you want to include in the group.</Step>
-  <Step>Click <b>Create Group</b>.</Step>
-  <Step>A new group (for example, <code>Customer_Journey</code>) will be created and the selected workflows will be added to it.</Step>
-  <Step>You can view the newly created group under the <b>Groups</b> section along with the number of workflows included in that group.</Step>
-</Steps>
 
-> You can create up to **20 Workflow Groups** in each workspace.
-
-### How to edit a Workflow Group
-
-<Steps>
-  <Step>Navigate to the <b>Workflows</b> page from the left navigation.</Step>
-  <Step>Under the <b>Groups</b> section, locate the group you want to modify.</Step>
-  <Step>Click the <b>⋮ (three-dot menu)</b> beside the group name.</Step>
-  <Step>Select <b>Edit</b>.</Step>
-  <Step>Update the group name or modify the workflows assigned to the group.</Step>
-  <Step>Click <b>Save</b>.</Step>
-</Steps>
-
-The changes will be reflected immediately across all workflows in the group.
-
-### How to delete a Workflow Group
-
-<Steps>
-  <Step>Navigate to the <b>Workflows</b> page from the left navigation.</Step>
-  <Step>Under the <b>Groups</b> section, locate the group you want to remove.</Step>
-  <Step>Click the <b>⋮ (three-dot menu)</b> beside the group name.</Step>
-  <Step>Select <b>Delete</b>.</Step>
-  <Step>Confirm the deletion in the confirmation popup.</Step>
-</Steps>
-
-> **Warning**:
-> - Deleting a group permanently removes the group and unassigns all workflows from it.
-> - The workflows themselves are **not deleted** and will continue to remain available under **All Workflows**.
-
-This gives users full control to organize, update, and manage workflow groups efficiently.
+- Groups help organize related workflows within a workspace, making it easier to manage, filter, and navigate workflows. Users can group workflows based on use cases, teams, projects, or any other organizational structure that suits their workflow management needs.
+- Workflows can be added to or removed from groups at any time, and a workflow can exist independently of a group. Each workspace can contain up to 20 Workflow Groups.
+- Deleting a Workflow Group removes only the group and its associations. The workflows within the group are not deleted and remain available in the workspace.
 
 ## Copying Workflows
 
-Workflows can be copied from your workspace to other workspaces you own. The copy process is only available in workspaces where you have the <strong>Owner</strong> role.
+Workflows can be copied between workspaces owned by the same user. During the copy process, the workflow configuration is duplicated in the destination workspace.
 
 ### Steps to copy workflows
 
