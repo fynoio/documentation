@@ -11,6 +11,7 @@ This feature has the flexibility to connect to any third party tool like Mixpane
 
 ## What is a Workflow?
 
+
 Workflows in Fyno is a notifications orchestration service that allows anyone to easily design intelligent notification flows without coding.
 
 Workflow can be used to:
@@ -27,14 +28,14 @@ Migrating to Fyno from your current service provider requires no modifications t
 
 **Key benefits**:
 
-- Maintain your current payload structure.
-- Utilize built-in transformation tools.
-- Complete migration without coding requirements.
-- Preserve existing integrations and data formats.
+- Maintain your current payload structure
+- Utilize built-in transformation tools
+- Complete migration without coding requirements
+- Preserve existing integrations and data formats
 
-## Core Concept
+## Workflow Triggers
 
-To effectively use workflows, it is important to understand the core building blocks that define how they function.
+To create a workflow, you need to choose a trigger. This is based on how you want to send payload to workflow. We support multiple triggers in workflows now:
 
 ### Triggers
 
@@ -99,7 +100,7 @@ The best way to explain the full scope and capability of Workflows is with an ex
 
 Company ABC handles payments on its website via an external payment gateway.
 
-The requirement is:
+The requirement is
 
 - To send a notification to the customer whenever an online payment succeeds or fails.
 - If a payment fails, the Workflow should handle the failure scenario differently depending on the type of customer.
@@ -213,4 +214,5 @@ It shows the following details
 - At what date & time its updated.
   ![](/images/email_template_changelog.png)
   
+
 

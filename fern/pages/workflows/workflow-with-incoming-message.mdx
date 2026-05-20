@@ -1,7 +1,7 @@
 ---
-title: 'Creating a workflow with Incoming Number (Virtual Number)'
+title: 'Creating a workflow with Incoming message'
 slug: 'creating-a-workflow-with-incoming-message-trigger'
-og:title: 'Creating a workflow with Virtual Number - Workflows | Fyno Documentation'
+og:title: 'Creating a workflow with Incoming message - Workflows | Fyno Documentation'
 og:description: "Create automated WhatsApp conversations using predefined templates and event triggers. It's also useful for capturing and updating customer SMS responses in your system."
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
@@ -24,13 +24,13 @@ For example, you can configure the below example using our Workflow:
 
 To achieve this, you need to do the following steps:
 
-- Step 1 - Create a WhatsApp template to initiate a conversation. 
+- Step 1 - Create a WhatsApp template to initiate a conversation.
 - Step 2 - Design a Workflow to decide what WhatsApp message to send based on user response.
 
 ## Step 1 - Create a WhatsApp template to initiate a conversation
-![](/images/virtual-num-template-preview.png)
+
 <Steps>
-  <Step>Create a Fyno Template with the content and Quick Reply options as shown. ![](/images/virtual-num-edit-template.png)</Step>
+  <Step>Create a Fyno Template with the content and Quick Reply options as shown. ![](/images/1369d49-WA_template_QR.png)</Step>
   <Step>
     In the template, you can see 2 Quick Reply options. When user clicks any Quick Reply option, it will trigger a workflow.
     <ol>
@@ -43,7 +43,7 @@ To achieve this, you need to do the following steps:
 </Steps>
 
 ## Step 2 - Design a Workflow to decide what WhatsApp message to send based on user response
-![](/images/virtual-num-workflow.png)
+
 <Steps>
 <Step>Create a workflow with 'Virtual Number' as trigger. You can do that by dragging & dropping Virtual No trigger into Workflow canvas. ![](/images/workflow_incoming_config.png)</Step>
 <Step>Select your WhatsApp Business no to which user sends their response. You can add more than 1 whatsapp business number. So any replies received in any of these configured numbers will trigger this workflow.  ![](/images/workflow_incoming_addnos.png)</Step>
@@ -90,9 +90,3 @@ You can read more about it [here](./configure-idempotent-key-workflow).
 Fyno allows you to override pre-configured values within an Integration, enabling you to use different values for specific notifications in a Workflow. This flexibility is useful when you need to customize the sender information or other details based on the requirements of each notification.
 
 You can read more about it [here](./configure-overrides-workflow).
-
-## How to raise Approval requests
-
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
-
-You can read more about it [here](https://fyno.io/docs/approval-flow)
