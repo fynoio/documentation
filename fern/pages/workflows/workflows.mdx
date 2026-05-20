@@ -22,7 +22,7 @@ Workflow can be used to:
 - Send Delivery reports back to your backend system or third party analytics tools like Mixpanel through callbacks.
 
 
-## Workflow as a Transformation Layer
+**Workflow as a Transformation Layer**
 
 Migrating to Fyno from your current service provider requires no modifications to your existing payload structure. Our workflow is designed to accept any payload format and provides flexible transformation capabilities to match your specific requirements. This migration can be completed without any technical development work on your end.
 
@@ -56,8 +56,8 @@ Triggers determine:
 - [Webhook](./workflow-webhook-trigger-setup) - Allows workflows to be initiated through real-time API calls from external systems.
 - [Virtual No](./creating-a-workflow-with-incoming-message-trigger) - A virtual mobile number with the capability to receive incoming messages can be configured here. If you want to design a workflow based on user's response in WhatsApp or SMS, then this trigger should be used. Contact [support@fyno.io](mailto:support@fyno.io) for configuring a virtual number.
 - [Mixpanel](./workflow-using-mixpanel-cohort) - Create the Workflow using a mixpanel cohort as the trigger.
-- [Journey](./create-journey) - Create a Journey using notification event as the trigger. This will be helpful if you have a predefined journey with a end goal like SIP reminders to complete payment, KYC completion etc.
-- [Webhooks with Digest](./creating-a-workflow-with-digest) - Create a workflow with digest. Digest Notifications work by collecting multiple notification events, aggregating them into a single message, and delivering it to the user.
+- [Moengage](./workflow-using-moengage) - Enables workflows to start based on events and user activity tracked in MoEngage.
+- [Notification Event](./workflow-notification-event-trigger) - Allows workflows to start based on the lifecycle of a notification.
 
 **How to Choose the Right Trigger**
 
@@ -214,4 +214,5 @@ It shows the following details
 - At what date & time its updated.
   ![](/images/email_template_changelog.png)
   
+
 
