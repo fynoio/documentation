@@ -21,21 +21,20 @@ Workflow can be used to:
 - Enables you to call any APIs and the response can be used to determine any conditional flow.
 - Send Delivery reports back to your backend system or third party analytics tools like Mixpanel through callbacks.
 
-
 **Workflow as a Transformation Layer**
 
 Migrating to Fyno from your current service provider requires no modifications to your existing payload structure. Our workflow is designed to accept any payload format and provides flexible transformation capabilities to match your specific requirements. This migration can be completed without any technical development work on your end.
 
 **Key benefits**:
 
-- Maintain your current payload structure
-- Utilize built-in transformation tools
-- Complete migration without coding requirements
-- Preserve existing integrations and data formats
+- Maintain your current payload structure.
+- Utilize built-in transformation tools.
+- Complete migration without coding requirements.
+- Preserve existing integrations and data formats.
 
-## Workflow Triggers
+## Core Concept
 
-To create a workflow, you need to choose a trigger. This is based on how you want to send payload to workflow. We support multiple triggers in workflows now:
+To effectively use workflows, it is important to understand the core building blocks that define how they function.
 
 ### Triggers
 
@@ -100,7 +99,7 @@ The best way to explain the full scope and capability of Workflows is with an ex
 
 Company ABC handles payments on its website via an external payment gateway.
 
-The requirement is
+The requirement is:
 
 - To send a notification to the customer whenever an online payment succeeds or fails.
 - If a payment fails, the Workflow should handle the failure scenario differently depending on the type of customer.

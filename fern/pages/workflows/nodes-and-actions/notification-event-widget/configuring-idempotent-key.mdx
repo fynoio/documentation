@@ -1,0 +1,30 @@
+---
+title: 'How to configure Idempotent Key'
+slug: 'configure-idempotent-key-workflow'
+og:title: 'Configuring Idempotent Key in Workflow | Fyno Documentation'
+og:description: 'Workflows now support idempotency, allowing safe retries of requests without duplicating operations, which is particularly useful for handling interrupted API calls. To configure, add an idempotent key in the settings to prevent duplicate notifications for a specified duration.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Workflows now supports idempotency, ensuring you can safely retry requests without the risk of performing the same operation twice. This feature proves invaluable in scenarios where an API call gets interrupted in transit, leaving you without a response.
+
+For instance, if a request to send a notification doesn't go through due to a network glitch, simply retry the request using the same idempotency key. This guarantees that no more than one notification will be sent.
+
+You can read more about it [here](./idempotent-requests).
+
+## Steps to configure Idempotent Key
+
+<Steps>
+  <Step>After adding a notification event to the workflow, click Settings icon on the top right corner. ![](/images/workflow_event_idempotent.png)</Step>
+  <Step>
+    Navigate to Idempotent tab and add the below details:
+    <ul>
+      <li>Idempotent Key - Add an idempotent key to prevent this notification event from getting fired multiple times (for a specific duration) to a user when there is no change in the data. Duration should be between 1 second and 24 hours.</li>
+      <li>Time - Enter how long you want to prevent duplicate notification events from sending.</li>
+      <li>Units - You can add time in Seconds, Minutes, Hours or Days.</li>
+    </ul>
+    ![](/images/workflow_configure_idempotent_key.png)
+  </Step>
+</Steps>
+
+<Note>We don’t have a length limit for idempotency key but we recommend using 256 characters or less for idempotency key. These keys are purged from the system after 24 hours.</Note>
