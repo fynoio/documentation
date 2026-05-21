@@ -1,0 +1,71 @@
+---
+title: 'Wait For Widget within a Workflow'
+slug: 'workflows/nodes-and-actions/wait-for'
+og:title: 'Wait For Widget in Workflow | Fyno Documentation'
+og:description: 'Learn how to configure the Wait For widget in workflows to delay workflow execution for a specified duration before triggering the next step.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The **Wait For** widget is used to pause workflow execution for a specified duration before continuing to the next workflow step.
+
+This is useful for creating delayed journeys, scheduled follow-ups, reminder notifications, or timed workflow actions.
+
+Users can configure the wait duration using:
+- Time
+- Unit
+
+The supported duration range is between **1 minute and 30 days**.
+
+## Steps to configure Wait For Widget
+
+<Steps>
+  <Step>
+    Drag and drop the **Wait For** widget into the workflow and connect it to the required workflow step.
+  </Step>
+
+  <Step>
+    Configure the <b>Time</b> field.
+
+    Enter the numeric value that defines how long the workflow should pause before continuing.
+
+    Example:
+
+    ```text
+    1
+    ```
+  </Step>
+
+  <Step>
+    Select the <b>Unit</b> for the wait duration.
+
+    Supported units may include:
+
+    - Minutes
+    - Hours
+    - Days
+
+    Example:
+
+    ```text
+    Days
+    ```
+  </Step>
+
+  <Step>
+    Save the workflow configuration.
+
+    Once configured, the workflow execution will pause for the specified duration before triggering the next workflow action.
+  </Step>
+</Steps>
+
+## Example
+
+| Time | Unit | Result |
+| --- | --- | --- |
+| 1 | Days | Workflow waits for 1 day before continuing. |
+| 30 | Minutes | Workflow waits for 30 minutes before continuing. |
+| 2 | Hours | Workflow waits for 2 hours before continuing. |
+
+<Note>
+The supported wait duration must be between 1 minute and 30 days.
+</Note>
