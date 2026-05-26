@@ -1,0 +1,114 @@
+## 26.2.2
+
+**Release Date:** 25-May-2026
+
+### 🚀 New Features
+
+- **Public Integration Links**
+  - Introduced Public Integration Links to simplify integration setup when access to credentials is managed by another user.
+  - Users can now generate a secure, shareable link from an integration provider page and send it to a user who has access to the required credentials.
+  - The recipient can complete the integration setup without needing access to the workspace, and the integration is automatically added once setup is complete.
+
+- **WhatsApp Templates – Call Permission Request Enhancements**
+  - Added support for Call Permission Request actions in supported WhatsApp templates and updated template previews to reflect the new experience.
+  - These enhancements ensure greater consistency between template configuration and preview behavior for supported synced templates.
+
+### ⚡ Feature Enhancements
+
+- **InApp Templates – Enhanced Actions and Notification Organization**
+  - Enhanced the InApp template creation experience with improved configuration options and notification organization features.
+  - Users can now add additional button types, including quick reply actions, to create more interactive notifications.
+  - Notifications can also be organized using labels and grouped for easier management, with support for pinning important notifications within the notification center.
+
+- **WhatsApp Templates – Voice Call CTA Support**
+  - Added support for Voice Call call-to-action (CTA) buttons in Fyno-managed WhatsApp templates.
+  - Users can now configure voice call CTAs directly within supported WhatsApp templates, providing additional ways for recipients to connect.
+
+- **SMS Preview Improvements**
+  - Improved the SMS preview experience to better reflect how messages appear to recipients and provide a more consistent viewing experience.
+
+- **Workflows – Payload Mapper Experience Improvements**
+  - Improved the Payload Mapper experience with clearer actions and a more intuitive layout, making it easier to configure and manage mappings.
+
+- **Logs and Reports – Analytics Label Filters**
+  - Added Analytics Label filtering to Logs and Reports.
+  - Users can now filter data using one or more labels alongside existing filters.
+  - Applied labels are also retained in scheduled and exported reports for more targeted analysis.
+
+- **WhatsApp Templates – Improved Sync and Testing Experience**
+  - Enhanced WhatsApp template management with easier synchronization and a simplified testing experience.
+  - Testing now displays only the relevant integrations for synchronized templates.
+
+- **Email Logs and Preview Improvements**
+  - Improved email logs and previews to provide clearer visibility into sender and recipient information.
+  - Recipient details are now easier to review, with improved presentation of To, CC, and BCC recipients across supported views.
+
+- **Filtering Campaigns by Groups**
+  - Enhanced campaign visibility and filtering to improve group-based access management and campaign creation workflows.
+  - Users can now view group associations more easily and use expanded filtering options to quickly find relevant campaigns.
+
+- **Connect Sorting Improvements**
+  - Improved sorting behavior across Connect modules to provide a more consistent and intuitive browsing experience.
+  - Lists now surface the most relevant and recently active items more effectively.
+
+- **Logs – Enhanced Email Recipient Search**
+  - Improved email search functionality in Sent Logs to support partial email address matching.
+  - Users can now locate email records more quickly without entering complete email addresses.
+
+### 🛠 Bug Fixes
+
+- **SMS Preview – Masked Phone Number Display**
+  - Fixed an issue where masked phone numbers could be displayed incorrectly in SMS previews when data masking was enabled.
+  - Masked phone numbers are now displayed exactly as received.
+
+- **Email Templates – BCC Update Reliability**
+  - Fixed an issue that could prevent BCC recipient updates from being saved successfully in certain email templates.
+
+- **Allowlist Listing – Layout Improvements**
+  - Fixed alignment issues on the Allowlist listing page to improve readability and consistency.
+
+- **Change Logs – Latest Version Focus**
+  - Fixed an issue where the Change Logs page could open on the currently live version instead of the most recent entry.
+  - The page now opens with the latest change log entry by default.
+
+- **Analytics – Delivery Distribution Chart Improvements**
+  - Fixed issues that could cause duplicate delivery paths to appear separately in the Delivery Distribution chart for large campaigns.
+  - Delivery paths are now consolidated correctly for more accurate reporting.
+
+- **Campaigns – Large File Upload Improvements**
+  - Fixed an issue where large CSV uploads for campaigns could fail.
+  - Large campaign files can now be uploaded more reliably.
+
+- **Templates – Support for Numbered Placeholders**
+  - Fixed an issue that prevented templates from being created using numbered placeholders.
+  - Templates now support numbered placeholder formats for broader compatibility.
+
+- **WhatsApp External Templates – Header Media Restrictions**
+  - Fixed an issue that allowed unsupported header media uploads for synchronized WhatsApp templates.
+  - The upload option is now correctly restricted where applicable.
+
+- **Media Uploads – Filename Handling Improvements**
+  - Fixed an issue where media uploads could fail when filenames contained spaces.
+  - Files with spaces in their names can now be uploaded successfully without requiring renaming.
+
+- **Workflows – Improved Subflow Data Accessibility**
+  - Improved data accessibility across workflows by making values created within subflows available to subsequent workflow steps.
+  - This enables smoother workflow design and allows data generated in subflows to be reused more effectively throughout the workflow.
+
+- **Public Integration Links – Usability Improvements**
+  - Improved the Public Integration Link experience with clearer guidance during integration setup and a more streamlined sharing workflow.
+  - Also enhanced the experience on mobile devices by improving responsiveness for access limit and error pages.
+
+- **Workflows – Subflow Editor Stability Improvements**
+  - Fixed several issues affecting the workflow editing experience when working with subflows.
+  - Resolved issues that could cause duplicate elements or unexpected workflow connections to appear during editing.
+  - Also improved the behavior and validation of subflow entry points, resulting in a more stable and predictable workflow-building experience.
+
+- **Email Templates – Editor Experience Improvements**
+  - Enhanced the email template editing experience with additional productivity tools and a more consistent interface.
+  - Added support for template testing, previewing, editor switching, and template validation directly within the editor.
+  - Also improved layout consistency, action placement, spacing, and visual feedback to create a more streamlined editing experience.
+
+- **Email Templates – Editor Stability Fixes**
+  - Fixed an issue that could cause the email editor to become unstable after adding and saving template components.
+  - Also improved template validation feedback by providing clearer success and error states during validation checks.
