@@ -6,81 +6,185 @@ og:description: 'Team is a structure that Fyno built for you to work and collabo
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Team is a structure that Fyno built for you to work and collaborate seamlessly with your colleagues.
+## Team Management and Access Control in Workspace
 
-But in order to understand how the Team function works, we will first need to understand what a **Workspace** is and how that functions. Read more [here]().
+Team is a structure that Fyno built for you to work and collaborate effortlessly with your colleagues / teammates. But in order to understand how the Team function works, we will first need to understand what a Workspace is and how that functions. Read more here. The structuring and functioning of a Team works based on roles and policies assigned to each team member.
 
-The structuring and functioning of a **Team** works based on roles and access assigned to each team member.
+On signing up and creating a new account with Fyno, your Default Workspace is created and the registered email ID becomes the Organisation Owner.
+![](/images/workspace-setting-team.png)
+### What you can do with Teams
 
-<Note>On signing up and creating a new account with Fyno your **Default Workspace** is created and the registered email ID is the Organisation Owner!</Note>
-
-## The Need for Teams
-
-Teams allows you to:
+Team(s) allow you to:
 
 - Provide restricted access to individual employees as per their role requirements.
-- Have a centralized view of the team members along with their access levels and other details
-- Collaborate easily with colleagues on projects and tasks within the Fyno Application.
+- Have a centralized view of the team members along with their access levels and details.
+- Collaborate easily with colleagues on projects and tasks within the Fyno application.
 
-## Roles
+### How Access Control Works
+![](/images/rolebase-add-on-policy.png)
+
+Access in Fyno is managed using two layers:
+
+- Roles (Base Access): Every user is assigned a role that defines their default level of access across the platform.
+
+- Add-On Policies (Additional Access): Add-on policies allow you to grant specific capabilities on top of a role. This helps avoid assigning broader roles when only limited additional access is required. This is optional and can be used only when additional permissions are needed.
+
+Add-on policies can be assigned:
+
+- During user invitation.
+- While modifying an existing user.
+
+This enables flexible and controlled access management across teams.
+
+### Roles
 
 The below roles with unique levels of access have been created so that you can assign relevant roles to each person, based on what they need to access.
+![](/images/team-roles.png)
+### Roles & Permissions
 
-| Access                        | Owner | Super Admin | Workspace Admin | Developer | Support |
-| :---------------------------- | :---: | :---------: | :--------------:| :--------:| :-------:
-| Workspace Creation            |  ✅   |              |                 |           |
-| Security Settings             |  ✅   |       ✅     |                 |           |         
-| Logs (Live)                   |  ✅   |       ✅     |      ✅         |           |     ✅ 
-| Reports                       |  ✅   |       ✅     |      ✅         |           |     
-| User Profile Unmasking        |  ✅   |       ✅     |      ✅         |           |
-| User Profiles (Live)          |  ✅   |       ✅     |      ✅         |           |     ✅
-| Everything else (Edit access) |  ✅   |       ✅     |      ✅         |   ✅      |
-| Everything else (Read access) |  ✅   |       ✅     |      ✅         |   ✅      |     ✅  
+| Feature / Access | Owner | Super Admin | Workspace Admin | Developer | Support | Default Role |
+| --- | --- | --- | --- | --- | --- | --- |
+| Dashboard & Analytics | Yes | Yes | Yes | Yes | Yes | No |
+| Alarms & Anomalies | Yes | Yes | Yes | Yes | Yes | No |
+| Integrations | Yes | Yes | Yes | Yes | View only | No |
+| Templates | Yes | Yes | Yes | Yes | View only | No |
+| Components | Yes | Yes | Yes | Yes | View only | No |
+| Routes | Yes | Yes | Yes | Yes | View only | No |
+| Notification Events | Yes | Yes | Yes | Yes | View only | No |
+| Logs | Yes | Yes | Yes | Test only | Yes | No |
+| Report Download | Yes | Yes | Yes | Test only | No | No |
+| Campaigns | Yes | Yes | Yes | Yes | View only | No |
+| User Profiles | Yes | Yes | Yes | Test only | View only | No |
+| User Cohorts | Yes | Yes | Yes | No | View only | No |
+| User Preferences | Yes | Yes | Yes | Yes | View only | No |
+| Invite Team Member | Yes | Yes | Only with “Invite Team Members and Modify Roles” add-on policy | Only with “Invite Team Members and Modify Roles” add-on policy | View Only | View Only |
+| API Keys | Yes | Yes | Yes | Yes | View only | No |
+| Allowlist (Webhooks) | Yes | Yes | Yes | Yes | View only | No |
+| Security Settings | Yes | Yes | View only | View only | View only | No |
+| Delivery Limits (DND) | Yes | Yes | Yes | Yes | View only | No |
+| Add-ons | Yes | Yes - can configure all add-on policies including Approver and Team Management permissions | Yes - can assign add-on policies based on granted permissions | Yes - can assign add-on policies based on granted permissions | View only | No |
+| Copy to another Workspace | Yes | Yes | Yes | No | No | No |
+| Workspace Creation / Deletion | Yes | No | No | No | No | No |
 
-<Info> You can give only 'Approval' role to your team member. They will be able to access only the modules for which they are assigned as Approvers. </Info>
+### Additional Notes
 
-<Note title='"Owner", "Super Admin" and "Workspace Admin" can see all!'>
-  <p>An "Owner", "Super Admin" and a "Workspace Admin" has the capacity to unmask and view details within User Profiles.</p>
-  <p>All you'll need to do is, navigate to the profile (after logging in as owner) and click on the profile. Once you find the 👁️ (eye) icon and click on it to unmask the details.</p>
-</Note>
+- Owner, Super Admin, and Workspace Admin have broad access across most features and can perform high-level administrative actions.
+- These roles can also unmask and view details within User Profiles.
+- To unmask the details, navigate to the required profile after logging in with the respective role and click the eye icon available on the profile.
+- Each workspace can have only one Owner.
+- Only the Owner can add Super Admins, and any Super Admin added by the Owner will automatically be added to all workspaces under that Owner.
+- Certain permissions may vary by feature (for example, test-only access, view-only access, or restricted actions like Go Live / Fire), as detailed in the table above.
 
-## Creating and Viewing Team members
+### Add-On Policies
+
+Add-on policies provide fine-grained control over specific actions.
+![](/images/add-on-policies.png)
+
+They are useful when a user needs limited administrative capabilities without being assigned a higher role.
+
+### Invite Team Members and Modify Roles
+
+This policy allows a user to:
+
+- Invite new team members
+- Remove users
+- Modify roles
+- Assign or update add-on policies
+
+This is typically assigned to IT or operations teams responsible for onboarding and access management.
+
+### Inviting and Viewing Team Members
 
 To create a new team member, follow the below steps:
+![](/images/invite-team-member.png)
 
-<Steps>
-  <Step>From your Fyno account, click on the Workspace Settings icon from bottom left side of the Navigation menu and select **Team** from the list of options.</Step>
-  <Step>In the Team page, click on the **Invite Team Member** button, fill in the email ID and click on submit.</Step>
-  <Step>The newly invited colleague will receive an email with details to sign up on the Fyno App.</Step>
-  <Step>Owner can invite a team member and give them either Workspace Admin or Developer or Support role.</Step>
-  <Step>A Workspace Admin can invite a team member and give them either Developer or Support role.</Step>
-</Steps>
+1. From your Fyno account, click on the Workspace Settings icon from the bottom left side of the navigation menu.
+2. Navigate to the Team tab.
+3. Click `+ Invite Team Member`.
+4. Enter the user’s Email ID.
+5. Select a Role based on the level of access required.
+6. Optionally attach Add-On Policy to the user.
+7. Click `Send Invite`.
 
-## Deleting a Team Member
+The newly invited colleague will receive an email with details to sign up on the Fyno application.
+
+You can invite new members to collaborate within your workspace by following these steps.
+
+### Role Assignment Rules
+
+- Owner can assign any role.
+- Super Admin can assign Workspace Admin, Developer, Support, or Default roles.
+- Workspace Admin can assign Developer, Support, or Default roles.
+- Add-on policies can be assigned during invitation or updated later.
+
+### Modifying Roles and Add-on Policies
+
+You can update a user’s role and policies after they have been added.
+![](/images/modify-role.png)
+
+> Note: These updates are permission- and role-specific, ensuring changes only affect the selected user’s access and do not impact other users or settings.
+
+**Steps**:
+
+1. Navigate to Team from **Workspace Settings**.
+2. Locate the user in the list.
+3. Click the **three-dot** menu next to the user.
+4. Select **Modify**.
+5. Update the role and/or add-on policies.
+6. Save the changes.
+
+All role and permission updates are managed through the three-dot menu to ensure controlled access and avoid unintended changes.
+
+### Deleting a Team Member
 
 To delete a team member from your workspace, follow the below steps:
 
-<Steps>
-  <Step>From your Fyno account, click on the Workspace Settings icon from bottom left side of the Navigation menu and select **Team** from the list of options.</Step>
-  <Step>On the page that opens, click on the "more" menu of the name that you would like to remove from the workspace and select **Delete**. You will be prompted to **Confirm** your action and that's it!</Step>
-</Steps>
+1. From your Fyno account, click on the Workspace Settings icon from the bottom left side of the navigation menu.
+2. Select **Team**.
+3. Click the **three-dot** menu next to the user.
+4. Select **Delete**.
+5. Confirm the action.
 
-<Info>Every Workspace can have only one Owner.</Info>
+> Note: This action is role- and permission-controlled. Only users with the appropriate permissions can delete team members, and this action is permanent.
 
-## How to enable Approval settings
+### Approver
 
-To enable Approval settings, 
+Users with the Approver policy can:
 
-<Steps>
-  <Step>From your Fyno account, click on the Workspace Settings icon from bottom left side of the Navigation menu and select **Team** and click **Approval Settings**.</Step>
-  <Step>Enable the team members whom you want to give Approval role on the left hand side. Please make sure to select at least 1 approver</Step>
-  <Step>On the right hand side, you will see the list of modules (Templates, Notification Events, Workflows and Routes) which you can enable for Maker Checker. Once you enable it, any changes made in that module will Go Live only after the approver(s) approve the changes made. ![](/images/mc_approvals_empty_state_updated.png)</Step>
-  <Step>Enable at least 1 module to enable Maker Checker flow for that particular module.![](/images/mc_modules_team_updated.png)</Step>
-  <Step>You can select the no of approvers for a module. You can select up to 5 approvers. For example, you selected 2 approvers for Templates and any changes in Template will go Live only after these 2 approvers approve the changes.</Step>
-  <Step>Click 'Save' to save the changes</Step>
-</Steps>
+- Access the Approval Requests page
+- View all requests assigned to them across modules
+- Review and take action (approve/reject) on those requests
 
-Once you have enabled Approval settings, you will see the Approval role icon along with their actual role in the Teams page.
-![](/images/workspace_mc_post_enable.png)
+They do not have direct access to modules, unless explicitly granted through another role.
 
-<Note>You can also add team members with Approver role. They will be able to access only the modules for which they are selected as Approvers.</Note>
+### Approval Settings
+![](/images/team-approval-settings.png)
+
+To enable Approval settings:
+
+1. From your Fyno account, click on **Workspace Settings** and navigate to the **Team** tab.
+2. Click **Approval Settings**.
+3. On the left-hand side, you will see a list of team members who have been assigned the Approver policy. At least one approver must be present to enable approval requests.
+4. On the right-hand side, enable approval requests for the required modules, such as:
+   - Templates
+   - Notification Events
+   - Workflows
+   - Routes
+   - Campaigns
+
+Once enabled, any changes made in the selected module will go live only after the assigned approver(s) approve the changes.
+
+5. Select the number of approvals required for each module. You can select up to 5 approvers.
+
+For example, if 2 approvers are selected for Templates, any changes made to Templates will go live only after both approvers approve the changes.
+
+6. Click **Save**.
+
+You can read more about it [here](https://www.fyno.io/docs/approval-request)
+
+
+### Important Pointers for your Reference
+
+- Roles define baseline access, while add-on permissions provide additional capabilities.
+- Certain actions, such as inviting users or modifying roles, require explicit permissions.
+- Features may be disabled or hidden if access is not granted.
