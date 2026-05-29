@@ -1,0 +1,388 @@
+---
+title: 'Configuring Endpoint - HTTP'
+slug: 'allowlist-configuring-endpoint-http'
+og:title: 'Configuring Endpoint - Workspace Settings for Allowlist | Fyno Documentation'
+og:description: "The document provides instructions on how to configure and verify an allowlist URL in Fyno's application, detailing three verification methods: DNS Verification, Web Token, and manual verification, and explains how an allowlist URL can be converted into a Delivery Webhook for receiving notification delivery updates."
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+After adding and verifying the HTTP allowlist, click Next to configure endpoint settings.
+
+## Configure Endpoint
+
+The **Configure Endpoint** section allows you to define how delivery reports are received, how request parameters are passed, and how encryption is handled for the endpoint.
+You can enable the **Use this endpoint to receive delivery reports** toggle to convert the allowlisted URL into a delivery reporting endpoint.
+![](/images/configure-endpoint-toggle.png)
+Once enabled, Fyno sends notification delivery status updates to the configured endpoint URL.
+
+
+## Request Method (HTTP)
+
+You can configure the endpoint using one of the following request methods:
+
+| Method | Description |
+| :--- | :--- |
+| **GET** | Sends delivery report data using query parameters and headers. |
+| **POST** | Sends delivery report data in the request payload along with headers. |
+
+Select the request method from the dropdown next to the endpoint URL.
+
+## Endpoint URL
+
+Enter the destination endpoint URL where delivery reports should be sent.
+
+| Field | Description |
+| :--- | :--- |
+| **Endpoint URL** | The public URL that receives delivery report requests from Fyno. |
+
+## Headers
+
+The **Headers** section allows you to configure one or more HTTP request headers that will be included with every delivery report request.
+
+Headers are commonly used for:
+- Authentication
+- Authorization
+- API access control
+- Custom metadata transmission
+![](/images/configure-endpoint-header.png)
+### Header Fields
+
+| Field | Description |
+| :--- | :--- |
+| **Key** | The request header name. |
+| **Value** | The value associated with the header key. |
+
+> Use **Add Key** to configure multiple headers.
+
+## Query Parameters
+
+The **Query Parameters** section allows you to append additional query parameters to the endpoint URL. This is commonly used with the **GET** request method.
+
+Query parameters can be used to:
+- Pass metadata
+- Send identifiers
+- Route requests
+- Configure webhook handling logic
+![](/images/configure-endpoint-query-parameter.png)
+### Query Parameter Fields
+
+| Field | Description |
+| :--- | :--- |
+| **Key** | The query parameter name. |
+| **Value** | The value associated with the query parameter. |
+
+> Use **Add Key** to configure multiple query parameters.
+
+## Encryption
+
+The **Encryption** section allows you to secure request and response data exchanged between Fyno and your configured endpoint.
+![](/images/common-encryption-methods.png)
+This feature is useful when sensitive delivery report information must be protected during transmission or when the receiving system expects encrypted payloads.
+
+Fyno supports two encryption capabilities:
+
+| Option | Description |
+| :--- | :--- |
+| **Key Level Encryption** | Encrypts selected request header or payload fields before sending the delivery report request. |
+| **Response Decryption** | Decrypts encrypted responses received from the configured endpoint before storing them in Fyno. |
+
+
+### Key Level Encryption
+
+Use **Key Level Encryption** when specific request fields contain sensitive information such as identifiers, tokens, customer data, or metadata that should not be transmitted in plain text.
+![](/images/key-level-encryption.png)
+When enabled, Fyno encrypts only the selected keys before sending the request to the configured endpoint.
+
+#### How It Works
+1. Select the encryption algorithm.
+2. Choose the output encoding format.
+3. Configure the encryption key and IV strategy.
+4. Select the request fields that should be encrypted.
+5. Fyno encrypts only the selected fields before transmitting the delivery report.
+6. Non-selected fields remain unchanged.
+
+#### Key Level Encryption Fields
+
+| Field | Description |
+| :--- | :--- |
+| **Encryption Method** | Defines the cryptographic algorithm used to encrypt request data. |
+| **Encoding** | Specifies how encrypted output should be encoded before transmission. |
+| **Encryption Key** | The symmetric cryptographic key used for encryption. |
+| **IV Strategy** | Defines how the Initialization Vector (IV) is generated and applied during encryption. |
+| **Initialization Vector (IV)** | The IV value used during encryption when a fixed IV strategy is selected. |
+| **Select Keys** | The request header or payload fields that should be encrypted before sending the request. |
+
+#### Encryption Method
+
+The available encryption methods depend on the encryption standards supported by your endpoint configuration.
+
+**Example Supported Method:**
+
+| Method | Description |
+| :--- | :--- |
+| **AES 256 GCM** | An authenticated encryption algorithm that provides both confidentiality and integrity verification for encrypted data. |
+
+> Note: The values shown in the UI are examples and may vary based on the configured encryption setup._
+
+#### Encoding
+
+The encoding format defines how encrypted binary data is represented during transmission.
+
+**Example Supported Formats:**
+
+| Encoding | Description |
+| :--- | :--- |
+| **base64** | Encodes encrypted binary data into Base64 format for safe transmission in HTTP requests. |
+| **hex** | Encodes encrypted binary data into hexadecimal string format. |
+
+> Note: Available encoding options may vary depending on the selected encryption method._
+
+#### Encryption Key
+
+The Encryption Key is the symmetric cryptographic key used during encryption. For algorithms such as AES-256, the encryption key must meet the required key length and format supported by the selected encryption standard.
+
+Fyno allows you to select encryption keys that are securely managed through the Secrets configuration.
+
+:::info To Know More
+Encryption keys are fetched from the configured Secrets section in Fyno. Secrets can be used to securely store and manage:
+- Encryption keys
+- API credentials
+- Access tokens
+- Secret tokens
+- Sensitive configuration values
+
+Refer to the Secrets documentation to learn how to create and manage reusable secure keys. The keys displayed in the UI are examples and may differ based on your workspace configuration.
+:::
+
+#### IV Strategy
+
+The IV strategy determines how the Initialization Vector (IV) is generated and used during encryption.
+
+**Example Supported Strategies:**
+
+| Strategy | Description |
+| :--- | :--- |
+| **fixed** | Uses a predefined Initialization Vector (IV). |
+| **random** | Generates a unique IV dynamically for each request. |
+
+_Note: Supported strategies may vary depending on the selected encryption method._
+
+#### Initialization Vector (IV)
+
+The **Initialization Vector (IV)** is a cryptographic input used during the encryption process to improve security and prevent identical plaintext values from generating identical encrypted outputs.
+
+* **Fixed IV:** When a fixed IV strategy is selected, a predefined IV value is used for all requests. You must configure the IV manually. This approach is useful when the receiving system expects a static IV.
+* **Random IV:** When a random IV strategy is selected, Fyno generates a new IV dynamically for each request. This improves cryptographic security by ensuring encryption randomness. This is recommended unless the destination system requires a fixed IV.
+
+#### Selecting Keys for Encryption
+
+The **Select Keys** field allows you to choose which request fields should be encrypted before the delivery report is sent.
+
+Supported request fields may include:
+- Request headers
+- Query parameters
+- Payload attributes
+
+Only the selected fields are encrypted before transmission.
+
+**Example:**
+
+Original Payload:
+```json
+{
+  "user_id": "12345",
+  "email": "user@example.com",
+  "event": "delivered"
+}
+```
+
+Encrypted Payload:
+```json
+{
+  "user_id": "12345",
+  "email": "7af3c91ab8f2...",
+  "event": "delivered"
+}
+```
+
+### Response Decryption
+
+Use **Response Decryption** when the configured endpoint returns encrypted response data and you want Fyno to decrypt and store the readable response.
+![](/images/response-decryption.png)
+Once enabled, Fyno decrypts the response using the configured decryption settings before storing or processing the data.
+
+#### How Response Decryption Works
+1. The endpoint returns encrypted response data.
+2. Fyno applies the configured decryption method.
+3. The decrypted response is parsed and stored in Fyno.
+
+#### Response Decryption Fields
+
+| Field | Description |
+| :--- | :--- |
+| **Encryption Method** | The algorithm used to decrypt the response data. |
+| **Encoding** | The encoding format of the encrypted response. |
+| **Encryption Key** | The cryptographic key used for decryption. |
+| **Initialization Vector (IV)** | The IV used during the decryption process. |
+| **Salt Key** | Additional cryptographic salt value used during decryption. |
+| **Response Type** | Defines how the decrypted response should be interpreted and stored. |
+
+#### Encryption Method
+
+The available decryption methods depend on the encryption standards used by the destination endpoint.
+
+**Example Supported Method:**
+
+| Method | Description |
+| :--- | :--- |
+| **AES 256 CBC** | A symmetric block cipher encryption method commonly used for encrypted API responses. |
+
+_Note: The values shown in the UI are examples and may vary based on the configured encryption setup._
+
+#### Encoding
+
+The encoding format defines how encrypted response data is decoded before decryption.
+
+**Example Supported Formats:**
+
+| Encoding | Description |
+| :--- | :--- |
+| **base64** | Decodes Base64-encoded encrypted response data. |
+| **hex** | Decodes hexadecimal-encoded encrypted response data. |
+
+#### Encryption Key
+
+The decryption key is used to decrypt encrypted response data returned by the configured endpoint. The configured key must match the encryption key used by the destination system.
+
+:::info To Know More
+Decryption keys are managed through the Secrets section in Fyno. Secrets provide centralized and secure management for reusable sensitive values across configurations. The keys displayed in the UI are examples and may differ based on your workspace configuration.
+:::
+
+#### Salt Key
+
+The **Salt Key** is an additional random value used during cryptographic operations to strengthen encryption security.
+
+Salt values help:
+- Prevent predictable encryption outputs
+- Improve resistance against replay attacks
+- Add additional randomness during decryption
+
+> Note: The salt key must match the value used by the destination endpoint._
+
+#### Response Type
+
+The response type determines how the decrypted response should be interpreted after decryption.
+
+**Example Supported Response Types:**
+
+| Response Type | Description |
+| :--- | :--- |
+| **Text** | Parses the decrypted response as plain text. |
+| **JSON** | Parses the decrypted response as structured JSON data. |
+
+> Note: Available response types may vary depending on the endpoint response format.
+
+## Additional Configuration Options Available for POST Method
+
+The following configuration options are available specifically when the **POST** method is selected for an endpoint. These settings help customize how payloads are sent, formatted, and secured before delivery.
+
+## Body Payload Options
+
+The **Body Payload** section defines the structure and format of the request body sent to the configured endpoint.
+![](/images/body-payload-post-method.png)
+
+### Content Type
+Select the content type for the outgoing request payload.
+
+## Body Encryption
+
+The **Body Encryption** section allows you to encrypt the complete request payload before it is sent to the configured endpoint. This helps secure sensitive data during transmission and ensures that only the intended receiver can decrypt and read the payload.
+
+### Enable Body Encryption
+
+Use the toggle at the top of the section to enable or disable payload encryption.
+![](/images/body-encryption-post-method.png)
+**When enabled:**
+- The complete request body is encrypted before transmission.
+- Additional encryption-related configuration fields become available.
+- The receiving endpoint must decrypt the payload using the same encryption settings.
+
+### Encryption Method
+
+The **Encryption Method** field defines the cryptographic algorithm used to encrypt the request payload.
+
+## Request Type
+
+The **Request Type** option defines how the encrypted payload is sent in the HTTP request body after encryption is completed. It controls the final structure of the outgoing request.
+
+Two request types are available:
+- **Text**
+- **JSON**
+
+### Text Request Type
+
+When **Text** is selected, the encrypted payload is sent as a plain encoded string in the request body. The request body contains only the encrypted value without any additional JSON structure.
+
+#### Example
+
+**Encrypted Payload:**
+```text
+4f2a7b9cd12ef4ab
+```
+#### Final Request Body
+
+```text
+4f2a7b9cd12ef4ab
+```
+
+#### Characteristics
+
+| Property | Description |
+| :--- | :--- |
+| **Payload Structure** | Raw encrypted string |
+| **Format** | Plain text |
+| **Wrapper Object** | Not included |
+| **Content-Type** | Usually `text/plain` |
+
+#### When to Use
+Use the **Text** request type when:
+- The receiving endpoint expects raw encrypted content.
+- A lightweight payload structure is required.
+- Integrating with systems that process plain encrypted strings.
+- JSON formatting is unnecessary.
+
+#### Advantages and Considerations
+
+| Advantages | Considerations |
+| :--- | :--- |
+| Simple request structure | Does not provide additional metadata fields |
+| Smaller payload size | Less flexible for structured APIs |
+| Easy integration with text-based receivers | Parsing logic must be handled manually by the receiver |
+| Minimal processing overhead | |
+
+### JSON Request Type
+
+When **JSON** is selected, the encrypted payload is wrapped inside a JSON object before being sent. This allows the encrypted content to be transmitted as part of a structured request body.
+#### Example
+
+**Encrypted Payload:**
+```text
+4f2a7b9cd12ef4ab
+```
+
+#### Final Request Body
+
+```json
+{
+  "encrypted_payload": "4f2a7b9cd12ef4ab"
+}
+```
+
+#### When to Use:
+
+Use the **JSON** request type when:
+- The receiving API expects JSON-formatted requests.
+- Additional metadata may need to be included later within the same object.
+- Working with modern REST APIs or webhook integrations.
+- Structured request handling is preferred by the target server.
+

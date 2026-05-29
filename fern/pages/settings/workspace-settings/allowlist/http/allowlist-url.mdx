@@ -1,0 +1,108 @@
+---
+title: 'Allowlist URL'
+slug: 'allowlist-url'
+og:title: 'Allowlist URL - Workspace Settings | Fyno Documentation'
+og:description: "The document provides instructions on how to add and verify an allowlist URL in Fyno's application, detailing three verification methods: DNS Verification, Web Token, and manual verification, and explains how an allowlist URL can be converted into a Delivery Webhook for receiving notification delivery updates."
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The **HTTP Allowlist** option lets you register and verify external HTTP or HTTPS endpoints that can securely interact with the platform. Once verified, these endpoints can be used for workflows, integrations, callbacks, and delivery reporting.
+![](/images/allowlist-http.png)
+## Steps to Add an HTTP Allowlist:
+
+<Steps>
+  <Step>Navigate to **Workspace Settings > Allowlist**.</Step>
+  <Step>Click **Add**, the **Add Allowlist** screen opens.</Step>
+  <Step>Select the **HTTP** option from the available allowlist types.</Step>
+  <Step>Enter a **Custom URL Name** and **URL** for the Allowlist.</Step>
+</Steps>
+
+## Verification Method
+
+The **Verification Method** section determines how ownership or access to the provided URL is validated before the endpoint is allowlisted.
+
+Three verification methods are available:
+
+| Verification Method | Description | Approval Time |
+| --- | --- | --- |
+| **DNS Verification** | Verifies domain ownership using a DNS TXT record. | 15 minutes to 24 hours |
+| **Web Token** | Verifies the endpoint by validating a token returned from the URL response. | Less than 1 minute |
+| **Send for Verification** | Submits the URL for manual review and approval by the Fyno team. | 8 hours to 2 days |
+
+## DNS Verification
+
+Use **DNS Verification** when you have access to your domain’s DNS configuration.
+![](/images/verification-http.png)
+When you select **DNS Verification**, the system generates a verification TXT record to confirm domain ownership.
+
+### Steps
+
+<Steps>
+  <Step>Select **DNS Verification**.</Step>
+  <Step>Copy the generated TXT record using the copy icon.</Step>
+  <Step>Add the TXT record to your domain's DNS configuration through your DNS provider.</Step>
+  <Step>Wait for the DNS changes to propagate.</Step>
+  <Step>Click **Next** to verify the domain ownership.</Step>
+</Steps>
+
+Once the record is detected, the verification is completed automatically.
+
+## Web Token Verification
+
+Use **Web Token Verification** when the endpoint can read query parameters and return the token value in the response.
+![](/images/web-token.png)
+### How It Works
+
+When you select **Web Token Verification**, the platform sends a request to the specified endpoint with a `fyno_token` query parameter.
+
+To complete verification, the endpoint must:
+- Read the token value from the request.
+- Return the same token value in the response.
+
+Once the returned token matches the generated token, the endpoint is verified successfully.
+
+### Steps
+
+<Steps>
+  <Step>Select **Web Token Verification**.</Step>
+  <Step>Optionally enter a custom token value.</Step>
+  <Step>
+    Configure the endpoint to:
+    <ul>
+      <li>Read the <code>fyno_token</code> query parameter from the request.</li>
+      <li>Return the same token value in the response.</li>
+    </ul>
+  </Step>
+  <Step>Click **Next** to initiate verification.</Step>
+</Steps>
+
+Once the token is validated, the endpoint is verified automatically.
+
+### Token Field
+
+| Field | Description |
+| --- | --- |
+| **Token (Optional)** | An optional custom alphanumeric token that is added as a `user_token` query parameter during verification. This helps identify that the verification request originated from Fyno and can be used for additional validation on the receiving endpoint. |
+
+## Send for Verification
+
+Use this option when **DNS** or **Web Token** verification cannot be configured.
+![](/images/send-for-verification.png)
+### How It Works
+
+The provided URL is submitted for manual verification and approval by the Fyno team.
+
+### Steps
+
+<Steps>
+  <Step>Select **Send for Verification**.</Step>
+  <Step>
+    Enter a detailed description explaining (optional):
+    <ul>
+      <li>Why the URL needs to be allowlisted.</li>
+      <li>The intended use case.</li>
+      <li>Any relevant integration details.</li>
+    </ul>
+  </Step>
+  <Step>Click **Next** to configure the endpoint and submit the request for verification.</Step>
+</Steps>
