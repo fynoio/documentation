@@ -541,11 +541,17 @@ navigation:
               - section: "Allowlist"
                 path: "pages/settings/workspace-settings/allowlist.mdx"
                 contents:
-                  - page: "Allowlist URL"
-                    path: "pages/settings/workspace-settings/allowlist/allowlist-url.mdx"
-                  - page: "Allowlist SQS"
-                    path: "pages/settings/workspace-settings/allowlist/allowlist-sqs.mdx"
-                  - page: "Configuring Allowlist URL/SQS to receive Delivery Report"
+                  - section: "HTTP"
+                    path: "pages/settings/workspace-settings/allowlist/http/allowlist-url.mdx"
+                    contents:
+                      - page: "Configuring Endpoint - HTTP"
+                        path: "pages/settings/workspace-settings/allowlist/http/configuring-endpoint-http.mdx"
+                  - section: "SQS"
+                    path: "pages/settings/workspace-settings/allowlist/sqs/allowlist-sqs.mdx"
+                    contents:
+                      - page: "Configuring Endpoint - SQS"
+                        path: "pages/settings/workspace-settings/allowlist/sqs/configuring-endpoint-sqs.mdx"
+                  - page: "Receive Delivery Report"
                     path: "pages/settings/workspace-settings/allowlist/receive-delivery-report.mdx"
               - page: "Alerts"
                 path: "pages/settings/workspace-settings/alerts.mdx"

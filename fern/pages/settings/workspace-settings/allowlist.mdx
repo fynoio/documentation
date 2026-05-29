@@ -6,22 +6,58 @@ og:description: 'This document explains the concept of an Allowlist, which is a 
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Allowlist (also commonly called as Webhooks) is a list of URLs or SQS that you would need to add to the Fyno platform and verify before you use it on the application and in your workflows.
+## Overview
 
-You need to add Allowlist URL or SQS in 2 cases.
+The **Allowlist** is a registry of verified external destinations, such as Webhook URLs and Amazon SQS queues, that can securely interact with Fyno. These destinations must be added and verified before they can be used inside workflows, delivery reporting, or other integrations within the platform.
 
-<ul>
-   <li>When you want to receive a delivery report from Fyno to your system</li>
-   <li>When you want to call your API from Fyno's Workflow</li>
-</ul>
+The Allowlist module helps ensure that only trusted and validated endpoints can exchange data with Fyno, improving security and reducing the risk of unauthorized communication.
 
-## The need for an Allowlist
+## Why is an Allowlist Required?
 
-Allowlists were designed for Fyno's app users to ensure security for the information that is being plugged into the system, by having verified URLs/SQS and thus help avoid unnecessary security hassles.
+Fyno uses Allowlists to securely manage communication between the platform and external systems. You need to configure an Allowlist in the following scenarios:
 
-## Types of Allowlist
+| Use Case | Description |
+| :--- | :--- |
+| **Receive Delivery Reports** | Receive notification delivery updates, callbacks, or event statuses from Fyno. |
+| **Call External APIs from Workflows** | Trigger APIs hosted outside Fyno from within workflows. |
+| **Third-Party Integrations** | Send or receive data from external applications or services. |
+| **Workflow Event Updates** | Exchange workflow execution events and callbacks securely. |
 
-You can add Allowlists as:
+## Supported Allowlist Types
 
-1. [URL](./allowlist-url)
-2. [SQS](./allowlist-sqs)
+Fyno currently supports the following Allowlist types:
+
+| Type | Description |
+| :--- | :--- |
+| [HTTP](./allowlist-url) | Used for API integrations, callbacks, and delivery reports. |
+| [SQS](./allowlist-sqs) | Used for queue-based integrations and asynchronous processing. |
+
+## Accessing the Allowlist Module
+
+To access and manage Allowlists:
+1. Navigate to **Workspace Settings**.
+2. Open the **Allowlist** tab.
+
+This section allows you to create, verify, edit, and manage all configured endpoints for your workspace.
+
+## Active and Inactive Status
+
+Allowlist entries can exist in different operational states:
+
+| Status | Description |
+| :--- | :--- |
+| **Active** | Endpoint is verified and available for workflows and integrations. |
+| **Inactive** | Endpoint is disabled and cannot be used. |
+
+> :::NOTE:
+Only **Active** Allowlists can be selected during workflow configuration or delivery report setup.
+:::
+
+## Prerequisites
+
+Before creating an Allowlist URL, ensure the following requirements are met:
+
+| Requirement | Description |
+| :--- | :--- |
+| **Public Endpoint** | The endpoint must be publicly accessible over the internet. |
+| **HTTPS Support** | HTTPS is strongly recommended to guarantee secure, encrypted data communication. |

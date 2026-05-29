@@ -1,0 +1,106 @@
+---
+title: 'Configuring Endpoint - SQS'
+slug: 'allowlist-configuring-endpoint-sqs'
+og:title: 'Configuring Endpoint - Workspace Settings for Allowlist | Fyno Documentation'
+og:description: "The document provides instructions on how to configure and verify an allowlist URL in Fyno's application, detailing three verification methods: DNS Verification, Web Token, and manual verification, and explains how an allowlist URL can be converted into a Delivery Webhook for receiving notification delivery updates."
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The **Configure Endpoint** section allows you to configure how delivery reports are sent to the specified endpoint. This includes payload formatting, request configuration, and encryption settings for securing request data during transmission.
+
+The available options and configurations may vary depending on the selected endpoint type and integration requirements.
+
+## Enable Endpoint Configuration
+
+Enable the **Use this endpoint to receive delivery reports** toggle to activate endpoint configuration.
+
+**Once enabled, you can configure:**
+- Endpoint URL
+- Body Payload
+- Encryption settings
+
+## Body Payload
+
+The **Body Payload** section defines the structure and format of the request body sent to the configured endpoint.
+![](/images/sqs-configure-endpoint-body-payload.png)
+### Content Type
+The **Content Type** field specifies the format of the outgoing request payload. Supported content types may vary depending on the endpoint configuration and payload format.
+
+### Payload Format
+The payload can be configured using one of the following formats:
+
+| Format | Description |
+| :--- | :--- |
+| **FORM** | Sends payload data as key-value pairs. |
+| **JSON** | Sends payload data as a structured JSON object. |
+
+### Payload Fields
+Payload fields allow request parameters to be added as key-value pairs.
+
+| Field | Description |
+| :--- | :--- |
+| **Key** | Defines the parameter name. |
+| **Value** | Defines the parameter value. |
+
+> Use **Add Key** to include additional payload parameters.
+
+### Autofill
+The **Autofill** option automatically maps available delivery report fields into the payload configuration. This helps simplify payload setup and reduces manual mapping effort.
+
+## Encryption
+
+The **Encryption** section provides options to secure request data before transmission. The following encryption modes are available:
+![](/images/sqs-encryption.png)
+| Encryption Type | Description |
+| :--- | :--- |
+| **Key Level Encryption** | Encrypts selected keys from the payload or headers. |
+| **Body Encryption** | Encrypts the complete request body. |
+
+### Key Level Encryption
+
+The **Key Level Encryption** option encrypts only selected payload or header fields instead of encrypting the entire request body. Enable the toggle to activate key-level encryption.
+
+#### Purpose
+Key-level encryption is useful when:
+- Only specific fields contain sensitive information
+- Certain payload fields must remain readable in plaintext
+- Partial encryption is required by the receiving system
+
+### Payload and Body Encryption Configurations
+
+| Field / Option | Description |
+| :--- | :--- |
+| **Encryption Method** | Defines the algorithm used for encrypting selected keys. Available methods may vary depending on the configured encryption settings. |
+| **Encoding** | Determines how encrypted data is converted into a transferable format. Supported encoding formats may vary depending on the selected encryption method. |
+| **Encryption Key** | Used to encrypt and decrypt request data. The exact same key configuration must be available at the receiver end to successfully decrypt the payload. Key requirements may vary depending on the selected encryption method. |
+| **Initialization Vector (IV)** | Adds randomness to the encryption process and improves cryptographic security. IV requirements and supported formats depend on the selected encryption method. |
+| **Salt Key** | An additional random value used during encryption to improve security and reduce predictable encryption patterns. |
+| **Select Keys** | Allows you to choose which payload or header fields should be encrypted. Only selected fields are encrypted when key-level encryption is enabled. |
+| **Add Another Method** | Allows multiple encryption methods to be configured simultaneously. This is useful when different payload fields require different encryption configurations. |
+| **Body Encryption** | Encrypts the complete request body before transmission. Enable the toggle to secure the entire payload instead of encrypting specific fields only. |
+| **Body Encryption Method** | Defines the algorithm used for full payload encryption. Available methods may vary depending on the endpoint configuration. |
+| **IV Strategy** | Determines how the Initialization Vector is generated during encryption. Available strategies may include predefined or dynamically generated IV configurations depending on the selected encryption method. |
+
+#### Request Type
+The **Request Type** option defines how the encrypted payload is transmitted in the outgoing request.
+
+| Request Type | Description |
+| :--- | :--- |
+| **Text** | Sends the encrypted payload as encoded text. |
+| **JSON** | Sends the encrypted payload within a structured JSON object. |
+
+#### Text Request Type
+When the **Text** request type is selected:
+- The request body contains only the encrypted payload.
+- The payload is transmitted as encoded text.
+- No additional request structure is included.
+
+_This option is useful for integrations expecting raw encrypted content._
+
+#### JSON Request Type
+When the **JSON** request type is selected:
+- The encrypted payload is wrapped inside a JSON structure.
+- The request body follows a structured format.
+- Additional metadata can be included if required.
+
+> NOTE: This option is commonly used for APIs and webhook integrations expecting JSON payloads.
