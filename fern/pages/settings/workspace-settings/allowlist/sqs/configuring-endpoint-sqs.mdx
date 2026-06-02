@@ -56,6 +56,19 @@ The **Encryption** section provides options to secure request data before transm
 | **Key Level Encryption** | Encrypts selected keys from the payload or headers. |
 | **Body Encryption** | Encrypts the complete request body. |
 
+Fyno allows you to select encryption keys that are securely managed through the Secrets configuration.
+
+:::info To Know More
+Encryption keys are fetched from the configured [Secrets](./security) section in Fyno. Secrets can be used to securely store and manage:
+- Encryption keys
+- API credentials
+- Access tokens
+- Secret tokens
+- Sensitive configuration values
+
+Refer to the [Secrets](./security) documentation to learn how to create and manage reusable secure keys. The keys displayed in the UI are examples and may differ based on your workspace configuration.
+:::
+
 ### Key Level Encryption
 
 The **Key Level Encryption** option encrypts only selected payload or header fields instead of encrypting the entire request body. Enable the toggle to activate key-level encryption.
