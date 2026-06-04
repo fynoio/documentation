@@ -934,3 +934,24 @@ redirects:
   - source: "/docs/release-notes/2025/3/3"
     destination: "/docs/release-notes#2514"
     permanent: true
+  - source: "/docs/fyno-verify"
+    destination: "/docs/fyno-verify-otp-link"
+    permanent: true 
+  - source: "/docs/log-details"
+    destination: "/docs/sent-log-details"
+    permanent: true
+  - source: "/docs/meta-whatsapp-template"
+    destination: "/docs/external-templates/whatsapp"
+    permanent: true
+  - source: "/docs/receive-delivery-reports"
+    destination: "/docs/configuring-allowlist-url-sqs-to-receive-delivery-report"
+    permanent: true
+  - source: "/docs/event-analytics"
+    destination: "/docs/notification-event-analytics"
+    permanent: true  
+  - source: "/docs/event-creation"
+    destination: "/docs/notification-event-creation"
+    permanent: true
+  - source: "/docs/event-triggering"
+    destination: "/docs/notification-event-triggering"
+    permanent: true           
