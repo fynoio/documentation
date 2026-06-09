@@ -43,29 +43,29 @@ The below roles with unique levels of access have been created so that you can a
 ![](/images/campaign-manager-role-ss.png)
 ### Roles & Permissions
 
-| Feature / Access | Owner | Super Admin | Workspace Admin | Developer | Support | Default Role |
-| --- | --- | --- | --- | --- | --- | --- |
-| Dashboard & Analytics | Yes | Yes | Yes | Yes | Yes | No |
-| Alarms & Anomalies | Yes | Yes | Yes | Yes | Yes | No |
-| Integrations | Yes | Yes | Yes | Yes | View only | No |
-| Templates | Yes | Yes | Yes | Yes | View only | No |
-| Components | Yes | Yes | Yes | Yes | View only | No |
-| Routes | Yes | Yes | Yes | Yes | View only | No |
-| Notification Events | Yes | Yes | Yes | Yes | View only | No |
-| Logs | Yes | Yes | Yes | Test only | Yes | No |
-| Report Download | Yes | Yes | Yes | Test only | No | No |
-| Campaigns | Yes | Yes | Yes | Yes | View only | No |
-| User Profiles | Yes | Yes | Yes | Test only | View only | No |
-| User Cohorts | Yes | Yes | Yes | No | View only | No |
-| User Preferences | Yes | Yes | Yes | Yes | View only | No |
-| Invite Team Member | Yes | Yes | Only with “Invite Team Members and Modify Roles” add-on policy | Only with “Invite Team Members and Modify Roles” add-on policy | View Only | View Only |
-| API Keys | Yes | Yes | Yes | Yes | View only | No |
-| Allowlist (Webhooks) | Yes | Yes | Yes | Yes | View only | No |
-| Security Settings | Yes | Yes | View only | View only | View only | No |
-| Delivery Limits (DND) | Yes | Yes | Yes | Yes | View only | No |
-| Add-ons | Yes | Yes - can configure all add-on policies including Approver and Team Management permissions | Yes - can assign add-on policies based on granted permissions | Yes - can assign add-on policies based on granted permissions | View only | No |
-| Copy to another Workspace | Yes | Yes | Yes | No | No | No |
-| Workspace Creation / Deletion | Yes | No | No | No | No | No |
+| Feature / Access | Owner | Super Admin | Workspace Admin | Developer | Campaign Manager | Support | Default Role |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Dashboard and Analytics | Yes | Yes | Yes | Yes | Yes | Yes | No |
+| Alarms and Anomalies | Yes | Yes | Yes | Yes | Yes | Yes | No |
+| Integrations | Yes | Yes | Yes | Yes | View only | View only | No |
+| Templates | Yes | Yes | Yes | Yes | View only | View only | No |
+| Components | Yes | Yes | Yes | Yes | View only | View only | No |
+| Routes | Yes | Yes | Yes | Yes | View only | View only | No |
+| Notification Events | Yes | Yes | Yes | Yes | View only | View only | No |
+| Logs | Yes | Yes | Yes | Test only | Yes | Yes | No |
+| Report Download | Yes | Yes | Yes | Test only | Yes | No | No |
+| Campaigns | Yes | Yes | Yes | Yes | Yes | View Only | No |
+| User Profiles | Yes | Yes | Yes | Test only | View only | View only | No |
+| User Cohorts | Yes | Yes | Yes | No | View only | View only | No |
+| User Preferences | Yes | Yes | Yes | Yes | View only | View only | No |
+| Invite Team Member | Yes | Yes | Only with "Invite Team Members and Modify Roles" add-on policy | Only with "Invite Team Members and Modify Roles" add-on policy | View Only | View Only | View Only |
+| API Keys | Yes | Yes | Yes | Yes | View only | View only | No |
+| Allowlist (Webhooks) | Yes | Yes | Yes | Yes | View only | View only | No |
+| Security Settings | Yes | Yes | View only | View only | View only | View only | No |
+| Delivery Limits (DND) | Yes | Yes | Yes | Yes | View only | View only | No |
+| Add-ons | Yes | Yes - can configure all add-on policies including Approver and Team Management permissions | Yes - can assign add-on policies based on granted permissions | Yes - can assign add-on policies based on granted permissions | View only | View only | No |
+| Copy to another Workspace | Yes | Yes | Yes | No | No | No | No |
+| Workspace Creation / Deletion | Yes | No | No | No | No | No | No |
 
 ### Additional Notes
 
@@ -114,8 +114,8 @@ You can invite new members to collaborate within your workspace by following the
 ### Role Assignment Rules
 
 - Owner can assign any role.
-- Super Admin can assign Workspace Admin, Developer, Support, or Default roles.
-- Workspace Admin can assign Developer, Support, or Default roles.
+- Super Admin can assign Workspace Admin, Developer, Campaign Manager, Support, or Default roles.
+- Workspace Admin can assign Developer, Campaign Manager, Support, or Default roles.
 - Add-on policies can be assigned during invitation or updated later.
 
 ### Modifying Roles and Add-on Policies
