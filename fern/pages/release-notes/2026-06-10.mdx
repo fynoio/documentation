@@ -1,0 +1,112 @@
+## 26.2.3
+
+**Release Date:** 09-Jun-2026
+
+### 🚀 New Features
+
+- **View Associations Across Templates, Events, and Workflows**
+  - Users can now quickly view and navigate related configurations directly from supported pages.
+  - The Associations view highlights dependencies across templates, workflows, notification events, routes (single and omni), and components.
+  - This provides greater visibility into how configurations are connected, helping users understand dependencies, assess impact, and manage setups more efficiently.
+
+- **Delete Confirmations – Improved Impact Visibility**
+  - Enhanced delete confirmations to provide greater visibility into related items that may be affected by a deletion.
+  - When deleting supported items, users can now review associated configurations directly within the confirmation dialog before proceeding.
+  - This helps users better understand the impact of their actions and make more informed decisions when managing their configurations.
+
+- **Analytics – Delivery Rates by Analytics Label**
+  - Introduced a new reporting option to view delivery rates grouped by Analytics Labels.
+  - Users can now switch between viewing delivery rates by Notification Events or Analytics Labels, providing greater flexibility when analyzing notification performance.
+  - This enhancement enables teams to evaluate delivery trends across business-specific categories and gain deeper insights into how different types of notifications are performing.
+  - The reporting experience remains consistent across both views, making it easier to compare and monitor delivery performance using the grouping method that best fits organizational needs.
+
+- **WhatsApp Templates – Call Permission Request Support**
+  - Introduced support for Call Permission Request actions in supported WhatsApp templates.
+  - Users can now configure and view Call Permission Request actions within supported WhatsApp templates.
+  - Template previews have also been updated to reflect the new experience, providing a more accurate representation of how these templates will appear to recipients.
+
+- **Analytics - New Expanded View for the Delivery Rates Chart**
+  - Expanded the Notification Event Delivery Rates report to include all relevant notification statuses such as Sent, Delivered, Failed, Error, Timeout, Rejected, Expired, Undelivered, and other applicable delivery states for complete lifecycle visibility.
+  - Enhanced reporting insights to help users quickly identify delivery failures and performance issues while maintaining a clear and easy-to-understand reporting experience.
+
+### ⚡ Feature Enhancements
+
+- **Subscription Topics – Improved Topic Management Experience**
+  - Improved the experience of creating and editing subscription topics.
+  - The topic pop-up has been updated to provide a smoother and more consistent experience when viewing and managing topic details.
+  - Users can now review and update topic settings more easily, with improved navigation and usability throughout the pop-up.
+
+- **Logs – Improved Summary View**
+  - Enhanced the Log Details summary view to make information easier to review across channels.
+  - Important details are now presented in a cleaner and more organized layout, helping users quickly find relevant information without unnecessary clutter.
+  - The updated experience improves readability and provides a more consistent view across Email, SMS, and other channels.
+
+- **Analytics – Enhanced Provider Performance Reporting**
+  - Enhanced the Provider Performance report to provide more detailed visibility into notification delivery performance.
+  - In addition to the existing provider-level view, users can now analyze performance by channel and integration.
+  - This makes it easier to identify trends, compare performance across different delivery paths, and gain deeper insights into notification delivery behavior.
+
+- **Reports – Enhanced Analytics Label Support**
+  - Enhanced reporting capabilities to provide greater flexibility when working with Analytics Labels.
+  - Reports now support records associated with multiple Analytics Labels and can also include records where no Analytics Label has been assigned.
+  - This improvement provides a more complete view of reporting data and helps ensure users can analyze results more effectively across different reporting scenarios.
+
+- **Improved Empty State Experience**
+  - Introduced improved empty state experiences across key modules, including Workflows, Notification Events, Fyno Templates, Omni-channel Routes, Single Channel Routes, and Campaigns.
+  - Users are now provided with clearer guidance and actions when no records are available, making it easier to understand the purpose of each module and get started with creating new configurations.
+
+- **Push Templates – Enhanced Configuration and Testing Experience**
+  - Enhanced Push Templates with additional configuration options and an improved testing experience.
+  - Users can now configure more notification settings for supported platforms, providing greater flexibility when creating push notifications.
+  - The template creation experience has also been refined with improved organization of settings and easier access to platform-specific options.
+  - The push notification testing experience has been improved, making it easier to validate notifications before use and ensuring a smoother workflow when creating and managing push templates.
+
+- **Analytics – Last 60 Days Date Filter**
+  - Added a new Last 60 Days date filter to the Dashboard and Event Analytics pages for faster access to recent historical data.
+  - Users can now quickly analyze trends and performance over the previous 60 days without manually configuring a custom date range.
+
+### 🛠 Bug Fixes
+
+- **Email Preview – Component Version Selection**
+  - Fixed an issue in the email preview experience where the selected component version was not clearly indicated when switching between test and live versions.
+  - The active version is now highlighted in the preview, making it easier to identify which version is being displayed.
+  - Additional guidance has also been added to help users better understand how version selection affects the preview experience.
+
+- **Logs – Column Customization and Advanced Filters**
+  - Introduced new customization and filtering capabilities within Logs.
+  - Users can now choose which columns are displayed, rearrange columns to match their preferred view, and apply additional filters to refine log data more effectively.
+
+- **Analytics – Dashboard Readability and Consistency Improvements**
+  - Fixed several issues affecting the usability and presentation of analytics dashboards.
+  - Improved chart readability with updated labels, descriptions, and visual styling to make notification volume data easier to understand.
+  - Standardized the test and live view selection experience across analytics pages for greater consistency.
+  - Improved delivery performance reporting by refining how delivery data is presented and ordered, helping users identify important trends and performance issues more easily.
+
+- **URL Shortening – Custom URL Handling Improvements**
+  - Fixed issues affecting URL shortening for custom URLs in supported messaging templates.
+  - Custom URLs now behave consistently when URL shortening is enabled, preventing unintended changes to the configured URL.
+  - Improved the experience of selecting placeholders and configuring shortened links, ensuring custom URLs can be managed and used as expected.
+
+- **Email Templates – Editor Experience Improvements**
+  - Resolved issues affecting the email template editor that could cause errors when working with components and impact the editing experience.
+  - The editor now handles components more reliably and includes support for testing, previewing, editor switching, and template validation directly within the editing experience.
+  - Updated the interface for greater consistency, with improvements to layout, spacing, action placement, and visual feedback.
+  - Improved validation messages to provide clearer success and error states when checking template content.
+
+- **Workflows – Payload Mapper Support in Subflows**
+  - Fixed an issue where values created within a subflow were not available to subsequent workflow steps.
+  - Data generated using the Payload Mapper inside subflows can now be accessed and reused throughout the rest of the workflow.
+
+- **Public Integration Links – Usability Improvements**
+  - Improved the Public Integration Link experience with clearer messaging and better accessibility across devices.
+  - Updated the wording throughout the integration setup flow to make instructions easier to understand.
+  - Improved the experience on mobile devices by enhancing the responsiveness of access limit and error pages, providing a smoother experience when opening public integration links from different screen sizes.
+
+- **Workflows – Subflow Editor Stability Improvements**
+  - Fixed several issues affecting the workflow editing experience when working with subflows.
+  - Resolved issues that could cause duplicate elements or unexpected connections to appear while creating and editing subflows.
+  - Improved the behavior of subflow entry points to prevent unintended selections and inconsistent validation messages.
+
+- **InApp Notifications – Empty Button Display**
+  - Fixed an issue where InApp notifications could display an empty button even when no action button was configured in the template.
+  - Notifications now accurately reflect the template configuration and will only display action buttons when they have been configured.
