@@ -40,32 +40,390 @@ This enables flexible and controlled access management across teams.
 ### Roles
 
 The below roles with unique levels of access have been created so that you can assign relevant roles to each person, based on what they need to access.
-![](/images/campaign-manager-role-ss.png)
+![](/images/campaign-manager-role-screenshot.png)
 ### Roles & Permissions
 
-| Feature / Access | Owner | Super Admin | Workspace Admin | Developer | Support | Default Role |
-| --- | --- | --- | --- | --- | --- | --- |
-| Dashboard & Analytics | Yes | Yes | Yes | Yes | Yes | No |
-| Alarms & Anomalies | Yes | Yes | Yes | Yes | Yes | No |
-| Integrations | Yes | Yes | Yes | Yes | View only | No |
-| Templates | Yes | Yes | Yes | Yes | View only | No |
-| Components | Yes | Yes | Yes | Yes | View only | No |
-| Routes | Yes | Yes | Yes | Yes | View only | No |
-| Notification Events | Yes | Yes | Yes | Yes | View only | No |
-| Logs | Yes | Yes | Yes | Test only | Yes | No |
-| Report Download | Yes | Yes | Yes | Test only | No | No |
-| Campaigns | Yes | Yes | Yes | Yes | View only | No |
-| User Profiles | Yes | Yes | Yes | Test only | View only | No |
-| User Cohorts | Yes | Yes | Yes | No | View only | No |
-| User Preferences | Yes | Yes | Yes | Yes | View only | No |
-| Invite Team Member | Yes | Yes | Only with “Invite Team Members and Modify Roles” add-on policy | Only with “Invite Team Members and Modify Roles” add-on policy | View Only | View Only |
-| API Keys | Yes | Yes | Yes | Yes | View only | No |
-| Allowlist (Webhooks) | Yes | Yes | Yes | Yes | View only | No |
-| Security Settings | Yes | Yes | View only | View only | View only | No |
-| Delivery Limits (DND) | Yes | Yes | Yes | Yes | View only | No |
-| Add-ons | Yes | Yes - can configure all add-on policies including Approver and Team Management permissions | Yes - can assign add-on policies based on granted permissions | Yes - can assign add-on policies based on granted permissions | View only | No |
-| Copy to another Workspace | Yes | Yes | Yes | No | No | No |
-| Workspace Creation / Deletion | Yes | No | No | No | No | No |
+export const tableWrapperStyle = {
+  overflowX: 'auto', /* Keeps horizontal scroll safe on small screens */
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  borderRadius: '8px',
+  border: '1px solid var(--rb-border-main, #E0E0E0)',
+  padding: '8px',
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+};
+
+export const tableStyle = {
+  width: '100%',
+  borderCollapse: 'separate', /* Critical for sticky elements inside semantic tables */
+  borderSpacing: 0,
+  fontSize: '13px',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
+
+export const thStyle = {
+  position: 'sticky',
+  top: 0, /* Sticks directly to the top edge of the browser viewport */
+  zIndex: 20,
+  backgroundColor: 'var(--rb-header-bg, #F0F0F0)',
+  color: 'var(--rb-header-text, #333333)',
+  textAlign: 'left',
+  padding: '12px',
+  fontWeight: '600',
+  borderBottom: '2px solid var(--rb-border-main, #E0E0E0)'
+};
+
+export const tdStyle = {
+  padding: '8px 12px',
+  borderBottom: '1px solid var(--rb-border-sub, #F0F0F0)',
+  verticalAlign: 'middle',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)' /* Opaque backplate keeps scroll overlapping clean */
+};
+
+export const TableHeader = ({ text }) => (
+  <tr>
+    <td colSpan="8" style={{
+      position: 'sticky',
+      top: '43px', /* Dynamically trails directly below the main header height */
+      zIndex: 10,
+      backgroundColor: 'var(--rb-category-bg, #FAF4E3)',
+      color: 'var(--rb-category-text, #8B6602)',
+      fontWeight: '700',
+      fontSize: '11px',
+      letterSpacing: '0.05em',
+      padding: '10px 12px',
+      textTransform: 'uppercase',
+      textAlign: 'left',
+      borderBottom: '1px solid var(--rb-border-main, #E0E0E0)'
+    }}>
+      {text}
+    </td>
+  </tr>
+);
+
+export const Badge = ({ type, text }) => {
+  const baseBadgeStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '4px',
+    padding: '4px 12px',
+    fontSize: '12px',
+    fontWeight: '600',
+    minWidth: '85px',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    whiteSpace: 'nowrap'
+  };
+  
+  const variants = {
+    yes: { backgroundColor: 'var(--badge-yes-bg, #F2F7E3)', color: 'var(--badge-yes-text, #547100)' },
+    view: { backgroundColor: 'var(--badge-view-bg, #E5EDF7)', color: 'var(--badge-view-text, #0E3672)' },
+    test: { backgroundColor: 'var(--badge-test-bg, #FAF4E3)', color: 'var(--badge-test-text, #8B6602)' },
+    no: { backgroundColor: 'var(--badge-no-bg, #F0F0F0)', color: 'var(--badge-no-text, #333333)' }
+  };
+
+  return <span style={{ ...baseBadgeStyle, ...variants[type] }}>{text}</span>;
+};
+
+{/* Dark Mode Adaptations and Opaque Overlap Protections */}
+<style>{`
+  :root {
+    --rb-table-bg: #FFFFFF;
+    --rb-table-text: #1a1a1a;
+    --rb-header-bg: #F0F0F0;
+    --rb-header-text: #333333;
+    --rb-border-main: #E0E0E0;
+    --rb-border-sub: #F0F0F0;
+    --rb-category-bg: #FAF4E3;
+    --rb-category-text: #8B6602;
+    --badge-yes-bg: #F2F7E3;
+    --badge-yes-text: #547100;
+    --badge-view-bg: #E5EDF7;
+    --badge-view-text: #0E3672;
+    --badge-test-bg: #FAF4E3;
+    --badge-test-text: #8B6602;
+    --badge-no-bg: #F0F0F0;
+    --badge-no-text: #333333;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --rb-table-bg: #121212;
+      --rb-table-text: #F0F0F0;
+      --rb-header-bg: #333333;
+      --rb-header-text: #F0F0F0;
+      --rb-border-main: #333333;
+      --rb-border-sub: #262626;
+      --rb-category-bg: #8B6602;
+      --rb-category-text: #FAF4E3;
+      --badge-yes-bg: #547100;
+      --badge-yes-text: #F2F7E3;
+      --badge-view-bg: #0E3672;
+      --badge-view-text: #E5EDF7;
+      --badge-test-bg: #8B6602;
+      --badge-test-text: #FAF4E3;
+      --badge-no-bg: #333333;
+      --badge-no-text: #F0F0F0;
+    }
+    tr td {
+      background-color: var(--rb-table-bg, #121212) !important;
+    }
+  }
+`}</style>
+
+<div style={tableWrapperStyle}>
+  <table style={tableStyle}>
+    <thead>
+      <tr>
+        <th style={thStyle}>Feature / Access</th>
+        <th style={thStyle}>Owner</th>
+        <th style={thStyle}>Super Admin</th>
+        <th style={thStyle}>Workspace Admin</th>
+        <th style={thStyle}>Developer</th>
+        <th style={thStyle}>Campaign Manager</th>
+        <th style={thStyle}>Support</th>
+        <th style={thStyle}>Default Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      {/* ANALYTICS AND LOGS */}
+      <TableHeader text="Analytics and Logs" />
+      <tr>
+        <td style={tdStyle}>Dashboard and Analytics</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Alarms and Anomalies</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Logs</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="test" text="Test only" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Report Download</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="test" text="Test only" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+
+      {/* COMMUNICATION ORCHESTRATION */}
+      <TableHeader text="Communication Orchestration" />
+      <tr>
+        <td style={tdStyle}>Integrations</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Templates</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Components</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Routes</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Notification Events</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Campaigns</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>User Profiles</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="test" text="Test only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>User Cohorts</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>User Preferences</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+
+      {/* WORKSPACE SETTINGS */}
+      <TableHeader text="Workspace Settings" />
+      <tr>
+        <td style={tdStyle}>Invite Team Member</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>API Keys</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Allowlist (Webhooks)</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Security Settings</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Delivery Limits (DND)</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+    
+    <tr>
+      <td style={tdStyle}>Add-ons</td>
+      <td style={tdStyle}>
+        <Badge type="yes" text="Yes" />
+      </td>
+      <td style={tdStyle}>
+        <Badge type="yes" text="Yes" />
+      </td>
+      <td style={tdStyle}>
+        <Badge type="yes" text="Yes, except push token cleanup" />
+      </td>
+      <td style={tdStyle}>
+        <Badge type="yes" text="Yes, except push token cleanup" />
+      </td>
+      <td style={tdStyle}>
+        <Badge type="view" text="View only" />
+      </td>
+      <td style={tdStyle}>
+        <Badge type="view" text="View only" />
+      </td>
+      <td style={tdStyle}>
+        <Badge type="no" text="No" />
+      </td>
+    </tr> {/* <--- Double check that this closing tag is present and typed correctly */}
+      <tr>
+        <td style={tdStyle}>Workspace Creation / Deletion</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+
+      {/* OTHER ACTIONS */}
+      <TableHeader text="Other Actions" />
+      <tr>
+        <td style={tdStyle}>Copy to another Workspace</td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Additional Notes
 
@@ -114,8 +472,8 @@ You can invite new members to collaborate within your workspace by following the
 ### Role Assignment Rules
 
 - Owner can assign any role.
-- Super Admin can assign Workspace Admin, Developer, Support, or Default roles.
-- Workspace Admin can assign Developer, Support, or Default roles.
+- Super Admin can assign Workspace Admin, Developer, Campaign Manager, Support, or Default roles.
+- Workspace Admin can assign Developer, Campaign Manager, Support, or Default roles.
 - Add-on policies can be assigned during invitation or updated later.
 
 ### Modifying Roles and Add-on Policies
