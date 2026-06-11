@@ -934,12 +934,6 @@ redirects:
   - source: "/docs/release-notes/2025/3/3"
     destination: "/docs/release-notes#2514"
     permanent: true
-  - source: "/docs/copying-routes"
-    destination: "/docs/routes/copying-routes"
-    permanent: true
-  - source: "/docs/workflow-webhook-trigger"
-    destination: "/docs/workflow-webhook-trigger-setup"
-    permanent: true  
   - source: "/docs/fyno-verify"
     destination: "/docs/fyno-verify-otp-link"
     permanent: true 
@@ -961,3 +955,12 @@ redirects:
   - source: "/docs/event-triggering"
     destination: "/docs/notification-event-triggering"
     permanent: true
+  - source: "/docs/event-triggering"
+    destination: "/docs/notification-event-triggering"
+    permanent: true
+  - source: "/docs/copying-routes"  
+    destination: "/docs/routes/copying-routes"
+    permanent: true
+  - source: "/docs/workflow-webhook-trigger"
+    destination: "/docs/workflow-webhook-trigger-setup"
+    permanent: true                
