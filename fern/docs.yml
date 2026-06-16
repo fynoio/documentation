@@ -102,6 +102,8 @@ navigation:
                     path: "pages/integrations/sms/karix.mdx"
                   - page: "Ozonetel"
                     path: "pages/integrations/sms/ozonetel.mdx"
+                  - page: "OneXtel"
+                    path: "pages/integrations/sms/onextel.mdx"  
                   - page: "MessageBird"
                     path: "pages/integrations/sms/messagebird.mdx"
                   - page: "MSG91"
