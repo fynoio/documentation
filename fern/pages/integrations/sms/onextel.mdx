@@ -1,0 +1,48 @@
+---
+title: 'SMS OneXtel Integration'
+slug: 'sms-onextel'
+description: 'Learn how to integrate OneXtel SMS with Fyno by configuring your API key, sender ID, DLT details, and delivery callback URL to enable SMS delivery and delivery status tracking.'
+og:title: 'How to send SMS using OneXtel | Fyno Documentation'
+og:description: 'A guide to integrate your  SMS account into Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Before you get started, ensure that you have an active OneXtel account with the required SMS credentials and DLT details configured.
+
+<Steps>
+
+### Find the Provider
+
+Navigate to the Integrations page. Under the **SMS** section, click on the **OneXtel** provider.
+
+### Configure the Integration
+
+In the pop-up, fill in:
+
+- **Custom Name**: Provide a name that helps you identify the configured OneXtel account within Fyno.
+
+- **API Key**: Enter the API key generated from your OneXtel account. This key is used to authenticate SMS requests sent through Fyno.
+
+- **Sender/Header**: Enter the Sender ID (Header) approved for your OneXtel account. This Sender ID will be used when sending SMS notifications.
+
+- **Entity ID**: Enter the DLT-registered Entity ID associated with your organization.
+
+- **Delivery Callback URL**: Copy the callback URL displayed in Fyno and configure it in your OneXtel account. This allows Fyno to receive delivery reports and update message statuses.
+
+  > Note: Configure this URL in OneXtel to enable Fyno to receive delivery reports.
+
+### Complete the Integration
+
+Click on **"Update Account"** (or **"Add Account"** while creating a new configuration) once all the required details have been entered.
+
+You are now ready to send SMS notifications using OneXtel through Fyno.
+
+</Steps>
+
+## Message Delivery Status
+
+To receive SMS delivery updates within Fyno, the **Delivery Callback URL** configured in the integration must also be set up in your OneXtel account.
+
+Once the callback configuration is complete, delivery events shared by OneXtel will be displayed in the logs. You can view detailed delivery information by opening the respective notification and navigating to the **[Delivery](./log-details-delivery)** tab.
+
+> **Important**: Ensure that the callback URL configured in OneXtel matches the URL provided in Fyno. Incorrect callback configurations may prevent delivery statuses from being updated in the platform.
