@@ -1,0 +1,82 @@
+## 26.2.4
+
+**Release Date:** 22-Jun-2026
+
+### 🚀 New Features
+
+- **Provider Latency Analytics**
+  - Introduced a new Provider Latency chart on the Dashboard to provide deeper visibility into provider performance.
+  - Users can now monitor both provider response latency and notification delivery latency through easy-to-understand distribution charts.
+  - Latency metrics are categorized into:
+    - Less than 1 second
+    - 1–5 seconds
+    - Greater than 5 seconds
+  - The new visualization helps teams proactively monitor provider health, troubleshoot latency issues, and optimize notification routing decisions.
+
+- **Analytics – Expanded Delivery Rate Reporting**
+  - Enhanced the Notification Event Delivery Rates report to provide visibility into the complete notification lifecycle.
+  - Users can now analyze delivery metrics across all relevant statuses, including:
+    - Attempted
+    - Delivered
+    - Failed
+    - Error
+    - Timeout
+    - Rejected
+    - Expired
+    - Undelivered
+    - No DLR
+  - The expanded view also includes integration-wise and channel-wise breakdowns, percentage calculations, status visibility controls, and improved reporting insights.
+  - This enhancement helps users better understand delivery outcomes and investigate failures without relying on multiple reports.
+
+### ⚡ Feature Enhancements
+
+- **Event Analytics – Channel-wise Delivery Performance**
+  - Added channel-wise delivery reporting within Event Analytics.
+  - Users can now view delivered notification counts across Email, SMS, WhatsApp, Push, InApp, and other supported channels.
+  - This provides better visibility into channel contribution and helps teams evaluate channel effectiveness for individual events.
+
+- **Logs – No DLR Status Filter**
+  - Added a dedicated No DLR filter within Sent Logs.
+  - Users can now quickly identify messages that did not receive delivery callbacks from providers.
+  - This enhancement simplifies troubleshooting and improves visibility into notifications with unknown delivery outcomes.
+
+- **Analytics – Locale-aware Number Formatting**
+  - Improved number formatting consistency across Analytics and Dashboard experiences.
+  - Numeric values and compact number displays now follow the formatting preferences configured in the user's profile settings.
+  - This ensures a more consistent and familiar reporting experience across the platform.
+
+- **Analytics – Attempted Status Support**
+  - Added Attempted as a supported notification status across analytics reporting.
+  - Updated Dashboard metrics, Delivery Rate reports, Event Analytics, Campaign Analytics, and supporting charts to include Attempted status visibility.
+  - Improved tooltip descriptions, status labeling, icons, and reporting accuracy to better reflect notification lifecycle metrics.
+
+- **Dashboard & Event Analytics – Last 60 Minutes Filter**
+  - Added a new Last 60 Minutes date filter to Dashboard and Event Analytics pages.
+  - Users can now quickly analyze notification activity and performance trends from the previous hour without manually configuring custom date ranges.
+  - This enhancement improves reporting efficiency and provides faster access to near real-time operational insights.
+
+### 🛠 Bug Fixes
+
+- **Email Logs – Recipient Information Rendering**
+  - Fixed an issue where recipient information was not displayed correctly for certain email notifications.
+  - Improved handling of email-only recipients, name-and-email combinations, and mixed recipient formats across To, CC, and BCC fields.
+  - Users can now reliably review recipient details without rendering issues.
+
+- **Analytics – Delivery Rate Reporting Improvements**
+  - Fixed multiple issues affecting the Delivery Rates expanded view.
+  - Logs links now preserve the selected date range when navigating from reports.
+  - Analytics Label selections are now retained when opening expanded views.
+  - Corrected Attempted metrics to display actual attempted counts instead of requested counts.
+  - Event breakdown metrics now respect user locale formatting preferences.
+
+- **Omni-channel Routes – Provider Selection**
+  - Fixed an issue where selected providers were not loading correctly in Omni-channel configurations.
+  - Provider selections are now displayed and applied as expected.
+
+- **InApp Templates – Button Configuration Experience**
+  - Improved the InApp template authoring experience by hiding button configuration fields until users explicitly choose to add a button.
+  - This creates a cleaner and more intuitive editing experience while reducing unnecessary visual clutter.
+
+- **InApp SDK – Empty Button Rendering**
+  - Fixed an issue where InApp notifications could display empty action buttons even when no button was configured.
+  - The SDK now renders buttons only when valid button configurations exist, ensuring notifications accurately reflect their template design.
