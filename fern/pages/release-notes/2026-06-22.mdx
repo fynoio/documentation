@@ -34,6 +34,10 @@
   - The update includes an enhanced PDF builder with improved document authoring capabilities, seamless switching between editor modes, refined margin configuration controls, and better header/footer alignment behavior. 
   - The underlying PDF generation engine has also been upgraded to improve rendering consistency and template compatibility, providing a more reliable document creation experience.
 
+- **Data Masking – Regex-based Sensitive Data Detection**
+
+  - Introduced Regex Masking as a new Data Masking option. Instead of masking entire payloads, Fyno now automatically detects and masks sensitive information using predefined pattern-matching rules. Supported patterns include email addresses, phone numbers, government identifiers, bank account details, financial identifiers, and other recognized sensitive data formats. Non-sensitive information remains visible in logs, improving readability while maintaining data protection.
+
 ### ⚡ Feature Enhancements
 
 - **Event Analytics – Channel-wise Delivery Performance**
@@ -56,12 +60,6 @@
   - Updated Dashboard metrics, Delivery Rate reports, Event Analytics, Campaign Analytics, and supporting charts to include Attempted status visibility.
   - Improved tooltip descriptions, status labeling, icons, and reporting accuracy to better reflect notification lifecycle metrics.
 
-- **Templates – Multi-select Channel Filter**
-
-  - Users can now filter templates by selecting multiple channels simultaneously within the Templates page. 
-  - This enhancement makes it easier to discover and manage templates across Email, SMS, WhatsApp, Push, InApp, and other supported channels without applying filters one at a time. 
-  - The updated filtering experience improves navigation efficiency and helps users quickly locate relevant templates in large workspaces.  
-
 - **Logs – Event Type Filter**
 
   - Added an Event Type filter across Sent Logs, Event Logs, and Callback Logs to help users quickly narrow down log entries based on notification event types. The filter is displayed before the Events column and uses the same event type icons available in the Suppression List, ensuring a consistent and familiar user experience across the platform.  
@@ -70,31 +68,15 @@
 
   - Added support for Status filters when downloading reports. Users can now generate exports containing only notifications that match selected statuses, making it easier to analyze specific delivery outcomes and investigate issues without additional post-processing.  
 
-- **Login – Environment-based Authentication Configuration**
+- **WhatsApp Templates – Dynamic URL Configuration Improvements**
 
-  - Enhanced the Login experience to support environment-based authentication controls. 
-  - Login methods such as Google, Azure, and SAML are now displayed dynamically based on configured environment variables. 
-  - The update also introduces configuration options to hide email/password login and user sign-up functionality, enabling organizations to tailor authentication flows to their deployment and security requirements without code changes.
+  - Improved the Dynamic URL configuration experience for WhatsApp templates to reduce user confusion and simplify template setup. The update introduces clearer field guidance, simultaneous visibility of both the configured URL and Sample URL values, and enhanced validation for Sample URL inputs.
 
 - **Templates – Multi-select Channel Filter**
 
   - Users can now filter templates by selecting multiple channels simultaneously within the Templates page. 
   - This enhancement makes it easier to discover and manage templates across Email, SMS, WhatsApp, Push, InApp, and other supported channels without applying filters one at a time. 
   - The updated filtering experience improves navigation efficiency and helps users quickly locate relevant templates in large workspaces.  
-
-- **Logs – Event Type Filter**
-
-  - Added an Event Type filter across Sent Logs, Event Logs, and Callback Logs to help users quickly narrow down log entries based on notification event types. The filter is displayed before the Events column and uses the same event type icons available in the Suppression List, ensuring a consistent and familiar user experience across the platform.  
-
-- **Report Downloads – Status Filter**
-
-  - Added support for Status filters when downloading reports. Users can now generate exports containing only notifications that match selected statuses, making it easier to analyze specific delivery outcomes and investigate issues without additional post-processing.  
-
-- **Login – Environment-based Authentication Configuration**
-
-  - Enhanced the Login experience to support environment-based authentication controls. 
-  - Login methods such as Google, Azure, and SAML are now displayed dynamically based on configured environment variables. 
-  - The update also introduces configuration options to hide email/password login and user sign-up functionality, enabling organizations to tailor authentication flows to their deployment and security requirements without code changes.
 
 ### 🛠 Bug Fixes
 
