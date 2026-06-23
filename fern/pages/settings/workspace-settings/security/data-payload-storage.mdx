@@ -1,0 +1,32 @@
+---
+title: 'Data Payload Storage'
+slug: 'security/data-payload-storage'
+og:title: 'Data Payload Storage | Security Settings | Fyno Documentation'
+og:description: 'Configure data payload storage settings to securely store notification payloads and control payload retention for logs and analytics.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+You can decide whether you want to store the data payload you send to Fyno or not using this setting.
+
+### How it Works?
+
+Data Payload storage, when activated, will be implemented on the below data point that we receive from you:
+
+- Data Payload
+- Payload sent to workflows.
+
+Fyno's **Data Payload Storage** feature works as below:
+![](/images/data-payload-storage.png)
+- Fyno receives an API request from your end with the data payload.
+- On receiving the API Request, if **Data Payload Storage** is toggled on, then we will store the data payload at our end.
+
+If its disabled, you won't see any Placeholders data in the logs.
+
+### Enabling Data Payload Storage
+
+To enable the **Data Payload Storage** feature for your account,
+
+<Steps>
+  <Step>Tap on **Workspace Settings** on the bottom left corner of the navigation menu and click '**Security**' which opens up the Security page.</Step>
+  <Step>Then find the **Data Payload Storage** option and toggle it "on".</Step>
+</Steps>
