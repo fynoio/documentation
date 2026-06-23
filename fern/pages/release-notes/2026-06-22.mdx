@@ -30,7 +30,7 @@
 
 - **PDF Templates – New DOCX Editor & PDF Builder**
 
-  - Introduced a new DOCX-based editing experience for PDF templates, powered by the Lexical editor. 
+  - Introduced a new DOCX-based editing experience for PDF templates. 
   - The update includes an enhanced PDF builder with improved document authoring capabilities, seamless switching between editor modes, refined margin configuration controls, and better header/footer alignment behavior. 
   - The underlying PDF generation engine has also been upgraded to improve rendering consistency and template compatibility, providing a more reliable document creation experience.
 
@@ -56,10 +56,25 @@
   - Updated Dashboard metrics, Delivery Rate reports, Event Analytics, Campaign Analytics, and supporting charts to include Attempted status visibility.
   - Improved tooltip descriptions, status labeling, icons, and reporting accuracy to better reflect notification lifecycle metrics.
 
-- **Dashboard & Event Analytics – Last 60 Minutes Filter**
-  - Added a new Last 60 Minutes date filter to Dashboard and Event Analytics pages.
-  - Users can now quickly analyze notification activity and performance trends from the previous hour without manually configuring custom date ranges.
-  - This enhancement improves reporting efficiency and provides faster access to near real-time operational insights.
+- **Templates – Multi-select Channel Filter**
+
+  - Users can now filter templates by selecting multiple channels simultaneously within the Templates page. 
+  - This enhancement makes it easier to discover and manage templates across Email, SMS, WhatsApp, Push, InApp, and other supported channels without applying filters one at a time. 
+  - The updated filtering experience improves navigation efficiency and helps users quickly locate relevant templates in large workspaces.  
+
+- **Logs – Event Type Filter**
+
+  - Added an Event Type filter across Sent Logs, Event Logs, and Callback Logs to help users quickly narrow down log entries based on notification event types. The filter is displayed before the Events column and uses the same event type icons available in the Suppression List, ensuring a consistent and familiar user experience across the platform.  
+
+- **Report Downloads – Status Filter**
+
+  - Added support for Status filters when downloading reports. Users can now generate exports containing only notifications that match selected statuses, making it easier to analyze specific delivery outcomes and investigate issues without additional post-processing.  
+
+- **Login – Environment-based Authentication Configuration**
+
+  - Enhanced the Login experience to support environment-based authentication controls. 
+  - Login methods such as Google, Azure, and SAML are now displayed dynamically based on configured environment variables. 
+  - The update also introduces configuration options to hide email/password login and user sign-up functionality, enabling organizations to tailor authentication flows to their deployment and security requirements without code changes.
 
 - **Templates – Multi-select Channel Filter**
 
@@ -103,7 +118,7 @@
   - Improved the InApp template authoring experience by hiding button configuration fields until users explicitly choose to add a button.
   - This creates a cleaner and more intuitive editing experience while reducing unnecessary visual clutter.
 
-- **InApp SDK – Empty Button Rendering**
+- **InApp SDK – Empty Button Rendering (available for 2.0.0-alpha-03)**
   - Fixed an issue where InApp notifications could display empty action buttons even when no button was configured.
   - The SDK now renders buttons only when valid button configurations exist, ensuring notifications accurately reflect their template design.
 
