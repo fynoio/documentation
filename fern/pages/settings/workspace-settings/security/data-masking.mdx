@@ -1,0 +1,160 @@
+---
+title: 'Data Masking'
+slug: 'security/data-masking'
+og:title: 'Data Masking | Security Settings | Fyno Documentation'
+og:description: 'Configure data masking to protect sensitive information in logs by automatically detecting and masking personal, financial, and other confidential data.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Data Masking helps protect sensitive information from being exposed within the Fyno application. When enabled, sensitive data is displayed in a masked format while remaining securely stored and processed by the platform.
+
+It can be used to prevent accidental exposure of personally identifiable information (PII), such as email addresses, phone numbers, identifiers, and other sensitive data contained in notification payloads.
+
+## Permissions
+
+- Only users with the Owner or Super Admin role can configure **Data Masking** settings.
+- Other users can view masked data based on their access permissions but cannot:
+  - Enable or disable Default Masking or Regex Masking.
+  - Change the masking type.
+
+### How Data Masking Works?
+
+When Data Masking is enabled, Fyno masks sensitive information across the platform wherever it is displayed or stored. This includes, but is not limited to:
+
+- Destination details.
+- Data payloads received through APIs.
+- Generated logs.
+- Execution and debugging information.
+- Any other interfaces or records where sensitive data may be exposed.
+
+The original values are stored and processed by Fyno as usual. However, whenever sensitive information is displayed within the application, including in logs, payload views, and other system-generated outputs, it is shown in a masked format. 
+
+For example, users viewing execution or delivery logs will see masked values instead of the original sensitive data, helping prevent unauthorized visibility while preserving operational insights..
+
+<Info>**Masked** values are applied across supported logs and monitoring screens.</Info>
+
+### Enable Data Masking
+
+<Steps>
+  <Step>Navigate to **Workspace Settings**.</Step>
+  <Step>Select **Security**.</Step>
+  <Step>Locate the **Data Masking** section.</Step>
+  <Step>Toggle **Data Masking** on.</Step>
+  <Step>When enabling Data Masking for the first time, the configuration dialog opens automatically. Select the desired masking type and save your changes.</Step>
+</Steps>
+
+### Configure Data Masking
+
+When you enable Data Masking for the first time, the configuration dialog opens automatically, allowing you to select one of the available masking types. After Data Masking has been enabled, you can use Configure to modify the masking settings at any time.
+
+## Default Masking
+
+Default Masking masks Destination and Data Payload values when they appear in logs, preventing sensitive information from being exposed while preserving the overall log structure and usability.
+![](/images/default-masking.png)
+When enabled:
+- All Destination values are masked.
+- All Data Payload values are masked.
+- Masking is applied consistently across supported logs and monitoring views.
+- Use this option when all incoming notification data should be hidden from application users.
+
+### Example: Default Masking
+
+Original Request
+
+Destination: john.doe@example.com
+
+Data Payload
+
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phone": "9876543210",
+  "orderId": "ORD12345",
+  "city": "Bangalore"
+}
+```
+
+Displayed in Fyno Logs
+
+Destination: xxxxx
+
+Data Payload
+
+```json
+{
+  "name": "xxxxx",
+  "email": "xxxxx",
+  "phone": "xxxxx",
+  "orderId": "xxxxx",
+  "city": "xxxxx"
+}
+```
+
+In Default Masking mode, all Destination and Data Payload values are masked regardless of whether they contain sensitive information.
+
+## Regex Masking
+
+Regex Masking allows sensitive values to be identified and masked using predefined patterns.
+![](/images/regex-masking.png)
+Instead of masking the entire payload, Fyno scans payload data and masks only values that match supported patterns.
+The following data types are automatically masked:
+- Email addresses
+- Phone numbers
+- Sensitive information identified through predefined pattern-matching rules, including government IDs, bank account details, financial identifiers, and other recognized data formats.
+
+
+### Example: Regex Masking
+
+Original Request
+
+Destination: john.doe@example.com
+
+Data Payload
+
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phone": "9876543210",
+  "orderId": "ORD12345",
+  "city": "Bangalore"
+}
+```
+
+Displayed in Fyno Logs
+
+Destination: xxxxx
+
+Data Payload
+```json
+{
+  "name": "John Doe",
+  "email": "xxxxx",
+  "phone": "xxxxx",
+  "orderId": "xxxxx",
+  "city": "Bangalore"
+}
+```
+
+### Where Masking Is Applied
+
+Masked values are displayed throughout the application, including:
+- Sent Logs
+- Notification Event Logs
+- Workflow Logs
+- Inbound Messaging Logs
+- Delivery Callback Logs
+- Verification Logs
+
+**Sensitive values appear as masked text (for example, xxxxx) wherever Data Masking is applied**.
+
+### Disabling Data Masking
+
+To disable Data Masking:
+<Steps> 
+  <Step>Navigate to **Workspace Settings** > Security.</Step>
+  <Step>Turn off the **Data Masking** toggle.</Step>
+</Steps>
+Once disabled, data will be displayed according to the current access permissions and visibility settings configured for the workspace.
+
