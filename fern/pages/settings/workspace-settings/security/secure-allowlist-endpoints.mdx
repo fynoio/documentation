@@ -1,0 +1,61 @@
+---
+title: 'Secure Allowlist Endpoint'
+slug: 'security/secure-allowlist-endpoint'
+og:title: 'Secure Allowlist Endpoint | Security Settings | Fyno Documentation'
+og:description: 'Configure secure allowlist endpoints to restrict incoming requests to verified domains and trusted sources, enhancing endpoint security and access control.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The **Secure Allowlist Endpoints** feature adds an additional security layer to verify that API requests originated from Fyno.
+
+When enabled, Fyno generates an HMAC signature using a secret key and includes it in every supported outbound API request. Your application can validate this signature to verify the authenticity and integrity of the request payload.
+![](/images/secure-allowlist-endpoints.png)
+The signature is included in the request header:
+
+```text
+X-Fyno-Hmac-Signature
+```
+
+<Note>
+Depending on the application or framework being used, the header may appear as either <code>X-Fyno-Hmac-Signature</code> or <code>x-fyno-hmac-signature</code>.
+</Note>
+
+### Enable Secure Allowlist Endpoints
+
+<Steps>
+  <Step>Navigate to <b>Workspace Settings</b> → <b>Security</b>.</Step>
+  <Step>Locate <b>Secure Allowlist Endpoints</b> and toggle it on.</Step>
+  <Step>Click <b>View / Edit Secret Key</b>.</Step>
+  <Step>Use the generated secret key or enable <b>Override Secret Key</b> to provide your own custom key.</Step>
+  <Step>Save the configuration.</Step>
+</Steps>
+
+### How It Works
+
+When Fyno sends a supported API request:
+![](/images/hmac-secret-key.png)
+1. Fyno generates an HMAC signature using your configured secret key and the request payload.
+2. The signature is created using the **SHA-256** hashing algorithm.
+3. The generated signature is added to the request header as `X-Fyno-Hmac-Signature`.
+4. Your application can generate the same signature using the shared secret key and compare it with the received signature.
+5. If both signatures match, the request can be considered authentic and untampered.
+
+### Supported Requests
+
+Secure Allowlist Endpoints are supported for:
+
+- **HTTP POST** requests only
+- `application/json`
+- `application/x-www-form-urlencoded`
+
+### Supported Use Cases
+
+You can use this feature for:
+
+- API calls made from Workflows
+- Delivery reports (DLRs) sent from Fyno to your endpoints
+- Any supported outbound webhook integrations requiring request verification
+
+<Note>
+Secure Allowlist Endpoints are supported only for POST requests with <code>application/json</code> and <code>application/x-www-form-urlencoded</code> content types.
+</Note>
