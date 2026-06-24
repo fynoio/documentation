@@ -50,7 +50,7 @@ When you enable Data Masking for the first time, the configuration dialog opens 
 ## Default Masking
 
 Default Masking masks Destination and Data Payload values when they appear in logs, preventing sensitive information from being exposed while preserving the overall log structure and usability.
-![](/images/default-masking.png)
+![](/images/default-data-masking.png)
 When enabled:
 - All Destination values are masked.
 - All Data Payload values are masked.
@@ -93,12 +93,14 @@ Data Payload
 
 In Default Masking mode, all Destination and Data Payload values are masked regardless of whether they contain sensitive information.
 
+> **IMPORTANT NOTE**: Automatically detected sensitive values are masked across Destinations, Headers, and Data Payloads wherever they appear in supported logs and monitoring views.
+
 ## Regex Masking
 
 Regex Masking allows sensitive values to be identified and masked using predefined patterns.
-![](/images/regex-masking.png)
+![](/images/regex-data-masking.png)
 Instead of masking the entire payload, Fyno scans payload data and masks only values that match supported patterns.
-The following data types are automatically masked:
+The following data types are automatically masked across Destinations, Headers, and Data Payloads:
 - Email addresses
 - Phone numbers
 - Sensitive information identified through predefined pattern-matching rules, including government IDs, bank account details, financial identifiers, and other recognized data formats.
@@ -136,6 +138,7 @@ Data Payload
   "city": "Bangalore"
 }
 ```
+> **IMPORTANT NOTE**: Values matching the configured regular expression patterns are masked across Destinations, Headers, and Data Payloads wherever they appear in supported logs and monitoring views.
 
 ### Where Masking Is Applied
 
