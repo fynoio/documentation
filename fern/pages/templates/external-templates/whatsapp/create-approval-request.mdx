@@ -1,0 +1,158 @@
+---
+title: 'Create an Approval Request'
+slug: 'external-templates/whatsapp/create-approval-request'
+description: 'Create and submit approval requests for WhatsApp External Templates by selecting approvers, configuring approval settings, and managing Meta submission preferences.'
+og:title: 'Create an Approval Request | Fyno Documentation'
+og:description: 'Learn how to create approval requests for WhatsApp External Templates, select approvers, add review messages, and configure automatic Meta submission.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The Approval Workflow for External WhatsApp Templates ensures that templates are reviewed internally before being submitted to Meta for approval.
+
+## Enable Approval Requests
+
+Before using this feature, you must enable the approval request flow for external templates.
+
+This includes:
+
+- Configuring the approval workflow
+- Selecting the required reviewers
+- Defining the minimum number of approvals required before a template is considered approved
+
+This setup ensures that all External Templates go through a controlled review process before being submitted to Meta.
+
+### Key Capabilities
+
+With this feature, you can:
+
+- Submit specific template languages for approval
+- Request approvals from multiple reviewers
+- Define a minimum number of approvals required
+- Send approved templates to Meta
+- Track approval status across languages
+- Automatically send templates to Meta upon approval (optional)
+
+## How It Works
+
+1. Create or update a WhatsApp External Template.
+2. Select specific template languages and submit them for approval.
+3. An approval request is created and assigned to the selected approvers.
+4. Approvers can approve or reject the request.
+5. Once the minimum required approvals are received:
+   - The template is marked as **Approved**.
+   - If **Send to provider on approval** is enabled, the template is automatically submitted to Meta.
+
+### If Automatic Submission Is Not Enabled
+
+Approvers can choose to submit the template to Meta during the approval process.
+
+> If multiple approvals are required, only the final approver can send the template to Meta.
+
+If the approver does not submit the template, the requester can manually send it later.
+
+You can also cancel an approval request at any point during the workflow.
+
+## Language-Level Approval
+
+Approvals are managed at the language level.
+
+- Only languages with valid content can be submitted for approval.
+- Languages containing errors or incomplete content remain in **Draft** status.
+- Approval requests created for one language do not apply to other language variants.
+
+## Approval Messages
+
+You can include a message when:
+
+- Requesting approval
+- Approving a request
+- Rejecting a request
+
+> A message is mandatory when rejecting a request.
+
+All approval-related messages are recorded in the audit log for traceability.
+
+## Create an Approval Request
+
+To initiate an approval request:
+
+1. Open the template.
+2. Click **Send to Provider**.
+
+This opens the **Request Creation** window where you can configure approvers and submission settings.
+![](/images/request-approval.png)
+<Steps>
+  <Step title="Select the Language Context">
+    Ensure you are working on the correct language variant (for example, **English (IND)**).
+
+    Approval requests are created per language and are not shared across other language variants.
+  </Step>
+![](/images/banner-for-request-approval.png)
+  <Step title="Open the Request Creation Window">
+    Click **Send to Provider** to open the approval request modal.
+  </Step>
+
+  <Step title="Select Approvers">
+    Click the **Select Approvers** dropdown and choose one or more approvers.
+
+    > The number of required approvers depends on the configured minimum approval setting. There is no fixed limit and can be any defined number.
+  </Step>
+
+  <Step title="Add a Message (Optional)">
+    In the **Write a Message** field, add any context or instructions for reviewers.
+
+    **Example:** Please review for compliance and messaging tone.
+
+    This message is visible to approvers during the review process.
+  </Step>
+
+  <Step title="Choose Provider Submission Option">
+    Enable **Send to provider on approval** if you want the template to be automatically submitted to Meta after approval.
+
+    Leave this option disabled if you prefer to submit the template manually later.
+  </Step>
+
+  <Step title="Submit the Request">
+    Click **Request**.
+
+    A confirmation message appears indicating that the approval request has been created successfully.
+  </Step>
+
+  <Step title="Cancel Request Creation">
+    Click **Cancel** to close the modal without creating the approval request.
+  </Step>
+</Steps>
+
+> To learn more about how the approval workflow works, see the [Approval Workflow documentation](../../approval-request).
+
+### Rejection Result
+
+- The approval request is marked as **Rejected**.
+- The template must be updated before it can be resubmitted.
+
+> If any one of the required approvers rejects the request, the entire request is marked as Rejected, regardless of the total number of approvers.
+
+### Audit Log
+
+The rejection action and the provided reason are recorded in the audit log to ensure complete traceability.
+
+## Cancel an Approval Request
+
+<Steps>
+  <Step title="Cancel the Active Request">
+    The requester can cancel an ongoing approval request at any time.
+
+    This allows additional edits before creating a new approval request.
+  </Step>
+</Steps>
+
+## Use Cases
+
+| Scenario | Benefit |
+|----------|---------|
+| Multi-Language Template Review | Submit only completed language variants for approval while continuing work on other languages. |
+| Internal Compliance Reviews | Ensure templates meet brand, legal, and policy requirements before reaching Meta. |
+| Cross-Team Approvals | Enable collaboration between content creators, marketing teams, and compliance reviewers. |
+| Controlled Meta Submission | Prevent accidental or unauthorized template submissions through approval gates. |
+| Flexible Submission Management | Allow automatic, approver-driven, or manual submission to Meta based on business requirements. |
+| Independent Language Processing | Prevent issues in one language variant from blocking approval of other completed languages. |
