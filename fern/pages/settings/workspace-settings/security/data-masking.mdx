@@ -6,7 +6,7 @@ og:description: 'Configure data masking to protect sensitive information in logs
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Data Masking helps protect sensitive information from being exposed within the Fyno application. When enabled, sensitive data is displayed in a masked format while remaining securely stored and processed by the platform.
+Data Masking helps protect sensitive information from being exposed within the Fyno Logs and User Profile. When enabled, sensitive data is displayed in a masked format while remaining securely stored and processed by the platform.
 
 It can be used to prevent accidental exposure of personally identifiable information (PII), such as email addresses, phone numbers, identifiers, and other sensitive data contained in notification payloads.
 
@@ -27,7 +27,7 @@ When Data Masking is enabled, Fyno masks sensitive information across the platfo
 - Execution and debugging information.
 - Any other interfaces or records where sensitive data may be exposed.
 
-The original values are stored and processed by Fyno as usual. However, whenever sensitive information is displayed within the application, including in logs, payload views, and other system-generated outputs, it is shown in a masked format. 
+The original values are stored and processed by Fyno as usual. However, whenever sensitive information is displayed within Logs and User Profile, including in logs, payload views, and other system-generated outputs, it is shown in a masked format. 
 
 For example, users viewing execution or delivery logs will see masked values instead of the original sensitive data, helping prevent unauthorized visibility while preserving operational insights..
 
@@ -50,12 +50,11 @@ When you enable Data Masking for the first time, the configuration dialog opens 
 ## Default Masking
 
 Default Masking masks Destination and Data Payload values when they appear in logs, preventing sensitive information from being exposed while preserving the overall log structure and usability.
-![](/images/default-data-masking.png)
+![](/images/default-masking.png)
 When enabled:
-- All Destination values are masked.
-- All Data Payload values are masked.
-- Masking is applied consistently across supported logs and monitoring views.
-- Use this option when all incoming notification data should be hidden from application users.
+- Headers: All header values are masked by default.
+- Destinations: All destinations are masked by default.
+- Data Payloads: Only values matching supported masking patterns are masked.
 
 ### Example: Default Masking
 
@@ -93,18 +92,19 @@ Data Payload
 
 In Default Masking mode, all Destination and Data Payload values are masked regardless of whether they contain sensitive information.
 
-> **IMPORTANT NOTE**: Automatically detected sensitive values are masked across Destinations, Headers, and Data Payloads wherever they appear in supported logs and monitoring views.
-
 ## Regex Masking
 
 Regex Masking allows sensitive values to be identified and masked using predefined patterns.
-![](/images/regex-data-masking.png)
-Instead of masking the entire payload, Fyno scans payload data and masks only values that match supported patterns.
-The following data types are automatically masked across Destinations, Headers, and Data Payloads:
+![](/images/regex-masking.png)
+All destination and header values are masked by default.
+
+For data payloads, Fyno scans the payload and masks only values that match supported patterns, including:
 - Email addresses
 - Phone numbers
-- Sensitive information identified through predefined pattern-matching rules, including government IDs, bank account details, financial identifiers, and other recognized data formats.
-
+- Government IDs
+- Bank account details
+- Financial identifiers
+- Other sensitive information identified through predefined pattern-matching rules.
 
 ### Example: Regex Masking
 
@@ -138,17 +138,17 @@ Data Payload
   "city": "Bangalore"
 }
 ```
-> **IMPORTANT NOTE**: Values matching the configured regular expression patterns are masked across Destinations, Headers, and Data Payloads wherever they appear in supported logs and monitoring views.
 
 ### Where Masking Is Applied
 
-Masked values are displayed throughout the application, including:
+Masked values are displayed throughout Logs and User Profile, including:
 - Sent Logs
 - Notification Event Logs
 - Workflow Logs
 - Inbound Messaging Logs
 - Delivery Callback Logs
 - Verification Logs
+- User Profile
 
 **Sensitive values appear as masked text (for example, xxxxx) wherever Data Masking is applied**.
 
