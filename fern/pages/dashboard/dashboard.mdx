@@ -7,148 +7,647 @@ og:description: 'A quick introduction to what Fyno Dashboard is about and how to
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno's **Dashboard** gives you a clear and crisp understanding of the performance of your notifications with respect to multiple factors.
+## Analytics Dashboard
 
-This is an immense value add to your monitoring dashboard arsenal, you will fall in love with how easy it is to use.
+The **Analytics Dashboard** provides a centralized view of notification performance, delivery health, resource utilization, and operational trends across all communication channels.
 
-To understand the value add each component brings to the dashboard, let's have a quick look around!
+It enables teams to monitor messaging activity, investigate anomalies, evaluate provider performance, and analyze notification delivery at both global and event-specific levels.
 
-Typically, whenever you sign into the Fyno App, the first page you will land on is the **Dashboard**.
+Use the Analytics Dashboard to:
 
-## Workspace Overview
+- Monitor notification volumes entering and leaving the system.
+- Track delivery performance across channels.
+- Identify operational bottlenecks and anomalies.
+- Analyze user engagement metrics.
+- Optimize provider routing strategies.
+- Investigate event-level delivery issues.
 
-The top section shows the summary of your workspace. You will see the following details.
+![](/images/analytics-dashboard.png)
 
-![](/images/dashboard_section_updated.png)
+> NOTE: All metrics displayed throughout the dashboard are affected by the selected **Environment**, **Analytics Label**, and **Time Frame** filters.
 
-1. Notification Events Fired
-2. Notifications Requested
-3. Notifications Sent
-4. Delivery Rate (Overall and Channel level)
-5. SMS Credits Used (Overall and Service provider level)
-6. [Alarms](./alarms)
+## Global Controls
 
-You can click 'See how' CTA linked to Total notifications Sent to understand how its calculated. 
+The controls at the top of the dashboard determine the scope of data displayed across all widgets.
 
-![](/images/dashboard_sent_calculation.png)
+## Top Bar Controls
 
-## Anomaly
+| Control | Description |
+|----------|-------------|
+| **Environment Toggle** | Switch between Live and Test environments. |
+| **Analytics Label Filter** | Filter analytics based on specific applications, campaigns, or tracking labels. |
+| **Time Frame Filter** | Restrict data to a selected reporting period. |
+| **Data Freshness Indicator** | Displays when the dashboard data was last synchronized. |
 
-You'll be automatically notified in your dashboard of any traffic anomalies detected, as shown in the example below.
+### Environment Toggle
 
-![](/images/dashboard_anomaly.png)
+Choose the environment you want to analyze.
 
-Clicking the 'View' button will open a popup with complete information about the detected anomaly.
-![](/images/alarms_anomaly_details.png)
+| Environment | Description |
+|-------------|-------------|
+| **Live** | Displays production notification traffic. |
+| **Test** | Displays notifications generated from testing environments. |
 
-## Filters
+### Analytics Labels
 
-There are a couple of filters on the Dashboard to help you narrow down and visualize only the data you need to see.
+Analytics Labels allow teams to isolate performance metrics associated with a particular business function, application, or campaign.
 
-### Time Filter
+Applying an Analytics Label updates every dashboard widget to display only the data relevant to the selected label.
 
-A time filter, allowing you to toggle between the below-mentioned options helps you narrow down the date range for the dashboard.
+### Time Frame Selection
 
-1. Today
-2. Yesterday
-3. Last 7 days
-4. Last 28 days
-5. Custom (Maximum 90 days)
+The following reporting periods are supported:
 
-### Version Filter
+- Today
+- Yesterday
+- Last 60 Minutes
+- Last 7 Days
+- Last 28 Days
+- Custom Date Range
 
-On the top right corner, you can also toggle between versions, that is, **Live** and **Test** versions and visualize the data in each version easily.
+<Tip title="Quick Tip" color="green">
+Use shorter date ranges while troubleshooting and longer periods when analyzing trends.
+</Tip>
 
-<Tip title="Sticky Filters!">Scroll with it, your filters will come along with you!</Tip>
+## Key Performance Indicators (KPIs)
 
-## Visualizations
+The KPI cards provide a high-level summary of notification volumes flowing through the platform.
+![](/images/KPIs.png)
+These metrics help you understand how notifications progress through the system—from the time an event is triggered until notifications are delivered to recipients.
 
-To get the best out of each of the visualizations, let's run through each one to understand how they work.
+### KPI Definitions
+
+#### Notification Breakdown
+
+| Metric | Definition |
+|----------|------------|
+| **Notification Events Fired** | Total number of notification event APIs successfully received by Fyno for processing during the selected time period. |
+
+Notification Events can have the following outcomes:
+
+- **Event Fired**
+- **Event Dropped** (Dropped across all channels)
+- **Event Delivered** (Delivered on at least one channel)
+- **Event Undelivered** (Not delivered on any channel)
+
+**Delivery %**
+
+```text
+Delivered ÷ (Fired − Dropped)
+```
+
+### Notifications Requested
+
+Represents the total number of notification requests received by Fyno for processing during the selected reporting period.
+
+A single event may generate multiple notification requests if multiple recipients or channels are configured.
+
+### Notifications Sent
+
+Represents notifications successfully handed off to configured providers.
+
+Select **See how** to understand how this value is calculated.
+
+| Status | Description |
+|---------|-------------|
+| **Requested** | Total notification requests received by Fyno. |
+| **Error** | Notifications that could not be processed by Fyno. |
+| **Failed** | Notifications rejected by the provider API. |
+| **Dropped** | Notifications intentionally prevented from being sent due to suppression rules, invalid configurations, or workflow conditions. |
+| **Timeout** | Notifications for which the provider did not respond within the configured timeout period. |
+| **Sent** | Notifications successfully processed by Fyno and accepted by the provider for delivery. |
+
+#### Calculation
+
+```text
+Sent = Requested − (Error + Failed + Dropped + Timeout)
+```
+
+<Note>
+The **Sent** count is derived by subtracting notifications in the **Error**, **Failed**, **Dropped**, and **Timeout** states from the total **Requested** notifications.
+</Note>
+
+## Delivery Rate
+
+The **Delivery Rate** card provides visibility into overall delivery performance across all communication channels.
+
+It represents the percentage of attempted notifications that were successfully delivered.
+
+## Delivery Rate Metrics
+
+| Metric | Description |
+|----------|-------------|
+| **Overall Delivery Rate** | Percentage of notifications successfully delivered across all channels. |
+| **Channel Delivery Rate** | Delivery performance for each communication channel. |
+
+## SMS Credits Used
+
+The **SMS Credits** card tracks SMS credit utilization across configured providers.
+
+Use this widget to:
+
+- Monitor SMS usage trends.
+- Estimate future credit requirements.
+- Identify unexpected increases in SMS consumption.
+- Analyze provider-specific usage patterns.
+
+<Info>
+Monitor SMS credits proactively to prevent delivery failures caused by insufficient provider balances.
+</Info>
+
+## Alarms
+
+The **Alarms** card highlights operational issues that may impact notification processing or delivery performance.
+![](/images/Alarms.png)
+Use this section to quickly identify and prioritize issues requiring investigation.
+
+### Alarm Severity Levels
+
+| Severity | Description |
+|-----------|-------------|
+| **High** | Critical issues requiring immediate action. |
+| **Medium** | Issues that may impact operations if left unresolved. |
+| **Low** | Minor operational issues. |
+| **Info** | Informational alerts for awareness. |
+
+Select **View All** to investigate alarms in greater detail.
+
+## Anomalies
+
+The dashboard automatically detects and surfaces traffic anomalies.
+![](/images/Anomaly-Detected.png)
+Examples include:
+
+- Sudden spikes in notification volume
+- Significant deviations from historical traffic
+- Unexpected provider behavior
+
+Select **View Details** to review the complete anomaly information.
+
+<Tip title="Quick Tip" color="green">
+Review anomalies promptly to identify operational issues before they affect end users.
+</Tip>
 
 ## Channel Engagement
 
-**Channel Engagement** provides you with a detailed view of each channel used to send out notifications along with the outcomes of the notifications sent.
+The **Channel Engagement** section provides a detailed view of notification activity across each communication channel and the outcomes associated with those notifications.
+![](/images/channel-engagement.png)
+Use this visualization to understand how recipients interact with notifications after they have been delivered.
 
-Outcomes can be anything from:
+The available engagement metrics include:
 
-- **Sent** - When a notification is successfully sent from Fyno's platform
-- **Delivered** - When a notification gets successfully delivered to the destination (mobile number, email address, or device tokens like in the case of Push).
-- **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as "Read" for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially "opened", this will be tagged as "Open" and tracked on Fyno's App.
-- **Clicked** - When a notification is clicked on, this will be tracked as a "Clicked" notification. This applies to In-App, Push, Emails with links, etc.
-- **Deleted** - When a Push notification is rendered in user's device and user dismiss it by swiping left.
-- **Keypress** - When a user receives a voice IVR call and presses a key to proceed with the call.
-- **Replied** - When a user replies to a WhatsApp a notification he/she receives in their device.
+- Attempted
+- Delivered
+- Read/Open
+- Clicked
 
-You can read about all the different notification statuses for each channel [here](./notification-status).
+### Engagement Metrics
 
-The count for each can be seen on hovering over the bar graphs.
+#### Attempted
 
-<Tip>You can highlight a single status to look at! Simply click on the other statuses from the legend list at the bottom of the graph to un-select them!</Tip>
+Represents the total number of notification requests that Fyno attempted to send to the configured providers.
+
+An attempted notification has successfully passed Fyno's internal validation and processing stages and has been handed off to the provider for delivery.
+
+**Calculation**
+
+```text
+Attempted = Requested − (Error + Failed + Dropped)
+```
+
+### Delivered
+
+A notification is considered **Delivered** when it has successfully reached its intended destination and the provider confirms successful delivery.
+Examples of destinations include:
+
+- Mobile numbers
+- Email addresses
+- Push notification device tokens
+
+**Delivery Rate**
+
+```text
+Delivery Rate (%) =
+(Successfully Delivered Notifications ÷ Attempted Notifications) × 100
+```
+
+#### Read / Open
+
+These metrics indicate that recipients have viewed the notification.
+
+| Channel | Status |
+|----------|--------|
+| WhatsApp | Read |
+| In-App | Read |
+| Email | Open |
+
+For WhatsApp and In-App notifications, providers return a **Read** status after recipients open the notification.
+
+For Email notifications, Fyno tracks this interaction as **Open**.
+
+#### Clicked
+
+The **Clicked** metric represents recipients interacting with links or actionable elements contained within a notification.
+
+Click tracking is supported for channels such as:
+
+- In-App Notifications
+- Push Notifications
+- Email
+- Other supported channels with click tracking
+
+### Chart Controls
+
+You can customize the visualization to focus on specific engagement metrics.
+
+### Highlight Individual Statuses
+
+Select a status in the chart legend to display only that metric.
+
+Click the remaining legend items to hide or show them as required.
+
+#### Toggle Display Mode
+
+You can switch between:
+
+| View | Description |
+|------|-------------|
+| **Count (#)** | Displays the total number of notifications for each status. |
+| **Percentage (%)** | Displays each status as a percentage of the total notifications. |
+
+<Tip title="Quick Tip" color="green">
+- Use **Count View** when analyzing notification volume.
+- Use **Percentage View** when comparing engagement effectiveness across channels.
+</Tip>
 
 ## Delivery Status
 
-The delivery status graph shows you the delivery status by the channel that you have selected from the drop-down in the top right corner of the card.
+The **Delivery Status** chart displays delivery outcomes for the communication channel selected from the channel selector in the upper-right corner of the widget.
+![](/images/delivery-status.png)
+Use this visualization to monitor delivery performance and identify trends over time.
 
-The list will populate the **Channels** based on usage and in chronological order of the count of each channel.
+### Available Statuses
 
-You can toggle on or off the statuses you would like to see by clicking on the legends at the bottom of the graph. Let's have a look at some of these statuses to understand it better.
+| Status | Definition |
+|----------|------------|
+| **Requested** | Notifications submitted to Fyno for processing and delivery. Represents the total notification volume entering the delivery pipeline. |
+| **Delivered** | Notifications successfully delivered to recipients and confirmed by the provider. |
+| **Undelivered** | Notifications that could not be delivered because of recipient, carrier, mailbox, or device-related issues. |
 
-- **Sent** - All notifications that have left the Fyno App successfully towards the destination are marked as "Sent". In scenarios where there is no delivery confirmation received from the provider, this status will remain as "Sent".
-- **Delivered** - When a notification is delivered successfully to the Destination, then these messages are considered "Delivered"
-- **Error** - All notifications that fail to be triggered from the Fyno App due to some error (it may be any from an issue on a template to not choosing a provider for a channel), will be tagged as "Error"
-- **Failed** - When a notification is tagged as "Failed" this is most probably due to conditions that are mandatory from the provider that are not being met, due to which the notification execution has been tagged as "Failed"
-- **Bounce** - Bounce is a status that would be seen only in the case of an "Email" channel. This happens when
-  - The email address is incorrect
-  - The email address requires senders to be whitelisted in their domain to receive emails.
-  - The email address' mailbox is full and unable to receive any more notifications.
+### Customize the Graph
 
-<Info>
-  Undelivered statuses are tracked when they are:
-  <ul>
-    <li>Invalid-Subscriber</li>
-    <li>Blacklist</li>
-    <li>Rejected</li>
-    <li>Bounce</li>
-  </ul>
-</Info>
+You can focus on specific delivery outcomes by selecting or deselecting statuses from the chart legend.
 
-### Activity Trend
+This helps isolate individual delivery metrics and simplify analysis.
 
-Activity Trend, as the name suggests, helps you plot just that, be it a ** Notification Event**, **Route**, **Provider** or even **API Keys**.
+### Use the Delivery Status Chart to
 
-![](/images/Dashboard_ActivityTrends.png)
+- Identify delivery fluctuations.
+- Detect sudden increases in undelivered notifications.
+- Monitor changes in notification demand.
+- Analyze channel-specific delivery performance.
+- Identify delivery challenges affecting individual communication channels.
 
-Easily toggle between any one of the below trackable elements to visualize their usage over a selected period.
+<Tip title="Quick Tip" color="green">
+Use the **Channel** selector to compare delivery performance across different communication channels and identify long-term delivery trends.
+</Tip>
 
-1. Notification Events
-2. Channels
-3. Integrations
-4. Providers
-5. Routing
-6. Templates
-7. API Keys
+## Provider Performance
 
-<Tip title="Hover over the graphs for more details!">Hovering over any graph gives you more details about that point on the visualization. Go head, try it!</Tip>
+The **Provider Performance** section compares notification performance across all configured providers. It helps you evaluate provider reliability, measure recipient engagement, and optimize notification routing strategies.
+![](/images/provider-performance.png)
+By monitoring provider performance regularly, you can identify underperforming providers, compare delivery outcomes, and make informed routing decisions to improve overall notification success rates.
 
-### Sent by Time of Day
+### Performance Indicators
 
-Sent by time of day shows you the data of every notification sent via the application, relative to the time of day that it was sent.
+The Provider Performance matrix displays the following metrics for each provider.
 
-![](/images/Dashboard_Heatmap.png)
+| Metric | Description |
+|---------|-------------|
+| **Attempted** | Total number of notification requests that Fyno attempted to send to the configured provider. |
+| **Delivered** | Notifications successfully delivered to recipients and confirmed by the provider. |
+| **Read / Open** | Indicates that recipients have viewed the notification. **Read** applies to WhatsApp and In-App notifications, while **Open** applies to Email notifications. |
+| **Clicked** | Notifications where recipients interacted with links or actionable elements. |
 
-By choosing your time range, you can see trends of usage by time of day, which is a super important feature, since this gives you an understanding of your end customer behaviour.
+#### Attempted
 
-When you look at the plotted graph, you will see the legends as **Low**, **Medium** and **High**. These are calculated based on the overall volumes of traffic of your account and are relative to it.
+An attempted notification has successfully passed Fyno's validation and processing stages and has been handed off to the provider for delivery.
 
-### Notification Event Delivery Rates
+**Calculation**
 
-This section shows the delivery rate of each and every notification event. By default you will see only the top 5 notification events in terms of Sent Volume. In the next version, we are planning to add an option to view the delivery rates of all the notification events. 
-You can also go to respective notification event and notification event logs. 
+```text
+Attempted = Requested − (Error + Failed + Dropped)
+```
 
-![](/images/dashboard_event_delivery_rate.png)
+#### Delivered
 
-### Workflow Actions
+A notification is considered **Delivered** once it reaches its intended destination and the provider confirms successful delivery.
 
-This section shows the success and failure of all the workflow actions
+Examples of destinations include:
 
-![](/images/dashboard_workflow_actions.png)
+- Mobile numbers
+- Email addresses
+- Push notification device tokens
+
+**Delivery Rate**
+
+```text
+Delivery Rate (%) =
+(Successfully Delivered Notifications ÷ Attempted Notifications) × 100
+```
+
+#### Read / Open
+
+These metrics indicate that recipients have viewed the notification.
+
+| Channel | Status |
+|----------|--------|
+| WhatsApp | Read |
+| In-App | Read |
+| Email | Open |
+
+#### Clicked
+
+The **Clicked** metric tracks recipient interactions with links or actionable elements contained within notifications.
+
+This metric is available for supported channels such as:
+
+- In-App Notifications
+- Push Notifications
+- Email
+- Other supported channels with click tracking
+
+### Use Provider Performance to
+
+- Identify underperforming providers.
+- Compare provider effectiveness.
+- Optimize notification routing strategies.
+- Improve overall notification delivery success rates.
+
+## Delivery Rates
+
+The **Delivery Rates** table provides detailed delivery metrics for your notification workflows.
+
+Using the grouping selector, you can view delivery performance based on:
+![](/images/Event Delivery Rates.png)
+- **Notification Events**
+- **Analytics Labels**
+
+You can also select **Expand View** to analyze notification metrics in greater detail.
+
+### Grouping Options
+
+#### Notification Events
+
+By default, delivery metrics are grouped by **Notification Events**, allowing you to analyze individual notification workflows.
+
+Use this view to:
+
+- Analyze specific notification journeys.
+- Investigate workflow-level delivery issues.
+- Compare notification event performance.
+- Troubleshoot individual workflows.
+
+#### Analytics Labels
+
+Selecting **Analytics Labels** groups notification data using labels assigned to notification events.
+![](/images/al-expand.png)
+Use this view to:
+
+- Analyze campaign-level performance.
+- Consolidate reporting across multiple workflows.
+- Compare business initiatives.
+- Evaluate label-based notification segments.
+
+### Search Notification Events
+
+Use the **Search Notification Events** field to quickly locate one or more notification events or analytics labels.
+
+Selecting one or multiple values filters the table to display only the relevant data.
+
+### Use the Delivery Rates Table to
+
+- Analyze notification event performance.
+- Compare delivery outcomes across campaigns.
+- Identify delivery bottlenecks.
+- Troubleshoot workflows experiencing high failure rates.
+- Evaluate performance using Analytics Labels.
+
+## Notification Event Delivery Rates (Expanded View)
+
+Select **Expand View** to access a detailed breakdown of a notification event or analytics label.
+![](/images/nv-expand.png)
+The expanded view provides additional visibility into the notification lifecycle, making it easier to investigate delivery patterns, identify bottlenecks, and troubleshoot workflow-specific issues.
+
+Use this view when you want to:
+
+- Understand where notifications exit the delivery funnel.
+- Investigate high failure rates.
+- Analyze delivery performance at a granular level.
+- Compare outcomes across different notification stages.
+- Accelerate root cause analysis.
+
+### Expanded View Controls
+
+| Control | Description |
+|----------|-------------|
+| **Search Notification Events** | Search and filter one or more notification events or analytics labels. |
+| **Grouping Drop-down** | Switch between **Notification Events** and **Analytics Labels** depending on the analysis required. |
+| **Expand View** | Expand a row to view channel-wise and provider-wise delivery metrics for the selected notification event or analytics label. |
+| **Columns** | Customize which delivery metrics are displayed. Use **Show All** or **Hide All** to quickly manage column visibility. |
+
+### Workspace Controls
+
+| Control | Description |
+|----------|-------------|
+| **Time Filter** | Restricts the reporting period. |
+| **Search Notification Events** | Quickly locate notification events or analytics labels. |
+| **Dimension Toggle** | Switch between Notification Events and Analytics Labels. |
+| **Columns Configuration** | Customize the visible delivery metrics. |
+| **Refresh** | Retrieve the latest reporting data. |
+
+
+## Status Definitions
+
+The **Notification Event Delivery Rates** table tracks notifications as they progress through different stages of the delivery lifecycle.
+
+Understanding these statuses helps you identify where notifications are successfully progressing and where intervention may be required.
+
+### Status Definitions
+
+| Status | Description |
+|---------|-------------|
+| **Requested** | Total number of notification requests received by Fyno for the selected notification event. This represents the initial notification volume entering the processing pipeline. |
+| **Error** | Notifications that could not be processed due to internal errors within Fyno. Examples include invalid configurations, missing templates, malformed payloads, or other processing exceptions. |
+| **Failed** | Notifications rejected by the provider API and not accepted for delivery. Common causes include authentication failures, invalid request payloads, insufficient balance, provider unavailability, or other provider-specific validation errors. |
+| **Dropped** | Notifications intentionally prevented from being sent because they did not meet processing criteria, such as suppression rules, frequency controls, user opt-out preferences, duplicate prevention, or workflow conditions. |
+| **Attempted** | Notifications that successfully passed Fyno's validation and processing stages and were handed off to the configured provider for delivery. |
+| **Timeout** | Notifications for which the provider did not respond within the configured timeout period. A timeout does not necessarily indicate delivery failure; it means Fyno did not receive a response within the expected time. |
+| **Sent** | Notifications successfully processed by Fyno and accepted by the configured provider for delivery. |
+| **Delivered** | Notifications successfully delivered to the intended recipient, based on delivery confirmations received from the provider. |
+| **Undelivered** | Notifications accepted by the provider but not delivered to the recipient due to recipient, carrier, mailbox, or device-related issues. |
+| **No DLR** | Notifications for which no Delivery Report (DLR) was received from the provider after the notification was sent. This is common for providers or channels that do not consistently support delivery confirmations. |
+
+#### Percentage Calculations
+
+When viewing the table in **Percentage (%)** mode, each status is calculated using the following denominator.
+
+| Status | Percentage Based On |
+|---------|---------------------|
+| **Error %** | Requested |
+| **Failed %** | Requested |
+| **Dropped %** | Requested |
+| **Timeout %** | Attempted |
+| **Sent %** | Attempted |
+| **Delivered %** | Attempted |
+| **Undelivered %** | Attempted |
+
+## Hourly Notification Volume
+
+The **Hourly Notification Volume** chart displays notification traffic throughout the selected reporting period.
+![](/images/Hourly Notification Volume.png)
+Use this visualization to identify when notification activity is highest and detect periods of unusually high or low messaging volume.
+
+### Use this view to
+
+- Identify peak notification hours.
+- Understand user engagement patterns.
+- Optimize notification scheduling strategies.
+- Allocate operational resources effectively.
+- Detect unexpected traffic spikes or drops.
+- Validate campaign execution timings.
+
+<Tip title="Quick Tip" color="green"> Monitoring hourly notification trends helps identify anomalies and verify whether campaigns are being executed as expected.</Tip>
+
+
+## Provider Latency
+
+The **Provider Latency** report measures how quickly providers acknowledge notification requests and how long notifications take to reach recipients.
+![](/images/Provider Latency.png)
+This report helps you identify provider-related delays, compare provider responsiveness, and troubleshoot delivery bottlenecks.
+
+### Why Use Provider Latency?
+
+Use this report to:
+
+- Monitor delivery speed across providers.
+- Compare provider responsiveness.
+- Identify delays in provider acknowledgments.
+- Analyze latency trends for specific providers.
+- Troubleshoot provider-related delivery issues.
+- Optimize provider routing decisions.
+
+### Understanding the Chart
+
+Each configured provider is displayed on the **X-axis**, while the **Y-axis** represents the number of notifications.
+
+For every provider, the chart compares:
+
+- Total notifications attempted
+- Delivery latency
+- Provider response latency
+
+This enables you to evaluate both:
+
+- **Provider responsiveness** (acknowledgment time)
+- **Actual delivery performance** (delivery time)
+
+### Metrics
+
+| Metric | Description |
+|---------|-------------|
+| **Attempted** | Total number of notifications sent from Fyno to the provider. |
+| **Delivered in &lt;1s** | Notifications delivered within one second. |
+| **Delivered in 1–5s** | Notifications delivered between one and five seconds. |
+| **Delivered in &gt;5s** | Notifications delivered after more than five seconds. |
+| **Response in &lt;1s** | Provider acknowledged the request within one second. |
+| **Response in 1–5s** | Provider acknowledged the request between one and five seconds. |
+| **Response in &gt;5s** | Provider acknowledged the request after more than five seconds. |
+
+### Example
+
+Suppose the report displays the following metrics for **Amazon SES**.
+
+| Metric | Count |
+|---------|------:|
+| Attempted | 7,500 |
+| Delivered in &lt;1s | 5,000 |
+| Delivered in 1–5s | 600 |
+| Delivered in &gt;5s | 200 |
+| Response in &lt;1s | 1,200 |
+| Response in 1–5s | 500 |
+| Response in &gt;5s | 700 |
+
+This indicates that:
+
+- Most notifications were delivered in less than one second.
+- A smaller number experienced delivery delays.
+- Provider acknowledgments were received across multiple latency ranges.
+- Overall, the provider demonstrates strong delivery performance with some variation in response times.
+
+### Filter Providers
+
+Use the **Provider** filter in the upper-right corner of the report to:
+
+- View latency data for a specific provider.
+- Compare latency metrics across providers.
+- Focus troubleshooting efforts on a single provider or communication channel.
+
+## Activity Trends
+
+The **Activity Trends** report helps you understand notification activity over time by visualizing usage across different dimensions of your notification ecosystem.
+![](/images/Activity Trend by Channels.png)
+Use this report to monitor adoption patterns, identify changes in messaging behavior, and investigate unexpected shifts in notification activity.
+
+### Available Dimensions
+
+| Dimension | Description |
+|-----------|-------------|
+| **Channels** | Analyze notification traffic across communication channels such as SMS, Email, Push Notifications, WhatsApp, and In-App. |
+| **Integrations** | Monitor notification activity originating from connected applications and integrations. |
+
+### Use this report to
+
+- Identify unusually high or low usage trends.
+- Understand notification adoption patterns.
+- Monitor notification activity across the organization.
+- Investigate unexpected changes in messaging behavior.
+- Compare activity across channels or integrations.
+
+<Tip title="Quick Tip" color="green"> Hover over any point in the graph to view detailed metrics for that specific time period.</Tip>
+
+## Workflow Actions Chart
+
+The Workflow Actions chart provides a visual representation of the number of workflow actions executed over a selected time period. It helps monitor workflow activity, identify usage trends, and analyze changes in automation volume.
+
+### Chart Components
+
+| Component | Description |
+|----------|-------------|
+| **Workflow Actions** | Displays the title of the chart. |
+| **Info (ⓘ)** | Provides additional information about the metric displayed in the chart. |
+| **Y-axis** | Represents the number of workflow actions executed. |
+| **X-axis** | Represents the selected reporting period. The intervals displayed depend on the applied date range. |
+| **Green Trend Line** | Shows the trend of workflow actions over time. Peaks indicate higher workflow activity, while downward trends indicate reduced executions. |
+| **# / % Toggle** | Switches the chart between displaying **absolute values (#)** and **percentage values (%)**. |
+
+### How to Use
+
+1. Open the **Workflow Actions** chart from the Analytics dashboard.
+2. Review the trend line to understand workflow execution patterns over the selected reporting period.
+3. Use the **# / %** toggle in the upper-right corner to change the chart view:
+   - **#** – Displays the actual number of workflow actions.
+   - **%** – Displays workflow actions as a percentage.
+4. Hover over a data point (if supported) to view the exact value for that interval.
+
+### Example
+
+In the example shown:
+
+- Workflow actions begin at approximately **80**.
+- Activity increases sharply, reaching a peak of around **350** actions.
+- After the peak, workflow executions gradually decline over subsequent intervals until they approach **0**.
+
+This trend may indicate an initial surge in workflow activity followed by a gradual decrease in executions.
+
+> **Note:** The values displayed in the chart depend on the selected reporting period and the available workflow execution data.
