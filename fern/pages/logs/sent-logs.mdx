@@ -9,113 +9,92 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 Sent logs are where we help you track each and every notification sent from Fyno.
 
-Logs provide a detailed view of what has happened to each of your requests, supplying vital information for you to analyze, derive conclusions about your sent notifications, and continuously improve your communication strategies.
+Logs are a detailed view of what has happened on each of your requests, with vital information for you to further analyse and derive conclusions about the notifications sent, and to further improve your communication strategies.
 
-This section covers the logs visible on the Fyno platform, how to filter through the application to narrow down your searches, and a comprehensive breakdown of individual log schemas.
+This section covers the logs that you can see on the Fyno platform, how you can filter through the application to narrow down your search and a detailed understanding of the individual log details.
 
-When you navigate to **Sent Logs** from the left navigation menu, you will see the following sections:
+When we go to the "Sent Logs" from the left navigation menu, we see the following sections:
 
-- **Logs**
-- **Test & Live Versions**
-- **Filters** (detailed in the next guide section)
+- Logs
+- Test & Live Versions
+- Filters (explained in next section).
 
 ## Logs
 
-The logs visible on the **Sent Logs** page give you a chronological overview of the latest interaction activity occurring on your Fyno account.
+The logs that are seen on the "Sent Logs" page give you an overview of the latest activity that has occurred on your Fyno account.
 
-When you review your logs, the primary indicator is the **Status** indicator. This flag marks exactly where your request stands within the system lifecycle:
+When you have a look at the logs, what you will initially notice is the status icon that gives you an overall understanding of if the notification is:
 
-* **Attempted** – Message request was successfully validated by Fyno and routing logic has been initiated toward the provider.
-* **Sent** – Message request was processed successfully by the provider and dispatched into the delivery network.
-* **Dropped** – Message was dropped internally due to preset rules (e.g., Suppression lists, Routing caps, or Subscription opt-outs).
-* **Error** – Message failed internally at Fyno's layer before reaching the network provider gateway.
-* **Failed** – Message processing completely failed or validation checks were rejected at Fyno's end.
-* **Timeout** – Downstream gateway/provider failed to respond or acknowledge the payload within the 5–10 second window.
-* **Delivered** – Message reached the destination device successfully.
-* **Undelivered** – A definitive undelivered event payload was reported back asynchronously by the carrier network.
-* **Clicked** – An embedded URL/Link or the action button in the message was clicked by the user.
-* **Read / Open** – Message container was explicitly opened or flagged as read by the recipient.
-* **No DLR** – Message was dispatched, but the network carrier did not return a Delivery Receipt acknowledgment.
+- Sent - Message was successfully sent to the provider
+- Dropped - Message was dropped (due to configuration in Fyno - suppression/route/subscription)
+- Error - Message was failed at Fyno's end
+- Failed - Message was failed at Service Provider's end
+- Timeout - Provider failed to respond within 5-10 seconds
+- Delivered - Message was delivered successfully
+- Undelivered - Message could not be delivered by the provider
+- Clicked - URL/Link in the message or the entire notification was clicked by the user
+- Read/Open - Message was read/opened by the user
 
-You can read about the extensive multi-channel delivery matrices in detail [here](./notification-status).
+You can read about all the different statuses in detail [here](./notification-status).
 
-### Understanding the Log Schema Columns
+This is important for you to understand the status of attempts, especially when you are setting up or configuring Fyno.
 
-To further analyze this page, let's look at what data each column contains:
+To further understand this page, let's have a look at what exactly each column means and the data they contain.
 
 #### Timestamp
-Shows the exact date and time details of when the notification request was initiated from your application. 
 
-<Note>Make sure to configure your regional time zone within **Settings** so that log outputs display correctly in your local time format.</Note>
+Shows you when the notification request was initiated from the application. Give you the date and time details. Make sure to set your time zone from "Settings" to display the time in your time-zone
 
 #### Template
-Displays the specific template name and unique content layout structure utilized when the notification request was fired.
+
+Displays the name of the template that was used when the notification request was triggered.
 
 #### Notification Event
-Displays the corresponding core **Event** configuration name triggered with the notification API request made to Fyno.
+
+Displays the name of the Event that was triggered with the notification request made to Fyno
 
 #### Destination
-Provides a concise snapshot of the target recipient endpoint routing address, alongside the primary communication **Channel** utilized to complete the payload delivery.
+
+Gives you a brief of where the end destination (recipient in this case) is along with the **Channel** that was used to reach that end destination.
 
 #### Provider
-Identifies the exact integrated downstream provider gateway service instance deployed to route and transmit the message payload.
+
+Informs you which **Provider** was being used when the request for a notification was triggered.
+
 
 ## How to download sent logs
 
 <Steps>
+  <Step>Click on 'Download Report' CTA. ![](/images/logs_download_report.png)</Step>
   <Step>
-    Click on the **Download Report** CTA button in the top right header space.
-    
-    ![](/images/logs_download_report.png)
+    Choose the Report type, version and date range. 
+    <ul>
+      <li>**Version:** Test or Live</li>
+      <li>**Date Range:** Yesterday, Last 7 days, Last 28 days, Custom (you can select any 30 days within the last 6 months)</li>
+      <li>**Report Type:** You can download 4 types of report.</li>
+        <ul>
+        <li>All Logs</li>
+        <li>Summary</li>
+        <li>Daily Summary</li>
+        <li>SMS Delivery (mobile number-wise)</li>
+       </ul>
+    </ul>
+    <Note>You can only export data for 30 days at a time. If you want to export for a longer duration, say 90 days, please create multiple reports - D0 to D30 and D31 to D60 and D61-D90.</Note>
+    ![](/images/1d919c8-Request_Report.png)
   </Step>
-
   <Step>
-    Choose your targeted report parameters, API version scopes, and chronological boundary limits in the configuration modal.
-    
-    * **Version:** Select between `Test` or `Live`.
-    * **Timestamp:** Quick-select fields (`Yesterday`, `Last 7 days`, `Last 28 days`) or select `Custom` (choose any 30-day window within the trailing 6 months).
-    * **Report Type:** Select one of the 4 available structures based on audit requirements:
-      * *All Logs:* Comprehensive metadata dump of raw request strings.
-      * *Summary:* Aggregated deliverability statistics.
-      * *Daily Summary:* Day-over-day tracking charts.
-      * *SMS Delivery (mobile number-wise):* Destination-specific delivery data.
-
-    <Note>Data exports are capped at 30 days per report. If you need to export an extended sequence (e.g., 90 days), create multiple separate sequential reports (e.g., Day 0 to 30, Day 31 to 60, and Day 61 to 90).</Note>
-
-    ![](/images/report-request-sent-logs.png)
+    You will get an InApp notification with the message "Your report request xxxxxx is processing!" as shown below. ![](/images/2a90777-InApp_RequestForProcessing.png)
+    <Info>Your report will be ready for download within few seconds.</Info>
   </Step>
-
-  <Step>
-    You will see an InApp confirmation confirmation bubble processing banner status alert: *"Your report request xxxxx_xx is processing!"*
-    
-    ![](/images/report-request-pop-up-message.png)
-    
-    <Info>Most optimized reports finish compilation within a few seconds.</Info>
-  </Step>
-
-  <Step>
-    Once generation finishes, an interactive platform notice flashes alongside an automated transaction status notification email containing a **Download Report** link action.
-    
-    !/images/report-request-ready-to-download.png
-  </Step>
-
-  <Step>
-    Clicking **Download Report** triggers a download dashboard panel window tracking compiled lists.
-    
-    ![](/images/report-generated.png)
-  </Step>
-
-  <Step>
-    Click the download link element to pull down your formatted file archive locally.
-  </Step>
+  <Step>Upon the completion of your report, an InApp notification will be sent, along with an email containing a 'Download Report' call-to-action. ![](/images/d14216f-InApp_Downloade.png)</Step>
+  <Step>Upon clicking 'Download Report,' a popup will appear, as shown below. ![](/images/b11095b-InApp_DownloadLink.png)</Step>
+  <Step>Upon clicking the download link, the report will start downloading.</Step>
 </Steps>
+<Tip>Download your report within the next 7 days, as the link will expire after that. For example, if you receive the download link on 1st March at 1 PM, the report link will expire by 8th March at 1 PM.</Tip>
 
-<Tip>Be sure to download your compiled reports within 7 days, as download tokens auto-expire securely. For instance, a report file ready on March 1st at 1:00 PM will become unavailable on March 8th at 1:00 PM.</Tip>
 
 ## Test & Live Versions
 
-The logs dashboard cleanly segments reporting data channels between **Test** and **Live** environmental pipelines. This prevents development testing records from inflating operational live production audit figures.
+In the logs section, the **Test** and **Live** versions are uniquely partitioned, in order to show you the details notifications sent in that particular version of the API that has been generated.
 
-<Tip title="Can't find a notification log?">
-Always verify your current target dashboard application environment setting. Transactions executed inside a **Test** environment pipeline will not appear on **Live** logging feeds, and vice versa.
-</Tip>
+<Tip title="Can't find a notification log?">Check the environment that the notification was triggered in. Notification triggered in **Test** environment cannot be seen in **Live** and vice versa.</Tip>
