@@ -7,115 +7,67 @@ og:description: 'Reference guide explaining all API request processing, submissi
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-export const Yes = () => (
-  <span style={{
-    display: 'inline-block',
-    backgroundColor: '#F0F7ED',
-    color: '#4B743B',
-    padding: '4px 12px',
-    borderRadius: '4px',
-    fontWeight: '500',
-    fontSize: '0.85em',
-    textAlign: 'center'
-  }}>Yes</span>
-);
-
-export const No = () => (
-  <span style={{
-    display: 'inline-block',
-    backgroundColor: '#FFF0F0',
-    color: '#D13B3B',
-    padding: '4px 12px',
-    borderRadius: '4px',
-    fontWeight: '500',
-    fontSize: '0.85em',
-    textAlign: 'center'
-  }}>No</span>
-);
-
-export const TestOnly = () => (
-  <span style={{
-    display: 'inline-block',
-    backgroundColor: '#FDF4E2',
-    color: '#B27D2B',
-    padding: '4px 12px',
-    borderRadius: '4px',
-    fontWeight: '500',
-    fontSize: '0.85em',
-    textAlign: 'center',
-    whiteSpace: 'nowrap'
-  }}>Test only</span>
-);
-
-This document explains the different notification statuses, tracking the lifecycle from initiation on the Client's side to final delivery to the end customer.
+This document explains the different notification status, from initiation on the Client's side till the delivery to the Client's customers.
 
 ## API Request Processing Status
 
-These statuses are generated immediately after API requests are received from the Client and processed by Fyno.
+The following statuses are received after API requests are received from the Client and fired by Fyno.
 
-| Status | Description | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Error** | Message failed at Fyno's end | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-| **Failed** | Message failed at Provider's end | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-| **Timeout** | Provider failed to respond within 5–10 seconds | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-| **Dropped** | Message was dropped due to Fyno configurations (suppression/route/subscription) | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-| **Attempted** | Message delivery was attempted and routed to the provider | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-
----
+| Status  | Description                                                                        | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :------ | :--------------------------------------------------------------------------------- | :---: | :------: | :-: | :-: | :---: | :--: | :-----: | :---: | :-----------------: |
+| Error   | Message was failed at Fyno's end                                                   |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
+| Failed  | Message was failed at Provider's end                                               |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
+| Timeout | Provider failed to respond within 5-10 seconds                                     |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
+| Dropped | Message was dropped (due to configuration in Fyno - supression/route/subscription) |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
+| Success | Message was successfully submitted to the provider                                 |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
 
 ## Submission Status
 
-These statuses are recorded after Fyno successfully hands over the request to the external service provider.
+The following statuses are received after Fyno successfully submits the requests (or encounters a submission timeout).
 
-| Status | Description | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Queued** | Message was queued at the provider's end | <Yes /> | <Yes /> | <Yes /> | <No /> | <Yes /> | <No /> | <No /> | <No /> | <No /> |
-| **Sent / Processed** | Message request was processed and sent out for final delivery | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <No /> | <Yes /> | <No /> | <No /> | <No /> |
+| Status    | Description                                         | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :-------- | :-------------------------------------------------- | :---: | :------: | :-: | :-: | :---: | :--: | :-----: | :---: | :-----------------: |
+| Queued    | Message was queued at the provider's end            |  ✅   |    ✅    | ✅  | ❌  |  ✅   |  ❌  |   ❌    |  ❌   |         ❌          |
+| Processed | Message request was processed and sent for delivery |  ✅   |    ✅    | ✅  | ✅  |  ❌   |  ✅  |   ❌    |  ❌   |         ❌          |
 
----
+## Undelivered Notification Status
 
-## Undelivered & Unconfirmed Notification Status
+The following statuses are received after the notification is sent from the service provider to the recipient but remains undelivered.
 
-These statuses occur when a notification is sent out by the service provider but fails to reach the recipient, or fails to return a delivery receipt.
+| Status      | Description                                                                       | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :---------- | :-------------------------------------------------------------------------------- | :---: | :------: | :-: | :-: | :---: | :--: | :-----: | :---: | :-----------------: |
+| INVALID-SUB | Subscriber was invalid                                                            |  ❌   |    ❌    | ✅  | ❌  |  ❌   |  ❌  |   ❌    |  ❌   |         ❌          |
+| REJECTED    | Message was rejected by the provider (DLT/Template/Complaint issue)               |  ✅   |    ✅    | ✅  | ❌  |  ❌   |  ❌  |   ❌    |  ❌   |         ❌          |
+| BOUNCE      | Email was bounced                                                                 |  ✅   |    ❌    | ❌  | ❌  |  ❌   |  ❌  |   ❌    |  ❌   |         ❌          |
+| DENIED      | Notification was denied (Push disabled / Call denied)                             |  ❌   |    ❌    | ❌  | ❌  |  ❌   |  ✅  |   ❌    |  ✅   |         ❌          |
+| FAILED      | Message has failed at the provider's end (due to congestion/error/template issue) |  ❌   |    ✅    | ✅  | ❌  |  ❌   |  ❌  |   ❌    |  ✅   |         ❌          |
+| NOANSWER    | Call was not answered (or user was busy)                                          |  ❌   |    ❌    | ❌  | ❌  |  ❌   |  ❌  |   ❌    |  ✅   |         ❌          |
+| UNDELIVERED | Message could not be delivered by the provider                                    |  ✅   |    ✅    | ✅  | ✅  |  ❌   |  ✅  |   ❌    |  ❌   |                     |
 
-| Status | Description | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **INVALID-SUB** | Subscriber/recipient details were invalid | <No /> | <No /> | <Yes /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> |
-| **REJECTED** | Message was rejected by the provider (DLT/Template/Complaint issues) | <Yes /> | <Yes /> | <Yes /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> |
-| **BOUNCE** | Email was bounced back by the receiving server | <Yes /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> |
-| **DENIED** | Notification was explicitly denied (Push disabled / Call declined) | <No /> | <No /> | <No /> | <No /> | <No /> | <Yes /> | <No /> | <Yes /> | <No /> |
-| **FAILED** | Message failed at the provider level (congestion/system error/template mismatch) | <No /> | <Yes /> | <Yes /> | <No /> | <No /> | <No /> | <No /> | <Yes /> | <No /> |
-| **NOANSWER** | Voice call went unanswered or the user line was busy | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <Yes /> | <No /> |
-| **UNDELIVERED** | Message could not be delivered successfully by the provider | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <No /> | <Yes /> | <No /> | <No /> | <No /> |
-| **No DLR** | No Delivery Receipt was returned by the provider network | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
+## Successful Delivery Status
 
----
+The following statuses are received after the notification is successfully sent from the service provider to the recipient and delivered.
 
-## Successful Delivery & Engagement Status
-
-These statuses track successful notification drop-offs and subsequent user interactions.
-
-| Status | Description | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **DELIVERED** | Message was delivered successfully to the destination device | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <No /> | <No /> |
-| **UPDATED** | Message content was dynamically updated successfully | <No /> | <No /> | <No /> | <No /> | <Yes /> | <No /> | <No /> | <No /> | <No /> |
-| **CLICKED** | An embedded URL/Link or the notification action was clicked by the user | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <No /> | <Yes /> |
-| **OPEN** | Message container was opened by the user | <Yes /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> |
-| **READ** | Message was marked or flagged as read by the user | <No /> | <Yes /> | <No /> | <Yes /> | <Yes /> | <No /> | <No /> | <No /> | <No /> |
-| **ANSWERED** | Outbound voice call was successfully answered by the recipient | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <Yes /> | <No /> |
-| **DELETED** | Notification was manually dismissed or deleted by the user | <No /> | <No /> | <No /> | <No /> | <Yes /> | <Yes /> | <Yes /> | <No /> | <No /> |
-| **KEYPRESS** | Recipient answered the call and interacted via an IVR keypad entry | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <Yes /> | <No /> |
-| **REPLIED** | Message received an inbound response/reply from the end-user | <No /> | <Yes /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> |
-| **UNSUBSCRIBED** | Recipient chose to opt-out or unsubscribe from this notification group | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-| **SPAMREPORT** | Recipient manually flagged the incoming email message as SPAM | <Yes /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> |
-| **UNKNOWN** | Status payload unresolved. (Please flag and report these instances to Fyno) | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-
----
+| Status       | Description                                                                | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :----------- | :------------------------------------------------------------------------- | :---: | :------: | :-: | :-: | :---: | :--: | :-----: | :---: | :-----------------: |
+| DELIVERED    | Message was delivered successfully                                         |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ❌   |         ❌          |
+| UPDATED      | Message content was updated successfully                                   |  ❌   |    ❌    | ❌  | ❌  |  ✅   |  ❌  |   ❌    |  ❌   |         ❌          |
+| CLICKED      | URL/Link in the message or the entire notification was clicked by the user |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ❌   |         ✅          |
+| OPEN         | Message was opened by the user                                             |  ✅   |    ❌    | ❌  | ❌  |  ❌   |  ❌  |   ❌    |  ❌   |         ❌          |
+| READ         | Message was read by the user (or marked as read)                           |  ❌   |    ✅    | ❌  | ✅  |  ✅   |  ❌  |   ❌    |  ❌   |         ❌          |
+| ANSWERED     | Call was answered                                                          |  ❌   |    ❌    | ❌  | ❌  |  ❌   |  ❌  |   ❌    |  ✅   |         ❌          |
+| DELETED      | Message was deleted/dismissed by the user                                  |  ❌   |    ❌    | ❌  | ❌  |  ✅   |  ✅  |   ✅    |  ❌   |         ❌          |
+| KEYPRESS     | Call was answered and a key was pressed by the user during the call        |  ❌   |    ❌    | ❌  | ❌  |  ❌   |  ❌  |   ❌    |  ✅   |         ❌          |
+| REPLIED      | Message was replied to by the user                                         |  ❌   |    ✅    | ❌  | ❌  |  ❌   |  ❌  |   ❌    |  ❌   |         ❌          |
+| UNSUBSCRIBED | The user unsubscribed for notifications from this particular message       |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
+| SPAMREPORT   | This status is received when a recipient marks an email as SPAM.     |  ✅   |    ❌    | ❌ | ❌  |  ❌  |  ❌  |   ❌   |  ❌  |         ❌          |
+| UNKNOWN      | The status received is UNKNOWN. Please report to Fyno in such cases      |  ✅   |    ✅    | ✅  | ✅  |  ✅   |  ✅  |   ✅    |  ✅   |         ✅          |
 
 ## Converted & Verified Notification Status
 
-These downstream statuses track business action conversions and authentication verification events.
+The following statuses are received after the notification is sent from the service provider to the recipient and if its marked as Converted (Conversion Tracking enabled) or Verified (OTP/Link verified via Fyno Verify).
 
-| Status | Description | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **CONVERTED** | Conversion tracking is active for the event and a successful callback API triggered it | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
+| Status      | Description                                                                       | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
+| :---------- | :-------------------------------------------------------------------------------- | :---: | :------: | :-: | :-: | :---: | :--: | :-----: | :---: | :-----------------: |
+| CONVERTED | Notification status will be marked as Converted, if the Conversion tracking is enabled for a notification event and API is triggered to mart it as converted                                                         |  ✅    |   ✅     | ✅  | ✅   |  ✅    |  ✅   |   ✅     |  ✅    |         ✅           |
+| VERIFIED    | Notification status will be marked as Verified if a user successfully verifies OTP/Link generated through Fyno Verify              |  ✅   |    ✅    | ✅  | ✅   |  ✅    |  ✅   |   ✅     |  ✅    |         ✅           |
