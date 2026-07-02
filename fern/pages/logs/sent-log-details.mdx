@@ -7,35 +7,66 @@ og:description: 'Deep dive into Fyno log components like Trace, Summary, and Pla
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Log Details, as the name rightly reads, give a detailed understanding of the notification, with view on time taken, details sent, response received, and final status of the notification
+export const Yes = () => (
+  <span style={{
+    display: 'inline-block',
+    backgroundColor: '#F0F7ED',
+    color: '#4B743B',
+    padding: '4px 12px',
+    borderRadius: '4px',
+    fontWeight: '500',
+    fontSize: '0.85em',
+    textAlign: 'center'
+  }}>Yes</span>
+);
 
-This is required and very informative when trying to debug and delivery failure or when trying to help set up the optimum routing configuration for an Event.
-![](/images/log-details.png)
+export const No = () => (
+  <span style={{
+    display: 'inline-block',
+    backgroundColor: '#FFF0F0',
+    color: '#D13B3B',
+    padding: '4px 12px',
+    borderRadius: '4px',
+    fontWeight: '500',
+    fontSize: '0.85em',
+    textAlign: 'center'
+  }}>No</span>
+);
 
-You can easily have a look at the "**Log Details**" by simply clicking on the notification log when you see it on the "**Sent Logs**" Panel.
+Log Details provide a granular breakdown of each notification instance, detailing processing time frames, payload components, raw provider responses, and the definitive status of your message delivery path. 
 
-"**Log Details**" has information that gives you a bird's eye view as well as a detailed view of the notification's details. To understand this better, lets have a look at each section.
+This view is essential for debugging delivery failures and optimization loops when creating routing pipelines for an Event.
 
-1. [Trace](./log-details-trace)
-2. [Summary](./log-details-summary)
-3. [Placeholders](./log-details-placeholders)
-4. [Content](./log-details-content)
-5. [Response](./log-details-response)
-6. [Delivery](./log-details-delivery)
+![](/images/log_detail.png)
+
+To access the **Log Details** inspector pane, navigate to the **Sent Logs** panel and click directly on any individual transaction row.
+
+### Log Metadata Sections
+
+Each log entry breaks down into dedicated tracking tabs providing high-fidelity transparency for auditing:
+
+1. [Trace](./log-details-trace) – Core chronological routing timeline across internal systems.
+2. [Summary](./log-details-summary) – Snapshot overview of event variables, timing, and provider profiles.
+3. [Placeholders](./log-details-placeholders) – Variable payload bindings matched to the client API schema request.
+4. [Content](./log-details-content) – Rendered visual layout strings transmitted downstream.
+5. [Response](./log-details-response) – Synchronous API acknowledgment codes returned by provider endpoints.
+6. [Delivery](./log-details-delivery) – Asynchronous webhook statuses mapped directly back by carrier receipts.
 
 ## Lifecycle of a Notification
 
-Every notification, be it an SMS, Email, WhatsApp message or InApp and Push will have its own lifecycle. Understanding each one will contribute to understanding how your Event Analytics and Dashboard details are understood as well as what to expect in each notification type.
+Every transaction features individual progression stages dictated by target carrier mechanics. Reviewing the capabilities of each delivery pathway ensures clarity when verifying metric performance and system event properties.
 
-| Channel    | Submitted | Delivered | Read/Open | Clicked | Deleted |
-| :--------- | :-------: | :-------: | :-------: | :-----: | :-----: |
-| SMS        |    ✅     |    ✅     |    ❌     |   ❌    |   ❌    |
-| WhatsApp\* |    ✅     |    ✅     | ✅ (Read) |   ❌    |   ❌    |
-| Email      |    ✅     |    ✅     | ✅ (Open) |   ✅    |   ❌    |
-| Slack      |    ✅     |    ❌     |    ❌     |   ❌    |   ❌    |
-| Teams      |    ✅     |    ❌     |    ❌     |   ❌    |   ❌    |
-| Discord    |    ✅     |    ❌     |    ❌     |   ❌    |   ❌    |
-| InApp      |    ✅     |    ✅     | ✅ (Read) |   ❌    |   ✅    |
-| Push (SDK) |    ✅     |    ✅     |    ❌     |   ✅    |   ✅    |
+| Channel | Submitted | Delivered | Read / Open | Clicked | Deleted / Dismissed |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **SMS** | <Yes /> | <Yes /> | <No /> | <Yes /> | <No /> |
+| **WhatsApp\*** | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <No /> |
+| **Email** | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <No /> |
+| **Slack** | <Yes /> | <No /> | <No /> | <Yes /> | <No /> |
+| **Teams** | <Yes /> | <No /> | <No /> | <Yes /> | <No /> |
+| **Discord** | <Yes /> | <No /> | <No /> | <Yes /> | <No /> |
+| **InApp** | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
+| **Push (SDK)** | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
 
-<Info>WhatsApp will only show you "Read" if the recipient has "Read Reciepts" are turned on.</Info>
+<Info>
+  \* **WhatsApp Tracking Constraint:** The tracking ecosystem will update your dashboard state to **Read** exclusively if the target consumer has enabled **Read Receipts** inside their native mobile client configurations.
+</Info>
