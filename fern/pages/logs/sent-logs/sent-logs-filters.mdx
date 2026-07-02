@@ -1,115 +1,90 @@
 ---
 title: 'Filtering and Searching Notification Sent Logs'
 slug: 'sent-logs-filters'
-description: 'Master Fyno sent log filters. Learn how to pinpoint issues using timestamps, destination variables, account separation, event configurations, and message delivery statuses.'
+description: 'Master Fyno sent log filters. Learn how to pinpoint issues using date ranges, destination variables, account separation, event configurations, and message delivery statuses.'
 og:title: 'Filtering and Searching Notification Sent Logs | Fyno Documentation'
-og:description: 'Master Fyno sent log filters. Learn how to pinpoint issues using timestamps, destination variables, account separation, event configurations, and message delivery statuses.'
+og:description: 'Master Fyno sent log filters. Learn how to pinpoint issues using date ranges, destination variables, account separation, event configurations, and message delivery statuses.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-export const Yes = () => (
-  <span style={{
-    display: 'inline-block',
-    backgroundColor: '#F0F7ED',
-    color: '#4B743B',
-    padding: '4px 12px',
-    borderRadius: '4px',
-    fontWeight: '500',
-    fontSize: '0.85em',
-    textAlign: 'center'
-  }}>Yes</span>
-);
+Filters within the sent logs page help you seamlessly sift through all the logs that have been generated for all the notifications that have been triggered through the Fyno App.
 
-export const No = () => (
-  <span style={{
-    display: 'inline-block',
-    backgroundColor: '#FFF0F0',
-    color: '#D13B3B',
-    padding: '4px 12px',
-    borderRadius: '4px',
-    fontWeight: '500',
-    fontSize: '0.85em',
-    textAlign: 'center'
-  }}>No</span>
-);
+To understand how to use the filters, let's have a look at the categories within filters.
 
-This document explains the different notification statuses, tracking the lifecycle from initiation on the Client's side until final delivery and downstream user actions.
+## Date Range
 
-## API Request Processing Lifecycle
+"Date Range" allows you to specify the time frame for which you want to view the logs.
 
-When an API request is received from the Client, it enters the system as **Requested** and progresses through the structural lifecycle paths illustrated below:
+You can select one of the provided options, which are:
 
-## API Request Processing Status
+- Today
+- Yesterday
+- Last 7 days
+- Last 28 days
+- Custom - Select a start and end date of your choice.
 
-These statuses track the evaluation of the payload performed by Fyno immediately after an incoming API request is received.
+## Search
 
-| Status | Description | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Error** | Message failed internally at Fyno's layer before reaching the network provider. | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-| **Failed** | Message processing completely failed or validation checks failed at Fyno's end. | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-| **Dropped**| Message dropped internally due to rules (Suppression lists, Route capping, or Subscription preferences). | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-| **Attempted**| Message request accepted by Fyno and routing execution has been initiated toward the provider. | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
+The "**Search**" option allows you to look for individual Messages or Request IDs, which you would have received for a notification. Read more about [Message ID](./log-details-summary#message-id) and [Request ID](./log-details-summary#request-id). This is crucial to do individual debugging and trace a notification
 
----
+## Destination
 
-## Submission & Outbound Routing Status
+"**Destination**" in this context is the end destination of the notification that has been triggered via Fyno's event.
 
-These statuses track the operational lifecycle window directly following an **Attempted** handover execution to the external provider networks.
+The destination may be anything from a phone number to an email ID to an alpha-numeric ID to your User Profile **Distinct ID**, depending on the channel the notification has been triggered through.
 
-| Status | Description | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice | Slack/Discord/Teams |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Timeout** | Downstream gateway/provider failed to respond or acknowledge within the 5–10 second threshold window. | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
-| **Queued** | Message was accepted and queued inside the provider's outbound buffer. | <Yes /> | <Yes /> | <Yes /> | <No /> | <Yes /> | <No /> | <No /> | <No /> | <No /> |
-| **Sent / Processed**| Message request was processed successfully by the provider and dispatched for final delivery. | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <No /> | <Yes /> | <No /> | <No /> | <No /> |
+## Templates
 
----
+The "**Templates**" search option allows you only to select from a drop-down, which displays all the templates that you have created in the "**Templates**" section
 
-## Post-Delivery Engagement Status Matrix
+## Channels
 
-Once a message successfully updates to a **Delivered** state, tracking capabilities for downstream user events are determined by channel-specific features as detailed below:
+"**Channels**" search option allows you to narrow down the view of the logs to a certain channel of your choice. This may be:
 
-| Channel | Read / Opened | Clicked | Dismissed | Keypress | Replied | Deleted |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Email** | <Yes /> | <Yes /> | <No /> | <No /> | <No /> | <No /> |
-| **WhatsApp** | <Yes /> | <Yes /> | <No /> | <No /> | <Yes /> | <No /> |
-| **SMS** | <No /> | <Yes /> | <No /> | <No /> | <No /> | <No /> |
-| **Push** | <Yes /> | <Yes /> | <Yes /> | <No /> | <No /> | <Yes /> |
-| **WebPush** | <Yes /> | <Yes /> | <No /> | <No /> | <No /> | <Yes /> |
-| **InApp** | <Yes /> | <Yes /> | <No /> | <No /> | <No /> | <Yes /> |
-| **Voice** | <No /> | <No /> | <No /> | <Yes /> | <No /> | <No /> |
-| **RCS** | <Yes /> | <Yes /> | <No /> | <No /> | <No /> | <No /> |
+- SMS
+- WhatsApp
+- Email
+- Chat
+- Push
+- In-App
 
----
+This is a great way for you to club and view your logs channel-wise, regardless of the providers that actually executed the notification.
 
-## Undelivered & Terminal Statuses
+## Providers
 
-These statuses are registered when a routed notification fails context delivery, is rejected by downstream carriers, or fails to produce a feedback token.
+"**Providers**" allows you to filter the logs that you have generated on the Fyno App by the provider that has been used, regardless of the channel being used for the notification.
 
-| Status | Description | Email | WhatsApp | SMS | RCS | InApp | Push | WebPush | Voice |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **INVALID-SUB**| Recipient identity, device token, or subscriber endpoint routing address is invalid. | <No /> | <No /> | <Yes /> | <No /> | <No /> | <No /> | <No /> | <No /> |
-| **REJECTED** | Disallowed by provider networks (e.g., DLT template violations, local compliance, or blocklists). | <Yes /> | <Yes /> | <Yes /> | <No /> | <No /> | <No /> | <No /> | <No /> |
-| **BOUNCE** | Mailbox server rejected the email delivery (Hard or Soft bounce thresholds met). | <Yes /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> |
-| **DENIED** | Notification explicitly blocked by system parameters (e.g., Push permissions disabled, user blocked call). | <No /> | <No /> | <No /> | <No /> | <No /> | <Yes /> | <No /> | <Yes /> |
-| **FAILED** | Gateway or service provider error occurred post-submission during final delivery attempts. | <No /> | <Yes /> | <Yes /> | <No /> | <No /> | <No /> | <No /> | <Yes /> |
-| **NOANSWER** | Outbound voice call dialed completely but went unanswered or encountered a busy signal. | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <No /> | <Yes /> |
-| **UNDELIVERED**| A definitive undelivered event payload was reported back asynchronously by the carrier. | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <No /> | <Yes /> | <No /> | <No /> |
-| **No DLR** | Message was dispatched, but the network carrier did not return a Delivery Receipt acknowledgment. | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> | <Yes /> |
+A really good use case where the "**Providers**" filter would really come in handy is when you want to check the monthly reports for a particular provider, to reconcile and close the billing aspects with them.
 
----
+## Account Name
 
-## Converted & Verified Statuses
+The "**Account Name**" search option allows you to isolate a specific account within a service and provider and have a view of the notifications sent specifically via that account only.
 
-Downstream conversion statuses apply globally across channels when activation metrics or security validation systems are turned on.
+This comes in handy when you create multiple accounts under a single provider in a channel. These kinds of scenarios are seen when notification services are used by multiple departments in a single company and for the sake of traceability, each department has a separate account created.
 
-### Converted
+## Event Name
 
-Notification status transitions to **Converted** if Conversion Tracking is enabled for an event and a downstream client action triggers Fyno's conversion analytics payload endpoint.
+Filtering by the "**Event Name**" field allows you to see all the notifications sent across by an Event that was created.
 
-* **Supported Channels:** Email <Yes /> | WhatsApp <Yes /> | SMS <Yes /> | RCS <Yes /> | InApp <Yes /> | Push <Yes /> | WebPush <Yes /> | Voice <Yes /> | Slack/Discord/Teams <Yes />
+This means that regardless of the channel or provider that was used if any or all of the providers and channels were configured in the event, the details will be shown for all the notifications that were triggered.
 
-### Verified
+## Placeholders
 
-Notification status transitions to **Verified** when a transaction involves a secure OTP code or unique security links successfully resolved via Fyno Verify workflows.
+The **Placeholders** search option allows you to search for logs with a placeholder you have used within the message body of your notification.
 
-* **Supported Channels:** Email <Yes /> | WhatsApp <Yes /> | SMS <Yes /> | RCS <Yes /> | InApp <Yes /> | Push <Yes /> | WebPush <Yes /> | Voice <Yes /> | Slack/Discord/Teams <Yes />
+## Status
+
+You can select the "**Status** of your notification as a filter to narrow down your search. The statuses that you can choose from are:
+
+- **Sent**: The status **Sent** will be displayed for all successful submissions to the provider, regardless of the final outcome of the submission.
+- **Dropped**: This status is internal to Fyno. This status will be displayed when an intentional "Do Nothing" component has been used in a Route (Omni-Channel or Single Route).
+- **Timeout**: When a notification is sent to a provider for execution and Fyno does not receive any sort of acknowledgement from the provider, this will be marked as **Timeout**.
+- **Failed**: When a notification has been successfully sent from Fyno's end and for whatever reason the execution of the notification has failed from the provider end, this will be tagged as **Failed**. For example, if you do not have sufficient credits in your provider account, you will receive the status **Failed**.
+- **Error**: This status is internal to Fyno. This status will be populated when the request to execute the event is not actionable. To get more details, check the response section. For example, when there is an issue with the configured integration.
+- **Delivered**: When a notification has been successfully sent to the user by the provider and we receive an acknowledgement, these notifications will be marked as **Delivered**.
+- **Undelivered**: When a notification has been successfully submitted to the provider and we receive an acknowledgement as **Undelivered** from the provider for any reason, these would be marked as the same. To get more details, check the response section.
+- **Read/Opened** - When a user reads (WhatsApp, Push. WebPush,InApp) or opens (Email) a notiifcation received, these notification are marked as '**Read/Opened**'
+- **Clicked** - When a user clicks the URL/Link in the message or the entire notification, these notification are marked as '**Clicked**'
+- **All**: All the above statuses will be displayed in the logs.
+
+This filter is particularly helpful when you want to have a bird's eye view of only failed statuses to help debug and solve them.
