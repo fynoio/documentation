@@ -1,0 +1,179 @@
+---
+title: 'Create an Approval Request for SMS'
+slug: 'external-templates/sms/create-approval-request'
+description: 'Create and submit approval requests for SMS External Templates by selecting approvers, configuring approval settings, and managing Meta submission preferences.'
+og:title: 'Create an Approval Request for SMS | Fyno Documentation'
+og:description: 'Learn how to create approval requests for SMS External Templates, select approvers, add review messages, and configure automatic Meta submission.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The Approval Workflow ensures that External SMS Templates are reviewed and approved before being sent for DLT registration or used in campaigns. This helps maintain compliance, avoid errors, and introduce a controlled review process across teams.
+
+With this feature, users can:
+- Request approvals from one or more reviewers.
+- Define a minimum number of approvals required.
+- Control DLT syncing behavior (automatic or manual after approval).
+- Approve or reject requests with contextual messages.
+
+## Enabling the Maker-Checker Flow
+
+Before using this feature, you must enable the approval request flow for External SMS Templates by selecting the required reviewers and defining the minimum number of approvals needed.
+
+![](/images/approval-request-enable.png)
+
+This setup ensures that all templates go through a controlled review process before being submitted to DLT.
+
+**Once enabled**:
+- Templates must go through the approval workflow before being sent to DLT.
+- Only templates in Draft status can be submitted for approval.
+
+## How It Works
+
+The workflow follows a clear lifecycle:
+
+<Steps>
+<Step>
+**Template Creation or Modification**
+
+- A user creates a new External SMS Template or edits an existing one.
+<Note>Only templates in Draft status can be edited. Once approved, templates cannot be modified.</Note>
+- At this stage, the template is still not approved and cannot be submitted to DLT.
+</Step>
+
+<Step>
+**Approval Request Initiation**
+
+- The user selects one or more approvers and raises an approval request.
+- The template status changes to Pending Approval.
+</Step>
+
+<Step>
+**Review by Approvers**
+
+Approvers are notified and can take one of the following actions:
+- Approve: Indicates the template meets requirements.
+- Reject: Indicates issues that must be corrected.
+</Step>
+
+<Step>
+**Approval Completion Logic**
+
+- The system tracks the number of approvals.
+- Once the minimum required approvals are reached:
+  - The request is marked as Approved.
+</Step>
+
+<Step>
+**DLT Submission Handling**
+
+- If automatic submission is enabled:
+  - The template is immediately sent to DLT upon approval.
+- If not enabled:
+  - Approvers may optionally send it during approval.
+  - Otherwise, the requester must manually submit it later.
+</Step>
+</Steps>
+
+## Approvers
+
+Approvers review pending requests and independently approve or reject them. A request is approved only after the configured minimum number of approvals is reached.
+
+> **Additional capability:** Approvers can also trigger DLT submission during their approval action (if enabled).
+
+### Approval Message
+
+Approval messages provide context for reviewers, approvals, and rejections, creating a clear audit trail.
+
+**Benefits**:
+- Improves clarity and collaboration.
+- Creates an audit trail of decisions and reasoning.
+- Reduces back-and-forth communication outside the system.
+
+### DLT Sync Option
+
+This option determines how and when the template is submitted to DLT.
+
+**Enabled**
+- Templates are automatically submitted once approval criteria are met.
+- Best for streamlined, high-volume workflows.
+
+**Disabled**
+- Submission must be done manually:
+  - Either by an approver during approval, or
+  - By the requester after approval.
+
+**Use this when**:
+- Additional checks are needed post-approval.
+- Teams want tighter control over submission timing.
+
+## Creating an Approval Request
+
+To initiate an approval request, navigate to the template and click **Send to Provider**. This opens the Request Creation window where you can configure reviewers, approval requirements, and submission settings.
+
+![](/images/request-approval.png)
+
+<Steps>
+<Step>Select one or more approvers.</Step>
+<Step>Ensure the minimum approval requirement is met.</Step>
+<Step>Add an optional message.</Step>
+<Step>(Optional) Enable **Send to Provider on Approval**.</Step>
+<Step>Click **Request**.</Step>
+</Steps>
+
+**Once submitted**:
+
+<Steps>
+<Step>The template enters a **Pending Approval** state.</Step>
+<Step>
+A banner indicates the approval request status.
+
+![](/images/banner-for-request-approval.png)
+</Step>
+</Steps>
+
+
+
+### Approve a Request
+
+<Steps>
+<Step>Open the template with a pending request.</Step>
+<Step>Click **Approve**.</Step>
+<Step>Add an optional message.</Step>
+<Step>(Optional) Enable **Send to Provider on Approval**.</Step>
+<Step>Click **Approve** or **Approve and Send**.</Step>
+</Steps>
+
+**Result**:
+- Your approval is recorded.
+- If the approval threshold is reached, the request is completed and the template proceeds according to the configured DLT submission settings.
+
+### Reject a Request
+
+<Steps>
+<Step>Open the template with a pending request.</Step>
+<Step>Click **Reject**.</Step>
+<Step>Add a reason for rejection (mandatory).</Step>
+<Step>Click **Reject**.</Step>
+</Steps>
+
+**Result**:
+- The request is marked as **Rejected**.
+- The template must be updated and resubmitted for approval.
+
+### Cancel an Approval Request
+
+<Steps>
+<Step>The requester can cancel the approval request before completion.</Step>
+<Step>This removes the request and allows further edits.</Step>
+</Steps>
+
+## Use Cases
+
+| **Use Case** | **Description** |
+| --- | --- |
+| **Compliance Review Before DLT Submission** | Ensure all SMS templates meet regulatory and formatting guidelines before they are submitted to DLT. |
+| **Cross-Team Collaboration** | Enable marketing teams to create templates while legal or compliance teams review and approve them. |
+| **Error Prevention** | Prevent incorrect or unverified SMS content from being submitted by enforcing a structured approval workflow. |
+| **Flexible Submission Control** | Support automatic submission, approver-driven submission, or manual submission by the requester based on business requirements. |
+| **Automated Workflow with DLT Sync** | Reduce manual effort by automatically submitting approved templates to DLT after all approvals are completed. |
+| **Audit and Accountability** | Maintain a record of who approved or rejected each template, along with review comments, to ensure transparency and traceability. |
