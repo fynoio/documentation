@@ -1,0 +1,72 @@
+## 26.2.5
+
+Enhanced the platform with usability improvements across Allowlist, Analytics, Templates, Logs, and User Details to deliver a more intuitive and efficient user experience.
+Resolved key issues related to logs, template validation, scrolling, and notification testing to improve platform stability and reliability.
+
+### ⚡ Feature Enhancements
+
+**Allowlist – User Interface Improvements**
+- Enhanced the Allowlist management experience with several usability improvements to simplify navigation and provide quicker access to common actions.
+- The updated interface includes a cleaner table layout, clickable Allowlist names with direct access to **View Details**.
+- Repositioned **Status** information for improved readability, inline row actions, toggle-based status controls.
+- Updated the **Delivery Status Endpoint** icon and refined column labels for a more consistent user experience.
+
+**Analytics – Notification Lifecycle Flow Chart**
+- Added a **Notification Lifecycle Flow Chart** across Analytics pages to help users better understand notification status progression and channel-specific engagement metrics.
+- The flow chart illustrates the complete notification lifecycle, including **Requested**, **Attempted**, **Sent**, **Delivered**, **Failed**, **Dropped**, **Timeout**, **Undelivered**, **No DLR**, and **Error** statuses.
+- Includes a channel capability matrix highlighting supported engagement metrics such as **Read/Open**, **Clicked**, **Dismissed**, **Keypress**, **Replied**, and **Deleted**.
+- Available from the **Dashboard**, **Top Events Expanded Drawer**, **Event Analytics**, **Campaign Analytics**, and **Workflow Analytics**, providing contextual guidance directly within the analytics experience.
+
+**In-App Templates – Template Experience Improvements**
+- Improved the In-App template authoring experience with multiple usability enhancements.
+- Fixed preview rendering issues for long in-app messages.
+- Resolved scrolling issues in the template preview for a smoother authoring experience.
+
+**Web Push Templates – Template Experience Improvements**
+- Enhanced the Web Push template authoring and testing experience.
+- Users can now test Web Push templates using either a **Web Push Token** or **Distinct ID**, providing greater flexibility across different testing scenarios.
+- Refined the template configuration workflow for a more streamlined authoring experience.
+
+**RCS Templates – Channel Compatibility Improvements**
+- Improved RCS template handling across different channel configurations.
+- Resolved issues affecting **RCS-only**, **WhatsApp-only**, and combined **RCS + WhatsApp** configurations.
+- Ensured templates behave consistently across all supported channel combinations.
+
+**Group Chips – Expanded Color Palette**
+- Expanded the available color options for Group Chips by introducing **50 color pairs**.
+- Provides greater flexibility for visual categorization, making it easier to organize and distinguish groups across the platform.
+
+**Logs – Enhanced Summary Information**
+- Enhanced the **Sent Logs Summary** by adding additional notification details to improve troubleshooting and message tracking.
+- The summary now displays the **Provider Message ID**, **Provider Template ID**, and the recipient's **Country Flag**, providing greater visibility into provider-specific information directly from the log details.
+
+**Logs – Search Placeholder UI Improvements**
+- Updated the search placeholder filter within Logs to match the appearance of other filters.
+- Makes the placeholder clearly distinguishable from action buttons, resulting in a more intuitive filtering experience.
+
+**WhatsApp Templates – Dynamic URL Guidance Improvements**
+- Improved the **Dynamic URL** configuration experience for WhatsApp templates with clearer guidance for sample URL inputs.
+- Updated the instructional copy to better explain static and dynamic URL requirements.
+- Helps users provide valid sample URLs for Meta template review and reduces configuration errors during template creation.
+
+**User Details – Scrolling Improvements**
+- Improved the **User Details** experience by resolving scrolling issues within the **Properties** and **Contact Information** sections.
+- Users can now seamlessly navigate and view all available information without scrolling interruptions, providing a smoother and more consistent experience.
+
+### 🛠 Bug Fixes
+
+**Logs – Timestamp Validation**
+- Fixed an issue where the **Timestamp** input field was incorrectly highlighted when selecting a custom timestamp or navigating to the Logs page from another page.
+- The timestamp field now validates correctly, providing a smoother log filtering experience.
+
+**Logs – Template Test Destination Display**
+- Fixed an issue where destination details were not displayed correctly in the **Logs Summary** when testing templates with multiple comma-separated destinations.
+- The tooltip associated with the **+1 destination** chip now correctly displays all configured destinations, providing complete recipient visibility during template testing.
+
+**Sent Logs – Email Test Log Access**
+- Fixed an issue where opening email test logs from **Sent Logs** resulted in a **404 (Not Found)** error.
+- Users can now successfully view test log details for email notifications, making it easier to validate templates, inspect notification details, and troubleshoot issues before sending live notifications.
+
+**DLT Templates – Variable Validation**
+- Fixed an issue where DLT template creation failed with an **"smsg is not a valid param"** error when templates contained newline characters.
+- Improved template validation to correctly handle multiline DLT templates while maintaining compatibility with DLT provider validation requirements.
