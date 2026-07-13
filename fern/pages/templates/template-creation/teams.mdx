@@ -1,0 +1,41 @@
+---
+title: 'Microsoft Teams Templates'
+slug: 'template-creation-teams'
+description: 'Create and manage chat templates for Microsoft Teams, including dynamic content, placeholders, testing, versioning, and approval workflows.'
+og:title: 'Microsoft Teams Templates | Fyno Documentation'
+og:description: 'Learn how to create chat templates for Microsoft Teams, use placeholders and Handlebars, test messages, manage template versions, and submit approval requests.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+## Teams
+
+![](/images/template_teams.png)
+
+* **Teams Template:** The message body can be in Text or JSON depending on the kind of input.
+* **Placeholders:** Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
+* **Preview:** Review your content and take a look at what your message would look like in the Preview section on the right.
+* **Save & Go Live:** Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.
+
+### How to add dynamic content in template?
+
+You can add dynamic content in your templates using one of the 4 options mentioned below.
+
+* [Placeholders](./template-dynamic-content#placeholders)
+* [System Variables](./template-dynamic-content#system-variables)
+* [Handlebars](./template-dynamic-content#handlebars)
+* [Components](./template-dynamic-content#components)
+
+# How to test any Chat template?
+
+You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+
+1. Click 'Run Test' on the top right hand side of the template.
+2. You can either enter the destination of the recipient or you can enter distinct\_id. **Please make sure to enter Distinct\_id of Test User profiles**
+3. Select a provider which is already configured in Fyno.
+4. When you click 'TEST', it will send chat message to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.
+
+## How to raise Approval requests
+
+If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
+
+You can read more about it [here](https://fyno.io/docs/approval-flow)

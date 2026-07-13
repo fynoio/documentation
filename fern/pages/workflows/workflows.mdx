@@ -148,47 +148,6 @@ Groups help you organize related workflows together. For instance, if you have m
 - Workflows can be added to or removed from groups at any time, and a workflow can exist independently of a group. Each workspace can contain up to 20 Workflow Groups.
 - Deleting a Workflow Group removes only the group and its associations. The workflows within the group are not deleted and remain available in the workspace.
 
-## Copying Workflows
-
-Workflows can be copied between workspaces owned by the same user. During the copy process, the workflow configuration is duplicated in the destination workspace.
-
-### Steps to copy workflows
-
-#### 1. Prepare your destination workspace
-
-It is important to note that when copying workflows, only the workflow-related data will be copied to the destination workspace. Any dependencies must be created or copied manually in the destination workspace.
-
-<Steps>
-  <Step>Manually create the required integrations in the workspace.</Step>
-  <Step>If your workflows use allowlisted URLs (in the API or Notification Event widgets), then you should manually create those as well.</Step>
-  <Step>Go to the templates page (Templates → Fyno from the navigation) and copy the templates and components (if applicable) used by any of the notification events in the workflow via the [copy process](./copying-templates-components).</Step>
-  <Step>If applicable, go to the "Routes" pages (Routes → Single Channel and Routes → Omni-Channel from the navigation) and copy the routes used by any of the notification events in the workflow via the [copy process](./copying-routes).</Step>
-  <Step>Go to the notification events page and copy the notification events used in the workflow via the copy process.</Step>
-</Steps>
-
-#### 2. Copy your workflow(s)
-![](/images/copy-to-another-workspace.png)
-<Steps>
-  <Step>Ensure you are in the workspace from where you would like to copy the workflow.</Step>
-  <Step>Navigate to the workflows listing page by selecting Workflows from the navigation.</Step>
-  <Step>Click the "Three Dots" icon on the workflow that you would like to copy. This step will open a menu.</Step>
-  <Step>In the menu options, select “Copy to another workspace”.</Step>
-  <Step>You will now see a checkbox next to every workflow listed on the page. You can select multiple workflows to copy if needed.</Step>
-  <Step>Once you have completed your selection, click “Copy Selected Workflows” in the alert above the listing. ![](/images/copy-destination.png)</Step>
-  <Step>When copying a single workflow that has a live version, you will see an option to copy either the latest live or test version. If your workflow only has a test version, that version will be copied.</Step>
-  <Step>When copying multiple workflows, the latest live or the latest test version will be copied, depending on the workflow.</Step>
-  <Step>You will now see a dialog box with an option to select destination workspaces. In the “Destination Workspace(s)” dropdown menu, you will see all the workspaces you are a member of, but only the ones in which you have the “Owner” role will be available for selection. You can select up to five applicable workspaces.</Step>
-  <Step>Once all the workspaces are selected, click “Confirm”. This step will initiate the copy process.</Step>
-  <Step>Now, in all the selected workspaces, you will see the copied workflows.</Step>
-</Steps>
-
-#### 3. Post copy checklist
-
-<Steps>
-  <Step>If allowlist URLs were manually created in the destination workspace, then you need to open each API or Notification Event widget, re-select the URL and save the workflow to ensure that the workflows work correctly.</Step>
-  <Step>Similar steps are needed in other copied dependencies. Please see the post copy checklist for [events](./copying-notification-events#3-post-copy-checklist) and [routes](./copying-routes#3-post-copy-to-do).</Step>
-</Steps>
-
 ### How versioning works
 
 Let's say we are copying a workflow from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
