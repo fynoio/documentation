@@ -280,7 +280,7 @@ navigation:
               - page: "Verification"
                 path: "pages/integrations/verification.mdx"
           - page: "Components"
-            icon: fa-regular fa-copy
+            icon: fa-brands fa-uikit
             path: "pages/templates/components.mdx"
           - section: "Templates"
             path: "pages/templates/templates-getting-started.mdx"
