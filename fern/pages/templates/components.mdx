@@ -137,6 +137,42 @@ Things to be done in Fyno Template
 - Paste the value in any of the placeholders. It will be added as `{{Component '<Component_name>'}}` as shown below. ![](/images/pdf_component_sms.png)
 - Fyno will automatically shorten the URL of the PDF component added and send it in SMS. 
 
+### How to copying components
+
+Reusable components can also be copied between workspaces that you own. 
+
+<Callout type="warning">
+  **Prerequisite:** You must have the **Owner** role in the destination workspace.
+</Callout>
+
+#### Before you copy
+
+* **Independent Copying:** Components are copied independently of templates.
+* **Dependencies:** If a template depends on reusable components, make sure to copy the required components *before* copying the template itself.
+
+#### Steps to copy components
+
+<Steps>
+  <Step>Open the source workspace.</Step>
+  <Step>Go to **Templates** → **Fyno**.</Step>
+  <Step>Click **Components** in the page header.</Step>
+  <Step>Click the three-dot (**⋮**) menu on the component you want to copy.</Step>
+  <Step>Select **Copy to another workspace**.</Step>
+  <Step>Select one or more components to copy.</Step>
+  <Step>Click **Copy Selected Components**.</Step>
+  <Step>Select up to five destination workspaces where you have the **Owner** role.</Step>
+  <Step>Click **Confirm**.</Step>
+</Steps>
+
+The copied components will now be available in the selected destination workspaces.
+
+#### Component versioning
+
+Component versioning follows the same behavior as template versioning:
+
+* **New Components:** If the component does not exist in the destination workspace, it is created as `v1` (Test).
+* **Existing Components:** If the component already exists, a new standalone version (for example, `v2`) is created without affecting existing versions. You can later save it as the new Test version or promote it to Live when you are ready.
+
 ### How to raise Approval requests
 
 If your workspace has maker-checker workflow enabled for Components, the ‘Go Live’ action requires an additional approval step. You’ll need to choose from your designated approvers who will review and authorize the component related changes.
