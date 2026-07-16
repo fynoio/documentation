@@ -8,22 +8,21 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
 Sent logs are where we help you track each and every notification sent from Fyno.
-
+ 
 Logs provide a detailed view of what has happened to each of your requests, supplying vital information for you to analyze, derive conclusions about your sent notifications, and continuously improve your communication strategies.
-
+ 
 This section covers the logs visible on the Fyno platform, how to filter through the application to narrow down your searches, and a comprehensive breakdown of individual log schemas.
-
+ 
 When you navigate to **Sent Logs** from the left navigation menu, you will see the following sections:
-
+ 
 - **Logs**
 - **Test & Live Versions**
-
 ## Logs
-
+ 
 The logs visible on the **Sent Logs** page give you a chronological overview of the latest interaction activity occurring on your Fyno account.
-
+ 
 When you review your logs, the primary indicator is the **Status** indicator. This flag marks exactly where your request stands within the system lifecycle:
-
+ 
 * **Attempted** – Message request was successfully validated by Fyno and routing logic has been initiated toward the provider.
 * **Sent** – Message request was processed successfully by the provider and dispatched into the delivery network.
 * **Dropped** – Message was dropped internally due to preset rules (e.g., Suppression lists, Routing caps, or Subscription opt-outs).
@@ -35,52 +34,53 @@ When you review your logs, the primary indicator is the **Status** indicator. Th
 * **Clicked** – An embedded URL/Link or the action button in the message was clicked by the user.
 * **Read / Open** – Message container was explicitly opened or flagged as read by the recipient.
 * **No DLR** – Message was dispatched, but the network carrier did not return a Delivery Receipt acknowledgment.
-
+Use the **Status** filter to narrow logs down to a particular stage of the notification lifecycle (Attempted, Sent, Dropped, Timeout, Failed, Error, Delivered, Undelivered, Read/Opened, Clicked, No DLR, or All) — this is particularly useful when investigating failed or delayed notifications.
+ 
 You can read about the extensive multi-channel delivery matrices in detail [here](./notification-status).
-
+ 
 ### Understanding the Log Schema Columns
-
+ 
 To further analyze this page, let's look at what data each column contains:
-
+ 
 #### Timestamp
 Shows the exact date and time details of when the notification request was initiated from your application.
-
+ 
 You can also filter logs by **Date Range** using preset options (Today, Yesterday, Last 7 days, Last 28 days) or a custom date range.
-
+ 
 <Note>Make sure to configure your regional time zone within **Settings** so that log outputs display correctly in your local time format.</Note>
-
+ 
 #### Template
 Displays the specific template name and unique content layout structure utilized when the notification request was fired.
-
-Use the **Template** filter to view logs generated from specific templates.
-
+ 
+Use the **Template** filter to view logs generated from specific templates. You can also use the **Placeholders** filter to search for logs containing a specific placeholder value used in the notification payload.
+ 
 #### Notification Event
 Displays the corresponding core **Event** configuration name triggered with the notification API request made to Fyno.
-
+ 
 Use the **Event Name** filter to view logs for a specific event across all configured channels and providers.
-
+ 
 #### Destination
 Provides a concise snapshot of the target recipient endpoint routing address, alongside the primary communication **Channel** utilized to complete the payload delivery.
-
+ 
 You can filter by **Destination** to find notifications sent to a specific recipient, and by **Channel** to narrow results to SMS, WhatsApp, Email, Push, Chat, or In-App notifications.
-
+ 
 #### Provider
 Identifies the exact integrated downstream provider gateway service instance deployed to route and transmit the message payload.
-
+ 
 Use the **Provider** filter to view notifications sent through a specific provider. If you have multiple accounts configured under a provider, use the **Account Name** filter to isolate logs for a particular account.
-
+ 
+### Search
+Use the **Search** bar to look up a specific **Message ID** or **Request ID** to quickly locate an individual notification for debugging.
+ 
 ## How to download sent logs
-
+ 
 <Steps>
   <Step>
     Click on the **Download Report** CTA button in the top right header space.
-    
     ![](/images/logs_download_report.png)
   </Step>
-
   <Step>
     Choose your targeted report parameters, API version scopes, and chronological boundary limits in the configuration modal.
-    
     * **Version:** Select between `Test` or `Live`.
     * **Timestamp:** Quick-select fields (`Yesterday`, `Last 7 days`, `Last 28 days`) or select `Custom` (choose any 30-day window within the trailing 6 months).
     * **Report Type:** Select one of the 4 available structures based on audit requirements:
@@ -88,58 +88,35 @@ Use the **Provider** filter to view notifications sent through a specific provid
       * *Summary:* Aggregated deliverability statistics.
       * *Daily Summary:* Day-over-day tracking charts.
       * *SMS Delivery (mobile number-wise):* Destination-specific delivery data.
-
+ 
     <Note>Data exports are capped at 30 days per report. If you need to export an extended sequence (e.g., 90 days), create multiple separate sequential reports (e.g., Day 0 to 30, Day 31 to 60, and Day 61 to 90).</Note>
-
+ 
     ![](/images/report-request-sent-logs.png)
   </Step>
-
   <Step>
     You will see an InApp confirmation confirmation bubble processing banner status alert: *"Your report request xxxxx_xx is processing!"*
-    
     ![](/images/report-request-pop-up-message.png)
-    
+ 
     <Info>Most optimized reports finish compilation within a few seconds.</Info>
   </Step>
-
   <Step>
     Once generation finishes, an interactive platform notice flashes alongside an automated transaction status notification email containing a **Download Report** link action.
-    
-    !/images/report-request-ready-to-download.png
+    ![](/images/report-request-ready-to-download.png)
   </Step>
-
   <Step>
     Clicking **Download Report** triggers a download dashboard panel window tracking compiled lists.
-    
     ![](/images/report-generated.png)
   </Step>
-
   <Step>
     Click the download link element to pull down your formatted file archive locally.
   </Step>
 </Steps>
-
 <Tip>Be sure to download your compiled reports within 7 days, as download tokens auto-expire securely. For instance, a report file ready on March 1st at 1:00 PM will become unavailable on March 8th at 1:00 PM.</Tip>
-
+ 
 ## Test & Live Versions
-
+ 
 The logs dashboard cleanly segments reporting data channels between **Test** and **Live** environmental pipelines. This prevents development testing records from inflating operational live production audit figures.
-
+ 
 <Tip title="Can't find a notification log?">
 Always verify your current target dashboard application environment setting. Transactions executed inside a **Test** environment pipeline will not appear on **Live** logging feeds, and vice versa.
 </Tip>
-
-## Sent Filters
-
-Most filters are explained alongside their corresponding log schema columns above. The remaining filters are:
-
-### Search
-Search for a specific **Message ID** or **Request ID** to quickly locate an individual notification for debugging.
-
-### Placeholders
-Search for logs containing a specific placeholder value used in the notification payload.
-
-### Status
-Filter logs by notification status (Attempted, Sent, Dropped, Timeout, Failed, Error, Delivered, Undelivered, Read/Opened, Clicked, No DLR, or All) to focus on a particular stage of the notification lifecycle.
-
-This filter is particularly useful when investigating failed or delayed notifications.
