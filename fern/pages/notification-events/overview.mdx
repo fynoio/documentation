@@ -30,3 +30,57 @@ A notification event is what sends your configured message to the end user.
 ## How to create a notification event?
 
 You will need to choose the template along with the channels to create a successful notification event. A detailed walk-through is provided in the next section.
+
+Notification events can be copied from your workspace to other workspaces you own. The copy process is only available in workspaces where you have the <strong>Owner</strong> role.
+
+## Steps to copy notification events to another workspace
+
+### 1. Prepare your destination workspace
+
+It is important to note that when copying notification events, only the notification event-related data will be copied to the destination workspace. Any dependencies must be created or copied manually in the destination workspace.
+
+<Steps>
+  <Step>Manually create the required integrations in the workspace.</Step>
+  <Step>Go to the templates page (Templates → Fyno from the navigation) and copy the templates and reusable components (if applicable) used by any of the notification events in the notification event via the [copy process](./copying-templates-components).</Step>
+  <Step>If applicable, go to the "Routes" pages (Routes → Single Channel and Routes → Omni-Channel from the navigation) and copy the routes used by any of the notification events in the notification event via the [copy process](./copying-routes).</Step>
+  <Step>If the notification events use Analytics Labels, then manually create the labels on the "Add Ons" page.</Step>
+  <Step>If the notification event uses Subscription Topics, then manually create and configure the topics on the User Preferences page (User → Preferences from the navigation).</Step>
+</Steps>
+
+### 2. Copy your notification event(s) to another workspace
+
+<Steps>
+  <Step>Ensure you are in the workspace from where you would like to copy the notification event.</Step>
+  <Step>Navigate to the notification events listing page by selecting Notification Events from the navigation.</Step>
+  <Step>Click the "Three Dots" icon on the notification event that you would like to copy. This step will open a menu.</Step>
+  <Step>In the menu options, select “Copy to another workspace”. ![](/images/workspace-copy/options-menu.png)</Step>
+  <Step>You will now see a checkbox next to every notification event listed on the page. You can select multiple notification events to copy if needed.</Step>
+  <Step>Once you have completed your selection, click “Copy Selected Notification Events” in the alert above the listing.</Step>
+  <Step>When copying a single notification event that has a live version, you will see an option to copy either the latest live or test version. If your notification event only has a test version, that version will be copied.</Step>
+  <Step>When copying multiple notification events, the latest live or the latest test version will be copied, depending on the notification event.</Step>
+  <Step>You will now see a dialog box with an option to select destination workspaces. In the “Destination Workspace(s)” dropdown menu, you will see all the workspaces you are a member of, but only the ones in which you have the “Owner” role will be available for selection. You can select up to five applicable workspaces.</Step>
+  <Step>Once all the workspaces are selected, click “Confirm”. This step will initiate the copy process.</Step>
+  <Step>Now, in all the selected workspaces, you will see the copied notification events.</Step>
+</Steps>
+
+### 3. Post copy checklist
+
+<Steps>
+  <Step>If the copied notification event is associated with a subscription topic, click the "Three Dots" icon on the notification event in the listing page, click "Edit", select the topic in the "Select Subscription Topic" dropdown, and click "Update".</Step>
+  <Step>For every copied notification event, re-select the templates (including conditional templates if applicable).</Step>
+  <Step>Re-select the routes and/or integrations and save the notification event.</Step>
+  <Step>Similar steps are needed in other copied dependencies. Please see the post copy checklist for [routes](./copying-routes#3-post-copy-to-do).</Step>
+</Steps>
+
+## How versioning works
+
+Let's say we are copying a notification event from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
+
+<Steps>
+  <Step>
+    If the notification event does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
+  </Step>
+  <Step>
+    If the notification event already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the notification event name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied notification event.
+  </Step>
+</Steps>
