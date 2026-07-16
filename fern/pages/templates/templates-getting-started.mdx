@@ -59,3 +59,60 @@ On each template card, you will see:
   - Rename your template
   - Delete your template
   - Promote Test to Live
+
+### How to copy Templates to another workspace
+
+Templates can be copied from one workspace to another workspace that you own. 
+
+<Callout type="warning">
+  **Prerequisite:** You must have the **Owner** role in the destination workspace to use this feature.
+</Callout>
+
+<Callout type="info">
+  **Note:** Only Fyno Templates (**Templates** → **Fyno**) can be copied. External Templates (**Templates** → **External**) are not supported.
+</Callout>
+
+#### Before you copy
+
+Only the template itself is copied. Any external dependencies must be resolved or created in the destination workspace before you can use the copied template.
+
+Before copying, ensure you:
+* **Components:** If the template uses reusable components, copy those components first (see [Copying Components](#copying-components) below).
+
+#### Steps to copy templates
+
+<Steps>
+  <Step>Open the source workspace containing the template.</Step>
+  <Step>Go to **Templates** → **Fyno**.</Step>
+  <Step>Click the three-dot (**⋮**) menu on the template you want to copy.</Step>
+  <Step>Select **Copy to another workspace**.</Step>
+  <Step>Select one or more templates to copy (if required).</Step>
+  <Step>Click **Copy Selected Templates**.</Step>
+  <Step>
+    Choose which version to copy:
+    * If you're copying a **single template** that has both Live and Test versions, choose which version to copy. (If only a Test version exists, the Test version is copied).
+    * When copying **multiple templates**, the latest available version (Live or Test) of each template is copied automatically.
+  </Step>
+  <Step>Select up to five destination workspaces where you have the **Owner** role.</Step>
+  <Step>Click **Confirm** to start the copy process.</Step>
+</Steps>
+
+The selected templates will now appear in each destination workspace.
+
+#### Template versioning
+
+The versioning behavior of the copied template depends on whether it already exists in your destination workspace:
+
+### When the template does not exist in the destination workspace
+* A new template is created as `v1` (Test).
+
+### When the template already exists
+* A new standalone version is created without modifying existing versions.
+* For example:
+  * **Existing version:** `v1` (Test)
+  * **Copied version:** `v2`
+* You can then:
+  * **Save** to make it `v2` (Test), or
+  * Click **Go Live** to promote it to `v2` (Live).
+
+> This prevents existing versions from being overwritten and gives you control over when the copied version becomes active.

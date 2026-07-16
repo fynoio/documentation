@@ -1,0 +1,60 @@
+---
+title: 'Fyno Templates Overview'
+slug: 'fyno-templates-overview'
+description: 'Understand Fyno Templates—the master blueprints for managing your omni-channel message content without code redeployments.'
+og:title: 'Fyno Templates Overview | Fyno Documentation'
+og:description: 'Learn how Fyno Templates act as the central blueprint for your notification content, sitting perfectly between integrations and workflows.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Think of a **Fyno Template** as a master blueprint for your messages. Instead of writing text directly into your code, you design your messages inside Fyno. This means you can change your wording, fix typos, or update branding anytime you want **without** needing a developer to change code or redeploy the app.
+
+## Where it fits in your workflow
+
+It sits right in the middle of your core notification setup:
+
+1. **Connect your provider:** Link your communication channels (e.g., Twilio, SendGrid, Gupshup).
+2. **Design your Template:** Create and personalize your messaging layouts *(This Step!)*.
+3. **Trigger it:** Launch and orchestrate the delivery using a workflow event.
+
+> **Tip:** By decoupling message content from application logic, you can safely experiment, update multi-channel copy, and test variations in real-time without affecting active production features.
+
+## Copying Templates
+
+You can copy **Fyno Templates** from one workspace to another, making it easy to reuse notification templates across multiple workspaces. The copy process is available only in workspaces where you have the **Owner** role.
+
+> **Important:** Only **Fyno Templates** can be copied using this process. **External Templates** are not supported.
+
+### Before you begin
+
+Before copying templates, make sure the destination workspace is ready.
+
+- Create any required integrations in the destination workspace.
+- If the template uses reusable components, copy those components to the destination workspace before copying the template.
+
+> **Note:** Only the template and its associated template data are copied. Dependencies such as integrations and reusable components must exist in the destination workspace.
+
+### Steps to copy templates
+
+1. Switch to the workspace that contains the template you want to copy.
+2. Navigate to **Templates → Fyno**.
+3. Locate the template you want to copy.
+4. Click the **Three Dots (⋮)** menu on the template.
+5. Select **Copy to another workspace**.
+6. A checkbox appears beside every template in the list. Select one or more templates to copy.
+7. Click **Copy Selected Templates**.
+8. If copying a single template that has a Live version, choose whether to copy the latest **Live** or **Test** version. If the template only has a Test version, that version is copied.
+9. When copying multiple templates, the latest available **Live** version is copied where available; otherwise, the latest **Test** version is copied.
+10. In the **Destination Workspace(s)** dropdown, select up to five workspaces where you have the **Owner** role.
+11. Click **Confirm** to begin the copy process.
+
+Once the process completes, the selected templates are available in each destination workspace.
+
+### How template versioning works
+
+Let’s say we are copying a template from Workspace A to Workspace B. 
+There are two versioning scenarios to keep in mind. 
+- 1. If the template does not exist in Workspace B, then the version created by the copy process will always be v1 (Test). 
+- 2. If the template already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). 
+
+> For example, if the version in Workspace B is v1 (Test), then the process will create a new version called v2. You can select this version from the version dropdown beside the template name and click “Save” to change the version to v2 (Test), or click the “Go Live” button to promote it to v2 (Live). This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied template.

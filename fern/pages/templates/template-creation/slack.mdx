@@ -1,0 +1,59 @@
+---
+title: 'Slack Templates'
+slug: 'template-creation-slack'
+description: 'Create and manage chat templates for Slack, Discord, and Microsoft Teams, including dynamic content, placeholders, testing, versioning, and approval workflows.'
+og:title: 'Chat Templates | Fyno Documentation'
+og:description: 'Learn how to create chat templates for Slack, Discord, and Microsoft Teams, use placeholders and Handlebars, test messages, manage template versions, and submit approval requests.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+## Slack
+
+![](/images/template_slack_preview.png)
+
+The message body can be in Text or JSON depending on the kind of input. Text allows you to send simple message text whereas JSON message body is used with the Slack Block kit Builder. In case you want to use JSON, a great place to start is [Slack Block Kit Builder](https://app.slack.com/block-kit-builder). You can design your slack message at Block Kit Builder and simply copy the JSON block to Fyno Template and paste it under JSON tab. Please note: You only need to copy the JSON array start with "[" until the closing array block "]" as shown below:-
+
+![](/images/template_slack_json.png)
+
+> **Important:** Handlebars do not work on Slack's block kit builder!
+
+* **Tag ID:** Allows you to specify a unique identifier or a placeholder based on which all consecutive notification events using the same identifier get added under this message as a thread.
+  * **Tag TTL:** Enter the duration in numeric value to define the period for which this feature should be valid for.
+  * **Duration:** Select Seconds, Minutes, Hours or Days to define the period for which this feature is valid for.
+* **Placeholders:** Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`** or **Handlebars**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
+
+> **Did you know?** You can use period (.), underscore (\_) or hyphen (-) within the handlebars. Try it now!
+
+> **Warning:** You cannot use only numeric values as placeholder keys!
+
+* **Preview:** Review your content and take a look at what your message would look like in the Preview section on the right.
+* **Save & Go Live:** Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.
+
+### How to tag a user in Slack channel?
+
+* `<!here>`: notifies only the active members of a channel.
+* `<!channel>`: notifies all members of a channel, active or not.
+* `<!everyone>`: notifies every person in the #general channel (i.e. every non-guest member of a workspace).
+* To tag a user specifically, you can use `<@abc.xyz>` if `abc.xyz@gmail.com` is the email id you want to tag.
+
+### How to test a Slack template?
+
+![](/images/template_slack_test.png)
+
+* To send a DM, you can use `@name` in the Slack Recipient and choose the Slack provider
+* To send a message to a channel, use `#channel_name`. Make sure the app you created is added to the channel where you are sending the message.
+
+# How to test any Chat template?
+
+You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+
+1. Click 'Run Test' on the top right hand side of the template.
+2. You can either enter the destination of the recipient or you can enter distinct\_id. **Please make sure to enter Distinct\_id of Test User profiles**
+3. Select a provider which is already configured in Fyno.
+4. When you click 'TEST', it will send chat message to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.
+
+## How to raise Approval requests
+
+If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
+
+You can read more about it [here](https://fyno.io/docs/approval-flow)

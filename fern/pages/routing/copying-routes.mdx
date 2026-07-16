@@ -5,48 +5,60 @@ og:title: 'Cross-Workspace Route Replication | Fyno Documentation'
 og:description: 'Migrate single-channel and omni-channel routing engines between distinct business environments. Master dependency matching, destination workspace access rights, and version serialization during replication.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 
-Single channel and omni-channel routes can be copied from your workspace to other workspaces you own. The copy process is only available in workspaces where you have the <strong>Owner</strong> role.
+Single channel and omni-channel routes can be copied from your workspace to other workspaces you own. 
 
-## Steps to copy routes
+<Callout type="warning">
+  **Prerequisite:** The copy process is only available in workspaces where you have the **Owner** role.
+</Callout>
+
+## Steps to copy routes to another workspace
 
 ### 1. Prepare your destination workspace
 
 It is important to note that when copying routes, only the route-related data will be copied to the destination workspace. Any dependencies must be created or copied manually in the destination workspace.
 
 <Steps>
-  <Step>Manually create the required integrations used by the routes in the workspace.</Step>
-  <Step>If the omni-channel route contains a single channel route, then ensure that the single channel route is first copied over using the process described in the next section.</Step>
+  <Step>Manually create the required integrations used by the routes in the destination workspace.</Step>
+  <Step>If the omni-channel route contains a single channel route, ensure that the single channel route is first copied over using the process described in the next section.</Step>
 </Steps>
 
-### 2. Copy your route(s)
+### 2. Copy your routes to another workspace
 
 <Steps>
   <Step>Ensure you are in the workspace from where you would like to copy the route.</Step>
-  <Step>Navigate to the listing page for single channel routes (Routes → Single Channel from the navigation) or omni channel routes (Routes → Omni-Channel).</Step>
-  <Step>Click the "Three Dots" icon on the route that you would like to copy. This step will open a menu.</Step>
-  <Step>In the menu options, select “Copy to another workspace”. ![](/images/workspace-copy/options-menu.png)</Step>
+  <Step>Navigate to the listing page for single channel routes (**Routes** → **Single Channel** from the navigation) or omni channel routes (**Routes** → **Omni-Channel**).</Step>
+  <Step>Click the "Three Dots" icon (**⋮**) on the route that you would like to copy to open the action menu.</Step>
+  <Step>
+    From the menu options, select **Copy to another workspace**.
+    
+    ![Options menu showing Copy to another workspace action](/images/workspace-copy/options-menu.png)
+  </Step>
   <Step>You will now see a checkbox next to every route listed on the page. You can select multiple routes to copy if needed.</Step>
-  <Step>Once you have completed your selection, click “Copy Selected Single Channel Routes” or “Copy Selected Omni Channel Routes” in the alert above the listing.</Step>
-  <Step>When copying a single route that has a live version, you will see an option to copy either the latest live or test version. If your route only has a test version, that version will be copied.</Step>
-  <Step>When copying multiple routes, the latest live or the latest test version will be copied, depending on the route.</Step>
-  <Step>You will now see a dialog box with an option to select destination workspaces. In the “Destination Workspace(s)” dropdown menu, you will see all the workspaces you are a member of, but only the ones in which you have the “Owner” role will be available for selection. You can select up to five applicable workspaces.</Step>
-  <Step>Once all the workspaces are selected, click “Confirm”. This step will initiate the copy process.</Step>
-  <Step>Now, in all the selected workspaces, you will see the copied routes.</Step>
+  <Step>Once you have completed your selection, click **Copy Selected Single Channel Routes** or **Copy Selected Omni Channel Routes** in the alert banner above the listing.</Step>
+  <Step>When copying a single route that has both a live and test version, you will see an option to choose which version to copy. If your route only has a test version, that version will be copied automatically.</Step>
+  <Step>When copying multiple routes, the latest available version (Live or Test) of each route is copied automatically.</Step>
+  <Step>You will see a dialog box with a **Destination Workspace(s)** dropdown menu. This list displays all workspaces you belong to, but only those where you hold the **Owner** role will be active. You can select up to five destination workspaces.</Step>
+  <Step>Once all the workspaces are selected, click **Confirm** to initiate the copy process.</Step>
+  <Step>The copied routes will now appear in all the selected destination workspaces.</Step>
 </Steps>
 
-### 3. Post copy to-do
+### 3. Post-copy to-do
 
-Once the routes are copied to the destination workspaces, open each route, re-select the integration (where applicable), and save the route to ensure that it works correctly.
+Once the routes are copied to the destination workspaces, open each route, re-select the integration (where applicable), and save the route to ensure that it functions correctly.
 
 ## How versioning works
 
-Let's say we are copying a route from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
+Let's say you are copying a route from Workspace A to Workspace B. The versioning behavior depends on whether the route already exists in the target environment:
 
 <Steps>
   <Step>
-    If the route does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
+    **When the route does not exist in Workspace B:** The version created by the copy process will always be initialized as `v1 (Test)`.
   </Step>
   <Step>
-    If the route already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the route name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied route.
+    **When the route already exists in Workspace B:** The copy process will create a new standalone version without modifying or overwriting existing versions. For example, if the version in Workspace B is currently `v1 (Test)`, the process will create a new version called `v2`. 
+    
+    You can select this new version from the version dropdown beside the route name and:
+    * Click **Save** to make it `v2 (Test)`.
+    * Click **Go Live** to promote it to `v2 (Live)`.
   </Step>
 </Steps>
