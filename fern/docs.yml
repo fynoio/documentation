@@ -526,6 +526,8 @@ navigation:
             contents:
               - page: "Team"
                 path: "pages/settings/workspace-settings/team.mdx"
+              - page: "Group"
+                path: "pages/settings/workspace-settings/group.mdx"  
               - page: "API Keys"
                 path: "pages/settings/workspace-settings/api-keys.mdx"
               - section: "Allowlist"
