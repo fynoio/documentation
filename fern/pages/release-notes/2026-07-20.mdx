@@ -1,0 +1,81 @@
+## 26.2.6
+
+This release introduces TRAI-driven enhancements to DLT Template configuration, allowing users to define variable types, provide sample values, and follow improved guidance to meet DLT submission requirements.
+The release also introduces new approval workflows for External Templates, improves navigation and reporting, enhances the template authoring experience, and delivers several usability improvements across Campaigns, Delivery Settings, and Sent Logs.
+
+We've also resolved issues across Notification Events, Analytics, authentication, and template management to provide a smoother and more reliable experience.
+
+### 🚀 New Feature
+
+**External Templates – Approval Request Support**
+- Introduced Approval Request support for External SMS and WhatsApp Templates.
+- Users can now submit external template changes for approval before they are published, helping teams follow review and approval processes while maintaining better control over template changes.
+
+### ⚡ Feature Enhancements
+
+**DLT Templates – Improved Variable Configuration**
+- Enhanced DLT template creation by allowing users to define variable types and provide sample values during configuration.
+- Additional guidance has also been added to help users meet DLT submission requirements and reduce template validation issues.
+
+**Navigation – Components Moved to Main Navigation**
+- Improved platform navigation by moving Components out of the module and into the main navigation.
+- This makes Components easier to find and manage independently, while providing a more intuitive navigation experience across the platform.
+
+**Reports – Applied Filters in Downloaded Reports**
+- Enhanced report downloads by displaying the filters used when the report was generated.
+- Users can now easily view the selected filters and parameters, making reports easier to understand and validate after download.
+
+**Templates – Improved Authoring Experience**
+- Enhanced the template authoring experience with faster navigation and improved usability when working with large templates.
+- Searching placeholders is now more responsive, long placeholder lists are easier to browse, section titles display more clearly, and tooltips are easier to read, making template creation and editing smoother.
+
+**Delivery Limit Settings – Usability Improvements**
+- Improved the Delivery Limit Settings experience with a cleaner layout, clearer labels, and a better mobile experience.
+- These updates make it easier to review and configure delivery limits across devices.
+
+**Campaigns – Better Upload Summary**
+- Enhanced campaign uploads by providing greater visibility into uploaded records.
+- Users can now view the total number of records, duplicate records, and invalid records during campaign creation and approval.
+- Invalid records can also be downloaded as a CSV for easier review and correction.
+
+**Change Logs – Group Assignment History**
+- Expanded Change Logs to include group assignment updates across Templates, Notification Events, Workflows, and Campaigns.
+- Users can now easily track when groups are assigned, updated, or removed, improving visibility into configuration changes.
+
+**Approval Settings – Improved Module Organization**
+- Reorganized modules within Approval Settings to match the order used in the main navigation.
+- This provides a more consistent experience when configuring approval workflows across the platform.
+
+**Platform-Wide – Reset Filters**
+- Added a Reset Filters option when filters return no results.
+- Available across Requests, Components, User Profiles, User Preferences, and External Templates, this makes it easy to clear filters and quickly return to available results.
+
+**Sent Logs – Expanded Status Guide**
+- Enhanced the Sent Logs Status Guide with additional provider statuses and updated channel information.
+- Users can now better understand notification delivery progress across supported channels using a more comprehensive in-product reference.
+
+### 🛠 Bug Fixes
+
+**Authentication – Auto Logout**
+- Fixed an issue where users remained on a loading screen after being automatically logged out due to inactivity.
+- Users are now redirected to the login page as expected.
+
+**Notification Events – Subscription Topics**
+- Fixed an issue where subscription topics were not displayed while creating or editing Notification Events.
+- Users can now successfully view and select available subscription topics.
+
+**Event Analytics – Conditional Templates**
+- Fixed an issue where templates were not displayed for events using conditional templates.
+- Users can now view and switch between all associated templates when reviewing Event Analytics.
+
+**User Profiles – Update Confirmation**
+- Fixed an issue where an incorrect confirmation message was displayed after updating a user profile.
+
+**SMS & WhatsApp Templates – Clear Selection**
+- Added a clear option to External Template selectors within Fyno SMS and WhatsApp templates, allowing users to remove a selected template more easily.
+
+**External Templates – Validation**
+- Resolved validation issues that could affect External Template creation and updates, resulting in a more reliable template management experience.
+
+**WhatsApp Templates – Interactive Reply Buttons**
+- Fixed inconsistencies in Interactive Reply Button fields within WhatsApp templates to provide a more consistent template authoring experience.
