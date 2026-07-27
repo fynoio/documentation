@@ -1,0 +1,57 @@
+---
+title: 'Verification Logs'
+slug: 'verification-logs'
+description: 'Monitor and troubleshoot verifications using Verification Logs. Filter verification records by status, timestamp, tenant, or Distinct ID to investigate verification outcomes.'
+og:title: 'Verification Logs | Fyno Documentation'
+og:description: 'Monitor and troubleshoot verification requests using Verification Logs. Filter verification records by status, timestamp, tenant, or Distinct ID to investigate verification outcomes.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The **Verification Logs** page provides a centralized view of verification requests processed by the system. It enables users to monitor verification activities, search for specific requests, and investigate verification outcomes using various filtering options.
+
+## Filter Options
+
+The **Verification Logs** page includes multiple filters that help users quickly locate specific verification records.
+![](/images/verification-logs.png)
+### Status
+
+The **Status** filter displays verification logs based on the processing outcome of verification requests.
+![](/images/status.png)
+| Option | Description |
+|--------|-------------|
+| **All** | Displays all verification logs regardless of status. This is the default selection. |
+| **Success** | Displays only verification requests that completed successfully. |
+| **Failed** | Displays only verification requests that failed during processing. This option is useful when troubleshooting verification issues. |
+
+### Timestamp
+
+The **Timestamp** filter limits the displayed verification logs to a selected date or time range.
+(/images/timestamp.png)
+| Option | Description |
+|--------|-------------|
+| **Today** | Displays verification logs created on the current day. This is the default selection. |
+| **Yesterday** | Displays verification logs created on the previous day. |
+| **Last 2 days** | Displays all verification logs created within the last two days, which corresponds to the system's log retention period. |
+| **Custom** | Allows users to specify a custom date range to search for verification logs within the available retention period. |
+
+### Distinct ID
+
+The **Distinct ID** field allows users to search for a specific verification request using its unique identifier.
+
+This feature is useful for:
+
+- Locating a specific verification log.
+- Investigating customer-reported verification issues.
+- Tracking an individual verification transaction.
+- Reviewing the details of a particular verification request.
+
+Only verification logs matching the entered **Distinct ID** are displayed.
+
+### Tenant
+
+The Tenant filter displays verification logs associated with a specific tenant. In this context, a tenant represents a distinct use case configured in the system. This filter helps users isolate verification activities for a particular use case. The default value, All, displays verification logs across all available tenants.
+
+#### Examples:
+- **Employee Onboarding** – View verification logs generated during employee identity verification.
+- **Customer KYC** – View verification logs related to Know Your Customer (KYC) processes.
+- **Visitor Management** – View verification logs for visitor identity verification at facilities.
