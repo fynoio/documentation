@@ -433,7 +433,9 @@ navigation:
               - page: "Inbound Messaging logs"
                 path: "pages/logs/inbound-logs.mdx"
               - page: "Delivery Callback Logs"
-                path: "pages/notification-events/callback-logs.mdx"            
+                path: "pages/notification-events/callback-logs.mdx"
+              - page: "Verification Logs"
+                path: "pages/logs/verification-logs.mdx"              
       - section: "Advanced Features"
         contents:
           - section: "Workflows"
@@ -526,6 +528,8 @@ navigation:
             contents:
               - page: "Team"
                 path: "pages/settings/workspace-settings/team.mdx"
+              - page: "Group"
+                path: "pages/settings/workspace-settings/group.mdx"  
               - page: "API Keys"
                 path: "pages/settings/workspace-settings/api-keys.mdx"
               - section: "Allowlist"
