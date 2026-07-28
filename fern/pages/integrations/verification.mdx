@@ -61,22 +61,4 @@ These fields are system-generated or system-managed and cannot be directly edite
 | Tenant ID | Identifier | A unique system-generated identifier created after saving the configuration. Used to associate OTP requests with this tenant. |
 
 
-## Verification Logs
-
-The Verification Logs provides a centralized view of recent verification activity, allowing users to monitor, audit, and troubleshoot verification events within the system. Logs are retained for up to two days after creation and can be filtered using multiple criteria such as verification status, a unique distinct ID, tenant, and timestamp.
-
-These filters help users quickly narrow down results to specific users, organizations, or time periods. When no logs match the selected filters, an empty-state message is displayed to indicate that no data is available.
-
-### Verification Logs Fields
-
-| Field Name | Type | Default Value | Description |
-|-----------|------|---------------|-------------|
-| Log Retention Notice | Text | — | Logs are available for 2 days after creation |
-| Status | Dropdown | All | Filters logs by verification status (e.g., All, Success, Failed) |
-| Distinct ID | Text Input (Search) | Empty | Search logs using a unique identifier (User’s Distinct ID) |
-| Tenant | Dropdown | All | Filters logs by tenant |
-| Timestamp | Dropdown with Date Picker | Today | Filters logs based on time range |
-| Logs Table | Table | — | Displays logs matching selected filters |
-| Empty State Message | Text | — | Shown when no logs match filters (“No logs based on selected filters”) |
-
 
