@@ -433,9 +433,7 @@ navigation:
               - page: "Inbound Messaging logs"
                 path: "pages/logs/inbound-logs.mdx"
               - page: "Delivery Callback Logs"
-                path: "pages/notification-events/callback-logs.mdx"
-              - page: "Verification Logs"
-                path: "pages/logs/verification-logs.mdx"              
+                path: "pages/notification-events/callback-logs.mdx"            
       - section: "Advanced Features"
         contents:
           - section: "Workflows"
