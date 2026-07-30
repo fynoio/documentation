@@ -17,7 +17,7 @@ By creating these components once, you can easily add them into any email you cr
   <Step>From the left navigation menu, locate **Components**.</Step>
   <Step>Click 'Components' and it opens up the Components page.</Step>
   <Step>Click 'Create'. You will see a popup as shown below ![](/images/component_create.png)</Step>
-  <Step>Give a unique name for your component and choose a component type. In this example, I am creating a Header component called 'Myntra-Header'</Step>
+  <Step>Give a unique name for your component and choose a component type. In this example, I am creating a Header component called 'On-Boarding'</Step>
   <Step>
     We support 6 different type of components now.
     <ul>
@@ -48,43 +48,74 @@ For example, to add a Header in email editor, you need to follow the below steps
   <Step>You can click Preview to see how the Header looks.</Step>
   <Step>Similarly you can add any components like Footer, Socials, Banner, Paragraphs etc.</Step>
   <Step>You can also use our Handlebars to add components based on any condition. For example, if you want to add a Header based on a brand name (as every brand will have its own logo), then you can add a condition to check brand name and add Header based on that.</Step>
-  <Step>In the below example, if the brand equals Myntra, it will add the Header , 'Myntra_Header' otherwise it will add the default Fyno Header. ![](/images/components_with_handlebar.png)</Step>
+  <Step>In the below example, if the brand equals Myntra, it will add the Header , 'On-Boarding' otherwise it will add the default Fyno Header. ![](/images/components_with_handlebar.png)</Step>
 </Steps>
 
 ## How to create a PDF component
 
+<Note>The **No-Code PDF Editor** is the recommended option for creating new PDF components. Choose the **HTML Editor** only if you already have an existing HTML template that you want to reuse.</Note>
+
 <Steps>
-  <Step>Click 'Components' and it opens up the Components page.</Step>
-  <Step>Click 'Create'. You will see a popup as shown below ![](/images/component_pdf_create.png)</Step>
-  <Step>Give a unique name for your component and choose a component type. In this example, I am creating a PDF component called 'pdf_component'</Step>
+  <Step>Click **Components** to open the Components page.</Step>
   <Step>
-    We support 6 different type of components now.
+    Click **Create**. A pop-up appears as shown below.![](/images/component_pdf_create.png)
+  </Step>
+  <Step>Enter a unique name for your component and select **PDF** as the component type.</Step>
+  <Step>
+    We support six different component types:
     <ul>
       <li>Header</li>
       <li>Footer</li>
       <li>Banner</li>
-      <li>Socials (Any social media icons like Twitter, LinkedIn, FB etc)</li>
+      <li>Socials (social media icons such as Twitter, LinkedIn, Facebook, etc.)</li>
       <li>Paragraph</li>
       <li>PDF</li>
     </ul>
   </Step>
-  <Step>Once you click 'Submit', it opens the HTML editor as shown. ![](/images/component_pdf_add_html.png)</Step>
-  <Step>To create a pdf component, you can copy and paste HTML code into the editor.</Step>
   <Step>
-    You can configure the pdf file with the below parameters
+    Click **Submit**, then choose one of the following editors:![](/images/choose_an_editor_to_create_your_pdf.png)
     <ul>
-      <li>File Name - The component name will be used as default file name. You can change it either add a file name manually or add a placeholder</li>
-      <li>Layout - You can choose either Portrait or Landscape. Portrait is the default option.</li>
-      <li>Paper Size - You can choose a paper size from dropdown. A4 is the default size. </li>
-      <li>Margins - You can add margins (Top, Bottom, Left, Right) if you want to add any margins to the pdf file.</li>
-      <li>Protect with Password - You can check this box to enable Password protection for your pdf file. You can either manually enter a password or add a placeholder</li>
-      <li>Include Header</li>
-      <li>Include Footer</li>
+      <li><strong>No-Code PDF Editor (Recommended)</strong> – Create and format your PDF using the visual editor without writing HTML.</li>
+      <li><strong>HTML Editor</strong> – Use this option only if you already have an existing HTML template that you want to reuse.</li>
     </ul>
   </Step>
-  <Step>Click 'Save and Preview PDF' to see the preview.</Step>
-  <Step>Click 'Save' to create a test version of the component or click 'Go live' to create a live version.</Step>
-  <Step>Once a pdf component is successfully created, you can access it in Components page. ![](/images/component_created.png)</Step>
+
+  <Step>
+    <strong>If you select the No-Code PDF Editor:</strong>
+    <ul>
+      <li>Create and format your content using the rich text editor.</li>![](/images/no_code_pdf_editor.png)
+      <li>Add images, tables, horizontal rules, multi-column layouts, page breaks, and hyperlinks.</li>
+      <li>Insert dynamic values using <strong>Placeholders</strong>, <strong>Handlebars</strong>, and <strong>System Variables</strong>.</li>
+    </ul>
+  </Step>
+
+  <Step>
+    <strong>If you select the HTML Editor:</strong> The HTML editor opens as shown below.
+    ![](/images/html_pdf_editor.png)
+    You can copy and paste your HTML code into the editor to create the PDF component.
+  </Step>
+
+  <Step>
+    Configure the PDF using the following settings:
+    <ul>
+      <li><strong>File Name</strong> – Uses the component name by default. You can provide a custom file name or use a placeholder.</li>
+      <li><strong>Layout</strong> – Choose <strong>Portrait</strong> or <strong>Landscape</strong>. Portrait is the default.</li>
+      <li><strong>Paper Size</strong> – Select the required paper size. <strong>A4</strong> is the default.</li>
+      <li><strong>Margins</strong> – Configure the required page margins.</li>
+      <li><strong>Protect with Password</strong> – Enable password protection. You can enter a password manually or use a placeholder.</li>
+      <li><strong>Include Header</strong> – Include the configured PDF header (Optional).</li>
+      <li><strong>Include Footer</strong> – Include the configured PDF footer (Optional).</li>
+    </ul>
+  </Step>
+
+  <Step>Click **Save and Preview PDF** to generate and review the PDF.</Step>
+
+  <Step>Click **Save** to create a test version of the component or **Go Live** to publish the live version.</Step>
+
+  <Step>
+    Once the PDF component is created successfully, it appears on the **Components** page and can be reused in Email, WhatsApp, and SMS templates.
+    ![](/images/components.png)
+  </Step>
 </Steps>
 
 ## How to use a PDF Component in Email template
