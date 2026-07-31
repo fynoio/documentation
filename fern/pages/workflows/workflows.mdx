@@ -135,31 +135,100 @@ For this example, let’s assume that company ABC has two API endpoints -
 
 What would have otherwise required more than a few lines of code to configure, is being addressed with Fyno's Workflow feature, allowing you to add triggers, provide conditions and decide outcomes, all with a visual understanding of how the entire flow will work.
 
+## Workflow Options Menu
+
+Each workflow in the workflow list includes a **More Options** menu (**⋮**), which provides access to the most common workflow management actions. These actions allow you to update workflow information, review configuration details, create copies, request deletion, or publish changes without leaving the workflow list.
+
+### Available Options
+
+| Option | Description |
+|---------|-------------|
+| **Edit** | Update the workflow name or change its assigned group. |
+| **View Details** | View the workflow, dependencies, versions, and where it is used across the workspace. |
+| **Duplicate** | Create a copy of the workflow. |
+| **Copy to Another Workspace** | Copy the workflow to a different workspace. |
+| **Delete** | Delete the workflow. |
+| **Go Live** | Publish the current **Test** version of the workflow to the **Live** environment. |
+
+## Edit Workflow
+
+The **Edit** action allows you to modify the workflow's basic information without affecting its configuration. This is typically used to rename a workflow or reorganize it into a different group.
+
+## Delete Workflow
+
+The **Delete** action removes the workflow.
+
+> **Note**: If approval requests are enabled, the deletion is submitted as an approval request instead of being deleted immediately.
+
+Before deleting the workflow, the system displays any resources that reference it, helping you understand the impact of the deletion.
+
+## Go Live
+
+The **Go Live** action publishes the current **Test** version of a workflow to the **Live** environment, making the latest approved configuration available for production use.
+
+After publishing, it is recommended to open **View Details**, switch to the **Live** environment, and confirm that:
+
+- The expected changes are present.
+- The **Last Updated** timestamp reflects the recent publication.
+
+Performing this verification helps ensure that the correct version has been deployed successfully.
+
+## View Details
+
+The **View Details** page displays the modules and dependencies used by a workflow. It lists the resources that the workflow depends on, such as **Notification Events** and **Allowlist URLs**, helping you understand which workspace components are associated with the workflow before making changes or publishing updates.
+
+This page is particularly useful for identifying workflow dependencies, reviewing version information, and comparing the **Test** and **Live** versions before deployment.
+
+### Information Displayed
+
+The page includes the following information:
+
+| Field | Description |
+|-------|-------------|
+| **Name** | Displays the workflow name. |
+| **Group Tag** | Identifies the group to which the workflow belongs, such as *Customer Journey* or *Internal Automation*. |
+| **Environment** | Indicates whether the displayed information relates to the **Test** or **Live** version of the workflow. |
+| **Last Updated** | Shows when the selected environment was most recently modified, helping identify the latest published or draft version. |
+| **Depends On** | Lists the resources referenced by the workflow, such as notification events, templates, components, Omni-Channel routes, API integrations, or external services used within the workflow. |
+| **Used In** | Lists the resources that reference the workflow, where applicable, allowing you to assess the impact of modifying or deleting it. |
+
+### Environment Selection
+
+The environment selector allows you to switch between the two available versions of a workflow without leaving the details page.
+
+- **Test** displays the draft version used for development, testing, and validation before publication.
+- **Live** displays the version currently available to end users.
+
+## Copy to Another Workspace
+
+The **Copy to Another Workspace** action lets you copy a workflow from the current workspace to another workspace. This is useful when you want to reuse an existing workflow across multiple workspaces without recreating it manually.
+
+### Workflow Versioning During Copy
+
+When a workflow is copied to another workspace, versioning is handled automatically.
+
+- If the workflow does **not** exist in the destination workspace, the copied workflow is created as **Version 1 (Test)**.
+- If the workflow **already exists** in the destination workspace, the copied workflow is created as a new standalone version (for example, **v2**). You can then review the new version and either save it as the current **Test** version or publish it as the new **Live** version.
+
+This approach prevents existing versions in the destination workspace from being overwritten while giving you control over when to promote the copied version.
+
+### Prerequisites
+
+Before copying a workflow to another workspace, ensure that all dependent resources used by the workflow are already available in the destination workspace.
+
+This includes:
+
+- Notification Events referenced by the workflow.
+- Allowlist URLs required by the workflow.
+- Any other workflow dependencies or referenced resources that are specific to the source workspace.
+
+> **Important**
+>
+> If the required dependencies are not present in the destination workspace, recreate or migrate them before copying the workflow to ensure it functions correctly after the transfer.
+
 ## Groups
 
 Groups help you organize related workflows together. For instance, if you have multiple workflows for different stages of a customer journey (Welcome, Onboarding, Engagement, Retention, Re-engagement), you can create a Customer Journey group and assign all these workflows to it. This makes workflow filtering and management more efficient.
-
-![](/images/workflow-group.png)
-
-### How to create a Group
-![](/images/create-workflow-group.png)
-
-- Groups help organize related workflows within a workspace, making it easier to manage, filter, and navigate workflows. Users can group workflows based on use cases, teams, projects, or any other organizational structure that suits their workflow management needs.
-- Workflows can be added to or removed from groups at any time, and a workflow can exist independently of a group. Each workspace can contain up to 20 Workflow Groups.
-- Deleting a Workflow Group removes only the group and its associations. The workflows within the group are not deleted and remain available in the workspace.
-
-### How versioning works
-
-Let's say we are copying a workflow from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
-![](/images/workflow-versions.png)
-<Steps>
-  <Step>
-    If the workflow does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
-  </Step>
-  <Step>
-    If the workflow already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the workflow name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied workflow.
-  </Step>
-</Steps>
 
 ## How to view change logs?
 
