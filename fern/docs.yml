@@ -343,8 +343,6 @@ navigation:
                   path: "pages/templates/templates-getting-started/shorty.mdx"
                 - page: "Fyno Verify"
                   path: "pages/templates/templates-getting-started/verify.mdx"
-                - page: "Template Group"
-                  path: "pages/templates/templates-getting-started/group.mdx"
               - section: "External Templates"
                 path: "pages/templates/external-templates.mdx"
                 contents:
@@ -410,8 +408,6 @@ navigation:
                 path: "pages/notification-events/analytics.mdx"
               - page: "Idempotent Requests"
                 path: "pages/notification-events/idempotent-requests.mdx"
-              - page: "Notification Event Group"
-                path: "pages/notification-events/group.mdx"  
           - page: "Go Live"
             icon: fa-regular fa-mouse-pointer
             path: "pages/requests-golive/request-go-live.mdx"
@@ -433,7 +429,9 @@ navigation:
               - page: "Inbound Messaging logs"
                 path: "pages/logs/inbound-logs.mdx"
               - page: "Delivery Callback Logs"
-                path: "pages/notification-events/callback-logs.mdx"            
+                path: "pages/notification-events/callback-logs.mdx"
+              - page: "Verification Logs"
+                path: "pages/logs/verification-logs.mdx"              
       - section: "Advanced Features"
         contents:
           - section: "Workflows"
