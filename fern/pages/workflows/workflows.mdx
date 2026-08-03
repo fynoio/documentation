@@ -230,6 +230,19 @@ This includes:
 
 Groups help you organize related workflows together. For instance, if you have multiple workflows for different stages of a customer journey (Welcome, Onboarding, Engagement, Retention, Re-engagement), you can create a Customer Journey group and assign all these workflows to it. This makes workflow filtering and management more efficient.
 
+### How versioning works
+
+Let's say we are copying a workflow from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
+![](/images/workflow-versions.png)
+<Steps>
+  <Step>
+    If the workflow does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
+  </Step>
+  <Step>
+    If the workflow already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the workflow name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied workflow.
+  </Step>
+</Steps>
+
 ## How to view change logs?
 
 To view the history of all the modifications made to a template, you can utilize the change logs feature.
@@ -243,5 +256,16 @@ It shows the following details
 - At what date & time its updated.
   ![](/images/email_template_changelog.png)
   
+## How versioning works
 
+Let's say we are copying a notification event from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
+
+<Steps>
+  <Step>
+    If the notification event does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
+  </Step>
+  <Step>
+    If the notification event already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the notification event name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied notification event.
+  </Step>
+</Steps>
 
