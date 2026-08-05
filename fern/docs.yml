@@ -230,6 +230,8 @@ navigation:
               - section: "Chat"
                 path: "pages/integrations/chat-channel.mdx"
                 contents:
+                  - page: "Discord"
+                    path: "pages/integrations/chat/discord.mdx"
                   - page: "Slack"
                     path: "pages/integrations/chat/slack.mdx"
                   - page: "Teams"
