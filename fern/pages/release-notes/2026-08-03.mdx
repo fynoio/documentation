@@ -1,0 +1,52 @@
+## 26.2.7
+
+This release improves template creation and management across channels, enhances campaign monitoring with more detailed analytics and reporting, and delivers performance improvements for placeholders to provide a smoother authoring experience.
+
+We've also addressed issues across In-App SDK, Connect authentication, Omni Channel routing, WhatsApp Flows, Go Live navigation, Users and Preferences, and WhatsApp template previews to improve overall platform reliability.
+
+### ⚡ Feature Enhancements
+
+**Template Builder and Management Improvements**
+- Creating and managing templates is now more flexible across channels. You can reorder Call-to-Action (CTA) and Quick Reply buttons in Meta templates to better highlight important actions.
+- We've also refined the RCS Template Builder with clearer labels, improved carousel card naming, and a cleaner layout.
+- Additionally, non-synced WhatsApp templates now display richer template information, making them easier to review and manage.
+
+**Faster Placeholder Experience**
+- Placeholder lists now load faster and provide smoother scrolling, even in workspaces with a large number of placeholders.
+- Searching, browsing, and selecting placeholders is now quicker and more responsive, improving the overall authoring experience.
+
+**Enhanced Campaign Monitoring and Analytics**
+- We've improved campaign visibility and reporting to help you monitor delivery performance more effectively.
+- Campaign Details and Analytics pages now include a Failed Notifications banner with options to view error details and download failed records.
+- We've also improved the accuracy of Total, Failed, and Duplicate campaign counts, updated throttling status indicators, and added the ability to sort expanded analytics by Delivery %.
+- In addition, the expanded Delivery Rate table now includes a collapsible Not Sent column that groups Error, Failed, Dropped, and Timeout statuses while allowing you to expand the view for a detailed breakdown.
+
+### 🛠 Bug Fixes
+
+**In-App SDK Improvements**
+- Fixed an issue where buttons in In-App SDK notifications did not open their configured URLs.
+- Notification buttons now navigate users to the correct destination as expected.
+
+**Omni Channel Route Creation**
+- Fixed an issue where an empty error message was displayed after creating an Omni Channel route from the Notification Events page.
+- Route creation now completes successfully without displaying the incorrect notification.
+
+**Connect Authentication**
+- Resolved an issue that prevented Single Sign-On (SSO) from working in Connect.
+- SSO authentication now functions correctly while existing login methods continue to work as expected.
+
+**Go Live Navigation**
+- Fixed an issue where tabs were hidden on the Go Live page when no data was available.
+- Tabs now remain visible, providing a consistent navigation experience even in empty states.
+
+**WhatsApp Flow Template Configuration**
+- Fixed an issue where WhatsApp Flow templates generated an incorrect configuration, preventing flows from running correctly.
+- Templates now save the correct configuration, allowing WhatsApp Flows to execute as expected.
+
+**Users and Preferences**
+- Fixed an issue where the Users and Preferences > User List empty states displayed table headers and pagination even when no data was available.
+- The empty state illustration in Preferences > User List has also been resized for a cleaner layout.
+
+**WhatsApp External Template Preview**
+- Variable placeholders in the WhatsApp External Template preview now display without the `$` prefix.
+- Placeholders are shown as `{{1}}`, `{{2}}`, and so on, instead of `{{$1}}`, `{{$2}}`, matching the expected template format.
