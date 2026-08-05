@@ -1,0 +1,39 @@
+---
+title: 'Discord'
+slug: 'chat-discord'
+description: 'Learn how to integrate Discord with Fyno using a Discord Bot to send notifications to Discord servers and channels.'
+og:title: 'How to Send Discord Notifications Using Fyno | Fyno Documentation'
+og:description: 'Learn how to integrate your Discord account with Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Discord is a popular communication platform for communities and teams. Fyno enables you to send notifications to Discord servers and channels using a Discord Bot.
+
+## Discord Bot
+<Steps>
+### Find the Provider
+
+Navigate to **Integrations** and select **Discord** under the **Chat** category.
+
+### Configure the Integration
+
+Provide the following details:
+
+- **Custom Name:** Enter a unique name to identify the Discord account within Fyno.
+- **Bot Token:** Enter the **Bot Token** generated for your Discord bot from the Discord Developer Portal.
+
+> **Note:** Keep your bot token secure. If you regenerate the token in the Discord Developer Portal, update it in Fyno to continue sending notifications.
+
+### Complete the Integration
+
+Click **Add Account** to save the configuration. Once added successfully, the Discord account becomes available for sending notifications.
+
+</Steps>
+
+## Message Delivery Status
+
+Discord does not provide message delivery status for notifications sent through its Bot API. This is a platform limitation and cannot be configured in Fyno.
+
+As soon as Discord introduces support for message delivery status, Fyno will add support for the capability.
+
+Until then, **Trace** records for Discord notifications will not include the **Delivery** tab.
