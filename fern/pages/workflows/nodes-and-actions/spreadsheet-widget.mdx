@@ -1,0 +1,93 @@
+---
+title: 'Spreadsheet Widget'
+slug: 'workflows/nodes-and-actions/spreadsheet-widget'
+description: 'Learn how to configure the Spreadsheet widget in workflows to write workflow data to Microsoft Excel workbooks and Google Spreadsheets.'
+og:title: 'Spreadsheet Widget in Workflow | Fyno Documentation'
+og:description: 'Learn how to configure the Spreadsheet widget to write workflow data to Microsoft Excel workbooks and Google Spreadsheets using static values and dynamic workflow variables.'
+image: 'https://images.fyno.io/brand/fyno-doc-preview.png'
+---
+
+The **Spreadsheet** widget writes data from your workflow to an external spreadsheet, supporting both **Microsoft Excel workbooks** and **Google Sheets**.
+![](/images/spreadsheet_widget.png)
+You can use this widget to:
+
+- Record workflow execution details.
+- Capture customer or transaction data.
+- Maintain audit logs.
+- Create reporting datasets.
+- Share information with teams through spreadsheets.
+
+After connecting the Spreadsheet widget to a Google Spreadsheet or Microsoft Excel workbook, you can configure one or more worksheets and map the required columns for use in your workflow.
+
+## Supported Spreadsheet Types
+
+When adding a **Spreadsheet Widget**, select one of the following connection types:
+
+- **Microsoft Excel**
+- **Google Spreadsheet**
+
+The configuration fields displayed depend on the selected spreadsheet type.
+
+## Microsoft Excel
+
+Use this option to connect to an Excel workbook stored in Microsoft SharePoint.
+![](/images/write-to-spreadsheet-ms-excel.png)
+### Configuration
+
+After selecting **Microsoft Excel**, provide the following details:
+
+| Field | Description |
+| --- | --- |
+| **Workbook ID** | The unique identifier of the Excel workbook, which can be found in the URL. |
+| **Sheet Name** | The worksheet within the workbook to connect to. |
+| **Tenant ID** | Microsoft Azure Active Directory Tenant ID. |
+| **Client ID** | Azure Application (Client) ID. |
+| **Client Secret** | Azure Application Client Secret used for authentication. |
+| **SharePoint URL** | The SharePoint site URL where the workbook is stored. |
+
+### Values to Write to the Sheet
+
+After selecting the worksheet, configure the values to write by mapping worksheet columns to workflow data.
+![](/images/values-to-write-the-sheet.png)
+1. For each mapping, specify:
+   - **Column Header** – The column in the selected worksheet where the data will be written.
+   - **Value** – The static value or workflow variable to write to the corresponding column.
+2. Click **Add Another** to create a new column mapping and repeat the process to add additional column mappings as required.
+
+## Google Spreadsheet
+
+Use this option to connect to a Google Spreadsheet using a Google service account.
+![](/images/write-to-spreadsheet-google-spreadsheet.png)
+### Configuration
+
+After selecting **Google Spreadsheet**, provide the following details:
+
+| Field | Description |
+| --- | --- |
+| **Spreadsheet ID** | The unique identifier of the Google Spreadsheet. |
+| **Sheet Name** | The worksheet within the spreadsheet to connect to. |
+| **Private Key** | The private key from the Google service account credentials. |
+| **Client Email** | The service account client email used for authentication. |
+
+### Values to Write to the Sheet
+
+After selecting the worksheet, configure the values to write by mapping worksheet columns to workflow data.
+![](/images/values-to-write-the-sheet.png)
+1. For each mapping, specify:
+   - **Column Header** – The column in the selected worksheet where the data will be written.
+   - **Value** – The static value or workflow variable to write to the corresponding column.
+2. Click **Add Another** to create a new column mapping and repeat the process to add additional column mappings as required.
+
+## Outcome
+
+The **Spreadsheet** widget enables workflows to write data directly to external spreadsheets.
+
+By supporting:
+
+- Microsoft Excel.
+- Google Spreadsheets.
+- Static values.
+- Dynamic workflow values.
+- Multiple column mappings.
+
+users can capture, organize, and share workflow-generated data efficiently.
