@@ -463,6 +463,8 @@ navigation:
                     path: "pages/workflows/nodes-and-actions/user-profile-widget.mdx"
                   - page: "Subflow Widget"
                     path: "pages/workflows/nodes-and-actions/subflow-widget.mdx" 
+                  - page: "Spreadsheet Widget"
+                    path: "pages/workflows/nodes-and-actions/spreadsheet-widget.mdx"  
                   - section: "Notification Event Widget"
                     path: "pages/workflows/nodes-and-actions/notification-event-widget/notification-event-widget.mdx"
                     contents:
