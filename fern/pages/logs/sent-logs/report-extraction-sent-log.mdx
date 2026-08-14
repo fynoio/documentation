@@ -1,0 +1,43 @@
+---
+title: 'Sent Log Report Extraction'
+slug: 'sent-logs-report-extraction'
+description: 'Generate and download notification reports from Fyno, including All Logs, Summary, Daily Summary, and SMS Delivery reports for both Live and Test environments.'
+og:title: 'Report Extraction - Add-Ons | Fyno Documentation'
+og:description: 'Learn how to request, generate, and download notification reports in Fyno, choose timestamps, export report data, and access analytics across Live and Test environments.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Report extraction enables you to download Sent Logs for both Live and Test environments. Reports can be extracted for yesterday, the last 7 days, the last 28 days or a custom timestamp (within the last 6 months).
+
+You can download 4 types of report
+
+<ul>
+      <li>All Logs</li>
+      <li>Summary</li>
+      <li>Daily Summary</li>
+      <li>SMS Delivery (mobile number-wise)</li>
+    </ul>
+
+
+## Steps to extract report
+
+<Steps>
+  <Step>Navigate to **Sent Logs**</Step> 
+  <Step>Click 'Request Report' on the top right corner.![](/images/sent-logs-request-report.png)</Step>
+  <Step>
+    Choose the **Version**, select **Type**, **Date Range**, then click **Confirm**. ![](/images/request-report.png)
+    <ul>
+      <li>**Version:** Test or Live</li>
+      <li>**Date Range:** Yesterday, Last 7 days, Last 28 days, Custom (you can select any 30 days within the last 6 months)</li>
+    </ul>
+    <Note>You can only export data for 30 days at a time. If you want to export for a longer duration, say 90 days, please create multiple reports - D0 to D30 and D31 to D60 and D61-D90.</Note>
+  </Step>
+  <Step>
+    You will get an InApp notification with the message "Your report request xxxxxx is processing!". 
+    <Info>Your report will be ready for download within 5 minutes.</Info>
+  </Step>
+  <Step>Upon the completion of your report, an InApp notification will be sent, along with an email containing a 'Download Report' call-to-action. ![](/images/report_ready_for_download_inapp.png)</Step>
+  <Step>Upon clicking 'Download Report,' a popup will appear, as shown below. ![](/images/report_generated_csv.png)</Step>
+  <Step>Upon clicking the download link, the report will start downloading.</Step>
+</Steps>
+<Tip>Download your report within the next 7 days, as the link will expire after that. For example, if you receive the download link on 1st March at 1 PM, the report link will expire by 8th March at 1 PM.</Tip>
