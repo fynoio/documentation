@@ -424,11 +424,6 @@ navigation:
                     path: "pages/logs/sent-log-details.mdx"
                   - page: "Status Guide"
                     path: "pages/logs/sent-logs/notification-status.mdx"
-                  - section: "Report Extraction"
-                    path: "pages/logs/sent-logs/report-extraction-sent-log.mdx"
-                    contents:
-                      - page: "Report Details"
-                        path: "pages/settings/report-details.mdx"
               - page: "Notification Event Logs"
                 path: "pages/notification-events/logs.mdx"
               - page: "Workflow Logs"
@@ -438,8 +433,7 @@ navigation:
               - page: "Delivery Callback Logs"
                 path: "pages/notification-events/callback-logs.mdx"
               - page: "Verification Logs"
-                path: "pages/logs/verification-logs.mdx"
-                              
+                path: "pages/logs/verification-logs.mdx"              
       - section: "Advanced Features"
         contents:
           - section: "Workflows"
