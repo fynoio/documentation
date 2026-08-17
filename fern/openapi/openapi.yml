@@ -1107,6 +1107,14 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/add_suppression_list"
+            example:
+              destination: "919876543210"
+              channel: sms
+              event_type:
+                - marketing
+                - transactional
+                - otp
+              description: User complained about spam
       responses:
         "200":
           $ref: "#/components/responses/SuppressionListUpdated"
@@ -4480,6 +4488,19 @@ components:
               type: string
               example: sms
               description: Communication channel (e.g., sms, whatsapp, email)
+            event_type:
+              type: array
+              description: Enter the event types for which the user must be suppressed on the specified channel. If omitted, the suppression applies to all event types.
+              items:
+                type: string
+                enum:
+                  - marketing
+                  - transactional
+                  - otp
+              example:
+                - marketing
+                - transactional
+                - otp
             description:
               type: string
               example: DND
@@ -4497,6 +4518,19 @@ components:
               type: string
               example: sms
               description: Communication channel (e.g., sms, whatsapp, email)
+            event_type:
+              type: array
+              description: Enter the event types for which the user must be suppressed on the specified channel. If omitted, the suppression applies to all event types.
+              items:
+                type: string
+                enum:
+                  - marketing
+                  - transactional
+                  - otp
+              example:
+                - marketing
+                - transactional
+                - otp
             description:
               type: string
               example: DND
