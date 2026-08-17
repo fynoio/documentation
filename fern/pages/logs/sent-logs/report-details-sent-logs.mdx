@@ -1,0 +1,94 @@
+---
+title: 'Report Details'
+slug: 'sent-logs-report-details'
+description: 'Understand the fields, metrics, and status definitions available across Fyno reports, including All Logs, Summary, Daily Summary, and SMS Delivery reports.'
+og:title: 'Report Details | Fyno Documentation'
+og:description: 'Learn about the data points available in Fyno reports, including message identifiers, delivery statuses, timestamps, channel metrics, notification summaries, and SMS delivery analytics.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+This document explains the data points present in each report and what they mean. 
+
+## All Logs Report
+
+The following data points are present when you download a 'All logs' report.
+
+| Field  | Description                                                                         
+| :------ | :--------------------------------------------------------------------------------- 
+| msg_id   | Unique Fyno message id that is generated for every notification during submission request.                                                  
+| custom_id  | An alpha-numeric or numeric unique identifier that is provided in the delivery callback object during the submission request                                               
+| request_ts | Request time of the submission request, YYYY-MM-DD HH:mm:ss UTC                                 
+| distinct_id | distinct_id of the user, if specified in the request. This is used only if you manage your user profiles in Fyno
+| to | Destinations like email, mobile no sent during submission request.
+| channel | Channel name through which the notification was sent     
+| notification_event | The notification event name which was triggered.  
+| template | The template linked to the notification event which was triggered.       
+| provider | The name of the provider via which the notification was sent      
+| provider_template_id | The provider template ID that was sent.For SMS, the DLT template ID is sent (for Indian businesses).For WhatsApp, the template name and language is sent (templatename_lang).For RCS, the template name is sent.    
+| integration | Integration account name through which the notification was sent.       
+| routing | The routing through which the notification was sent.       
+| campaign_name | Campaign name through which the notification was sent.       
+| credits_used | No of SMS credits used for sending the notification.      
+| submission_status | Status received after Fyno successfully submits the requests to the service provider.   
+| response_msg | Message was successfully submitted to the provider      
+| final_status | The final status of the notification sent. If a notification is delivered and read by the user, you will see Read in this field.      
+| delivery_statuses | All the statuses received for the notification sent. If a notification is delivered and read by the user, you will see Delivered | Read in this field.      
+| whatsapp_replies |   
+| delivered_ts | Delivered time of the notification, YYYY-MM-DD HH:mm:ss UTC  
+| answered_read_open_ts | Answered or Read or Open time of the notification, YYYY-MM-DD HH:mm:ss UTC. For Voice, its Answered time. For WhatsApp, its Read time. For Email, its Open time. 
+| clicked_keypress_ts | Clicked or Keypress time of the notification, YYYY-MM-DD HH:mm:ss UTC. For WhatsApp/Push, its Clicked time. For Voice, its Keypress time.
+| deleted_ts | Deleted time of the Push notification, YYYY-MM-DD HH:mm:ss UTC.
+| undelivered_ts | Undelivered time of the notification, YYYY-MM-DD HH:mm:ss UTC.
+| noanswer_ts | Not answered time of the Voice notification, YYYY-MM-DD HH:mm:ss UTC.
+| denied_ts | Denied time of the Push/Web Push notification, YYYY-MM-DD HH:mm:ss UTC.
+
+
+
+## Summary Report
+
+The following data points are present when you download a 'Summary' report. Use this report when you want to get a summary of all the notifications sent during a period.
+
+| Field  | Description                                                                         
+| :------ | :--------------------------------------------------------------------------------- 
+| channel | Channel name through which the notification was sent     
+| notification_event | The notification event name which was triggered.  
+| template | The template linked to the notification event which was triggered.       
+| provider | The name of the provider via which the notification was sent      
+| provider_template_id | the provider template ID that was sent.For SMS, the DLT template ID is sent (for Indian businesses).For WhatsApp, the template name and language is sent (templatename_lang).For RCS, the template name is sent.    
+| integration | Integration account name through which the notification was sent.       
+| routing | The routing through which the notification was sent.       
+| campaign_name | Campaign name through which the notification was sent.       
+| submission_status | Status received after Fyno successfully submits the requests to the service provider.   
+| total_sent_count | Total no of notifications sent 
+| credits_used | No of SMS credits used for sending the notification.      
+| delivered_count | No of notifications which are delivered
+| delivered_credits_used | No of SMS credits used for the notifications delivered.        
+| undelivered_count | No of notifications which are undelivered
+| undelivered_credits_used | No of SMS credits used for the notifications undelivered.
+| answered_opened_read_count | No of notifications which are answered or opened or read.  
+| clicked_keypress_count | No of notifications which are clicked or keypress. 
+| deleted_count | No of notifications which are deleted. 
+| noanswer_count | No of notifications which are not answered. 
+| denied_count | No of notifications which are denied. 
+| unknown_count | No of notifications which didn't fall under any of the defined statuses. 
+
+
+## Daily Summary Report
+
+This is similar to Summary Report. Date is the only additional field. Date -> The date when the notification was sent. 
+
+## SMS Delivery (mobile no wise)
+
+The following data points are present when you download a 'SMS Delivery (mobile no wise)' report. Use this report when you want to get a summary of all the notifications sent during a period for a particular mobile no.
+
+| Field  | Description                                                                         
+| :------ | :--------------------------------------------------------------------------------- 
+| to | Mobile no to which the notification was sent.
+| total_count | Total no of notifications sent 
+| delivered_total_count | No of notifications which are delivered
+| undelivered_total_count | No of notifications which are undelivered
+| unknown_total_count | No of notifications for which the status is unknown
+| total_credits_used | No of SMS credits used for sending the notification.   
+| delivered_credits_used | No of SMS credits used for the notifications delivered.        
+| undelivered_credits_used | No of SMS credits used for the notifications undelivered.
+| unknown_credits_used | No of SMS credits used for the notifications for which the status is unknown.
