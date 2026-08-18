@@ -1,0 +1,74 @@
+## 26.2.8
+
+This release expands workspace-wide visibility and notification cost analytics, adds spreadsheet integrations for workflows, and enhances campaign monitoring, analytics, Magic Query, and WhatsApp template management for a smoother experience.
+
+We've also addressed issues across campaign execution and data handling, Go Live navigation, Users and Preferences, test runs, and WhatsApp external templates to improve usability, accuracy, and overall platform reliability.
+
+### 🚀 New Features
+
+**Dashboard – One View Across All Workspaces**
+- Users managing multiple workspaces can now view notification performance in a single place.
+- Select All Workspaces from the workspace switcher to view an aggregated dashboard with consolidated metrics such as Events Fired, Requested, Sent, Delivery Rate, and SMS credits used.
+- Apply time range and Live/Test filters across all workspaces and use Show by workspace to view a workspace-level breakdown.
+
+**Cost Analytics – Track Notification Costs by Channel and Provider**
+- The dashboard now provides channel- and provider-wise notification counts as the first phase of cost analytics.
+- For SMS, we display the credit based counts and for Email, you can view provider-wise sent and delivered counts.
+- For WhatsApp, you can view delivered counts for Marketing, Utility, and Authentication messages.
+
+**Workflows – Write Data Directly to Spreadsheets**
+- Workflows now include a Spreadsheet widget that lets you write workflow data directly to Microsoft Excel or Google Sheets.
+- You can select the target spreadsheet and worksheet, map workflow variables to spreadsheet columns, and append new rows to existing spreadsheets.
+- The widget also provides validation and error handling for spreadsheet write operations within the workflow.
+
+### ⚡ Feature Enhancements
+
+**Campaigns – More Accurate Progress Tracking**
+- The campaign progress banner now accurately reflects the campaign's current execution status.
+- This ensures it consistently displays the latest state of a running campaign.
+
+**Magic Query – Ask in Plain English, Get the Query**
+- Magic Query has been expanded to support natural-language queries across SQL and MongoDB databases.
+- You can generate single-table SQL queries from natural-language prompts, create multi-table SQL queries using JOINs, and generate MongoDB aggregation pipelines.
+- You can preview query results, refine or edit generated queries, and use the Explain option to understand what a generated query does in plain English.
+- You can also save results as cohorts or create campaigns directly from the results and access query history for each database connection.
+
+**WhatsApp External Templates – Easier Cloning**
+- When duplicating a WhatsApp External Template, you can now add and edit the template name.
+- The name is pre-populated with the original template name, making it easier to create multiple versions of a template.
+- The Cloning option for External Templates has also been renamed to Clone to distinguish it from the duplicate-and-edit flow available for drafts.
+
+**Analytics – More Ways to View Your Data in Dashboard, Notification Event, Campaign, Workflow**
+- Campaign Analytics now provides additional ways to view and understand campaign performance.
+- Counts have been added to the Events Fired chart, while table views are now available for Channel Engagement, Event Analytics, and Campaign Analytics.
+- Chart controls have also been updated to make it easier to switch between number/percentage views and chart/table views.
+
+### 🛠 Bug Fixes
+
+**Test Runs – Loader Gets Stuck**
+- Fixed an issue where the test loader could get stuck during execution, preventing the test run from progressing as expected.
+
+**Go Live – Search Bar Text Cut Off**
+- Fixed an issue where excessive padding in the Go Live search bar caused the placeholder text to be truncated.
+- The complete search text is now visible across all Go Live tabs.
+
+**Campaigns – Placeholders No Longer Editable**
+- Event-based placeholders in campaigns are now disabled and cannot be edited.
+- The background color has also been removed from campaign accordions for a cleaner interface.
+
+**Users – Empty State Improvements**
+- Fixed an issue where table headers and pagination were displayed when the Users list was empty. The same issue was also fixed in Preferences → User List.
+- The illustration shown when no data is available in Preferences → User List has also been resized for a better user experience.
+
+**WhatsApp External Templates – Preview Variables**
+- Removed the $ symbol from WhatsApp External Template preview variables.
+- Placeholders now appear as \{\{1\}\} and \{\{2\}\} instead of \{\{$1\}\} and \{\{$2\}\}.
+
+**WhatsApp External Templates – Improved Rename Experience**
+- Renaming a WhatsApp external template is now more seamless.
+- If you try to rename a template using a name that already exists, the rename dialog remains open and displays the validation error, allowing you to correct the name and try again without reopening the dialog.
+
+**Campaigns – Improved Date Handling for Excel Uploads**
+- Campaigns now preserve date values from uploaded Excel (.xlsx) files in a readable format instead of converting them to Excel serial numbers.
+- Sample data extracted from uploaded files is also formatted correctly before being displayed in the campaign preview.
+- This makes it easier to verify recipient data, mapped fields, and personalized content before launching a campaign.
