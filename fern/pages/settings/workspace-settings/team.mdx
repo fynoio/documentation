@@ -35,12 +35,14 @@ Add-on policies can be assigned:
 - During user invitation.
 - While modifying an existing user.
 
+Add-on policies are available for all roles except **Auditor**.
+
 This enables flexible and controlled access management across teams.
 
 ### Roles
 
 The below roles with unique levels of access have been created so that you can assign relevant roles to each person, based on what they need to access.
-![](/images/list-of-roles.png)
+![](/images/invite-team-members-role.png)
 ### Roles & Permissions
 
 export const tableWrapperStyle = {
@@ -538,7 +540,7 @@ export const Badge = ({ type, text }) => {
 ### Restricting Access by Analytics Labels (Auditor only)
 
 When you assign the **Auditor** role, you can further narrow what data that user is able to see by enabling **Restrict to specific Analytics Labels**.
-![](/images/invite-team-member-auditor-role.png)
+
 - The option appears only when the Auditor role is selected. It is not available for any other role.
 - When enabled, select the Analytics Labels the Auditor is allowed to access.
 - The restriction applies across all logs and reports available to that team member, based on their role.
@@ -549,9 +551,35 @@ When you assign the **Auditor** role, you can further narrow what data that user
 ### Add-On Policies
 
 Add-on policies provide fine-grained control over specific actions.
-![](/images/add-on-policies.png)
+![](/images/add-on-policy.png)
 
 They are useful when a user needs limited administrative capabilities without being assigned a higher role.
+
+The following add-on policies are available:
+
+| Add-On Policy | What it allows |
+| --- | --- |
+| Report Download | Download both test and live reports. |
+| Unmask Sensitive Data | Unmask masked fields in logs and download reports containing unmasked data. |
+| Invite team members and modify roles | Invite, remove, and modify roles and add-on policies of team members. |
+| Approver | View and approve modules that have approval enabled. |
+
+> Note: Add-on policies can be assigned to all roles except **Auditor**. The Add-On Policy field is not available when the Auditor role is selected.
+
+### Report Download
+
+This policy allows a user to download both test and live reports, regardless of the report access their base role provides.
+
+This is useful when a user needs reporting access without being moved to a broader role.
+
+### Unmask Sensitive Data
+
+This policy allows a user to:
+
+- Unmask masked fields in logs.
+- Download reports that contain unmasked data.
+
+Assign this policy only to users who are authorised to view sensitive customer data.
 
 ### Invite Team Members and Modify Roles
 
@@ -574,7 +602,7 @@ To create a new team member, follow the below steps:
 3. Click `+ Invite Team Member`.
 4. Enter the user’s Email ID.
 5. Select a Role based on the level of access required.
-6. Optionally attach Add-On Policy to the user.
+6. Optionally attach Add-On Policy to the user. This option is not available for the Auditor role.
 7. If you selected the **Auditor** role, optionally enable **Restrict to specific Analytics Labels** and select the labels the user is allowed to access.
 8. Click `Send Invite`.
 
@@ -602,7 +630,7 @@ You can update a user’s role and policies after they have been added.
 2. Locate the user in the list.
 3. Click the **three-dot** menu next to the user.
 4. Select **Modify**.
-5. Update the role and/or add-on policies. For users with the **Auditor** role, you can also update the Analytics Label restriction.
+5. Update the role and/or add-on policies. For users with the **Auditor** role, add-on policies are not available; you can update the Analytics Label restriction instead.
 6. Save the changes.
 
 All role and permission updates are managed through the three-dot menu to ensure controlled access and avoid unintended changes.
