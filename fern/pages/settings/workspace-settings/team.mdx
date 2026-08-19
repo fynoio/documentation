@@ -40,7 +40,7 @@ This enables flexible and controlled access management across teams.
 ### Roles
 
 The below roles with unique levels of access have been created so that you can assign relevant roles to each person, based on what they need to access.
-![](/images/campaign-manager-role-screenshot.png)
+![](/images/list-of-roles.png)
 ### Roles & Permissions
 
 export const tableWrapperStyle = {
@@ -81,7 +81,7 @@ export const tdStyle = {
 
 export const TableHeader = ({ text }) => (
   <tr>
-    <td colSpan="8" style={{
+    <td colSpan="9" style={{
       position: 'sticky',
       top: '43px', /* Dynamically trails directly below the main header height */
       zIndex: 10,
@@ -243,6 +243,7 @@ export const Badge = ({ type, text }) => {
         <th style={thStyle}>Developer</th>
         <th style={thStyle}>Campaign Manager</th>
         <th style={thStyle}>Support</th>
+        <th style={thStyle}>Auditor</th>
         <th style={thStyle}>Default Role</th>
       </tr>
     </thead>
@@ -257,6 +258,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
@@ -268,6 +270,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>Logs</td>
@@ -277,6 +280,17 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="test" text="Test only" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}>
+          <Badge type="view" text={
+            <span>
+              View only
+              <span className="tooltip-container">
+                <i className="tooltip-icon">i</i>
+                <span className="tooltip-text">sent &amp; notification event logs only</span>
+              </span>
+            </span>
+          } />
+        </td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
@@ -287,6 +301,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="test" text="Test only" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
 
@@ -301,6 +316,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>Templates</td>
@@ -310,6 +326,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
@@ -321,6 +338,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>Routes</td>
@@ -330,6 +348,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
@@ -341,6 +360,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>Campaigns</td>
@@ -350,6 +370,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
@@ -361,6 +382,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>User Cohorts</td>
@@ -371,6 +393,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>User Preferences</td>
@@ -380,6 +403,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
 
@@ -394,6 +418,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="view" text="View only" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>API Keys</td>
@@ -403,6 +428,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
@@ -414,6 +440,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>Security Settings</td>
@@ -424,6 +451,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>Delivery Limits (DND)</td>
@@ -433,6 +461,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       
@@ -465,10 +494,12 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
         <td style={tdStyle}>Workspace Creation / Deletion</td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -488,6 +519,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
     </tbody>
   </table>
@@ -500,7 +532,19 @@ export const Badge = ({ type, text }) => {
 - To unmask the details, navigate to the required profile after logging in with the respective role and click the eye icon available on the profile.
 - Each workspace can have only one Owner.
 - Only the Owner can add Super Admins, and any Super Admin added by the Owner will automatically be added to all workspaces under that Owner.
+- The Auditor role is a reporting-focused role. It provides access to download reports and view sent and notification event logs, without any create or edit access to other modules. Auditor access can be further limited to specific Analytics Labels.
 - Certain permissions may vary by feature (for example, test-only access, view-only access, or restricted actions like Go Live / Fire), as detailed in the table above.
+
+### Restricting Access by Analytics Labels (Auditor only)
+
+When you assign the **Auditor** role, you can further narrow what data that user is able to see by enabling **Restrict to specific Analytics Labels**.
+![](/images/invite-team-member-auditor-role.png)
+- The option appears only when the Auditor role is selected. It is not available for any other role.
+- When enabled, select the Analytics Labels the Auditor is allowed to access.
+- The restriction applies across all logs and reports available to that team member, based on their role.
+- The Auditor will only see data associated with the selected labels; data under all other labels remains hidden.
+
+> Note: This restriction narrows the data visible within the access the Auditor role already grants. It does not add any new access on its own.
 
 ### Add-On Policies
 
@@ -531,7 +575,8 @@ To create a new team member, follow the below steps:
 4. Enter the user’s Email ID.
 5. Select a Role based on the level of access required.
 6. Optionally attach Add-On Policy to the user.
-7. Click `Send Invite`.
+7. If you selected the **Auditor** role, optionally enable **Restrict to specific Analytics Labels** and select the labels the user is allowed to access.
+8. Click `Send Invite`.
 
 The newly invited colleague will receive an email with details to sign up on the Fyno application.
 
@@ -540,8 +585,8 @@ You can invite new members to collaborate within your workspace by following the
 ### Role Assignment Rules
 
 - Owner can assign any role.
-- Super Admin can assign Workspace Admin, Developer, Campaign Manager, Support, or Default roles.
-- Workspace Admin can assign Developer, Campaign Manager, Support, or Default roles.
+- Super Admin can assign Workspace Admin, Developer, Campaign Manager, Support, Auditor, or Default roles.
+- Workspace Admin can assign Developer, Campaign Manager, Support, Auditor, or Default roles.
 - Add-on policies can be assigned during invitation or updated later.
 
 ### Modifying Roles and Add-on Policies
@@ -557,7 +602,7 @@ You can update a user’s role and policies after they have been added.
 2. Locate the user in the list.
 3. Click the **three-dot** menu next to the user.
 4. Select **Modify**.
-5. Update the role and/or add-on policies.
+5. Update the role and/or add-on policies. For users with the **Auditor** role, you can also update the Analytics Label restriction.
 6. Save the changes.
 
 All role and permission updates are managed through the three-dot menu to ensure controlled access and avoid unintended changes.
