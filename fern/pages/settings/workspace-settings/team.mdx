@@ -260,7 +260,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
       <tr>
@@ -283,9 +283,9 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}>
-          <Badge type="view" text={
+          <Badge type="yes" text={
             <span>
-              View only
+              Yes
               <span className="tooltip-container">
                 <i className="tooltip-icon">i</i>
                 <span className="tooltip-text">sent &amp; notification event logs only</span>
@@ -530,8 +530,7 @@ export const Badge = ({ type, text }) => {
 ### Additional Notes
 
 - Owner, Super Admin, and Workspace Admin have broad access across most features and can perform high-level administrative actions.
-- These roles can also unmask and view details within User Profiles.
-- To unmask the details, navigate to the required profile after logging in with the respective role and click the eye icon available on the profile.
+- Masked fields can only be unmasked by users who have the Unmask Sensitive Data add-on policy, irrespective of their role.
 - Each workspace can have only one Owner.
 - Only the Owner can add Super Admins, and any Super Admin added by the Owner will automatically be added to all workspaces under that Owner.
 - The Auditor role is a reporting-focused role. It provides access to download reports and view sent and notification event logs, without any create or edit access to other modules. Auditor access can be further limited to specific Analytics Labels.
@@ -579,6 +578,8 @@ This policy allows a user to:
 - Unmask masked fields in logs.
 - Download reports that contain unmasked data.
 
+To unmask the details, navigate to the required record and click the eye icon.
+
 Assign this policy only to users who are authorised to view sensitive customer data.
 
 ### Invite Team Members and Modify Roles
@@ -591,6 +592,16 @@ This policy allows a user to:
 - Assign or update add-on policies
 
 This is typically assigned to IT or operations teams responsible for onboarding and access management.
+
+### Approver
+
+Users with the Approver policy can:
+
+- Access the Approval Requests page
+- View all requests assigned to them across modules
+- Review and take action (approve/reject) on those requests
+
+They do not have direct access to modules, unless explicitly granted through another role.
 
 ### Inviting and Viewing Team Members
 
@@ -646,16 +657,6 @@ To delete a team member from your workspace, follow the below steps:
 5. Confirm the action.
 
 > Note: This action is role- and permission-controlled. Only users with the appropriate permissions can delete team members, and this action is permanent.
-
-### Approver
-
-Users with the Approver policy can:
-
-- Access the Approval Requests page
-- View all requests assigned to them across modules
-- Review and take action (approve/reject) on those requests
-
-They do not have direct access to modules, unless explicitly granted through another role.
 
 ### Approval Settings
 ![](/images/team-approval-settings.png)
