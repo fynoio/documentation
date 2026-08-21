@@ -530,10 +530,9 @@ export const Badge = ({ type, text }) => {
 ### Additional Notes
 
 - Owner, Super Admin, and Workspace Admin have broad access across most features and can perform high-level administrative actions.
-- Masked fields can only be unmasked by users who have the Unmask Sensitive Data add-on policy, irrespective of their role.
+- Owner and Super Admin can unmask masked fields by default. For all other roles, unmasking requires the Unmask Sensitive Data add-on policy.
 - Each workspace can have only one Owner.
 - Only the Owner can add Super Admins, and any Super Admin added by the Owner will automatically be added to all workspaces under that Owner.
-- The Auditor role is a reporting-focused role. It provides access to download reports and view sent and notification event logs, without any create or edit access to other modules. Auditor access can be further limited to specific Analytics Labels.
 - Certain permissions may vary by feature (for example, test-only access, view-only access, or restricted actions like Go Live / Fire), as detailed in the table above.
 
 ### Restricting Access by Analytics Labels (Auditor only)
