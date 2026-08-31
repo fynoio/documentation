@@ -22,7 +22,7 @@ Use the Analytics Dashboard to:
 - Optimize provider routing strategies.
 - Investigate event-level delivery issues.
 
-![](/images/analytics-dashboard.png)
+![](/images/dashboard-ui.png)
 
 > NOTE: All metrics displayed throughout the dashboard are affected by the selected **Environment**, **Analytics Label**, and **Time Frame** filters.
 
@@ -280,6 +280,113 @@ You can switch between:
 - Use **Percentage View** when comparing engagement effectiveness across channels.
 </Tip>
 
+## Channel-wise / Provider Breakdown
+
+View the breakdown of notification volume by channel and provider, so you can see how many notifications were sent, how many were delivered, and what they cost you in chargeable terms.
+![](/images/channelwise-analytics.png)
+Each channel is displayed as a separate card. The metrics respect the **Time Range** and **Live/Test** filters applied at the top of the Dashboard.
+
+### Supported Channels
+
+| Card | Headline Metric | Breakdown |
+|------|------------------|-----------|
+| **WhatsApp** | Total messages delivered | Marketing, Authentication, Utility, Not billable |
+| **SMS Credits** | Total credits sent | Delivered, Sent but not delivered |
+| **Email** | Total emails sent | Delivered, Sent but not delivered |
+| **RCS** | — | — |
+
+<Note>
+Select the expand icon in the top-right corner of any card to open the detailed view for that channel. The expanded view groups results by provider, with a separate table under each provider heading, and always shows exact counts rather than the abbreviated figures on the card.
+</Note>
+
+### WhatsApp
+
+The WhatsApp card shows the total number of messages delivered in the selected period, split by conversation category.
+
+| Category | Description |
+|----------|-------------|
+| **Marketing** | Promotional messages such as offers, announcements, and product updates. |
+| **Authentication** | One-time passcodes and account verification messages. |
+| **Utility** | Transactional messages tied to an existing order, account, or request. |
+| **Not billable** | Messages delivered without incurring a conversation charge, such as replies sent within an open customer service window. |
+
+Category counts add up to the total delivered count shown at the top of the card. Hover over the info icon beside **Delivered** or **Not billable** for details on how each count is calculated.
+
+<Info>
+WhatsApp is currently in **Beta**.
+</Info>
+
+#### Expanded View: WhatsApp Messages Delivered
+
+Results are grouped by provider, and each row shows delivered counts for one WABA ID and destination country.
+
+| Column | Description |
+|--------|-------------|
+| **WABA ID** | The WhatsApp Business Account the messages were sent from. |
+| **Destination Country** | The country the messages were delivered to. |
+| **Utility** | Transactional messages tied to an existing order, account, or request. |
+| **Marketing** | Promotional messages such as offers, announcements, and product updates. |
+| **Marketing Lite** | Marketing messages sent under Meta's lower-cost Marketing Lite category. |
+| **Authentication** | One-time passcodes and account verification messages delivered domestically. |
+| **Auth-International** | Authentication messages delivered to international numbers, which are rated separately. |
+
+<Note>
+Message counts by category (Marketing, Authentication, and Utility) are available only for **Infobip**, **Meta**, **Meta Direct**, and **Meta Direct Plus**. Messages sent through other providers still appear in the card total but are not split by category.
+</Note>
+
+### SMS
+
+The SMS card reports volume in credits rather than message count, since a single SMS may consume multiple credits depending on message length and encoding.
+
+| Metric | Description |
+|--------|-------------|
+| **Delivered** | Credits consumed by messages confirmed as delivered by the provider. |
+| **Sent but not delivered** | Credits consumed by messages that were accepted by the provider but not confirmed as delivered. These messages are still billable. |
+
+#### Expanded View: SMS Credits
+
+Results are grouped by provider, and each row shows credit consumption for one integration and destination country.
+
+| Column | Description |
+|--------|-------------|
+| **Integration** | The provider integration the messages were sent through. |
+| **Destination Country** | The country the messages were sent to. |
+| **Sent** | Total credits consumed by messages accepted by the provider. |
+| **Delivered** | Credits consumed by messages confirmed as delivered. |
+| **Sent but not delivered** | Credits consumed by messages with no delivery confirmation. These remain billable. |
+
+<Tip title="Quick Tip" color="green">
+Sent equals Delivered plus Sent but not delivered for each row, and the rows add up to the totals shown on the card.
+</Tip>
+
+### Email
+
+The Email card shows the total number of emails sent in the selected period, along with delivery outcomes.
+
+| Metric | Description |
+|--------|-------------|
+| **Delivered** | Emails accepted by the recipient's mail server. |
+| **Sent but not delivered** | Emails that left Fyno but were not confirmed as delivered, including bounces and rejections. |
+
+<Note>
+Large values are abbreviated on the headline metric (for example, 60K or 5L), while the breakdown rows always show exact counts.
+</Note>
+
+#### Expanded View: Email
+
+Results are grouped by provider, and each row shows volume for one integration.
+
+| Column | Description |
+|--------|-------------|
+| **Integration** | The provider integration the emails were sent through. |
+| **Sent** | Total emails accepted for delivery. |
+| **Delivered** | Emails accepted by the recipient's mail server. |
+| **Sent but not delivered** | Emails with no delivery confirmation, including bounces and rejections. |
+
+<Info>
+Unlike WhatsApp and SMS, the Email view is not split by destination country.
+</Info>
+
 ## Delivery Status
 
 The **Delivery Status** chart displays delivery outcomes for the communication channel selected from the channel selector in the upper-right corner of the widget.
@@ -466,7 +573,6 @@ Use this view when you want to:
 | **Columns Configuration** | Customize the visible delivery metrics. |
 | **Refresh** | Retrieve the latest reporting data. |
 
-
 ## Status Definitions
 
 The **Notification Event Delivery Rates** table tracks notifications as they progress through different stages of the delivery lifecycle.
@@ -518,7 +624,6 @@ Use this visualization to identify when notification activity is highest and det
 - Validate campaign execution timings.
 
 <Tip title="Quick Tip" color="green"> Monitoring hourly notification trends helps identify anomalies and verify whether campaigns are being executed as expected.</Tip>
-
 
 ## Provider Latency
 
