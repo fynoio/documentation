@@ -1,0 +1,321 @@
+---
+title: 'Central Dashboard'
+slug: 'central-dashboard'
+description: 'Monitor notification performance, delivery rates, channel usage, and provider performance across all your workspaces from one aggregated view.'
+og:title: "Understand notification performance across all your workspaces with Fyno's Central Dashboard | Fyno Documentation"
+og:description: 'A quick introduction to what the Central Dashboard is about and how to use it.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The **Central Dashboard** extends the Analytics Dashboard beyond a single workspace. Instead of opening each workspace one at a time to check how it is performing, you get one page that aggregates notification performance across all the workspaces you own.
+
+Every metric, chart, and control works exactly as it does on the workspace Dashboard. What changes is the scope: data is rolled up across workspaces, and a workspace filter lets you narrow the view to any subset of them.
+
+Use the Central Dashboard to:
+
+- Monitor notification volumes across all your workspaces in one place.
+- Compare delivery performance between workspaces.
+- Spot a workspace that is driving unusual traffic or failing deliveries.
+- Review channel and provider performance without switching workspaces.
+- Investigate event-level delivery issues with workspace attribution.
+
+<Note>
+All metrics displayed throughout the Central Dashboard are affected by the selected **Workspace**, **Environment**, **Analytics Label**, and **Time Frame** filters.
+</Note>
+
+## Availability
+
+The Central Dashboard is available to **Owners** and **Super Admins**. Workspaces are grouped based on their owner, and each group contains workspaces owned by the same user.
+
+For Owners, the Central Dashboard shows only groups where you are the owner of all workspaces in the group. Workspaces where you hold another role, such as Workspace Admin, aren't included.
+
+The **View Analytics** entry point appears only for eligible workspace groups and opens the Central Dashboard.
+
+### Accessing the Central Dashboard
+
+1. Open the **Workspaces** page. Workspaces with the same owner are grouped together under the brand name. The owner can edit the brand name as needed.
+2. Select **View Analytics** to the right of the group heading to open the Central Dashboard for all workspaces in that group.
+![](/images/central-dashborad-view-analytics.png)
+<Note>
+All workspaces in the group have the same owner. Owners and Super Admins can access the **View Analytics** option.
+</Note>
+
+## Global Controls
+
+The controls at the top of the Central Dashboard determine the scope of data displayed across all widgets.
+![](/images/central-dashboard-view.png)
+### Top Bar Controls
+
+| Control | Description |
+|----------|-------------|
+| **Workspace Filter** | Restricts the dashboard to one or more of the workspaces you own. |
+| **Environment Toggle** | Switch between Live and Test environments. |
+| **Analytics Label Filter** | Filter analytics using the labels configured for your workspaces to focus on specific data. |
+| **Time Frame Filter** | Restricts data to a selected reporting period. Supported periods include Today, Yesterday, Last 60 Minutes, Last 7 Days, Last 28 Days, and Custom Date Range. The exact dates covered by the selection are displayed below the filter. |
+| **Data Freshness Indicator** | Displays when the dashboard data was last synchronized, with an option to refresh. |
+| **Status Guide** | Opens the reference explaining each delivery status. |
+
+<Tip title="Quick Tip" color="green">
+Use shorter date ranges while troubleshooting and longer periods when analyzing trends across workspaces.
+</Tip>
+
+### Workspace Filter
+
+The Workspace Filter is unique to the Central Dashboard. It is a multi-select control listing every workspace you own within the group.
+![](/images/workspace-filter.png)
+Clearing the selection returns the dashboard to **All**.
+
+<Tip title="Quick Tip" color="green">
+Start with **All** to spot an outlier, then select that single workspace to investigate it without leaving the page.
+</Tip>
+
+## Key Performance Indicators (KPIs)
+
+The KPI cards provide a high-level summary of notification volumes across the workspaces in scope.
+
+| Metric | Definition |
+|----------|------------|
+| **Notification Events Fired** | Total number of notification event APIs successfully received by Fyno for processing during the selected time period. |
+| **Notifications Requested** | Total number of notification requests received by Fyno for processing. A single event may generate multiple requests when several recipients or channels are configured. |
+| **Notifications Sent** | Notifications successfully processed by Fyno and accepted by the provider for delivery. |
+
+```text
+Sent = Requested − (Error + Failed + Dropped + Timeout)
+```
+
+<Note>
+On the Central Dashboard, each KPI is the sum across the workspaces currently in scope.
+</Note>
+
+## Delivery Rate
+
+The **Delivery Rate** card shows the percentage of attempted notifications that were successfully delivered across the workspaces in scope, followed by a breakdown for each channel.
+
+| Metric | Description |
+|----------|-------------|
+| **Overall Delivery Rate** | Percentage of notifications successfully delivered across all channels and workspaces in scope. |
+| **Channel Delivery Rate** | Delivery performance for each communication channel. |
+
+## Channel Usage
+
+The Central Dashboard provides channel-specific usage cards for **SMS**, **WhatsApp**, **Email**, and **RCS**. Use these cards to monitor usage, reconcile channel costs, and identify changes in consumption across the workspaces in scope. Select the expand icon on a card to view more detailed usage information.
+
+### SMS Credits
+
+The SMS Credits card tracks SMS credit utilization across the workspaces in scope, split between delivered and sent but not delivered volume. Select the expand icon to view more detailed credit usage, including usage by integration and destination country.
+
+Use this card to:
+
+- Reconcile SMS credit usage and costs across workspaces.
+- Review credit usage by integration and destination country.
+- Monitor SMS usage trends and identify unexpected increases in consumption.
+- Estimate future credit requirements.
+
+### WhatsApp Credits
+
+The WhatsApp Credits card tracks WhatsApp credit utilization across the workspaces in scope. The expanded view provides more detailed usage information for deeper analysis and cost reconciliation.
+
+Use this card to:
+
+- Reconcile WhatsApp credit usage and costs across workspaces, broken down by message category (e.g., Marketing, Authentication, Utility, Service).
+- Monitor WhatsApp usage trends.
+- Identify unexpected changes in credit consumption.
+
+### Email Credits
+
+The Email Credits card tracks email credit utilization across the workspaces in scope. The expanded view provides more detailed usage information for deeper analysis and cost reconciliation.
+
+Use this card to:
+
+- Reconcile email credit usage and costs across workspaces.
+- Monitor email usage trends.
+- Identify unexpected changes in credit consumption.
+
+### RCS Credits
+
+<Info>
+**Coming soon:** The RCS Credits card will track RCS credit utilization across the workspaces in scope and provide detailed usage information for cost reconciliation and usage analysis.
+</Info>
+
+## Notification Events Triggered By Workspace
+
+<Note>
+This widget is available only on the Central Dashboard.
+</Note>
+
+This widget compares notification volume across the workspaces in scope so you can see at a glance which workspace is generating the traffic.
+![](/images/notification-events-triggred-by-workspace.png)
+Use the toggle in the upper-right corner to switch between the chart view and the table view.
+
+Use this widget to:
+
+- Compare notification volumes between workspaces.
+- Identify the workspace responsible for a spike in overall volume.
+- Confirm that a newly configured workspace has started sending messages.
+
+## Channel Engagement
+
+The Channel Engagement chart shows notification activity across each communication channel and the outcomes associated with those notifications, aggregated across the workspaces in scope.
+![](/images/channel-engagement.png)
+The available engagement metrics include **Attempted**, **Delivered**, **Read/Open**, and **Clicked**.
+
+| Metric | Description |
+|--------|-------------|
+| **Attempted** | Notification requests that passed Fyno validation and were handed off to the provider. Attempted = Requested − (Error + Failed + Dropped). |
+| **Delivered** | Notifications confirmed by the provider as having reached the intended destination. |
+| **Read / Open** | Recipient viewed the notification. Read applies to WhatsApp and In-App, Open applies to Email. |
+| **Clicked** | Recipient interacted with a link or actionable element in the notification. |
+
+### Chart Controls
+
+Select a status in the chart legend to display only that metric, and select the remaining legend items to hide or show them as required. Use the display toggle in the upper-right corner to switch views.
+
+| View | Description |
+|------|-------------|
+| **Count (#)** | Displays the total number of notifications for each status. |
+| **Percentage (%)** | Displays each status as a percentage of the total notifications. |
+| **Table** | Displays the same data in tabular form. |
+
+## Delivery Status
+
+The Delivery Status chart displays delivery outcomes over time for the channel selected from the channel selector in the upper-right corner, aggregated across the workspaces in scope.
+![](/images/centralboard-delivery-status.png)
+Select or deselect statuses from the legend to isolate individual delivery outcomes, and use the zoom controls in the lower-right corner to focus on a shorter span.
+
+Use the Delivery Status chart to:
+
+- Identify delivery fluctuations across your workspaces.
+- Detect sudden increases in undelivered notifications.
+- Monitor changes in notification demand.
+- Analyze channel-specific delivery performance.
+
+## Provider Performance
+
+The Provider Performance chart compares notification performance across configured providers for the workspaces in scope, helping you evaluate provider reliability and optimize routing strategies.
+![](/images/centralboard-provider-performance.png)
+| Metric | Description |
+|---------|-------------|
+| **Attempted** | Total number of notification requests Fyno attempted to send to the provider. |
+| **Delivered** | Notifications successfully delivered and confirmed by the provider. |
+| **Read / Open** | Recipient viewed the notification. Read applies to WhatsApp and In-App, Open applies to Email. |
+| **Clicked** | Recipient interacted with a link or actionable element in the notification. |
+
+Use the selector in the upper-right corner to view provider data by channel or integration, and use the display toggle to switch between count and percentage views.
+
+## Delivery Rates
+
+The Delivery Rates table provides detailed delivery metrics for individual notification events. Using the grouping selector, you can view delivery performance by **Notification Events**, **Analytics Labels**, or **Workspaces**.
+
+<Note>
+On the Central Dashboard, each row also displays the workspace the notification event belongs to. Events that share a name across workspaces therefore remain distinguishable, and you can trace a low delivery rate back to the workspace it originated from.
+</Note>
+![](/images/centraldashboard-delivery-status.png)
+Delivery rates that fall below the expected threshold are highlighted so that problem events stand out. Select **Expand View** to analyze channel-wise and provider-wise metrics for a selected row.
+
+Use the Delivery Rates table to:
+
+- Compare notification event performance across workspaces.
+- Identify delivery bottlenecks at event level.
+- Troubleshoot events experiencing high failure rates.
+- Evaluate performance using Analytics Labels.
+
+## Notification Event Delivery Rates (Expanded View)
+
+Select **Expand View** to access a detailed breakdown of a notification event or analytics label.
+![](/images/notification-event-expanded-view.png)
+The expanded view provides additional visibility into the notification lifecycle, making it easier to investigate delivery patterns, identify bottlenecks, and troubleshoot workflow-specific issues.
+
+Use this view when you want to:
+
+- Understand where notifications exit the delivery funnel.
+- Investigate high failure rates.
+- Analyze delivery performance at a granular level.
+- Compare outcomes across different notification stages.
+- Accelerate root cause analysis.
+
+### Expanded View Controls
+
+| Control | Description |
+|----------|-------------|
+| **Search Notification Events** | Search and filter one or more notification events or analytics labels. |
+| **Grouping Drop-down** | Switch between **Notification Events** and **Analytics Labels** depending on the analysis required. |
+| **Expand View** | Expand a row to view channel-wise and provider-wise delivery metrics for the selected notification event or analytics label. |
+| **Columns** | Customize which delivery metrics are displayed. Use **Show All** or **Hide All** to quickly manage column visibility. |
+
+### Workspace Controls
+
+| Control | Description |
+|----------|-------------|
+| **Time Filter** | Restricts the reporting period. |
+| **Search Notification Events** | Quickly locate notification events or analytics labels. |
+| **Dimension Toggle** | Switch between Notification Events and Analytics Labels. |
+| **Columns Configuration** | Customize the visible delivery metrics. |
+| **Refresh** | Retrieve the latest reporting data. |
+
+## Status Definitions
+
+The **Notification Event Delivery Rates** table tracks notifications as they progress through different stages of the delivery lifecycle.
+
+Understanding these statuses helps you identify where notifications are successfully progressing and where intervention may be required.
+
+### Status Definitions
+
+| Status | Description |
+|---------|-------------|
+| **Requested** | Total number of notification requests received by Fyno for the selected notification event. This represents the initial notification volume entering the processing pipeline. |
+| **Error** | Notifications that could not be processed due to internal errors within Fyno. Examples include invalid configurations, missing templates, malformed payloads, or other processing exceptions. |
+| **Failed** | Notifications rejected by the provider API and not accepted for delivery. Common causes include authentication failures, invalid request payloads, insufficient balance, provider unavailability, or other provider-specific validation errors. |
+| **Dropped** | Notifications intentionally prevented from being sent because they did not meet processing criteria, such as suppression rules, frequency controls, user opt-out preferences, duplicate prevention, or workflow conditions. |
+| **Attempted** | Notifications that successfully passed Fyno's validation and processing stages and were handed off to the configured provider for delivery. |
+| **Timeout** | Notifications for which the provider did not respond within the configured timeout period. A timeout does not necessarily indicate delivery failure; it means Fyno did not receive a response within the expected time. |
+| **Sent** | Notifications successfully processed by Fyno and accepted by the configured provider for delivery. |
+| **Delivered** | Notifications successfully delivered to the intended recipient, based on delivery confirmations received from the provider. |
+| **Undelivered** | Notifications accepted by the provider but not delivered to the recipient due to recipient, carrier, mailbox, or device-related issues. |
+| **No DLR** | Notifications for which no Delivery Report (DLR) was received from the provider after the notification was sent. This is common for providers or channels that do not consistently support delivery confirmations. |
+
+#### Percentage Calculations
+
+When viewing the table in **Percentage (%)** mode, each status is calculated using the following denominator.
+
+| Status | Percentage Based On |
+|---------|---------------------|
+| **Error %** | Requested |
+| **Failed %** | Requested |
+| **Dropped %** | Requested |
+| **Timeout %** | Attempted |
+| **Sent %** | Attempted |
+| **Delivered %** | Attempted |
+| **Undelivered %** | Attempted |
+
+## Hourly Notification Volume
+
+The **Hourly Notification Volume** chart displays notification traffic throughout the selected reporting period.
+![](/images/hourly-notification-event.png)
+Use this visualization to identify when notification activity is highest and detect periods of unusually high or low messaging volume.
+
+## Hourly Notification Volume
+
+The Hourly Notification Volume heatmap displays notification traffic by day of week and hour of day for the selected reporting period. Darker cells indicate higher volume, and the scale below the chart shows the range.
+
+Use this view to:
+
+- Identify peak notification hours across your workspaces.
+- Optimize notification scheduling strategies.
+- Detect unexpected traffic spikes or drops.
+- Validate campaign execution timings.
+
+## Activity Trends by channel
+
+The Activity Trends by channel report visualizes notification activity over time across the selected dimension, so you can monitor adoption patterns and investigate unexpected shifts in messaging behaviour.
+![](/images/activity-trend-by-channel.png)
+| Dimension | Description |
+|-----------|-------------|
+| **Channels** | Analyze notification traffic across channels such as SMS, Email, Push, WhatsApp, and In-App. |
+| **Integrations** | Monitor notification activity originating from connected applications and integrations. |
+
+Use the display toggle to switch between count and percentage views, and the zoom controls in the lower-right corner to narrow the span.
+
+<Tip title="Quick Tip" color="green">
+Hover over any point in the graph to view detailed metrics for that time period.
+</Tip>
+
