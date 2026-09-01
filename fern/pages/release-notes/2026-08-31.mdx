@@ -1,0 +1,60 @@
+
+## 26.3.1
+
+This release introduces AI-powered autofill for template sample values, adds OAuth authentication support for Allowlist, and brings cost analytics and richer event insights to the Dashboard.
+ 
+We've also improved event routing recommendations, clarified provider latency reporting, and refined WhatsApp external template naming, while resolving issues across Allowlist payload handling, template renaming, DLT registration, and Excel campaign uploads to improve accuracy and reliability.
+
+### 🚀 New Feature
+
+**Templates – AI-Powered Autofill for Sample Values**
+- You can now use **Auto-fill Samples** to automatically populate realistic sample values for template placeholders when testing or previewing a template.
+- AI detects placeholder names and surrounding template content to generate contextually relevant values, reducing the time and effort required to manually enter test data.
+- Auto-filled values can be edited before running the test, giving you full control over the test data.
+
+**Allowlist – OAuth Authentication Support**
+- You can now create and save reusable OAuth configurations for OAuth-protected allowlisted endpoints.
+- Configure OAuth credentials once and associate them with applicable allowlisted URLs, simplifying authentication setup within workflows.
+- Use **Run Test** to validate the OAuth configuration before saving it and identify any authentication or configuration errors.
+- OAuth configurations support Client Credentials grant type, custom headers, scopes, and audiences, with credentials such as client secrets handled securely.
+
+**Dashboard – Cost Analytics and Improved Event Insights**
+- Added **Cost Analytics** to the centralized dashboard for better visibility into notification costs.
+- The Top Events views now display the associated Workspace Name and Event Type icons, making events easier to identify across workspaces.
+- Added Event Type icons to the expanded Top Events view on workspace-specific dashboards for a more consistent analytics experience.
+
+### ⚡ Feature Enhancement
+
+**Events – Nudge to Use Omni-Channel Routes**
+- Events now recommend using **Omni-Channel Routes** instead of single-channel routes or integrations.
+- A confirmation prompt helps you review and confirm your choice when switching to a single-channel route.
+
+**Dashboard – Improved Provider Latency Insights**
+- Updated the **Provider Latency** chart to clearly indicate that it measures **Provider Callback Response Time**.
+- The chart now clarifies that latency represents the time taken by providers to send delivery status callbacks to Fyno, avoiding confusion with the initial provider API response time.
+- Retained the existing latency buckets: &lt; 1 second, 1–5 seconds, and &gt; 5 seconds.
+
+**External Templates – Updated Cloning Success Message**
+- Updated the success toast message after cloning a WhatsApp external template to use the new **Cloning** terminology.
+- The message now reads "Template cloning was successful" for a more consistent user experience.
+
+### 🛠 Bug Fixes
+
+**Allowlist – DLR Payload Representation**
+- Updated the DLR payload handling in Allowlist to preserve nested JSON structures in the **JSON** view while continuing to display the flattened field structure in the **Form** view.
+- Improved consistency when switching between JSON and Form views, ensuring the payload structure remains accurate and data is preserved.
+
+**External Templates – Improved Rename Experience**
+- Fixed an issue where the **Rename** dialog closed unexpectedly when a duplicate template name was entered.
+- The dialog now remains open and displays the validation error, allowing you to correct the name and resubmit without restarting the flow.
+- Renamed **Duplicate and Exit** to **Clone and Exit** for consistent terminology across WhatsApp external templates.
+
+**DLT – Template Registration Issues**
+- Added support for VILPower's new variable aliases: \{#alp#\} and \{#num#\}.
+- Updated DLT SMS template creation and sync logic to use the new variable tokens.
+- Added fallback mappings and sample value extraction for the updated parameter names.
+- Resolved an issue that caused API requests to be rejected when using the previous variable format.
+- DLT SMS templates can now be created and synced successfully with VILPower using the new variable syntax.
+
+**Excel Upload – Campaign Upload Processing Fix**
+- Fixed issues with Excel file uploads in campaigns to ensure uploaded files are processed correctly and reliably.
