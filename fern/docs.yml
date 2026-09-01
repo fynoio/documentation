@@ -59,9 +59,12 @@ navigation:
                 path: "pages/tutorials/how-to-configure-arcon-saml-single-sign-on-to-access-fyno.mdx"
               - page: "How to Configure AWS - SAML Single Sign-On to Access Fyno"
                 path: "pages/tutorials/how-to-configure-aws-iam-identity-center-saml-single-sign-on-to-access-fyno.mdx"
-          - page: "Dashboard"
+          - section: "Dashboard"
             path: "pages/dashboard/dashboard.mdx"
             icon: fa-regular fa-chart-simple
+            contents:
+            - page: "Central Dashboard"
+              path: "pages/dashboard/central-dashboard.mdx"
           - page: "Alarms"
             path: "pages/dashboard/alarms.mdx"
             icon: fa-regular fa-triangle-exclamation
