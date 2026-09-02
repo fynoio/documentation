@@ -78,7 +78,8 @@ export const tdStyle = {
   padding: '8px 12px',
   borderBottom: '1px solid var(--rb-border-sub, #F0F0F0)',
   verticalAlign: 'middle',
-  backgroundColor: 'var(--rb-table-bg, #FFFFFF)' /* Opaque backplate keeps scroll overlapping clean */
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)', /* Opaque backplate keeps scroll overlapping clean */
+  color: 'var(--rb-table-text, #1a1a1a)'
 };
 
 export const TableHeader = ({ text }) => (
@@ -166,9 +167,23 @@ export const Badge = ({ type, text }) => {
       --badge-no-bg: #333333;
       --badge-no-text: #F0F0F0;
     }
-    tr td {
-      background-color: var(--rb-table-bg, #121212) !important;
-    }
+  }
+
+  /* Scoped, paired background + text overrides for THIS table only.
+     Fixes a bug where an unscoped "tr td { background !important }" rule
+     was painting every table on the page black in dark mode without
+     ever forcing a matching text color, making body rows unreadable. */
+  .fyno-roles-table-wrapper table.fyno-roles-table td {
+    background-color: var(--rb-table-bg, #FFFFFF) !important;
+    color: var(--rb-table-text, #1a1a1a) !important;
+  }
+  .fyno-roles-table-wrapper table.fyno-roles-table th {
+    background-color: var(--rb-header-bg, #F0F0F0) !important;
+    color: var(--rb-header-text, #333333) !important;
+  }
+  .fyno-roles-table-wrapper table.fyno-roles-table tr td[colspan] {
+    background-color: var(--rb-category-bg, #FAF4E3) !important;
+    color: var(--rb-category-text, #8B6602) !important;
   }
 
   /* Custom CSS Tooltip Logic with speech bubble arrow pointer */
@@ -234,8 +249,8 @@ export const Badge = ({ type, text }) => {
   }
 `}</style>
 
-<div style={tableWrapperStyle}>
-  <table style={tableStyle}>
+<div style={tableWrapperStyle} className="fyno-roles-table-wrapper">
+  <table style={tableStyle} className="fyno-roles-table">
     <thead>
       <tr>
         <th style={thStyle}>Feature / Access</th>
