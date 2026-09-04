@@ -1068,7 +1068,7 @@ paths:
       description: |
         The Suppression List API enables you to manage users who should be excluded from receiving communications on specific channels.
 
-        This API enables you to retrieve the list of all suppressed users across various channels.
+        This API enables you to retrieve the list of all suppressed users across various channels. Results are paginated; use the `limit` and `offset` query parameters to page through the full list.
       parameters:
         - name: WSID
           in: path
@@ -1079,6 +1079,29 @@ paths:
           schema:
             type: string
           example: FYXXXXXXXX
+        - name: limit
+          in: query
+          description: "(Optional) Enter the maximum number of suppression records to return in a single request. Defaults to 10 if not specified. Maximum allowed value is 100."
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+          example: 50
+        - name: offset
+          in: query
+          description: "(Optional) Enter the number of suppression records to skip before starting to return results. Use this along with `limit` to page through the full suppression list. Defaults to 0."
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+          example: 0
       responses:
         "200":
           $ref: "#/components/responses/SuppressionListSuccess"
@@ -1127,9 +1150,9 @@ paths:
         - Suppression List
       summary: "Delete User from Suppression List"
       description: |
-        Delete a suppression entry using its `_id`, `distinct_id`, `destination`.
+        Delete a suppression entry using its `_id`, or a combination of `distinct_id`/`destination` and `channel`.
 
-        **Note:** If all three values (`distinct_id`, `destination`, `_id`) are provided, `_id` takes precedence followed by `distinct_id`.
+        **Note:** If `_id` is provided, it takes precedence over all other parameters. Otherwise, `distinct_id` or `destination` must be provided along with `channel` to remove suppression for a specific channel only (e.g., unblock SMS while keeping WhatsApp suppressed for the same number). If `channel` is omitted, suppression is removed across all channels for the given `distinct_id`/`destination`. If both `distinct_id` and `destination` are provided, `distinct_id` takes precedence, and `destination` is ignored.
       parameters:
         - name: WSID
           in: path
@@ -1161,6 +1184,13 @@ paths:
           schema:
             type: string
           example: 919XXXXXXXX
+        - name: channel
+          in: query
+          description: "(Optional) Enter the specific channel (e.g., `sms`, `whatsapp`, `email`) to remove suppression for. Use this along with `distinct_id` or `destination` to unblock a single channel without affecting suppression on other channels for the same user. If omitted, suppression is removed across all channels."
+          required: false
+          schema:
+            type: string
+          example: sms
       responses:
         "200":
           $ref: "#/components/responses/SuppressionListDeleted"
@@ -1924,9 +1954,34 @@ components:
       content:
         application/json:
           schema:
-            items:
-              "$ref": "#/components/schemas/fetch_suppression_list"
-            type: array
+            type: object
+            properties:
+              total:
+                type: integer
+                description: Total number of suppression records matching the request, across all pages.
+                example: 245
+              limit:
+                type: integer
+                description: The `limit` value used for this request.
+                example: 10
+              offset:
+                type: integer
+                description: The `offset` value used for this request.
+                example: 0
+              has_more:
+                type: boolean
+                description: Indicates whether more suppression records are available beyond this page.
+                example: true
+              data:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/fetch_suppression_list"
+            required:
+              - total
+              - limit
+              - offset
+              - has_more
+              - data
     SuppressionListUpdated:
       description: Suppression list updated.
       content:
@@ -1936,10 +1991,18 @@ components:
               status:
                 example: ok
                 type: string
+              _id:
+                type: string
+                description: Unique identifier of the newly created suppression record. Use this ID to reference, update, or delete this specific record.
+                example: 68763be4b8cee01156d9fa8a
               _message:
                 type: string
                 example: User has been added to the suppression!
             type: object
+            required:
+              - status
+              - _id
+              - _message
     SuppressionListDeleted:
       description: Suppression list updated.
       content:
@@ -4505,6 +4568,11 @@ components:
               type: string
               example: DND
               description: Reason or tag for suppression (e.g., "DND", "Testing").
+            expiry_ts:
+              type: string
+              format: date-time
+              description: "(Optional) Enter the timestamp (ISO 8601 format) at which this suppression should automatically expire and the user should no longer be suppressed. If omitted, the suppression does not expire and remains in effect until manually removed."
+              example: "2025-08-15T16:25:16.302+05:30"
           type: object
           required:
             - distinct_id
@@ -4535,6 +4603,11 @@ components:
               type: string
               example: DND
               description: Reason or tag for suppression (e.g., "DND", "Testing").
+            expiry_ts:
+              type: string
+              format: date-time
+              description: "(Optional) Enter the timestamp (ISO 8601 format) at which this suppression should automatically expire and the user should no longer be suppressed. If omitted, the suppression does not expire and remains in effect until manually removed."
+              example: "2025-08-15T16:25:16.302+05:30"
           type: object
           required:
             - destination
