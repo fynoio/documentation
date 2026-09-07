@@ -225,8 +225,8 @@ paths:
           "status": 1,
           "channel": {
             "email": "john@example.com",
-            "sms": "+919876543210",
-            "whatsapp": "+919876543210",
+            "sms": "+4XXXXXXXXXXX",
+            "whatsapp": "+4XXXXXXXXXXX",
             "push": [
               {
                 "token": "device_token",
@@ -279,6 +279,19 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/profiles_distinct_id_body"
+            example:
+              distinct_id: "user_12345"
+              name: "John Doe"
+              timezone: "Asia/Kolkata"
+              status: 1
+              channel:
+                email: "john@example.com"
+                sms: "+4XXXXXXXXXXX"
+                whatsapp: "+4XXXXXXXXXXX"
+                push:
+                  - token: "device_token"
+                    integration_id: "push_integration"
+                    status: 1
         required: true
       responses:
         "200":
@@ -1064,11 +1077,18 @@ paths:
     get:
       tags:
         - Suppression List
-      summary: "Get Suppression List"
+      summary: "Get Users"
       description: |
-        The Suppression List API enables you to manage users who should be excluded from receiving communications on specific channels.
+        Retrieves a paginated list of suppressed users from the Fyno suppression list for the specified workspace.
 
-        This API enables you to retrieve the list of all suppressed users across various channels.
+        You can narrow the results using the optional `destination`, `channel`, and `distinct_id` filters, in addition to the required `limit`/`offset` pagination parameters.
+
+        Example request:
+
+        `GET {{API_URL}}/v1/{{WSID}}/suppressions?limit=10&offset=1`
+      security:
+        - ApiKeyAuth: []
+          WorkspaceIdAuth: []
       parameters:
         - name: WSID
           in: path
@@ -1081,27 +1101,49 @@ paths:
           example: FYXXXXXXXX
         - name: limit
           in: query
-          description: "(Optional) Enter the maximum number of suppression records to return in a single request. Defaults to 10 if not specified. Maximum allowed value is 100."
-          required: false
+          description: "Number of records to return per page."
+          required: true
           style: form
           explode: true
           schema:
             type: integer
-            default: 10
             minimum: 1
             maximum: 100
-          example: 50
+          example: 10
         - name: offset
           in: query
-          description: "(Optional) Enter the number of suppression records to skip before starting to return results. Use this along with `limit` to page through the full suppression list. Defaults to 0."
-          required: false
+          description: "Page offset for pagination (0-indexed)."
+          required: true
           style: form
           explode: true
           schema:
             type: integer
-            default: 0
             minimum: 0
-          example: 0
+          example: 1
+        - name: destination
+          in: query
+          description: "(Optional) Filter results by destination address (e.g. email or phone number). Example: `world@world.com`."
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: channel
+          in: query
+          description: "(Optional) Filter results by communication channel. For example: `sms`, `email`, `all`."
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: distinct_id
+          in: query
+          description: "(Optional) Filter results by the unique identifier of the user. Example: `world@world.com`."
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           $ref: "#/components/responses/SuppressionListSuccess"
@@ -1115,6 +1157,10 @@ paths:
         Add a user to the suppression list for a given channel.
 
         **Note:** If both `distinct_id` and `destination` are provided, `distinct_id` takes precedence, and `destination` is ignored.
+
+        Example request:
+
+        `POST {{API_URL}}/v1/{{WSID}}/suppressions`
       parameters:
         - name: WSID
           in: path
@@ -1130,14 +1176,25 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/add_suppression_list"
-            example:
-              destination: "919876543210"
-              channel: sms
-              event_type:
-                - marketing
-                - transactional
-                - otp
-              description: User complained about spam
+            examples:
+              suppress_by_distinct_id:
+                summary: Suppress by distinct_id (all event types)
+                value:
+                  distinct_id: "my-user-123"
+                  channel: sms
+                  description: DND
+                  destination: "+4XXXXXXXXXXX"
+              suppress_by_distinct_id_with_event_types:
+                summary: Suppress by distinct_id (specific event types)
+                value:
+                  distinct_id: "new user"
+                  channel: sms
+                  event_type:
+                    - marketing
+                    - transactional
+                    - otp
+                  description: DND
+                  destination: "+4XXXXXXXXXXX"
       responses:
         "200":
           $ref: "#/components/responses/SuppressionListUpdated"
@@ -1150,9 +1207,16 @@ paths:
         - Suppression List
       summary: "Delete User from Suppression List"
       description: |
-        Delete a suppression entry using its `_id`, `distinct_id`, `destination`.
+        Delete a suppression entry using its `_id`, or a combination of `distinct_id`/`destination` and `channel`.
 
-        **Note:** If all three values (`distinct_id`, `destination`, `_id`) are provided, `_id` takes precedence followed by `distinct_id`.
+        **Note:** 
+          > If **_id** is provided, it takes precedence over all other parameters.
+
+          > Otherwise, either distinct_id or destination must be provided. To remove suppression for a specific channel only, provide channel (e.g., unblock SMS while keeping WhatsApp suppressed for the same number).
+
+          > If channel is omitted, suppression is removed across all channels for the specified distinct_id or destination.
+
+          > If both distinct_id and destination are provided, distinct_id takes precedence and destination is ignored.
       parameters:
         - name: WSID
           in: path
@@ -1207,6 +1271,16 @@ components:
       x-fern-bearer:
         name: apiKey
         env: FYNO_API_KEY
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key for authentication, sent as the `x-api-key` header. Used by the Get Users (suppression list) endpoint.
+    WorkspaceIdAuth:
+      type: apiKey
+      in: header
+      name: workspace-id
+      description: The workspace identifier, sent as the `workspace-id` header. Used alongside `x-api-key` by the Get Users (suppression list) endpoint.
   responses:
     EventRequestAccepted:
       description: Request accepted successfully and it will be processed asynchronously.
@@ -1950,40 +2024,50 @@ components:
               - _message
               - status
     SuppressionListSuccess:
-      description: Suppression list fetched.
+      description: |
+        Returns an array of suppression records. Each record identifies the suppressed user by either `destination` (phone/email) or `distinct_id`, along with the `channel` it applies to (or `all` for every channel), and includes `event_type`/`suppression_event` when the suppression is scoped to specific event types rather than all events.
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              total:
-                type: integer
-                description: Total number of suppression records matching the request, across all pages.
-                example: 245
-              limit:
-                type: integer
-                description: The `limit` value used for this request.
-                example: 10
-              offset:
-                type: integer
-                description: The `offset` value used for this request.
-                example: 0
-              has_more:
-                type: boolean
-                description: Indicates whether more suppression records are available beyond this page.
-                example: true
-              data:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/fetch_suppression_list"
-            required:
-              - total
-              - limit
-              - offset
-              - has_more
-              - data
+            type: array
+            items:
+              "$ref": "#/components/schemas/fetch_suppression_list"
+            example:
+              - _id: "6a900475471421223a72798e"
+                channel: sms
+                destination: "9174XXXXXXXX"
+                created_at: "2026-08-27T15:03:41.534+05:30"
+                description: "Blocked by something"
+              - _id: "6a8d7644471421223a72798b"
+                distinct_id: "XXXXXX"
+                channel: sms
+                created_at: "2026-08-25T16:32:28.669+05:30"
+              - _id: "69d7375738cd6eace35b7bab"
+                description: "email bounced"
+                destination: "XXXXXXX@fyno.io"
+                channel: email
+                created_at: "2026-04-09T10:51:27.136+05:30"
+              - _id: "69c3d70ca164057a8e48e73d"
+                channel: email
+                destination: "XXXXX@gmail.com"
+                created_at: "2026-03-25T18:07:31.995+05:30"
+                description: "Blocked by something"
+              - _id: "69934cd36a670ae5010b69be"
+                created_at: "2026-02-16T22:28:59.330+05:30"
+                destination: "9198XXXXXXXX"
+                channel: sms
+                description: "user complained about spam"
+              - _id: "6985832a458d764bc439b127"
+                description: "Blocked by something"
+                event_type:
+                  - transactional
+                channel: all
+                created_at: "2026-02-06T11:29:06.028+05:30"
+                distinct_id: "XXXXXX"
+                suppression_event: []
     SuppressionListUpdated:
-      description: Suppression list updated.
+      description: |
+        Suppression list updated. `_message` reflects whether a new suppression record was created ("User has been added to the suppression!", with `_id` returned) or an existing record for that `distinct_id`/`destination` and `channel` was updated ("User record has been updated!", `_id` omitted).
       content:
         application/json:
           schema:
@@ -1993,15 +2077,14 @@ components:
                 type: string
               _id:
                 type: string
-                description: Unique identifier of the newly created suppression record. Use this ID to reference, update, or delete this specific record.
+                description: "(Optional) Unique identifier of the newly created suppression record. Use this ID to reference, update, or delete this specific record. Omitted when an existing suppression record was updated instead of created."
                 example: 68763be4b8cee01156d9fa8a
               _message:
                 type: string
-                example: User has been added to the suppression!
+                example: User record has been updated!
             type: object
             required:
               - status
-              - _id
               - _message
     SuppressionListDeleted:
       description: Suppression list updated.
@@ -2932,603 +3015,8 @@ components:
             (Optional) Enter the new timezone of the user. Must be a valid IANA
             timezone. For a list of possible values, please <a href="https://content.fyno.io/docs/files/timezones.json"
             target="_blank">click here</a>.
-          enum:
-            - Africa/Abidjan
-            - Africa/Accra
-            - Africa/Addis_Ababa
-            - Africa/Algiers
-            - Africa/Asmara
-            - Africa/Asmera
-            - Africa/Bamako
-            - Africa/Bangui
-            - Africa/Banjul
-            - Africa/Bissau
-            - Africa/Blantyre
-            - Africa/Brazzaville
-            - Africa/Bujumbura
-            - Africa/Cairo
-            - Africa/Casablanca
-            - Africa/Ceuta
-            - Africa/Conakry
-            - Africa/Dakar
-            - Africa/Dar_es_Salaam
-            - Africa/Djibouti
-            - Africa/Douala
-            - Africa/El_Aaiun
-            - Africa/Freetown
-            - Africa/Gaborone
-            - Africa/Harare
-            - Africa/Johannesburg
-            - Africa/Juba
-            - Africa/Kampala
-            - Africa/Khartoum
-            - Africa/Kigali
-            - Africa/Kinshasa
-            - Africa/Lagos
-            - Africa/Libreville
-            - Africa/Lome
-            - Africa/Luanda
-            - Africa/Lubumbashi
-            - Africa/Lusaka
-            - Africa/Malabo
-            - Africa/Maputo
-            - Africa/Maseru
-            - Africa/Mbabane
-            - Africa/Mogadishu
-            - Africa/Monrovia
-            - Africa/Nairobi
-            - Africa/Ndjamena
-            - Africa/Niamey
-            - Africa/Nouakchott
-            - Africa/Ouagadougou
-            - Africa/Porto-Novo
-            - Africa/Sao_Tome
-            - Africa/Timbuktu
-            - Africa/Tripoli
-            - Africa/Tunis
-            - Africa/Windhoek
-            - America/Adak
-            - America/Anchorage
-            - America/Anguilla
-            - America/Antigua
-            - America/Araguaina
-            - America/Argentina/Buenos_Aires
-            - America/Argentina/Catamarca
-            - America/Argentina/ComodRivadavia
-            - America/Argentina/Cordoba
-            - America/Argentina/Jujuy
-            - America/Argentina/La_Rioja
-            - America/Argentina/Mendoza
-            - America/Argentina/Rio_Gallegos
-            - America/Argentina/Salta
-            - America/Argentina/San_Juan
-            - America/Argentina/San_Luis
-            - America/Argentina/Tucuman
-            - America/Argentina/Ushuaia
-            - America/Aruba
-            - America/Asuncion
-            - America/Atikokan
-            - America/Atka
-            - America/Bahia
-            - America/Bahia_Banderas
-            - America/Barbados
-            - America/Belem
-            - America/Belize
-            - America/Blanc-Sablon
-            - America/Boa_Vista
-            - America/Bogota
-            - America/Boise
-            - America/Buenos_Aires
-            - America/Cambridge_Bay
-            - America/Campo_Grande
-            - America/Cancun
-            - America/Caracas
-            - America/Catamarca
-            - America/Cayenne
-            - America/Cayman
-            - America/Chicago
-            - America/Chihuahua
-            - America/Coral_Harbour
-            - America/Cordoba
-            - America/Costa_Rica
-            - America/Creston
-            - America/Cuiaba
-            - America/Curacao
-            - America/Danmarkshavn
-            - America/Dawson
-            - America/Dawson_Creek
-            - America/Denver
-            - America/Detroit
-            - America/Dominica
-            - America/Edmonton
-            - America/Eirunepe
-            - America/El_Salvador
-            - America/Ensenada
-            - America/Fort_Nelson
-            - America/Fort_Wayne
-            - America/Fortaleza
-            - America/Glace_Bay
-            - America/Godthab
-            - America/Goose_Bay
-            - America/Grand_Turk
-            - America/Grenada
-            - America/Guadeloupe
-            - America/Guatemala
-            - America/Guayaquil
-            - America/Guyana
-            - America/Halifax
-            - America/Havana
-            - America/Hermosillo
-            - America/Indiana/Indianapolis
-            - America/Indiana/Knox
-            - America/Indiana/Marengo
-            - America/Indiana/Petersburg
-            - America/Indiana/Tell_City
-            - America/Indiana/Vevay
-            - America/Indiana/Vincennes
-            - America/Indiana/Winamac
-            - America/Indianapolis
-            - America/Inuvik
-            - America/Iqaluit
-            - America/Jamaica
-            - America/Jujuy
-            - America/Juneau
-            - America/Kentucky/Louisville
-            - America/Kentucky/Monticello
-            - America/Knox_IN
-            - America/Kralendijk
-            - America/La_Paz
-            - America/Lima
-            - America/Los_Angeles
-            - America/Louisville
-            - America/Lower_Princes
-            - America/Maceio
-            - America/Managua
-            - America/Manaus
-            - America/Marigot
-            - America/Martinique
-            - America/Matamoros
-            - America/Mazatlan
-            - America/Mendoza
-            - America/Menominee
-            - America/Merida
-            - America/Metlakatla
-            - America/Mexico_City
-            - America/Miquelon
-            - America/Moncton
-            - America/Monterrey
-            - America/Montevideo
-            - America/Montreal
-            - America/Montserrat
-            - America/Nassau
-            - America/New_York
-            - America/Nipigon
-            - America/Nome
-            - America/Noronha
-            - America/North_Dakota/Beulah
-            - America/North_Dakota/Center
-            - America/North_Dakota/New_Salem
-            - America/Nuuk
-            - America/Ojinaga
-            - America/Panama
-            - America/Pangnirtung
-            - America/Paramaribo
-            - America/Phoenix
-            - America/Port-au-Prince
-            - America/Port_of_Spain
-            - America/Porto_Acre
-            - America/Porto_Velho
-            - America/Puerto_Rico
-            - America/Punta_Arenas
-            - America/Rainy_River
-            - America/Rankin_Inlet
-            - America/Recife
-            - America/Regina
-            - America/Resolute
-            - America/Rio_Branco
-            - America/Rosario
-            - America/Santa_Isabel
-            - America/Santarem
-            - America/Santiago
-            - America/Santo_Domingo
-            - America/Sao_Paulo
-            - America/Scoresbysund
-            - America/Shiprock
-            - America/Sitka
-            - America/St_Barthelemy
-            - America/St_Johns
-            - America/St_Kitts
-            - America/St_Lucia
-            - America/St_Thomas
-            - America/St_Vincent
-            - America/Swift_Current
-            - America/Tegucigalpa
-            - America/Thule
-            - America/Thunder_Bay
-            - America/Tijuana
-            - America/Toronto
-            - America/Tortola
-            - America/Vancouver
-            - America/Virgin
-            - America/Whitehorse
-            - America/Winnipeg
-            - America/Yakutat
-            - America/Yellowknife
-            - Antarctica/Casey
-            - Antarctica/Davis
-            - Antarctica/DumontDUrville
-            - Antarctica/Macquarie
-            - Antarctica/Mawson
-            - Antarctica/McMurdo
-            - Antarctica/Palmer
-            - Antarctica/Rothera
-            - Antarctica/South_Pole
-            - Antarctica/Syowa
-            - Antarctica/Troll
-            - Antarctica/Vostok
-            - Arctic/Longyearbyen
-            - Asia/Aden
-            - Asia/Almaty
-            - Asia/Amman
-            - Asia/Anadyr
-            - Asia/Aqtau
-            - Asia/Aqtobe
-            - Asia/Ashgabat
-            - Asia/Ashkhabad
-            - Asia/Atyrau
-            - Asia/Baghdad
-            - Asia/Bahrain
-            - Asia/Baku
-            - Asia/Bangkok
-            - Asia/Barnaul
-            - Asia/Beirut
-            - Asia/Bishkek
-            - Asia/Brunei
-            - Asia/Calcutta
-            - Asia/Chita
-            - Asia/Choibalsan
-            - Asia/Chongqing
-            - Asia/Chungking
-            - Asia/Colombo
-            - Asia/Dacca
-            - Asia/Damascus
-            - Asia/Dhaka
-            - Asia/Dili
-            - Asia/Dubai
-            - Asia/Dushanbe
-            - Asia/Famagusta
-            - Asia/Gaza
-            - Asia/Harbin
-            - Asia/Hebron
-            - Asia/Ho_Chi_Minh
-            - Asia/Hong_Kong
-            - Asia/Hovd
-            - Asia/Irkutsk
-            - Asia/Istanbul
-            - Asia/Jakarta
-            - Asia/Jayapura
-            - Asia/Jerusalem
-            - Asia/Kabul
-            - Asia/Kamchatka
-            - Asia/Karachi
-            - Asia/Kashgar
-            - Asia/Kathmandu
-            - Asia/Katmandu
-            - Asia/Khandyga
-            - Asia/Kolkata
-            - Asia/Krasnoyarsk
-            - Asia/Kuala_Lumpur
-            - Asia/Kuching
-            - Asia/Kuwait
-            - Asia/Macao
-            - Asia/Macau
-            - Asia/Magadan
-            - Asia/Makassar
-            - Asia/Manila
-            - Asia/Muscat
-            - Asia/Nicosia
-            - Asia/Novokuznetsk
-            - Asia/Novosibirsk
-            - Asia/Omsk
-            - Asia/Oral
-            - Asia/Phnom_Penh
-            - Asia/Pontianak
-            - Asia/Pyongyang
-            - Asia/Qatar
-            - Asia/Qostanay
-            - Asia/Qyzylorda
-            - Asia/Rangoon
-            - Asia/Riyadh
-            - Asia/Saigon
-            - Asia/Sakhalin
-            - Asia/Samarkand
-            - Asia/Seoul
-            - Asia/Shanghai
-            - Asia/Singapore
-            - Asia/Srednekolymsk
-            - Asia/Taipei
-            - Asia/Tashkent
-            - Asia/Tbilisi
-            - Asia/Tehran
-            - Asia/Tel_Aviv
-            - Asia/Thimbu
-            - Asia/Thimphu
-            - Asia/Tokyo
-            - Asia/Tomsk
-            - Asia/Ujung_Pandang
-            - Asia/Ulaanbaatar
-            - Asia/Ulan_Bator
-            - Asia/Urumqi
-            - Asia/Ust-Nera
-            - Asia/Vientiane
-            - Asia/Vladivostok
-            - Asia/Yakutsk
-            - Asia/Yangon
-            - Asia/Yekaterinburg
-            - Asia/Yerevan
-            - Atlantic/Azores
-            - Atlantic/Bermuda
-            - Atlantic/Canary
-            - Atlantic/Cape_Verde
-            - Atlantic/Faeroe
-            - Atlantic/Faroe
-            - Atlantic/Jan_Mayen
-            - Atlantic/Madeira
-            - Atlantic/Reykjavik
-            - Atlantic/South_Georgia
-            - Atlantic/St_Helena
-            - Atlantic/Stanley
-            - Australia/ACT
-            - Australia/Adelaide
-            - Australia/Brisbane
-            - Australia/Broken_Hill
-            - Australia/Canberra
-            - Australia/Currie
-            - Australia/Darwin
-            - Australia/Eucla
-            - Australia/Hobart
-            - Australia/LHI
-            - Australia/Lindeman
-            - Australia/Lord_Howe
-            - Australia/Melbourne
-            - Australia/North
-            - Australia/NSW
-            - Australia/Perth
-            - Australia/Queensland
-            - Australia/South
-            - Australia/Sydney
-            - Australia/Tasmania
-            - Australia/Victoria
-            - Australia/West
-            - Australia/Yancowinna
-            - Brazil/Acre
-            - Brazil/DeNoronha
-            - Brazil/East
-            - Brazil/West
-            - Canada/Atlantic
-            - Canada/Central
-            - Canada/Eastern
-            - Canada/Mountain
-            - Canada/Newfoundland
-            - Canada/Pacific
-            - Canada/Saskatchewan
-            - Canada/Yukon
-            - CET
-            - Chile/Continental
-            - Chile/EasterIsland
-            - CST6CDT
-            - Cuba
-            - EET
-            - Egypt
-            - Eire
-            - EST
-            - EST5EDT
-            - Etc/GMT+0
-            - Etc/GMT+1
-            - Etc/GMT+10
-            - Etc/GMT+11
-            - Etc/GMT+12
-            - Etc/GMT+2
-            - Etc/GMT+3
-            - Etc/GMT+4
-            - Etc/GMT+5
-            - Etc/GMT+6
-            - Etc/GMT+7
-            - Etc/GMT+8
-            - Etc/GMT+9
-            - Etc/GMT
-            - Etc/GMT-0
-            - Etc/GMT-1
-            - Etc/GMT-10
-            - Etc/GMT-11
-            - Etc/GMT-12
-            - Etc/GMT-13
-            - Etc/GMT-14
-            - Etc/GMT-2
-            - Etc/GMT-3
-            - Etc/GMT-4
-            - Etc/GMT-5
-            - Etc/GMT-6
-            - Etc/GMT-7
-            - Etc/GMT-8
-            - Etc/GMT-9
-            - Etc/GMT0
-            - Etc/Greenwich
-            - Etc/UCT
-            - Etc/Universal
-            - Etc/UTC
-            - Etc/Zulu
-            - Europe/Amsterdam
-            - Europe/Andorra
-            - Europe/Astrakhan
-            - Europe/Athens
-            - Europe/Belfast
-            - Europe/Belgrade
-            - Europe/Berlin
-            - Europe/Bratislava
-            - Europe/Brussels
-            - Europe/Bucharest
-            - Europe/Budapest
-            - Europe/Busingen
-            - Europe/Chisinau
-            - Europe/Copenhagen
-            - Europe/Dublin
-            - Europe/Gibraltar
-            - Europe/Guernsey
-            - Europe/Helsinki
-            - Europe/Isle_of_Man
-            - Europe/Istanbul
-            - Europe/Jersey
-            - Europe/Kaliningrad
-            - Europe/Kiev
-            - Europe/Kirov
-            - Europe/Lisbon
-            - Europe/Ljubljana
-            - Europe/London
-            - Europe/Luxembourg
-            - Europe/Madrid
-            - Europe/Malta
-            - Europe/Mariehamn
-            - Europe/Minsk
-            - Europe/Monaco
-            - Europe/Moscow
-            - Europe/Nicosia
-            - Europe/Oslo
-            - Europe/Paris
-            - Europe/Podgorica
-            - Europe/Prague
-            - Europe/Riga
-            - Europe/Rome
-            - Europe/Samara
-            - Europe/San_Marino
-            - Europe/Sarajevo
-            - Europe/Saratov
-            - Europe/Simferopol
-            - Europe/Skopje
-            - Europe/Sofia
-            - Europe/Stockholm
-            - Europe/Tallinn
-            - Europe/Tirane
-            - Europe/Tiraspol
-            - Europe/Ulyanovsk
-            - Europe/Uzhgorod
-            - Europe/Vaduz
-            - Europe/Vatican
-            - Europe/Vienna
-            - Europe/Vilnius
-            - Europe/Volgograd
-            - Europe/Warsaw
-            - Europe/Zagreb
-            - Europe/Zaporozhye
-            - Europe/Zurich
-            - GB
-            - GB-Eire
-            - GMT+0
-            - GMT
-            - GMT-0
-            - GMT0
-            - Greenwich
-            - Hongkong
-            - HST
-            - Iceland
-            - Indian/Antananarivo
-            - Indian/Chagos
-            - Indian/Christmas
-            - Indian/Cocos
-            - Indian/Comoro
-            - Indian/Kerguelen
-            - Indian/Mahe
-            - Indian/Maldives
-            - Indian/Mauritius
-            - Indian/Mayotte
-            - Indian/Reunion
-            - Iran
-            - Israel
-            - Jamaica
-            - Japan
-            - Kwajalein
-            - Libya
-            - MET
-            - Mexico/BajaNorte
-            - Mexico/BajaSur
-            - Mexico/General
-            - MST
-            - MST7MDT
-            - Navajo
-            - NZ
-            - NZ-CHAT
-            - Pacific/Apia
-            - Pacific/Auckland
-            - Pacific/Bougainville
-            - Pacific/Chatham
-            - Pacific/Chuuk
-            - Pacific/Easter
-            - Pacific/Efate
-            - Pacific/Enderbury
-            - Pacific/Fakaofo
-            - Pacific/Fiji
-            - Pacific/Funafuti
-            - Pacific/Galapagos
-            - Pacific/Gambier
-            - Pacific/Guadalcanal
-            - Pacific/Guam
-            - Pacific/Honolulu
-            - Pacific/Johnston
-            - Pacific/Kanton
-            - Pacific/Kiritimati
-            - Pacific/Kosrae
-            - Pacific/Kwajalein
-            - Pacific/Majuro
-            - Pacific/Marquesas
-            - Pacific/Midway
-            - Pacific/Nauru
-            - Pacific/Niue
-            - Pacific/Norfolk
-            - Pacific/Noumea
-            - Pacific/Pago_Pago
-            - Pacific/Palau
-            - Pacific/Pitcairn
-            - Pacific/Pohnpei
-            - Pacific/Ponape
-            - Pacific/Port_Moresby
-            - Pacific/Rarotonga
-            - Pacific/Saipan
-            - Pacific/Samoa
-            - Pacific/Tahiti
-            - Pacific/Tarawa
-            - Pacific/Tongatapu
-            - Pacific/Truk
-            - Pacific/Wake
-            - Pacific/Wallis
-            - Pacific/Yap
-            - Poland
-            - Portugal
-            - PRC
-            - PST8PDT
-            - ROC
-            - ROK
-            - Singapore
-            - Turkey
-            - UCT
-            - Universal
-            - US/Alaska
-            - US/Aleutian
-            - US/Arizona
-            - US/Central
-            - US/East-Indiana
-            - US/Eastern
-            - US/Hawaii
-            - US/Indiana-Starke
-            - US/Michigan
-            - US/Mountain
-            - US/Pacific
-            - US/Samoa
-            - UTC
-            - W-SU
-            - WET
-            - Zulu
-          example: Asia/Kolkata
           type: string
+          example: Asia/Kolkata
       type: object
     set_user_property:
       properties:
@@ -3909,603 +3397,8 @@ components:
             (Optional) Enter the timezone of the user. For a list of possible
             values, please <a href="https://content.fyno.io/docs/files/timezones.json"
             target="_blank">click here</a>.
-          enum:
-            - Africa/Abidjan
-            - Africa/Accra
-            - Africa/Addis_Ababa
-            - Africa/Algiers
-            - Africa/Asmara
-            - Africa/Asmera
-            - Africa/Bamako
-            - Africa/Bangui
-            - Africa/Banjul
-            - Africa/Bissau
-            - Africa/Blantyre
-            - Africa/Brazzaville
-            - Africa/Bujumbura
-            - Africa/Cairo
-            - Africa/Casablanca
-            - Africa/Ceuta
-            - Africa/Conakry
-            - Africa/Dakar
-            - Africa/Dar_es_Salaam
-            - Africa/Djibouti
-            - Africa/Douala
-            - Africa/El_Aaiun
-            - Africa/Freetown
-            - Africa/Gaborone
-            - Africa/Harare
-            - Africa/Johannesburg
-            - Africa/Juba
-            - Africa/Kampala
-            - Africa/Khartoum
-            - Africa/Kigali
-            - Africa/Kinshasa
-            - Africa/Lagos
-            - Africa/Libreville
-            - Africa/Lome
-            - Africa/Luanda
-            - Africa/Lubumbashi
-            - Africa/Lusaka
-            - Africa/Malabo
-            - Africa/Maputo
-            - Africa/Maseru
-            - Africa/Mbabane
-            - Africa/Mogadishu
-            - Africa/Monrovia
-            - Africa/Nairobi
-            - Africa/Ndjamena
-            - Africa/Niamey
-            - Africa/Nouakchott
-            - Africa/Ouagadougou
-            - Africa/Porto-Novo
-            - Africa/Sao_Tome
-            - Africa/Timbuktu
-            - Africa/Tripoli
-            - Africa/Tunis
-            - Africa/Windhoek
-            - America/Adak
-            - America/Anchorage
-            - America/Anguilla
-            - America/Antigua
-            - America/Araguaina
-            - America/Argentina/Buenos_Aires
-            - America/Argentina/Catamarca
-            - America/Argentina/ComodRivadavia
-            - America/Argentina/Cordoba
-            - America/Argentina/Jujuy
-            - America/Argentina/La_Rioja
-            - America/Argentina/Mendoza
-            - America/Argentina/Rio_Gallegos
-            - America/Argentina/Salta
-            - America/Argentina/San_Juan
-            - America/Argentina/San_Luis
-            - America/Argentina/Tucuman
-            - America/Argentina/Ushuaia
-            - America/Aruba
-            - America/Asuncion
-            - America/Atikokan
-            - America/Atka
-            - America/Bahia
-            - America/Bahia_Banderas
-            - America/Barbados
-            - America/Belem
-            - America/Belize
-            - America/Blanc-Sablon
-            - America/Boa_Vista
-            - America/Bogota
-            - America/Boise
-            - America/Buenos_Aires
-            - America/Cambridge_Bay
-            - America/Campo_Grande
-            - America/Cancun
-            - America/Caracas
-            - America/Catamarca
-            - America/Cayenne
-            - America/Cayman
-            - America/Chicago
-            - America/Chihuahua
-            - America/Coral_Harbour
-            - America/Cordoba
-            - America/Costa_Rica
-            - America/Creston
-            - America/Cuiaba
-            - America/Curacao
-            - America/Danmarkshavn
-            - America/Dawson
-            - America/Dawson_Creek
-            - America/Denver
-            - America/Detroit
-            - America/Dominica
-            - America/Edmonton
-            - America/Eirunepe
-            - America/El_Salvador
-            - America/Ensenada
-            - America/Fort_Nelson
-            - America/Fort_Wayne
-            - America/Fortaleza
-            - America/Glace_Bay
-            - America/Godthab
-            - America/Goose_Bay
-            - America/Grand_Turk
-            - America/Grenada
-            - America/Guadeloupe
-            - America/Guatemala
-            - America/Guayaquil
-            - America/Guyana
-            - America/Halifax
-            - America/Havana
-            - America/Hermosillo
-            - America/Indiana/Indianapolis
-            - America/Indiana/Knox
-            - America/Indiana/Marengo
-            - America/Indiana/Petersburg
-            - America/Indiana/Tell_City
-            - America/Indiana/Vevay
-            - America/Indiana/Vincennes
-            - America/Indiana/Winamac
-            - America/Indianapolis
-            - America/Inuvik
-            - America/Iqaluit
-            - America/Jamaica
-            - America/Jujuy
-            - America/Juneau
-            - America/Kentucky/Louisville
-            - America/Kentucky/Monticello
-            - America/Knox_IN
-            - America/Kralendijk
-            - America/La_Paz
-            - America/Lima
-            - America/Los_Angeles
-            - America/Louisville
-            - America/Lower_Princes
-            - America/Maceio
-            - America/Managua
-            - America/Manaus
-            - America/Marigot
-            - America/Martinique
-            - America/Matamoros
-            - America/Mazatlan
-            - America/Mendoza
-            - America/Menominee
-            - America/Merida
-            - America/Metlakatla
-            - America/Mexico_City
-            - America/Miquelon
-            - America/Moncton
-            - America/Monterrey
-            - America/Montevideo
-            - America/Montreal
-            - America/Montserrat
-            - America/Nassau
-            - America/New_York
-            - America/Nipigon
-            - America/Nome
-            - America/Noronha
-            - America/North_Dakota/Beulah
-            - America/North_Dakota/Center
-            - America/North_Dakota/New_Salem
-            - America/Nuuk
-            - America/Ojinaga
-            - America/Panama
-            - America/Pangnirtung
-            - America/Paramaribo
-            - America/Phoenix
-            - America/Port-au-Prince
-            - America/Port_of_Spain
-            - America/Porto_Acre
-            - America/Porto_Velho
-            - America/Puerto_Rico
-            - America/Punta_Arenas
-            - America/Rainy_River
-            - America/Rankin_Inlet
-            - America/Recife
-            - America/Regina
-            - America/Resolute
-            - America/Rio_Branco
-            - America/Rosario
-            - America/Santa_Isabel
-            - America/Santarem
-            - America/Santiago
-            - America/Santo_Domingo
-            - America/Sao_Paulo
-            - America/Scoresbysund
-            - America/Shiprock
-            - America/Sitka
-            - America/St_Barthelemy
-            - America/St_Johns
-            - America/St_Kitts
-            - America/St_Lucia
-            - America/St_Thomas
-            - America/St_Vincent
-            - America/Swift_Current
-            - America/Tegucigalpa
-            - America/Thule
-            - America/Thunder_Bay
-            - America/Tijuana
-            - America/Toronto
-            - America/Tortola
-            - America/Vancouver
-            - America/Virgin
-            - America/Whitehorse
-            - America/Winnipeg
-            - America/Yakutat
-            - America/Yellowknife
-            - Antarctica/Casey
-            - Antarctica/Davis
-            - Antarctica/DumontDUrville
-            - Antarctica/Macquarie
-            - Antarctica/Mawson
-            - Antarctica/McMurdo
-            - Antarctica/Palmer
-            - Antarctica/Rothera
-            - Antarctica/South_Pole
-            - Antarctica/Syowa
-            - Antarctica/Troll
-            - Antarctica/Vostok
-            - Arctic/Longyearbyen
-            - Asia/Aden
-            - Asia/Almaty
-            - Asia/Amman
-            - Asia/Anadyr
-            - Asia/Aqtau
-            - Asia/Aqtobe
-            - Asia/Ashgabat
-            - Asia/Ashkhabad
-            - Asia/Atyrau
-            - Asia/Baghdad
-            - Asia/Bahrain
-            - Asia/Baku
-            - Asia/Bangkok
-            - Asia/Barnaul
-            - Asia/Beirut
-            - Asia/Bishkek
-            - Asia/Brunei
-            - Asia/Calcutta
-            - Asia/Chita
-            - Asia/Choibalsan
-            - Asia/Chongqing
-            - Asia/Chungking
-            - Asia/Colombo
-            - Asia/Dacca
-            - Asia/Damascus
-            - Asia/Dhaka
-            - Asia/Dili
-            - Asia/Dubai
-            - Asia/Dushanbe
-            - Asia/Famagusta
-            - Asia/Gaza
-            - Asia/Harbin
-            - Asia/Hebron
-            - Asia/Ho_Chi_Minh
-            - Asia/Hong_Kong
-            - Asia/Hovd
-            - Asia/Irkutsk
-            - Asia/Istanbul
-            - Asia/Jakarta
-            - Asia/Jayapura
-            - Asia/Jerusalem
-            - Asia/Kabul
-            - Asia/Kamchatka
-            - Asia/Karachi
-            - Asia/Kashgar
-            - Asia/Kathmandu
-            - Asia/Katmandu
-            - Asia/Khandyga
-            - Asia/Kolkata
-            - Asia/Krasnoyarsk
-            - Asia/Kuala_Lumpur
-            - Asia/Kuching
-            - Asia/Kuwait
-            - Asia/Macao
-            - Asia/Macau
-            - Asia/Magadan
-            - Asia/Makassar
-            - Asia/Manila
-            - Asia/Muscat
-            - Asia/Nicosia
-            - Asia/Novokuznetsk
-            - Asia/Novosibirsk
-            - Asia/Omsk
-            - Asia/Oral
-            - Asia/Phnom_Penh
-            - Asia/Pontianak
-            - Asia/Pyongyang
-            - Asia/Qatar
-            - Asia/Qostanay
-            - Asia/Qyzylorda
-            - Asia/Rangoon
-            - Asia/Riyadh
-            - Asia/Saigon
-            - Asia/Sakhalin
-            - Asia/Samarkand
-            - Asia/Seoul
-            - Asia/Shanghai
-            - Asia/Singapore
-            - Asia/Srednekolymsk
-            - Asia/Taipei
-            - Asia/Tashkent
-            - Asia/Tbilisi
-            - Asia/Tehran
-            - Asia/Tel_Aviv
-            - Asia/Thimbu
-            - Asia/Thimphu
-            - Asia/Tokyo
-            - Asia/Tomsk
-            - Asia/Ujung_Pandang
-            - Asia/Ulaanbaatar
-            - Asia/Ulan_Bator
-            - Asia/Urumqi
-            - Asia/Ust-Nera
-            - Asia/Vientiane
-            - Asia/Vladivostok
-            - Asia/Yakutsk
-            - Asia/Yangon
-            - Asia/Yekaterinburg
-            - Asia/Yerevan
-            - Atlantic/Azores
-            - Atlantic/Bermuda
-            - Atlantic/Canary
-            - Atlantic/Cape_Verde
-            - Atlantic/Faeroe
-            - Atlantic/Faroe
-            - Atlantic/Jan_Mayen
-            - Atlantic/Madeira
-            - Atlantic/Reykjavik
-            - Atlantic/South_Georgia
-            - Atlantic/St_Helena
-            - Atlantic/Stanley
-            - Australia/ACT
-            - Australia/Adelaide
-            - Australia/Brisbane
-            - Australia/Broken_Hill
-            - Australia/Canberra
-            - Australia/Currie
-            - Australia/Darwin
-            - Australia/Eucla
-            - Australia/Hobart
-            - Australia/LHI
-            - Australia/Lindeman
-            - Australia/Lord_Howe
-            - Australia/Melbourne
-            - Australia/North
-            - Australia/NSW
-            - Australia/Perth
-            - Australia/Queensland
-            - Australia/South
-            - Australia/Sydney
-            - Australia/Tasmania
-            - Australia/Victoria
-            - Australia/West
-            - Australia/Yancowinna
-            - Brazil/Acre
-            - Brazil/DeNoronha
-            - Brazil/East
-            - Brazil/West
-            - Canada/Atlantic
-            - Canada/Central
-            - Canada/Eastern
-            - Canada/Mountain
-            - Canada/Newfoundland
-            - Canada/Pacific
-            - Canada/Saskatchewan
-            - Canada/Yukon
-            - CET
-            - Chile/Continental
-            - Chile/EasterIsland
-            - CST6CDT
-            - Cuba
-            - EET
-            - Egypt
-            - Eire
-            - EST
-            - EST5EDT
-            - Etc/GMT+0
-            - Etc/GMT+1
-            - Etc/GMT+10
-            - Etc/GMT+11
-            - Etc/GMT+12
-            - Etc/GMT+2
-            - Etc/GMT+3
-            - Etc/GMT+4
-            - Etc/GMT+5
-            - Etc/GMT+6
-            - Etc/GMT+7
-            - Etc/GMT+8
-            - Etc/GMT+9
-            - Etc/GMT
-            - Etc/GMT-0
-            - Etc/GMT-1
-            - Etc/GMT-10
-            - Etc/GMT-11
-            - Etc/GMT-12
-            - Etc/GMT-13
-            - Etc/GMT-14
-            - Etc/GMT-2
-            - Etc/GMT-3
-            - Etc/GMT-4
-            - Etc/GMT-5
-            - Etc/GMT-6
-            - Etc/GMT-7
-            - Etc/GMT-8
-            - Etc/GMT-9
-            - Etc/GMT0
-            - Etc/Greenwich
-            - Etc/UCT
-            - Etc/Universal
-            - Etc/UTC
-            - Etc/Zulu
-            - Europe/Amsterdam
-            - Europe/Andorra
-            - Europe/Astrakhan
-            - Europe/Athens
-            - Europe/Belfast
-            - Europe/Belgrade
-            - Europe/Berlin
-            - Europe/Bratislava
-            - Europe/Brussels
-            - Europe/Bucharest
-            - Europe/Budapest
-            - Europe/Busingen
-            - Europe/Chisinau
-            - Europe/Copenhagen
-            - Europe/Dublin
-            - Europe/Gibraltar
-            - Europe/Guernsey
-            - Europe/Helsinki
-            - Europe/Isle_of_Man
-            - Europe/Istanbul
-            - Europe/Jersey
-            - Europe/Kaliningrad
-            - Europe/Kiev
-            - Europe/Kirov
-            - Europe/Lisbon
-            - Europe/Ljubljana
-            - Europe/London
-            - Europe/Luxembourg
-            - Europe/Madrid
-            - Europe/Malta
-            - Europe/Mariehamn
-            - Europe/Minsk
-            - Europe/Monaco
-            - Europe/Moscow
-            - Europe/Nicosia
-            - Europe/Oslo
-            - Europe/Paris
-            - Europe/Podgorica
-            - Europe/Prague
-            - Europe/Riga
-            - Europe/Rome
-            - Europe/Samara
-            - Europe/San_Marino
-            - Europe/Sarajevo
-            - Europe/Saratov
-            - Europe/Simferopol
-            - Europe/Skopje
-            - Europe/Sofia
-            - Europe/Stockholm
-            - Europe/Tallinn
-            - Europe/Tirane
-            - Europe/Tiraspol
-            - Europe/Ulyanovsk
-            - Europe/Uzhgorod
-            - Europe/Vaduz
-            - Europe/Vatican
-            - Europe/Vienna
-            - Europe/Vilnius
-            - Europe/Volgograd
-            - Europe/Warsaw
-            - Europe/Zagreb
-            - Europe/Zaporozhye
-            - Europe/Zurich
-            - GB
-            - GB-Eire
-            - GMT+0
-            - GMT
-            - GMT-0
-            - GMT0
-            - Greenwich
-            - Hongkong
-            - HST
-            - Iceland
-            - Indian/Antananarivo
-            - Indian/Chagos
-            - Indian/Christmas
-            - Indian/Cocos
-            - Indian/Comoro
-            - Indian/Kerguelen
-            - Indian/Mahe
-            - Indian/Maldives
-            - Indian/Mauritius
-            - Indian/Mayotte
-            - Indian/Reunion
-            - Iran
-            - Israel
-            - Jamaica
-            - Japan
-            - Kwajalein
-            - Libya
-            - MET
-            - Mexico/BajaNorte
-            - Mexico/BajaSur
-            - Mexico/General
-            - MST
-            - MST7MDT
-            - Navajo
-            - NZ
-            - NZ-CHAT
-            - Pacific/Apia
-            - Pacific/Auckland
-            - Pacific/Bougainville
-            - Pacific/Chatham
-            - Pacific/Chuuk
-            - Pacific/Easter
-            - Pacific/Efate
-            - Pacific/Enderbury
-            - Pacific/Fakaofo
-            - Pacific/Fiji
-            - Pacific/Funafuti
-            - Pacific/Galapagos
-            - Pacific/Gambier
-            - Pacific/Guadalcanal
-            - Pacific/Guam
-            - Pacific/Honolulu
-            - Pacific/Johnston
-            - Pacific/Kanton
-            - Pacific/Kiritimati
-            - Pacific/Kosrae
-            - Pacific/Kwajalein
-            - Pacific/Majuro
-            - Pacific/Marquesas
-            - Pacific/Midway
-            - Pacific/Nauru
-            - Pacific/Niue
-            - Pacific/Norfolk
-            - Pacific/Noumea
-            - Pacific/Pago_Pago
-            - Pacific/Palau
-            - Pacific/Pitcairn
-            - Pacific/Pohnpei
-            - Pacific/Ponape
-            - Pacific/Port_Moresby
-            - Pacific/Rarotonga
-            - Pacific/Saipan
-            - Pacific/Samoa
-            - Pacific/Tahiti
-            - Pacific/Tarawa
-            - Pacific/Tongatapu
-            - Pacific/Truk
-            - Pacific/Wake
-            - Pacific/Wallis
-            - Pacific/Yap
-            - Poland
-            - Portugal
-            - PRC
-            - PST8PDT
-            - ROC
-            - ROK
-            - Singapore
-            - Turkey
-            - UCT
-            - Universal
-            - US/Alaska
-            - US/Aleutian
-            - US/Arizona
-            - US/Central
-            - US/East-Indiana
-            - US/Eastern
-            - US/Hawaii
-            - US/Indiana-Starke
-            - US/Michigan
-            - US/Mountain
-            - US/Pacific
-            - US/Samoa
-            - UTC
-            - W-SU
-            - WET
-            - Zulu
-          example: Asia/Kolkata
           type: string
+          example: Asia/Kolkata
       required:
         - distinct_id
       type: object
@@ -4518,15 +3411,15 @@ components:
         destination:
           type: string
           example: 919XXXXXXXX
-          description: Phone number or email of the suppressed user
+          description: "Phone number or email of the suppressed user. Present when the record was created using `destination` instead of `distinct_id`."
         distinct_id:
           type: string
           example: XXXX-XXX-XXXX
-          description: Unique identifier (used as an alternative to destination)
+          description: "The unique identifier of the suppressed user, if applicable. Present when the record was created using `distinct_id` instead of `destination`."
         channel:
           type: string
           example: sms
-          description: Communication channel (e.g., sms, whatsapp, email)
+          description: "Communication channel (e.g., sms, whatsapp, email). Set to `all` when the suppression applies across every channel."
         description:
           type: string
           example: DND
@@ -4539,6 +3432,22 @@ components:
           type: string
           example: "2025-07-15T16:25:16.302+05:30"
           description: Optional timestamp for expiration of suppression
+        event_type:
+          type: array
+          description: "(Optional) The event types this suppression is scoped to (`marketing`, `transactional`, `otp`). Omitted when the suppression applies to all event types."
+          items:
+            type: string
+            enum:
+              - marketing
+              - transactional
+              - otp
+          example: ["transactional"]
+        suppression_event:
+          type: array
+          description: "(Optional) List of specific notification events tied to this suppression record, when applicable."
+          items:
+            type: string
+          example: []
       type: object
     add_suppression_list:
       oneOf:
