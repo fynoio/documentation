@@ -9,9 +9,9 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 ## Overview
 
-The SMS External Templates page provides a centralized view of all SMS templates registered on the TRAI Distributed Ledger Technology (DLT) platform and linked to your workspace. 
+The SMS External Templates page provides a centralized view of all SMS templates registered on the TRAI Distributed Ledger Technology (DLT) platform and linked to your workspace.
 
-> **IMPORTANT NOT**E: Under the Telecom Commercial Communications Customer Preference (TCCCP) Regulations implemented by the Telecom Regulatory Authority of India (TRAI) in April 2021, all SMS messages sent by Principal Entities (PEs) must have their templates registered on the DLT platform, a blockchain-based system designed to monitor and prevent unsolicited commercial communications.
+> **IMPORTANT NOTE**: Under the Telecom Commercial Communications Customer Preference (TCCCP) Regulations implemented by the Telecom Regulatory Authority of India (TRAI) in April 2021, all SMS messages sent by Principal Entities (PEs) must have their templates registered on the DLT platform, a blockchain-based system designed to monitor and prevent unsolicited commercial communications.
 
 From this screen, you can:
 - View all templates across connected DLT providers.
@@ -21,8 +21,29 @@ From this screen, you can:
 - Save templates as drafts before submitting them.
 - Sync templates that already exist in your DLT account.
 
+Once approved, the template can be used to create a Fyno Template, which can then be used in Notification Events, Workflows etc.
+
+### SMS Template View
+
 Each row in the list represents a single DLT template and shows its current status in Fyno.
-- Once approved, the template can be used to create a Fyno Template, which can then be used in Notification Events, Workflows etc.
+
+| Column | Description |
+|---|---|
+| Name / ID | Template name, with the DLT-assigned template ID shown beneath it. |
+| Status | Current approval state — see status values below. |
+| Last Synced | When the template was last synced with the DLT provider. |
+| DLT Provider | The connected DLT operator the template is registered with (e.g., Vodafone Idea). |
+| Type | The template's classification — Transactional, Promotional, Service Implicit, or Service Explicit. |
+
+**Status values observed in the product:**
+- **Saved As Draft** — created but not yet sent to the DLT provider.
+- **Pending** — sent to the provider and awaiting approval.
+- **Sent to provider for approval** — shown in the template editor header once submitted.
+- **Rejected** — the DLT provider declined the template.
+
+> **NOTE**: The exact label used for an approved/live template wasn't captured in the screenshots reviewed for this documentation. Confirm the terminology before publishing.
+
+Use **Sync** to pull templates that already exist in your DLT account into Fyno, and **Create** to open the template creation dialog. The listing also supports search and filtering by Status, DLT Integration, and Type.
 
 ## Variables
 
@@ -49,6 +70,9 @@ Approved Variable Tags:
 ```
 
 All existing templates must be reviewed and updated to comply with these mandatory variable tagging norms.
+
+> **NOTE — FLAG FOR REVIEW**: The template editor's SMS Content field uses numbered placeholders — ```{{1}}```, ```{{2}}```, ```{{3}}``` — rather than the ```{#numeric#}``` / ```{#alphanumeric#}``` / ```{#url#}``` DLT tag format shown above. Confirm with product whether ```{{n}}``` maps to a DLT tag internally at submission time, or whether this section needs updating to reflect the current tagging mechanism.
+
 > **Examples**
 > OTP (Numeric Variable): Your OTP is ```{#var#}```. Do not share it with anyone. (Example value: 483921).
 > Numeric Value (Transaction/Amount): Your payment of ₹```{#var#}``` has been successfully processed. (Example value: 1500).
@@ -105,7 +129,7 @@ A new entry appears when:
 - Variables are added or removed.
 - Buttons or links are updated.
 - Media is changed (image, video, document, etc.)
-
-A new language is added.
+- A new language is added.
 - The template is resubmitted after rejection.
-- This is useful when multiple team members work on the same template.
+
+This is useful when multiple team members work on the same template.

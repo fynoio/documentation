@@ -1068,7 +1068,7 @@ paths:
       description: |
         The Suppression List API enables you to manage users who should be excluded from receiving communications on specific channels.
 
-        This API enables you to retrieve the list of all suppressed users across various channels. Results are paginated; use the `limit` and `offset` query parameters to page through the full list.
+        This API enables you to retrieve the list of all suppressed users across various channels.
       parameters:
         - name: WSID
           in: path
@@ -1150,9 +1150,9 @@ paths:
         - Suppression List
       summary: "Delete User from Suppression List"
       description: |
-        Delete a suppression entry using its `_id`, or a combination of `distinct_id`/`destination` and `channel`.
+        Delete a suppression entry using its `_id`, `distinct_id`, `destination`.
 
-        **Note:** If `_id` is provided, it takes precedence over all other parameters. Otherwise, `distinct_id` or `destination` must be provided along with `channel` to remove suppression for a specific channel only (e.g., unblock SMS while keeping WhatsApp suppressed for the same number). If `channel` is omitted, suppression is removed across all channels for the given `distinct_id`/`destination`. If both `distinct_id` and `destination` are provided, `distinct_id` takes precedence, and `destination` is ignored.
+        **Note:** If all three values (`distinct_id`, `destination`, `_id`) are provided, `_id` takes precedence followed by `distinct_id`.
       parameters:
         - name: WSID
           in: path
