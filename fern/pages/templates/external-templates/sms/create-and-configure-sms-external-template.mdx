@@ -22,9 +22,61 @@ Go to → **Templates → External → SMS → Create**
 | **Category** | Defines the SMS use case (e.g., service, promotional, transactional) as specified on the DLT platform. |
 | **Template Type** | The classification of the template as defined by the DLT provider. |
 
+### Template Type Selection
+
+Select one of four template types before configuring content. Each option shows inline guidance in the dialog:
+
+| Type | Description shown in UI |
+|---|---|
+| Transactional | Can only be used by Banks to send OTPs and alerts. |
+| Promotional | Similar to Service Explicit, except it can be sent between 10 PM and 9 AM. |
+| Service Implicit | All kinds of purely transactional SMS content like OTPs, order placement, order tracking, etc. |
+| Service Explicit | All kinds of promotional content should be registered here, like discounts, offers, new launches. |
+
+> **NOTE**: For detailed use cases and DLT-compliant message formats for each type, see [Template Types](../template-type).
+
+Select a Template Type, then select **Create Template** to open the template editor. The editor is split into two panels: the configuration form on the left, and a live SMS preview on the right. This layout and the fields below are shared across all four template types.
+
+### Header
+
+Enter the sender header for the message. This must match one of the DLT-registered headers already configured in your DLT integration (for example, `FYNOIO`). The field shows a live character counter.
+
+### SMS Content
+
+Enter the message body. Use **+ Add Variable** to insert a placeholder rather than typing it manually. Variables appear as numbered placeholders in the order added — `{{1}}`, `{{2}}`, `{{3}}`, and so on.
+
+> **FLAG FOR REVIEW**: This numbered `{{n}}` syntax differs from the `{#numeric#}` / `{#alphanumeric#}` / `{#url#}` DLT tag format documented in the Variables section of the SMS Template Overview. See that section's review flag before publishing this page.
+
+As you type, a stats panel next to the content box updates in real time:
+
+| Stat | What it shows |
+|---|---|
+| Encoding | The encoding currently applied to the message (e.g., GSM-7). |
+| 1 Credit equals | The number of characters that make up a single SMS credit at the current encoding. |
+| Credits Used | Estimated number of SMS credits the message will consume. |
+| Characters Used | Total character count of the message as composed. |
+
+If the content exceeds 1 credit, a prompt appears: "Your content is exceeding 1 credit!" with a **Reduce Credits** action. Selecting this uses Fyno AI to rephrase the content and bring it back within a single credit while preserving the original intent.
+
+### Sample for Body Content
+
+Below the SMS Content box, a Sample for Body Content panel lists one input per variable used in the message, so the DLT provider can review the template with representative values.
+
+- Do not enter real customer data — sample values only.
+- Each input is typed to match the kind of value the variable will hold, shown as an icon inside the field.
+- All sample values are required. An empty field is outlined in red with "Sample value is required" until filled in.
+
+| Icon | Type | Example |
+|---|---|---|
+| Tt | Text | Order ID, name, date string |
+| # | Numeric | Amount, quantity |
+| 🔗 | URL | Tracking link, callback link |
+
+> **NOTE**: Templates with no variables (fully static content, as in some Service Implicit messages) don't show this panel.
+
 ## SMS Preview
 
-The preview panel shows how the SMS will appear on a mobile device. You can:
+The preview panel shows how the SMS will appear on a mobile device, using the Header as the sender name. You can:
 - Validate formatting  
 - Check variable placement  
 - Review message length  
@@ -49,8 +101,19 @@ The system automatically calculates:
 
 ## Unicode Encoding
 
-Unicode is automatically enabled when the message contains non-GSM characters.
+Enable this checkbox to send a unicode message if the content or placeholder values may contain unicode or non-English characters.
 
 ### Enable Unicode Message When:
 - Using regional languages.  
-- Variables may contain Unicode text.  
+- Variables may contain Unicode text.
+
+> **NOTE**: If the message isn't marked as unicode and either the content or placeholder values contain unicode characters, it might not be delivered correctly. SMS providers may also charge more for unicode messages.
+
+## Saving and Submitting
+
+At the top of the editor:
+
+- **Save As Draft** — stores the template without sending it to the DLT provider.
+- **Send To Provider** — submits the template for DLT approval.
+
+The page header shows who created the template and when (e.g., "Created – 13d ago"), the current status (e.g., "Sent to provider for approval"), and a history icon to view prior versions.
