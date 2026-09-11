@@ -10,7 +10,7 @@ After adding and verifying the HTTP allowlist, click Next to configure endpoint 
 
 ## Configure Endpoint
 
-The **Configure Endpoint** section allows you to define how delivery reports are received, how request parameters are passed, and how encryption is handled for the endpoint.
+The **Configure Endpoint** section allows you to define how delivery reports are received, how request parameters are passed, how encryption is handled, and how requests are authenticated for the endpoint.
 You can enable the **Use this endpoint to receive delivery reports** toggle to convert the allowlisted URL into a delivery reporting endpoint.
 ![](/images/configure-endpoint-toggle.png)
 Once enabled, Fyno sends notification delivery status updates to the configured endpoint URL.
@@ -53,6 +53,8 @@ Headers are commonly used for:
 | **Value** | The value associated with the header key. |
 
 > Use **Add Key** to configure multiple headers.
+
+> If your endpoint requires an OAuth access token, use the [OAuth](#oauth) section instead of adding the token manually as a header.
 
 ## Query Parameters
 
@@ -143,7 +145,7 @@ The Encryption Key is the symmetric cryptographic key used during encryption. Fo
 
 Fyno allows you to select encryption keys that are securely managed through the Secrets configuration.
 
-:::info To Know More
+##### To Know More
 Encryption keys are fetched from the configured [Secrets](./security) section in Fyno. Secrets can be used to securely store and manage:
 - Encryption keys
 - API credentials
@@ -151,8 +153,7 @@ Encryption keys are fetched from the configured [Secrets](./security) section in
 - Secret tokens
 - Sensitive configuration values
 
-Refer to the [Secrets](./security) documentation to learn how to create and manage reusable secure keys. The keys displayed in the UI are examples and may differ based on your workspace configuration.
-:::
+<info> Refer to the [Secrets](./security) documentation to learn how to create and manage reusable secure keys. The keys displayed in the UI are examples and may differ based on your workspace configuration.</info>
 
 #### IV Strategy
 
@@ -386,3 +387,39 @@ Use the **JSON** request type when:
 - Working with modern REST APIs or webhook integrations.
 - Structured request handling is preferred by the target server.
 
+## OAuth
+
+The **OAuth** section allows you to authenticate delivery report requests using an OAuth access token. Use this when the configured endpoint only accepts requests that carry a bearer token obtained through OAuth.
+
+Instead of generating and passing the token yourself, you select a saved OAuth configuration, and Fyno obtains the token and includes it with every request sent to the endpoint.
+
+![](/images/configure-endpoint-oauth.png)
+
+### Enable OAuth
+
+1. Select the **OAuth** tab in the **Configure Endpoint** section.
+2. Turn on the **API endpoint requires OAuth token** toggle.
+3. From the **OAuth Configuration** dropdown, select the OAuth configuration to use for this endpoint.
+
+![](/images/configure-endpoint-oauth-select.png)
+
+If you haven't created an OAuth configuration yet, the dropdown shows **No options**. Select **+ Add Configuration** to create one.
+
+#### How It Works
+1. Before sending a request to the endpoint, Fyno requests an access token from the **Token URL** defined in the selected OAuth configuration.
+2. Fyno sends the request to the endpoint with the access token included as a bearer token.
+3. The endpoint validates the token and processes the request.
+
+### OAuth Fields
+
+| Field | Description |
+| :--- | :--- |
+| **API endpoint requires OAuth token** | Enables OAuth authentication for requests sent to this endpoint. |
+| **OAuth Configuration** | The saved OAuth configuration used to obtain the access token. |
+
+> Note: OAuth configurations are created and managed under **Workspace Settings** > **Security** > **OAuth Configuration**. Currently, only the **Client Credentials** grant type is supported.
+
+#### To Know More
+An OAuth configuration stores the Token URL, Client ID, Client Secret, and any optional Scope, Audience, or custom headers required by your OAuth provider. The Client ID and Client Secret are selected from [Secrets](./security), and a single configuration can be reused across multiple allowlisted endpoints that share the same credentials.
+
+> Refer to the [OAuth Configuration](./security/oauth-configuration) documentation to learn how to create, test, and manage OAuth configurations.
