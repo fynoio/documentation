@@ -1,0 +1,90 @@
+---
+title: 'OAuth Configuration'
+slug: 'security/oauth-configuration'
+og:title: 'OAuth Configuration | Security Settings | Fyno Documentation'
+og:description: 'Set up OAuth once in Workspace Settings and reuse it across allowlisted endpoints to authenticate API requests automatically.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+If an allowlisted API you want to use requires OAuth authentication, you can set it up once under **Workspace Settings** and reuse it wherever it's needed, instead of building the OAuth flow inside every workflow.
+
+This is useful when:
+
+- An API requires a bearer token obtained via OAuth before it can be called.
+- Multiple workflows or endpoints need to be authenticated using the same OAuth credentials/configuration.
+- You want to manage and update OAuth credentials/configuration from one place.
+
+## Prerequisites
+
+You'll need the following from your API provider:
+
+- The **Token URL** used to request an access token.
+- A **Client ID** and **Client Secret**, saved as Secrets (**Security** > **Secrets**) so they can be selected in the OAuth form.
+- Optionally, a **Scope**, **Audience**, or any custom headers required by the provider.
+
+<Info>Currently, **Grant Type** is fixed to **Client Credentials**.</Info>
+## Add an OAuth Configuration
+
+### Step 1: Open OAuth Configuration
+
+<Steps>
+  <Step>Navigate to **Workspace Settings** from your workspace menu.</Step>
+  <Step>Select **Security**. This tab lists your workspace's security features, including Data Masking, Secure Allowlist Endpoints, Secrets, and OAuth Configuration.</Step>
+  <Step>Locate the **OAuth Configuration** card and select **View** to open the OAuth Configuration page. You can also select **Read More** to learn more about the feature first.</Step>
+</Steps>
+![](/images/oauth-configuration.png)
+
+### Step 2: Add a New Configuration
+
+If you haven't created any OAuth configurations yet, you'll see an option to add a new OAuth configuration. Select **Add Configuration** to get started.
+
+### Step 3: Fill in the Configuration Details
+
+The **Add OAuth Configuration** form opens. Fill in the fields as follows:
+
+- **Name**: A label to identify this configuration later.
+- **Description** (optional): Notes on what this configuration is for.
+- **Grant Type**: Pre-set to Client Credentials.
+- **Token URL**: The endpoint used to request an access token.
+- **Client ID** and **Client Secret**: Select these from your saved Secrets using the dropdowns.
+- **Scope** and **Audience** (optional): Fill in only if your provider requires them.
+- **Custom Headers** (optional): Enter a Key and Value, and select **+ Add** to include more headers. Use the trash icon to remove a row.
+
+![](/images/add-oauth-configuration.png)
+
+<Info>Client ID and Client Secret are selected from Secrets, not typed directly into this form. If the credential you need isn't listed, add it under [Secrets](../security/secrets) first, then return to this form.</Info>
+
+### Step 4: Test and Save
+
+Before saving, select **Run Test** to confirm the configuration can successfully retrieve a token.
+
+- If the test succeeds, you'll see a confirmation that a token was issued.
+- If the test fails, an error message explains what went wrong so you can fix the details and test again.
+
+Once the test passes, select **Save** to store the configuration.
+
+<Warning>Save the configuration only after a successful test. Saving an untested or incorrect configuration can cause authentication failures wherever it's used.</Warning>
+
+### Step 5: Use the Configuration
+
+A saved OAuth configuration can be associated with an allowlisted endpoint so that requests to that endpoint authenticate automatically, without needing an OAuth step inside the workflow itself.
+
+<Info>A saved OAuth configuration can be reused across more than one allowlisted endpoint that shares the same credentials.</Info>
+
+## Field Reference
+
+| Field | Required | Description |
+| --- | --- | --- |
+| Name | Yes | A label for this configuration, used when selecting it later. Choose something that identifies the API it belongs to, e.g. "Bank – Payments API." |
+| Description | No | Optional notes about what this configuration is used for. |
+| Grant Type | Yes | The OAuth flow used to obtain a token. Currently set to Client Credentials. |
+| Token URL | Yes | The endpoint your OAuth provider uses to issue access tokens. |
+| Client ID | Yes | Select the Client ID from your saved Secrets. If it isn't listed yet, add it under **Security** > **Secrets** first, then return to this form. |
+| Client Secret | Yes | Select the Client Secret from your saved Secrets, the same way as Client ID. |
+| Scope | No | Space-separated list of permissions to request, if your provider requires it. |
+| Audience | No | The intended recipient of the token, if your provider requires it (common with Auth0). |
+| Custom Headers | No | Additional key/value pairs sent with the token request. Select **+ Add** to include more than one, or the trash icon to remove one. |
+
+## Managing Client Secrets
+
+Client ID and Client Secret values come from your workspace's Secrets vault (**Security** > **Secrets**). To rotate or update a credential, update it in Secrets, then confirm the OAuth configuration still passes **Run Test**.
