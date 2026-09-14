@@ -1000,8 +1000,9 @@ paths:
       summary: "Get Users"
       description: |
         Retrieves a paginated list of suppressed users from the Fyno suppression list for the specified workspace.
-
-        This API enables you to retrieve the list of all suppressed users across various channels. Results are paginated; use the `limit` and `offset` query parameters to page through the full list. You can optionally filter results by `distinct_id`, `destination`, and/or `channel`.
+      security:
+        - ApiKeyAuth: []
+          WorkspaceIdAuth: []
       parameters:
         - name: WSID
           in: path
@@ -1014,36 +1015,28 @@ paths:
           example: FYXXXXXXXX
         - name: limit
           in: query
-          description: Enter the maximum number of suppression records to return in a single request.
-          required: true
+          description: "Number of records to return per page. Defaults to 10 if omitted."
+          required: false
           style: form
           explode: true
           schema:
             type: integer
             minimum: 1
             maximum: 100
-          example: 10
+            default: 10
         - name: offset
           in: query
-          description: Enter the page offset (0-indexed) to skip before starting to return results. Use this along with `limit` to page through the full suppression list.
-          required: true
+          description: "Page offset for pagination. Defaults to 1 if omitted."
+          required: false
           style: form
           explode: true
           schema:
             type: integer
             minimum: 0
-          example: 0
+            default: 1
         - name: destination
           in: query
-          description: "(Optional) Filter the suppression list by destination address, such as a phone number or email."
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: string
-        - name: distinct_id
-          in: query
-          description: "(Optional) Filter the suppression list by the distinct ID used to identify the user."
+          description: "Filter results by destination address, for example `abcde@fghi.com`, `+49XXXXXXXXX`, or `ExponentPushToken[XXXXX]`. Enter an email address for email suppressions, a phone number with the country code for SMS and WhatsApp suppressions, or a token for push suppressions."
           required: false
           style: form
           explode: true
@@ -1051,7 +1044,15 @@ paths:
             type: string
         - name: channel
           in: query
-          description: "(Optional) Filter the suppression list by communication channel, e.g. `sms`, `email`, or `all`."
+          description: "Filter results by communication channel, for example `sms`, `email`, `whatsapp`, or `push`. Use `all` to return suppressions that apply across every channel."
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: distinct_id
+          in: query
+          description: "Filter results by the distinct ID you use to identify the user, for example `XXXXXXXX`."
           required: false
           style: form
           explode: true
@@ -1089,15 +1090,26 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/add_suppression_list"
-            example:
-              distinct_id: XXXXXXXX
-              channel: sms
-              event_type:
-                - marketing
-                - transactional
-                - otp
-              description: DND
-              destination: "+49XXXXXXXXX"
+            examples:
+              suppress_by_destination:
+                summary: Suppress an email address
+                value:
+                  destination: "abcde@fghi.com"
+                  channel: email
+                  event_type:
+                    - marketing
+                  description: "User unsubscribed"
+              suppress_by_distinct_id:
+                summary: Suppress a user by distinct ID
+                value:
+                  distinct_id: "XXXXXXXX"
+                  channel: sms
+                  event_type:
+                    - marketing
+                    - transactional
+                    - otp
+                  description: "DND"
+                  expiry_ts: "2026-09-16T12:40:20.997+05:30"
       responses:
         "200":
           $ref: "#/components/responses/SuppressionListUpdated"
@@ -1110,16 +1122,14 @@ paths:
         - Suppression List
       summary: "Delete User from Suppression List"
       description: |
-        Delete a suppression entry using its `_id`, or a combination of `distinct_id`/`destination` and `channel`.
+        Delete a suppression entry using its `_id`, or a combination of `distinct_id` or `destination` and `channel`.
 
-        **Note:** 
-          > If **_id** is provided, it takes precedence over all other parameters.
+        How the parameters are resolved:
 
-          > Otherwise, either distinct_id or destination must be provided. To remove suppression for a specific channel only, provide channel (e.g., unblock SMS while keeping WhatsApp suppressed for the same number).
-
-          > If channel is omitted, suppression is removed across all channels for the specified distinct_id or destination.
-
-          > If both distinct_id and destination are provided, distinct_id takes precedence and destination is ignored.
+        - If `_id` is provided, it takes precedence over all other parameters.
+        - Otherwise, provide either `distinct_id` or `destination`. If you provide both, `distinct_id` takes precedence and `destination` is ignored.
+        - Add `channel` to remove the suppression on that channel only, for example to unblock `sms` while keeping `whatsapp` suppressed for the same number.
+        - If `channel` is omitted, the suppression is removed across all channels for that `distinct_id` or `destination`.
       parameters:
         - name: WSID
           in: path
@@ -1132,37 +1142,84 @@ paths:
           example: FYXXXXXXXX
         - name: _id
           in: query
-          description: Unique identifier of the suppression record to delete.
+          description: "Unique identifier of the suppression record to delete, for example `68763be4b8cee01156d9fa8a`. You can get this value from the Get Users endpoint."
           required: false
           schema:
             type: string
-          example: 68763be4b8cee01156d9fa8a
         - name: distinct_id
           in: query
-          description: Unique identifier (used as an alternative to destination)
+          description: "The distinct ID you use to identify the user, for example `XXXXXXXX`. Use this as an alternative to `destination`."
           required: false
           schema:
             type: string
-          example: XXXX-XXX-XXXX
         - name: destination
           in: query
-          description: Phone number or email of the suppressed user
+          description: "The suppressed email address, phone number, or push token, for example `abcde@fghi.com`, `+49XXXXXXXXX`, or `ExponentPushToken[XXXXX]`. Enter a phone number with the country code."
           required: false
           schema:
             type: string
-          example: +49XXXXXXXXX
         - name: channel
           in: query
-          description: "(Optional) Enter the specific channel (e.g., `sms`, `whatsapp`, `email`) to remove suppression for. Use this along with `distinct_id` or `destination` to unblock a single channel without affecting suppression on other channels for the same user. If omitted, suppression is removed across all channels."
+          description: "The channel to remove the suppression for, for example `sms`, `email`, `whatsapp`, or `push`. Use this along with `distinct_id` or `destination` to unblock a single channel without affecting the other channels for the same user. If omitted, the suppression is removed across all channels."
           required: false
           schema:
             type: string
-          example: sms
       responses:
         "200":
           $ref: "#/components/responses/SuppressionListDeleted"
         "400":
           $ref: "#/components/responses/SuppressionDeleteError"
+        "401":
+          $ref: "#/components/responses/APIKeyInvalid"
+  /{WSID}/suppressions/ingest:
+    post:
+      tags:
+        - Suppression List
+      summary: "Ingest New"
+      description: |
+        Bulk add users to the suppression list. Use this endpoint to suppress multiple destinations (e.g. email addresses or phone numbers) on a given channel in a single request, instead of calling [Add User to Suppression List](./add-user-to-suppression-list) once per user.
+
+        Each item in the `batch` array is one user to suppress. The batch is processed asynchronously, and a `202` response means it has been accepted for processing.
+
+        Example request:
+
+        `POST {{API_URL}}/v1/{{WSID}}/suppressions/ingest`
+      parameters:
+        - name: WSID
+          in: path
+          description: Enter your workspace ID. You can obtain this value from the API Keys page within your Fyno account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: FYXXXXXXXX
+        - name: version
+          in: header
+          description: API version identifier.
+          required: true
+          schema:
+            type: string
+            default: live
+            enum:
+              - live
+              - test
+          example: test
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ingest_suppression_list"
+            example:
+              batch:
+                - destination: "abcde@fghi.com"
+                  channel: email
+                - destination: "+49XXXXXXXXX"
+                  channel: sms
+        required: true
+      responses:
+        "202":
+          $ref: "#/components/responses/SuppressionIngestAccepted"
         "401":
           $ref: "#/components/responses/APIKeyInvalid"
 components:
@@ -1927,98 +1984,77 @@ components:
               - _message
               - status
     SuppressionListSuccess:
-      description: Suppression list fetched successfully.
+      description: |
+        Returns an array of suppression records. Each record identifies the suppressed user by either `destination` (an email address, phone number, or push token) or `distinct_id`, along with the `channel` it applies to and the event types the suppression covers.
       content:
         application/json:
           schema:
             type: array
             items:
               "$ref": "#/components/schemas/fetch_suppression_list"
-          example:
-            - _id: 6aa1031ffcf7e7a914c121df
-              channel: sms
-              distinct_id: XXXXXXXX
-              created_at: "2026-09-09T12:40:20.997+05:30"
-              description: DND
-              event_type:
-                - marketing
-                - transactional
-                - otp
-              suppression_event:
-                - marketing
-                - transactional
-                - otp
-            - _id: 6aa0fb0afcf7e7a914c121de
-              distinct_id: XXXXXXXX
-              channel: sms
-              created_at: "2026-09-09T12:26:26.820+05:30"
-              description: DND
-              event_type:
-                - marketing
-                - transactional
-                - otp
-              suppression_event:
-                - marketing
-                - transactional
-                - otp
-            - _id: 6aa0e57ffcf7e7a914c121dc
-              channel: sms
-              distinct_id: XXXXXXXX
-              created_at: "2026-09-09T11:25:10.946+05:30"
-              description: DND
-              event_type:
-                - marketing
-                - transactional
-                - otp
-              suppression_event:
-                - marketing
-                - transactional
-                - otp
-            - _id: 68c109050ecf764967285e4e
-              created_at: "2026-05-22T07:52:54.232+05:30"
-              channel: email
-              destination: abcde@fghi.com
-              description: Dnd
-              suppression_event:
-                - otp
-                - transactional
-                - marketing
-            - _id: 6a0fbc3c71386105afa9eeab
-              description: USer is rude
-              channel: email
-              destination: abcde@fghi.com
-              created_at: "2026-05-22T07:45:24.423+05:30"
-              suppression_event:
-                - otp
-                - transactional
-                - marketing
-            - _id: 68b8151d0ecf764967285e4d
-              destination: "+49XXXXXXXXX"
-              channel: sms
-              created_at: "2025-09-03T15:44:53.254+05:30"
-              description: DND
-              suppression_event:
-                - otp
-                - transactional
-                - marketing
-            - _id: 689b03fca4e73c04bd9f54e9
-              channel: push
-              created_at: "2025-08-12T16:06:45.749+05:30"
-              destination: ExponentPushToken[XXXXX]
-              description: DND
-              suppression_event:
-                - otp
-                - transactional
-                - marketing
-            - _id: 689b0449a4e73c04bd9f54ee
-              distinct_id: XXXXXXXX
-              description: user complained about spam
-              channel: push
-              created_at: "2025-08-12T14:37:21.351+05:30"
-              suppression_event:
-                - otp
-                - transactional
-                - marketing
+            example:
+              - _id: "6aa1031ffcf7e7a914c121df"
+                channel: sms
+                created_at: "2026-09-09T12:40:20.997+05:30"
+                distinct_id: "XXXXXXXX"
+                description: "DND"
+                suppression_event:
+                  - marketing
+                  - transactional
+                  - otp
+                event_type:
+                  - marketing
+                  - transactional
+                  - otp
+              - _id: "6aa0fb0afcf7e7a914c121de"
+                channel: sms
+                created_at: "2026-09-09T12:26:26.820+05:30"
+                distinct_id: "XXXXXXXX"
+                description: "DND"
+                suppression_event:
+                  - marketing
+                  - transactional
+                  - otp
+                event_type:
+                  - marketing
+                  - transactional
+                  - otp
+              - _id: "68c109050ecf764967285e4e"
+                channel: email
+                created_at: "2026-05-22T07:52:54.232+05:30"
+                destination: "abcde@fghi.com"
+                description: "Dnd"
+                suppression_event:
+                  - otp
+                  - transactional
+                  - marketing
+              - _id: "68b8151d0ecf764967285e4d"
+                channel: sms
+                created_at: "2025-09-03T15:44:53.254+05:30"
+                destination: "+49XXXXXXXXX"
+                description: "DND"
+                suppression_event:
+                  - otp
+                  - transactional
+                  - marketing
+              - _id: "689b03fca4e73c04bd9f54e9"
+                channel: push
+                created_at: "2025-08-12T16:06:45.749+05:30"
+                destination: "ExponentPushToken[XXXXX]"
+                description: "DND"
+                suppression_event:
+                  - otp
+                  - transactional
+                  - marketing
+              - _id: "689b0449a4e73c04bd9f54ee"
+                channel: push
+                created_at: "2025-08-12T14:37:21.351+05:30"
+                distinct_id: "XXXXXXXX"
+                description: "user complained about spam"
+                suppression_event:
+                  - otp
+                  - transactional
+                  - marketing
     SuppressionListUpdated:
       description: |
         Suppression list updated. `_message` reflects whether a new suppression record was created ("User has been added to the suppression!", with `_id` returned) or an existing record for that `distinct_id`/`destination` and `channel` was updated ("User record has been updated!", `_id` omitted).
@@ -2075,6 +2111,18 @@ components:
                 type: string
                 example: Unable to delete non existing data!
             type: object
+    SuppressionIngestAccepted:
+      description: The batch of users has been accepted and will be added to the suppression list asynchronously.
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                example: success
+                type: string
+            type: object
+            required:
+              - status
     APIKeyInvalid:
       description: API Key or Workspace ID is invalid. User is unauthorised.
       content:
@@ -3356,99 +3404,151 @@ components:
       properties:
         _id:
           type: string
-          example: 6a900475471421223a72798e
-          description: Unique identifier of the suppression record.
+          example: 6aa1031ffcf7e7a914c121df
+          description: "Unique identifier of the suppression record, for example `6aa1031ffcf7e7a914c121df`."
         destination:
           type: string
-          example: "+49XXXXXXXXX"
-          description: "(Optional) Phone number or email of the suppressed user. Present when the record was created by destination."
+          example: abcde@fghi.com
+          description: "The suppressed email address, phone number, or push token, for example `abcde@fghi.com`, `+49XXXXXXXXX`, or `ExponentPushToken[XXXXX]`. Present when the record was created using `destination` instead of `distinct_id`."
         distinct_id:
           type: string
-          example: Ayushi
-          description: "(Optional) Unique identifier of the user. Present when the record was created by distinct ID."
+          example: XXXXXXXX
+          description: "The distinct ID of the suppressed user, for example `XXXXXXXX`. Present when the record was created using `distinct_id` instead of `destination`."
         channel:
           type: string
           example: sms
-          description: "Communication channel, e.g. `sms`, `whatsapp`, `email`, `push`, or `all` for suppressions that apply across every channel."
+          description: "The channel the suppression applies to, for example `sms`, `email`, `whatsapp`, or `push`."
         description:
           type: string
           example: DND
-          description: "(Optional) Reason or tag for the suppression (e.g., \"DND\", \"user complained about spam\"). May be absent if none was provided when the suppression was created."
-        suppression_event:
-          type: array
-          description: "(Optional) The event types actually suppressed for this channel: `otp`, `transactional`, `marketing`. May be absent, or an empty array meaning no specific event type is suppressed."
-          items:
-            type: string
-            enum:
-              - marketing
-              - transactional
-              - otp
-          example:
-            - transactional
-            - marketing
-        event_type:
-          type: array
-          description: "(Optional) Event types originally passed in at creation time. May be absent, or an empty array. Where absent or empty, the suppression is treated as applying to all event types."
-          items:
-            type: string
-            enum:
-              - marketing
-              - transactional
-              - otp
-          example:
-            - marketing
-            - transactional
+          description: "Reason or tag for the suppression, for example `DND` or `user complained about spam`."
         created_at:
           type: string
-          example: "2026-08-27T15:03:41.534+05:30"
-          description: Timestamp when the suppression record was created, in ISO 8601 format.
+          example: "2026-09-09T12:40:20.997+05:30"
+          description: "Timestamp when the suppression was created, for example `2026-09-09T12:40:20.997+05:30`."
         expiry_ts:
           type: string
-          example: "2025-08-15T16:25:16.302+05:30"
-          description: "(Optional) Timestamp at which this suppression automatically expires, if one was set at creation."
+          example: "2026-09-16T12:40:20.997+05:30"
+          description: "Timestamp at which the suppression expires, for example `2026-09-16T12:40:20.997+05:30`. Omitted when the suppression does not expire."
+        suppression_event:
+          type: array
+          description: "The event types this suppression applies to, for example `[\"otp\", \"transactional\", \"marketing\"]`."
+          items:
+            type: string
+            enum:
+              - marketing
+              - transactional
+              - otp
+          example: ["otp", "transactional", "marketing"]
+        event_type:
+          type: array
+          description: "The event types the suppression was created with, for example `[\"marketing\", \"transactional\", \"otp\"]`. Omitted on records where event types were not specified."
+          items:
+            type: string
+            enum:
+              - marketing
+              - transactional
+              - otp
+          example: ["marketing", "transactional", "otp"]
       type: object
       required:
         - _id
         - channel
         - created_at
     add_suppression_list:
-      description: |
-        You must provide `channel` along with at least one of `distinct_id` or `destination`. Both `distinct_id` and `destination` may be provided together in the same request; in that case, `distinct_id` takes precedence, and `destination` is ignored.
+      oneOf:
+        - properties:
+            distinct_id:
+              type: string
+              example: XXXXXXXX
+              description: The distinct ID you use to identify the user. Use this as an alternative to `destination`.
+            channel:
+              type: string
+              example: email
+              description: "The channel to suppress the user on, for example `sms`, `email`, `whatsapp`, or `push`."
+            event_type:
+              type: array
+              description: Enter the event types for which the user must be suppressed on the specified channel. If omitted, the suppression applies to all event types.
+              items:
+                type: string
+                enum:
+                  - marketing
+                  - transactional
+                  - otp
+              example:
+                - marketing
+                - transactional
+                - otp
+            description:
+              type: string
+              example: DND
+              description: Reason or tag for the suppression, for example "DND" or "User unsubscribed".
+            expiry_ts:
+              type: string
+              format: date-time
+              description: "(Optional) Enter the timestamp (ISO 8601 format) at which this suppression should automatically expire and the user should no longer be suppressed. If omitted, the suppression does not expire and remains in effect until manually removed."
+              example: "2025-08-15T16:25:16.302+05:30"
+          type: object
+          required:
+            - distinct_id
+            - channel
+        - properties:
+            destination:
+              type: string
+              example: abcde@fghi.com
+              description: "The email address, phone number, or push token to suppress, for example `abcde@fghi.com` for email, `+49XXXXXXXXX` for SMS or WhatsApp, or `ExponentPushToken[XXXXX]` for push. Enter a phone number with the country code."
+            channel:
+              type: string
+              example: email
+              description: "The channel to suppress the user on, for example `sms`, `email`, `whatsapp`, or `push`."
+            event_type:
+              type: array
+              description: Enter the event types for which the user must be suppressed on the specified channel. If omitted, the suppression applies to all event types.
+              items:
+                type: string
+                enum:
+                  - marketing
+                  - transactional
+                  - otp
+              example:
+                - marketing
+                - transactional
+                - otp
+            description:
+              type: string
+              example: DND
+              description: Reason or tag for the suppression, for example "DND" or "User unsubscribed".
+            expiry_ts:
+              type: string
+              format: date-time
+              description: "(Optional) Enter the timestamp (ISO 8601 format) at which this suppression should automatically expire and the user should no longer be suppressed. If omitted, the suppression does not expire and remains in effect until manually removed."
+              example: "2025-08-15T16:25:16.302+05:30"
+          type: object
+          required:
+            - destination
+            - channel
+    ingest_suppression_list:
       properties:
-        distinct_id:
-          type: string
-          example: XXXX-XXX-XXXX
-          description: "(Optional) Unique identifier (used as an alternative to, or alongside, destination). If provided together with destination, this value takes precedence."
-        destination:
-          type: string
-          example: +49XXXXXXXXX
-          description: "(Optional) Phone number or email of the suppressed user. Ignored if distinct_id is also provided."
-        channel:
-          type: string
-          example: sms
-          description: Communication channel (e.g., sms, whatsapp, email)
-        event_type:
+        batch:
           type: array
-          description: Enter the event types for which the user must be suppressed on the specified channel. If omitted, the suppression applies to all event types.
+          description: "Enter an array of users to add to the suppression list. Each item suppresses one destination on the specified channel, for example `{\"destination\": \"abcde@fghi.com\", \"channel\": \"email\"}`."
           items:
-            type: string
-            enum:
-              - marketing
-              - transactional
-              - otp
-          example:
-            - marketing
-            - transactional
-            - otp
-        description:
-          type: string
-          example: DND
-          description: Reason or tag for suppression (e.g., "DND", "Testing").
-        expiry_ts:
-          type: string
-          format: date-time
-          description: "(Optional) Enter the timestamp (ISO 8601 format) at which this suppression should automatically expire and the user should no longer be suppressed. If omitted, the suppression does not expire and remains in effect until manually removed."
-          example: "2025-08-15T16:25:16.302+05:30"
+            type: object
+            properties:
+              destination:
+                type: string
+                example: abcde@fghi.com
+                description: "The recipient identifier to suppress, for example `abcde@fghi.com` for the `email` channel or `+49XXXXXXXXX` for the `sms` channel. Enter a phone number with the country code."
+              channel:
+                type: string
+                enum:
+                  - email
+                  - sms
+                example: email
+                description: "The notification channel to suppress, for example `email` or `sms`."
+            required:
+              - destination
+              - channel
       required:
-        - channel
+        - batch
       type: object
