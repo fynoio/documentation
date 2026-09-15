@@ -1,0 +1,160 @@
+## 26.3.5
+
+This release brings the full notification route into Log Details, adds the ability to reveal masked data while troubleshooting, introduces a typing indicator widget for incoming WhatsApp workflows, and brings cohort-based previews to campaign configuration.
+
+We've also added change logs for team member activity, reworked chart view selection across Dashboard, Event and Campaign Analytics, carried log filters through to report downloads, expanded cost analytics filtering and country-level visibility, and standardized campaign counts and terminology, while resolving issues across SAML sign-in, route deletion, omni-channel route loading, WhatsApp test log previews, and campaign analytics date ranges.
+
+### 🚀 New features
+
+<CardGroup cols={2}>
+
+<Card title="Notification route" icon="route">
+
+Log Details now shows the full path a notification took across channels and providers. A message that failed with one provider and then succeeded with another no longer appears as a single outcome — switch between steps to see the trace, response and delivery details for each.
+
+</Card>
+
+<Card title="Reveal masked data" icon="eye">
+
+With Data Masking enabled, use **Reveal Masked Details** to unmask values while you troubleshoot, then **Mask Sensitive Details** to hide them again. Available on all logs pages and in the Log Details panel.
+
+</Card>
+
+<Card title="Typing indicator" icon="comment-dots">
+
+Show the recipient that a reply is being prepared. The indicator is sent in the context of the message they sent, so it appears within the conversation. Incoming workflows only, on **Meta**, **Meta Direct** or **Meta Direct Plus** numbers.
+
+[Read more](/docs/workflows/nodes-and-actions/typing-indicator)
+
+</Card>
+
+<Card title="Preview with cohort data" icon="users">
+
+The Campaign Configuration page now previews your message using real data from the selected cohort, covering the first 10 rows. Test sends replace placeholders with your test values rather than cohort data.
+
+</Card>
+
+<Card title="Team change logs" icon="clock-rotate-left">
+
+Team settings now record member activity — when a member is invited, when a role is changed, and when an add-on policy is added or removed.
+
+</Card>
+
+</CardGroup>
+
+### ⚡ Enhancements
+
+<AccordionGroup>
+
+<Accordion title="Combined chart heading and filter — Analytics">
+
+Chart headings and their filters are now a single dropdown across the **Dashboard**, **Event Analytics** and **Campaign Analytics** pages. Each option carries the complete chart title — **WhatsApp Delivery Status** rather than a *Delivery Status* heading with a separate WhatsApp filter — so the heading no longer changes when you select a filter.
+
+Applies to the Delivery Status, Provider Performance, Delivery Rate, Provider Latency and Activity Trend charts, and to the expanded SMS Credits, WhatsApp Delivered, Email and RCS Delivered cards. **Workspace Delivery Rates** is now available as a Delivery Rate option on the Central Dashboard, and onboarding tooltips highlight the new interaction.
+
+</Accordion>
+
+<Accordion title="Filters applied to report downloads — Logs">
+
+Filters applied on the Logs page now carry through to the **Download Report** dialog, so the report matches the view you were looking at. Applied filters appear under **Optional Additional Filters** with a count of how many are active, and can be changed before downloading.
+
+You can filter by Status, Analytics Label, Group, Template, Notification Event, Campaign, Channel, Provider, Integration, Destination and Distinct ID. Destination and Distinct ID accept multiple comma-separated values.
+
+</Accordion>
+
+<Accordion title="Standardized counts and file details terminology — Campaigns">
+
+<Warning title="Changed behavior">
+
+The Campaigns listing page now shows **Total**, **Valid**, **Invalid** and **Duplicate** counts. Channel-wise counts have moved to Campaign Analytics.
+
+</Warning>
+
+Total/Base counts have been added to the Campaign Details page, and channel-wise recipient counts now appear in Campaign Analytics — headed **Total Recipients** when duplicates are enabled, and **Recipients** when duplicates are excluded, which is the default. Large counts use compact formatting (K, L, Cr), with the exact value on hover.
+
+File details now use the same terminology immediately after upload as on the Campaign Details page.
+
+</Accordion>
+
+<Accordion title="Unformatted destination for dropped messages — Logs">
+
+<Warning title="Changed behavior">
+
+Mobile numbers are no longer formatted on the Logs page when a message is dropped because the destination is invalid.
+
+</Warning>
+
+The number is displayed exactly as supplied, so you can identify the value that caused the failure. Applies to SMS, WhatsApp, RCS and Voice. Formatting is unchanged for all other scenarios.
+
+</Accordion>
+
+<Accordion title="Complete country breakdown — Cost Analytics">
+
+Country breakdowns in the Cost Analytics drawer now list individual countries instead of grouping them under **Others**. The top 10 are shown by default; expand the table to reveal the rest, and collapse it again when you're done. The existing country ranking is preserved.
+
+Available for Providers, Integrations, Analytics Labels and Groups, across both SMS and WhatsApp.
+
+</Accordion>
+
+<Accordion title="Filters for SMS, WhatsApp and Email — Cost Analytics">
+
+The SMS, WhatsApp and Email cost analytics detail views can now be filtered by Providers, Integrations, Analytics Labels and Groups, with counts updating to match your selection.
+
+</Accordion>
+
+<Accordion title="Clearer Provider Latency tooltips — Dashboard">
+
+Provider Latency tooltips now describe what each bucket measures instead of using generic labels. For **Accepted** notifications the tooltip reads as provider response time (*Provider response &lt; 1 second*); for **Delivered** notifications it reads as time to deliver (*Delivered in &lt; 1 second*). Buckets remain &lt; 1 second, 1–5 seconds and &gt; 5 seconds, each with its count and percentage.
+
+</Accordion>
+
+<Accordion title="Feedback ID for email — Templates">
+
+The email override section in templates now includes an optional **Feedback ID** field, alongside From Name, From Email, Reply To, Cc and Bcc.
+
+</Accordion>
+
+<Accordion title="Search in group navigation — Groups">
+
+The group navigation on the Templates, Notification Events and Workflows listing pages now includes a search bar when a workspace has more than 10 groups.
+
+</Accordion>
+
+<Accordion title="Search and improved editing — Analytics Labels">
+
+Analytics labels can now be searched and edited from the label list. The **Add** button stays fixed as you scroll, the list scrolls to a newly added label, and field labels are hidden once a value is entered.
+
+</Accordion>
+
+<Accordion title="Clearer template selection sub-text — Notification Events">
+
+The sub-text in the Template Selection section now reads **"Use a single template or use multiple templates conditionally"**, making it clear that you can pick one template or configure several based on conditions.
+
+</Accordion>
+
+<Accordion title="Standardized date pickers — Platform">
+
+Date picker behavior and appearance are now consistent across the platform, and disabled dates are more prominent in light mode.
+
+</Accordion>
+
+<Accordion title="Updated product videos — Onboarding">
+
+Refreshed the product videos used in the onboarding experience.
+
+</Accordion>
+
+</AccordionGroup>
+
+### 🛠 Bug fixes
+
+| Area | Fix |
+| --- | --- |
+| **SAML** | Signing in while an active session existed ran profile and workspace requests against the previous, now-invalid access token and signed the user out. A second login attempt is no longer needed. |
+| **Routes** | Single channel routes could not be deleted. |
+| **Omni-Channel Routes** | Clicking a channel node on first load did not load its integration or routing configuration — it appeared only after reopening the node. |
+| **Notification Events** | A template created from within a notification event did not populate in the event's template field. |
+| **Campaigns** | The Campaign Analytics link for a throttled campaign used a default three-day end date, cutting off analytics for longer throttling periods. It now uses the campaign's throttle end date. |
+| **Logs** | WhatsApp previews in test logs showed raw escaped placeholders. Test logs now apply the same Handlebars processing as live logs. |
+| **Workflows** | The widget panel on the left of the canvas was hidden when the canvas behind it was full. It now has a background. |
+| **Profile** | User profile details on the left were not visible on smaller screens. |
