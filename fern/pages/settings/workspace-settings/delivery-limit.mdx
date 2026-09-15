@@ -1,7 +1,7 @@
 ---
 title: 'Delivery Limit'
 slug: 'delivery-limit'
-description: 'Configure intelligent notification pacing, regional compliance guardrails, and user-centric delivery throttles using Do Not Disturb (DND) windows and Frequency Capping.'
+description: 'Configure intelligent notification pacing, regional compliance guardrails, and user-centric delivery throttles using Do Not Disturb (DND) windows, group-level DND overrides, and Frequency Capping.'
 og:title: 'Delivery Limit - Workspace Settings | Fyno Documentation'
 og:description: 'Protect user engagement and adhere to regional telecommunication compliance by setting up automated Do Not Disturb (DND) loops and Marketing Frequency Capping across channels.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
@@ -24,28 +24,122 @@ Engaging your users with notifications is one of the most effective ways to driv
 
 ### How it works?
 
-You now have the option to configure "Do Not Disturb" (DND) hours for both transactional and marketing communications. Currently, this feature is applicable to SMS, WhatsApp, Email, Push and RCS channels.
+You now have the option to configure "Do Not Disturb" (DND) hours for both transactional and marketing communications. Currently, this feature is applicable to SMS, WhatsApp, Email, Push, RCS and Voice channels.
 
 When DND is active, Fyno will not trigger notification during the specified hours. You have the flexibility to decide whether to **drop** (discard) notifications that were triggered during the DND period or **queue** their delivery until after the DND window. Queued messages will be sent at the end of DND period with 30 seconds additional delay.
+
+Select a channel from the list on the left to configure it. Marketing and Transactional are configured independently, each with its own toggle in the Notification Event Type column, so you can enable DND for one without enabling it for the other.
 
 For example, if you want to set DND time for Marketing notifications from 8 PM till 10 AM for SMS and send notifications after the DND window, follow these steps.
 
 <Steps>
-  <Step>Under SMS channel, select Marketing from Notification Type drop down.</Step>
-  <Step>Set DND Start Time as 8 PM</Step>
-  <Step>Set DND End Time as 10 AM.</Step>
-  <Step>Select **DROP IT** if you don't want to send notifications during DND hours and discard it. Select **QUEUE IT**, if you want to queue the notifications triggered during DND hours and send it after the DND window.</Step>
+  <Step>Under SMS channel, turn on the toggle next to Marketing in the Notification Event Type column.</Step>
+  <Step>Set From Time as 8 PM</Step>
+  <Step>Set To Time as 10 AM.</Step>
+  <Step>Under If triggered during DND period, select **Drop it** if you don't want to send notifications during DND hours and discard them. Select **Queue it**, if you want to queue the notifications triggered during DND hours and send them after the DND window.</Step>
 </Steps>
 
-![](/images/delivery_limit_dnd.png)
+![](/images/do-not-disturb.png)
 
-If you want to add DND settings for Transactional notification also for SMS, you can do it by clicking the '+ Add Another' button.
+If you want to add DND settings for Transactional notification also for SMS, turn on the toggle next to Transactional and set its own From Time, To Time and behaviour.
 
 <Info>This setting will only apply to Notification Events triggered in LIVE environment.</Info>
+
+### Group-based DND
+
+The DND settings above apply to every notification event on a channel, separated only by notification type. Group-based DND lets you override that behaviour for a specific set of notification events.
+
+![](/images/group-based-dnd.png)
+
+The **Group based DND** panel sits directly below the notification event type table for the selected channel. Turning on the toggle reveals a table where you add one rule per group. As the panel itself states, notification events in these groups will ignore any event type configuration above.
+
+Groups are managed from Workspace Settings -> Groups. When you attach a DND rule to a group, every notification event in that group follows the group's rule instead of the Marketing or Transactional configuration above.
+
+This covers two common requirements:
+
+- **Custom Hours** - a shorter or shifted DND window for a set of events. For example, your workspace SMS DND runs from 12 AM to 6 AM, but events in a **Critical Notifications** group are allowed to send until 1 AM.
+- **Skip DND** - events that should never be held back. For example, events in an **Emergency Notifications** group are delivered at any hour, regardless of the workspace DND window.
+
+For example, if you want events in the **Critical Notifications** group to follow a DND window of 1 AM till 6 AM for SMS instead of the workspace window, follow these steps.
+
+<Steps>
+  <Step>Under Do not disturb, select the SMS channel.</Step>
+  <Step>Turn on the **Group based DND** toggle.</Step>
+  <Step>Select **Critical Notifications** from the Group drop down.</Step>
+  <Step>Select **Custom Hours** from the DND Rule drop down.</Step>
+  <Step>Set From Time as 1 AM and To Time as 6 AM.</Step>
+  <Step>Under If triggered during DND period, select **Drop it** to discard notifications triggered during the group's DND hours, or **Queue it** to queue them and send them after the group's DND window.</Step>
+</Steps>
+
+If you want to add a rule for another group on the same channel, you can do it by clicking the '+ Add Group' button.
+
+The DND Rule drop down defaults to **Custom Hours**. To exempt a group from DND entirely, select **Skip DND**.
+{/* CONFIRM: the Skip DND option label comes from the mockup, not the build. Confirm it against the DND Rule drop down. */}
+{/* TODO: group-based-dnd.png shows the default Custom Hours state. Once Skip DND is confirmed, capture a row with it selected and add it here as skip-dnd.png */}
+
+The following fields are available for each group.
+
+| Field | Description |
+| --- | --- |
+| **Group** | The group whose notification events this rule applies to. |
+| **DND Rule** | **Custom Hours** applies the window defined in this row. **Skip DND** exempts the group from DND entirely. |
+| **From Time** | Start of the group's DND window. Available only with **Custom Hours**. |
+| **To Time** | End of the group's DND window. Available only with **Custom Hours**. |
+| **If triggered during DND period** | **Queue it** queues the notification and sends it once the group's DND window ends. **Drop it** discards the notification and no further attempt is made once the DND period ends. Available only with **Custom Hours**. |
+
+{/* HELD OUT OF PUBLISHED COPY - restore as an <Info> only once confirmed: a design annotation states the DND Rule column is hidden when nothing is set up for Marketing and Transactional. Not reproducible in the current build, where Marketing is toggled on with empty times and the DND Rule column still renders. Test with BOTH notification type toggles off. */}
+
+#### Which DND applies?
+
+For a given channel, Fyno resolves DND in the following order.
+
+<Steps>
+  <Step>**Group rule** - if the notification event belongs to a group that has a DND configuration for the channel, that rule applies. It applies whether the notification event is marketing, transactional or OTP.</Step>
+  <Step>**Notification type rule** - if the notification event does not belong to such a group, the Marketing or Transactional window enabled for the channel applies.</Step>
+  {/* CONFIRM: a notification type toggle can be on with no times entered. Does Save block this, or is an enabled-but-empty row treated as no restriction? */}
+  <Step>**No restriction** - if neither is enabled, the notification is sent immediately.</Step>
+</Steps>
+
+| Notification event | Event type | Group | Rule that applies |
+| --- | --- | --- | --- |
+| Order shipped | Transactional | Not in a group | Workspace Transactional window |
+| Weekend sale | Marketing | Not in a group | Workspace Marketing window |
+| Payment failed | Transactional | Critical Notifications (Custom Hours, 1 AM to 6 AM) | 1 AM to 6 AM |
+| Login OTP | OTP | Critical Notifications (Custom Hours, 1 AM to 6 AM) | 1 AM to 6 AM |
+| Account breach alert | Transactional | Emergency Notifications (Skip DND) | Sent at any time |
+
+{/* CONFIRM before publishing: an ungrouped OTP row is deliberately omitted. The notification event type table offers Marketing and Transactional only, so it is unclear what applies to an OTP event that is not in a group - no DND at all, or the Transactional window. Add the row once answered. */}
+
+Notifications set to **Queue it** are sent at the end of the group's DND window with 30 seconds additional delay, the same as the workspace-level configuration.
+
+<Info>A group rule replaces the notification type rule. The two windows are not combined, and the notification type rule is not applied as an additional restriction on top of the group's window.</Info>
+
+<Info>Marketing Frequency Capping is applied separately. A group configured to skip DND is still subject to any frequency cap configured for the channel.</Info>
+{/* CONFIRM with engineering before publishing: does Skip DND also bypass Marketing Frequency Capping? */}
+
+<Warning>**Skip DND** overrides the DND configuration in Fyno only. Make sure notifications sent by a group configured to skip DND comply with the regulatory DND windows applicable to your channel and region.</Warning>
+{/* CONFIRM with engineering before publishing: is Skip DND clamped for SMS/RCS marketing traffic, or can it send inside the regulatory window? If it can, this Warning needs to be stronger and moved above the Steps. */}
+
+<Info>This setting will only apply to Notification Events triggered in LIVE environment.</Info>
+
+#### Removing a group's DND configuration
+
+<Steps>
+  <Step>In the Group based DND table, click the delete icon on the row you want to remove.</Step>
+  <Step>In the "Delete Configuration for &lt;group name&gt;" dialog, click **YES, DELETE**.</Step>
+</Steps>
+
+{/* TODO: capture the Delete Configuration confirmation dialog and add it here as delete-dnd-configuration.png */}
+
+Removing a DND configuration does not delete the group and does not change the notification events assigned to it. Notification events in that group fall back to the workspace-level Marketing or Transactional DND configured for the channel.
+
+If you want to stop applying group rules on a channel without removing each row, turn off the **Group based DND** toggle.
 
 ## Marketing Frequency Capping
 
 You can now configure your Marketing Frequency Capping for all channels from the following navigation: Workspace Settings(bottom left corner in menu) -> Delivery Limit -> Marketing Frequency Capping
+
+![](/images/marketing-frequency-capping.png)
 
 ### Why Frequency Capping?
 
@@ -58,15 +152,15 @@ You now have the option to configure Frequency Capping for marketing communicati
 For example, if you want to set Frequency Capping as "_10 Notifications per destination per day for SMS_" , follow these steps.
 
 <Steps>
-  <Step>Under SMS channel, enter 10 as Notification count.</Step>
-  <Step>Enter 1 in Time frame.</Step>
-  <Step>Select Days from the time frame dropdown</Step>
+  <Step>Under SMS channel, turn on the Marketing frequency capping toggle.</Step>
+  <Step>Enter 10 in the Count field.</Step>
+  <Step>Enter 1 in the Time field.</Step>
+  <Step>Select Day(s) from the drop down. The available options are Second(s), Minute(s), Hour(s) and Day(s).</Step>
 </Steps>
 
 11th notification sent to the same destination on the same day will be dropped and won't be sent to the user.
 
 <Info>We support time frames ranging from a minimum of 30 seconds to a maximum of 30 days. The Notification Count can range from a minimum of 1 to a maximum of 255.</Info>
-
-![](/images/delivery_limit_mkt_cap_updated.png)
+{/* CONFIRM: the 30 seconds to 30 days range is a backend limit and is not shown in the UI. The in-field helper text "Minimum 1 and maximum of 255" applies to the notification count only. */}
 
 <Info>This setting will only apply to Notification Events triggered in LIVE environment.</Info>
