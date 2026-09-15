@@ -496,7 +496,9 @@ navigation:
                   - page: "Wait For"
                     path: "pages/workflows/nodes-and-actions/wait-for.mdx"
                   - page: "Conditions"
-                    path: "pages/workflows/nodes-and-actions/conditions.mdx"                      
+                    path: "pages/workflows/nodes-and-actions/conditions.mdx" 
+                  - page: "Typing Indicator"
+                    path: "pages/workflows/nodes-and-actions/typing-indicator.mdx"                        
           - section: "Campaigns"
             path: "pages/campaigns/overview.mdx"
             icon: fa-regular fa-bullhorn
