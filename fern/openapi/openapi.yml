@@ -38,17 +38,81 @@ paths:
           explode: false
           schema:
             type: string
+            default: live
+            enum:
+              - live
+              - test
+        - name: Idempotency-Key
+          in: header
+          description: "A unique key that makes this request idempotent, for example a UUID such as `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`. If Fyno receives another request with the same key, it returns the stored response from the first request without firing the notification again, including the original status code and any error. Use this to safely retry a request after a network failure without sending duplicate notifications. The key is scoped to this endpoint."
+          required: false
+          schema:
+            type: string
+        - name: x-idempotency-expiration
+          in: header
+          description: "How long the idempotency key stays valid, as a Unix epoch timestamp in seconds (for example `1789012345`) or an ISO 8601 date string (for example `2026-09-16T12:40:20.997+05:30`). Applies only when `Idempotency-Key` is sent. If omitted, the key is retained for 24 hours. The maximum is 1 year."
+          required: false
+          schema:
+            type: string
       requestBody:
         description: |
-          Your event payload must specify at least *`distinct_id`* or *`to`* while firing a notification event.
+          Your event payload must specify at least `distinct_id` or `to` while firing a notification event. Choose one of the three options below.
 
-          If the payload contains:
+          **Option 1: `to` only**
 
-          - **Option 1:** ONLY *`to`* (and no *`distinct_id`*) - the notification event uses all destination values from the *`to`* object (as it is).
+          Required: `event`, `to`
 
-          - **Option 2:** ONLY *`distinct_id`* (and no *`to`*) - the notificaton event uses all destination values (such as SMS, WhatsApp, Email, Push, Voice and so on) from the user's profile and sends the notification.
+          The notification event uses all destination values from the `to` object, as they are.
 
-          - **Option 3:** BOTH *`distinct_id`* and *`to`* - the `to` and `distinct_id` channel data merges (`to` object take precedences) and sends the notification. The sent notification is tagged to the ID specified, which can be then used to search the logs by using `distinct_id`.
+          ```json
+          {
+            "event": "event_name",
+            "to": {
+              "email": "abcde@fghi.com",
+              "sms": "+49XXXXXXXXX"
+            },
+            "data": {
+              "placeholder_key_1": "placeholder_value_1"
+            }
+          }
+          ```
+
+          **Option 2: `distinct_id` only**
+
+          Required: `event`, `distinct_id`
+
+          The notification event uses all destination values (such as SMS, WhatsApp, Email, Push, and Voice) from the user's profile and sends the notification.
+
+          ```json
+          {
+            "event": "event_name",
+            "distinct_id": "XXXXXXXX",
+            "data": {
+              "placeholder_key_1": "placeholder_value_1"
+            }
+          }
+          ```
+
+          **Option 3: both `distinct_id` and `to`**
+
+          Required: `event`, `distinct_id`, `to`
+
+          The `to` and `distinct_id` channel data merges, with the `to` object taking precedence, and the notification is sent. The sent notification is tagged to the ID specified, which you can then use to search the logs by `distinct_id`.
+
+          ```json
+          {
+            "event": "event_name",
+            "distinct_id": "XXXXXXXX",
+            "to": {
+              "email": "abcde@fghi.com"
+            },
+            "data": {
+              "placeholder_key_1": "placeholder_value_1"
+            }
+          }
+          ```
+
+          `data` and `callback` are optional in all three options.
         content:
           application/json:
             schema:
@@ -2560,18 +2624,81 @@ components:
       properties:
         batch:
           description: |
-            Your batch payload must specify at least *`distinct_id`* or *`to`* while firing a notification event.
+            Enter an array of recipients. Each item in the array must specify at least `distinct_id` or `to`. Choose one of the three options below for each item.
 
-            If the payload contains:
+            `event` is set once at the top level of the payload and applies to every item in the batch.
 
-            - **Option 1:** ONLY *`to`* (and no *`distinct_id`*) - the event uses all destination values from the *`to`* object (as it is).
+            **Option 1: `to` only**
 
-            - **Option 2:** ONLY *`distinct_id`* (and no *`to`*) - the event uses all destination values (such as SMS, WhatsApp, Email, Push, Voice and so on) from the user's profile and sends the notification.
+            Required per item: `to`
 
-            - **Option 3:** BOTH *`distinct_id`* and *`to`* - the `to` and `distinct_id` channel data merges (`to` object take precedences) and sends the notification. The sent notification is tagged to the ID specified, which can be then used to search the logs by using `distinct_id`.
+            The event uses all destination values from the `to` object, as they are.
+
+            ```json
+            {
+              "event": "event_name",
+              "batch": [
+                {
+                  "to": {
+                    "email": "abcde@fghi.com",
+                    "sms": "+49XXXXXXXXX"
+                  },
+                  "data": {
+                    "placeholder_key_1": "placeholder_value_1"
+                  }
+                }
+              ]
+            }
+            ```
+
+            **Option 2: `distinct_id` only**
+
+            Required per item: `distinct_id`
+
+            The event uses all destination values (such as SMS, WhatsApp, Email, Push, and Voice) from the user's profile and sends the notification.
+
+            ```json
+            {
+              "event": "event_name",
+              "batch": [
+                {
+                  "distinct_id": "XXXXXXXX",
+                  "data": {
+                    "placeholder_key_1": "placeholder_value_1"
+                  }
+                }
+              ]
+            }
+            ```
+
+            **Option 3: both `distinct_id` and `to`**
+
+            Required per item: `distinct_id`, `to`
+
+            The `to` and `distinct_id` channel data merges, with the `to` object taking precedence, and the notification is sent. The sent notification is tagged to the ID specified, which you can then use to search the logs by `distinct_id`.
+
+            ```json
+            {
+              "event": "event_name",
+              "batch": [
+                {
+                  "distinct_id": "XXXXXXXX",
+                  "to": {
+                    "email": "abcde@fghi.com"
+                  },
+                  "data": {
+                    "placeholder_key_1": "placeholder_value_1"
+                  }
+                }
+              ]
+            }
+            ```
+
+            You can mix options across items in the same batch. `data` and `callback` are optional in all three.
           items:
             oneOf:
-              - properties:
+              - title: "Option 1: to only"
+                properties:
                   callback:
                     "$ref": "#/components/schemas/callback"
                   data:
@@ -2579,10 +2706,10 @@ components:
                   to:
                     "$ref": "#/components/schemas/to"
                 required:
-                  - event
                   - to
                 type: object
-              - properties:
+              - title: "Option 2: distinct_id only"
+                properties:
                   callback:
                     "$ref": "#/components/schemas/callback"
                   data:
@@ -2591,9 +2718,9 @@ components:
                     "$ref": "#/components/schemas/distinct_id"
                 required:
                   - distinct_id
-                  - event
                 type: object
-              - properties:
+              - title: "Option 3: distinct_id and to"
+                properties:
                   callback:
                     "$ref": "#/components/schemas/callback"
                   data:
@@ -2604,7 +2731,6 @@ components:
                     "$ref": "#/components/schemas/to"
                 required:
                   - distinct_id
-                  - event
                   - to
                 type: object
           type: array
@@ -3327,7 +3453,8 @@ components:
       type: object
     version_event_body:
       oneOf:
-        - properties:
+        - title: "Option 1: to only"
+          properties:
             callback:
               "$ref": "#/components/schemas/callback"
             data:
@@ -3340,7 +3467,8 @@ components:
             - event
             - to
           type: object
-        - properties:
+        - title: "Option 2: distinct_id only"
+          properties:
             callback:
               "$ref": "#/components/schemas/callback"
             data:
@@ -3353,7 +3481,8 @@ components:
             - distinct_id
             - event
           type: object
-        - properties:
+        - title: "Option 3: distinct_id and to"
+          properties:
             callback:
               "$ref": "#/components/schemas/callback"
             data:
