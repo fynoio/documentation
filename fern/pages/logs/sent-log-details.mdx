@@ -48,6 +48,22 @@ This hop only shows up on the trace if and when we have a delivery response from
 
 In case the **Delivery Status** is visible, then you will also be able to see the timestamp for when the delivery status was shared.
 
+### Notification Route
+
+"**Log Details**" now shows the full path a notification took across channels and providers. A message that failed with one provider and then succeeded with another no longer appears as a single outcome. You can switch between steps to see the trace, response, and delivery details for each one.
+
+#### Viewing the Notification Route
+
+To open the route, click the route icon (the branching arrow) at the right end of the ribbon menu in the "**Log Details**" pop-up. The route appears as a diagram that begins at "**Start**" and shows every step the notification went through.
+
+Each step shows its channel, the integration that was used, and the status of that attempt, such as "**Delivered**" or "**Undelivered**". When an attempt fails and the notification moves on to another channel or provider, the two steps are joined by a connector labeled "**on failure**".
+
+#### Switching Between Steps
+
+Click a step in the route to view its details. The step you're viewing is highlighted, and its channel and integration appear at the top of the "**Trace**". The "**Trace**" and the tabs, such as "**Response**" and "**Delivery**", then show the details for that step.
+
+<Tip>To find out why a step failed, select it in the route and open the "**Response**" tab. It shows the provider's response for that attempt, including the error code if there is one.</Tip>
+
 ### Reviewing Notification Trace and Summary Logs
 
 When you open the log details of a notification, the first thing you will see is the Trace and summary details on the "Summary" tab.
