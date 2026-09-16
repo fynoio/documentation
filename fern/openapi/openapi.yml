@@ -38,22 +38,6 @@ paths:
           explode: false
           schema:
             type: string
-            default: live
-            enum:
-              - live
-              - test
-        - name: Idempotency-Key
-          in: header
-          description: "A unique key that makes this request idempotent, for example a UUID such as `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`. If Fyno receives another request with the same key, it returns the stored response from the first request without firing the notification again, including the original status code and any error. Use this to safely retry a request after a network failure without sending duplicate notifications. The key is scoped to this endpoint."
-          required: false
-          schema:
-            type: string
-        - name: x-idempotency-expiration
-          in: header
-          description: "How long the idempotency key stays valid, as a Unix epoch timestamp in seconds (for example `1789012345`) or an ISO 8601 date string (for example `2026-09-16T12:40:20.997+05:30`). Applies only when `Idempotency-Key` is sent. If omitted, the key is retained for 24 hours. The maximum is 1 year."
-          required: false
-          schema:
-            type: string
       requestBody:
         description: |
           Your event payload must specify at least `distinct_id` or `to` while firing a notification event. Choose one of the three options below.
