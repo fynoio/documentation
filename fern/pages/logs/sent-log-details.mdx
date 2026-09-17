@@ -41,7 +41,7 @@ In the example above, the notification was sent through Kaleyra.io, so the Trace
 
 When you open Log Details, the **Summary** tab is shown first, next to the **Trace**. It lists the key details of the log.
 
-![](/images/SentLogs_Summary.png)
+![](/images/log-details-route.png)
 
 | Field | What it shows |
 | --- | --- |
@@ -133,13 +133,9 @@ These providers can't share the delivery status, so the **Delivery** tab isn't s
 
 ### Notification Route
 
-**Notification Route** shows the full path a notification took across channels and providers. The path is displayed as a flow of blocks, where each block represents one attempt to send the notification through a channel and integration.
-
+To see the full path a notification took across channels and providers, click the route icon (the branching arrow) to the right of the tabs in the Log Details pop-up. This opens the **Notification Route**, which displays the path as a flow of blocks that begins at **Start**. Each block represents one attempt to send the notification through a channel and integration.
+![](/images/view-route.png)
 For example, if a notification is sent on WhatsApp but isn't delivered, and your route then sends it by email, the Notification Route shows two blocks: a WhatsApp block marked **Undelivered**, connected to an email block marked **Delivered**. You can open each block to see what happened during that attempt.
-
-#### Opening the Notification Route
-
-To open the route, click the route icon (the branching arrow) to the right of the tabs in the Log Details pop-up. The route begins at **Start** and shows every block the notification passed through.
 
 #### Reading Blocks and Connectors
 
@@ -153,8 +149,7 @@ Each block shows its channel, the integration used, and the status of that attem
 
 To learn how success criteria and wait times are set up, see [Omnichannel Routing](./omnichannel-route-creation).
 
-#### Viewing Details for a Block
+#### Clicking on a Block to See Log Details
 
-Click a block to view its details. The block you're viewing is highlighted, and its channel and integration appear at the top of the **Trace**. The **Trace** and the tabs, such as **Response** and **Delivery**, then show the details for that attempt.
-
+Click a block in the route to view details of that log. The block you're viewing is highlighted, and its channel and integration appear at the top of the **Trace**. The **Trace** and the tabs, such as **Response** and **Delivery**, then show the details for that attempt.
 <Tip>To find out why an attempt failed, click its block and open the **Response** tab. It shows the provider's response for that attempt, including the error code if there is one.</Tip>
