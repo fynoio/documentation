@@ -7,227 +7,149 @@ og:description: 'Deep dive into Fyno log components like Trace, Summary, and Pla
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
+**Log Details** is the pop-up that opens when you click a notification log on the **Sent Logs** page. It brings together everything about that log, organized into these areas:
+
+| Area | What it shows |
+| --- | --- |
+| [Trace](#debugging-notification-hops-with-log-trace) | Each hop the notification took, the time each hop took, and the final status. |
+| [Summary tab](#reviewing-notification-trace-and-summary-logs) | Key details of the log, such as the Message ID, channel, provider, and template. |
+| [Placeholders tab](#debugging-template-placeholders-in-logs) | The placeholders, or replaceable parameters, in the template that was used. |
+| [Content tab](#understanding-log-content-details) | The content sent in the notification, such as the message text or the email subject and body. |
+| [Response tab](#analyzing-provider-api-responses-in-logs) | The exact response received from the provider, including any error code. |
+| [Delivery tab](#tracking-notification-delivery-status-in-logs) | The delivery report received from the provider, for providers that share delivery status. |
+| [Notification Route](#notification-route) | The full path the notification took across channels and providers. |
+
 ### Debugging Notification Hops with Log Trace
 
-"**Log Details**" is the pop-up that appears when you click on a notification log on the "**Sent Logs**" page, showing you all the details of the log.
+The **Trace** appears on the left side of the Log Details pop-up. It summarizes each hop the notification took, how long each hop took, the total time, and the final status of the notification.
 
-To understand this better, let's have a look at the "**Log Details**" with an example.
 ![](/images/SentLogs_Trace.png)
 
-On the left side of the pop-up that appears, there is a "**Trace**"
+| Hop | What it shows |
+| --- | --- |
+| **Request Received** | The time the API was triggered and Fyno received the request for processing. |
+| **Sent To** *provider name* | The date and time the request was sent to the provider, and how long Fyno took to process it. The provider shown depends on the routing and notification event that were triggered. |
+| *Provider name*'s **Response** | The date and time the provider's response was received, and how long the provider took to respond. |
+| **Final Status** | The final status of the notification, such as **Success**, and the total time taken for its entire lifecycle. |
+| **Delivery Status** | The time the provider shared the delivery status. This hop appears only when the provider sends a delivery response. |
 
-"**Trace**" gives you a summary of each hop or path that the notification has taken along with the time that each hop has taken, including the total as well as the final status of the notification.
+In the example above, the notification was sent through Kaleyra.io, so the Trace shows **Sent To Kaleyra.io** and **Kaleyra.io's Response**. Fyno took 121ms to process the request and Kaleyra.io took 147ms to respond. The notification was delivered successfully, so **Final Status** shows **Success**, with a total time of 268ms.
 
-#### Request Received
-
-The time the API was triggered and Fyno has received the request successfully to be executed further.
-
-#### Sent To xxxxxxxx
-
-In the example shown above, "**Sent To Kaleyra.io**" is seen because, according to the routing and event created and triggered, the provider details show up accordingly in this step.
-
-The details shown in this field are the date and time this was sent to Kaleyra.io and the time it has taken for Fyno to process the request towards the provider. In this case, it's 121ms.
-
-#### xxxxxxx's Response
-
-In the example shown above, "**Kaleyra.io's Response**" talks of the same details for the date and time the response was received from Kaleyra.io for the request that was made to their platform.
-
-It also shows how much time it has taken to receive the response from Kaleyra.io in milliseconds. In this case, it has taken 147ms
-
-#### Final Status
-
-The last hop shows the final status of the notification at a glance. In this case, the notification was delivered successfully, so the hop shows as "**Success**".
-
-<Tip>From this hop, you can also navigate to the a detailed view of the response by clicking on "**View Response**". This will take you to the tab with the details of the final response.</Tip>
-
-You will also be able to see what the total time taken for the entire lifecycle of the notification was. In this case, we can see that it has taken 268ms total for the entire notification to be triggered and for a final status to be updated.
-
-#### Delivery Status
-
-This hop only shows up on the trace if and when we have a delivery response from the **Provider**
-
-In case the **Delivery Status** is visible, then you will also be able to see the timestamp for when the delivery status was shared.
+<Tip>Click **View Response** on the **Final Status** hop to go straight to the tab with the details of the final response.</Tip>
 
 ### Reviewing Notification Trace and Summary Logs
 
-When you open the log details of a notification, the first thing you will see is the Trace and summary details on the "Summary" tab.
+When you open Log Details, the **Summary** tab is shown first, next to the **Trace**. It lists the key details of the log.
 
-To understand and read this summary better, let's have a look at some of the key details within the "Summary" Tab
+![](/images/log-details-route.png)
 
-![](/images/SentLogs_Summary.png)
+| Field | What it shows |
+| --- | --- |
+| **Message ID** | The unique identifier of the message sent through a specific provider. If a notification fails with one provider and is sent through a failover provider, each attempt gets its own log and Message ID. |
+| **Request ID** | The unique identifier of the request triggered through Fyno. Every log created by the same request shares one Request ID, even when the notification goes through multiple providers. |
+| **Channel** | The channel used for the notification: Messaging (SMS), WhatsApp, Email, Chat, or Push. |
+| **Provider Name** | The provider used to send the notification you're viewing. This can vary with your routing and notification event configuration. |
+| **Destination** | The recipient's details, such as a phone number, email ID, or chat channel ID. |
+| **Date** | The date you triggered the notification through the Fyno App. |
+| **Time** | The time you triggered the notification through the Fyno App. |
+| **Integration Custom** | The name you gave the integration when you created a provider under a channel. |
+| **Routing** | The routing you created under the **Integrations** section. |
+| **Template** | The name of the template used in the notification, created under the **Templates** section. |
+| **Notification Event** | The name of the notification event that triggered the notification and created this log, created under the **Notification Events** section. |
+| **Retry** | The attempt number of the notification within the notification event, starting at 0. |
 
-#### Message ID
+For example, if a notification event has 2 providers configured, and the notification fails with the first provider but is delivered by the second, there are 2 logs. The failed attempt shows **Retry** as 0, and the delivered attempt shows **Retry** as 1. To see both attempts together, open the [Notification Route](#notification-route).
 
-Message ID is the unique identifier for the message that has been sent.
+<Info title="Request ID and Message ID are linked!">A Message ID starts with the Request ID of the request that created it. Its last 4 characters are unique to each provider.</Info>
 
-This is highly unique, in a way that this is very specific to the transaction that has happened only with that provider. So, in case you have 2 operators configured, one as primary and the second one as failover, in this case, if the message fails with the primary operator, and is triggered via the failover provider, each interaction with every provider will have a log and a unique "Message-ID"
-
-<Info title="Request ID and Message ID are linked!">The first half of the Message ID is made up of the "Request ID" and the unique part is the last 4 characters of the "Message-ID" will be unique to each provider</Info>
-
-#### Request ID
-
-A "Request ID" is a unique ID that is assigned to a request that is being triggered through Fyno's Application.
-
-A request which has a notification event that triggers a notification to flow through multiple providers will still have the same "Request ID" since that action was triggered by one request.
-
-So, in case you want to find out what has, for example, happened for one request that has multiple providers configured in the routing or the notification event, you can search by the "Request ID" in the "Filters" and you will get the details for all of the logs for that particular "Request ID"
-
-#### Channel
-
-"Channel" shows you the channel that was used for the notification that was triggered.
-
-"Channel" can be Messaging (SMS), WhatsApp, Email, Chat or Push
-
-#### Provider Name
-
-"Provider Name" displays the provider that was used to trigger the notification you are currently viewing. This may vary depending on your routing and notification event configurations
-
-#### Destination
-
-"Destination" displays the final recipient's details. This may be a phone number, email ID or a Chat channel ID
-
-#### Date
-
-"Date" shows the date the notification was triggered by you, via the Fyno App
-
-#### Time
-
-"Time" shows you the time that the notification was triggered by you, via the Fyno App
-
-#### Integration Custom
-
-"Integration Custom" is the name that you have given to the integration when you are creating a "Provider" under a "Channel"
-
-#### Routing
-
-"Routing" refers to the routing that you have created under the "Integrations" section.
-
-#### Template
-
-"Template" shows you the name of the template being used in the notification that you have created under the "Templates" section.
-
-#### Notification Event
-
-"Notification Event" shows you the name of the notification event that was triggered, which was created in the "Notification Events" section, because of which a notification was triggered, creating this log.
-
-#### Retry
-
-"Retry" shows you the attempt number which this notification was under. This is nothing but the attempt count of a notification event.
-
-So for example, if a notification event has 2 Providers configured, and the notification fails to deliver from the first provider and delivers from the second provider, then there would be 2 notifications logs and the first retry (which failed) will show "Retry" as "0" and the second notification log which did get delivered would show "Retry" as 1.
+<Tip>To see every log created by one request, such as when the routing or notification event uses multiple providers, search for its **Request ID** in **Filters**.</Tip>
 
 ### Debugging Template Placeholders in Logs
 
-On the "Log Details" pop-up, the second tab on the ribbon menu you will see is "Placeholders".
+The **Placeholders** tab shows the details of all the placeholders, or replaceable parameters, in the template used to trigger the notification event.
 
-Placeholders shows you the details of all the placeholders or the replaceable parameters that were in the "Template" that was used to trigger the notification event.
+<Info title="No details in Placeholders?">If the **Placeholders** tab is empty, the notification's content had no replaceable parameters to display.</Info>
 
-<Info title="No details in Placeholders?">If the "Placeholders" tab shows no details, this only means that the content that was triggered in the notification had no replaceable parameters to be displayed.</Info>
-
-<Note> If any placeholders or base64 attachment size is greater than 1 MB, then you will see 'content omitted due to size' as we don't store any content > 1 MB at our end.  </Note>
+<Note>If a placeholder or base64 attachment is larger than 1 MB, you'll see `content omitted due to size`, because Fyno doesn't store content larger than 1 MB.</Note>
 
 ### Understanding Log Content Details
 
-On the "Log Details" pop-up, the third tab on the ribbon menu you will see is "Content".
+The **Content** tab shows the details of the content sent in the notification. What you see depends on the channel:
 
-The "Content" tab shows you all the details of the content that has been triggered in the notification.
+| Detail | What it shows |
+| --- | --- |
+| **Message content** | The static text of the message, along with any replaced parameters. |
+| **Type of Message** | The message type, such as Unicode, plain text, or a media type, depending on the content and channel. |
+| **Template ID** | The Template ID, for SMS notifications that have one. |
+| **Subject** | The subject line, for email notifications. |
+| **Body** | The content of the email body, for email notifications. |
 
-Depending on the channel being used, it can show you a wide variety of details like:
-
-- Message content - The written or static and replaced parameters ( if any) part of the message
-- Type of Message - Anything from Unicode to plain text to media types, depending again on the content and the "Channel" that was used.
-- Template ID - In case the notification was an SMS and it has a Template ID, the same will be mentioned as well
-- Subject: In case the notification triggered was an email, this will show the subject line of the email sent
-- Body - In case the notification sent was an email, this will display the content that made up the body of the email
-
-<Note> If any placeholders or base64 attachment size is greater than 1 MB, then you will see 'content omitted due to size' as we don't store any content > 1 MB at our end.  </Note>
+<Note>If a placeholder or base64 attachment is larger than 1 MB, you'll see `content omitted due to size`, because Fyno doesn't store content larger than 1 MB.</Note>
 
 ### Analyzing Provider API Responses in Logs
 
-On the "Log Details" pop-up, the fourth tab on the ribbon menu you will see is "Response".
-
-In this tab, you will find everything to do with the response received for the notification that was triggered to the "Provider".
-
-Fyno will display the exact response that has been received from the "Provider", including details like:
-
-- Error code, if any
-- Final status of the notification
-- Message "Content" as well as "Trace" details
+The **Response** tab shows the exact response Fyno received from the provider for the notification. This includes any error code, the final status of the notification, and the message content and trace details.
 
 ### Tracking Notification Delivery Status in Logs
 
-On the "Log Details" pop-up, the fifth tab on the ribbon menu you will see is "Delivery".
+The **Delivery** tab shows the delivery response Fyno received from the provider used to send the notification. Because this information comes from the provider, the tab is available only for providers that send delivery status.
 
-The delivery tab is dependent on the information relayed from the providers. You will see a delivery status tab only for providers who send the Delivery Status.
+<Info>If Fyno hasn't received any delivery status from the provider, the **Delivery** tab isn't shown.</Info>
 
-The **Delivery** tab will show you the details of the delivery response that Fyno has received from the "Provider" that was used to send the notification.
+Providers fall into three groups, depending on whether and how they share delivery status.
 
-<Info>This tab may not be visible in cases where Fyno has not received any information from the "Provider" about **Delivery Status**</Info>
+#### Delivery Status Sent, No Extra Configuration
 
-On that note, let's have a quick look at the types of **Providers** based on the Delivery Status
+These providers share the delivery status without any webhooks or callbacks configured on their end.
 
-- Delivery status sent, with no extra configuration needed.
-- Delivery status can be sent, configuration required
-- Delivery status not sent, configuration not available
+| Channel | Providers |
+| --- | --- |
+| Messaging (SMS) | [Exotel](./sms-exotel), [Kaleyra Global](./sms-kaleyra-global), [Kaleyra.io](./sms-kaleyraio), [MessageBird](./sms-messagebird), [Plivo](./sms-plivo), [Twilio](./sms-twilio), [ValueFirst](./sms-valuefirst) |
+| WhatsApp | [Freshchat](./whatsapp-freshchat), [MessageBird](./whatsapp-messagebird), [Twilio](./whatsapp-twilio), [ValueFirst](./whatsapp-valuefirst) |
+| InApp | InApp |
+| Push | [Expo](./push-expo), [FCM](./push-fcm), [Mi Push](./push-mi-push), [OneSignal](./push-onesignal) |
 
-### Delivery Status Sent, No Extra Configuration
+#### Delivery Status can be Sent, Configuration Needed
 
-There are providers within some services that readily share the delivery status of the notification without having to configure webhooks or callbacks at their end. They are:
+These providers share the delivery status once they're configured to do so. After that, the **Delivery** tab shows up in logs.
 
-- Messaging (SMS)
-  - [Exotel](./sms-exotel)
-  - [Kaleyra Global](./sms-kaleyra-global)
-  - [Kaleyra.io](./sms-kaleyraio)
-  - [MessageBird](./sms-messagebird)
-  - [Plivo](./sms-plivo)
-  - [Twilio](./sms-twilio)
-  - [ValueFirst](./sms-valuefirst)
-- WhatsApp
-  - [Freshchat](./whatsapp-freshchat)
-  - [MessageBird](./whatsapp-messagebird)
-  - [Twilio](./whatsapp-twilio)
-  - [ValueFirst](./whatsapp-valuefirst)
-- InApp
-- Push
-  - [Expo](./push-expo)
-  - [FCM](./push-fcm)
-  - [Mi Push](./push-mi-push)
-  - [OneSignal](./push-onesignal)
+| Channel | Providers |
+| --- | --- |
+| Messaging (SMS) | [Gupshup](./sms-gupshup), [Karix](./sms-karix), [MSG91](./sms-msg91), [RouteMobile](./sms-route-mobile), [Syniverse](./sms-syniverse) |
+| WhatsApp | [Connectly](./whatsapp-connectly), [Kaleyra.io](./whatsapp-kaleyraio), [Gupshup Enterprise](./whatsapp-gupshup), [Meta (by Facebook)](./whatsapp-meta) |
+| Email | [Mailchimp (Mandrill)](./email-mailchimp), [Mailgun](./email-mailgun), [Netcore](./email-netcore), [PostMark](./email-postmark), [SendGrid](./email-sendgrid), [SES](./email-ses) |
 
-### Delivery Status can be Sent, Configuration Needed
+#### Delivery Status Not Sent, Configuration not available
 
-Some other providers need to be configured to send the delivery status. For these **Providers**, once configured the delivery tab will show up in logs. These are:
+These providers can't share the delivery status, so the **Delivery** tab isn't shown for them.
 
-- Messaging (SMS)
-  - [Gupshup](./sms-gupshup)
-  - [Karix](./sms-karix)
-  - [MSG91](./sms-msg91)
-  - [RouteMobile](./sms-route-mobile)
-  - [Syniverse](./sms-syniverse)
-- WhatsApp
-  - [Connectly](./whatsapp-connectly)
-  - [Kaleyra.io](whatsapp-kaleyraio)
-  - [Gupshup Enterprise](./whatsapp-gupshup)
-  - [Meta (by Facebook)](whatsapp-meta)
-- Email
-  - [Mailchimp (Mandrill)](./email-mailchimp)
-  - [Mailgun](./email-mailgun)
-  - [Netcore](email-netcore)
-  - [PostMark](email-postmark)
-  - [SendGrid](email-sendgrid)
-  - [SES](email-ses)
+| Channel | Providers |
+| --- | --- |
+| WhatsApp | [AiSensy](./whatsapp-aisensy) |
+| Email | [Gmail](./email-gmail), [Outlook](./email-outlook) |
+| Chat | [Slack](./chat-slack), [Teams (by Microsoft)](./chat-teams) |
 
-However, there are a few providers that don't provide the delivery status and we will be unable to fetch that data. We would request you to check with your provider for more details on the same.
+<Note>A few other providers don't share delivery status either, so Fyno can't fetch it for them. Check with your provider for details.</Note>
 
-### Delivery Status Not Sent, Configuration not available
+### Notification Route
 
-Some providers do not have the feasibility to share the delivery status, and thus this cannot be shared. For these providers, the **Delivery** tab will not be visible. They are:
+To see the full path a notification took across channels and providers, click the route icon (the branching arrow) to the right of the tabs in the Log Details pop-up. This opens the **Notification Route**, which displays the path as a flow of blocks that begins at **Start**. Each block represents one attempt to send the notification through a channel and integration.
+![](/images/view-route.png)
+For example, if a notification is sent on WhatsApp but isn't delivered, and your route then sends it by email, the Notification Route shows two blocks: a WhatsApp block marked **Undelivered**, connected to an email block marked **Delivered**. You can open each block to see what happened during that attempt.
 
-- WhatsApp
-  - [AiSensy](./whatsapp-aisensy)
-- Email
-  - [Gmail](email-gmail)
-  - [Outlook](email-outlook)
-- Chat
-  - [Slack](./chat-slack)
-  - [Teams (by Microsoft)](./chat-teams)
+#### Reading Blocks and Connectors
+
+Each block shows its channel, the integration used, and the status of that attempt, such as **Delivered** or **Undelivered**. Blocks are joined by connectors, and each connector's label shows why the notification moved on to the next block.
+
+| Connector label | What it means |
+| --- | --- |
+| **on success** | The attempt in the previous block met the success criteria set in your route. |
+| **on failure** | The attempt in the previous block failed or didn't meet the success criteria set in your route. |
+| **wait for** | The wait time configured in your route, such as how long Fyno waits for a delivered or read status before following the success or failure path. It can appear alongside an **on success** or **on failure** label. |
+
+To learn how success criteria and wait times are set up, see [Omnichannel Routing](./omnichannel-route-creation).
+
+#### Clicking on a Block to See Log Details
+
+Click a block in the route to view details of that log. The block you're viewing is highlighted, and its channel and integration appear at the top of the **Trace**. The **Trace** and the tabs, such as **Response** and **Delivery**, then show the details for that attempt.
+<Tip>To find out why an attempt failed, click its block and open the **Response** tab. It shows the provider's response for that attempt, including the error code if there is one.</Tip>
