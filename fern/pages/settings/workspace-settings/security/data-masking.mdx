@@ -7,7 +7,7 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
 Data Masking helps protect sensitive information from being exposed within the Fyno Logs and User Profile. When enabled, sensitive data is displayed in a masked format while remaining securely stored and processed by the platform.
-
+![](/images/data-masking-view.png)
 It can be used to prevent accidental exposure of personally identifiable information (PII), such as email addresses, phone numbers, identifiers, and other sensitive data contained in notification payloads.
 
 ## Permissions
@@ -16,6 +16,7 @@ It can be used to prevent accidental exposure of personally identifiable informa
 - Other users can view masked data based on their access permissions but cannot:
   - Enable or disable Default Masking or Regex Masking.
   - Change the masking type.
+- To give other users access to unmasked data, assign them the [Unmask Sensitive Data](https://www.fyno.io/docs/team#unmask-sensitive-data) add-on policy.
 
 ### How Data Masking Works?
 
@@ -47,10 +48,31 @@ For example, users viewing execution or delivery logs will see masked values ins
 
 When you enable Data Masking for the first time, the configuration dialog opens automatically, allowing you to select one of the available masking types. After Data Masking has been enabled, you can use Configure to modify the masking settings at any time.
 
+### View Unmasking Activity
+
+Unmasking Activity shows when masked data was unmasked and who unmasked it, so you can keep track of who has viewed sensitive information.
+
+<Steps>
+  <Step>Navigate to **Workspace Settings** > **Security**.</Step>
+  <Step>In the **Data Masking** section, click **View Unmasking Activity**.</Step>
+</Steps>
+
+Activities are listed with the most recent first. Each entry shows:
+
+| Detail | What it shows |
+| --- | --- |
+| **Date and time** | When the data was unmasked. |
+| **Team member** | Who unmasked the data. |
+| **Activity** | Where the data was unmasked, for example, **Unmasked Sent Logs**. |
+| **Date range** | The date range of the logs being viewed when the data was unmasked. |
+| **Rows and page** | How many rows were unmasked and on which page, for example, **30 rows of Page 1**. |
+
+To learn who can unmask data in logs and how, see [Data Masking in logs](https://www.fyno.io/docs/logs-overview#data-masking-in-logs).
+
 ## Default Masking
 
 Default Masking masks Destination and Data Payload values when they appear in logs, preventing sensitive information from being exposed while preserving the overall log structure and usability.
-![](/images/default-masking.png)
+![](/images/default-masking-view.png)
 When enabled:
 - Headers: All header values are masked by default.
 - Destinations: All destinations are masked by default.
@@ -95,7 +117,7 @@ In Default Masking mode, all Destination and Data Payload values are masked rega
 ## Regex Masking
 
 Regex Masking allows sensitive values to be identified and masked using predefined patterns.
-![](/images/regex-masking.png)
+![](/images/regex-masking-view.png)
 All destination and header values are masked by default.
 
 For data payloads, Fyno scans the payload and masks only values that match supported patterns, including:
@@ -160,4 +182,3 @@ To disable Data Masking:
   <Step>Turn off the **Data Masking** toggle.</Step>
 </Steps>
 Once disabled, data will be displayed according to the current access permissions and visibility settings configured for the workspace.
-
