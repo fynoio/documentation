@@ -62,54 +62,21 @@ The first Delivery Endpoint you create will be considered as 'Default' and you w
 
 ![](/images/configure-delivery-endpoint.png)
 
-If you didn't include any parameters in the payload, Fyno will send the following default parameters. 
+If you didn't include any parameters in the payload, Fyno will send the following default parameters.
 
 > **IMPORTANT NOTE**:
-> Custom fields (custom_id, custom1, custom2, and custom3) can now be used independently of delivery webhooks (Allowlist URLs).
-
-> What changed:
-
-> Earlier, custom fields were only available when configuring delivery reports, which made it mandatory to set up an Allowlist URL.
-> Now, custom fields are available in a separate section in the UI and can be configured without enabling delivery callbacks.
-> What this means:
-> - You can use custom_id, custom1, and custom2 even if you are not using delivery webhooks.
-> - Allowlist configuration is no longer required to use these fields.
-> - These fields will still be captured and made available in campaign reports and analytics downloads.
-> Supported fields for reporting:
-> - custom_id: Supported
-> - custom1: Supported
-> - custom2: Supported
-> - custom3: Not supported for reporting (only available when configuring delivery callbacks)
-
-Note: Support for custom3 in reporting may be added in future.
-
-> **IMPORTANT NOTE**:
+>
 > Custom fields (custom_id, custom1, and custom2) can now be used independently of delivery webhooks (Allowlist URLs).
-> What changed:
-> Earlier, custom fields were only available when configuring delivery reports, which made it mandatory to set up an Allowlist URL.
-> Now, custom fields are available in a separate section in the UI and can be configured without enabling delivery callbacks.
-> What this means:
+>
+> **What changed:**
+> Earlier, custom fields were only available when configuring delivery reports, which made it mandatory to set up an Allowlist URL. Now, custom fields are available in a separate section in the UI and can be configured without enabling delivery callbacks.
+>
+> **What this means:**
 > - You can use custom_id, custom1, and custom2 even if you are not using delivery webhooks.
 > - Allowlist configuration is no longer required to use these fields.
 > - These fields will still be captured and made available in campaign reports and analytics downloads.
-> Supported fields for reporting:
-> - custom_id: Supported
-> - custom1: Supported
-> - custom2: Supported
-> - custom3: Not supported for reporting (only available when configuring delivery callbacks)
-
-Note: Support for custom3 in reporting may be added in future.
-
-> **IMPORTANT NOTE**:
-> Custom fields (custom_id, custom1, and custom2) can now be used independently of delivery webhooks (Allowlist URLs).
-> What changed:
-> Earlier, custom fields were only available when configuring delivery reports, which made it mandatory to set up an Allowlist URL.
-> Now, custom fields are available in a separate section in the UI and can be configured without enabling delivery callbacks.
-> What this means:
-> - You can use custom_id, custom1, and custom2 even if you are not using delivery webhooks.
-> - Allowlist configuration is no longer required to use these fields.
-> - These fields will still be captured and made available in campaign reports and analytics downloads.
-> Supported fields for reporting:
+>
+> **Supported fields for reporting:**
 > - custom_id: Supported
 > - custom1: Supported
 > - custom2: Supported
@@ -119,40 +86,51 @@ Note: Support for custom3 in reporting may be added in future.
 
 ### Default Parameters
 
-| Parameter Name | Type & Value                                                                                                                              |
-| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| custom_id      | **String or Number**; an alpha-numeric or numeric unique identifier that is provided in the callback object during the submission request |
-| msg_id         | **String**; Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5          |
-| status         | **String**; It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc         |
+| Parameter Name | Type | Value |
+| :--- | :--- | :--- |
+| custom_id | String or Number | An alpha-numeric or numeric unique identifier that is provided in the callback object during the submission request |
+| msg_id | String | Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5 |
+| status | String | It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc |
+| metabtnreply | JSON Object | Contains information about the button reply received in response to a WhatsApp message.<br/>**Note:** Applicable only to WhatsApp notifications. |
+| analytics_label | String | The analytics label associated with the Notification Event that is being triggered. |
+| credits_used | String | The number of credits consumed for the template that was sent.<br/>**Note:** Applicable only to SMS notifications. |
+| grouping_name | String | The group label associated with the Notification Event that is being triggered. |
+| campaign_name | String | The name of the campaign used to trigger the Notification Event.<br/>**Note:** Sent only when the event is triggered through a campaign. |
 
+<Info>Some of the default parameters are channel- or trigger-specific and will not appear in every delivery report: `metabtnreply` is sent only for WhatsApp button replies, `credits_used` only for SMS, and `campaign_name` only when the notification event is triggered through a campaign.</Info>
 
 Below is a list of all the parameters that Fyno can send you as data points. However, each one of these will need to be specified if you need them.
 
-| Parameter Name       | Type & Value                                                                                                                                                                                                                                                                                                                                                                                 |
-| :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| request_id           | string; request_id parameter in response which is generated during the submission request<br/>example: 17f7e491-f51f-4e1e-881c-794f838c7c3c.                                                                                                                                                                                                                                                  |
-| custom_id            | **String or Number**; an alpha-numeric or numeric unique identifier that is provided in the callback object during the submission request.                                                                                                                                                                                                                                                   |
-| msg_id               | **String**; Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5.                                                                                                                                                                                                                                                             |
-| status               | **String**; It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc.                                                                                                                                                                                                                                                            |
-| destination          | **String**; destinations like email, mobile no sent during submission request.<br/>example : [abc@gmail.com](mailto:abc@gmail.com), 919876543210.                                                                                                                                                                                                                                             |
-| distinct_id          | **String**; It holds the distinct_id of the user, if specified in the request.                                                                                                                                                                                                                                                                                                                |
-| message              | **String**; This is an error message given by the provider if any delivery failure occurs.<br/>Note: all provider does not give this information.                                                                                                                                                                                                                                             |
-| senttime             | **String**; Submission time of the request, YYYY-MM-DD HH:mm:ss UTC.                                                                                                                                                                                                                                                                                                                          |
-| senttime_epoch       | **String**; Submission time of the request in epoch format (Unix time).                                                                                                                                                                                                                                                                                                                       |
-| dlrtime              | **String**; The time when the delivery report status was received, YYYY-MM-DD HH:mm:ss UTC.                                                                                                                                                                                                                                                                                                   |
-| dlrtime_epoch        | **String**; The time when the delivery report status was received in epoch format (Unix time).                                                                                                                                                                                                                                                                                                |
-| integration_name     | **String**; Integration account name through which the notification was sent.                                                                                                                                                                                                                                                                                                                 |
-| channel              | **String**; the name of the channel through which the notification was sent.                                                                                                                                                                                                                                                                                                                  |
-| provider             | **String**; the name of the provider via which the notification was sent.                                                                                                                                                                                                                                                                                                                     |
-| provider_msg_id      | **String**; the msg ID (if available) of the provider via which the notification was sent.                                                                                                                                                                                                                                                                                                    |
-| provider_template_id | **String**; the provider template ID that was sent.<br/>For SMS, the DLT template ID is sent (for Indian businesses).<br/>For WhatsApp, the template name and language is sent (`templatename_lang`).<br/>For RCS, the template name is sent.                                                                                                                                                |
-| event_name           | **String**; the name of the Notification Event that is being triggered.                                                                                                                                                                                                                                                                                                                       |
-| template             | **String**; the name of the Template, whose content is sent out delivery and ideally it is being configured in the notification event.                                                                                                                                                                                                                                                        |
-| msg_content          | **JSON Object**; Contains information of the template sent.<br/>For SMS, it will include the SMS text and template ID (if available).<br/>For WhatsApp, it will include the template_name, language, and placeholder mapping.<br/>For Email, it will include the subject line, body content, and attachments (only if Presigned/Public URLs are used).From Name, From Email and Reply To data points also will be received only if they are configured in the Email template.<br/>**Note:** This variable is enabled on request and is available only for SMS, WhatsApp and Email. If enabled, only the first webhook call will contain this variable. |
-| version              | **String**: API version that is used to trigger a notification event<br/>test or live.                                                                                                                                                                                                                                                                                                        |
-| custom1              | **String**: custom1 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string.                                                                                                                                                                                                                                        |
-| custom2              | **String**: custom2 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string.                                                                                                                                                                                                                                        |
-| custom3              | **String**: custom3 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string.                                                                                                                                                                                                                                        |
+| Parameter Name | Type | Value |
+| :--- | :--- | :--- |
+| request_id | String | request_id parameter in response which is generated during the submission request<br/>example: 17f7e491-f51f-4e1e-881c-794f838c7c3c. |
+| custom_id | String or Number | An alpha-numeric or numeric unique identifier that is provided in the callback object during the submission request. |
+| msg_id | String | Fyno message id that is generated during submission request.<br/>example : 17f7e491-f51f-4e1e-881c-794f838c7c3c:s8a5. |
+| status | String | It holds the delivery status information of the triggered message id.<br/>Example: DELIVERED, FAILED, READ, OPEN, etc. |
+| destination | String | Destinations like email, mobile no sent during submission request.<br/>example : [abc@gmail.com](mailto:abc@gmail.com), 919876543210. |
+| distinct_id | String | It holds the distinct_id of the user, if specified in the request. |
+| message | String | This is an error message given by the provider if any delivery failure occurs.<br/>Note: all provider does not give this information. |
+| senttime | String | Submission time of the request, YYYY-MM-DD HH:mm:ss UTC. |
+| senttime_epoch | String | Submission time of the request in epoch format (Unix time). |
+| dlrtime | String | The time when the delivery report status was received, YYYY-MM-DD HH:mm:ss UTC. |
+| dlrtime_epoch | String | The time when the delivery report status was received in epoch format (Unix time). |
+| integration_name | String | Integration account name through which the notification was sent. |
+| channel | String | The name of the channel through which the notification was sent. |
+| provider | String | The name of the provider via which the notification was sent. |
+| provider_msg_id | String | The msg ID (if available) of the provider via which the notification was sent. |
+| provider_template_id | String | The provider template ID that was sent.<br/>For SMS, the DLT template ID is sent (for Indian businesses).<br/>For WhatsApp, the template name and language is sent (`templatename_lang`).<br/>For RCS, the template name is sent. |
+| event_name | String | The name of the Notification Event that is being triggered. |
+| template | String | The name of the Template, whose content is sent out delivery and ideally it is being configured in the notification event. |
+| msg_content | JSON Object | Contains information of the template sent.<br/>For SMS, it will include the SMS text and template ID (if available).<br/>For WhatsApp, it will include the template_name, language, and placeholder mapping.<br/>For Email, it will include the subject line, body content, and attachments (only if Presigned/Public URLs are used).From Name, From Email and Reply To data points also will be received only if they are configured in the Email template.<br/>**Note:** This variable is enabled on request and is available only for SMS, WhatsApp and Email. If enabled, only the first webhook call will contain this variable. |
+| version | String | API version that is used to trigger a notification event<br/>test or live. |
+| custom1 | String | custom1 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string. |
+| custom2 | String | custom2 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string. |
+| custom3 | String | custom3 value that is submitted callback object in submission request. If it does not pass in the request then it will be an empty string. |
+| metabtnreply | JSON Object | Contains information about the button reply received in response to a WhatsApp message.<br/>**Note:** Applicable only to WhatsApp notifications. |
+| analytics_label | String | The analytics label associated with the Notification Event that is being triggered. |
+| credits_used | String | The number of credits consumed for the template that was sent.<br/>**Note:** Applicable only to SMS notifications. |
+| grouping_name | String | The group label associated with the Notification Event that is being triggered. |
+| campaign_name | String | The name of the campaign used to trigger the Notification Event.<br/>**Note:** Sent only when the event is triggered through a campaign. |
 
 
 Once this is done, all the delivery statuses for every notification triggered will be automatically updated at this location.
@@ -309,7 +287,6 @@ Once the Delivery Endpoint URL(s) is selected, 3 additional placeholder details 
 <ParamField path="Custom ID" type="string" required={true}>
   <ul>
     <li>Unique identifier of your notification</li>
-    <li>Unique identifier of your notification</li>
     <li>**Length**: 200 characters if string</li>
     <li>**Length**: 20 digits if numeric</li>
   </ul>
@@ -410,7 +387,9 @@ Sample configuration for the additional parameters (JSON) in Webhooks Delivery s
     "reference_msg_id": "{{custom_id}}",
     "order_id": "{{custom1}}",
     "category": "{{custom2}}",
-    "channel": "{{channel}}"
+    "channel": "{{channel}}",
+    "analytics_label": "{{analytics_label}}",
+    "campaign_name": "{{campaign_name}}"
   }
 }
 ```
@@ -433,6 +412,8 @@ Once this is successfully configured, here is a sample of the Callback Response 
   "reference_msg_id": "YOUR_CUSTOM_ID_VALUE",
   "order_id": "YOUR_CUSTOM1_VALUE",
   "category": "YOUR_CUSTOM2_VALUE",
-  "channel": "email"
+  "channel": "email",
+  "analytics_label": "YOUR_ANALYTICS_LABEL",
+  "campaign_name": "YOUR_CAMPAIGN_NAME"
 }
 ```
