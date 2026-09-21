@@ -8,28 +8,27 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
 Sent logs are where we help you track each and every notification sent from Fyno. Logs provide a detailed view of what has happened to each of your requests, supplying vital information for you to analyze, derive conclusions about your sent notifications, and continuously improve your communication strategies.
- 
+
 This section covers the logs visible on the Fyno platform, how to filter through the application to narrow down your searches, and a comprehensive breakdown of individual log schemas.
- 
+
 When you navigate to **Sent Logs** from the left navigation menu, you will see the following sections:
- 
+
 - **Logs**
 - **Test & Live Versions**
+
 ## Logs
 
-The **Sent Logs** page gives you a chronological overview of the latest notification activity on your Fyno account.
+The logs visible on the **Sent Logs** page give you a chronological overview of the latest interaction activity occurring on your Fyno account.
 
-### Log statuses
+When you review your logs, the primary indicator is the **Status** indicator. This flag marks exactly where your request stands within the system lifecycle:
 
-The **Status** column shows exactly where each request stands in the notification lifecycle.
-
-| Status | What it means |
+| Status | Description |
 | --- | --- |
 | **Attempted** | Message request was successfully validated by Fyno and routing logic has been initiated toward the provider. |
 | **Sent** | Message request was processed successfully by the provider and dispatched into the delivery network. |
 | **Dropped** | Message was dropped internally due to preset rules (e.g., Suppression lists, Routing caps, or Subscription opt-outs). |
 | **Error** | Message failed internally at Fyno's layer before reaching the network provider gateway. |
-| **Failed** | Message processing completely failed or validation checks were rejected at the provider's end. |
+| **Failed** | Message processing completely failed or validation checks were rejected at provider's end. |
 | **Timeout** | Downstream gateway/provider failed to respond or acknowledge the payload within the 5–10 second window. |
 | **Delivered** | Message reached the destination device successfully. |
 | **Undelivered** | A definitive undelivered event payload was reported back asynchronously by the carrier network. |
@@ -37,106 +36,55 @@ The **Status** column shows exactly where each request stands in the notificatio
 | **Read / Open** | Message container was explicitly opened or flagged as read by the recipient. |
 | **No DLR** | Message was dispatched, but the network carrier did not return a Delivery Receipt acknowledgment. |
 
-<Tip>
-Filter by **Status** to narrow logs down to a single stage of the lifecycle. This is especially useful when investigating failed or delayed notifications. For how statuses behave on each channel, see the [Status Guide](./notification-status).
-</Tip>
+Use the **Status** filter to narrow logs down to any of these statuses, or select **All**. This is particularly useful when investigating failed or delayed notifications.
 
-### Using the logs table
-
-| Control | What it does |
-| --- | --- |
-| **Test** / **Live** toggle | Switches between logs from your test and live environments. |
-| Column filters | Filter the table by any column, using the filter directly below each header. |
-| **Advanced Filters** | Opens more filtering options. |
-| Clear filters icon | Clears all applied filters. It sits next to **Advanced Filters**. |
-| **Columns** | Chooses which columns appear in the table. |
-| **Get Count** | Shows how many logs match your current filters. It sits at the bottom of the table. |
-| **Status Guide** | Opens a quick reference for every notification status. |
-| **Request Report** | Exports logs as a report. See [How to download sent logs](#how-to-download-sent-logs). |
-
-{/* TODO: The screenshots don't show the Placeholders, Provider, or Account Name filters, or the Message ID / Request ID search. Confirm they're now under Advanced Filters and update the Template and Provider rows and the Search section to say so. Also check whether the logs page can filter by Distinct ID and Analytics Label, as the report form can, and document them here if so. */}
+You can read about the extensive multi-channel delivery matrices in detail [here](./notification-status).
 
 ### Understanding the Log Schema Columns
-![](/images/check_dropdown.png)
 
-| Column | What it shows | How to filter |
+Each column in the logs table contains the following data, along with the filters you can use to narrow down results:
+
+| Column | What it shows | Filter by |
 | --- | --- | --- |
-| **Status** | Where the notification stands in its lifecycle. See [Log statuses](#log-statuses). | **Status** dropdown |
-| **Timestamp** | When Fyno received the notification request. Network delay can make this slightly later than when your application sent it. | **Timestamp** dropdown: **Today**, **Yesterday**, **Last 7 days**, or **Custom** |
-| **Template** | The template used for the notification. | **Template** dropdown, or **Placeholders** to find a specific placeholder value from the payload |
-| **Destination** | The address the notification was sent to, such as a phone number or email address. | **Destination** search box |
-| **Event Type** | The type of notification event, such as **Transactional** or **Marketing**. | **Event Type** dropdown |
-| **Notification Event** | The notification event triggered by your API request to Fyno. | **Notification Event** dropdown, to see an event across all its channels and providers |
-| **Channel** | The channel the notification was sent on, such as SMS. | **Channel** dropdown: SMS, WhatsApp, Email, Push, Chat, or In-App |
-| **Group** | The group the notification belongs to, such as **Global**. | **Group** dropdown |
-| **Provider** | The provider used to send the notification. | **Provider** filter, plus **Account Name** to isolate one account when a provider has several |
-
-{/* TODO: Prod shows 8 columns: Status, Timestamp, Template, Destination, Event Type, Notification Event, Channel, and one more off-screen (presumably Provider). The dev screenshots showed 10, with a Group column after Notification Event that prod doesn't show. Confirm whether Group exists on prod (or depends on a workspace setting) before publishing that row, and confirm the name of the last column. */}
+| **Timestamp** | Exact date and time when the notification request was initiated from your application. | **Date Range**: Today, Yesterday, Last 7 days, Last 28 days, or a custom range. |
+| **Template** | Template name and content layout used when the notification request was fired. | **Template** for logs from specific templates. **Placeholders** for logs containing a specific placeholder value in the notification payload. |
+| **Notification Event** | Name of the **Event** configuration triggered by the notification API request made to Fyno. | **Event Name** for logs of a specific event across all configured channels and providers. |
+| **Destination** | Recipient's address, along with the **Channel** used to deliver the message. | **Destination** for notifications sent to a specific recipient. **Channel** for SMS, WhatsApp, Email, Push, Chat, or In-App notifications. |
+| **Provider** | Provider used to route and send the message. | **Provider** for notifications sent through a specific provider. **Account Name** for a particular account, if you have multiple accounts under a provider. |
 
 <Note>Make sure to configure your regional time zone within **Settings** so that log outputs display correctly in your local time format.</Note>
 
 ### Search
-
-Use the **Search** bar to look up a specific **Message ID** or **Request ID** and quickly locate an individual notification for debugging.
+Use the **Search** bar to look up a specific **Message ID** or **Request ID** to quickly locate an individual notification for debugging.
 
 ## How to download sent logs
-
-Reports let you export logs for any 30-day window within the last 6 months, including logs that are no longer visible on the **Sent Logs** page.
 
 <Steps>
   <Step title="Open the report form">
     Click **Request Report** at the top right of the **Sent Logs** page.
   </Step>
-  <Step title="Choose what to export">
-    Fill in the **Request Report** form:
-    ![](/images/get-a-report-with-all-the-logs.png)
+  <Step>
+    Choose your targeted report parameters, API version scopes, and chronological boundary limits in the configuration modal.
+    * **Version:** Select between `Test` or `Live`.
+    * **Timestamp:** Quick-select fields (`Yesterday`, `Last 7 days`, `Last 28 days`) or select `Custom` (choose any 30-day window within the trailing 6 months).
+    * **Report Type:** Select one of the 4 available structures based on audit requirements:
 
-    | Field | What to select |
+    | Report type | What it contains |
     | --- | --- |
-    | **Test** / **Live** | The environment to report on. |
-    | **Type** | One of the five report types below. |
-    | **Timestamp** | `Yesterday` or `Last 7 days`, or `Custom` to choose any 30-day window within the last 6 months. |
+    | **All Logs** | Comprehensive metadata dump of raw request strings. |
+    | **Summary** | Aggregated deliverability statistics. |
+    | **Daily Summary** | Day-over-day tracking charts. |
+    | **SMS Delivery (mobile number-wise)** | Destination-specific delivery data. |
 
-    The **Type** field offers five reports:
-    ![](/images/all-logs-type.png)
+    <Note>Data exports are capped at 30 days per report. If you need to export an extended sequence (e.g., 90 days), create multiple separate sequential reports (e.g., Day 1 to 30, Day 31 to 60, and Day 61 to 90).</Note>
 
-    | Report type | What you get |
-    | --- | --- |
-    | **All Logs** | Every log in the selected period, with full request details. |
-    | **Summary** | Aggregated delivery statistics for the selected period. |
-    | **Daily Summary** | Delivery statistics broken down by day. |
-    | **DND Period Logs** | Notifications requested, submitted to a provider, or delivered during your Do Not Disturb (DND) window. See [DND Period Logs report](#dnd-period-logs-report). |
-    | **SMS Delivery (mobile number-wise)** | SMS delivery data for each mobile number. |
-
-    {/* TODO: The screenshots show Live on the Sent Logs page but Test in this form. If the form doesn't follow the page's selection, add a Note telling users to check it before confirming. */}
-
-    <Note>Each report can cover up to 30 days. To export a longer period (for example, 90 days), create separate reports for consecutive windows: days 1–30, 31–60, and 61–90.</Note>
-
+    ![](/images/report-request-sent-logs.png)
   </Step>
-  <Step title="Narrow down the report (optional)">
-    Expand **Optional Additional Filters** to limit the report to matching logs:
-    ![](/images/optional-additional-filters.png)
-
-    | Filter | Limits the report to |
-    | --- | --- |
-    | **Status** | Logs with a specific status, such as Delivered or Failed |
-    | **Template** | Notifications sent using a specific template |
-    | **Notification Event** | Notifications triggered by a specific notification event |
-    | **Campaign** | Notifications sent as part of a specific campaign |
-    | **Channel** | Notifications sent on a specific channel, such as SMS or Email |
-    | **Provider** | Notifications sent through a specific provider |
-    | **Integration** | Notifications sent through a specific integration, useful when you have more than one account for the same provider |
-    | **Destination** | Notifications sent to specific recipient addresses. Separate multiple values with commas. |
-    | **Distinct ID** | Notifications sent to specific users, identified by their [Distinct ID](./user-profiles-overview). Separate multiple values with commas. |
-    | **Analytics Label** | Notifications tagged with a specific [analytics label](./analytics-label), set up under **Workspace Settings** > **Add-Ons** |
-
-    <Tip>Requesting a DND Period Logs report? Always select a **Channel**. See [How the DND window is selected](#how-the-dnd-window-is-selected).</Tip>
-  </Step>
-  <Step title="Confirm the request">
-    Click **Confirm**. A confirmation message appears: *"Your report request xxxxx_xx is processing!"*
+  <Step>
+    You will see an InApp confirmation bubble processing banner status alert: *"Your report request xxxxx_xx is processing!"*
     ![](/images/report-request-pop-up-message.png)
 
-    <Info>Most reports are ready within a few seconds.</Info>
+    <Info>Most optimized reports finish compilation within a few seconds.</Info>
   </Step>
   <Step title="Wait for the report">
     When the report is ready, you'll see a notification on the platform and receive an email with a **Download Report** link.
@@ -150,64 +98,11 @@ Reports let you export logs for any 30-day window within the last 6 months, incl
     Click the download link next to your report to save the file.
   </Step>
 </Steps>
-
-<Warning title="Download links expire after 7 days">
-For example, a report that's ready on March 1 at 1:00 PM is no longer available from March 8 at 1:00 PM.
-</Warning>
-
-## DND Period Logs report
-
-The **DND Period Logs** report lists notifications that fall inside your configured Do Not Disturb (DND) window, for any period and channel. Use it to confirm whether a message was requested, submitted to a provider, or delivered during restricted hours.
-
-### Generating the report
-
-Follow the steps in [How to download sent logs](#how-to-download-sent-logs) with these settings:
-
-| Field | What to select |
-| --- | --- |
-| **Type** | `DND Period Logs` |
-| **Timestamp** | `Yesterday`, `Last 7 days`, or `Custom` |
-| **Channel** (under **Optional Additional Filters**) | The channel you want to check |
-
-<Note>You don't set the DND start and end times in this form. Fyno applies them automatically from your existing DND settings, based on the filters you select. See [How the DND window is selected](#how-the-dnd-window-is-selected).</Note>
-![](/images/DND-period-logs.png)
-{/* TODO: Link "DND settings" above to the DND configuration page. */}
-
-### Which messages are included
-
-Fyno checks each date in the selected period separately and applies the DND window to that date. A message is included in the report if **any one** of these times falls inside the window:
-
-| Time checked | What it records |
-| --- | --- |
-| **Request time** | When Fyno received the notification request |
-| **Provider submit time** | When Fyno handed the message to the provider |
-| **Delivery time** | When the delivery status was received |
-
-A message only needs to match one of the three. For example, a message requested just before the DND window starts but delivered after it begins is still included.
-
-{/* TODO: Confirm with eng how a window that crosses midnight (for example, 9 PM to 9 AM) is applied to each date, and which time zone the window uses. Document the answer here. */}
-
-### How the DND window is selected
-
-Fyno picks the DND setting to use based on the filters you select, checking them in this order:
-
-| Priority | Your filter selection | DND window used |
-| --- | --- | --- |
-| 1 | Group ID and channel | The start and end time from the DND setting for that exact group and channel |
-| 2 | Channel only | The start and end time from the first DND setting that matches that channel |
-| 3 | No filter | The start and end time from the first DND setting, whichever it is |
-
-{/* TODO: The Request Report form has no Group filter. Confirm with eng how Group ID gets set (for example, whether it comes from the selected Notification Event) before publishing the first row. */}
-
-The further down the table your selection falls, the less certain you can be that the window matches the one you intended. With no filter, the report uses whichever DND setting happens to be first, which may not reflect the channel you care about.
-
-<Warning title="Always select a channel">
-Selecting a **Channel** guarantees the DND window comes from a setting that matches your channel, instead of falling back to whichever setting happens to be first.
-</Warning>
+<Tip>Be sure to download your compiled reports within 7 days, as download tokens auto-expire securely. For instance, a report file ready on March 1st at 1:00 PM will become unavailable on March 8th at 1:00 PM.</Tip>
 
 ## Test & Live Versions
 
-The **Sent Logs** page keeps **Test** and **Live** data separate, so notifications you send while testing never inflate your live production figures. Use the toggle at the top left of the page to switch between them.
+The logs dashboard cleanly segments reporting data channels between **Test** and **Live** environmental pipelines. This prevents development testing records from inflating operational live production audit figures.
 
 <Tip title="Can't find a notification log?">
 - **Check the environment.** Notifications sent in **Test** don't appear in **Live** logs, and vice versa.
