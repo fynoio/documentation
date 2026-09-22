@@ -17,19 +17,17 @@ The exact period depends on your workspace's [Data Retention](./data-retention) 
 
 ## Logs
 
-The **Sent Logs** page gives you a chronological overview of the latest notification activity on your Fyno account.
+The logs visible on the **Sent Logs** page give you a chronological overview of the latest interaction activity occurring on your Fyno account.
 
-### Log statuses
+When you review your logs, the primary indicator is the **Status** indicator. This flag marks exactly where your request stands within the system lifecycle:
 
-The **Status** column shows exactly where each request stands in the notification lifecycle.
-
-| Status | What it means |
+| Status | Description |
 | --- | --- |
 | **Attempted** | Message request was successfully validated by Fyno and routing logic has been initiated toward the provider. |
 | **Sent** | Message request was processed successfully by the provider and dispatched into the delivery network. |
 | **Dropped** | Message was dropped internally due to preset rules (e.g., Suppression lists, Routing caps, or Subscription opt-outs). |
 | **Error** | Message failed internally at Fyno's layer before reaching the network provider gateway. |
-| **Failed** | Message processing completely failed or validation checks were rejected at the provider's end. |
+| **Failed** | Message processing completely failed or validation checks were rejected at provider's end. |
 | **Timeout** | Downstream gateway/provider failed to respond or acknowledge the payload within the 5–10 second window. |
 | **Delivered** | Message reached the destination device successfully. |
 | **Undelivered** | A definitive undelivered event payload was reported back asynchronously by the carrier network. |
@@ -59,25 +57,20 @@ Filtering by **Status** is especially useful when investigating failed or delaye
 ### Understanding the Log Schema Columns
 ![](/images/sent-logs-timestamp-filter.png)
 
-| Column | What it shows | How to filter |
-| --- | --- | --- |
-| **Status** | Where the notification stands in its lifecycle. See [Log statuses](#log-statuses). | **Status** dropdown |
-| **Timestamp** | When Fyno received the notification request. Network delay can make this slightly later than when your application sent it. | **Timestamp** dropdown: **Today**, **Yesterday**, **Last 7 days**, or **Custom** |
-| **Template** | The template used for the notification. | **Template** dropdown, or **Placeholders** to find a specific placeholder value from the payload |
-| **Destination** | The address the notification was sent to, such as a phone number or email address. | **Destination** search box |
-| **Event Type** | The type of notification event, such as **Transactional** or **Marketing**. | **Event Type** dropdown |
-| **Notification Event** | The notification event triggered by your API request to Fyno. | **Notification Event** dropdown, to see an event across all its channels and providers |
-| **Channel** | The channel the notification was sent on, such as SMS. | **Channel** dropdown: SMS, WhatsApp, Email, Push, Chat, or In-App |
-| **Group** | The group the notification belongs to, such as **Global**. | **Group** dropdown |
-| **Provider** | The provider used to send the notification. | **Provider** filter, plus **Account Name** to isolate one account when a provider has several |
+Each column in the logs table contains the following data, along with the filters you can use to narrow down results:
 
-{/* TODO: Prod shows 8 columns: Status, Timestamp, Template, Destination, Event Type, Notification Event, Channel, and one more off-screen (presumably Provider). The dev screenshots showed 10, with a Group column after Notification Event that prod doesn't show. Confirm whether Group exists on prod (or depends on a workspace setting) before publishing that row, and confirm the name of the last column. */}
+| Column | What it shows | Filter by |
+| --- | --- | --- |
+| **Timestamp** | Exact date and time when the notification request was initiated from your application. | **Date Range**: Today, Yesterday, Last 7 days, Last 28 days, or a custom range. |
+| **Template** | Template name and content layout used when the notification request was fired. | **Template** for logs from specific templates. **Placeholders** for logs containing a specific placeholder value in the notification payload. |
+| **Notification Event** | Name of the **Event** configuration triggered by the notification API request made to Fyno. | **Event Name** for logs of a specific event across all configured channels and providers. |
+| **Destination** | Recipient's address, along with the **Channel** used to deliver the message. | **Destination** for notifications sent to a specific recipient. **Channel** for SMS, WhatsApp, Email, Push, Chat, or In-App notifications. |
+| **Provider** | Provider used to route and send the message. | **Provider** for notifications sent through a specific provider. **Account Name** for a particular account, if you have multiple accounts under a provider. |
 
 <Note>Make sure to configure your regional time zone within **Settings** so that log outputs display correctly in your local time format.</Note>
 
 ### Search
-
-Use the **Search** bar to look up a specific **Message ID** or **Request ID** and quickly locate an individual notification for debugging.
+Use the **Search** bar to look up a specific **Message ID** or **Request ID** to quickly locate an individual notification for debugging.
 
 ## DND Period Logs report
 
