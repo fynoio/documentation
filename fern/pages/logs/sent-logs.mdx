@@ -7,14 +7,13 @@ og:description: 'Track every notification sent from Fyno. Filter sent logs, inte
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Sent logs are where we help you track each and every notification sent from Fyno. Logs provide a detailed view of what has happened to each of your requests, supplying vital information for you to analyze, derive conclusions about your sent notifications, and continuously improve your communication strategies.
+Sent logs are where we help you track each and every notification sent from Fyno. They give you a detailed view of what happened to each of your requests, so you can analyze your sent notifications and continuously improve your communication strategy.
 
-This section covers the logs visible on the Fyno platform, how to filter through the application to narrow down your searches, and a comprehensive breakdown of individual log schemas.
+This guide covers the logs visible on the Fyno platform, how to filter them, and what each column contains. To open your logs, select **Sent Logs** from the left navigation menu.
 
-When you navigate to **Sent Logs** from the left navigation menu, you will see the following sections:
-
-- **Logs**
-- **Test & Live Versions**
+<Note title="Logs stay on this page for 7 days by default">
+The exact period depends on your workspace's [Data Retention](./data-retention) setting. To review older notifications, [request a report](./sent-logs-report-extraction).
+</Note>
 
 ## Logs
 
@@ -36,11 +35,27 @@ When you review your logs, the primary indicator is the **Status** indicator. Th
 | **Read / Open** | Message container was explicitly opened or flagged as read by the recipient. |
 | **No DLR** | Message was dispatched, but the network carrier did not return a Delivery Receipt acknowledgment. |
 
-Use the **Status** filter to narrow logs down to any of these statuses, or select **All**. This is particularly useful when investigating failed or delayed notifications.
+<Tip>
+Filtering by **Status** is especially useful when investigating failed or delayed notifications. For how statuses behave on each channel, see the [Status Guide](./notification-status).
+</Tip>
 
-You can read about the extensive multi-channel delivery matrices in detail [here](./notification-status).
+### Using the logs table
+
+| Control | What it does |
+| --- | --- |
+| **Test** / **Live** toggle | Switches between logs from your test and live environments. |
+| Column filters | Filter the table by any column, using the filter directly below each header. |
+| **Advanced Filters** | Opens more filtering options. |
+| Clear filters icon | Clears all applied filters. It sits next to **Advanced Filters**. |
+| **Columns** | Chooses which columns appear in the table. |
+| **Get Count** | Shows how many logs match your current filters. It sits at the bottom of the table. |
+| **Status Guide** | Opens a quick reference for every notification status. |
+| **Request Report** | Exports logs as a report. See [Report Extraction](./sent-logs-report-extraction). |
+
+{/* TODO: The screenshots don't show the Placeholders, Provider, or Account Name filters, or the Message ID / Request ID search. Confirm they're now under Advanced Filters and update the Template and Provider rows and the Search section to say so. Also check whether the logs page can filter by Distinct ID and Analytics Label, as the report form can, and document them here if so. */}
 
 ### Understanding the Log Schema Columns
+![](/images/sent-logs-timestamp-filter.png)
 
 Each column in the logs table contains the following data, along with the filters you can use to narrow down results:
 
@@ -57,54 +72,15 @@ Each column in the logs table contains the following data, along with the filter
 ### Search
 Use the **Search** bar to look up a specific **Message ID** or **Request ID** to quickly locate an individual notification for debugging.
 
-## How to download sent logs
+## DND Period Logs report
 
-<Steps>
-  <Step title="Open the report form">
-    Click **Request Report** at the top right of the **Sent Logs** page.
-  </Step>
-  <Step>
-    Choose your targeted report parameters, API version scopes, and chronological boundary limits in the configuration modal.
-    * **Version:** Select between `Test` or `Live`.
-    * **Timestamp:** Quick-select fields (`Yesterday`, `Last 7 days`, `Last 28 days`) or select `Custom` (choose any 30-day window within the trailing 6 months).
-    * **Report Type:** Select one of the 4 available structures based on audit requirements:
-
-    | Report type | What it contains |
-    | --- | --- |
-    | **All Logs** | Comprehensive metadata dump of raw request strings. |
-    | **Summary** | Aggregated deliverability statistics. |
-    | **Daily Summary** | Day-over-day tracking charts. |
-    | **SMS Delivery (mobile number-wise)** | Destination-specific delivery data. |
-
-    <Note>Data exports are capped at 30 days per report. If you need to export an extended sequence (e.g., 90 days), create multiple separate sequential reports (e.g., Day 1 to 30, Day 31 to 60, and Day 61 to 90).</Note>
-
-    ![](/images/report-request-sent-logs.png)
-  </Step>
-  <Step>
-    You will see an InApp confirmation bubble processing banner status alert: *"Your report request xxxxx_xx is processing!"*
-    ![](/images/report-request-pop-up-message.png)
-
-    <Info>Most optimized reports finish compilation within a few seconds.</Info>
-  </Step>
-  <Step title="Wait for the report">
-    When the report is ready, you'll see a notification on the platform and receive an email with a **Download Report** link.
-    ![](/images/report-request-ready-to-download.png)
-  </Step>
-  <Step title="Open your reports">
-    Click **Download Report** to open the list of your generated reports.
-    ![](/images/report-generated.png)
-  </Step>
-  <Step title="Download the file">
-    Click the download link next to your report to save the file.
-  </Step>
-</Steps>
-<Tip>Be sure to download your compiled reports within 7 days, as download tokens auto-expire securely. For instance, a report file ready on March 1st at 1:00 PM will become unavailable on March 8th at 1:00 PM.</Tip>
+To check which notifications went out during your Do Not Disturb (DND) window, request a **DND Period Logs** report. For how to generate it, which messages it includes, and how the DND window is selected, see the DND Period Logs section in [Report Extraction](./sent-logs-report-extraction#dnd-period-logs-report).
 
 ## Test & Live Versions
 
-The logs dashboard cleanly segments reporting data channels between **Test** and **Live** environmental pipelines. This prevents development testing records from inflating operational live production audit figures.
+The **Sent Logs** page keeps **Test** and **Live** data separate, so notifications you send while testing never inflate your live production figures.
 
 <Tip title="Can't find a notification log?">
-- **Check the environment.** Notifications sent in **Test** don't appear in **Live** logs, and vice versa.
-- **Check the date.** Logs are visible on this page for 7 days by default, or for the period set in your workspace's [Data Retention](./data-retention) setting. For anything older, [request a report](#how-to-download-sent-logs).
+- **Check the environment.** Switch to **Test** or **Live**, whichever the notification was sent from.
+- **Check the date.** If the notification is older than your retention period, [request a report](./sent-logs-report-extraction) instead.
 </Tip>
