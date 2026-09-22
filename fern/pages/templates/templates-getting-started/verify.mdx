@@ -21,13 +21,13 @@ Verification is an essential first step in your online relationship with a user.
 
 In the templates, go to System Variables -> Verify. Click Settings icon
 
-![](/images/fyno_verify_1.png)
+![](/images/system_variables_verify.png)
 
 You can configure Fyno Verify in 2 ways.
 
 1. OTP
 2. Link
-   ![](/images/fyno_verify_2.png)
+   ![](/images/generate_and_verify_your_otps.png)
 
 <Tip>You can also configure both OTP and Link in the same template.</Tip>
 
@@ -55,7 +55,7 @@ You can configure Fyno Verify in 2 ways.
 
 <Tip>Use `{{$fyno.$otp}}` as the OTP placeholder in your Fyno template.</Tip>
 
-![](/images/fyno_verify_3.png)
+![](/images/fyno_verify_type_of_otp.png)
 
 ### How to configure Fyno Verify for Link?
 
@@ -67,7 +67,7 @@ You can configure Fyno Verify in 2 ways.
 </Steps>
 
 <Tip>Use `{{$fyno.$link}}` as the Link placeholder in your Fyno template.
-![](/images/fyno_verify_4.png)</Tip>
+![](/images/link_validation_time_limit.png)</Tip>
 <Tip>The generated URL will follow this format: `https://fy1.in/verify/x`, where x is a 32-character string.</Tip>
 
 ## Sample Fyno Verify API requests
@@ -109,7 +109,7 @@ For instance, if a user from Bank ABC attempts to log in using their customer ID
 
 For instance, brand ABC is using Fyno Verify to authenticate their users.
 
-![](/images/c4062a9-Fyno_Verify_Illustration.png)
+![](/images/fyno_verify_flowchart.png)
 
 1. User enters their phone number or email in the ABC's app/website.
 2. ABC triggers Fyno’s Notification event from their backend which generates an OTP
