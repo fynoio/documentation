@@ -1,21 +1,20 @@
 ---
 title: 'Sent Log Report Extraction'
 slug: 'sent-logs-report-extraction'
-description: 'Generate and download notification reports from Fyno, including All Logs, Summary, Daily Summary, DND Period Logs, and SMS Delivery reports for both Live and Test environments.'
+description: 'Generate and download notification reports from Fyno, including All Logs, Summary, Daily Summary, and SMS Delivery reports for both Live and Test environments.'
 og:title: 'Report Extraction - Add-Ons | Fyno Documentation'
 og:description: 'Learn how to request, generate, and download notification reports in Fyno, choose timestamps, export report data, and access analytics across Live and Test environments.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Report extraction enables you to download Sent Logs for both Live and Test environments.
+Report extraction enables you to download Sent Logs for both Live and Test environments. Reports can be extracted for yesterday, the last 7 days, the last 28 days or a custom timestamp (within the last 6 months).
 
-You can download 5 types of report
+You can download 4 types of report
 
 <ul>
       <li>All Logs</li>
       <li>Summary</li>
       <li>Daily Summary</li>
-      <li>[DND Period Logs](#dnd-period-logs-report)</li>
       <li>SMS Delivery (mobile number-wise)</li>
     </ul>
 
@@ -42,45 +41,3 @@ You can download 5 types of report
   <Step>Upon clicking the download link, the report will start downloading.</Step>
 </Steps>
 <Tip>Download your report within the next 7 days, as the link will expire after that. For example, if you receive the download link on 1st March at 1 PM, the report link will expire by 8th March at 1 PM.</Tip>
-
-## DND Period Logs report
-
-The **DND Period Logs** report lists notifications that fall inside your Do Not Disturb (DND) window, so you can check whether any messages went out during restricted hours.
-
-### Generating the report
-
-Follow the [steps to extract a report](#steps-to-extract-report). In step 3, set **Type** to **DND Period Logs** and choose the period you want to check. Before you click **Confirm**, expand **Optional Additional Filters** and select a **Channel**.
-
-<Note>You don't set the DND start and end times in the form. Fyno takes them from your existing DND settings, as explained in [How the DND window is selected](#how-the-dnd-window-is-selected).</Note>
-![](/images/DND-period-logs.png)
-{/* TODO: Link "DND settings" above to the DND configuration page. */}
-
-### Which messages are included
-
-Fyno checks each date in the selected period separately. A message is included if **any one** of these times falls inside that date's DND window:
-
-| Time checked | What it records |
-| --- | --- |
-| **Request time** | When Fyno received the notification request |
-| **Provider submit time** | When Fyno handed the message to the provider |
-| **Delivery time** | When the delivery status was received |
-
-For example, a message requested just before the DND window starts but delivered after it begins is still included.
-
-{/* TODO: Confirm with eng how a window that crosses midnight (for example, 9 PM to 9 AM) is applied to each date, and which time zone the window uses. Document the answer here. */}
-
-### How the DND window is selected
-
-Fyno picks the DND setting based on the filters you select, in this order:
-
-| Priority | Your filter selection | DND window used |
-| --- | --- | --- |
-| 1 | Group ID and channel | The DND setting for that exact group and channel |
-| 2 | Channel only | The first DND setting that matches the channel |
-| 3 | No filter | The first DND setting, whichever it is |
-
-{/* TODO: The Request Report form has no Group filter, and prod doesn't show a Group column in Sent Logs. Confirm with eng how Group ID gets set (for example, whether it comes from the selected Notification Event) before publishing the first row. */}
-
-<Warning title="Always select a channel">
-Without a **Channel** filter, the report uses whichever DND setting happens to be first, which may belong to a different channel than the one you're checking.
-</Warning>
