@@ -19,19 +19,19 @@ This guide takes you from a fresh account to your first delivered notification i
 ## At a glance
 
 <CardGroup cols={3}>
-  <Card title="1. Connect providers" icon="fa-solid fa-plug" href="#configure-your-integrations">
+  <Card title="1. Connect providers" icon="fa-regular fa-puzzle-piece" href="#configure-your-integrations">
     Add credentials for the providers you already use.
   </Card>
-  <Card title="2. Create templates" icon="fa-solid fa-pen-ruler" href="#create-your-templates">
+  <Card title="2. Create templates" icon="fa-regular fa-pen-ruler" href="#create-your-templates">
     Build message content for every channel in one place.
   </Card>
-  <Card title="3. Generate an API key" icon="fa-solid fa-key" href="#generate-an-api-key">
+  <Card title="3. Generate an API key" icon="fa-regular fa-key" href="#generate-an-api-key">
     Authenticate your application's calls to Fyno.
   </Card>
-  <Card title="4. Create an event" icon="fa-solid fa-bolt" href="#create-a-notification-event">
+  <Card title="4. Create an event" icon="fa-regular fa-sitemap" href="#create-a-notification-event">
     Combine a template and providers into one endpoint.
   </Card>
-  <Card title="5. Monitor delivery" icon="fa-solid fa-chart-line" href="#monitor-with-analytics-and-logs">
+  <Card title="5. Monitor delivery" icon="fa-regular fa-chart-line" href="#monitor-with-analytics-and-logs">
     Track performance and troubleshoot with logs.
   </Card>
 </CardGroup>
@@ -98,17 +98,6 @@ Already have templates elsewhere? Share them with us and we can pre-load them in
 
 Every API call to Fyno is authenticated with an API key tied to your workspace.
 
-<Frame caption="Video: Generating an API key on Fyno">
-  <iframe
-    width="100%"
-    style={{ aspectRatio: "16 / 9", borderRadius: "12px", border: 0 }}
-    src="https://www.youtube-nocookie.com/embed/sL3yZ14uTS4"
-    title="Generate an API key on Fyno"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-  />
-</Frame>
-
 1. Click **Workspace Settings** in the bottom-left corner of the navigation menu, then click **API Keys**.
 2. Click **Generate +**.
 3. Enter a unique name for the key so you can tell your keys apart later.
@@ -133,7 +122,7 @@ You can create up to **20 API keys** per account. → Learn more in [API Keys](/
 
 A notification event ties everything together into a single endpoint your application calls to send a message.
 
-<Callout intent="info" icon="fa-solid fa-lightbulb">
+<Callout intent="info" icon="fa-regular fa-lightbulb">
 **Notification Event** = **Template** + (**Providers** or **Route**)
 </Callout>
 
@@ -155,7 +144,20 @@ A notification event ties everything together into a single endpoint your applic
 5. Click **Save** to save a **Test** version, or **Go Live** to publish the **Live** version.
 6. Click **Run Test**, enter a destination and placeholder values, and fire a test notification.
 
-Once it works, trigger the event from your application with one API call:
+#### Trigger the event using the Fyno API
+
+Once it works, trigger the event from your application with one API call, using the API key and Workspace ID from the previous step.
+
+<Frame caption="Video: Triggering a notification event using the Fyno API">
+  <iframe
+    width="100%"
+    style={{ aspectRatio: "16 / 9", borderRadius: "12px", border: 0 }}
+    src="https://www.youtube-nocookie.com/embed/sL3yZ14uTS4"
+    title="Trigger a notification event using the Fyno API"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  />
+</Frame>
 
 <CodeBlocks>
 ```bash title="cURL"
@@ -217,12 +219,11 @@ print(res.json())
 
 Your notifications are now flowing to customers. Use analytics and logs to measure performance and troubleshoot in seconds.
 
-
 <CardGroup cols={2}>
-  <Card title="Analytics" icon="fa-solid fa-chart-pie" href="/docs/dashboard">
+  <Card title="Analytics" icon="fa-regular fa-chart-simple" href="/docs/dashboard">
     One view of usage across every channel and provider. Compare engagement, measure usage, and see which providers deliver better and faster.
   </Card>
-  <Card title="Logs" icon="fa-solid fa-list-check" href="/docs/logs-overview">
+  <Card title="Logs" icon="fa-regular fa-database" href="/docs/logs-overview">
     A complete, millisecond-level trace of every message, from delivery attempt to final status such as delivered or read.
   </Card>
 </CardGroup>
@@ -238,13 +239,13 @@ For delivery and open rates on a single event, see [Notification Event Analytics
 You can now send notifications across every channel through a single API. Here's where to go next:
 
 <CardGroup cols={3}>
-  <Card title="Workflows" icon="fa-solid fa-diagram-project" href="/docs/workflows">
+  <Card title="Workflows" icon="fa-regular fa-diagram-project" href="/docs/workflows">
     Automate multi-step customer journeys.
   </Card>
-  <Card title="Routes" icon="fa-solid fa-route" href="/docs/routes">
+  <Card title="Routes" icon="fa-regular fa-code-merge" href="/docs/routes">
     Add fallbacks and smart routing across providers.
   </Card>
-  <Card title="Campaigns" icon="fa-solid fa-bullhorn" href="/docs/campaigns-overview">
+  <Card title="Campaigns" icon="fa-regular fa-bullhorn" href="/docs/campaigns-overview">
     Send bulk messages to your audiences.
   </Card>
 </CardGroup>
