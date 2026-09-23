@@ -53,12 +53,6 @@ navigation:
                 path: "pages/tutorials/how-to-trigger-workflow-with-webhook.mdx"
               - page: "How to receive delivery reports"
                 path: "pages/tutorials/how-to-receive-delivery-reports.mdx"
-              - page: "How to configure Okta SAML Single Sign-On"
-                path: "pages/tutorials/how-to-configure-okta-saml-single-sign-on-to-access-fyno.mdx"
-              - page: "How to configure Arcon SAML Single Sign-On"
-                path: "pages/tutorials/how-to-configure-arcon-saml-single-sign-on-to-access-fyno.mdx"
-              - page: "How to Configure AWS - SAML Single Sign-On to Access Fyno"
-                path: "pages/tutorials/how-to-configure-aws-iam-identity-center-saml-single-sign-on-to-access-fyno.mdx"
           - section: "Dashboard"
             path: "pages/dashboard/dashboard.mdx"
             icon: fa-regular fa-chart-simple
@@ -530,9 +524,19 @@ navigation:
             icon: fa-solid fa-list-check
       - section: "Settings"
         contents:
-          - page: "Profile Settings"
+          - section: "Profile Settings"
             icon: fa-regular fa-user-gear
             path: "pages/settings/profile.mdx" 
+            contents:
+              - section: "SAML Single Sign-On"
+                path:  "pages/settings/saml.mdx"
+                contents:
+                  - page: "How to configure Okta SAML Single Sign-On"
+                    path: "pages/tutorials/how-to-configure-okta-saml-single-sign-on-to-access-fyno.mdx"
+                  - page: "How to configure Arcon SAML Single Sign-On"
+                    path: "pages/tutorials/how-to-configure-arcon-saml-single-sign-on-to-access-fyno.mdx"
+                  - page: "How to Configure AWS - SAML Single Sign-On to Access Fyno"
+                    path: "pages/tutorials/how-to-configure-aws-iam-identity-center-saml-single-sign-on-to-access-fyno.mdx"
           - section: "Workspace Settings"
             icon: fa-regular fa-gear
             path: "pages/settings/workspace-settings.mdx"
