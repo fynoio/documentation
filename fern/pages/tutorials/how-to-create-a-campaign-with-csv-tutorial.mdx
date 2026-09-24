@@ -37,24 +37,11 @@ Before you create a campaign, make sure you have:
 - A **live notification event** that uses that template. The campaign can use only the channels configured in that event. To learn more, see [Notification Events](https://fyno.io/docs/events-overview), or [Creating a Notification Event](https://fyno.io/docs/notification-event-creation) if you don't have one yet.
 - A **CSV or XLSX file** with the recipients' destinations (for example, phone numbers or email addresses) and a value for each placeholder in the template.
 
-## Open Campaigns
-
-From the left navigation, click **Campaigns**. The Campaigns page lists all your campaigns.
-
-| Column | Description |
-| --- | --- |
-| Campaign Name | The name of the campaign. |
-| Group | The group the campaign belongs to. |
-| Total Count | The number of records in the campaign. |
-| Status | The campaign's current status, for example **Draft** or **Completed**. |
-| Updated | When the campaign was last updated. |
-| Created By | The user who created the campaign. |
-| Channels | The channels the campaign sends on. |
-| Fire Time | When the campaign was fired or is scheduled to fire. |
-
 ## Create a Campaign
 
 <Steps>
+
+<Step>From the left navigation, click <strong>Campaigns</strong> to open the Campaigns page.</Step>
 
 <Step>
 <p>Click <strong>+ New Campaign</strong> in the top-right corner.</p>
@@ -73,6 +60,7 @@ From the left navigation, click **Campaigns**. The Campaigns page lists all your
 <Step>
 <p><strong>Create a campaign using</strong> — Select <strong>File Upload</strong>.</p>
 <p>This is how you provide the recipient data. Campaigns can also be created from a Google Sheet, a public URL, or a cohort. This tutorial covers file uploads.</p>
+<p>If you need a template for your file, click <strong>Download Sample File</strong>. The sample has the correct headers for the channels and placeholders in your event.</p>
 <Frame caption="Campaign Detail">
   <img src="/images/new-campaign-detail.png" alt="Campaign Detail" />
 </Frame>
@@ -92,8 +80,6 @@ From the left navigation, click **Campaigns**. The Campaigns page lists all your
 <p>The tabs below the requirements show the expected columns for each channel in the event.</p>
 </Step>
 
-<Step>Click <strong>Download Sample File</strong> to get a file with the correct headers, then fill in your recipient data. Keep the headers unchanged.</Step>
-
 <Step>Drag and drop your file into the upload area, or click <strong>Upload File</strong>.</Step>
 
 <Step>
@@ -108,7 +94,6 @@ From the left navigation, click **Campaigns**. The Campaigns page lists all your
 </tbody>
 </table>
 <p>Duplicates are excluded by default. Select <strong>Include duplicates in campaign</strong> if you want to send to them too.</p>
-
 </Step>
 
 <Step>Click <strong>Submit</strong>. The campaign is created and opens on its configuration page.</Step>
@@ -144,7 +129,7 @@ Under **Map Data**, map the columns in your file to the fields the campaign need
 </Step>
 
 <Step>
-<p><strong>Custom Parameters</strong> (optional) — Expand <strong>Custom Parameters</strong> to map a custom ID and up to three custom values from your file, based on your requirements. Hover over the help icon for more information.</p>
+<p><strong>Custom Parameters</strong> (optional) — Expand <strong>Custom Parameters</strong> to map a custom ID and up to three custom values from your file, based on your requirements.</p>
 <table>
 <thead><tr><th>Field</th><th>Maximum length</th><th>Characters not allowed</th></tr></thead>
 <tbody>
@@ -245,7 +230,7 @@ After a campaign is fired, the configuration page shows two new buttons:
 
 ## View Logs and Analytics
 
-Once a campaign has completed, open it to find the **Logs** and **View Analytics** buttons at the top of the page. You can also open analytics by clicking the bar chart icon next to the campaign on the Campaigns page.
+Once a campaign has completed, open it to find the **Logs** and **View Analytics** buttons at the top of the page.
 
 ### Sent Logs
 
@@ -253,55 +238,4 @@ Click **Logs** to open the Sent Logs screen. It shows a table of every notificat
 
 ### Analytics
 
-Click **View Analytics** to see the campaign date and a breakdown of how the campaign performed.
-
-#### Summary
-
-| Metric | What it shows |
-| --- | --- |
-| Events Fired | The number of times the notification event was triggered, split into delivered, undelivered, and dropped. |
-| Notifications Requested | Notifications Fyno was asked to send. |
-| Notifications Sent | Notifications submitted to providers. |
-| Notifications Delivered | Notifications that reached recipients, with the delivery rate. |
-| Unique Recipients | The number of unique destinations per channel. |
-| Sent by Channels | How many notifications went out on each channel. |
-
-#### Channel Engagement
-
-Shows a channel-level engagement funnel with these statuses:
-
-| Status | Meaning |
-| --- | --- |
-| Submitted | Sent from Fyno. |
-| Delivered | Reached the destination. |
-| Read/Open | Read on WhatsApp or In-App, or opened for Email. |
-| Clicked | The recipient interacted with the notification. |
-
-You can switch between counts and percentages, and filter statuses using the graph legend.
-
-#### Delivery Distribution
-
-Shows how notifications were delivered or failed across channels. Undelivered statuses include:
-
-- Invalid Subscriber
-- Blacklist
-- Rejected
-- Bounce
-
-Click **Status Guide** on the analytics page for definitions of every status.
-
-#### Request a Report
-
-Click **Request Report** to receive a detailed report link by email and in-app notification. The report includes:
-
-| Field | Description |
-| --- | --- |
-| `Request_ts` | Timestamp of the request. |
-| `Request_id` | Unique ID of the request. |
-| `Template` | Template used for the notification. |
-| `Distinct_id` | Unique ID of the recipient. |
-| `SMS_credits_use` | SMS credits consumed. |
-| `Email_credits_use` | Email credits consumed. |
-| Channel submission statuses | Submission status for each channel. |
-| Channel final delivery statuses | Final delivery status for each channel. |
-| Channel delivery history | Full delivery history for each channel. |
+Click **View Analytics** to see how the campaign performed. You can also open analytics by clicking the bar chart icon next to the campaign on the Campaigns page. For details on each metric and chart, see [Campaign Analytics](https://fyno.io/docs/campaign-analytics).
