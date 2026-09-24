@@ -1,121 +1,107 @@
 ---
 title: 'Alarms'
 slug: 'alarms'
-description: 'Monitor, investigate, and resolve notification delivery issues with Alarms. Track anomalies, severity levels, occurrences, and detailed error logs in Fyno.'
-og:title: 'All the alarms raised by Fyno AI | Fyno Documentation'
-og:description: 'Monitor, investigate, and resolve notification delivery issues with Alarms. Track anomalies, severity levels, occurrences, and detailed error logs in Fyno.'
+description: 'Monitor, investigate, and resolve notification delivery issues with Alarms. Track severity, occurrences, anomalies, and recommended fixes in Fyno.'
+og:title: 'Alarms | Fyno Documentation'
+og:description: 'Monitor, investigate, and resolve notification delivery issues with Alarms. Track severity, occurrences, anomalies, and recommended fixes in Fyno.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
+**Alarms** give you a single place to see every issue Fyno detects while delivering notifications to your users, from provider errors and rate limits to template changes made by channels like Meta. Each alarm is tagged with a severity so you can decide what to fix first. Addressing alarms promptly keeps your deliverability healthy and makes sure your notifications consistently reach your users.
 
-Fyno's **Alarms** provides a comprehensive summary of all issues encountered while delivering notifications to your users. These alarms are classified into **High, Medium, Low and Info** categories based on severity, allowing you to prioritize your response. We recommend addressing these issues promptly to enhance your overall notification deliverability and ensure your notifications reach users consistently.
+<Note>The full Alarms page is available only on paid plans. On the free plan, you can see the Alarms summary on the Dashboard.</Note>
 
-<Note>This feature is available only for Paid accounts. For free plans, you will see only the Alarms summary in the Dashboard.</Note>
+## Alarms summary on the Dashboard
 
+The **Alarms** card on your Dashboard shows how many alarms are currently unresolved, broken down by severity. Click **View All** to open the Alarms page.
 
-![](/images/alarms_list.png)
+![](/images/alarm-display.png)
 
+### Severity levels
 
-## Anomaly
+| Severity | What it means |
+| --- | --- |
+| **High** | Issues that stop or seriously affect delivery, such as a template rejected by Meta. Address these first. |
+| **Medium** | Issues that affect delivery for part of your traffic and should be looked at soon. |
+| **Low** | Recurring errors that affect individual requests, such as rate limiting or missing data. |
+| **Info** | Informational events worth knowing about that don't need immediate action. |
 
-If there are any anomalies detected in your workspace, that information will shown as part of the Alarms page also as shown below.
+## Alarms page
 
-![](/images/alarms_anomaly.png)
+The Alarms page lists every alarm raised in your workspace.
 
-Clicking the 'View' button will open a popup with complete information about the detected anomaly.
+![](/images/alarm-dashboard.png)
 
-![](/images/alarms_anomaly_details.png)
+### Status tabs
 
-## Filters
+Alarms are split into three tabs, each showing the number of alarms it contains.
 
-You can filter and view alarms based on different criteria
+| Tab | Contains |
+| --- | --- |
+| **Open** | Alarms that are active and haven't been resolved yet. |
+| **Re-opened** | Alarms that were marked as resolved but occurred again. |
+| **Resolved** | Alarms that have been marked as resolved. |
 
-### Status 
+### Filters
 
-1. Open - All the alarms which are in Open status. 
-2. Reopened - Alarms which are resolved in the past but occurred again. 
-3. Resolved - Alarms which are resolved by the customer. 
+Use the filters at the top right to narrow down the list.
 
-### Severity
+- **Module**: shows only the alarms raised in a specific part of Fyno, such as a notification event, workflow, webhook, provider, integration, or WhatsApp template.
+- **Severity**: shows only alarms of the selected severity.
 
-1. High
-2. Medium
-3. Low
-4. Info
+### How alarms are grouped
 
-### Module
+Alarms with the same description are grouped into a single row. The number in brackets next to the description is the number of alarms in that group. For example, **Meta category change from Utility to Marketing (2)** means two templates have raised this alarm. Click the arrow next to a row to expand the group and see each individual alarm.
 
-Module filter will help you to understand in which module the alarm occurred.
+### Columns
 
-1. Notification Event
-2. Webhook
-3. Workflow
-4. Provider
-5. Integration
+| Column | Description |
+| --- | --- |
+| **Description / Module** | Why the alarm was raised, for example `ratelimited` or `INVALID_PROVIDER: The provider is not available/configured`. |
+| **Started** | When the alarm was first raised, for example *29d ago*. |
+| **Last Occurrence** | When the alarm was last seen, for example *5h ago*. |
+| **Occurrences** | How many times the alarm has occurred in total. |
+| **Severity** | The severity of the alarms in the group, with a count for each, for example *High: 2*. |
 
-To further understand this page, let's have a look at what exactly each column means and the data they contain.
+You can sort by **Started**, **Last Occurrence**, and **Occurrences** by clicking the column header.
 
-#### Description
+<Tip>
+Some alarms are raised by a one-time change rather than by repeated delivery failures, for example when Meta rejects a template or changes its category. These alarms show `0` occurrences and `-` as the last occurrence, but they stay open until you resolve them.
+</Tip>
 
-Shows you the why the Alarm has been raised such as Invalid request format, Maximum sending rate exceeded etc. 
+## Alarm details
 
-#### Started
+Click any alarm to open its details.
 
-Shows when the alarm occurred for the first time. Ex - 1 hour ago, 2 days ago etc. 
+![](/images/alarm-detail-for-each-item.png)
 
-#### Last Occurrence
+The details view contains:
 
-Shows when the alarm occurred for the last time. Ex - 1 hour ago, 2 days ago etc. 
+- **Title and status**: the alarm description and its current status (Open, Re-opened, or Resolved), along with who opened it and when.
+- **Explanation**: a short description of what happened. Click **Learn More** to read more about the issue.
+- **Module and Source**: the module where the alarm was raised and the specific resource that caused it, such as the template name. Click the link icon next to the source to open it directly.
+- **Integration(s)**: the integration involved, along with its account identifier. For WhatsApp, this is the **WABA / Namespace**.
+- **Recommended Solution**: suggested steps to fix the issue, where available.
 
-#### Occurrences
+### Resolving an alarm
 
-Shows the total occurrences of an alarm.
+Once you've fixed the underlying issue, click **Mark as Resolved**. The alarm moves to the **Resolved** tab. If the same issue occurs again, the alarm moves to the **Re-opened** tab so you know the fix didn't hold.
 
-#### Severity
+### Viewing the change log
 
-Shows the severity of the alarm such as High, Medium and Low. 
+To see the history of an alarm, click the **history** icon at the top right of the alarm details. The **Alarm History** panel lists every status change with its date and time, who made it, and any note added. Alarms that re-open automatically are shown as re-opened by **Fyno AI**. This is useful when an alarm has been re-opened and you want to know who resolved it earlier.
 
-#### Module
+![](/images/alarm-history.png)
 
-Shows in which module the alarm occurred. 
+## Anomalies
 
-# Alarm Details
+Fyno also watches your delivery trends for unusual spikes or drops, called **anomalies**. Click **Past Anomalies** at the top right of the Alarms page to review anomalies detected in your workspace.
 
-You can click any alarm to see the more granular information about each alarm. 
+![](/images/anamoly.png)
 
-The top left section will show you the summary of what you have seen the previous page. 
-![](/images/alarm_details_summary.png)
+The anomaly chart plots delivery status over time so you can see exactly when and how the pattern changed:
 
-The right hand section shows the trend line of the alarm occurred since it started. 
-![](/images/alarm_trendline.png)
-
-The bottom section shows the  sample log details of each occurrence of the alarm. Clicking each log details will take you to the [sent logs page](./sent-log-details).
-![](/images/alarm_details_list.png)
-
-#### Status
-
-Shows you the status of the notification event triggered.  
-
-#### Timestamp
-
-Shows when the notification event is triggered  
-
-#### Template
-
-Shows the template which is linked to the notification event triggered. 
-
-#### Notification Event
-
-Shows the notification event which is triggered. 
-
-#### Destination
-
-Shows the destination such as mobile no, email etc. 
-
-## How to see Alarm Change logs
-
-To see change logs of an alarm, click 'Change log' icon next to 'Mark as Resolved' CTA. 
-
-You will see the change logs as shown below. This is helpful when you want to see who resolved the alarm when its reopened. 
-
-![](/images/alarms_history.png)
+- **Channel**: use the dropdown in the chart title to switch between channels, for example **Email Delivery Status**.
+- **Status lines**: **Requested**, **Delivered**, **Bounce**, and **Error** are plotted separately. Click a status in the legend to show or hide it.
+- **Count or percentage**: use the **#** and **%** toggle at the top right to switch between absolute numbers and percentages.
+- **Zoom**: use the zoom controls at the bottom right to focus on a specific time range.
