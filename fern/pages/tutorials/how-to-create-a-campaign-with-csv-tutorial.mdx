@@ -1,294 +1,307 @@
 ---
-title: 'How to Create a Campaign with CSV'
+title: 'How to Create and Fire a Campaign with a File Upload'
 slug: 'tutorial-how-to-create-a-campaign-with-csv'
-description: 'Learn how to create, test, schedule, and monitor an SMS campaign using CSV uploads in Fyno, from template creation to campaign analytics.'
-og:title: 'How to Create a Campaign with CSV | Fyno Documentation'
-og:description: 'Step-by-step guide to creating SMS campaigns in Fyno using CSV uploads, including template setup, notification events, campaign scheduling, testing, delivery tracking, and analytics.'
+description: 'Learn how to create, configure, test, fire, and monitor a campaign in Fyno by uploading a CSV or XLSX file of recipients.'
+og:title: 'How to Create and Fire a Campaign with a File Upload | Fyno Documentation'
+og:description: 'Step-by-step guide to creating campaigns in Fyno with a CSV or XLSX upload: mapping destinations and placeholders, custom parameters, throttling, testing, firing or scheduling, and campaign analytics.'
 image: 'https://images.fyno.io/brand/fyno-doc-preview.png'
 ---
 
-In this tutorial, we will:
+Campaigns let you send notifications to a group of users without any technical effort. In this tutorial, you will:
 
-1. Create a Fyno notification template (for SMS).
-2. Create a Notification Event to link the template and the integration.
-3. Create and trigger the campaign.
-4. View campaign logs and analytics.
+1. Create a campaign and upload a file of recipients.
+2. Map destinations and placeholders, and configure optional settings.
+3. Test the campaign.
+4. Fire the campaign now or schedule it for later.
+5. Monitor the campaign with logs and analytics.
+
+The example in this tutorial sends a festive offer over WhatsApp and Email, but the same steps apply to any channel.
+
+Watch the full walkthrough, or follow the steps below.
+
+<iframe
+  className="w-full aspect-video rounded-xl"
+  src="https://www.youtube.com/embed/tAehD0xs_Hk"
+  title="How to create and fire a Campaign"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
 
 ## Prerequisites
 
-To create a Campaign, you will first need to have a few things in place:
+Before you create a campaign, make sure you have:
 
-- A service provider integration in Fyno’s platform.
-- A pre-approved SMS template created in DLT platform along with DLT Template ID.
-- A CSV file with the user base to whom you would be triggering the campaign.
+- An **integration** with a provider for each channel you want to use.
+- A **live template** for the notification you want to send.
+- A **live notification event** that uses that template. The campaign can use only the channels configured in that event. To learn more, see [Notification Events](https://fyno.io/docs/events-overview), or [Creating a Notification Event](https://fyno.io/docs/notification-event-creation) if you don't have one yet.
+- A **CSV or XLSX file** with the recipients' destinations (for example, phone numbers or email addresses) and a value for each placeholder in the template.
 
-Once we have these in place, we are all set to go with campaigns!
+## Open Campaigns
 
-## Creating a **SMS Template**
+From the left navigation, click **Campaigns**. The Campaigns page lists all your campaigns.
+
+| Column | Description |
+| --- | --- |
+| Campaign Name | The name of the campaign. |
+| Group | The group the campaign belongs to. |
+| Total Count | The number of records in the campaign. |
+| Status | The campaign's current status, for example **Draft** or **Completed**. |
+| Updated | When the campaign was last updated. |
+| Created By | The user who created the campaign. |
+| Channels | The channels the campaign sends on. |
+| Fire Time | When the campaign was fired or is scheduled to fire. |
+
+## Create a Campaign
 
 <Steps>
 
-<Step><strong>Template Id</strong> - Enter your approved DLT template Id.</Step>
+<Step>
+<p>Click <strong>+ New Campaign</strong> in the top-right corner.</p>
+<Frame caption="New Campaign">
+  <img src="/images/new-campaign.png" alt="New Campaign" />
+</Frame>
+</Step>
 
-<Step><strong>SMS Content</strong> - Copy and paste the SMS content from your DLT platform.</Step>
+<Step><strong>Campaign Name</strong> — Enter a name for the campaign.</Step>
 
 <Step>
-<p><strong>Unicode</strong> - Enable this if the SMS content contains non-English characters.</p>
-<img src="/images/campaign_tutorial_1.png" />
+<p><strong>Select a live notification event</strong> — Choose the notification event to send. Only live events appear in the list. For more details, see <a href="https://fyno.io/docs/events-overview">Notification Events</a>.</p>
+<p>Once you select an event, the <strong>This campaign can be sent via</strong> section shows the channels the campaign will use.</p>
 </Step>
 
 <Step>
-<p><strong>Additional Configuration</strong></p>
-<img src="/images/campaign_tutorial_2.png" />
+<p><strong>Create a campaign using</strong> — Select <strong>File Upload</strong>.</p>
+<p>This is how you provide the recipient data. Campaigns can also be created from a Google Sheet, a public URL, or a cohort. This tutorial covers file uploads.</p>
+<Frame caption="Campaign Detail">
+  <img src="/images/new-campaign-detail.png" alt="Campaign Detail" />
+</Frame>
 </Step>
 
 <Step>
-<p><strong>Placeholders</strong> - Add placeholders using double curly brackets.</p>
-<img src="/images/campaign_tutorial_3.png" />
-<img src="/images/campaign_tutorial_4.png" />
+<p>Review the file requirements:</p>
+<table>
+<thead><tr><th>Requirement</th><th>Details</th></tr></thead>
+<tbody>
+<tr><td>File type</td><td><code>.csv</code> or <code>.xlsx</code> only.</td></tr>
+<tr><td>File size</td><td>Up to 200 MB.</td></tr>
+<tr><td>Placeholder names</td><td>Case sensitive. They must match the placeholders in the template.</td></tr>
+<tr><td>Links</td><td>Must not be shortened.</td></tr>
+</tbody>
+</table>
+<p>The tabs below the requirements show the expected columns for each channel in the event.</p>
 </Step>
+
+<Step>Click <strong>Download Sample File</strong> to get a file with the correct headers, then fill in your recipient data. Keep the headers unchanged.</Step>
+
+<Step>Drag and drop your file into the upload area, or click <strong>Upload File</strong>.</Step>
 
 <Step>
-<p><strong>Preview</strong> - Shows sample values replacing placeholders.</p>
+<p>Fyno validates the file and shows a summary:</p>
+<table>
+<thead><tr><th>Metric</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td>Records processed</td><td>Total rows read from the file.</td></tr>
+<tr><td>Records can be imported</td><td>Rows that passed validation.</td></tr>
+<tr><td>Invalid records</td><td>Rows that failed validation and will not be sent.</td></tr>
+<tr><td>Duplicate records</td><td>Rows that repeat another row.</td></tr>
+</tbody>
+</table>
+<p>Duplicates are excluded by default. Select <strong>Include duplicates in campaign</strong> if you want to send to them too.</p>
+
 </Step>
 
-<Step>
-<p><strong>Run Test</strong> - Send a test SMS to verify the template.</p>
-<img src="/images/campaign_tutorial_5.png" />
-</Step>
-
-<Step><strong>Save & Go Live</strong> - Save creates test version, Go Live creates production version.</Step>
+<Step>Click <strong>Submit</strong>. The campaign is created and opens on its configuration page.</Step>
 
 </Steps>
 
-## Creating a Notification Event
+## Configure the Campaign
+
+The configuration page shows the selected notification event, the template it uses, and the uploaded file with the number of unique records and duplicates. Click the download icon next to the file to download it again.
+
+<Frame caption="Configure the Campaign">
+  <img src="/images/campaign_config_redacted.png" alt="Configure the Campaign" />
+</Frame>
+
+Under **Map Data**, map the columns in your file to the fields the campaign needs.
 
 <Steps>
 
-<Step>Create a new Notification Event from the Notification Events section.</Step>
-
-<Step>Provide a name and select type (OTP, Transactional, Marketing).</Step>
-
 <Step>
-<p>Select an existing template.</p>
-<img src="/images/campaign_tutorial_6.png" />
+<p><strong>Destinations</strong> — Select the file column that holds the destination for each channel. For example, map SMS to the <code>sms</code> column and Email to the <code>email</code> column.</p>
+<p>The number next to <strong>Destinations</strong> shows how many channels the notification event uses. Each channel gets its own row.</p>
+<Frame caption="Mapping destinations to file columns">
+  <img src="/images/map-data-destinations.png" alt="Destinations mapped to sms, rcs, whatsapp, and email columns" />
+</Frame>
 </Step>
 
 <Step>
-<p>Preview the template.</p>
-<img src="/images/campaign_tutorial_7.png" />
+<p><strong>Placeholders</strong> — Select the file column that holds the value for each template placeholder. Every placeholder must be mapped. Click <strong>Add Placeholder</strong> to map an additional placeholder.</p>
+<p>The number next to <strong>Placeholders</strong> shows how many placeholders the template uses. In this example, the template has two placeholders, <code>brand</code> and <code>name</code>, mapped to file columns with the same names.</p>
+<Frame caption="Mapping placeholders to file columns">
+  <img src="/images/map-data-placeholders.png" alt="Placeholders brand and name mapped to file columns" />
+</Frame>
 </Step>
 
 <Step>
-<p>Select provider integration.</p>
-<img src="/images/campaign_tutorial_8.png" />
+<p><strong>Custom Parameters</strong> (optional) — Expand <strong>Custom Parameters</strong> to map a custom ID and up to three custom values from your file, based on your requirements. Hover over the help icon for more information.</p>
+<table>
+<thead><tr><th>Field</th><th>Maximum length</th><th>Characters not allowed</th></tr></thead>
+<tbody>
+<tr><td>Custom ID</td><td>200 characters</td><td><code>&lt;</code> <code>&gt;</code> <code>/</code> <code>"</code> <code>'</code> <code>&amp;</code></td></tr>
+<tr><td>Custom Value 1</td><td>50 characters</td><td><code>&lt;</code> <code>&gt;</code> <code>/</code> <code>"</code> <code>'</code> <code>&amp;</code></td></tr>
+<tr><td>Custom Value 2</td><td>50 characters</td><td><code>&lt;</code> <code>&gt;</code> <code>/</code> <code>"</code> <code>'</code> <code>&amp;</code></td></tr>
+<tr><td>Custom Value 3</td><td>50 characters</td><td><code>&lt;</code> <code>&gt;</code> <code>/</code> <code>"</code> <code>'</code> <code>&amp;</code></td></tr>
+</tbody>
+</table>
 </Step>
 
 <Step>
-<p>Test the notification.</p>
-<img src="/images/campaign_tutorial_9.png" />
+<p><strong>Send data to my allowlisted endpoint(s)</strong> (optional) — To receive this campaign's data at an allowlisted endpoint, select this option and choose the endpoint to use.</p>
 </Step>
 
-<Step><strong>Save & Go Live</strong> to activate the notification event.</Step>
-
-</Steps>
-
-## Creating a Campaign
-
-<Steps>
-
-<Step>Go to Campaigns under Advanced.</Step>
-
-<Step>Click New Campaign.</Step>
-
-<Step>Enter Campaign Name and select Notification Event.</Step>
-
 <Step>
-<p>Review linked channels and file structure.</p>
-</Step>
-
-<Step>Select CSV Upload.</Step>
-
-<Step>Download sample CSV.</Step>
-
-<Step>
-<p>Prepare CSV file.</p>
-<ul>
-<li>Keep headers unchanged</li>
-<li>Fill placeholder values</li>
-</ul>
-</Step>
-
-<Step>Upload CSV file.</Step>
-
-<Step>
-<p>Review validation summary.</p>
-<ul>
-<li>Processed records</li>
-<li>Valid records</li>
-<li>Invalid records</li>
-<li>Duplicate records</li>
-</ul>
-</Step>
-
-<Step>Create Campaign.</Step>
-
-</Steps>
-
-## Configuring Campaign
-
-<Steps>
-
-<Step>Notification Event is auto-selected.</Step>
-
-<Step>
-<p>Map destinations and placeholders.</p>
-<ul>
-<li>Select CSV column for each field</li>
-<li>Remove unused channels</li>
-</ul>
-</Step>
-
-<Step>Ensure all placeholders are mapped.</Step>
-
-<Step>
-<p>Preview data using navigation arrows.</p>
-<p>Use &lt; and &gt; to navigate records.</p>
-<img src="/images/campaign_tutorial_12.png" />
+<p><strong>Throttle</strong> (recommended) — Throttling improves deliverability by controlling the rate at which notifications are sent. Click <strong>Add</strong>. Fyno shows the number of records available to send, then choose how to control the rate:</p>
+<table>
+<thead><tr><th>Option</th><th>How it works</th></tr></thead>
+<tbody>
+<tr><td>Time</td><td>In <strong>Run this campaign for</strong>, enter how long the campaign should run, between 15 and 180 minutes. Fyno shows approximately how many records will be processed per minute. For example, 71,966 records over 152 minutes is about 474 records per minute.</td></tr>
+<tr><td>Batch</td><td>Control the rate by sending notifications in batches.</td></tr>
+</tbody>
+</table>
+<p>The actual run time may vary depending on the number of records in the file and the throttle limit set in your provider account. To turn throttling off, click <strong>Remove</strong>.</p>
+<Frame caption="Throttling by time">
+  <img src="/images/throttle-time.png" alt="Throttle set to run the campaign for 152 minutes" />
+</Frame>
 </Step>
 
 </Steps>
 
-## How to Test a Campaign
+### Preview the Campaign
 
-Before sending a campaign to all customers, run a test to preview notifications.
+Once everything is configured, use the preview panel on the right to review the campaign before you fire it. The preview uses data from your file. It shows the template in use and the current record's destination.
+
+- Click a channel icon to switch between channel previews.
+- Use the **‹** and **›** arrows to step through sample records from the file.
+
+## Test the Campaign
+
+Run a test before firing the campaign to make sure everything is configured correctly.
 
 <Steps>
 
-<Step>
-Scroll to the top of the campaign configuration page and click <strong>Run Test</strong>.
-</Step>
+<Step>At the top of the configuration page, click <strong>Run Test</strong>.</Step>
 
 <Step>
-A popup appears requesting:
-<ul>
-<li><strong>Send Using (Channel Details)</strong> — Select channels to test</li>
-<li><strong>Map Placeholders</strong> — Provide sample values for placeholders</li>
-</ul>
+<p>In the <strong>Test Live Notification Event</strong> popup, enter:</p>
+<table>
+<thead><tr><th>Field</th><th>What to enter</th></tr></thead>
+<tbody>
+<tr><td>Destinations</td><td>A test destination for each channel you want to test. Leave a channel blank to skip it.</td></tr>
+<tr><td>Placeholders</td><td>Sample values used to fill the dynamic content in your template.</td></tr>
+</tbody>
+</table>
 </Step>
 
-<Step>
-Click <strong>Run Test</strong> to deliver the notification to test recipients.
-</Step>
+<Step>Click <strong>Test Event</strong> to send the test notification.</Step>
 
 </Steps>
 
 ## Save as Draft
 
+Click **Save** at any point to save your configuration. Saved campaigns appear on the Campaigns page with the **Draft** status, and you can edit them before firing.
+
+## Fire or Schedule the Campaign
+
 <Steps>
 
+<Step>Click <strong>Schedule / Fire</strong>.</Step>
+
 <Step>
-After configuring Notification Event, Channels, Placeholders, and schedule time, click <strong>Save</strong>.
+<p>In the <strong>Schedule Campaign</strong> popup, choose when to send:</p>
+<table>
+<thead><tr><th>Option</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>Now</td><td>Fires the campaign immediately.</td></tr>
+<tr><td>Later</td><td>Schedules the campaign for a date and time within the next 30 days.</td></tr>
+</tbody>
+</table>
 </Step>
 
 <Step>
-The campaign is stored and can be edited later before sending.
+<p>Click <strong>Fire</strong>, then click <strong>Confirm</strong> in the <strong>Fire Confirmation</strong> popup.</p>
 </Step>
 
 </Steps>
 
-## Fire or Schedule a Campaign
+## Stop or Re-run a Campaign
 
-<Steps>
+After a campaign is fired, the configuration page shows two new buttons:
 
-<Step>
-Click the <strong>Schedule / Fire</strong> button after completing configuration.
-</Step>
+| Button | What it does |
+| --- | --- |
+| **Stop Campaign** | Stops a running campaign. Available only for campaigns with more than 1,000 records. |
+| **Re-run** | Sends the campaign again. |
 
-<Step>
-Choose <strong>Now</strong> to immediately send notifications.
-<img src="/images/campaign_tutorial_13.png" />
-</Step>
+## View Logs and Analytics
 
-<Step>
-Choose <strong>Later</strong> to schedule a date and time (up to 30 days ahead).
-<img src="/images/campaign_tutorial_14.png" />
-</Step>
+Once a campaign has completed, open it to find the **Logs** and **View Analytics** buttons at the top of the page. You can also open analytics by clicking the bar chart icon next to the campaign on the Campaigns page.
 
-</Steps>
+### Sent Logs
 
-## Stop a Campaign
+Click **Logs** to open the Sent Logs screen. It shows a table of every notification the campaign sent, with its entry type, status, destination, and message count. To download the data, click **Export Logs** in the top-right corner.
 
-<Steps>
+### Analytics
 
-<Step>
-Click <strong>Stop Campaign</strong> to pause a running campaign.
-</Step>
+Click **View Analytics** to see the campaign date and a breakdown of how the campaign performed.
 
-<Step>
-This option is available only for CSV campaigns containing more than 1000 records.
-<img src="/images/campaign_tutorial_15.png" />
-</Step>
+#### Summary
 
-</Steps>
+| Metric | What it shows |
+| --- | --- |
+| Events Fired | The number of times the notification event was triggered, split into delivered, undelivered, and dropped. |
+| Notifications Requested | Notifications Fyno was asked to send. |
+| Notifications Sent | Notifications submitted to providers. |
+| Notifications Delivered | Notifications that reached recipients, with the delivery rate. |
+| Unique Recipients | The number of unique destinations per channel. |
+| Sent by Channels | How many notifications went out on each channel. |
 
-## Viewing Campaign Logs & Analytics
+#### Channel Engagement
 
-Fyno’s <strong>Campaign Analytics</strong> helps you analyze performance and engagement.
+Shows a channel-level engagement funnel with these statuses:
 
-You can access analytics by:
+| Status | Meaning |
+| --- | --- |
+| Submitted | Sent from Fyno. |
+| Delivered | Reached the destination. |
+| Read/Open | Read on WhatsApp or In-App, or opened for Email. |
+| Clicked | The recipient interacted with the notification. |
 
-1. Clicking the bar chart icon beside a campaign.
-2. Opening a campaign and selecting <strong>View Analytics</strong>.
+You can switch between counts and percentages, and filter statuses using the graph legend.
 
-### Overview
+#### Delivery Distribution
 
-Displays high-level performance:
-
-- Number of times event fired.
-- Notifications submitted.
-- Notifications delivered.
-
-### Channel Engagement
-
-Shows engagement per channel:
-
-- <strong>Submitted</strong> — Sent from Fyno
-- <strong>Delivered</strong> — Reached destination
-- <strong>Read/Open</strong> — WhatsApp/In-App read or Email open
-- <strong>Clicked</strong> — User interaction
-
-Undelivered statuses:
+Shows how notifications were delivered or failed across channels. Undelivered statuses include:
 
 - Invalid Subscriber
 - Blacklist
 - Rejected
 - Bounce
 
-You can filter statuses using the graph legend.
+Click **Status Guide** on the analytics page for definitions of every status.
 
-### Delivery Status
+#### Request a Report
 
-Channel delivery states:
+Click **Request Report** to receive a detailed report link by email and in-app notification. The report includes:
 
-- <strong>Sent</strong> — Sent from Fyno
-- <strong>Delivered</strong> — Successfully received
-- <strong>Error</strong> — Configuration issue
-- <strong>Failed</strong> — Provider rejection
-- <strong>Bounce</strong> — Email delivery failure
-
-### Download Report
-
-Click <strong>Download Report</strong> to receive a report link via Email and In-App notification.
-
-Report fields include:
-
-- Request_ts
-- Request_id
-- Template
-- Distinct_id
-- SMS_credits_use
-- Email_credits_use
-- Channel submission statuses
-- Channel final delivery statuses
-- Channel delivery history
+| Field | Description |
+| --- | --- |
+| `Request_ts` | Timestamp of the request. |
+| `Request_id` | Unique ID of the request. |
+| `Template` | Template used for the notification. |
+| `Distinct_id` | Unique ID of the recipient. |
+| `SMS_credits_use` | SMS credits consumed. |
+| `Email_credits_use` | Email credits consumed. |
+| Channel submission statuses | Submission status for each channel. |
+| Channel final delivery statuses | Final delivery status for each channel. |
+| Channel delivery history | Full delivery history for each channel. |
