@@ -57,10 +57,10 @@ navigation:
             path: "pages/dashboard/dashboard.mdx"
             icon: fa-regular fa-chart-simple
             contents:
-            - page: "Central Dashboard"
-              path: "pages/dashboard/central-dashboard.mdx"
             - page: "Real-Time Dashboard"
-              path: "pages/dashboard/real-time-dashboard.mdx"  
+              path: "pages/dashboard/real-time-dashboard.mdx"
+            - page: "Central Dashboard"
+              path: "pages/dashboard/central-dashboard.mdx"  
           - page: "Alarms"
             path: "pages/dashboard/alarms.mdx"
             icon: fa-regular fa-triangle-exclamation
