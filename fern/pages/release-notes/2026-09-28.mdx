@@ -1,0 +1,85 @@
+## 26.3.6
+
+This release introduces a real-time dashboard for watching notification traffic as it happens, and gives you finer control over Do Not Disturb, with custom DND hours per notification event group, alarms when messages are affected by a DND window, and a report covering notifications processed during one.
+
+We've also added a shortcut from workflow event nodes straight to event analytics, clarified labels in voice templates and delivery rate charts, and resolved issues with the Cost Analytics view selector, blank workflow condition forms, and workflows that could not be saved on non-Meta WhatsApp providers.
+
+### 🚀 New features
+
+<CardGroup cols={2}>
+
+<Card title="Real-time dashboard" icon="gauge-high">
+
+Watch notification traffic as it happens, over a rolling 5 to 60 minute window that refreshes every 10 seconds. Status counts, trend cards, delivery rates and channel charts, with full screen, a timezone clock and shareable views. Currently in Beta.
+
+[Read more](/docs/real-time-dashboard)
+
+</Card>
+
+<Card title="DND for notification event groups" icon="moon">
+
+Notification Event Groups can now override workspace-level DND, either with custom hours or by skipping DND entirely. Events without a group override follow the workspace configuration.
+
+[Read more](/docs/delivery-limit#group-based-dnd)
+
+</Card>
+
+<Card title="DND violation alarms" icon="bell">
+
+Alarms now fire when messages are dropped or queued during a DND window, so a delivery interruption caused by your DND configuration surfaces immediately.
+
+[Read more](/docs/alarms)
+
+</Card>
+
+<Card title="DND compliance report" icon="file-arrow-down">
+
+Report Extraction now includes a DND Logs report covering notifications processed during a DND period, along with their delivery information.
+
+[Read more](/docs/report-extraction)
+
+</Card>
+
+</CardGroup>
+
+### ⚡ Enhancements
+
+<AccordionGroup>
+
+<Accordion title="Open event analytics from a workflow node — Workflows">
+
+Event nodes now carry an analytics icon button that opens the [analytics page](/docs/notification-event-analytics) for that event directly, so you no longer have to leave the workflow and find the event by hand while troubleshooting.
+
+The button appears only when the node is selected, keeping unselected nodes uncluttered.
+
+</Accordion>
+
+<Accordion title="Clearer label for notifications without an Analytics Label — Dashboard">
+
+In the Delivery Rate and Delivery Rate Expanded charts, notifications with no [Analytics Label](/docs/analytics-label) attached now use a properly formatted label consistent with the rest of the chart, replacing the plain "No analytics label" text.
+
+A tooltip reads **Notifications with no Analytics Label attached**, so it's clear what the segment represents.
+
+</Accordion>
+
+<Accordion title="Override IVR/Flow/Bot ID — Voice templates">
+
+The **Override IVR/Flow ID** setting in a [Voice template's](/docs/template-creation-voice) Additional Settings is now **Override IVR/Flow/Bot ID**, with the tooltip updated to match. The setting has always supported overriding a Bot ID; the label now says so.
+
+</Accordion>
+
+<Accordion title="Cleaner group selection — DND">
+
+The autocomplete in [group-based DND](/docs/delivery-limit#group-based-dnd) no longer repeats a **Group** label inside the field. The GROUP column header already identifies it, so the field now shows just the selected value.
+
+</Accordion>
+
+</AccordionGroup>
+
+### 🛠 Bug fixes
+
+| Area | Fix |
+| --- | --- |
+| **Cost Analytics** | The view selector in the Details drawer showed the default view but would not switch. You can now move between the Provider, Integration, Group and Analytics Label views. |
+| **Workflows** | Saved [condition](/docs/workflows/nodes-and-actions/conditions) data was not restored when a workflow was reopened, leaving the condition forms blank even though the configuration had been saved. |
+| **Workflows** | Workflows using WhatsApp providers other than Meta, Meta Direct and Meta Direct Plus could not be saved, even when the [Typing Indicator](/docs/workflows/nodes-and-actions/typing-indicator) widget wasn't in the workflow. The provider check now applies only where the widget is actually used. |
