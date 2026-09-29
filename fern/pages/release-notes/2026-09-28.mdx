@@ -1,14 +1,7 @@
-{/*
-  Fyno release notes 26.3.6
-  Conventions and MDX gotchas: fern/release-notes-guide.md
-
-  Structure is fixed: cards for new features, accordions for enhancements,
-  table for fixes. Two opening paragraphs summarise the release.
-*/}
 
 ## 26.3.6
 
-This release adds two AI assists: a handlebar generator that turns a plain-language description into working syntax, and SMS credit optimization that flags templates costing more than one credit and suggests shorter DLT-compliant content. It also introduces a real-time dashboard for watching notification traffic as it happens, and gives you finer control over Do Not Disturb.
+This release adds two AI assists: a handlebar generator that turns a plain-language description into working syntax, and SMS credit optimization that flags external templates costing more than one credit and suggests shorter DLT-compliant content. It also introduces a real-time dashboard for watching notification traffic as it happens, and gives you finer control over Do Not Disturb.
 
 Log Details now shows throttling attempts, workflow event nodes link straight to event analytics, and we've clarified labels in voice templates and delivery rate charts, alongside fixes to the Sent Logs date filter, the Cost Analytics view selector, WhatsApp previews in live logs, DLT template options, and workflows that could not be saved on non-Meta WhatsApp providers.
 
@@ -18,7 +11,7 @@ Log Details now shows throttling attempts, workflow event nodes link straight to
 
 ### 🚀 New features
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
 
 <Card title="AI handlebar generator" icon="wand-magic-sparkles">
 
@@ -30,25 +23,9 @@ Describe what you need in plain language and Fyno AI writes the handlebar, with 
 
 <Card title="AI SMS credit optimization" icon="indian-rupee-sign">
 
-SMS templates now carry a live character counter and flag content that will cost more than one credit. Fyno AI suggests a shorter DLT-compliant version, and can send it straight to DLT for approval where an integration is configured.
+External SMS templates now carry a live character counter and flag content that will cost more than one credit. Fyno AI suggests a shorter DLT-compliant version, and can send it straight to DLT for approval where an integration is configured.
 
-[Read more](/docs/dlt-sms-templates)
-
-</Card>
-
-<Card title="AI handlebar generator" icon="wand-magic-sparkles">
-
-Describe what you need in plain language and Fyno AI writes the handlebar, with a sample output so you can check it before copying. Available wherever handlebars can be entered, and you can regenerate with feedback if it isn't right.
-
-[Read more](/docs/templates-handlebars)
-
-</Card>
-
-<Card title="AI SMS credit optimization" icon="indian-rupee-sign">
-
-SMS templates now carry a live character counter and flag content that will cost more than one credit. Fyno AI suggests a shorter DLT-compliant version, and can send it straight to DLT for approval where an integration is configured.
-
-[Read more](/docs/dlt-sms-templates)
+[Read more](/docs/external-templates/sms/create-and-configure-sms-external-template#reduce-credits-with-fyno-ai)
 
 </Card>
 
