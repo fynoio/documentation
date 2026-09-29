@@ -93,13 +93,90 @@ It's essential to use the appropriate query when working with different database
 ]
 ```
 
-<Tip title="Introducing Magic Query Generator! (Beta)">
-  <p>The Magic Query Generator is an innovative and powerful feature designed to simplify and streamline the process of creating database queries. With this, generating database queries is as simple as providing a prompt in plain English.</p>
-  <p>By eliminating the need to write queries manually, the Magic Query Generator empowers you to retrieve, filter, and manipulate data from the database with ease and efficiency.</p>
-  <p>Just write out what exactly you want the data to be comprised of with all the conditions, and hit the "Generate Query" button. The query will auto run after successfull generation and you can view the results.</p>
-  <p>Modify the query or the prompt until you get the desired output.</p>
-  <p>Give it a try!</p>
-</Tip>
+#### Generate a query with Fyno AI
+
+Don't know how to write a database query? Describe the users you want in plain English, and Fyno AI converts it into a query that runs on your schema data.
+
+For example, if your `user` table has `created_at` and `language` columns, you could type:
+
+```
+Get the User_id, Name and Email of users who signed up in 2026 and whose language is English.
+```
+
+Fyno AI generates the query in the right format for your database:
+
+![](/images/dev-mysql-ai-query.png)
+
+Here's the query for this prompt in each supported database:
+
+<CodeGroup>
+```json MongoDB
+[
+  {
+    "$match": {
+      "created_at": {
+        "$gte": { "$date": "2026-01-01T00:00:00Z" },
+        "$lt": { "$date": "2027-01-01T00:00:00Z" }
+      },
+      "language": "en"
+    }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "user_id": 1,
+      "name": 1,
+      "email": 1
+    }
+  }
+]
+```
+
+```sql MsSQL
+SELECT t1.[user_id], t1.[name], t1.[email]
+FROM [user] t1
+WHERE t1.[created_at] >= '2026-01-01' AND t1.[created_at] < '2027-01-01' AND t1.[language] = 'en'
+```
+
+```sql MySQL
+SELECT t1.`user_id`, t1.`name`, t1.`email`
+FROM `user` t1
+WHERE t1.`created_at` >= '2026-01-01' AND t1.`created_at` < '2027-01-01' AND t1.`language` = 'en'
+```
+
+```sql Postgres
+SELECT t1.user_id, t1.name, t1.email
+FROM "user" t1
+WHERE t1.created_at >= '2026-01-01' AND t1.created_at < '2027-01-01' AND t1.language = 'en'
+```
+
+```sql Snowflake
+SELECT t1.user_id, t1.name, t1.email
+FROM "user" t1
+WHERE t1.created_at >= '2026-01-01' AND t1.created_at < '2027-01-01' AND t1.language = 'en'
+```
+
+```sql Athena
+SELECT t1.user_id, t1.name, t1.email
+FROM "user" t1
+WHERE t1.created_at >= TIMESTAMP '2026-01-01 00:00:00' AND t1.created_at < TIMESTAMP '2027-01-01 00:00:00' AND t1.language = 'en'
+```
+</CodeGroup>
+
+The query returns the User_id, Name and Email of each matching user. Notice how Fyno AI interprets the prompt: "signed up in 2026" becomes a date range on `created_at`, and "English" becomes the language code `en` as stored in the data. The table and column names in your query come from the schemas you select, so yours will differ.
+
+<Steps>
+  <Step>In the **Use Fyno AI to generate query** field, describe the segment of users you want, including all conditions.</Step>
+  <Step>From the **Select relevant schema/s** dropdown, choose the schema or schemas that contain the data your prompt refers to. You can select more than one.</Step>
+  <Step>Optionally, select **Let Fyno AI use the first 3 rows of relevant schemas for accuracy**. This gives Fyno AI a sample of your actual data, which helps it understand field formats and values (such as `en` for English) and produce a more accurate query.</Step>
+  <Step>Click **Generate Query**. The generated query appears in the **Query Editor**.</Step>
+  <Step>Review the query, edit it if needed, and click **RUN** to view the results.</Step>
+  <Step>Optionally, rate the query using the thumbs up or thumbs down icon next to **What do you think about this?** Your feedback helps improve Fyno AI.</Step>
+</Steps>
+
+<Tip>If the results aren't what you expected, refine your prompt and generate the query again, or edit the query directly in the Query Editor.</Tip>
+
+<Note>Fyno AI only reads the first 3 rows of the selected schemas when you enable the sample-data option. Leave it unchecked if those rows contain sensitive information you don't want to share.</Note>
 
 <Note> By default, Fyno will exclude all the duplicate records in the Cohort. If you want to include duplicate records, please enable 'Include duplicate records in campaign' </Note>
 
