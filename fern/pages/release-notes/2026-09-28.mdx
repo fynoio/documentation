@@ -1,12 +1,28 @@
 ## 26.3.6
 
-This release introduces a real-time dashboard for watching notification traffic as it happens, and gives you finer control over Do Not Disturb, with custom DND hours per notification event group, alarms when messages are affected by a DND window, and a report covering notifications processed during one.
+This release adds two AI assists: a handlebar generator that turns a plain-language description into working syntax, and SMS credit optimization that flags templates costing more than one credit and suggests shorter DLT-compliant content. It also introduces a real-time dashboard for watching notification traffic as it happens, and gives you finer control over Do Not Disturb.
 
-We've also added a shortcut from workflow event nodes straight to event analytics, clarified labels in voice templates and delivery rate charts, and resolved issues with the Cost Analytics view selector, blank workflow condition forms, and workflows that could not be saved on non-Meta WhatsApp providers.
+Log Details now shows throttling attempts, workflow event nodes link straight to event analytics, and we've clarified labels in voice templates and delivery rate charts, alongside fixes to the Sent Logs date filter, the Cost Analytics view selector, WhatsApp previews in live logs, DLT template options, and workflows that could not be saved on non-Meta WhatsApp providers.
 
 ### 🚀 New features
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
+
+<Card title="AI handlebar generator" icon="wand-magic-sparkles">
+
+Describe what you need in plain language and Fyno AI writes the handlebar, with a sample output so you can check it before copying. Available wherever handlebars can be entered, and you can regenerate with feedback if it isn't right.
+
+[Read more](/docs/templates-handlebars)
+
+</Card>
+
+<Card title="AI SMS credit optimization" icon="indian-rupee-sign">
+
+SMS templates now carry a live character counter and flag content that will cost more than one credit. Fyno AI suggests a shorter DLT-compliant version, and can send it straight to DLT for approval where an integration is configured.
+
+[Read more](/docs/dlt-sms-templates)
+
+</Card>
 
 <Card title="Real-time dashboard" icon="gauge-high">
 
@@ -46,6 +62,12 @@ Report Extraction now includes a DND Logs report covering notifications processe
 
 <AccordionGroup>
 
+<Accordion title="Throttling details in Log Details — Logs">
+
+A throttled notification is now marked **Throttling Enabled** in the trace on the [Log Details](/docs/sent-log-details) panel. Select **View Details** to see every delivery attempt with its timestamp, so you can tell how long a message was held and how many times it was retried.
+
+</Accordion>
+
 <Accordion title="Open event analytics from a workflow node — Workflows">
 
 Event nodes now carry an analytics icon button that opens the [analytics page](/docs/notification-event-analytics) for that event directly, so you no longer have to leave the workflow and find the event by hand while troubleshooting.
@@ -80,6 +102,9 @@ The autocomplete in [group-based DND](/docs/delivery-limit#group-based-dnd) no l
 
 | Area | Fix |
 | --- | --- |
+| **Sent Logs** | The date and time range filter did not apply correctly to the log list. |
+| **Logs** | WhatsApp previews in live logs did not render correctly. |
+| **External Templates** | **Service Explicit** was offered as an option when creating a [DLT template](/docs/dlt-sms-templates) and has been removed. The Promotional description now reads on its own instead of referring to Service Explicit. |
 | **Cost Analytics** | The view selector in the Details drawer showed the default view but would not switch. You can now move between the Provider, Integration, Group and Analytics Label views. |
 | **Workflows** | Saved [condition](/docs/workflows/nodes-and-actions/conditions) data was not restored when a workflow was reopened, leaving the condition forms blank even though the configuration had been saved. |
 | **Workflows** | Workflows using WhatsApp providers other than Meta, Meta Direct and Meta Direct Plus could not be saved, even when the [Typing Indicator](/docs/workflows/nodes-and-actions/typing-indicator) widget wasn't in the workflow. The provider check now applies only where the widget is actually used. |
