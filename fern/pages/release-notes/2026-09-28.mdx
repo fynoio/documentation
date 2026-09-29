@@ -1,0 +1,137 @@
+{/*
+  Fyno release notes 26.3.6
+  Conventions and MDX gotchas: fern/release-notes-guide.md
+
+  Structure is fixed: cards for new features, accordions for enhancements,
+  table for fixes. Two opening paragraphs summarise the release.
+*/}
+
+## 26.3.6
+
+This release adds two AI assists: a handlebar generator that turns a plain-language description into working syntax, and SMS credit optimization that flags templates costing more than one credit and suggests shorter DLT-compliant content. It also introduces a real-time dashboard for watching notification traffic as it happens, and gives you finer control over Do Not Disturb.
+
+Log Details now shows throttling attempts, workflow event nodes link straight to event analytics, and we've clarified labels in voice templates and delivery rate charts, alongside fixes to the Sent Logs date filter, the Cost Analytics view selector, WhatsApp previews in live logs, DLT template options, and workflows that could not be saved on non-Meta WhatsApp providers.
+
+{/* NEW FEATURES — capabilities that did not exist before.
+     Six cards max. cols={2} for 4-6, cols={3} for 3.
+     Read more only where a docs page exists. */}
+
+### 🚀 New features
+
+<CardGroup cols={3}>
+
+<Card title="AI handlebar generator" icon="wand-magic-sparkles">
+
+Describe what you need in plain language and Fyno AI writes the handlebar, with a sample output so you can check it before copying. Available wherever handlebars can be entered, and you can regenerate with feedback if it isn't right.
+
+[Read more](/docs/templates-handlebars)
+
+</Card>
+
+<Card title="AI SMS credit optimization" icon="indian-rupee-sign">
+
+SMS templates now carry a live character counter and flag content that will cost more than one credit. Fyno AI suggests a shorter DLT-compliant version, and can send it straight to DLT for approval where an integration is configured.
+
+[Read more](/docs/dlt-sms-templates)
+
+</Card>
+
+<Card title="AI handlebar generator" icon="wand-magic-sparkles">
+
+Describe what you need in plain language and Fyno AI writes the handlebar, with a sample output so you can check it before copying. Available wherever handlebars can be entered, and you can regenerate with feedback if it isn't right.
+
+[Read more](/docs/templates-handlebars)
+
+</Card>
+
+<Card title="AI SMS credit optimization" icon="indian-rupee-sign">
+
+SMS templates now carry a live character counter and flag content that will cost more than one credit. Fyno AI suggests a shorter DLT-compliant version, and can send it straight to DLT for approval where an integration is configured.
+
+[Read more](/docs/dlt-sms-templates)
+
+</Card>
+
+<Card title="Real-time dashboard" icon="gauge-high">
+
+Watch notification traffic as it happens, over a rolling 5 to 60 minute window that refreshes every 10 seconds. Status counts, trend cards, delivery rates and channel charts, with full screen, a timezone clock and shareable views. Currently in Beta.
+
+[Read more](/docs/real-time-dashboard)
+
+</Card>
+
+<Card title="DND for notification event groups" icon="moon">
+
+Notification Event Groups can now override workspace-level DND, either with custom hours or by skipping DND entirely. Events without a group override follow the workspace configuration.
+
+[Read more](/docs/delivery-limit#group-based-dnd)
+
+</Card>
+
+<Card title="DND violation alarms" icon="bell">
+
+Alarms now fire when messages are dropped or queued during a DND window, so a delivery interruption caused by your DND configuration surfaces immediately.
+
+[Read more](/docs/alarms)
+
+</Card>
+
+<Card title="DND compliance report" icon="file-arrow-down">
+
+Report Extraction now includes a DND Logs report covering notifications processed during a DND period, along with their delivery information.
+
+[Read more](/docs/report-extraction)
+
+</Card>
+
+</CardGroup>
+
+{/* ENHANCEMENTS — changes to something that already existed.
+     Title format: "Area: What changed". Ordered by how many people it affects. */}
+
+### ⚡ Enhancements
+
+<AccordionGroup>
+
+<Accordion title="Logs: Throttling details in Log Details">
+
+A throttled notification is now marked **Throttling Enabled** in the trace on the [Log Details](/docs/sent-log-details) panel. Select **View Details** to see every delivery attempt with its timestamp, so you can tell how long a message was held and how many times it was retried.
+
+</Accordion>
+
+<Accordion title="Workflows: Open event analytics from a node">
+
+Event nodes now carry an analytics icon button that opens the [analytics page](/docs/notification-event-analytics) for that event directly, so you no longer have to leave the workflow and find the event by hand while troubleshooting.
+
+The button appears only when the node is selected, keeping unselected nodes uncluttered.
+
+</Accordion>
+
+<Accordion title="Dashboard: Clearer label for notifications without an Analytics Label">
+
+In the Delivery Rate and Delivery Rate Expanded charts, notifications with no [Analytics Label](/docs/analytics-label) attached now use a properly formatted label consistent with the rest of the chart, replacing the plain "No analytics label" text.
+
+A tooltip reads **Notifications with no Analytics Label attached**, so it's clear what the segment represents.
+
+</Accordion>
+
+<Accordion title="Voice templates: Override IVR/Flow/Bot ID">
+
+The **Override IVR/Flow ID** setting in a [Voice template's](/docs/template-creation-voice) Additional Settings is now **Override IVR/Flow/Bot ID**, with the tooltip updated to match. The setting has always supported overriding a Bot ID; the label now says so.
+
+</Accordion>
+
+</AccordionGroup>
+
+{/* BUG FIXES — one row each. Lead with the symptom a reader would recognise. */}
+
+### 🛠 Bug fixes
+
+| Area | Fix |
+| --- | --- |
+| **Sent Logs** | The date and time range filter did not apply correctly to the log list. |
+| **Logs** | WhatsApp previews in live logs did not render correctly. |
+| **External Templates** | **Service Explicit** was offered as an option when creating a [DLT template](/docs/dlt-sms-templates) and has been removed. The Promotional description now reads on its own instead of referring to Service Explicit. |
+| **Cost Analytics** | The view selector in the Details drawer showed the default view but would not switch. You can now move between the Provider, Integration, Group and Analytics Label views. |
+| **Workflows** | Saved [condition](/docs/workflows/nodes-and-actions/conditions) data was not restored when a workflow was reopened, leaving the condition forms blank even though the configuration had been saved. |
+| **Workflows** | Workflows using WhatsApp providers other than Meta, Meta Direct and Meta Direct Plus could not be saved, even when the [Typing Indicator](/docs/workflows/nodes-and-actions/typing-indicator) widget wasn't in the workflow. The provider check now applies only where the widget is actually used. |
