@@ -437,9 +437,7 @@ navigation:
               - page: "Delivery Callback Logs"
                 path: "pages/notification-events/callback-logs.mdx"
               - page: "Verification Logs"
-                path: "pages/logs/verification-logs.mdx"
-              - page: "Throttle Details"
-                path: "pages/logs/sent-logs/throttle.mdx"  
+                path: "pages/logs/verification-logs.mdx" 
                               
       - section: "Advanced Features"
         contents:
