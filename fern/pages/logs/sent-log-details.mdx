@@ -23,17 +23,21 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 The **Trace** appears on the left side of the Log Details pop-up. It summarizes each hop the notification took, how long each hop took, the total time, and the final status of the notification.
 
-![](/images/SentLogs_Trace.png)
+![](/images/sent-logs-trace-throttling.png)
 
 | Hop | What it shows |
 | --- | --- |
 | **Request Received** | The time the API was triggered and Fyno received the request for processing. |
-| **Sent To** *provider name* | The date and time the request was sent to the provider, and how long Fyno took to process it. The provider shown depends on the routing and notification event that were triggered. |
+| **Sent To** *provider name* | The date and time the request was sent to the provider, and how long Fyno took to process it. The provider shown depends on the routing and notification event that were triggered. If integration-level throttling delayed the notification, this hop also shows **Throttling Enabled**. Click **View Details** next to it to see each delayed attempt. |
 | *Provider name*'s **Response** | The date and time the provider's response was received, and how long the provider took to respond. |
 | **Final Status** | The final status of the notification, such as **Success**, and the total time taken for its entire lifecycle. |
 | **Delivery Status** | The time the provider shared the delivery status. This hop appears only when the provider sends a delivery response. |
 
-In the example above, the notification was sent through Kaleyra.io, so the Trace shows **Sent To Kaleyra.io** and **Kaleyra.io's Response**. Fyno took 121ms to process the request and Kaleyra.io took 147ms to respond. The notification was delivered successfully, so **Final Status** shows **Success**, with a total time of 268ms.
+In the example above, the notification was sent through the Simulator, so the Trace shows **Sent to Simulator** and **Simulator's Response**. The **Sent to Simulator** hop shows **Throttling Enabled**, which means Fyno held the notification before submitting it to the provider. The notification was then sent, and the **Delivery Status** hop shows when the delivery status was received.
+
+Clicking **View Details** next to **Throttling Enabled** opens the **Throttling details** panel, which lists each delayed attempt with its date and time and the total number of attempts.
+
+![](/images/logs-throttling-details-panel.png)
 
 <Tip>Click **View Response** on the **Final Status** hop to go straight to the tab with the details of the final response.</Tip>
 
