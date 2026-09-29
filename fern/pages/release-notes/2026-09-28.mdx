@@ -1,12 +1,24 @@
+{/*
+  Fyno release notes 26.3.6
+  Conventions and MDX gotchas: fern/release-notes-guide.md
+
+  Structure is fixed: cards for new features, accordions for enhancements,
+  table for fixes. Two opening paragraphs summarise the release.
+*/}
+
 ## 26.3.6
 
 This release adds two AI assists: a handlebar generator that turns a plain-language description into working syntax, and SMS credit optimization that flags templates costing more than one credit and suggests shorter DLT-compliant content. It also introduces a real-time dashboard for watching notification traffic as it happens, and gives you finer control over Do Not Disturb.
 
 Log Details now shows throttling attempts, workflow event nodes link straight to event analytics, and we've clarified labels in voice templates and delivery rate charts, alongside fixes to the Sent Logs date filter, the Cost Analytics view selector, WhatsApp previews in live logs, DLT template options, and workflows that could not be saved on non-Meta WhatsApp providers.
 
+{/* NEW FEATURES — capabilities that did not exist before.
+     Six cards max. cols={2} for 4-6, cols={3} for 3.
+     Read more only where a docs page exists. */}
+
 ### 🚀 New features
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
 
 <Card title="AI handlebar generator" icon="wand-magic-sparkles">
 
@@ -58,17 +70,20 @@ Report Extraction now includes a DND Logs report covering notifications processe
 
 </CardGroup>
 
+{/* ENHANCEMENTS — changes to something that already existed.
+     Title format: "Area: What changed". Ordered by how many people it affects. */}
+
 ### ⚡ Enhancements
 
 <AccordionGroup>
 
-<Accordion title="Throttling details in Log Details — Logs">
+<Accordion title="Logs: Throttling details in Log Details">
 
 A throttled notification is now marked **Throttling Enabled** in the trace on the [Log Details](/docs/sent-log-details) panel. Select **View Details** to see every delivery attempt with its timestamp, so you can tell how long a message was held and how many times it was retried.
 
 </Accordion>
 
-<Accordion title="Open event analytics from a workflow node — Workflows">
+<Accordion title="Workflows: Open event analytics from a node">
 
 Event nodes now carry an analytics icon button that opens the [analytics page](/docs/notification-event-analytics) for that event directly, so you no longer have to leave the workflow and find the event by hand while troubleshooting.
 
@@ -76,7 +91,7 @@ The button appears only when the node is selected, keeping unselected nodes uncl
 
 </Accordion>
 
-<Accordion title="Clearer label for notifications without an Analytics Label — Dashboard">
+<Accordion title="Dashboard: Clearer label for notifications without an Analytics Label">
 
 In the Delivery Rate and Delivery Rate Expanded charts, notifications with no [Analytics Label](/docs/analytics-label) attached now use a properly formatted label consistent with the rest of the chart, replacing the plain "No analytics label" text.
 
@@ -84,19 +99,15 @@ A tooltip reads **Notifications with no Analytics Label attached**, so it's clea
 
 </Accordion>
 
-<Accordion title="Override IVR/Flow/Bot ID — Voice templates">
+<Accordion title="Voice templates: Override IVR/Flow/Bot ID">
 
 The **Override IVR/Flow ID** setting in a [Voice template's](/docs/template-creation-voice) Additional Settings is now **Override IVR/Flow/Bot ID**, with the tooltip updated to match. The setting has always supported overriding a Bot ID; the label now says so.
 
 </Accordion>
 
-<Accordion title="Cleaner group selection — DND">
-
-The autocomplete in [group-based DND](/docs/delivery-limit#group-based-dnd) no longer repeats a **Group** label inside the field. The GROUP column header already identifies it, so the field now shows just the selected value.
-
-</Accordion>
-
 </AccordionGroup>
+
+{/* BUG FIXES — one row each. Lead with the symptom a reader would recognise. */}
 
 ### 🛠 Bug fixes
 
