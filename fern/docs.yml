@@ -427,7 +427,7 @@ navigation:
                     path: "pages/logs/sent-logs/report-extraction-sent-log.mdx"
                     contents:
                       - page: "Report Details"
-                        path: "pages/settings/report-details.mdx"
+                        path: "pages/settings/report-details.mdx"          
               - page: "Notification Event Logs"
                 path: "pages/notification-events/logs.mdx"
               - page: "Workflow Logs"
@@ -438,6 +438,8 @@ navigation:
                 path: "pages/notification-events/callback-logs.mdx"
               - page: "Verification Logs"
                 path: "pages/logs/verification-logs.mdx"
+              - page: "Throttle Details"
+                path: "pages/logs/sent-logs/throttle.mdx"  
                               
       - section: "Advanced Features"
         contents:
