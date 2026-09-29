@@ -13,7 +13,6 @@ Team is a structure that Fyno built for you to work and collaborate effortlessly
 
 On signing up and creating a new account with Fyno, your Default Workspace is created and the registered email ID becomes the Organisation Owner.
 ![](/images/workspace-setting-team.png)
-
 ### What you can do with Teams
 
 Team(s) allow you to:
@@ -149,25 +148,29 @@ export const Badge = ({ type, text }) => {
     --badge-no-bg: #F0F0F0;
     --badge-no-text: #333333;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --rb-table-bg: #121212;
-      --rb-table-text: #F0F0F0;
-      --rb-header-bg: #333333;
-      --rb-header-text: #F0F0F0;
-      --rb-border-main: #333333;
-      --rb-border-sub: #262626;
-      --rb-category-bg: #8B6602;
-      --rb-category-text: #FAF4E3;
-      --badge-yes-bg: #547100;
-      --badge-yes-text: #F2F7E3;
-      --badge-view-bg: #0E3672;
-      --badge-view-text: #E5EDF7;
-      --badge-test-bg: #8B6602;
-      --badge-test-text: #FAF4E3;
-      --badge-no-bg: #333333;
-      --badge-no-text: #F0F0F0;
-    }
+  /* Dark colours follow the docs site's own theme toggle (the "dark" class
+     on <html>), not the operating system's colour-scheme setting. Using
+     prefers-color-scheme here made the table go dark whenever the OS was
+     in dark mode, even while the site itself was in light mode. */
+  html.dark {
+    --rb-table-bg: #121212;
+    --rb-table-text: #F0F0F0;
+    --rb-header-bg: #333333;
+    --rb-header-text: #F0F0F0;
+    /* Lighter than --rb-header-bg so the line under the column headers
+       stays visible; at #333333 it matched the header and disappeared. */
+    --rb-border-main: #4D4D4D;
+    --rb-border-sub: #262626;
+    --rb-category-bg: #8B6602;
+    --rb-category-text: #FAF4E3;
+    --badge-yes-bg: #547100;
+    --badge-yes-text: #F2F7E3;
+    --badge-view-bg: #0E3672;
+    --badge-view-text: #E5EDF7;
+    --badge-test-bg: #8B6602;
+    --badge-test-text: #FAF4E3;
+    --badge-no-bg: #333333;
+    --badge-no-text: #F0F0F0;
   }
 
   /* Scoped, paired background + text overrides for THIS table only.
@@ -247,6 +250,17 @@ export const Badge = ({ type, text }) => {
   .tooltip-container:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
+  }
+
+  /* In dark mode the #202124 bubble blended into the #121212 table and its
+     dark shadow was invisible, so invert the tooltip there. The arrow colour
+     must match the bubble background. */
+  html.dark .tooltip-text {
+    background-color: #F0F0F0;
+    color: #1a1a1a;
+  }
+  html.dark .tooltip-text::after {
+    border-color: #F0F0F0 transparent transparent transparent;
   }
 `}</style>
 
