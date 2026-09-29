@@ -45,8 +45,6 @@ Enter the sender header for the message. This must match one of the DLT-register
 
 Enter the message body. Use **+ Add Variable** to insert a placeholder rather than typing it manually. Variables appear as numbered placeholders in the order added — `{{1}}`, `{{2}}`, `{{3}}`, and so on.
 
-> **FLAG FOR REVIEW**: This numbered `{{n}}` syntax differs from the `{#numeric#}` / `{#alphanumeric#}` / `{#url#}` DLT tag format documented in the Variables section of the SMS Template Overview. See that section's review flag before publishing this page.
-
 As you type, a stats panel next to the content box updates in real time:
 
 | Stat | What it shows |
@@ -56,7 +54,25 @@ As you type, a stats panel next to the content box updates in real time:
 | Credits Used | Estimated number of SMS credits the message will consume. |
 | Characters Used | Total character count of the message as composed. |
 
-If the content exceeds 1 credit, a prompt appears: "Your content is exceeding 1 credit!" with a **Reduce Credits** action. Selecting this uses Fyno AI to rephrase the content and bring it back within a single credit while preserving the original intent.
+If the content exceeds 1 credit, a banner appears with a **Reduce Credits** action. See [Reduce Credits with Fyno AI](#reduce-credits-with-fyno-ai).
+
+### Reduce Credits with Fyno AI
+
+If the message exceeds 1 credit, a banner appears below the SMS Content box: **"Your content is exceeding 1 credit! Fyno AI can help rephrase it while keeping the intent the same."**
+![](/images/sms-reduce-credits-banner.png)
+
+To reduce credits:
+
+1. Select **Reduce Credits**.
+2. If the message uses more than 2 credits, choose a target in **Reduce to [n] credit**, then select **Generate Content**.
+3. Fyno AI rephrases the content in three steps: it reads the content, keeps every variable you added, and trims the length without changing the meaning. Select **Cancel** to stop at any point.
+4. Review the suggested content, then select one of the following:
+   - **Use this Content** to replace the text in the SMS Content box.
+   - **Re-Generate Content** to try again. You can describe what to change and pick a feedback reason (for example, *Changed the meaning* or *Didn't save enough credits*), then select **Generate**.
+
+If Fyno AI can't reduce the credit count, it shows **"Oops! That didn't go as planned."** Select **Try Again** to retry with different guidance, or **View previous Content** to keep your original message.
+
+> **NOTE**: Rephrased content is new content for DLT. Submit the template for approval again before using it.
 
 ### Sample for Body Content
 
