@@ -1,0 +1,53 @@
+---
+title: 'Throttling Details in Logs'
+slug: 'throttling-details'
+description: 'See when Fyno held a notification before submitting it to the provider. Read the throttling indicator on the Trace, review delayed attempts, and see when throttling applies.'
+og:title: 'Throttling Details in Logs | Fyno Documentation'
+og:description: 'See when Fyno held a notification before submitting it to the provider. Read the throttling indicator on the Trace, review delayed attempts, and see when throttling applies.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+When Fyno holds a notification back instead of submitting it to the provider straight away, the log records it. The Trace flags the notification as throttled, and a **Throttling details** panel lists every delayed attempt with its timestamp.
+
+Use it when a notification reaches the recipient later than expected and you need to know whether the delay happened inside Fyno, before the provider was ever called.
+
+**Where to find it:** open a log → **Log Details** → **Trace** → the **Sent to** _&lt;provider name&gt;_ step.
+
+## The throttling indicator on the Trace
+
+The indicator sits on the **Sent to** _&lt;provider name&gt;_ step, just below Fyno's Processing Time. It appears only when the notification was actually throttled. A notification submitted without delay shows no indicator.
+
+![](/images/sent-logs-throttling-trace.png)
+
+| Element | What it shows |
+| --- | --- |
+| **Throttling Enabled** | Fyno delayed submitting this notification to the provider instead of sending it immediately. |
+| **View Details** | Opens the Throttling details panel for this notification. |
+| **Fyno's Processing Time** | The time Fyno took to process the request before handing it to the provider. |
+
+## The Throttling details panel
+
+Select **View Details** to open the panel. It lists every attempt Fyno made to submit the notification, in the order they happened.
+
+| Element | What it shows |
+| --- | --- |
+| **Panel heading** | The total number of submission attempts, shown as _N Attempts_. |
+| **Delay rows** | One row per attempt, labelled _1st delay_, _2nd delay_ and so on, in chronological order. |
+| **Date and time** | The timestamp recorded against each delayed attempt, in DD-MM-YYYY \| HH:MM:SS format. |
+
+In the example below, Fyno held the notification across 9 attempts before submitting it, each with its own timestamp.
+
+![](/images/sent-logs-throttling-details-panel.png)
+
+## Reading the panel
+
+- **Total hold time.** The gap between the first delay and the timestamp on the **Sent** step is how long Fyno held the notification before it went out.
+- **Spacing of attempts.** Attempts clustered within a few seconds point to a short burst of contention. Attempts spread over minutes point to sustained rate limiting.
+- **Scope of the problem.** A high attempt count on one log is worth checking against other logs from the same send. If the whole batch is throttled, the limit is too low for the volume; the individual notification is not at fault.
+- **Outcome.** Throttling delays a notification; it does not fail it. A throttled notification that is eventually submitted still moves to **Sent** and **Delivered** as normal.
+
+## When throttling applies
+
+You can set throttling on a campaign. It is optional but recommended, and controls how fast a campaign sends notifications on Email, SMS, WhatsApp, Push and Web Push. You can throttle a campaign by time (how long it runs) or by batch (how many records go out per interval). The throttle limit set in your provider account can slow delivery further.
+
+To set it up, see [How to throttle a campaign](https://www.fyno.io/docs/campaign_creation#how-to-throttle-a-campaign).
