@@ -1,7 +1,7 @@
 ---
 title: 'Handlebars'
 slug: 'templates-handlebars'
-description: 'Learn how to use Handlebars in Fyno templates to create dynamic content with placeholders, conditional logic, loops, date formatting, mathematical operations, custom helpers, and advanced template expressions.'
+description: 'Learn how to use Handlebars in Fyno templates, or generate them with Fyno AI, to create dynamic content with placeholders, conditional logic, loops, date formatting, mathematical operations, custom helpers, and advanced template expressions.'
 og:title: 'Handlebars - Templates | Fyno Documentation'
 og:description: 'Handlebars is a JavaScript templating library that enables dynamic content in Fyno templates using placeholders, conditions, loops, formatting helpers, and custom functions.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
@@ -12,6 +12,157 @@ Handlebars is a JavaScript library used for creating dynamic templates.
 It allows you to define templates with placeholders, and these placeholders are replaced with data when the template is triggered with the information sent in the payload.
 
 Handlebars within Fyno support features like conditional operations, loops, date time formatting, partial searches, and custom helpers, making it a very cool tool to use when creating your templates.
+
+## Generate Handlebars with Fyno AI
+
+Don't want to write the syntax yourself? Describe what you need in plain language, and Fyno AI will generate a ready-to-use handlebar for you.
+
+### Where to find it
+
+You can open the generator from two places:
+
+- **Variables panel:** Expand **Handlebars** > **Build your Own** and click **Generate**. If you'd rather build the logic yourself, this section also links to the Handlebar Builder.
+- **AI menu on input fields:** Any field that supports handlebars has an AI menu. Choose **Generate Handlebar** from it.
+
+The AI menu also has **Improve Handlebars**, which refines a handlebar that's already in the field instead of starting from scratch.
+
+{/* Screenshot: Variables panel with Build your Own expanded */}
+
+### Generate a handlebar
+
+<Steps>
+<Step title="Describe your requirement">
+In the **Tell us your requirement** field, describe what the handlebar should do. For example: _Show the order date in short Indian format_. Then click **Generate**.
+</Step>
+<Step title="Let Fyno AI work">
+Fyno AI reads your requirement, looks up the best-fitting helper from the handlebars library, and writes the handlebar, checking its syntax along the way. You can click **Cancel** at any point.
+</Step>
+<Step title="Review and copy">
+Fyno AI shows the generated handlebar with a sample output, so you can confirm it does what you expect. For example:
+
+```hbs title="Generated handlebar" wordWrap
+{{formatDate order_date 'short' 'en-in'}}
+```
+
+```text title="Sample output" wordWrap
+25/10/2023
+```
+
+Click **Copy** and paste it into your template.
+</Step>
+</Steps>
+
+<Note>Always test a generated handlebar with a sample payload before publishing your template, just as you would with one you wrote yourself.</Note>
+
+<Warning title='Check the quotes in generated handlebars'>
+Arguments inside a handlebar must use single quotes, because double quotes can break your template, especially in emails. If a generated handlebar contains double quotes, replace them with single quotes before you use it.
+</Warning>
+
+### Write a better requirement
+
+The more specific your requirement, the better the handlebar. Keep these in mind:
+
+- **Name the exact variable.** Use the key path from your payload, such as `members.0.city` or `period.start`, instead of "the city" or "the date".
+- **Describe the output you want.** Mention the format, locale, or timezone, such as DD/MM/YYYY, Indian number format, or IST.
+- **Say what to show when a value is missing.** If a key can be empty or absent, tell Fyno AI what to fall back to.
+- **Ask for one thing at a time.** If you need several pieces of logic, generate them separately and combine them in your template.
+
+The examples below use the sample payload from [Handlebars in Fyno's Templates](#handlebars-in-fynos-templates).
+
+<AccordionGroup>
+<Accordion title="Show a fallback value when a field is empty">
+
+```text title="Requirement" wordWrap
+Show members.0.city. If it's empty, show Bangalore instead.
+```
+
+```hbs title="Generated handlebar" wordWrap
+{{default members.0.city 'Bangalore'}}
+```
+
+```text title="Output" wordWrap
+Bangalore
+```
+
+</Accordion>
+<Accordion title="Show different text based on a value">
+
+```text title="Requirement" wordWrap
+If user_type is pro, show "Pro member". Otherwise, show "Standard member".
+```
+
+```hbs title="Generated handlebar" wordWrap
+{{#ifEquals user_type 'pro'}}
+  Pro member
+{{else}}
+  Standard member
+{{/ifEquals}}
+```
+
+```text title="Output" wordWrap
+Pro member
+```
+
+</Accordion>
+<Accordion title="Total a list of amounts as currency">
+
+```text title="Requirement" wordWrap
+Add up the amount of every item in investments and show it as US dollars.
+```
+
+```hbs title="Generated handlebar" wordWrap
+{{formatNumber (sumAll @root 'investments.amount') 'en-US' 'style=currency, currency=USD'}}
+```
+
+```text title="Output" wordWrap
+$30.00
+```
+
+</Accordion>
+<Accordion title="List every item in an array">
+
+```text title="Requirement" wordWrap
+List every investment as a numbered line with the company name and amount in dollars. If there's no company, show "Not known". If there are no investments, say so.
+```
+
+```hbs title="Generated handlebar" wordWrap
+{{#each investments}}
+  {{math @index '+' 1}}.
+  {{{default this.company 'Not known'}}}
+  - ${{this.amount}}
+{{else}}
+  No investments were made!
+{{/each}}
+```
+
+```text title="Output" wordWrap
+1. L&T - $10
+
+2. Not known - $20
+```
+
+</Accordion>
+</AccordionGroup>
+
+### Not quite right? Regenerate with feedback
+
+Click **Try Again** to open **Re-Generate Handlebar**. Refine your requirement and, optionally, choose what went wrong from the **Feedback** dropdown. Your feedback helps us improve Fyno AI.
+
+| Feedback option | Choose this when |
+|---|---|
+| Doesn't work / throws an error | The handlebar fails when the template renders |
+| Wrong output format | The output isn't formatted the way you asked |
+| Wrong variable used | It references the wrong variable from your payload |
+| Misunderstood my request | It solves a different problem from the one you described |
+| Breaks on empty or missing values | It fails when a value is absent or null |
+| Generation request failed | The request didn't complete |
+| Other | None of the above |
+
+Click **Generate** to try again, or **Back** to return to the previous result.
+
+### If generation fails
+
+If Fyno AI can't generate a handlebar, you'll see **Oops! That didn't go as planned**. Click **Try Again**, ideally with a more specific prompt. If an earlier attempt had succeeded, you can also click **View previous Handlebar** to go back to that result.
 
 ## Handlebars in Fyno's Templates
 
@@ -126,7 +277,7 @@ active
 {{{investments.0.company}}}
 ```
 
-<Note>If you use double-brackets instead of triple, L&T will show as L&T</Note>
+<Note>If you use double-brackets instead of triple, L&T will show as `L&amp;T`</Note>
 
 ```text title="Output" wordWrap
 L&T
