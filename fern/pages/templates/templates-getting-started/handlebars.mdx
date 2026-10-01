@@ -1,7 +1,7 @@
 ---
 title: 'Handlebars'
 slug: 'templates-handlebars'
-description: 'Learn how to use Handlebars in Fyno templates to create dynamic content with placeholders, conditional logic, loops, date formatting, mathematical operations, custom helpers, and advanced template expressions.'
+description: 'Learn how to use Handlebars in Fyno templates, or generate them with Fyno AI, to create dynamic content with placeholders, conditional logic, loops, date formatting, mathematical operations, custom helpers, and advanced template expressions.'
 og:title: 'Handlebars - Templates | Fyno Documentation'
 og:description: 'Handlebars is a JavaScript templating library that enables dynamic content in Fyno templates using placeholders, conditions, loops, formatting helpers, and custom functions.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
@@ -48,7 +48,7 @@ To understand how handlebars work, we first need to establish a sample payload, 
 }
 ```
 
-Fyno has default as well as custom **handlebars** that you can use in your templates. Let's have a look at what these are and how to use them using the above payload and data as example responses.
+Fyno has default as well as custom **handlebars** that you can use in your templates. Let's have a look at what these are and how to use them using the above payload and data as example responses. You can also [generate handlebars with Fyno AI](#generate-handlebars-with-fyno-ai) by describing what you need in plain language.
 
 <Warning title='🚧 Double Quotes within Handlebars {{" "}} may break your templates!'>
 <p>Double quote may break your syntax in HBS, especially in emails! And nobody wants that!</p><p>**For example:** Use `{{math number1 '+' number2}}` instead of `{{math number1 "+" number2}}`.</p><p>Use single quotes `{{' '}}` instead! :sunglasses:</p>
@@ -126,7 +126,7 @@ active
 {{{investments.0.company}}}
 ```
 
-<Note>If you use double-brackets instead of triple, L&T will show as L&T</Note>
+<Note>If you use double-brackets instead of triple, L&T will show as `L&amp;T`</Note>
 
 ```text title="Output" wordWrap
 L&T
@@ -1012,3 +1012,136 @@ nmste, aap kaise haiN?
 </Accordion>
 
 </AccordionGroup>
+
+
+## Generate Handlebars with Fyno AI
+
+Don't want to write the syntax yourself? Describe what you need in plain language, and Fyno AI will generate a ready-to-use handlebar for you.
+
+### Where to find it
+
+You can open the generator from two places:
+
+- **Left panel on the template page:** Expand **Handlebars** > **Build Your Own** and click **Generate**. If you'd rather build the logic yourself, this section also links to the Handlebars Builder.
+- **AI menu on input fields:** Any field that supports handlebars has an AI menu. Choose **Generate Handlebar** from it.
+
+The AI menu also has **Improve Handlebars**, which refines a handlebar that's already in the field instead of starting from scratch.
+
+![Build Your Own section in the left panel, with the Generate button](/images/handlebars-build-your-own.png)
+
+### Generate a handlebar
+
+<Steps>
+<Step title="Describe your requirement">
+In the **Tell us your requirement** field, describe what the handlebar should do. For example: _Show order_date in short Indian date format._ Then click **Generate**.
+
+<Note>Fyno AI works only with placeholders that already exist in your template. For example, to show a date in a specific format, the date must already be a placeholder in your template.</Note>
+
+![Generate Handlebars window with a requirement entered](/images/handlebars-generate-window.png)
+</Step>
+<Step title="Let Fyno AI work">
+Fyno AI reads your requirement, looks up the best-fitting helper from the handlebars library, and writes the handlebar, checking its syntax along the way. You can click **Cancel** at any point.
+
+![Fyno AI generating a handlebar](/images/handlebars-brewing.png)
+</Step>
+<Step title="Review and copy">
+Fyno AI shows the generated handlebar with a sample output, so you can confirm it does what you expect.
+
+Click **Copy** and paste it into your template.
+</Step>
+</Steps>
+
+<Note>Always test a generated handlebar with a sample payload before publishing your template, just as you would with one you wrote yourself.</Note>
+
+<Warning title='Check the quotes in generated handlebars'>
+Arguments inside a handlebar must use single quotes, because double quotes can break your template, especially in emails. If a generated handlebar contains double quotes, replace them with single quotes before you use it.
+</Warning>
+
+### Example requirements
+
+These examples use the [sample payload](#handlebars-in-fynos-templates) from earlier on this page.
+
+<AccordionGroup>
+<Accordion title="Show a fallback value when a field is empty">
+
+```text title="Requirement" wordWrap
+Show members.0.city. If it's empty, show Bangalore instead.
+```
+
+```hbs title="Generated handlebar" wordWrap
+{{default members.0.city 'Bangalore'}}
+```
+
+```text title="Output" wordWrap
+Bangalore
+```
+
+</Accordion>
+<Accordion title="Show different text based on a value">
+
+```text title="Requirement" wordWrap
+If user_type is pro, show "Pro member". Otherwise, show "Standard member".
+```
+
+```hbs title="Generated handlebar" wordWrap
+{{#ifEquals user_type 'pro'}}
+  Pro member
+{{else}}
+  Standard member
+{{/ifEquals}}
+```
+
+```text title="Output" wordWrap
+Pro member
+```
+
+</Accordion>
+<Accordion title="Total a list of amounts as currency">
+
+```text title="Requirement" wordWrap
+Add up the amount of every item in investments and show it as US dollars.
+```
+
+```hbs title="Generated handlebar" wordWrap
+{{formatNumber (sumAll @root 'investments.amount') 'en-US' 'style=currency, currency=USD'}}
+```
+
+```text title="Output" wordWrap
+$30.00
+```
+
+</Accordion>
+<Accordion title="List every item in an array">
+
+```text title="Requirement" wordWrap
+List every investment as a numbered line with the company name and amount in dollars. If there's no company, show "Not known". If there are no investments, say so.
+```
+
+```hbs title="Generated handlebar" wordWrap
+{{#each investments}}
+  {{math @index '+' 1}}.
+  {{{default this.company 'Not known'}}}
+  - ${{this.amount}}
+{{else}}
+  No investments were made!
+{{/each}}
+```
+
+```text title="Output" wordWrap
+1. L&T - $10
+
+2. Not known - $20
+```
+
+</Accordion>
+</AccordionGroup>
+
+### Not quite right? Regenerate with feedback
+
+Click **Try Again** to open **Re-Generate Handlebar**. Refine your requirement and, optionally, choose what went wrong from the **Feedback** dropdown. Your feedback helps us improve Fyno AI.
+
+Click **Generate** to try again, or **Back** to return to the previous result.
+
+### If generation fails
+
+If Fyno AI can't generate a handlebar, you'll see **Oops! That didn't go as planned**. Click **Try Again**, ideally with a more specific prompt. If an earlier attempt had succeeded, you can also click **View previous Handlebar** to go back to that result.
