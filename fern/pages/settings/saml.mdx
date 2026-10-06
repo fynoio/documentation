@@ -10,8 +10,8 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 Single Sign-On (SSO) lets your team access Fyno using the identity provider your company already trusts. No separate usernames or passwords, and access is controlled from one place.
 
 <CardGroup cols={2}>
-  <Card title="SSO 2.0: email-first login" icon="sparkles" href="#sso-20-email-first-login">
-    Enter your email on app.fyno.io and Fyno picks the right way to sign you in.
+  <Card title="Email-first login" icon="sparkles" href="#email-first-login">
+    Enter your email on your Fyno login page and Fyno picks the right way to sign you in.
   </Card>
   <Card title="Set up SAML SSO" icon="key" href="#set-up-saml-sso">
     Connect Fyno to Okta, AWS, JumpCloud, Arcon, or any SAML 2.0 provider.
@@ -26,27 +26,16 @@ Single Sign-On (SSO) lets your team access Fyno using the identity provider your
 
 ---
 
-## SSO 2.0: email-first login
+## Email-first login
 
 <Note>
-SSO 2.0 is the standard login experience for **all** Fyno customers, whether or not they use SAML. The login page asks for your email first and works out the rest.
+Email-first login is the standard login experience for **all** Fyno customers, whether or not they use SAML. The login page asks for your email first and works out the rest.
 </Note>
-
-### What changed
-
-| | Before | With SSO 2.0 |
-| --- | --- | --- |
-| Login page | Email and password fields shown together | Email field only, then **Continue** |
-| SAML users | Open your IdP console, find the Fyno tile, click it | Go straight to `app.fyno.io`, enter your email, get redirected to your IdP automatically |
-| Non-SAML users | Enter email and password | Enter email, then the password field appears |
-| Who decides the method | The user, by choosing a login button | Fyno, based on your email domain |
-
-The goal is simple: **you should never need to know whether your organisation uses SAML.** Everyone starts at the same place and Fyno routes you correctly.
 
 ### How it works
 
 <Steps>
-  <Step title="Open app.fyno.io and enter your email">
+  <Step title="Open your Fyno login page and enter your email">
     The login page shows a single **Email Address** field. Enter your work email and click **Continue**.
   </Step>
   <Step title="Fyno checks your email domain">
@@ -68,7 +57,7 @@ The goal is simple: **you should never need to know whether your organisation us
 
 ```mermaid
 flowchart TD
-    A[Open app.fyno.io] --> B[Enter email, click Continue]
+    A[Open your Fyno login page] --> B[Enter email, click Continue]
     B --> C{Is the email domain<br/>configured for SAML?}
     C -- Yes --> D[Redirect to your IdP]
     D --> E[IdP authenticates you]
@@ -95,12 +84,6 @@ For SAML users, the email you type on the Fyno login page is **only used to find
 </Warning>
 
 For example, if `acme.com` is configured for SAML and you type `alex@acme.com`, Fyno redirects you to Acme's IdP. If you are already signed in to that IdP as `sam@acme.com`, the IdP returns `sam@acme.com` to Fyno, and that is the Fyno account you land in.
-
-In practice this is rarely noticeable, since people are normally signed in to their IdP as themselves. It matters when someone uses a shared machine or a colleague's IdP session.
-
-### Is anything changing for existing SAML customers?
-
-No action is needed. Your existing SAML configuration carries over; the difference is that your team can now start at `app.fyno.io` instead of locating the Fyno tile in your IdP console.
 
 ---
 
@@ -172,7 +155,7 @@ No action is needed. Your existing SAML configuration carries over; the differen
   </Step>
 
   <Step title="Test the login">
-    Go to `app.fyno.io`, enter an email on your configured domain, and click **Continue**. You should be redirected to your IdP and, after authenticating, land in Fyno signed in.
+    Go to your Fyno login page, enter an email on your configured domain, and click **Continue**. You should be redirected to your IdP and, after authenticating, land in Fyno signed in.
 
     <Tip>
     Test with a user who has been explicitly assigned to the Fyno app in your IdP. If login fails, the most common causes are an incorrect `NameID` format or the user not being assigned to the app.
