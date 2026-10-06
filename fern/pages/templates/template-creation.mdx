@@ -7,22 +7,33 @@ og:description: 'Create notification templates for SMS, WhatsApp, Email, Push, I
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno offers support for 8 different notification channels. For each channel to work, a template is mandatory, without which you won't be able to send notifications.
+Fyno supports 11 notification channels: SMS, WhatsApp, Email, Slack, Discord, Teams, Push, InApp, Voice, Webpush, and RCS. A template is mandatory for each channel, without which you won't be able to send notifications.
 
-In Fyno, templates serve as the foundation for your notification content. To streamline content management, Fyno allows you to create a single template that encompasses the content for all supported channels, including SMS, Email, WhatsApp, Push notifications, and more. A template can consist of two types of content:
+In Fyno, templates serve as the foundation for your notification content. To streamline content management, a single template holds the content for all the channels you need, including SMS, Email, WhatsApp, Push notifications, and more. You choose the channels when you create the template, and you can add more channels to it later.
 
-- **Static Content**: This portion of the template remains consistent for all recipients and contains the core message or design of your notification.
-- **Dynamic Content**: This part of the template includes placeholders that are dynamically populated with user-specific information. These placeholders can be mapped to data from your data payload, allowing you to personalize the notification content for each recipient. Examples of dynamic content include customer names, SIP amounts, due dates, and other relevant information.
-
-![](/images/template_create.png)
+## Creating a template
 
 <Steps>
-  <Step>Once a template is created, you can add content for each channel as shown below.</Step>
-  <Step>Click 'Add' to add a new channel</Step>
-  <Step>Click '+' next to Placeholders to add dynamic content in the template. ![](/images/templates_channel_placeholders.png)</Step>
+  <Step>On the **Fyno Templates** page, click **Create**.</Step>
+  <Step>
+    In the **Create Template** dialog, enter a **Name** for the template.
+
+    ![](/images/template_create.png)
+  </Step>
+  <Step>Optionally, choose a group in **Add To Group** to organize templates for easier management.</Step>
+  <Step>Under **Select Channels**, select one or more channels, or select **Use all channels** to include every channel.</Step>
+  <Step>Click **Submit**.</Step>
 </Steps>
 
-To understand how templates work for each **Channel**, let's go a little bit in-depth for each one.
+The template opens with the selected channels listed in the **Channels** panel on the left. Select a channel to add its content.
+
+## Adding more channels
+
+To add a channel to an existing template, click **Add** in the **Channels** panel and select the channel.
+
+![](/images/template_add_channel.png)
+
+To understand how templates work for each channel, see the channel-specific guides:
 
 1. [SMS](./template-creation-sms)
 2. [WhatsApp](./template-creation-whatsapp)
@@ -32,35 +43,28 @@ To understand how templates work for each **Channel**, let's go a little bit in-
 6. [InApp](./template-creation-inapp)
 7. [Web Push](./web-push-template)
 8. [Voice](./template-creation-voice)
+9. [RCS](./template-creation-rcs)
 
-## Test and Live Versions
+## Test and Live versions
 
-Every template that you create will be saved as **Test** versions, allowing you to test different variations and content of templates, to suit your needs.
+Every template you create is saved as a **Test** version, allowing you to try different variations of content to suit your needs.
 
-When a **Test** version is saved, this does not disturb the **Live** version that may be plugged in your application and may be active.
+Saving a **Test** version does not disturb the **Live** version that may be plugged into your application and active.
 
-When you are confident and happy with the **Template** that you have created and tested in **Test** version, this can then be moved into the live version by following the below steps.
-
-<Steps>
-  <Step>Make the final changes to the template and test it to make sure you are getting the desirable results.</Step>
-  <Step>On the top of the page, next to the name of the **Template**, you will see the Test Version mentioned.</Step>
-  <Step>To keep this as a **Test**, click on **Save** and the draft will be saved.</Step>
-  <Step>To make this version of the **Test** version live, expand the **Save** menu to find **Save and Promote**.</Step>
-  <Step>This will make the current version live in the **Template**.</Step>
-</Steps>
-
-<Info>Once a **Template** is live, all the **Notification Events** into which this template is plugged in will also be automatically updated and modified.</Info>
-
-## Approval flow
-
-If you have enabled 'Approval' in Security Settings, when you click 'Go Live', you will need to raise an approval request for the changes you have done.
+When you are confident with the template you have created and tested in the **Test** version, you can move it to the **Live** version by following these steps:
 
 <Steps>
-  <Step>You will see the below popup once you click 'Go Live' . Select approvers from the 'From' dropdown. You can choose one or more approvers. You need to write a short message mentioning the reason for approval request. If you select 'Go Live on approval', the feature will go Live once the approver approves the request. Clicking 'Send for Approval' will send the request. ![](/images/eadd428-event_approval.png)</Step>
-  <Step>You will see the approval request in the Template page as shown . You can click 'Cancel' to cancel the request. ![](/images/2abc2a1-notif_event_approval_request.png)</Step>
-  <Step>The approvers will receive an Email, an InApp notification for every approval request.</Step>
-  <Step>The approver will see the request in the Template page. The approver can approve or reject from the respective Template. ![](/images/60de965-approval_request_feature_page.png)</Step>
-  <Step>Also if the approver wants to see all the pending requests, then can see them in the 'Requests' page as shown below. ![](/images/ba2bc39-Pending_Request.png)</Step>
-  <Step>The approver can choose one or more requests and either Approve or Reject. While rejecting they need to provide a rejection reason.</Step>
-  <Step>If the request is Approved, the feature will go Live if the requestor selected 'Go Live on approval' while raising the request. Otherwise, they have to click 'Go Live' to take the feature Live.</Step>
+  <Step>Make the final changes to the template and test it to make sure you are getting the desired results.</Step>
+  <Step>At the top of the page, next to the template name, you will see the Test version mentioned.</Step>
+  <Step>To keep this as a **Test** version, click **Save** and the draft is saved.</Step>
+  <Step>To make this **Test** version live, expand the **Save** menu and select **Save and Promote**.</Step>
+  <Step>This makes the current version live in the template.</Step>
 </Steps>
+
+<Info>
+Once a template is live, all the **Notification Events** into which this template is plugged in are automatically updated as well.
+</Info>
+
+<Note>
+If you have enabled **Approval** in Security Settings, you need to raise an approval request for your changes when you click **Go Live**. See [Approval request](./approval-request) for the steps.
+</Note>

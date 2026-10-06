@@ -7,56 +7,277 @@ og:description: 'Learn how to create email templates, use dynamic content and re
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno's email templates allow you to create some exciting templates, be it for marketing or transactional communication.
-![](/images/email_template_creation.png)
+export const tableWrapperStyle = {
+  overflowX: 'auto',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  borderRadius: '8px',
+  border: '1px solid var(--rb-border-main, #E0E0E0)',
+  padding: '8px',
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+};
 
-<Tip>You can also add placeholders in the subject line, if you want to personalise it.</Tip>
+export const tableStyle = {
+  width: '100%',
+  borderCollapse: 'separate',
+  borderSpacing: 0,
+  fontSize: '13px',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
 
-On Clicking Email, you can select one of the three editors that Fyno has:
+export const thStyle = {
+  position: 'sticky',
+  top: 0,
+  zIndex: 20,
+  backgroundColor: 'var(--rb-header-bg, #F0F0F0)',
+  color: 'var(--rb-header-text, #333333)',
+  textAlign: 'left',
+  padding: '12px',
+  fontWeight: '600',
+  borderBottom: '2px solid var(--rb-border-main, #E0E0E0)'
+};
 
-- Stripo
-- Unlayer
-- HTML Editor
+export const thCenterStyle = { ...thStyle, textAlign: 'center' };
 
-<Tip>Use HTML Editor, when you already have your HTML code. You can just paste your code in HTML editor.</Tip>
+export const tdStyle = {
+  padding: '8px 12px',
+  borderBottom: '1px solid var(--rb-border-sub, #F0F0F0)',
+  verticalAlign: 'middle',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
 
-Fyno recommends using the Stripo editor due to the ease of use as it supports AMP options giving you a wonderful and responsive email experience for your customers.
+export const tdCenterStyle = { ...tdStyle, textAlign: 'center' };
 
-<Steps>
-  <Step>You can create your own email template from scratch using either of the email editor tool</Step>
-  <Step>
-    Add anything from **Content** or **Blocks** and edit the entire email format through the **Body** tabs on the left Navigation panel.
-    <Tip title="Blocks can be saved!">On creating a block that you will use repeatedly in other templates, you can save it by clicking on the save button next to the block. Give it a name and a tag and you are good to go!. This block will then be available under the "**Blocks**" section for you to use.</Tip>
-  </Step>
-  <Step>Preview your created template by clicking on the "eye" icon in the bottom right corner. You can also see how your template looks on different devices.</Step>
-  <Step>Save your design by clicking on the **Save** button.</Step>
-  <Step>Clicking on **Close Editor** will allow you to discard the draft.</Step>
-  <Step>Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.</Step>
-</Steps>
+export const Badge = ({ type, text }) => {
+  const baseBadgeStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '4px',
+    padding: '4px 12px',
+    fontSize: '12px',
+    fontWeight: '600',
+    minWidth: '60px',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    whiteSpace: 'nowrap'
+  };
 
-<Tip>To use any user property in your templates, you can add it in this format - `{{$user.$<user_property>}}`. For example, to add Name as placeholder from User profile, you can add it as `{{$user.$name}}`.</Tip>
+  const variants = {
+    yes: { backgroundColor: 'var(--badge-yes-bg, #F2F7E3)', color: 'var(--badge-yes-text, #547100)' },
+    view: { backgroundColor: 'var(--badge-view-bg, #E5EDF7)', color: 'var(--badge-view-text, #0E3672)' },
+    test: { backgroundColor: 'var(--badge-test-bg, #FAF4E3)', color: 'var(--badge-test-text, #8B6602)' },
+    no: { backgroundColor: 'var(--badge-no-bg, #F0F0F0)', color: 'var(--badge-no-text, #333333)' }
+  };
 
-## How to add reusable components in your email?
+  return <span style={{ ...baseBadgeStyle, ...variants[type] }}>{text}</span>;
+};
 
-This feature helps you to create components which you would like to reuse in other emails like **Header, Footer etc.**
+<style>{`
+  :root {
+    --rb-table-bg: #FFFFFF;
+    --rb-table-text: #1a1a1a;
+    --rb-header-bg: #F0F0F0;
+    --rb-header-text: #333333;
+    --rb-border-main: #E0E0E0;
+    --rb-border-sub: #F0F0F0;
+    --badge-yes-bg: #F2F7E3;
+    --badge-yes-text: #547100;
+    --badge-view-bg: #E5EDF7;
+    --badge-view-text: #0E3672;
+    --badge-test-bg: #FAF4E3;
+    --badge-test-text: #8B6602;
+    --badge-no-bg: #F0F0F0;
+    --badge-no-text: #333333;
+  }
+  html.dark {
+    --rb-table-bg: #121212;
+    --rb-table-text: #F0F0F0;
+    --rb-header-bg: #333333;
+    --rb-header-text: #F0F0F0;
+    --rb-border-main: #4D4D4D;
+    --rb-border-sub: #262626;
+    --badge-yes-bg: #547100;
+    --badge-yes-text: #F2F7E3;
+    --badge-view-bg: #0E3672;
+    --badge-view-text: #E5EDF7;
+    --badge-test-bg: #8B6602;
+    --badge-test-text: #FAF4E3;
+    --badge-no-bg: #333333;
+    --badge-no-text: #F0F0F0;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table td {
+    background-color: var(--rb-table-bg, #FFFFFF) !important;
+    color: var(--rb-table-text, #1a1a1a) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table th {
+    background-color: var(--rb-header-bg, #F0F0F0) !important;
+    color: var(--rb-header-text, #333333) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table code {
+    font-size: 12px;
+  }
+`}</style>
 
-This helps you to avoid rework by creating same components in every email you create.
 
-You can read about it [here](./components).
+Fyno's email templates allow you to create templates for both marketing and transactional communication. You can also add placeholders in the subject line to personalise it.
 
-## How to override email sender details?
+<Info>
+To use any user property in your templates, add it in this format: `{{$user.$<user_property>}}`. For example, to add Name as a placeholder from the User profile, add it as `{{$user.$name}}`.
+</Info>
 
-You can override sender details configured in the Service Provider integration in 2 ways - Using Notification Event API and through Email editor. Please refer this [document](./how-to-override-sender-details) for details.
+## Choosing an editor
 
-## How to add attachments?
+When you open the Email channel in a template, choose one of the three editors:
 
-You can add static as well as dynamic attachments to emails. Please refer this [document](./how-to-add-attachments-in-email) for details.
+![](/images/email_editor_choice.png)
 
-## How to add multiple 'to' emails?
+<div style={tableWrapperStyle} className="fyno-styled-table-wrapper">
+  <table style={tableStyle} className="fyno-styled-table">
+    <thead>
+      <tr>
+        <th style={thStyle}>Editor</th>
+        <th style={thStyle}>Use it when</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={tdStyle}><strong>Stripo Editor</strong> (recommended)</td>
+        <td style={tdStyle}>You want to build your email from scratch using blocks, with AMP support and branding capabilities.</td>
+      </tr>
+      <tr>
+        <td style={tdStyle}><strong>Unlayer Editor</strong></td>
+        <td style={tdStyle}>You want to build your email from scratch using blocks, or import JSON from Unlayer.</td>
+      </tr>
+      <tr>
+        <td style={tdStyle}><strong>HTML Editor</strong></td>
+        <td style={tdStyle}>You already have your HTML template code and want to paste it in.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-Sample code with multiple 'to' details in Notification Event API. You can add any no of emails to 'to'.
+Fyno recommends the Stripo editor for its ease of use and AMP support, which gives your customers a responsive email experience.
 
-```cURL title="Add Multiple To" wordWrap
+## Stripo editor
+
+![](/images/email_stripo_editor.png)
+
+The editor has the following parts:
+
+- **From and Cc/Bcc** (optional): Expand this section to enter sender and Cc/Bcc details. Details entered here override the integration configuration. See [Override Email Sender Details](./how-to-override-sender-details) and [Add CC and BCC Recipients](./how-to-add-cc-bcc-to-email).
+- **Subject:** Enter the subject line. You can add placeholders here. Use the attachment icon at the end of the field to add attachments; see [Add Attachments](./how-to-add-attachments-in-email).
+- **Toolbar:** Undo, redo and other editing controls, with **Run Test** and **Preview** on the right.
+- **Canvas:** Drag content into the drop zones to build your email.
+- **Right panel:** Two tabs, **Content** and **Appearance**, described below.
+
+### Content tab
+
+The Content tab holds everything you can drag onto the canvas:
+
+- **Structures:** Row layouts that define the columns of each section.
+- **Blocks:** Image, Text, Button, Spacer, Video, Social, Banner, Menu, HTML, Carousel, Accordion and Form. Carousel, Accordion and Form are AMP blocks; see [AMP Email Template](./amp-email-template).
+- **Modules:** Saved blocks you can reuse across templates.
+
+### Appearance tab
+
+The Appearance tab sets the default styling for the whole email.
+
+![](/images/email_stripo_appearance.png)
+
+<Tabs>
+  <Tab title="General Settings">
+    ![](/images/email_stripo_general_settings.png)
+
+    - **Message width:** Width of the email in pixels. Stripo does not recommend a width greater than 600 pixels.
+    - **Message alignment:** Left, centre or right.
+    - **Default padding:** Left, right, top and bottom padding. This is used only for new structures added from the Content tab or when adding new Stripes.
+    - **General background color**
+    - **Font**
+  </Tab>
+
+  <Tab title="Stripes">
+    Stripes are the horizontal bands of the email. Each has its own text size, colours and optional background image.
+
+    **Header**
+
+    ![](/images/email_stripo_stripes_header.png)
+
+    **Content**
+
+    ![](/images/email_stripo_stripes_content.png)
+
+    **Footer**
+
+    ![](/images/email_stripo_stripes_footer.png)
+
+    **Info area**
+
+    ![](/images/email_stripo_stripes_info_area.png)
+
+    For each stripe you can set **Text size**, **Background color**, **Content background color**, **Font color**, **Link color** and, for Header and Footer, a **Background image**. The Info area has text size, font colour and link colour only.
+  </Tab>
+
+  <Tab title="Headings">
+    ![](/images/email_stripo_headings.png)
+
+    - **Font**
+    - **Line spacing**
+    - **Heading H1, H2 and H3:** Size, bold or italic, and colour for each heading level.
+  </Tab>
+
+  <Tab title="Button">
+    ![](/images/email_stripo_button.png)
+
+    - **Support of Outlook:** Ensures the most accurate display of your buttons in MS Outlook email clients by inserting a special VML code element. When enabled, the email message size can increase by up to a kilobyte for each button.
+    - **Button color**
+    - **Highlight hovered buttons**
+    - **Font color**
+    - **Text style:** Font, size, bold or italic.
+    - **Border radius**
+  </Tab>
+
+  <Tab title="Mobile Formatting">
+    ![](/images/email_stripo_mobile_formatting_1.png)
+
+    ![](/images/email_stripo_mobile_formatting_2.png)
+
+    These settings only apply to the mobile version of the email, in email clients that support media queries.
+
+    - **Size of Header, Content, Footer and Info area text**
+    - **"Menu" items font size**
+    - **Heading H1, H2 and H3:** Size and alignment for each heading level.
+    - **Button text size**
+    - **Full-width buttons**
+    - **Content margin**
+  </Tab>
+</Tabs>
+
+## Save and Go Live
+
+Click **Save** to save the template as a **Test** version. You can save different versions of the template this way. Use **Go Live** when you are ready to move your template to the **Live** version.
+
+<Note>
+If you have enabled **Approval** in Security Settings, you need to raise an approval request for your changes when you click **Go Live**. See [Approval request](./approval-request) for the steps.
+</Note>
+
+## How to add reusable components
+
+Components let you create elements you want to reuse across emails, such as a **Header** or **Footer**, so you don't recreate them in every template. Read more in [Components](./components).
+
+## How to override email sender details
+
+You can override the sender details configured in the service provider integration in two ways: through the Notification Event API, or in the email editor. See [Override Email Sender Details](./how-to-override-sender-details).
+
+## How to add attachments
+
+You can add static as well as dynamic attachments to emails. See [Add Attachments](./how-to-add-attachments-in-email).
+
+## How to add multiple "to" emails
+
+Pass an array of email addresses in `to` when you trigger the Notification Event. You can add any number of addresses.
+
+```bash title="Add multiple to"
 curl -X POST 'https://api.fyno.io/v1/{{WorkspaceId}}/test/event' \
 -H 'Authorization: Bearer <API_KEY>' \
 -H 'Content-Type: application/json' \
@@ -71,113 +292,102 @@ curl -X POST 'https://api.fyno.io/v1/{{WorkspaceId}}/test/event' \
 }'
 ```
 
-## How to add cc and bcc recipients?
+## How to add cc and bcc recipients
 
-You can add cc and bcc recipients to emails. Please refer this [document](./how-to-add-cc-bcc-to-email) for details
+You can add cc and bcc recipients to emails. See [Add CC and BCC Recipients](./how-to-add-cc-bcc-to-email).
 
-## How to add dynamic content in template?
+## How to add dynamic content
 
-You can add dynamic content in your templates using one of the 4 options mentioned below.
+You can add dynamic content to your templates using one of the four options below:
 
 - [Placeholders](./template-dynamic-content#placeholders)
 - [System Variables](./template-dynamic-content#system-variables)
 - [Handlebars](./template-dynamic-content#handlebars)
 - [Components](./template-dynamic-content#components)
 
-## How to test email template?
+## How to test an email template
 
-You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+Use this feature to test a template thoroughly before including it in any Notification Event. This ensures early detection and resolution of any potential issues, for a seamless user experience.
 
 <Steps>
-  <Step>Click 'Run Test' on the top right hand side of the template.</Step>
-  <Step>It opens the pop up as shown below. ![](/images/template_email_test_updated.png)</Step>
-  <Step>You can either enter the email id of the recipient where the Email should be sent or you can enter distinct_id. **Please make sure to enter Distinct_id of Test User profiles**</Step>
-  <Step>Select a Email service provider which is already configured in Fyno.</Step>
-  <Step>When you click 'TEST', it will send Email to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.</Step>
+  <Step>Click **Run Test** at the top right of the editor.</Step>
+  <Step>The **Test Email template** pop-up opens.</Step>
+  <Step>Enter either the email address of the recipient, or a `distinct_id`. **Make sure to enter the distinct_id of a Test User profile.**</Step>
+  <Step>Select an email integration that is already configured in Fyno.</Step>
+  <Step>Click **Run Test** to send the email to the recipient with the selected integration. You see the success or failure message along with a link to the logs.</Step>
 </Steps>
 
-## How to add unsubscribe link in header?
-
-To add Unsubscribe link in Header:
+## How to add an unsubscribe link in the header
 
 <Steps>
   <Step>Ensure that the email channel's state within the subscription topic is set to either On or Off.</Step>
   <Step>Make sure the email channel has the unsubscribe feature activated.</Step>
-  <Step>Make sure the 'Enable one-click unsubscribe' checkbox is ticked. ![](/images/subscription_enable.png)</Step>
-  <Step>When an email is triggered with this subscription topic, Unsubscribe link will be automatically added in the Header.</Step>
-  <Step>When user clicks Unsubscribe link, they will see a popup as shown. ![](/images/05e7335-Unsubscribe_popup.png)</Step>
-  <Step>Once the user clicks Unsubscribe, their email will be added to Opt-out list for Email for that Subscription Topic.</Step>
-  <Step>You can view all the users opted-out of any channel by clicking any Subscription Topic.</Step>
+  <Step>Make sure the **Enable one-click unsubscribe** checkbox is ticked.</Step>
+  <Step>When an email is triggered with this subscription topic, the unsubscribe link is added to the header automatically.</Step>
+  <Step>When the user clicks the unsubscribe link, they see a confirmation pop-up.</Step>
+  <Step>Once the user confirms, their email is added to the opt-out list for Email for that subscription topic.</Step>
+  <Step>You can view all the users opted out of any channel by opening the subscription topic.</Step>
 </Steps>
 
-<Tip title="Add Right Subscription Topic to your Notification Event!">Unsubscribes are managed at Subscription topic level, so using the wrong Subscription Topic with a notification event can accidentally unsubscribe users from something they didn't intend.</Tip>
+<Warning title="Add the right subscription topic to your Notification Event">
+Unsubscribes are managed at the subscription topic level, so using the wrong subscription topic with a notification event can accidentally unsubscribe users from something they didn't intend.
+</Warning>
 
-<Info>This is enabled only for SES and Postmark service providers now. Please reach out to us if you want to enable it for any other Email service provider.</Info>
+<Note>
+This is currently enabled only for the SES and Postmark service providers. Reach out to us if you want to enable it for any other email service provider.
+</Note>
 
-## How to add unsubscribe link in Footer?
-
-You can also add a Unsubscribe link in the footer by following these steps.
+## How to add an unsubscribe link in the footer
 
 <Steps>
-<Step>In the email editor, add a block for Unsubscribe. Highlight the word Unsubscribe.</Step>
-<Step>Click Link icon in the toolbar. It will add hyperlink to the word Unsubscribe.</Step>
-<Step>On the right hand side, the block section for Link will open. In that choose Other from the dropdown and enter the URL or enter `{{$fyno.$unsubscribe.url}}` if you want to shorten the URL using Fyno Shorty in the text box next to it. ![](/images/email_unsubscribe.png)</Step>
-<Step>We suggest using the original URL rather than Fyno Shorty since the URL linked to the Unsubscribe option won't be visible to users. Thus, Fyno Shorty doesn't offer significant benefits in this context.</Step>
-<Step>When the user receives this email and clicks Unsubscribe link, the below popup opens to ask the user to confirm if they want to unsubscribe from this subscription topic. ![](/images/email_unsubscribe_confirmation.png)</Step>
-<Step>Once the user clicks Confirm, they will see the confirmation message as shown. ![](/images/email_resubscribe.png)</Step>
-<Step>If you mistakenly unsubscribed, you can resubscribe by clicking on 'Resubscribe' CTA. Once you resubscribed you will see success message like shown below. ![](/images/b45507c-resubscribed.png)</Step>
-<Step>Once you have unsubscribed, we will add this email to the opt-out list in the respective subscription topic. When you try to send any email communication for the same topic, Fyno will exclude the user from the payload submitted to the service provider. So the user won't receive any email for this topic.</Step>
-<Step>In the Sent logs, you will see the below response if you send any notification to your unsubscribed users. _SUBSCRIPTION "Subscription_topic - User opted-out from channel(channel-state)_
-   ![](/images/40de23c-unsub_response.png)</Step>
+  <Step>In the email editor, add a block for Unsubscribe and highlight the word Unsubscribe.</Step>
+  <Step>Click the link icon in the toolbar to add a hyperlink to the word.</Step>
+  <Step>In the Link settings on the right, choose **Other** from the dropdown and enter the URL, or enter `{{$fyno.$unsubscribe.url}}` if you want to shorten the URL using Fyno Shorty.</Step>
+  <Step>We suggest using the original URL rather than Fyno Shorty, since the URL behind the Unsubscribe link isn't visible to users, so Fyno Shorty doesn't add much here.</Step>
+  <Step>When the user receives the email and clicks Unsubscribe, a pop-up asks them to confirm that they want to unsubscribe from this subscription topic.</Step>
+  <Step>Once the user clicks Confirm, they see a confirmation message.</Step>
+  <Step>If they unsubscribed by mistake, they can resubscribe by clicking **Resubscribe**, and they see a success message.</Step>
+  <Step>Once unsubscribed, Fyno adds the email to the opt-out list in the respective subscription topic. When you send any email for the same topic, Fyno excludes the user from the payload submitted to the service provider, so the user does not receive it.</Step>
+  <Step>In the Sent logs, notifications to unsubscribed users show the response *SUBSCRIPTION "Subscription_topic - User opted-out from channel(channel-state)"*.</Step>
 </Steps>
 
-## Uploading Email HTML Templates
+## Uploading email HTML templates
 
-You can upload custom email templates using a `.zip` file. This method allows you to include your HTML file along with all required assets (such as images).
+You can upload a custom email template as a `.zip` file. This lets you include your HTML file along with all required assets, such as images.
 
-### What to Include in the ZIP File
+### What to include in the ZIP file
 
 Your `.zip` file must contain:
 
-- One HTML file (this will be used as the email template).
-- All static assets referenced in the HTML (e.g., images, CSS files).
+- One HTML file, which is used as the email template.
+- All static assets referenced in the HTML, such as images and CSS files.
 
-**Example:**: If your HTML contains: [here] (https://example.com/images/my_image.jpg)
+For example, if your HTML references `https://example.com/images/my_image.jpg`, make sure `my_image.jpg` is included inside the `.zip` file.
 
-Make sure `my_image.jpg` is also included inside the `.zip` file.
+<Note title="Important guidelines">
+- Ensure all asset references in the HTML are correctly linked to files inside the `.zip`.
+- Keep the structure simple to avoid broken references.
+</Note>
 
-> **Important Guidelines**
-> - Ensure all asset references in the HTML are correctly linked to files inside the `.zip`.
-> - Keep the structure simple to avoid broken references.
+### Error scenarios
 
-### Error Scenarios
-
-The upload will fail if:
+The upload fails if:
 
 - The `.zip` file does not contain an HTML file.
 - The `.zip` file contains more than one HTML file.
 
-### Warning Scenario
+### Warning scenario
 
-- If any image or asset is missing:
-  - You will see a warning message.
-  - You will be prompted to re-upload a corrected `.zip` file with all required assets included.
+If any image or asset is missing, you see a warning message and are prompted to re-upload a corrected `.zip` file with all required assets included.
 
-## How to view change logs?
+## How to view change logs
 
-To view the history of all the modifications made to a template, you can utilize the change logs feature.
+To view the history of all the modifications made to a template, use the change logs feature.
 
-To do so, locate the history icon positioned at the top right corner of the template page, as shown in the image below, and click on it to view the change logs.
-
-It shows the following details
+Click the history icon at the top right corner of the template page, as shown in the image below, to view the change logs. It shows the following details:
 
 - Who updated it
 - Which version was updated
-- At what date & time its updated.
-  ![](/images/email_template_changelog.png)
+- The date and time it was updated
 
-## How to raise Approval requests
-
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
-
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+![](/images/changelogs.png)

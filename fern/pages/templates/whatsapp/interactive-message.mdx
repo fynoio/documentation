@@ -1,229 +1,345 @@
 ---
-title: 'Interactive WhatsApp Messages'
+title: 'Reply: Interactive'
 slug: 'whatsapp-interactive-message'
-description: 'Create interactive WhatsApp messages in Fyno, including menus, call-to-action buttons, location requests, address requests, Meta Flows, order updates, and order details messages.'
-og:title: 'Interactive WhatsApp Messages | Fyno Documentation'
-og:description: 'Learn how to create and configure interactive WhatsApp messages in Fyno. Support menus, quick replies, call-to-action buttons, Meta Flows, order status updates, order details, location requests, and address collection.'
+description: 'Send an interactive WhatsApp reply with quick reply buttons in an existing conversation without Meta approval. Configure the header, body, footer and buttons.'
+og:title: 'Reply: Interactive | Fyno Documentation'
+og:description: 'Learn how to create a Reply: Interactive WhatsApp message in Fyno with a quick replies sub type, optional header, body, footer and up to 3 quick reply buttons.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Interactive templates can only be used for replies. They cannot be the first message that is sent. The first message should always be a template message.
+export const tableWrapperStyle = {
+  overflowX: 'auto',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  borderRadius: '8px',
+  border: '1px solid var(--rb-border-main, #E0E0E0)',
+  padding: '8px',
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+};
+
+export const tableStyle = {
+  width: '100%',
+  borderCollapse: 'separate',
+  borderSpacing: 0,
+  fontSize: '13px',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
+
+export const thStyle = {
+  position: 'sticky',
+  top: 0,
+  zIndex: 20,
+  backgroundColor: 'var(--rb-header-bg, #F0F0F0)',
+  color: 'var(--rb-header-text, #333333)',
+  textAlign: 'left',
+  padding: '12px',
+  fontWeight: '600',
+  borderBottom: '2px solid var(--rb-border-main, #E0E0E0)'
+};
+
+export const thCenterStyle = { ...thStyle, textAlign: 'center' };
+
+export const tdStyle = {
+  padding: '8px 12px',
+  borderBottom: '1px solid var(--rb-border-sub, #F0F0F0)',
+  verticalAlign: 'middle',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
+
+export const tdCenterStyle = { ...tdStyle, textAlign: 'center' };
+
+export const Badge = ({ type, text }) => {
+  const baseBadgeStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '4px',
+    padding: '4px 12px',
+    fontSize: '12px',
+    fontWeight: '600',
+    minWidth: '60px',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    whiteSpace: 'nowrap'
+  };
+
+  const variants = {
+    yes: { backgroundColor: 'var(--badge-yes-bg, #F2F7E3)', color: 'var(--badge-yes-text, #547100)' },
+    view: { backgroundColor: 'var(--badge-view-bg, #E5EDF7)', color: 'var(--badge-view-text, #0E3672)' },
+    test: { backgroundColor: 'var(--badge-test-bg, #FAF4E3)', color: 'var(--badge-test-text, #8B6602)' },
+    no: { backgroundColor: 'var(--badge-no-bg, #F0F0F0)', color: 'var(--badge-no-text, #333333)' }
+  };
+
+  return <span style={{ ...baseBadgeStyle, ...variants[type] }}>{text}</span>;
+};
+
+<style>{`
+  :root {
+    --rb-table-bg: #FFFFFF;
+    --rb-table-text: #1a1a1a;
+    --rb-header-bg: #F0F0F0;
+    --rb-header-text: #333333;
+    --rb-border-main: #E0E0E0;
+    --rb-border-sub: #F0F0F0;
+    --badge-yes-bg: #F2F7E3;
+    --badge-yes-text: #547100;
+    --badge-view-bg: #E5EDF7;
+    --badge-view-text: #0E3672;
+    --badge-test-bg: #FAF4E3;
+    --badge-test-text: #8B6602;
+    --badge-no-bg: #F0F0F0;
+    --badge-no-text: #333333;
+  }
+  html.dark {
+    --rb-table-bg: #121212;
+    --rb-table-text: #F0F0F0;
+    --rb-header-bg: #333333;
+    --rb-header-text: #F0F0F0;
+    --rb-border-main: #4D4D4D;
+    --rb-border-sub: #262626;
+    --badge-yes-bg: #547100;
+    --badge-yes-text: #F2F7E3;
+    --badge-view-bg: #0E3672;
+    --badge-view-text: #E5EDF7;
+    --badge-test-bg: #8B6602;
+    --badge-test-text: #FAF4E3;
+    --badge-no-bg: #333333;
+    --badge-no-text: #F0F0F0;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table td {
+    background-color: var(--rb-table-bg, #FFFFFF) !important;
+    color: var(--rb-table-text, #1a1a1a) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table th {
+    background-color: var(--rb-header-bg, #F0F0F0) !important;
+    color: var(--rb-header-text, #333333) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table code {
+    font-size: 12px;
+  }
+`}</style>
 
-## Sub Types
 
-There are different types of interactive templates you can create based on your use case.
+A **Reply: Interactive** message is an interactive message with clickable buttons that can only be sent as a reply to an existing conversation. No Meta approval is required.
 
-- [Menu](#menu)
-- [Request Location](#request-location)
-- [Request Address](#request-address)
-- [Trigger Meta Flow](#trigger-meta-flow)
-- [Order Status](#order-status)
-- [Order Details](#order-details)
-- [Call to Action](#call-to-action)
+<Note>
+This message type can be used only for replies and can't initiate conversations.
+</Note>
 
-## Service Providers support for different Interactive message types
+## Sub types
 
-| Providers                                                                                                                   | List | Quick Reply | Call to Action | Order Details | Order Status | Request Location | Request Address | Flow |
-| --------------------------------------------------------------------------------------------------------------------------- | :--: | :---------: | :------------: | :-----------: | :----------: | :--------------: | :-------------: | :--: |
-| Meta Direct, Meta Direct Plus, Fyno WA Business, Meta Facebook, Fyno x Others, Gallabox, MSG91, Route Mobile, Saleschat Pro |  ✅  |     ✅      |       ✅       |      ✅       |      ✅      |        ✅        |       ✅        |  ✅  |
-| Infobip                                                                                                                     |  ✅  |     ✅      |       ✅       |      ✅       |      ✅      |        ✅        |       ❌        |  ✅  |
-| Gupshup Enterprise, Gupshup, MessageBird, Karix, Connectly, Kaleyra.io                                                      |  ✅  |     ✅      |       ❌       |      ❌       |      ❌      |        ❌        |       ❌        |  ❌  |
-| Interakt, WATI                                                                                                              |  ❌  |     ✅      |       ❌       |      ❌       |      ❌      |        ❌        |       ❌        |  ❌  |
-| Twilio, ValueFirst, Freshchat, AiSensy, Yellow.ai                                                                           |  ❌  |     ❌      |       ❌       |      ❌       |      ❌      |        ❌        |       ❌        |  ❌  |
-
-### Menu
-
-#### Message Type
-
-- **Text**: Add text content in this space.
-- **Image**: Insert an image you would like to send in the template. The URL of the image should be public. Supported file types are _jpeg_ and _png_. Please note that images with transparent backgrounds are not supported. You can also upload an image directly from your device. Maximum size limit is 5 MB.
-- **Video**: Insert the video file. The URL of the video should be public. Supported file types are _mp4_ and _3gpp_. Maximum size limit is 16MB.
-- **File**: Attach a document you want to send in the template. The URL of the document should be public. Any valid _MIME_ type of document is supported. Maximum size limit is 100MB.
-
-#### Title
-
-- Title - This is a mandatory field. You can give any title to this interactive message.
-- Preview URL - If you enable this URL, it will show the thumbnail of the URL added.
-
-#### Body
-
-This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
-
-#### Footer
-
-This is an optional field. You can add any footer elements here. You can also add any placeholders.
-
-#### Action
-
-Allows you to add interactive buttons, only when the "Interactive" option is selected from the Type drop-down.
-
-- **Button** - This is the CTA user will see as part of the interactive message.
-- **Button Id** - This is optional. If you want to use a unique Id to identify this button or want to send any payload as part of this button, you can use it.
-- **Menu**: Provide options from a menu within your WhatsApp messages for your customers to choose from.
-
-### Request Location
-
-This message sub-type has a default CTA - 'Send Location'.
-
-#### Body
-
-This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
-
-### Request Address
-
-This message sub-type has a default CTA - 'Provide Address'.
-
-#### Body
-
-This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
-
-### Trigger Meta Flow
-
-#### Message Type
-
-- **Text**: Add text content in this space.
-- **Image**: Insert an image you would like to send in the template. The URL of the image should be public. Supported file types are _jpeg_ and _png_. Please note that images with transparent backgrounds are not supported. You can also upload an image directly from your device. Maximum size limit is 5 MB.
-- **Video**: Insert the video file. The URL of the video should be public. Supported file types are _mp4_ and _3gpp_. Maximum size limit is 16MB.
-- **File**: Attach a document you want to send in the template. The URL of the document should be public. Any valid _MIME_ type of document is supported. Maximum size limit is 100MB.
-
-#### Title
-
-This is a mandatory field. You can give any title to this interactive message.
-
-#### Body
-
-This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
-
-#### Footer
-
-This is an optional field. You can add any footer elements here. You can also add any placeholders.
-
-#### Flow Settings
-
-- Type - Navigate or Data Exchange
-- Flow Id - A unique id generated by Meta for every flow created.
-- Flow Token (Optional) - You can add a unique Id for your flow or use 'unused'.
-- Button - Add the button title which the user will see on the interactive Whatsapp message
-- Initial Screen - This is the initial screen of the flow.
-- Additional Data (Optional) - If your flow needs any data payload, you can use additional data as json payload
-  ![](/images/b1614f4e0c55064eb4e7d12511428a07989071766297b878dc711ae7fe3f7c21-flow_settings_interactive.png)
-
-### Order Status
-
-#### Body
-
-This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
-
-#### Footer
-
-This is an optional field. You can add any footer elements here. You can also add any placeholders.
-
-#### Order details
-
-- Order Id - Provide the order id for which you are sending this message.
-- Status
-  - Processing
-  - Partially Shipped
-  - Shipped
-  - Completed
-  - Cancelled
-
-### Order Details
-
-#### Message Type
-
-- **Text**: Add text content in this space.
-- **Image**: Insert an image you would like to send in the template. The URL of the image should be public. Supported file types are _jpeg_ and _png_. Please note that images with transparent backgrounds are not supported. You can also upload an image directly from your device. Maximum size limit is 5 MB.
-
-#### Title
-
-This is a mandatory field. You can give any title to this interactive message.
-
-#### Body
-
-This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
-
-#### Footer
-
-This is an optional field. You can add any footer elements here. You can also add any placeholders.
-
-#### List Settings
-
-- List Type
-  - Static - If you know the no of items in your order, use static list
-  - Dynamic - If you don't know exactly the no of items in your order, then use dynamic list.
-- Item Type
-  - Physical
-  - Digital
-- Billing Details - Its an optional field.
-  - Name
-  - Address Line 1
-  - Address Line 2
-  - Country
-  - State
-  - City
-  - Postal Code
-- Item Details - You can add any no of items by clicking '+' if you are using static list. If you are using dynamic list, you just need to provide the details of the first item in your array.
-  - Name
-  - Image (Optional)
-  - Price
-  - Quantity
-  - Sale Price (Optional)
-  - ID
-- Retailer Details
-
-#### Payment Settings
-
-- Gateway
-  - UPI
-  - Razorpay
-  - PayU
-- Configuration Name
-- Shipping Cost
-- Tax
-- Discount
-
-### Call to action
-
-#### Header Type
-
-- **Text**: Add any text content in the header.
-
-#### Title
-
-- Title - This is a mandatory field if you have selected Text as Header type. You can give any title to this interactive message.
-
-#### Body
-
-This is a mandatory field. You need to add the body of the message here. You can also add any no of placeholders.
-
-#### Footer
-
-This is an optional field. You can add any footer elements here. You can also add any placeholders.
-
-#### WhatsApp Message ID
-
-To send this message as a reply, provide the whatsapp message ID of the corresponding message. You can provide a static value or enter a placeholder.
-
-#### Buttons
-
-Allows you to add call to action buttons. This is mandatory field.
-
-- **Button Title** - This is CTA users will see as part of the interactive message.
-- **URL** - This is the URL where the users will be redirected when they click the CTA button.
-
-## Placeholders
-
-Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{ }}`** or **Handlebars**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
-
-<Note>You cannot use only numeric values as placeholder keys!</Note>
-
-<Warning title="WhatsApp URL Redirection will not work!">When providing the URLs for files in the WhatsApp templates, redirected links (with multiple hops) will not work as per Facebook Policies.</Warning>
-
-## Preview
-
-Review your content and take a look at what your message would look like in the Preview section on the right. If you have configured a Non-Synced template, you won't be seeing any preview.
-
-## Save & Go live
-
-Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.
+Set **Message Type** to **Reply: Interactive**, then choose a **Sub Type**. The available sub types are **Quick replies**, **Menu**, **Request Location**, **Request Address**, **Trigger Meta Flow**, **Order Status**, **Order Details** and **Call to Action**.
+
+### Quick replies
+
+With the **Quick replies** sub type, the message has an optional header, a body, an optional footer, and up to 3 quick reply buttons.
+
+**Header Type:** Choose **None**, **Text**, **Image**, **Video** or **File**. The field below the selector changes based on the header type.
+
+<Tabs>
+  <Tab title="None">
+    ![](/images/whatsapp_reply_interactive_header_none.png)
+
+    The message is sent without a header.
+  </Tab>
+
+  <Tab title="Text">
+    ![](/images/whatsapp_reply_interactive_header_text.png)
+
+    - **Title:** Enter the header text.
+  </Tab>
+
+  <Tab title="Image">
+    ![](/images/whatsapp_reply_interactive_header_image.png)
+
+    - **Image URL:** Enter the URL of the image, or use the upload icon. The image size should not exceed 5MB and should be a valid http image URL.
+  </Tab>
+
+  <Tab title="Video">
+    ![](/images/whatsapp_reply_interactive_header_video.png)
+
+    - **Video URL:** Enter the URL of the video, or use the upload icon. The video size should not exceed 16MB and should be a valid http video URL.
+  </Tab>
+
+  <Tab title="File">
+    ![](/images/whatsapp_reply_interactive_header_file.png)
+
+    - **File URL:** Enter the URL of the file, or use the upload icon. The file must be under 100MB and a valid HTTP URL or PDF component.
+    - **Override Filename:** Enable this to set the filename the recipient sees.
+  </Tab>
+</Tabs>
+
+The remaining fields are the same for every header type:
+
+- **Body**: Enter the message text. Use the toolbar above the field for bold, italic, strikethrough and code formatting. Maximum length is 1024 characters.
+- **Footer** (optional): Enter the footer text. The formatting toolbar is available here as well.
+- **Reply using WhatsApp Message ID** (optional): To send this message as a reply, provide the WhatsApp message ID of the original message you are responding to. You can select or enter a placeholder for it.
+- **Buttons**: Click **Add Button** to add up to 3 quick reply buttons. Use the drag handle to reorder them. For each button, enter:
+  - **Button Title**: The text shown on the button.
+  - **Button Payload** (optional): Data that is captured on an incoming webhook when the button is clicked.
+
+### Other sub types
+
+<AccordionGroup>
+  <Accordion title="Menu">
+    Provide options from a menu within your WhatsApp message for your customers to choose from.
+
+    - **Message Type:** Text, Image, Video or File.
+      - **Image:** The URL must be public. Supported file types are jpeg and png. Images with transparent backgrounds are not supported. You can also upload an image from your device. Maximum size is 5MB.
+      - **Video:** The URL must be public. Supported file types are mp4 and 3gpp. Maximum size is 16MB.
+      - **File:** The URL must be public. Any valid MIME type is supported. Maximum size is 100MB.
+    - **Title:** Mandatory. Give any title to the interactive message. Enable **Preview URL** to show a thumbnail of the URL added.
+    - **Body:** Mandatory. Add the body of the message here. You can add any number of placeholders.
+    - **Footer:** Optional. You can add placeholders here as well.
+    - **Action:** Add interactive buttons.
+      - **Button:** The CTA the user sees as part of the interactive message.
+      - **Button Id:** Optional. Use a unique ID to identify this button, or to send a payload as part of it.
+  </Accordion>
+
+  <Accordion title="Request Location">
+    This sub type has a default CTA, **Send Location**.
+
+    - **Body:** Mandatory. Add the body of the message here. You can add any number of placeholders.
+  </Accordion>
+
+  <Accordion title="Request Address">
+    This sub type has a default CTA, **Provide Address**.
+
+    - **Body:** Mandatory. Add the body of the message here. You can add any number of placeholders.
+  </Accordion>
+
+  <Accordion title="Trigger Meta Flow">
+    - **Message Type:** Text, Image, Video or File, with the same URL and size rules as the Menu sub type.
+    - **Title:** Mandatory. Give any title to the interactive message.
+    - **Body:** Mandatory. Add the body of the message here. You can add any number of placeholders.
+    - **Footer:** Optional. You can add placeholders here as well.
+    - **Flow Settings:**
+      - **Type:** Navigate or Data Exchange.
+      - **Flow Id:** A unique ID generated by Meta for every flow created.
+      - **Flow Token** (optional): Add a unique ID for your flow, or use 'unused'.
+      - **Button:** The button title the user sees on the interactive WhatsApp message.
+      - **Initial Screen:** The initial screen of the flow.
+      - **Additional Data** (optional): If your flow needs a data payload, add it here as a JSON payload.
+
+    ![](/images/b1614f4e0c55064eb4e7d12511428a07989071766297b878dc711ae7fe3f7c21-flow_settings_interactive.png)
+  </Accordion>
+
+  <Accordion title="Order Status">
+    - **Body:** Mandatory. Add the body of the message here. You can add any number of placeholders.
+    - **Footer:** Optional. You can add placeholders here as well.
+    - **Order details:**
+      - **Order Id:** The order ID for which you are sending this message.
+      - **Status:** Processing, Partially Shipped, Shipped, Completed or Cancelled.
+  </Accordion>
+
+  <Accordion title="Order Details">
+    - **Message Type:** Text or Image. For images, the URL must be public, supported file types are jpeg and png, transparent backgrounds are not supported, and the maximum size is 5MB.
+    - **Title:** Mandatory. Give any title to the interactive message.
+    - **Body:** Mandatory. Add the body of the message here. You can add any number of placeholders.
+    - **Footer:** Optional. You can add placeholders here as well.
+    - **List Settings:**
+      - **List Type:** **Static** if you know the number of items in the order, **Dynamic** if you don't.
+      - **Item Type:** Physical or Digital.
+      - **Billing Details** (optional): Name, Address Line 1, Address Line 2, Country, State, City, Postal Code.
+      - **Item Details:** Name, Image (optional), Price, Quantity, Sale Price (optional), ID. For a static list, click **+** to add any number of items. For a dynamic list, provide the details of the first item in your array.
+      - **Retailer Details**
+    - **Payment Settings:**
+      - **Gateway:** UPI, Razorpay or PayU.
+      - **Configuration Name**
+      - **Shipping Cost**
+      - **Tax**
+      - **Discount**
+  </Accordion>
+
+  <Accordion title="Call to Action">
+    - **Header Type:** Text.
+    - **Title:** Mandatory if you selected Text as the header type. Give any title to the interactive message.
+    - **Body:** Mandatory. Add the body of the message here. You can add any number of placeholders.
+    - **Footer:** Optional. You can add placeholders here as well.
+    - **WhatsApp Message ID:** To send this message as a reply, provide the WhatsApp message ID of the corresponding message. You can provide a static value or enter a placeholder.
+    - **Buttons:** Mandatory. Add call to action buttons with:
+      - **Button Title:** The CTA users see as part of the interactive message.
+      - **URL:** Where users are redirected when they click the button.
+  </Accordion>
+</AccordionGroup>
+
+<Warning title="WhatsApp URL redirection will not work">
+When providing URLs for files in WhatsApp templates, redirected links (with multiple hops) will not work, as per Facebook policies.
+</Warning>
+
+## Service provider support for interactive message types
+
+<div style={tableWrapperStyle} className="fyno-styled-table-wrapper">
+  <table style={tableStyle} className="fyno-styled-table">
+    <thead>
+      <tr>
+        <th style={thStyle}>Providers</th>
+        <th style={thCenterStyle}>List</th>
+        <th style={thCenterStyle}>Quick Reply</th>
+        <th style={thCenterStyle}>Call to Action</th>
+        <th style={thCenterStyle}>Order Details</th>
+        <th style={thCenterStyle}>Order Status</th>
+        <th style={thCenterStyle}>Request Location</th>
+        <th style={thCenterStyle}>Request Address</th>
+        <th style={thCenterStyle}>Flow</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={tdStyle}>Meta Direct, Meta Direct Plus, Fyno WA Business, Meta Facebook, Fyno x Others, Gallabox, MSG91, Route Mobile, Saleschat Pro</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Infobip</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Gupshup Enterprise, Gupshup, MessageBird, Karix, Connectly, Kaleyra.io</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Interakt, WATI</td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Twilio, ValueFirst, Freshchat, AiSensy, Yellow.ai</td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
