@@ -1,46 +1,228 @@
 ---
-title: 'Simple WhatsApp Messages'
+title: 'Reply: Simple'
 slug: 'whatsapp-simple-message'
-description: 'Create simple WhatsApp reply messages in Fyno using text, images, videos, audio, documents, locations, and stickers. Learn supported media types, provider compatibility, placeholders, previews, and publishing workflows.'
-og:title: 'Simple WhatsApp Messages | Fyno Documentation'
-og:description: 'Learn how to create simple WhatsApp reply messages in Fyno with support for text, media attachments, locations, stickers, placeholders, previews, and Go Live publishing.'
+description: 'Send a text or media reply in an existing WhatsApp conversation without Meta approval. Supports text, image, audio, video, file, location, sticker and reaction content.'
+og:title: 'Reply: Simple | Fyno Documentation'
+og:description: 'Learn how to create a Reply: Simple WhatsApp message in Fyno with text, image, audio, video, file, location, sticker or reaction content, and reply to a specific message by ID.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Simple templates can only be used for replies. They cannot be the first message that is sent. The first message should always be a template message.
+export const tableWrapperStyle = {
+  overflowX: 'auto',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  borderRadius: '8px',
+  border: '1px solid var(--rb-border-main, #E0E0E0)',
+  padding: '8px',
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+};
 
-Allows you to create a template that can be used to send information to your end users only in the form of:
+export const tableStyle = {
+  width: '100%',
+  borderCollapse: 'separate',
+  borderSpacing: 0,
+  fontSize: '13px',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
 
-<Info title="Supported Media Types">For a list of supported media types, see [Supported Media Types](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media/#supported-media-types).</Info>
+export const thStyle = {
+  position: 'sticky',
+  top: 0,
+  zIndex: 20,
+  backgroundColor: 'var(--rb-header-bg, #F0F0F0)',
+  color: 'var(--rb-header-text, #333333)',
+  textAlign: 'left',
+  padding: '12px',
+  fontWeight: '600',
+  borderBottom: '2px solid var(--rb-border-main, #E0E0E0)'
+};
 
-- **Text**: Add text content in this space.
-- **Image**: Insert an image you would like to send in the template. The URL of the image should be public. Supported file types are _jpeg_ and _png_. Images must be 8-bit, RGB or RGBA. Please note that images with transparent backgrounds are not supported. You can also upload an image directly from your device. Maximum size limit is 5 MB.
-- **Video**: Insert the video file. The URL of the video should be public. Supported file types are _mp4_ and _3gpp_. Maximum size limit is 16MB.
-- **Audio**: Attach an audio file that you would like to play in this template. The URL of the audio file should be public. Supported file types are _aac_, _mp4_, _amr_ and _mpeg_.Maximum size limit is 16MB.
-- **File**: Attach a document you would like to send in the template. The URL of the document should be public. Any valid _MIME_ type of document is supported. Maximum size limit is 100MB.
-- **Location**: Insert map location by entering the latitude and longitude details. This will then be translated into a location on maps and displayed. Don't know how to get your latitude and longitude details? Here's [how](https://support.google.com/maps/answer/18539?hl=en&co=GENIE.Platform%3DDesktop) you can do it via Google Maps.
-- **Sticker**: Insert the link of a sticker that you want to be sent. The URL of the sticker should be public. The supported file type is _webp_ only.
+export const thCenterStyle = { ...thStyle, textAlign: 'center' };
 
-## Service Providers support for Simple messages and Reactions
+export const tdStyle = {
+  padding: '8px 12px',
+  borderBottom: '1px solid var(--rb-border-sub, #F0F0F0)',
+  verticalAlign: 'middle',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
 
-| Providers                                                                                                                   | Simple | Reactions |
-| --------------------------------------------------------------------------------------------------------------------------- | :----: | :-------: |
-| Meta Direct, Meta Direct Plus, Fyno WA Business, Meta Facebook, Fyno x Others, Gallabox, MSG91, Route Mobile, Saleschat Pro |   ✅   |    ✅     |
-| Gupshup Enterprise, Gupshup, Infobip, MessageBird, Karix, Connectly, Kaleyra.io, Interakt, WATI, Twilio, ValueFirst         |   ✅   |    ❌     |
-| Freshchat, AiSensy, Yellow.ai                                                                                               |   ❌   |    ❌     |
+export const tdCenterStyle = { ...tdStyle, textAlign: 'center' };
 
-## Placeholders
+export const Badge = ({ type, text }) => {
+  const baseBadgeStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '4px',
+    padding: '4px 12px',
+    fontSize: '12px',
+    fontWeight: '600',
+    minWidth: '60px',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    whiteSpace: 'nowrap'
+  };
 
-Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{ }}`**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
+  const variants = {
+    yes: { backgroundColor: 'var(--badge-yes-bg, #F2F7E3)', color: 'var(--badge-yes-text, #547100)' },
+    view: { backgroundColor: 'var(--badge-view-bg, #E5EDF7)', color: 'var(--badge-view-text, #0E3672)' },
+    test: { backgroundColor: 'var(--badge-test-bg, #FAF4E3)', color: 'var(--badge-test-text, #8B6602)' },
+    no: { backgroundColor: 'var(--badge-no-bg, #F0F0F0)', color: 'var(--badge-no-text, #333333)' }
+  };
 
-<Note>You cannot use only numeric values as placeholder keys!</Note>
+  return <span style={{ ...baseBadgeStyle, ...variants[type] }}>{text}</span>;
+};
 
-<Warning title="WhatsApp URL Redirection will not work!">When providing the URLs for files in the WhatsApp templates, redirected links (with multiple hops) will not work as per Facebook Policies.</Warning>
+<style>{`
+  :root {
+    --rb-table-bg: #FFFFFF;
+    --rb-table-text: #1a1a1a;
+    --rb-header-bg: #F0F0F0;
+    --rb-header-text: #333333;
+    --rb-border-main: #E0E0E0;
+    --rb-border-sub: #F0F0F0;
+    --badge-yes-bg: #F2F7E3;
+    --badge-yes-text: #547100;
+    --badge-view-bg: #E5EDF7;
+    --badge-view-text: #0E3672;
+    --badge-test-bg: #FAF4E3;
+    --badge-test-text: #8B6602;
+    --badge-no-bg: #F0F0F0;
+    --badge-no-text: #333333;
+  }
+  html.dark {
+    --rb-table-bg: #121212;
+    --rb-table-text: #F0F0F0;
+    --rb-header-bg: #333333;
+    --rb-header-text: #F0F0F0;
+    --rb-border-main: #4D4D4D;
+    --rb-border-sub: #262626;
+    --badge-yes-bg: #547100;
+    --badge-yes-text: #F2F7E3;
+    --badge-view-bg: #0E3672;
+    --badge-view-text: #E5EDF7;
+    --badge-test-bg: #8B6602;
+    --badge-test-text: #FAF4E3;
+    --badge-no-bg: #333333;
+    --badge-no-text: #F0F0F0;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table td {
+    background-color: var(--rb-table-bg, #FFFFFF) !important;
+    color: var(--rb-table-text, #1a1a1a) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table th {
+    background-color: var(--rb-header-bg, #F0F0F0) !important;
+    color: var(--rb-header-text, #333333) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table code {
+    font-size: 12px;
+  }
+`}</style>
 
-## Preview
 
-Review your content and take a look at what your message would look like in the Preview section on the right. If you have configured a Non-Synced template, you won't be seeing any preview.
+A **Reply: Simple** message is a text or media message that can only be sent as a reply to an existing conversation. No Meta approval is required.
 
-## Save & Go Live
+<Note>
+This message type can be used only for replies and can't initiate conversations.
+</Note>
 
-Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.
+Set **Message Type** to **Reply: Simple**, then choose a **Content Type**. The fields below the selector change based on the content type.
+
+<Info title="Supported media types">
+For a list of supported media types, see [Supported Media Types](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media/#supported-media-types).
+</Info>
+
+<Tabs>
+  <Tab title="Text">
+    ![](/images/whatsapp_reply_simple_text.png)
+
+    - **Body:** Enter the message text. Use the toolbar above the field for bold, italic, strikethrough and code formatting. Maximum length is 1024 characters.
+    - **Show URL preview thumbnail in the message:** Enable this to show a preview thumbnail for any URL in the message.
+  </Tab>
+
+  <Tab title="Image">
+    ![](/images/whatsapp_reply_simple_image.png)
+
+    - **Caption:** Enter the text to send with the image. The formatting toolbar is available here as well.
+    - **Image URL:** Enter the URL of the image, or use the upload icon. The URL must be public. Supported file types are jpeg and png. Images must be 8-bit, RGB or RGBA; images with transparent backgrounds are not supported. The image size should not exceed 5MB.
+  </Tab>
+
+  <Tab title="Audio">
+    ![](/images/whatsapp_reply_simple_audio.png)
+
+    - **Caption:** Enter the text to send with the audio.
+    - **Audio URL:** Enter the URL of the audio file, or use the upload icon. The URL must be public. Supported file types are aac, mp4, amr and mpeg. The audio size should not exceed 16MB.
+  </Tab>
+
+  <Tab title="Video">
+    ![](/images/whatsapp_reply_simple_video.png)
+
+    - **Caption:** Enter the text to send with the video.
+    - **Video URL:** Enter the URL of the video, or use the upload icon. The URL must be public. Supported file types are mp4 and 3gpp. The video size should not exceed 16MB.
+  </Tab>
+
+  <Tab title="File">
+    ![](/images/whatsapp_reply_simple_file.png)
+
+    - **Caption:** Enter the text to send with the file.
+    - **File URL:** Enter the URL of the file, or use the upload icon. The URL must be public, or you can use a PDF component. Any valid MIME type is supported. The file must be under 100MB.
+    - **Override Filename:** Enable this to set the filename the recipient sees.
+  </Tab>
+
+  <Tab title="Location">
+    ![](/images/whatsapp_reply_simple_location.png)
+
+    - **Latitude** and **Longitude:** Enter the coordinates of the location. These are translated into a location on the map. See [how to find coordinates](https://support.google.com/maps/answer/18539?hl=en&co=GENIE.Platform%3DDesktop) in Google Maps.
+    - **Location Name:** Enter the name shown with the location.
+    - **Address:** Enter the address shown with the location.
+  </Tab>
+
+  <Tab title="Sticker">
+    ![](/images/whatsapp_reply_simple_sticker.png)
+
+    - **Sticker URL:** Enter the URL of the sticker, or use the upload icon. The URL must be public and the supported file type is webp only. The sticker must be 512x512px, and under 100KB for static or 500KB for animated.
+  </Tab>
+
+  <Tab title="Reaction">
+    ![](/images/whatsapp_reply_simple_reaction.png)
+
+    - **Reaction:** Enter the emoji to send as a reaction. Maximum 1 emoji allowed.
+  </Tab>
+</Tabs>
+
+**Reply using WhatsApp Message ID** (optional): To send this message as a reply, provide the WhatsApp message ID of the original message you are responding to. You can select or enter a placeholder for it.
+
+<Warning title="WhatsApp URL redirection will not work">
+When providing URLs for files in WhatsApp templates, redirected links (with multiple hops) will not work, as per Facebook policies.
+</Warning>
+
+## Service provider support for Simple messages and Reactions
+
+<div style={tableWrapperStyle} className="fyno-styled-table-wrapper">
+  <table style={tableStyle} className="fyno-styled-table">
+    <thead>
+      <tr>
+        <th style={thStyle}>Providers</th>
+        <th style={thCenterStyle}>Simple</th>
+        <th style={thCenterStyle}>Reactions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={tdStyle}>Meta Direct, Meta Direct Plus, Fyno WA Business, Meta Facebook, Fyno x Others, Gallabox, MSG91, Route Mobile, Saleschat Pro</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Gupshup Enterprise, Gupshup, Infobip, MessageBird, Karix, Connectly, Kaleyra.io, Interakt, WATI, Twilio, ValueFirst</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Freshchat, AiSensy, Yellow.ai</td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
