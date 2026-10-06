@@ -7,84 +7,106 @@ og:description: 'Learn how to create and manage SMS templates in Fyno, use synce
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Creating **Templates** for SMSes has been made super simple with Fyno's template feature.
+Fyno makes it simple to create templates for SMS. Follow the steps below to create an SMS template.
 
-You need to follow the below steps to create a SMS template
-
-## Template Types
-
-- Synced : If you have synced/uploaded all DLT approved SMS templates into Fyno. All these templates will be available under Templates -> External -> SMS
-- Not Synced : If your SMS templates are not synced with Fyno.
-
-### Synced SMS Template
+## Creating an SMS template
 
 <Steps>
-  <Step>**External Template Name/Id** - If your templates are SYNCED, you can select the template from the dropdown.</Step>
-  <Step>If your template has any placeholders, it will appear under 'Body variables' as shown below. Once you provide sample values for the placeholders, they will reflect in the Preview section.</Step>
-  <Step>Click **Save** which will save the template in **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version. ![](/images/template_sms_preview.png)</Step>
+  <Step>
+    **External Template Name / ID:** Select an external template that is synced on Fyno from the dropdown, or enter the DLT template ID of an approved template that is not synced on Fyno.
+
+    ![](/images/template_sms_external_id.png)
+  </Step>
+  <Step>
+    **SMS Content:** Enter the content of the message in the **SMS Content** section. If your content includes new placeholders, Fyno detects them and asks whether to add them to the placeholders list.
+
+    ![](/images/template_sms_content.png)
+  </Step>
+  <Step>
+    **Unicode Message** (optional): Enable this to send a unicode message, if the content or placeholder values may contain unicode or non-English characters.
+
+    ![](/images/template_sms_unicode.png)
+  </Step>
+  <Step>**Placeholders:** Below the **Channels** section on the left, you can find placeholders. Placeholders are denoted by `{{}}`. Click a placeholder to open a pop-up window where you can define its parameters. You can use Handlebar functions with your placeholders for operations such as date formatting, number formatting, and arithmetic operations. See the comprehensive guide on [Handlebars](https://handlebarsjs.com/guide/).</Step>
+  <Step>Review your content and check what your message looks like in the Preview section on the right.</Step>
+  <Step>Click **Save** to save the template as a **Test** version. Use **Go Live** when you are ready to move your template to the **Live** version.</Step>
 </Steps>
 
-<Note>External Template Name/Id is required only if you are sending it to Indian mobile numbers. If not, select 'Not Applicable'</Note>
+<Note>
+**External Template Name / ID** is required only if you are sending to Indian mobile numbers. If not, select **Not Applicable**.
+</Note>
 
-### Non Synced SMS Template
+<Note>
+If you have enabled **Approval** in Security Settings, you need to raise an approval request for your changes when you click **Go Live**. See [Approval request](./approval-request) for the steps.
+</Note>
+
+### Additional Configuration (optional)
+
+Expand the **Additional Configuration** section to set the following options:
+
+- **Override Sender ID:** Specify any approved Sender ID or header here to override the default one configured in your integration. For example, use Sender ID CLXYZA instead of the configured CLABCD in the integration.
+- **Send as a Flash Message:** A flash message appears on the mobile device's screen, without having to access the SMS storage application on the device.
+
+![](/images/template_sms_additional_config.png)
+
+<Note>
+To use any user property in your templates, add it in this format: `{{$user.$<user_property>}}`. For example, to add Name as a placeholder from the User profile, add it as `{{$user.$name}}`.
+</Note>
+
+<Tip title="Did you know?">
+You can use a period (.), underscore (\_) or hyphen (-) within the handlebars. Try it now!
+</Tip>
+
+<Warning>
+You cannot use only numeric values as placeholder keys.
+</Warning>
+
+## How to test an SMS template
+
+Use this feature to test a template thoroughly before including it in any Notification Event. This ensures early detection and resolution of any potential issues, for a seamless user experience.
 
 <Steps>
-  <Step>**External Template Name/Id** - If your templates are NOT SYNCED, you will need to enter the DLT Template name or Template Id.</Step>
-  <Step>**SMS Content** - You can enter the content of the message in the SMS Content section.</Step>
-  <Step>**Unicode Message** (Optional) - Enable this to send unicode message, if the content or placeholder values may contain unicode or non-English characters.</Step>
-  <Step>Placeholders: Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by `{{}}`. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"</Step>
-  <Step>Review your content and take a look at what your message would look like in the Preview section on the right.</Step>
-  <Step>Click **Save** which will save the template in **Test** version. Use **Go Live** when you are ready to move your template into the "**Live**" version</Step>
+  <Step>Click **Run Test** at the top right of the template.</Step>
+  <Step>
+    The **Test SMS template** pop-up opens.
+
+    ![](/images/template_sms_test.png)
+  </Step>
+  <Step>Enter either the mobile number of the recipient where the SMS should be sent, or a `distinct_id`. **Make sure to enter the distinct_id of a Test User profile.**</Step>
+  <Step>Select an SMS integration that is already configured in Fyno.</Step>
+  <Step>
+    **Auto-fill empty placeholders** (AI assistance): Click **Yes** to let Fyno fill sample values for any empty placeholders in the template.
+
+    ![](/images/template_sms_test_autofill.png)
+
+    Once done, you see the message **Sample values have been filled**.
+
+    ![](/images/template_sms_test_autofilled.png)
+  </Step>
+  <Step>
+    Click **Run Test** to send the SMS to the recipient with the selected integration. You see the success or failure message along with a link to the logs.
+
+    ![](/images/template_sms_test_success.png)
+  </Step>
 </Steps>
 
-### Additional Configuration (Optional)
+## How to add dynamic content
 
-  - **Override Sender Id**: You can specify any approved SenderId/Header here to override the default one configured in your Integration. E.g., using SenderId CLXYZA instead of the configured CLABCD in the integration.
-  - **Send as a Flash Message**:A flash message appears on the mobile device’s screen, without having to access the SMS storage application on the device.
-
-<Note>To use any user property in your templates, you can add it in this format - `{{$user.$<user_property>}}`. For example, to add Name as placeholder from User profile, you can add it as `{{$user.$name}}`</Note>
-
-<Tip title="Did you know?">You can use period (.), underscore (\_) or hyphen (-) within the handlebars. Try it now!</Tip>
-
-<Warning>You cannot use only numeric values as placeholder keys!</Warning>
-
-## How to test SMS template?
-
-You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
-
-<Steps>
-  <Step>Click 'Run Test' on the top right hand side of the template.</Step>
-  <Step>It opens the pop up as shown below. ![](/images/template_sms_test_updated.png)</Step>
-  <Step>You can either enter the mobile no of the recipient where the SMS should be sent or you can enter distinct_id. **Please make sure to enter Distinct_id of Test User profiles**</Step>
-  <Step>Select a SMS service provider which is already configured in Fyno.</Step>
-  <Step>When you click 'TEST', it will send SMS to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.</Step>
-</Steps>
-
-## How to add dynamic content in template?
-
-You can add dynamic content in your templates using one of the 4 options mentioned below.
+You can add dynamic content to your templates using one of the four options below:
 
 - [Placeholders](./template-dynamic-content#placeholders)
 - [System Variables](./template-dynamic-content#system-variables)
 - [Handlebars](./template-dynamic-content#handlebars)
 - [Components](./template-dynamic-content#components)
 
-## How to view change logs?
+## How to view change logs
 
-To view the history of all the modifications made to a template, you can utilize the change logs feature.
+To view the history of all the modifications made to a template, use the change logs feature.
 
-To do so, locate the history icon positioned at the top right corner of the template page, as shown in the image below, and click on it to view the change logs.
-
-It shows the following details
+Click the history icon at the top right corner of the template page, as shown in the image below, to view the change logs. It shows the following details:
 
 - Who updated it
 - Which version was updated
-- At what date & time its updated.
+- The date and time it was updated
 
 ![](/images/template_sms_changelogs.png)
-
-## How to raise Approval requests
-
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
-
-You can read more about it [here](https://fyno.io/docs/approval-flow)

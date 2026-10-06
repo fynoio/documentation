@@ -1,0 +1,72 @@
+---
+title: 'Direct Send'
+slug: 'whatsapp-direct-send'
+description: 'Send utility and authentication WhatsApp messages directly without prior Meta approval, as simple text or with interactive buttons.'
+og:title: 'Direct Send | Fyno Documentation'
+og:description: 'Learn how to create Direct Send: Simple Text and Direct Send: Interactive WhatsApp messages in Fyno, including utility and authentication categories, headers and buttons.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Direct Send messages can be sent directly to a user without prior Meta approval. There are two types: **Direct Send: Simple Text** and **Direct Send: Interactive**.
+
+## Simple Text
+
+A **Direct Send: Simple Text** message is a utility text message that can be sent directly, without prior Meta approval.
+
+![](/images/whatsapp_direct_send_simple_text.png)
+
+- **Category:** Shown as **Utility**. This is fixed for this message type.
+- **Body:** Enter the message text. Use the toolbar above the field for bold, italic, strikethrough and code formatting. Maximum length is 1024 characters.
+
+## Interactive
+
+A **Direct Send: Interactive** message is an authentication or utility message with clickable buttons that can be sent directly, without prior Meta approval.
+
+Set **Message Type** to **Direct Send: Interactive**, then select a **Category**: **Utility** or **Authentication**. The fields that follow depend on the category.
+
+![](/images/whatsapp_direct_send_interactive_category.png)
+
+<Tabs>
+  <Tab title="Utility">
+    A Utility message has an optional header, a body, an optional footer, and up to 3 quick reply buttons.
+
+    - **Sub Type:** Set to **Quick replies**.
+    - **Header Type:** Choose **None** or **Text**.
+
+    **Header Type: None**
+
+    ![](/images/whatsapp_direct_send_interactive_utility_none.png)
+
+    **Header Type: Text**
+
+    ![](/images/whatsapp_direct_send_interactive_utility_text.png)
+
+    - **Title:** Enter the header text. Shown only when Header Type is Text.
+    - **Body:** Enter the message text. Use the toolbar above the field for bold, italic, strikethrough and code formatting. Maximum length is 1024 characters.
+    - **Footer** (optional): Enter the footer text.
+    - **Buttons:** Click **Add Button** to add up to 3 quick reply buttons. For each button, enter:
+      - **Button Title:** The text shown on the button.
+      - **Button Payload** (optional): Data that is captured on an incoming webhook when the button is clicked.
+  </Tab>
+
+  <Tab title="Authentication">
+    An Authentication message has an optional header, a body, an optional footer, and a call to action button.
+
+    - **Header Type:** Choose **None** or **Text**.
+
+    **Header Type: None**
+
+    ![](/images/whatsapp_direct_send_interactive_authentication_none.png)
+
+    **Header Type: Text**
+
+    ![](/images/whatsapp_direct_send_interactive_authentication_text.png)
+
+    - **Title:** Enter the header text. Shown only when Header Type is Text.
+    - **Body:** Enter the message text. Use the toolbar above the field for bold, italic, strikethrough and code formatting. Maximum length is 1024 characters.
+    - **Footer** (optional): Enter the footer text.
+    - **Buttons:** A single **Call To Action** button, with:
+      - **Button Title:** The text shown on the button. Maximum length is 20 characters.
+      - **URL:** The URL the button opens.
+  </Tab>
+</Tabs>

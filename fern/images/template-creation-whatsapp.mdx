@@ -1,0 +1,105 @@
+---
+title: 'WhatsApp Templates'
+slug: 'template-creation-whatsapp'
+description: 'Create and manage WhatsApp templates using pre-approved, reply, and direct send message types, with support for dynamic content, versioning, approvals, and provider-specific capabilities.'
+og:title: 'WhatsApp Templates | Fyno Documentation'
+og:description: 'Learn how to create WhatsApp templates in Fyno, understand supported message types across providers, add dynamic content, track template changes, and manage approval workflows.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+WhatsApp templates are easy to use but can get complex, depending on what you are trying to achieve through your messages. Since Meta covers all use cases, we have replicated the same in Fyno for ease of use.
+
+![](/images/whatsapp_template_creation.png)
+
+## Message types
+
+Select the WhatsApp channel, then choose a **Message Type**:
+
+![](/images/whatsapp_message_types.png)
+
+| Message type | Description |
+| :--- | :--- |
+| [Pre-approved WhatsApp Template](./whatsapp-template-message) | Meta-approved message templates that can be used to initiate conversations. |
+| [Reply: Simple](./whatsapp-simple-message) | Text or media messages that can only be sent as replies to an existing conversation. No Meta approval required. |
+| [Reply: Interactive](./whatsapp-interactive-message) | Interactive messages with clickable buttons that can only be sent as replies to an existing conversation. No Meta approval required. |
+| Direct Send: Simple Text | Utility text messages that can be sent directly without prior Meta approval. |
+| Direct Send: Interactive | Authentication and utility messages with clickable buttons that can be sent directly without prior Meta approval. |
+
+## Using a pre-approved WhatsApp template
+
+<Steps>
+  <Step>Set **Message Type** to **Pre-approved WhatsApp Template**.</Step>
+  <Step>
+    **External Template Name / ID:** Select an external template that is synced on Fyno, or enter the name or ID of a pre-approved Meta template that is not synced on Fyno.
+
+    Once selected, the template's **Integrations**, **WABA/Namespace**, **Language** and **Category** are shown, along with any **Buttons** defined in the template.
+
+    ![](/images/whatsapp_external_template.png)
+  </Step>
+  <Step>
+    To fetch the latest version of the template from Meta, click **Re-sync** next to the template name.
+
+    ![](/images/whatsapp_resync.png)
+  </Step>
+  <Step>Review the preview on the right, then click **Save** to save the template as a **Test** version.</Step>
+  <Step>
+    When you are ready, click **Go Live** and confirm to move the template and its associated components to the **Live** version.
+
+    ![](/images/whatsapp_go_live_confirmation.png)
+  </Step>
+</Steps>
+
+<Info>
+WhatsApp Marketing notifications have lower delivery rates, as Meta prioritizes user experience by automatically filtering certain messages sent by businesses to users.
+</Info>
+
+<Note>
+If you have enabled **Approval** in Security Settings, you need to raise an approval request for your changes when you click **Go Live**. See [Approval request](./approval-request) for the steps.
+</Note>
+
+## How to test a WhatsApp template
+
+<Steps>
+  <Step>Click **Run Test** at the top right of the template.</Step>
+  <Step>
+    The **Test WhatsApp template** pop-up opens.
+
+    ![](/images/whatsapp_test.png)
+  </Step>
+  <Step>Enter the phone number of the recipient.</Step>
+  <Step>Select a WhatsApp integration that is already configured in Fyno.</Step>
+  <Step>**Auto-fill empty placeholders** (AI assistance): Click **Yes** to let Fyno fill sample values for any empty placeholders in the template.</Step>
+  <Step>Click **Run Test** to send the message to the recipient with the selected integration.</Step>
+</Steps>
+
+## Message types supported by service providers
+
+| Providers | Simple | Template | List | Quick Reply | Call to Action | Order Details | Order Status | Request Location | Request Address | Flow |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Meta Direct, Meta Direct Plus, Fyno WA Business, Meta Facebook, Fyno x Others, Gallabox, MSG91, Route Mobile, Saleschat Pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Infobip | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
+| MessageBird, Karix, Gupshup Enterprise, Gupshup, Connectly, Kaleyra.io | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Interakt, WATI | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Twilio, ValueFirst | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Freshchat, AiSensy, Yellow.ai | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
+## How to add dynamic content
+
+You can add dynamic content to your templates using one of the four options below:
+
+- [Placeholders](./template-dynamic-content#placeholders)
+- [System Variables](./template-dynamic-content#system-variables)
+- [Handlebars](./template-dynamic-content#handlebars)
+- [Components](./template-dynamic-content#components)
+
+## How to view change logs
+
+To view the history of all the modifications made to a template, use the change logs feature.
+
+Click the history icon at the top right corner of the template page, as shown in the image below, to view the change logs. It shows the following details:
+
+- Who updated it
+- Which version was updated
+- The date and time it was updated
+
+![](/images/changelogs.png)
