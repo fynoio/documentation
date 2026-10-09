@@ -3,17 +3,40 @@ title: 'Postgres'
 slug: 'fyno-connect-postgres'
 description: 'Learn how to connect your PostgreSQL database to Fyno Connect and use the data to create cohorts for audience segmentation and campaign targeting.'
 og:title: 'Postgres - Fyno Connect | Fyno Documentation'
-og:description: "Here's a quick overview on how to integrate Postgres with Fyno Connect"
+og:description: 'Learn how to connect your PostgreSQL database to Fyno Connect and start building cohorts from your data.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-To connect Fyno Connect with your Postgres database:
+Connect your PostgreSQL database to Fyno Connect with a connection URI. Once connected, you can build cohorts directly from the data in your database.
+
+## Connect your PostgreSQL database
 
 <Steps>
-  <Step>Navigate to **Databases** and click on Postgres.</Step>
-  <Step>In the pop-up, enter a name for the new connection and paste the MongoDB connection string or URL.</Step>
-  <Step>Click on "Add Database" to test the connection and successfully save it. After the database is added successfully, you will see it listed on the same page under **Connected DBs**.</Step>
-  <Step>You can now create cohorts from the data in your database. See [Create Cohorts.](./how-to-create-a-cohort-in-fyno-connect)</Step>
+  <Step title="Open Postgres from Databases">
+    Go to **Databases** and click **Postgres**. The **Add a PostgreSQL database** pop-up opens.
+  </Step>
+  <Step title="Enter the connection details">
+    Fill in the following fields:
+
+    - **Custom Name**: A name to identify this connection in Fyno Connect.
+    - **PostgreSQL URI**: Paste your PostgreSQL connection string. The value is masked by default. Click the eye icon to view it.
+
+    ![Add a PostgreSQL database pop-up](/images/fyno-connect-postgres-add-database.png)
+  </Step>
+  <Step title="Add the database">
+    Click **Add Database**. Fyno tests the connection and saves it once the test succeeds. The database then appears under **Connected DBs** on the same page.
+  </Step>
+  <Step title="Create cohorts">
+    You can now create cohorts from the data in your database. See [Create Cohorts](./how-to-create-a-cohort-in-fyno-connect).
+  </Step>
 </Steps>
 
-<Tip title="Make sure your Postgres connection string is on point!">The standard connection string format looks like: `postgresql://[user\[:password\]@][netloc][:port][/dbname][?param1=value1&...]`</Tip>
+## Connection string format
+
+<Tip title="Check your connection string">
+  If the connection test fails, make sure your connection string follows the standard format:
+
+  ```
+  postgresql://[user[:password]@][host][:port][/dbname][?param1=value1&...]
+  ```
+</Tip>

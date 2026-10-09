@@ -683,7 +683,10 @@ paths:
       tags:
         - Fyno Verify
       summary: Verify OTP
-      description: This API enables you to validate the OTP entered by the user using either `request_id` (received in response of the Fire an Event API) or `destination` (such as phone number, email).
+      description: |
+        This API enables you to validate the OTP entered by the user using either `request_id` (received in response of the Fire an Event API) or `destination` (such as phone number, email).
+
+        **Note:** By default, OTPs are not tied to a specific notification event. If you validate using `destination`, an OTP sent to the same destination by another event that also uses destination validation can override the earlier OTP. To avoid this, pass the optional `event_name` parameter to validate the OTP against a specific event.
       parameters:
         - name: WSID
           in: path
@@ -724,6 +727,17 @@ paths:
           schema:
             type: string
           example: xxxxxxxxxx
+        - name: event_name
+          in: query
+          description: |
+            (Optional) Enter the name of the notification event that sent the OTP, for example `login_otp`.
+            Use this parameter along with `destination` to validate the OTP for a specific event. Without it, an OTP sent to the same destination by another event that also uses destination validation can override the OTP you are validating.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          example: login_otp
         - name: otp
           in: query
           description: Enter the OTP which you want to validate.
@@ -733,6 +747,30 @@ paths:
           schema:
             type: string
           example: 1234
+      x-fern-examples:
+        - name: Validate using request_id
+          path-parameters:
+            WSID: FYXXXXXXXX
+            version: live
+          query-parameters:
+            request_id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+            otp: "1234"
+          response:
+            body:
+              _message: verified
+              status: ok
+        - name: Validate using destination and event_name
+          path-parameters:
+            WSID: FYXXXXXXXX
+            version: live
+          query-parameters:
+            destination: xxxxxxxxxx
+            event_name: login_otp
+            otp: "1234"
+          response:
+            body:
+              _message: verified
+              status: ok
       responses:
         "200":
           $ref: "#/components/responses/OTPSuccess"
@@ -1762,7 +1800,7 @@ components:
           schema:
             properties:
               _message:
-                example: OTP successfully validated.
+                example: verified
                 type: string
               status:
                 example: ok

@@ -1,0 +1,49 @@
+---
+title: 'Kafka'
+slug: 'fyno-connect-kafka'
+description: 'Connect a Kafka topic to Fyno Connect, configure brokers, SSL and SASL authentication, and trigger a Fyno workflow from the messages on the topic.'
+og:title: 'Kafka - Fyno Connect | Fyno Documentation'
+og:description: 'Learn how to connect your Kafka topic to Fyno Connect and trigger a workflow from its messages.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Connect a Kafka topic to Fyno Connect with your broker details and authentication settings. Once connected, Fyno consumes the messages on the topic and triggers the workflow you specify for each message.
+
+## Connect your Kafka topic
+
+<Steps>
+  <Step title="Open Kafka from Databases">
+    Go to **Databases** and click **Kafka**. The **Add a Kafka database** pop-up opens.
+  </Step>
+  <Step title="Enter the connection details">
+    Fill in the following fields:
+
+    - **Custom Name**: A name to identify this connection in Fyno Connect.
+    - **Kafka Brokers**: The addresses of your Kafka brokers in `host:port` format. Separate multiple brokers with commas.
+    - **Kafka Topic**: The topic Fyno consumes messages from.
+    - **Use SSL**: Enter `true` if your brokers require an SSL connection, otherwise `false`.
+    - **SASL**: Your SASL authentication settings as a JSON object, including the mechanism, username and password. Leave this blank if your brokers do not use SASL.
+
+      ```json
+      {
+        "mechanism": "plain",
+        "username": "your-username",
+        "password": "your-password"
+      }
+      ```
+
+    - **Fyno Workflow Endpoint**: The endpoint of the Fyno workflow to trigger for each message.
+    - **Automation ID**: The ID of the workflow to trigger.
+    - **API Key**: The Fyno API key used to call the workflow.
+
+    All fields except Custom Name are masked by default. Click the eye icon on a field to view its value.
+
+    ![Add a Kafka database pop-up](/images/fyno-connect-kafka-add-database.png)
+  </Step>
+  <Step title="Add the database">
+    Click **Add Database**. Fyno tests the connection and saves it once the test succeeds. The connection then appears under **Connected DBs** on the same page.
+  </Step>
+  <Step title="Trigger the workflow">
+    Fyno now consumes messages from the topic and triggers the workflow you specified for each message, passing the message as the workflow input.
+  </Step>
+</Steps>
