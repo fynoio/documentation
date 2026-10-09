@@ -3,25 +3,36 @@ title: 'MsSQL'
 slug: 'fyno-connect-mssql'
 description: 'Connect a Microsoft SQL Server database to Fyno Connect, configure connection settings, validate access, and create cohorts from your database data.'
 og:title: 'MsSQL - Fyno Connect | Fyno Documentation'
-og:description: "Here's a quick overview on how to integrate MsSQL with Fyno Connect"
+og:description: 'Learn how to connect your Microsoft SQL Server database to Fyno Connect and start building cohorts from your data.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-To connect Fyno Connect with your MsSQL database:
+Connect your Microsoft SQL Server (MsSQL) database to Fyno Connect with your server details and credentials. Once connected, you can build cohorts directly from the data in your database.
+
+## Connect your MsSQL database
 
 <Steps>
-  <Step>Navigate to **Databases** and click on MsSQL.</Step>
-  <Step>
-    In the pop-up, enter the following details:
-    <ul>
-      <li>Custom Name</li>
-      <li>Server</li>
-      <li>Database name</li>
-      <li>Port</li>
-      <li>Username</li>
-      <li>Password</li>
-    </ul>
+  <Step title="Open MsSQL from Databases">
+    Go to **Databases** and click **MsSQL**. The **Add a MsSQL database** pop-up opens.
   </Step>
-  <Step>Click on "Add Database" to test the connection and successfully save it. After the database is added successfully, you will see it listed on the same page under **Connected DBs**.</Step>
-  <Step>You can now create cohorts from the data in your database. See [Create Cohorts.](./how-to-create-a-cohort-in-fyno-connect)</Step>
+  <Step title="Enter the connection details">
+    Fill in the following fields:
+
+    - **Custom Name**: A name to identify this connection in Fyno Connect.
+    - **Server Name**: The name or address of your SQL Server.
+    - **Database Name**: The name of the database you want to connect.
+    - **Port**: The port your SQL Server listens on.
+    - **User Name**: The username used to access the database.
+    - **Password**: The password for that user.
+
+    All fields except Custom Name are masked by default. Click the eye icon on a field to view its value.
+
+    ![Add a MsSQL database pop-up](/images/fyno-connect-mssql-add-database.png)
+  </Step>
+  <Step title="Add the database">
+    Click **Add Database**. Fyno tests the connection and saves it once the test succeeds. The database then appears under **Connected DBs** on the same page.
+  </Step>
+  <Step title="Create cohorts">
+    You can now create cohorts from the data in your database. See [Create Cohorts](./how-to-create-a-cohort-in-fyno-connect).
+  </Step>
 </Steps>
