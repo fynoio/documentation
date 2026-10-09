@@ -693,6 +693,12 @@ navigation:
             path: "pages/fyno-connect/databases/snowflake.mdx"
           - page: "Athena"
             path: "pages/fyno-connect/databases/athena.mdx"
+          - page: "Kafka"
+            path: "pages/fyno-connect/databases/fyno-connect-kafka.mdx"
+          - page: "SFTP"
+            path: "pages/fyno-connect/databases/fyno-connect-sftp.mdx"
+          - page: "Oracle DB Picker"
+            path: "pages/fyno-connect/databases/fyno-connect-oracle-db-picker.mdx"       
       - section: "Using Fyno Connect"
         contents:
           - page: "Create Cohorts"
