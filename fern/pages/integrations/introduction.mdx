@@ -7,59 +7,89 @@ og:description: 'Introduction to Fyno integrations, channels, providers, integra
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Integrations, as the name suggests, help you seamlessly integrate any provider via the channel (SMS, Email, Push, etc) of your choice.
+Integrations connect Fyno to the providers you already use, so you can send notifications over any channel (SMS, Email, Push, WhatsApp, and more) from one place.
 
-Fyno has simplified this further by smoothening the process of integrating your providers, with this detailed set-up guide below.
+This page explains the core concepts behind integrations and walks you through sharing an integration setup with someone who holds the credentials.
+
+## Key concepts
+
+| Concept | What it means |
+| --- | --- |
+| **Channel** | The method you use to reach your users, such as SMS, Email, Push, or WhatsApp. |
+| **Provider** | The company or service that delivers messages on a channel, such as Twilio or MSG91. |
+| **Account** | A single set of credentials for a provider, added to your Fyno workspace. |
+| **Integration ID** | A unique, auto-assigned identifier for each account you add. |
 
 ## Channels
 
-Channels are where it all starts, where you decide what the method of communication is that you want, to get in touch with your end users or customers, and Fyno has it all. We understand that in this ever-evolving world, having just one way of reaching out is not enough anymore.
+Channels are where every integration starts. A channel is the method of communication you use to reach your end users. Since relying on a single channel is rarely enough, Fyno supports multiple channels side by side.
 
-Based on the channel you select, we have a provider-based integration guide in the next sections.
+Each channel has its own provider-specific setup guides, covered in the following sections.
 
 ## Providers
 
-Simply put, providers are the companies or services through which the services for SMS, Email, Push, etc are rendered to you currently.
+Providers are the companies or services that deliver your SMS, Email, Push, and other messages. Depending on your business needs, you can connect one or more providers under each channel.
 
-You can have one or more providers, depending on your business requirement and business model.
+Providers are grouped under the channel they serve. Select a provider to add one or more accounts for it.
 
-In this section, we will be covering the process of adding the providers that Fyno has already integrated. Your providers are listed under the "Channel" they provide a service under.
+<Tip>
+  You can add **up to 5 accounts per provider**. For example, under the **SMS** channel, you can add up to 5 Twilio accounts.
+</Tip>
 
-<Tip>Keep in mind, only 5 integrations can be added per Provider, under all channels. For example, under the Channel SMS, when you click on Twilio, you can add upto 5 accounts in Twilio.</Tip>
-
-In case you do not see your provider listed, please reach out to us at **[support@fyno.io](mailto:support@fyno.io)**. We will do our best to help you!
+Don't see your provider listed? Reach out to us at **[support@fyno.io](mailto:support@fyno.io)** and we'll do our best to help.
 
 ## Integration ID
 
-Once a provider is added successfully to the Provider's listing page, click on the created provider that you have added, to find that provider's integration ID.
+Every account you add receives an **Integration ID**. To find it, open the provider from the Providers listing page and select the account you added.
 
-This is auto-assigned by Fyno and cannot be edited or changed.
+<Callout type="info">
+  Integration IDs are assigned automatically by Fyno and cannot be edited.
+</Callout>
 
 ## Public Integration Link
 
-If you do not have the credentials required to complete an integration setup yourself, Fyno allows you to generate a public integration link and share it with another user who has access to the required credentials.
+Don't have the credentials to set up an integration yourself? Generate a **public integration link** and share it with someone who does.
 
-Using this link, the external user can complete the integration setup without needing access to your Fyno account. Once the setup is completed successfully, the integration will automatically reflect in your Fyno workspace.
+The person you share it with can complete the setup without needing access to your Fyno account. Once they finish, the integration appears in your workspace automatically.
 
-### Generate a Public Integration Link
+### Generate a public integration link
+
 <Steps>
-  <Step>Navigate to the required integration from the Provider’s listing page.</Step>
-  <Step>Click <b>Add Account</b>.</Step>
-  <Step>The <b>Share Integration URL</b> pop-up will appear.![](/images/share-integration-url.png)</Step>
-  <Step>Enter a name in the <b>Custom Integration Name</b> field.</Step>
-  <Step>Click <b>GENERATE URL</b> to create the public integration link.</Step>
+  <Step>Open the required provider from the Providers listing page.</Step>
   <Step>
-    Use <b>COPY URL</b> to copy and share the generated public URL with the external user who will complete the setup.
-    <Callout type="info">
-      The generated URL expires once the integration is added and remains valid for up to 48 hours from the time it is created. ![](/images/public-url-has-been-generated.png)
-    </Callout>
+    Under **Accounts**, click **Add account**.
+
+    ![Accounts panel with the Add account option](/images/add-account.png)
+  </Step>
+  <Step>
+    In the **Add new account** form, click **Don't have the credentials?** below the **ADD ACCOUNT** button.
+
+    ![Add new account form with the Don't have the credentials? link](/images/add-new-account-form.png)
+  </Step>
+  <Step>
+    In the **Share Integration URL** pop-up, enter a name in the **Custom Integration Name** field.
+
+    ![Share Integration URL pop-up](/images/share-integration-url.png)
+  </Step>
+  <Step>Click **GENERATE URL**.</Step>
+  <Step>
+    Click **COPY URL** and share the link with the person who will complete the setup.
+
+    ![Public URL generated](/images/public-url-has-been-generated.png)
   </Step>
 </Steps>
 
-### Additional Information
+<Callout type="info">
+  A public link is valid for **up to 48 hours** from when it is generated, and expires as soon as the integration is added.
+</Callout>
 
-- Once a public URL has been generated, the integration will appear after someone adds the required details.
-- You can use **COPY URL** to share the generated public integration link.
-- If the URL expires, the integration status will display **URL expired**. Use **RE-GENERATE URL** to create a new public link. Re-generating a URL invalidates the previously generated link.
-- You can delete a public integration link at any time from the **Public Integration Link** section. Deleting the integration account invalidates the generated public URL.
-- You can use the **VIEW DOCS** option to access detailed setup guidance.
+### Manage a public integration link
+
+After you generate a link, the account appears in your Accounts list and updates once the setup is complete.
+
+| Action | What it does |
+| --- | --- |
+| **COPY URL** | Copies the public link so you can share it again. |
+| **RE-GENERATE URL** | Creates a new link when the old one shows **URL expired**. The previous link stops working. |
+| **Delete** | Removes the account from the **Public Integration Link** section and invalidates its link. |
+| **VIEW DOCS** | Opens the setup guide for that provider. |
