@@ -3,24 +3,36 @@ title: 'MySQL'
 slug: 'fyno-connect-mysql'
 description: 'Connect a MySQL database to Fyno Connect, configure connection credentials, validate access, and create cohorts from your database data.'
 og:title: 'MySQL - Fyno Connect | Fyno Documentation'
-og:description: "Here's a quick overview on how to integrate MySQL with Fyno Connect"
+og:description: 'Learn how to connect your MySQL database to Fyno Connect and start building cohorts from your data.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-To connect Fyno Connect with your MySQL database:
+Connect your MySQL database to Fyno Connect with your database credentials. Once connected, you can build cohorts directly from the data in your database.
+
+## Connect your MySQL database
 
 <Steps>
-  <Step>Navigate to **Databases** and click on MySQL.</Step>
-  <Step>
-    In the pop-up, enter the following details:
-    <ul>
-      <li>Custom Name</li>
-      <li>Host Address</li>
-      <li>Database name</li>
-      <li>Username</li>
-      <li>Password</li>
-    </ul>
+  <Step title="Open MySQL from Databases">
+    Go to **Databases** and click **MySQL**. The **Add a MySQL database** pop-up opens.
   </Step>
-  <Step>Click on "Add Database" to test the connection and successfully save it. After the database is added successfully, you will see it listed on the same page under **Connected DBs**.</Step>
-  <Step>You can now create cohorts from the data in your database. See [Create Cohorts.](./how-to-create-a-cohort-in-fyno-connect)</Step>
+  <Step title="Enter the connection details">
+    Fill in the following fields:
+
+    - **Custom Name**: A name to identify this connection in Fyno Connect.
+    - **Host Address**: The host address of your MySQL server.
+    - **Database Name**: The name of the database you want to connect.
+    - **User Name**: The username used to access the database.
+    - **Password**: The password for that user.
+    - **TLS Enabled?**: Select this checkbox if your MySQL server uses TLS.
+
+    The host address, database name, user name and password are masked by default. Click the eye icon on a field to view its value.
+
+    ![Add a MySQL database pop-up](/images/fyno-connect-mysql-add-database.png)
+  </Step>
+  <Step title="Add the database">
+    Click **Add Database**. Fyno tests the connection and saves it once the test succeeds. The database then appears under **Connected DBs** on the same page.
+  </Step>
+  <Step title="Create cohorts">
+    You can now create cohorts from the data in your database. See [Create Cohorts](./how-to-create-a-cohort-in-fyno-connect).
+  </Step>
 </Steps>

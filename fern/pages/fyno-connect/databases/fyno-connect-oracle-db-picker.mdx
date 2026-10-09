@@ -1,0 +1,50 @@
+---
+title: 'Oracle DB Picker'
+slug: 'fyno-connect-oracle-db-picker'
+description: 'Connect an Oracle database table to Fyno Connect, map its rows to a data payload, and send them to a Fyno event or workflow endpoint.'
+og:title: 'Oracle DB Picker - Fyno Connect | Fyno Documentation'
+og:description: 'Learn how to connect an Oracle database table to Fyno Connect and send its rows to a Fyno event or workflow.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Oracle DB Picker connects a table in your Oracle database to Fyno Connect. Fyno picks rows from the table, maps them to a data payload and sends them to the Fyno event or workflow endpoint you specify.
+
+## Connect your Oracle database table
+
+<Steps>
+  <Step title="Open Oracle DB Picker from Databases">
+    Go to **Databases** and click **Oracle DB Picker**. The **Add a Oracle DB Picker database** pop-up opens.
+  </Step>
+  <Step title="Enter the database connection details">
+    Fill in the following fields to connect to your Oracle database:
+
+    - **Custom Name**: A name to identify this connection in Fyno Connect.
+    - **DB Type**: The type of Oracle database you are connecting.
+    - **Oracle Connection String**: The connection string for your database in the format `<host>:<port>/<SERVICENAME|SID>`.
+    - **Oracle User**: The username used to access the database.
+    - **Oracle Password**: The password for that user.
+    - **Certificate Location**: If you connect over TLS, the location of your Oracle wallet. Leave this blank otherwise.
+    - **Certificate Password**: The password for the Oracle certificate, if it has one.
+  </Step>
+  <Step title="Enter the table and payload details">
+    Fill in the following fields to tell Fyno which rows to pick and where to send them:
+
+    - **Table Name**: The name of the table to pick rows from.
+    - **JSON Settings from Table Configuration**: The table configuration settings as a JSON object.
+    - **Fyno Endpoint**: The Fyno endpoint to send the rows to.
+    - **Endpoint Path**: The path of the event or workflow on that endpoint, including its ID.
+    - **API Key**: The Fyno API key used to call the endpoint.
+    - **Data Payload**: A JSON object that maps the table columns to the fields of the data payload sent to Fyno.
+    - **Idempotency Columns** (optional): The columns that together form the idempotency key for each row, separated by commas. Fyno uses this key to avoid sending the same row more than once.
+
+    All fields except Custom Name are masked by default. Click the eye icon on a field to view its value.
+
+    ![Add a Oracle DB Picker database pop-up](/images/fyno-connect-oracle-db-picker-add-database.png)
+  </Step>
+  <Step title="Add the database">
+    Click **Add Database**. Fyno tests the connection and saves it once the test succeeds. The connection then appears under **Connected DBs** on the same page.
+  </Step>
+  <Step title="Send rows to Fyno">
+    Fyno now picks rows from the table, maps each one to the data payload you defined and sends it to the event or workflow at the endpoint path you specified.
+  </Step>
+</Steps>

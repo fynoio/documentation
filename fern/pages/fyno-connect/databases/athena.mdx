@@ -3,27 +3,39 @@ title: 'Athena'
 slug: 'fyno-connect-athena'
 description: 'Connect your Athena database to Fyno Connect using AWS credentials, configure database settings, and create cohorts from your Athena data.'
 og:title: 'Athena - Fyno Connect | Fyno Documentation'
-og:description: "Here's a quick overview on how to integrate Athena with Fyno Connect"
+og:description: 'Learn how to connect your Amazon Athena database to Fyno Connect and start building cohorts from your data.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-To connect Fyno Connect with your Athena Database:
+Connect your Amazon Athena database to Fyno Connect with your AWS details and credentials. Once connected, you can build cohorts directly from the data in your database.
+
+## Connect your Athena database
 
 <Steps>
-  <Step>Navigate to **Databases** and click on Athena.</Step>
-  <Step>
-    In the pop-up, enter the following details:
-    <ul>
-      <li>Custom Name</li>
-      <li>AWS Region</li>
-      <li>AWS Access Key id</li>
-      <li>AWS Secret Access Key</li>
-      <li>Database</li>
-      <li>Output bucket</li>
-      <li>Partition Column (Optional)</li>
-      <li>Partition Column Value(Optional)</li>
-    </ul>
+  <Step title="Open Athena from Databases">
+    Go to **Databases** and click **Athena**. The **Add a Athena database** pop-up opens.
   </Step>
-  <Step>Click on "Add Database" to test the connection and successfully save it. After the database is added successfully, you will see it listed on the same page under **Connected DBs**.</Step>
-  <Step>You can now create cohorts from the data in your database. See [Create Cohorts.](./how-to-create-a-cohort-in-fyno-connect)</Step>
+  <Step title="Enter the connection details">
+    Fill in the following fields:
+
+    - **Custom Name**: A name to identify this connection in Fyno Connect.
+    - **AWS Region**: The AWS region your Athena database is in.
+    - **AWS Access Key ID**: The access key ID of the AWS credentials used to connect. Leave this blank if you intend to use an IAM user.
+    - **AWS Secret Access Key**: The secret access key for those credentials. Leave this blank if you intend to use an IAM user.
+    - **Database**: The name of the Athena database you want to connect.
+    - **Output Bucket**: The S3 bucket where Athena writes query results.
+    - **Partition Column** (optional): The partition column to use when querying the data.
+    - **Partition Column Value** (optional): The value of the partition column to query.
+    - **Workgroup**: The Athena workgroup to run queries in.
+
+    All fields except Custom Name are masked by default. Click the eye icon on a field to view its value.
+
+    ![Add a Athena database pop-up](/images/fyno-connect-athena-add-database.png)
+  </Step>
+  <Step title="Add the database">
+    Click **Add Database**. Fyno tests the connection and saves it once the test succeeds. The database then appears under **Connected DBs** on the same page.
+  </Step>
+  <Step title="Create cohorts">
+    You can now create cohorts from the data in your database. See [Create Cohorts](./how-to-create-a-cohort-in-fyno-connect).
+  </Step>
 </Steps>

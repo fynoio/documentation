@@ -1,0 +1,39 @@
+---
+title: 'SFTP'
+slug: 'fyno-connect-sftp'
+description: 'Connect an SFTP server to Fyno Connect using a password or private key, set the base path for your files, and create cohorts from the data in those files.'
+og:title: 'SFTP - Fyno Connect | Fyno Documentation'
+og:description: 'Learn how to connect your SFTP server to Fyno Connect and start building cohorts from the files on it.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Connect an SFTP server to Fyno Connect with your server details and credentials. Once connected, Fyno reads the files under the base path you specify, and you can build cohorts from the data in them.
+
+## Connect your SFTP server
+
+<Steps>
+  <Step title="Open SFTP from Databases">
+    Go to **Databases** and click **SFTP**. The **Add a SFTP database** pop-up opens.
+  </Step>
+  <Step title="Enter the connection details">
+    Fill in the following fields:
+
+    - **Custom Name**: A name to identify this connection in Fyno Connect.
+    - **Host Address**: The host address of your SFTP server.
+    - **Port**: The port your SFTP server listens on.
+    - **User Name**: The username used to access the server.
+    - **Password**: The password for that user. Leave this blank if you authenticate with a private key.
+    - **Private Key**: The private key used to access the server. Leave this blank if you authenticate with a password.
+    - **Base Path**: The directory on the server that Fyno reads files from.
+
+    All fields except Custom Name are masked by default. Click the eye icon on a field to view its value.
+
+    ![Add a SFTP database pop-up](/images/fyno-connect-sftp-add-database.png)
+  </Step>
+  <Step title="Add the database">
+    Click **Add Database**. Fyno tests the connection and saves it once the test succeeds. The connection then appears under **Connected DBs** on the same page.
+  </Step>
+  <Step title="Create cohorts">
+    You can now create cohorts from the data in the files under the base path. See [Create Cohorts](./how-to-create-a-cohort-in-fyno-connect).
+  </Step>
+</Steps>
