@@ -1,57 +1,332 @@
 ---
 title: 'WhatsApp Templates'
 slug: 'template-creation-whatsapp'
-description: 'Create and manage WhatsApp templates using template, simple, and interactive message types, with support for dynamic content, versioning, approvals, and provider-specific capabilities.'
+description: 'Create and manage WhatsApp templates using template, simple reply, and interactive reply message types, with support for dynamic content, versioning, approvals, and provider-specific capabilities.'
 og:title: 'WhatsApp Templates | Fyno Documentation'
 og:description: 'Learn how to create WhatsApp templates in Fyno, understand supported message types across providers, add dynamic content, track template changes, and manage approval workflows.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-WhatsApp templates are easy to use but can get complex, depending on what you are trying to achieve through the messages. Since Meta has covered all use cases, we have replicated the same, for ease of use, for you.
-![](/images/whatsapp_template_creation.png)
+export const tableWrapperStyle = {
+  overflowX: 'auto',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  borderRadius: '8px',
+  border: '1px solid var(--rb-border-main, #E0E0E0)',
+  padding: '8px',
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+};
 
-Clicking on WhatsApp, you can select one of the message types:
+export const tableStyle = {
+  width: '100%',
+  borderCollapse: 'separate',
+  borderSpacing: 0,
+  fontSize: '13px',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
 
-- [Template Message](./whatsapp-template-message)
-- [Simple](./whatsapp-simple-message)
-- [Interactive](./whatsapp-interactive-message)
+export const thStyle = {
+  position: 'sticky',
+  top: 0,
+  zIndex: 20,
+  backgroundColor: 'var(--rb-header-bg, #F0F0F0)',
+  color: 'var(--rb-header-text, #333333)',
+  textAlign: 'left',
+  padding: '12px',
+  fontWeight: '600',
+  borderBottom: '2px solid var(--rb-border-main, #E0E0E0)'
+};
 
-### WhatsApp message types supported by different Service Providers
+export const thCenterStyle = { ...thStyle, textAlign: 'center' };
 
-| Providers                                                                                                                   | Simple | Template | List | Quick Reply | Call to Action | Order Details | Order Status | Request Location | Request Address | Flow |
-| --------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | ---- | ----------- | -------------- | ------------- | ------------ | ---------------- | --------------- | ---- |
-| Meta Direct, Meta Direct Plus, Fyno WA Business, Meta Facebook, Fyno x Others, Gallabox, MSG91, Route Mobile, Saleschat Pro | ✅     | ✅       | ✅   | ✅          | ✅             | ✅            | ✅           | ✅               | ✅              | ✅   |
-| Infobip                                                                                                                     | ✅     | ✅       | ✅   | ✅          | ✅             | ✅            | ✅           | ✅               | ❌              | ✅   |
-| MessageBird, Karix, Gupshup Enterprise, Gupshup, Connectly, Kaleyra.io                                                      | ✅     | ✅       | ✅   | ✅          | ❌             | ❌            | ❌           | ❌               | ❌              | ❌   |
-| Interakt, WATI                                                                                                              | ✅     | ✅       | ❌   | ✅          | ❌             | ❌            | ❌           | ❌               | ❌              | ❌   |
-| Twilio, ValueFirst                                                                                                          | ✅     | ✅       | ❌   | ❌          | ❌             | ❌            | ❌           | ❌               | ❌              | ❌   |
-| Freshchat, AiSensy, Yellow.ai                                                                                               | ❌     | ✅       | ❌   | ❌          | ❌             | ❌            | ❌           | ❌               | ❌              | ❌   |
+export const tdStyle = {
+  padding: '8px 12px',
+  borderBottom: '1px solid var(--rb-border-sub, #F0F0F0)',
+  verticalAlign: 'middle',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
 
-## How to add dynamic content in template?
+export const tdCenterStyle = { ...tdStyle, textAlign: 'center' };
 
-You can add dynamic content in your templates using one of the 4 options mentioned below.
+export const Badge = ({ type, text }) => {
+  const baseBadgeStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '4px',
+    padding: '4px 12px',
+    fontSize: '12px',
+    fontWeight: '600',
+    minWidth: '60px',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    whiteSpace: 'nowrap'
+  };
+
+  const variants = {
+    yes: { backgroundColor: 'var(--badge-yes-bg, #F2F7E3)', color: 'var(--badge-yes-text, #547100)' },
+    view: { backgroundColor: 'var(--badge-view-bg, #E5EDF7)', color: 'var(--badge-view-text, #0E3672)' },
+    test: { backgroundColor: 'var(--badge-test-bg, #FAF4E3)', color: 'var(--badge-test-text, #8B6602)' },
+    no: { backgroundColor: 'var(--badge-no-bg, #F0F0F0)', color: 'var(--badge-no-text, #333333)' }
+  };
+
+  return <span style={{ ...baseBadgeStyle, ...variants[type] }}>{text}</span>;
+};
+
+<style>{`
+  :root {
+    --rb-table-bg: #FFFFFF;
+    --rb-table-text: #1a1a1a;
+    --rb-header-bg: #F0F0F0;
+    --rb-header-text: #333333;
+    --rb-border-main: #E0E0E0;
+    --rb-border-sub: #F0F0F0;
+    --badge-yes-bg: #F2F7E3;
+    --badge-yes-text: #547100;
+    --badge-view-bg: #E5EDF7;
+    --badge-view-text: #0E3672;
+    --badge-test-bg: #FAF4E3;
+    --badge-test-text: #8B6602;
+    --badge-no-bg: #F0F0F0;
+    --badge-no-text: #333333;
+  }
+  html.dark {
+    --rb-table-bg: #121212;
+    --rb-table-text: #F0F0F0;
+    --rb-header-bg: #333333;
+    --rb-header-text: #F0F0F0;
+    --rb-border-main: #4D4D4D;
+    --rb-border-sub: #262626;
+    --badge-yes-bg: #547100;
+    --badge-yes-text: #F2F7E3;
+    --badge-view-bg: #0E3672;
+    --badge-view-text: #E5EDF7;
+    --badge-test-bg: #8B6602;
+    --badge-test-text: #FAF4E3;
+    --badge-no-bg: #333333;
+    --badge-no-text: #F0F0F0;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table td {
+    background-color: var(--rb-table-bg, #FFFFFF) !important;
+    color: var(--rb-table-text, #1a1a1a) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table th {
+    background-color: var(--rb-header-bg, #F0F0F0) !important;
+    color: var(--rb-header-text, #333333) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table code {
+    font-size: 12px;
+  }
+`}</style>
+
+
+WhatsApp templates are easy to use but can get complex, depending on what you are trying to achieve through your messages. Since Meta covers all use cases, we have replicated the same in Fyno for ease of use.
+
+## Creating a WhatsApp template
+
+<Steps>
+<Step>
+
+On the **Fyno Templates** page, click **Create**, enter a **Name**, select **WhatsApp** under **Select Channels**, and click **Submit**.
+
+</Step>
+<Step>
+
+The **Create your WhatsApp Template** screen opens. Choose a **Message Type** to continue. **Template** is selected by default.
+
+![](/images/wacreate-v2-editor-landing.png)
+
+</Step>
+</Steps>
+
+## Message types
+
+Each message type is described on its own page.
+
+<div style={tableWrapperStyle} className="fyno-styled-table-wrapper">
+  <table style={tableStyle} className="fyno-styled-table">
+    <thead>
+      <tr>
+        <th style={thStyle}>Message type</th>
+        <th style={thStyle}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={tdStyle}><a href="./whatsapp-template-message">Template</a></td>
+        <td style={tdStyle}>Meta-approved message templates that can be used to initiate conversations.</td>
+      </tr>
+      <tr>
+        <td style={tdStyle}><a href="./whatsapp-simple-message">Simple Reply</a></td>
+        <td style={tdStyle}>Text or media messages that can only be sent as replies to an existing conversation. No Meta approval required.</td>
+      </tr>
+      <tr>
+        <td style={tdStyle}><a href="./whatsapp-interactive-message">Interactive Reply</a></td>
+        <td style={tdStyle}>Interactive messages with clickable buttons that can only be sent as replies to an existing conversation. No Meta approval required.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Message types supported by service providers
+
+<div style={tableWrapperStyle} className="fyno-styled-table-wrapper">
+  <table style={tableStyle} className="fyno-styled-table">
+    <thead>
+      <tr>
+        <th style={thStyle}>Providers</th>
+        <th style={thCenterStyle}>Simple</th>
+        <th style={thCenterStyle}>Template</th>
+        <th style={thCenterStyle}>List</th>
+        <th style={thCenterStyle}>Quick Reply</th>
+        <th style={thCenterStyle}>Call to Action</th>
+        <th style={thCenterStyle}>Order Details</th>
+        <th style={thCenterStyle}>Order Status</th>
+        <th style={thCenterStyle}>Request Location</th>
+        <th style={thCenterStyle}>Request Address</th>
+        <th style={thCenterStyle}>Flow</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={tdStyle}>Meta Direct, Meta Direct Plus, Fyno WA Business, Meta Facebook, Fyno x Others, Gallabox, MSG91, Route Mobile, Saleschat Pro</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Infobip</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>MessageBird, Karix, Gupshup Enterprise, Gupshup, Connectly, Kaleyra.io</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Interakt, WATI</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Twilio, ValueFirst</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Freshchat, AiSensy, Yellow.ai</td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+        <td style={tdCenterStyle}><Badge type="no" text="No" /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## How to add dynamic content
+
+You can add dynamic content to your templates using one of the four options below:
 
 - [Placeholders](./template-dynamic-content#placeholders)
 - [System Variables](./template-dynamic-content#system-variables)
 - [Handlebars](./template-dynamic-content#handlebars)
 - [Components](./template-dynamic-content#components)
 
-## How to view change logs?
+## How to test a WhatsApp template
 
-To view the history of all the modifications made to a template, you can utilize the change logs feature.
+Use this feature to test a template thoroughly before including it in any Notification Event. This ensures early detection and resolution of any potential issues, for a seamless user experience.
 
-To do so, locate the history icon positioned at the top right corner of the template page, as shown in the image below, and click on it to view the change logs.
+<Steps>
+<Step>
 
-It shows the following details
+Click **Run Test** at the top right of the template. The **Test WhatsApp template** pop-up opens.
+
+</Step>
+<Step>
+
+Enter either the mobile number of the recipient where the WhatsApp message should be sent, or a `distinct_id`. **Make sure to enter the distinct_id of a Test User profile.**
+
+</Step>
+<Step>
+
+Select a WhatsApp integration that is already configured in Fyno. For a **Template** message, use the same integration with which the template was created.
+
+</Step>
+<Step>
+
+**Auto-fill empty placeholders** (optional, AI assistance): If you haven't already added sample values for your placeholders, you can let Fyno fill them using AI before testing. Click **Yes** to let Fyno fill sample values for any empty placeholders in the template.
+
+</Step>
+<Step>
+
+Click **Test** to send the WhatsApp message to the recipient with the selected integration. You see the success or failure message along with a link to the Sent Logs.
+
+</Step>
+</Steps>
+
+## Save and Go Live
+
+Click **Save** to save the template as a **Test** version. You can save different versions of the template this way. When you are ready, click **Go Live** and confirm to move the template and its associated components to the **Live** version.
+
+<Note>
+If your workspace has a maker-checker workflow enabled for template management, **Go Live** needs an additional approval step. Choose from your designated approvers, who review and authorize the template changes. See [Approval flow](./approval-flow) for the steps.
+</Note>
+
+## How to view change logs
+
+To view the history of all the modifications made to a template, use the change logs feature.
+
+Click the history icon at the top right corner of the template page, as shown in the image below, to view the change logs. It shows the following details:
 
 - Who updated it
 - Which version was updated
-- At what date & time its updated.
+- The date and time it was updated
 
 ![](/images/changelogs.png)
-
-## How to raise Approval requests
-
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
-
-You can read more about it [here](https://fyno.io/docs/approval-flow)
