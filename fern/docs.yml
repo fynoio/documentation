@@ -293,11 +293,8 @@ navigation:
                 - section: "Creating a Template"
                   path: "pages/templates/template-creation.mdx"
                   contents:
-                    - section: "SMS Templates"
+                    - page: "SMS Templates"
                       path: "pages/templates/template-creation/sms.mdx"
-                      contents:
-                        - page: "DLT Templates"
-                          path: "pages/templates/sms/dlt.mdx"
                     - section: "WhatsApp Templates"
                       path: "pages/templates/template-creation/whatsapp.mdx"
                       contents:

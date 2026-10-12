@@ -7,60 +7,292 @@ og:description: 'Create notification templates for SMS, WhatsApp, Email, Push, I
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno offers support for 8 different notification channels. For each channel to work, a template is mandatory, without which you won't be able to send notifications.
+A template holds the content Fyno sends for a notification. You can create one template with content for every channel you need, and each channel is edited separately inside the same template.
 
-In Fyno, templates serve as the foundation for your notification content. To streamline content management, Fyno allows you to create a single template that encompasses the content for all supported channels, including SMS, Email, WhatsApp, Push notifications, and more. A template can consist of two types of content:
+A template can consist of two types of content:
 
 - **Static Content**: This portion of the template remains consistent for all recipients and contains the core message or design of your notification.
-- **Dynamic Content**: This part of the template includes placeholders that are dynamically populated with user-specific information. These placeholders can be mapped to data from your data payload, allowing you to personalize the notification content for each recipient. Examples of dynamic content include customer names, SIP amounts, due dates, and other relevant information.
+- **Dynamic Content**: This part of the template includes placeholders that are dynamically populated with user-specific information. These placeholders can be mapped to data from your data payload, allowing you to personalize the notification content for each recipient. Examples of dynamic content include customer names, SIP amounts, due dates, and other relevant information. Learn more in [Dynamic Content](./template-dynamic-content).
 
-![](/images/template_create.png)
+## Supported channels
 
-<Steps>
-  <Step>Once a template is created, you can add content for each channel as shown below.</Step>
-  <Step>Click 'Add' to add a new channel</Step>
-  <Step>Click '+' next to Placeholders to add dynamic content in the template. ![](/images/templates_channel_placeholders.png)</Step>
-</Steps>
+A channel needs a template before Fyno can send on it. Templates support the following channels.
 
-To understand how templates work for each **Channel**, let's go a little bit in-depth for each one.
+| Channel | Guide |
+| --- | --- |
+| SMS | [SMS Templates](./template-creation-sms) |
+| WhatsApp | [WhatsApp Templates](./template-creation-whatsapp) |
+| Email | [Email Templates](./template-creation-email) |
+| Push | [Push Templates](./template-creation-push) |
+| InApp | [InApp Templates](./template-creation-inapp) |
+| Voice | [Voice Templates](./template-creation-voice) |
+| Webpush | [Web Push Template](./web-push-template) |
+| RCS | [RCS Template](./rcs-template) |
+| Slack | [Slack Template](./template-creation-slack) |
+| Discord | [Discord Template](./template-creation-discord) |
+| Teams | [Teams Template](./template-creation-teams) |
 
-1. [SMS](./template-creation-sms)
-2. [WhatsApp](./template-creation-whatsapp)
-3. [Email](./template-creation-email)
-4. [Chat](./template-creation-chat)
-5. [Push](./template-creation-push)
-6. [InApp](./template-creation-inapp)
-7. [Web Push](./web-push-template)
-8. [Voice](./template-creation-voice)
-
-## Test and Live Versions
-
-Every template that you create will be saved as **Test** versions, allowing you to test different variations and content of templates, to suit your needs.
-
-When a **Test** version is saved, this does not disturb the **Live** version that may be plugged in your application and may be active.
-
-When you are confident and happy with the **Template** that you have created and tested in **Test** version, this can then be moved into the live version by following the below steps.
+## Create a template
 
 <Steps>
-  <Step>Make the final changes to the template and test it to make sure you are getting the desirable results.</Step>
-  <Step>On the top of the page, next to the name of the **Template**, you will see the Test Version mentioned.</Step>
-  <Step>To keep this as a **Test**, click on **Save** and the draft will be saved.</Step>
-  <Step>To make this version of the **Test** version live, expand the **Save** menu to find **Save and Promote**.</Step>
-  <Step>This will make the current version live in the **Template**.</Step>
+  <Step title="Open the Templates page">
+    Go to **Templates → Fyno** and click **Create** in the top right corner.
+  </Step>
+  <Step title="Name the template">
+    Enter a **Name**. Use something your team will recognize, such as `order_shipped` or `sip-payment-reminder`.
+  </Step>
+  <Step title="Add it to a group (optional)">
+    Choose a group from **Add To Group (Optional)** to keep related templates together.
+  </Step>
+  <Step title="Select channels">
+    Select every channel this template should support, or select **Use all channels**. SMS is selected by default. You can add or remove channels later from the editor.
+  </Step>
+  <Step title="Submit">
+    Click **Submit**. The template editor opens with the first channel ready to edit.
+  </Step>
 </Steps>
 
-<Info>Once a **Template** is live, all the **Notification Events** into which this template is plugged in will also be automatically updated and modified.</Info>
+![](/images/tplcreate-v2-create-template-modal.png)
 
-## Approval flow
+## The template editor
 
-If you have enabled 'Approval' in Security Settings, when you click 'Go Live', you will need to raise an approval request for the changes you have done.
+The editor has four areas. The example below shows an SMS channel, but the layout is the same for every channel.
+
+![](/images/tplcreate-v2-editor.png)
+
+<AccordionGroup>
+<Accordion title="Header bar" defaultOpen>
+
+| Element | What it does |
+| --- | --- |
+| **‹ Fyno-Templates** | Returns to the Templates page. |
+| **Template name and version dropdown** | Shows the version you are viewing, for example **v1 (Live)**. Use the dropdown to switch between versions. |
+| **Last published** | Shows who last took the template live, which version, and when. |
+| **History icon** | Opens the [change logs](#view-change-logs). |
+| **Go Live** | Promotes the current version to Live. |
+| **Save** | Saves your changes as a Test version. |
+
+</Accordion>
+<Accordion title="Left panel">
+
+- **Channels** lists every channel in the template. Click a channel to edit it, or click **Add** to add another channel.
+- **Search** finds placeholders, Handlebars helpers, variables, and components by name.
+- **Placeholders**, **Handlebars**, **System Variables**, and **Components** hold everything you can insert as [dynamic content](#add-dynamic-content).
+
+</Accordion>
+<Accordion title="Content editor">
+
+The channel-specific form where you write the message. Its toolbar includes:
+
+- **Reset**, which reverts unsaved changes in this channel.
+- **Clear** (eraser icon), which empties the channel's fields.
+- **Run Test**, which sends a [test message](#test-a-template) to a real recipient.
+
+</Accordion>
+<Accordion title="Preview">
+
+A live device preview on the right that shows how the message will appear to the recipient, with sample values filled in for any placeholders.
+
+</Accordion>
+</AccordionGroup>
+
+## Add dynamic content
+
+Dynamic content is written using double curly braces, for example `{{customer_name}}`. At send time, Fyno replaces each one with the matching value. The left panel gives you four sources of dynamic content.
+
+### Placeholders
+
+Placeholders are replaced with values from the `data` payload you send when you trigger a notification.
 
 <Steps>
-  <Step>You will see the below popup once you click 'Go Live' . Select approvers from the 'From' dropdown. You can choose one or more approvers. You need to write a short message mentioning the reason for approval request. If you select 'Go Live on approval', the feature will go Live once the approver approves the request. Clicking 'Send for Approval' will send the request. ![](/images/eadd428-event_approval.png)</Step>
-  <Step>You will see the approval request in the Template page as shown . You can click 'Cancel' to cancel the request. ![](/images/2abc2a1-notif_event_approval_request.png)</Step>
-  <Step>The approvers will receive an Email, an InApp notification for every approval request.</Step>
-  <Step>The approver will see the request in the Template page. The approver can approve or reject from the respective Template. ![](/images/60de965-approval_request_feature_page.png)</Step>
-  <Step>Also if the approver wants to see all the pending requests, then can see them in the 'Requests' page as shown below. ![](/images/ba2bc39-Pending_Request.png)</Step>
-  <Step>The approver can choose one or more requests and either Approve or Reject. While rejecting they need to provide a rejection reason.</Step>
-  <Step>If the request is Approved, the feature will go Live if the requestor selected 'Go Live on approval' while raising the request. Otherwise, they have to click 'Go Live' to take the feature Live.</Step>
+  <Step title="Open the placeholder editor">
+    Click **+** next to **Placeholders** in the left panel.
+
+    ![](/images/tplcreate-v2-placeholders-panel.png)
+  </Step>
+  <Step title="Add keys and sample values">
+    In the **Form** tab, enter a **Key** and a **Sample value** for each placeholder. Click **Add Key** for more rows, or switch to the **JSON** tab to paste them all at once.
+
+    ![](/images/tplcreate-v2-placeholders-modal.png)
+  </Step>
+  <Step title="Save the placeholders">
+    Click **Done**. Sample values are only used for the preview and for test sends.
+  </Step>
+  <Step title="Use them in your content">
+    Type the key inside double curly braces wherever you need it, for example `Hi {{name}}, your order {{order_id}} has shipped.`
+  </Step>
 </Steps>
+
+In the **JSON** tab, sample values look like this:
+
+```json
+{
+  "name": "Priya",
+  "order_id": "ORD-48213",
+  "amount": "2,499"
+}
+```
+
+<Tip>
+Want short or trackable links? Click **Configure** on the **Shorten and track URLs with Fyno Shorty** banner inside the placeholder editor. See [Fyno Shorty](./url-shortener) for details.
+</Tip>
+
+<Warning>
+Placeholder keys can contain letters, numbers, periods (`.`), underscores (`_`), and hyphens (`-`). A key cannot be made up of numbers only.
+</Warning>
+
+### Handlebars
+
+Handlebars helpers transform values at send time, such as formatting dates, doing arithmetic, changing text case, or showing content only when a condition is true. The editor groups 48 helpers into categories.
+
+![](/images/tplcreate-v2-handlebars-categories.png)
+
+| Category | Use it to |
+| --- | --- |
+| **Content** | Insert or repeat blocks of content. |
+| **Date & Time** | Format and adjust dates and times. |
+| **Math** | Perform arithmetic on numeric values. |
+| **String** | Change case, trim, replace, and otherwise transform text. |
+| **Compare** | Check whether values are equal, greater, or smaller. |
+| **Logic Gates** | Combine conditions with and/or logic. |
+| **Build Your Own** | Compose your own expression from the helpers above. |
+
+See [Handlebars](./templates-handlebars) for every helper with examples.
+
+### System Variables
+
+System Variables are values Fyno already knows, so you do not need to send them in your payload.
+
+![](/images/tplcreate-v2-system-variables.png)
+
+| Group | What it contains |
+| --- | --- |
+| **Digest** | Values for templates sent through a digest in a [workflow](./creating-a-workflow-with-digest). |
+| **User Properties** | Properties from the recipient's [user profile](./user-profiles-overview). |
+| **Subscription** | Values related to the recipient's subscription preferences. |
+| **Verify** | Values generated by [Fyno Verify](./fyno-verify-otp-link). |
+
+To use a user profile property, follow this format:
+
+| Property type | Format | Example |
+| --- | --- | --- |
+| Built-in property | `{{$user.$<property>}}` | `{{$user.$name}}` |
+| Custom property | `{{$user.<property>}}` | `{{$user.loyalty_tier}}` |
+
+### Components
+
+Components are reusable building blocks, such as a PDF attachment or a shared header, that you create once and use across templates. Click **+** next to **Components** to add one, then select it to insert it.
+
+![](/images/tplcreate-v2-components-panel.png)
+
+Learn more in [Components](./components) and [Dynamic Content](./template-dynamic-content).
+
+## Test a template
+
+Send a real message before you attach a template to a notification event, so you can catch problems early.
+
+<Steps>
+  <Step title="Click Run Test">
+    Open the channel you want to test and click **Run Test** at the top of the content editor.
+  </Step>
+  <Step title="Choose a recipient">
+    Enter the recipient's destination, such as a mobile number or email address, or enter the `distinct_id` of a user profile.
+
+    <Note>
+    If you use a `distinct_id`, use a **test user profile** so real customers never receive test messages.
+    </Note>
+  </Step>
+  <Step title="Choose a provider">
+    Select one of the providers already configured for this channel in your integrations.
+  </Step>
+  <Step title="Send">
+    Click **Test**. Fyno shows whether the send succeeded or failed, along with a link to the [Sent Logs](./sent-logs) entry.
+  </Step>
+</Steps>
+
+## Save and go live
+
+Every template has **Test** and **Live** versions, so you can work on changes without affecting what your users receive.
+
+| Action | Result |
+| --- | --- |
+| **Save** | Saves your changes as a **Test** version. The current Live version keeps sending as before. |
+| **Go Live** | Promotes the version you are viewing to **Live**. |
+
+The version dropdown next to the template name shows which version you are viewing, for example **v2 (Test)** or **v1 (Live)**.
+
+<Warning>
+When a template goes live, every notification event, workflow, and campaign that uses it starts sending the new Live version immediately. Test before you go live.
+</Warning>
+
+## View change logs
+
+Click the **history icon** in the header bar to see every change made to the template. Each entry shows:
+
+- Who made the change.
+- Which version was changed.
+- The date and time of the change.
+
+## Request approval to go live
+
+If your workspace has **Approval** enabled in security settings (a maker-checker workflow), clicking **Go Live** raises an approval request instead of publishing straight away.
+
+<Tabs>
+  <Tab title="As the requester">
+    <Steps>
+      <Step title="Click Go Live">
+        The **Request Approval** dialog opens.
+      </Step>
+      <Step title="Choose approvers">
+        Open the **Select Approvers** dropdown and select one or more approvers.
+
+        ![](/images/tplcreate-v2-approval-select-approvers.png)
+      </Step>
+      <Step title="Add a message and decide when it goes live">
+        In **Write a Message**, add a short reason for the request. Select **Go live on approval** to publish automatically once the request is approved. Leave it unselected if you want to publish manually after approval.
+
+        ![](/images/tplcreate-v2-approval-message.png)
+      </Step>
+      <Step title="Send the request">
+        Click **Request**. The pending request appears at the top of the template page, along with the number of approvals required.
+
+        ![](/images/tplcreate-v2-approval-pending-banner.png)
+      </Step>
+      <Step title="Cancel the request (optional)">
+        To withdraw the request, click **Cancel Request**, then click **Confirm**.
+
+        ![](/images/tplcreate-v2-approval-cancel-request.png)
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="As the approver">
+    <Steps>
+      <Step title="Get notified">
+        You receive an email and an InApp notification for every approval request.
+      </Step>
+      <Step title="Review the request">
+        Open the template to approve or reject the request there, or go to **Approval Requests** in the left navigation to see every pending request.
+
+        ![](/images/60de965-approval_request_feature_page.png)
+
+        ![](/images/ba2bc39-Pending_Request.png)
+      </Step>
+      <Step title="Approve or reject">
+        Select one or more requests and click **Approve** or **Reject**. A rejection reason is required.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+Once approved, the version goes live automatically if the requester selected **Go Live on approval**. Otherwise, the requester clicks **Go Live** to publish it. See [Approval Request](./approval-request) for more.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="SMS Templates" icon="fa-solid fa-comment-sms" href="./template-creation-sms">
+    Build SMS content with DLT support, encoding, and sender settings.
+  </Card>
+  <Card title="WhatsApp Templates" icon="fa-brands fa-whatsapp" href="./template-creation-whatsapp">
+    Build template, simple, and interactive WhatsApp messages.
+  </Card>
+</CardGroup>

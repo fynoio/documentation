@@ -7,83 +7,149 @@ og:description: 'Configure URL click tracking in WhatsApp templates using Fyno S
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-The process for enabling URL tracking varies based on where you create your WhatsApp template:
+Fyno tracks clicks on WhatsApp **Visit Website** buttons by routing them through [Fyno Shorty](./url-shortener), Fyno's URL shortener. Every click is recorded before the user is sent on to the actual URL.
 
-- WhatsApp template created directly in Fyno
-- WhatsApp template created through Meta or other Business Solution Providers (BSPs)
+The setup depends on where you create the WhatsApp template:
 
-### WhatsApp template created directly in Fyno
+- [WhatsApp template created in Fyno](#whatsapp-template-created-in-fyno)
+- [WhatsApp template created in Meta or a BSP](#whatsapp-template-created-in-meta-or-a-bsp)
 
-If you are creating a WhatsApp template in Fyno and wants to track the URLs in the WhatsApp message, follow the below steps.
+## Choose a tracking type
 
-<Steps>
-  <Step>Go to Template -> External template to create a WhatsApp template. You can read how to create a WhatsApp template here.</Step>
-  <Step>Add a button 'Visit Website' ![](/images/59a9cb346384c2ef782b6666e7c871a4e92a1691a1a29d649ad18ec75b75d13a-external_template_button.png)</Step>
-  <Step>
-    You can have 2 types of URL - Static and Dynamic.
-    <ul>
-      <li>**Static** - You can use static URL, when you send same URL to all your users like your website URL etc.</li>
-      <ol>
-        <li>Add a button text which will appear as CTA in your WhatsApp message</li>
-        <li>Provide a valid website URL.</li>
-        <li>Enable 'Track URL' checkbox.</li>
-      </ol>
-      <li>**Dynamic** - You can use Dynamic URL when you have to send different URLs to different users like Payment links etc.</li>
-      <ol>
-        <li>Enable 'Dynamic URL' toggle</li>
-        <li>Add a button text which will appear as CTA in your WhatsApp message</li>
-        <li>Provide a valid website URL.</li>
-        <li>Enable 'Track URL' checkbox.</li>
-      </ol>
-    </ul>
-  </Step>
-  <Step>Click 'Save' and send it to Meta for approval.</Step>
-  <Step>Once the template is approved, go to _Templates -> Fyno_ and create a Meta Direct template.</Step>
-  <Step>Select 'Synced' and choose the template you got approved in Step 4.</Step>
-  <Step>In the buttons section, if you added dynamic URL, add the placeholder which you want to track. In case, if you have added static URL, you don't have to do anything. ![](/images/91a10205f804447f1958b57b2a6969d406123d9b270266ee69146bd63858c757-dynamic_url_fyno.png)</Step>
-  <Step>Make sure to add the placeholder in the 'Placeholder' section on the LHS of the template editor.You can also add a combination of static and dynamic placeholder as shown below ![](/images/template_whatsapp_dynamic_shorty.png)</Step>
-  <Step>
-    URL Tracking type - There are 2 ways you can track a URL click.
-    <ol>
-      <li>**General**: Choose this option if you want to track URL clicks only at Notification Event level and not at channel or user level. This is recommended for use cases like creating product URLs for Google/FB Ads and or you want to track only clicks. If you choose this option, you won't see the 'Click' status in the Sent logs or in 'Engagement funnel' chart in Analytics. You will see the cumulative no of clicks under 'URL engagement' chart in analytics.</li>
-      <li>**User-Level**: Choose this option, if you want to track URL at user and channel level. This is recommended for use cases like sending unique payment links to users and or you want to track the click event at the message level. If you choose this option, you will see the 'Click' status in the Sent logs and in 'Engagement funnel' chart in Analytics.</li>
-    </ol>
-  </Step>
-</Steps>
+Whichever way you create the template, you choose one of two URL tracking types.
 
-### WhatsApp template created outside of Fyno
+| | General | User-Level |
+| --- | --- | --- |
+| **Tracks clicks at** | Notification Event level | User and channel level |
+| **Click status in Sent Logs** | No | Yes |
+| **Engagement funnel chart in Analytics** | No | Yes |
+| **URL engagement chart in Analytics** | Yes, cumulative number of clicks | Yes |
+| **Recommended for** | Product URLs for Google or Facebook ads, or when you only need the number of clicks | Unique links per user, such as payment links, or when you need the click event at the message level |
 
-<Note>If you want to track URL clicks, make sure you select Dynamic URL option.</Note>
-
-If you are creating a WhatsApp template in Meta or any service providers such as Kaleyra, Gupshup etc, and wants to track the URLs in the WhatsApp message, follow the below steps.
+## WhatsApp template created in Fyno
 
 <Steps>
-  <Step>Go to Meta or any BSPs to create a WhatsApp template.</Step>
-  <Step>In the WhatsApp template, add a Type of action 'Visit Website'.</Step>
-  <Step>
-    You can have 2 types of URL, Static and Dynamic. However if you want to track URL clicks, make sure you select Dynamic URL option.
-    <ul>
-      <li>
-        **Dynamic** - You can use Dynamic URL when you have to send different URLs to different users like Payment links etc. ![](/images/e6fb4d8c118f96b6726b9e4c72c249a5d66eea7753621481a02d4aab9db1f8ed-dynamic_url_meta.png)
-        <ol>
-          <li>Add a button text which will appear as CTA in your WhatsApp message</li>
-          <li>Choose Dynamic as URL Type</li>
-          <li>In the website URL, provide this - `https://fy1.in`</li>
-          <li>In the Sample URL, provide this - `https://fy1.in`</li>
-        </ol>
-      </li>
-    </ul>
-  </Step>
-  <Step>Once the template is approved, go to Fyno application , go to _Templates -> External_ and click 'Sync' icon next to WhatsApp. This will sync the template you created in BSPs to Fyno.</Step>
-  <Step>Go to _Templates -> Fyno_ and create a Meta Direct template.</Step>
-  <Step>Select 'Synced' and choose the template you got approved in Step 4.</Step>
-  <Step>In the buttons section, add the placeholder which you want to track. ![](/images/91a10205f804447f1958b57b2a6969d406123d9b270266ee69146bd63858c757-dynamic_url_fyno.png)</Step>
-  <Step>Make sure to add the placeholder in the 'Placeholder' section on the RHS of the template editor.You can also add a combination of static and dynamic placeholder as shown below ![](/images/template_whatsapp_dynamic_shorty.png)</Step>
-  <Step>
-    URL Tracking type - There are 2 ways you can track a URL click.
-    <ol>
-      <li>**General** : Choose this option if you want to track URL clicks only at Notification Event level and not at channel or user level. This is recommended for use cases like creating product URLs for Google/FB Ads and or you want to track only clicks. If you choose this option, you won't see the 'Click' status in the Sent logs or in 'Engagement funnel' chart in Analytics. You will see the cumulative no of clicks under 'URL engagement' chart in analytics.</li>
-      <li>**User-Level** : Choose this option, if you want to track URL at user and channel level. This is recommended for use cases like sending unique payment links to users and or you want to track the click event at the message level. If you choose this option, you will see the 'Click' status in the Sent logs and in 'Engagement funnel' chart in Analytics.</li>
-    </ol>
-  </Step>
+<Step title="Create the WhatsApp template">
+
+Go to **Templates → External** and create a WhatsApp template. See [External templates](./external-templates).
+
+</Step>
+<Step title="Add a Visit Website button">
+
+Add a **Visit Website** button and configure the URL.
+
+![](/images/59a9cb346384c2ef782b6666e7c871a4e92a1691a1a29d649ad18ec75b75d13a-external_template_button.png)
+
+You can use one of two URL types:
+
+- **Static URL:** Use this when you send the same URL to all your users, such as your website URL.
+  1. Add the button text that appears as the CTA in your WhatsApp message.
+  2. Provide a valid website URL.
+  3. Select the **Track URL** checkbox.
+- **Dynamic URL:** Use this when you send different URLs to different users, such as payment links.
+  1. Turn on the **Dynamic URL** toggle.
+  2. Add the button text that appears as the CTA in your WhatsApp message.
+  3. Provide a valid website URL.
+  4. Select the **Track URL** checkbox.
+
+</Step>
+<Step title="Submit for approval">
+
+Click **Save** and send the template to Meta for approval.
+
+</Step>
+<Step title="Use the template in a Fyno template">
+
+Once the template is approved, go to **Templates → Fyno** and create a template with the **WhatsApp** channel. Choose **Template** as the **Message Type** and select the approved template in **External Template Name / ID**.
+
+</Step>
+<Step title="Set the button URL">
+
+In the buttons section, add the placeholder you want to track if you added a dynamic URL. If you added a static URL, you don't have to do anything.
+
+![](/images/91a10205f804447f1958b57b2a6969d406123d9b270266ee69146bd63858c757-dynamic_url_fyno.png)
+
+</Step>
+<Step title="Define the placeholder">
+
+Add the same placeholder in the **Placeholders** section in the left panel of the template editor. You can also combine static text and dynamic placeholders, as shown below.
+
+![](/images/template_whatsapp_dynamic_shorty.png)
+
+</Step>
+<Step title="Choose the tracking type">
+
+Select **General** or **User-Level**. See [Choose a tracking type](#choose-a-tracking-type).
+
+</Step>
 </Steps>
+
+## WhatsApp template created in Meta or a BSP
+
+<Warning>
+To track URL clicks on a template created outside Fyno, the button must use the **Dynamic** URL type.
+</Warning>
+
+Follow these steps if you create the WhatsApp template in Meta or a service provider such as Kaleyra or Gupshup.
+
+<Steps>
+<Step title="Create the template">
+
+Create a WhatsApp template in Meta or your BSP.
+
+</Step>
+<Step title="Add a Visit Website button with a dynamic URL">
+
+Add **Visit Website** as the type of action and configure it as follows:
+
+| Setting | Value |
+| --- | --- |
+| **Button text** | The text that appears as the CTA in your WhatsApp message |
+| **URL type** | Dynamic |
+| **Website URL** | `https://fy1.in` |
+| **Sample URL** | `https://fy1.in` |
+
+![](/images/e6fb4d8c118f96b6726b9e4c72c249a5d66eea7753621481a02d4aab9db1f8ed-dynamic_url_meta.png)
+
+</Step>
+<Step title="Sync the approved template">
+
+Once the template is approved, go to **Templates → External** in Fyno and click the **Sync** icon next to WhatsApp. This syncs the template you created in your BSP to Fyno.
+
+</Step>
+<Step title="Use the template in a Fyno template">
+
+Go to **Templates → Fyno** and create a template with the **WhatsApp** channel. Choose **Template** as the **Message Type** and select the synced template in **External Template Name / ID**.
+
+</Step>
+<Step title="Set the button URL">
+
+In the buttons section, add the placeholder you want to track.
+
+![](/images/91a10205f804447f1958b57b2a6969d406123d9b270266ee69146bd63858c757-dynamic_url_fyno.png)
+
+</Step>
+<Step title="Define the placeholder">
+
+Add the same placeholder in the **Placeholders** section in the left panel of the template editor. You can also combine static text and dynamic placeholders, as shown below.
+
+![](/images/template_whatsapp_dynamic_shorty.png)
+
+</Step>
+<Step title="Choose the tracking type">
+
+Select **General** or **User-Level**. See [Choose a tracking type](#choose-a-tracking-type).
+
+</Step>
+</Steps>
+
+## Related
+
+<CardGroup cols={2}>
+<Card title="Fyno Shorty" icon="fa-solid fa-link" href="./url-shortener">
+Shorten URLs and configure click tracking.
+</Card>
+<Card title="WhatsApp Template" icon="fa-brands fa-whatsapp" href="./whatsapp-template-message">
+Configure buttons, dynamic URLs and multiple Shorty links.
+</Card>
+</CardGroup>
