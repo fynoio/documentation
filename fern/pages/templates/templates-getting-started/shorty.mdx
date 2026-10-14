@@ -7,39 +7,84 @@ og:description: 'Fyno Shorty enables you to create trackable short URLs for camp
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno Shorty enables you to transform long links into trackable short URLs. You can generate both generic URLs and user specific URLs, which will help you to track clicks at user and channel level.
+Fyno Shorty turns long links into trackable short URLs. You can generate general URLs or user-specific URLs, so you can track clicks at the notification event, user or channel level.
 
-## How it works?
+<Info>
+Shortened URLs stay valid for 30 days.
+</Info>
+
+## Shorten URLs in your placeholders
 
 <Steps>
-<Step>Within the template placeholder popup, click the 'Configure' option.
-   ![](/images/shorty_placeholders_config.png)</Step>
+<Step title="Open Fyno Shorty">
 
-<Step>Upon clicking, the UI will appear as depicted below. It show the list of URLs present in the placeholders. ![](/images/shorty_enable_toggle.png)</Step>
+In the **Template Placeholders** pop-up, click **Configure** on the **Shorten and track URLs with Fyno Shorty** banner.
 
-<Step>Enable the toggle for the URLs for which you want to track the clicks.</Step>
+![](/images/dyncontent-v2-placeholders-form.png)
 
-<Step>
-  Choose the type of URL you want to generate ![](/images/shorty_configure_type.png)
-  <ul>
-    <li>**General** : Choose this option if you want to track URL clicks only at Notification Event level and not at channel or user level. This is recommended for use cases like creating product URLs for Google/FB Ads and or you want to track only clicks.</li>
-    <li>**User-Level** : Choose this option, if you want to track URL at user and channel level. This is recommended for use cases like sending unique payment links to users and or you want to track the click event at the message level.</li>
-  </ul>
 </Step>
+<Step title="Choose the URLs to track">
 
-<Step>**Exclude Channels** - This is optional. You can enable this option if you wish to exclude specific channels from URL shortening. For example, in this scenario where three channels are configured in the template (SMS, WhatsApp, Email). If you prefer not to use the URL shortener for Email, simply choose "Email" from the dropdown menu.
-   ![](/images/shorty_exclude_channels.png)</Step>
+Fyno Shorty lists the URLs in your placeholders. Turn on the toggle for each URL whose clicks you want to track.
+
+![](/images/shorty_enable_toggle.png)
+
+</Step>
+<Step title="Choose the URL type">
+
+Select the type of URL to generate. See [General vs User-Level](#general-vs-user-level).
+
+![](/images/shorty_configure_type.png)
+
+</Step>
+<Step title="Exclude channels (optional)">
+
+Turn on **Exclude Channels** to skip URL shortening for specific channels. For example, if your template has SMS, WhatsApp and Email, and you don't want to shorten URLs in email, select **Email** from the dropdown.
+
+![](/images/shorty_exclude_channels.png)
+
+</Step>
 </Steps>
 
-<Info>The shortened URLs generated will remain valid for a duration of 30 days.</Info>
+## General vs User-Level
 
-## How to add custom URLs?
+| | General | User-Level |
+| --- | --- | --- |
+| **Tracks clicks at** | Notification event level | User and channel level |
+| **Recommended for** | Product URLs for Google or Facebook ads, or when you only need the number of clicks | Unique links per user, such as payment links, or when you need the click event at the message level |
 
-For example, you want to create a dynamic URL based on different placeholder values and shorten it, then you can use Custom URL option to achieve it.
+## Create custom URLs
 
-Lets say, you have 2 placeholders, paymentURL and UTM source and use it to create a dynamic URL.
+Use a custom URL when you want to build a dynamic URL from several placeholder values and shorten it. For example, you might combine a `paymentURL` placeholder and a UTM source placeholder into one URL.
 
-- Go to Custom URL tab in the config popup. ![](/images/shorty_customurl.png)
-- Click 'Add URL'. You can create upto 3 custom URLs. 
-- Add the placeholders like shown below ![](/images/shorty_config_updated.png)
-- Make sure to use the system placeholder shown at the bottom (highlighted in Red) in your template. 
+<Steps>
+<Step title="Open the Custom URL tab">
+
+In the Fyno Shorty pop-up, go to the **Custom URL** tab.
+
+![](/images/shorty_customurl.png)
+
+</Step>
+<Step title="Add a URL">
+
+Click **Add URL**. You can create up to 3 custom URLs.
+
+</Step>
+<Step title="Build the URL from placeholders">
+
+Add the placeholders that make up the URL, as shown below.
+
+![](/images/shorty_config_updated.png)
+
+</Step>
+<Step title="Use the system placeholder in your template">
+
+Fyno shows a system placeholder at the bottom of the pop-up for each custom URL. Use that system placeholder in your template content, instead of the original URL.
+
+</Step>
+</Steps>
+
+## Related
+
+- [How to track URL clicks in WhatsApp](./track-url-clicks-in-whatsapp)
+- [Dynamic Content](./template-dynamic-content)

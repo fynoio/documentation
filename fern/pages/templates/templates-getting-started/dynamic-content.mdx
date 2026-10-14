@@ -7,81 +7,153 @@ og:description: 'Explore Fyno’s dynamic content capabilities, including placeh
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-When creating templates in Fyno, dynamic content plays a crucial role in personalizing your notifications. This guide explores the key features that enable dynamic content in templates, including Placeholders, System Variables, Handlebars, and Components. By leveraging these features, you can easily insert dynamic data and enhance the flexibility of your templates. Let’s dive into the details of each feature.
+Dynamic content lets you personalize your notifications with data that changes for each recipient. The left panel of the template editor has four sources of dynamic content.
+
+| Source | Use it to |
+| --- | --- |
+| [Placeholders](#placeholders) | Insert values from the `data` payload you send when you trigger a notification. |
+| [Handlebars](#handlebars) | Transform values and add logic, such as conditions, loops, and date or number formatting. |
+| [System Variables](#system-variables) | Insert values Fyno already has, such as digest data, user properties, subscription links and Verify OTPs. |
+| [Components](#components) | Reuse building blocks, such as headers, footers and PDF attachments, across templates. |
 
 ## Placeholders
 
-Below the "Channels" section on the left, you can find placeholders. Placeholders help you to add dynamic variables in your template. Placeholders are denoted by `{{ }}` . You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. Once you add any placeholders in your templates using `{{ }}` and open the Placeholders popup, you will see an option 'New placeholders detected. Add them here?' . When you click YES, then the placeholder will get automatically added here.
+Placeholders are replaced with the dynamic data sent in the `data` payload. Placeholders are denoted by `{{ }}`.
 
-![](/images/fyno_placeholders.png)
+![](/images/dyncontent-v2-placeholders-panel.png)
 
-## System Variables
+<Steps>
+<Step title="Open the placeholder editor">
 
-This will have a list of pre-defined system variables in Fyno. There are 4 different types of system varaibles
+Click **+** or **Add** next to **Placeholders** in the left panel. The **Template Placeholders** pop-up opens.
 
-1. Digest
-2. User
-3. Subscription
-4. Verify
+</Step>
+<Step title="Add keys and sample values">
 
-### Digest
+In the **Form** tab, enter a **Key** and a **Sample value** for each placeholder. Click **Add Key** for more rows, or use the delete icon to remove one. Use **Search Key** to find a placeholder.
 
-If you use 'Digest' action in your workflow, you will see 3 variables under this section which you can use in your templates.
+![](/images/dyncontent-v2-placeholders-form.png)
 
-![](/images/fyno_digest.png)
+You can also switch to the **JSON** tab and enter all the keys and sample values as JSON.
 
-- head - gives you the top 5 payloads in the digest
-- tail - gives you the bottom 5 payloads in the digest
-- count - gives you the total count of payloads in the digest
+![](/images/dyncontent-v2-placeholders-json.png)
 
-You can read more about how Digest works and how to use these variables in the template [here](./creating-a-workflow-with-digest).
+</Step>
+<Step title="Save">
 
-### User
+Click **Done** to save, **Cancel** to discard your changes, or **Reset** to start over. Sample values are only used for the preview and for test sends.
 
-If you use Fyno's User profile, you will see all the all the user properties linked to a user profile under this section. You can read more about User profiles and how to create user properties [here](./adding-new-user-property)
+</Step>
+<Step title="Use the placeholder in your content">
 
-![](/images/fyno_placeholder_users.png)
+Type the key inside double curly braces wherever you need it, for example `Hi {{name}}`.
 
-### Subscription
+</Step>
+</Steps>
 
-If you want to enable your users to Opt-in/Opt-out or unsubscribe from your notification, you can use the variables available under Subscription section.
+<Tip title="Placeholders are detected automatically">
+When you add a placeholder in your content using `{{ }}` and open the placeholder editor, Fyno shows **New placeholders detected. Add them here?** Click **Yes** to add them automatically.
+</Tip>
 
-![](/images/fyno_placeholder_subscription.png)
-
-- Opt-in/Opt-out - Use it as part of button payload in WhatsApp templates to enable users to Opt-in/Opt-out of your WhatsApp notifications.
-- Unsubscribe - Adds a clickable link in your notification which the user can click to Unsubscribe. Generally used in the footer of the Email templates.
-
-### Verify
-
-Fyno Verify offers a fully managed API for seamless multichannel user verification via OTP or link. You can read more about how Fyno Verify works [here](./fyno-verify-otp-link).
-
-![](/images/fyno_verify_1.png)
-
-- OTP - Use this variable if you want to generate and Verify OTP.
-- Link - Use this variable if you want to validate an Email or Mobile no using a link.
+<Info>
+To shorten and track URLs in your placeholders, click **Configure** on the **Shorten and track URLs with Fyno Shorty** banner. See [Fyno Shorty](./url-shortener).
+</Info>
 
 ## Handlebars
 
-Handlebars is a JavaScript library used for creating dynamic templates.
+Handlebars is a JavaScript library for creating dynamic templates. Handlebars in Fyno support conditional operations, loops, date and time formatting, partial searches and custom helpers. The left panel groups 48 helpers into categories.
 
-![](/images/dynamic_content_handlebar.png)
+![](/images/dyncontent-v2-handlebars-categories.png)
 
-It allows you to define templates with placeholders, and these placeholders are replaced with data when the template is triggered with the information sent in the payload.
+| Category | Use it to |
+| --- | --- |
+| **Content** | Insert or repeat blocks of content. |
+| **Date & Time** | Format and compare dates and times. |
+| **Math** | Perform arithmetic on numbers. |
+| **String** | Change, trim, split and otherwise transform text. |
+| **Compare** | Check whether values are equal, greater or smaller. |
+| **Logic Gates** | Combine conditions with and/or logic. |
+| **Build Your Own** | Generate a handlebar with Fyno AI, or build one in the Handlebars Builder. |
 
-Handlebars within Fyno support features like conditional operations, loops, date time formatting, partial searches, and custom helpers, making it a very helpful tool to use when creating your templates.
+See [Handlebars](./templates-handlebars) for every helper with examples.
 
-You can read more about how Handlebar works [here](./templates-handlebars)
+### Build Your Own
 
-You can also use our [Visual Handlebar builder](https://www.handlebarsbuilder.com/) to create dynamic logic with custom conditions, loops, & helpers. 
+Under **Build Your Own**, you can create dynamic logic with custom conditions and loops in two ways:
+
+- **Generate with Fyno AI:** Click **Generate** and describe what you need. See [Generate Handlebars with Fyno AI](./templates-handlebars#generate-handlebars-with-fyno-ai).
+- **Handlebars Builder:** Click **Handlebars Builder** to open the visual builder.
+
+![](/images/hbcreate-v2-build-your-own.png)
+
+In the **Handlebar Builder**, add blocks from the toolbox (**Content**, **Date & Time**, **String**, **Math**, **Logic**, **Values** and **Print**) to build your logic visually. The **Handlebar Syntax** panel shows the generated handlebar, **Input Object** is where you enter sample data, and **Output Preview** shows the result. Click **Copy** to copy the syntax or input.
+
+![](/images/dyncontent-v2-handlebar-builder.png)
+
+## System Variables
+
+System Variables are pre-defined values in Fyno, so you don't need to send them in your payload. There are four groups.
+
+![](/images/dyncontent-v2-system-variables.png)
+
+<AccordionGroup>
+<Accordion title="Digest">
+
+If you use the **Digest** action in your workflow, three variables are available:
+
+| Variable | What it gives you |
+| --- | --- |
+| **head** | The top 5 payloads in the digest. |
+| **tail** | The bottom 5 payloads in the digest. |
+| **count** | The total count of payloads in the digest. |
+
+Learn more in [Creating a workflow with Digest](./creating-a-workflow-with-digest).
+
+</Accordion>
+<Accordion title="User Properties">
+
+If you use Fyno's user profiles, all the user properties linked to a user profile are listed here. Learn how to create user properties in [Adding a new user property](./adding-new-user-property).
+
+To use a user property, add it in this format:
+
+| Property type | Format | Example |
+| --- | --- | --- |
+| Built-in property | `{{$user.$<property>}}` | `{{$user.$name}}` |
+| Custom property | `{{$user.<property>}}` | `{{$user.loyalty_tier}}` |
+
+</Accordion>
+<Accordion title="Subscription">
+
+Use these variables to let users opt in, opt out or unsubscribe from your notifications.
+
+| Variable | Use it to |
+| --- | --- |
+| **Opt-in/Opt-out** | Add to the button payload in WhatsApp templates, so users can opt in to or out of your WhatsApp notifications. |
+| **Unsubscribe** | Add a clickable unsubscribe link to your notification, usually in the footer of email templates. |
+
+</Accordion>
+<Accordion title="Verify">
+
+[Fyno Verify](./fyno-verify-otp-link) is a fully managed API for multichannel user verification by OTP or link. To set it up, click **Configure** under **Verify**.
+
+![](/images/dyncontent-v2-verify-panel.png)
+
+| Variable | Use it to |
+| --- | --- |
+| **OTP** | Generate and verify an OTP. |
+| **Link** | Verify an email address or mobile number using a link. |
+
+</Accordion>
+</AccordionGroup>
 
 ## Components
 
-The Components feature allows you to build modular, reusable elements such as headers and footers.
+Components are modular, reusable elements, such as headers, footers and PDF attachments. Create them once, then add them to any template. Click **+** next to **Components** to create one, or select an existing one to insert it.
 
-By creating these components once, you can easily add them into any email you create, saving time and effort.
+![](/images/dyncontent-v2-components.png)
 
-You can read more about how Components works [here](./components)
+<Info>
+Components are currently available only for email templates.
+</Info>
 
-<Info>Components are currently available only for Email templates.</Info>
-
-![](/images/fyno_components.png)
+Learn more in [Components](./components).

@@ -7,134 +7,228 @@ og:description: 'Learn how to configure voice templates in Fyno for Kaleyra and 
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Since Fyno works with a multitude of providers, it is important to understand how each provider works and to send data to their systems in a way that they accept and can process.
+When you add the **Voice** channel to a template, the **Create your Voice Template** screen opens. First choose the **Type** of call, then configure it. Because Fyno works with many voice providers, some types also need setup in your provider's platform. See [Provider-specific setup](#provider-specific-setup).
 
-Keeping that in mind, let's have a look at how to configure templates based on the provider you are using.
+| Type | What it does |
+| --- | --- |
+| [IVR](#ivr) | Uses the IVR info configured on the provider's portal. |
+| [Call Connect](#call-connect) | Connects your bridge number and the recipient, on each leg of the call. Also used for call masking. |
+| [Text to Speech](#text-to-speech) | The typed text is spoken out when the call is connected. |
 
-## Kaleyra
+## Create a voice template
 
-### IVR
-
-- Metadata values are used in text-to-speech widgets to create dynamic text and convert it to speech.
-- Use `{script:outbound:metadata-key-name}` to access meta values while configuring it in Kaleyra voice.
-- For example, if you want to configure a menu with 2 options and 3 placeholders _script:outbound:name, script:outbound:greet1 and script:outbound:greet2_, it needs to be done as shown below.
-  ![](/images/a015545-kaleyra_voice.png)
-
-- In Fyno, you need to add the metadata as shown below.
-  ![](/images/voice_template_ivr.png)
-
-### Call Connect
-
-- This is used for connecting two calls, also known as "Call Bridge."
-- **From**: Number of the first leg (usually a business/agent/customer care person). Can be a static value or configured as {{from}} to be dynamically controlled.
-- **Second Leg Number**: A customer number passed in the request payload inside a "to" object. This number will be visible and searchable on the sent logs page.
-- **Example Request Payload**:
-
-```curl title="Voice Payload" wordWrap
-{
-  "event": "<EVENT_NAME>",
-  "to": {
-    "voice": "usually a customer Phone number",
-    ...
-  },
-  "data": {
-    "from": "usually the number of business/agent/customer care person"
-  }
-}
-
-```
-
-<Info title="IVR or Call flow is not required for the Call Connect option!">You can now achieve this by simply providing this data in the above format and it will initiate the Call Connect!</Info>
-
-### Text-to-Speech
-
-- Fyno prepares dynamic content and passes it to Kaleyra using OBD calls.
-- The content is played over a call, with a delay of 5-10 seconds depending on content length.
-- Just go ahead and type the content you need to be read out and the same will be played on the OBD call.
-
-## Exotel
+<Tabs>
+<Tab title="IVR">
 
 ### IVR
 
-- In Exotel, Metadata values are used in text-to-speech widgets to create dynamic text. Configure the endpoint provided in the Fyno voice template section to access dynamic text.
-- For example, if the metadata value is `{ "Text2Play":"Dear Username, This is Sample text to speech play with dynamic content" }`, it can be used in IVR text-to-speech greeting widget as `https://api.fyno.io/v1/<WORKSPACEID>/dynamic/text/textkey=Text2Play`
-- This endpoint provides dynamic text for the call.
-- For Keypress capture, while configuring Fyno callback, use the **Passthu** widget in the Exotel Plotform. Add the callback URL in both to capture DTMF on keypress for each assigned keypress.
+The IVR configured on your integration page is used to run the call.
 
-### Call Connect
-
-- This is used for connecting two calls, also known as "Call Bridge."
-- **From**: Number of the first leg (usually a business/agent/customer care person). Can be a static value or configured as {{from}} to be dynamically controlled.
-- **Second Leg Number**: A customer number passed in the request payload inside a "to" object. This number will be visible and searchable in the sent logs page.
-- **Example Request Payload**:
-
-```curl title="Voice Payload"
-{
-  "event": "<EVENT_NAME>",
-  "to": {
-    "voice": "usually a customer Phone number",
-    ...
-  },
-  "data": {
-    "from": "usually the number of business/agent/customer care person"
-  }
-}
-
-```
-
-<Info title="IVR or Call flow is not required for the Call Connect option!">You can now achieve this by simply providing this data in the above format and it will initiate the Call Connect!</Info>
-
-### Text-to-Speech
-
-- Text-to-speech is supported via IVR calls currently. Fyno prepares the dynamic content and is accessible by an endpoint which needs to be provided in the Fyno voice template section.
-- To Play this text over call via Exotel, you will need to create an IVR flow. In Exotel, under the Greetings widget configure the endpoint as  
-  `https://api.fyno.io/v1/<WORKSPACEID>/dynamic/text/textkey=text2speech`. This endpoint will return dynamic text to play for the given call.
-
-## Setting up Voice Templates on Fyno
-
-On clicking on Voice Templates, you will see:
+![](/images/voicecreate-v2-ivr.png)
 
 <Steps>
-  <Step>
-    **Type**: Select the type of call you plan on triggering. This can be:
-    <ul>
-      <li>
-        **Call Connect**: This type of voice call allows you to connect 2 numbers, on each leg of the call. Essentially, the first leg of the call will be your bridge number and the 2nd leg of the call will be the recipient of the call. This is also the feature used, when call Masking is implemented for your voice call number services.
-        <ul>
-          <li>**From**: Enter the number you want to use for the first leg of the call. This can be the assigned number for your phone number. You can also use placeholders here to define a field in the payload to pick this information from.</li>
-          <li>**Metadata**: Specify the metadata here, that you would like to share with the provider on triggering this call.</li>
-        </ul>
-      </li>
-      <li>**Text to Speech**: Type in the text you want to be read out. This will then be spoken out when the call is connected with the end recipient.</li>
-      <li>**IVR**: The IVR information that was configured on the integration page will be picked up to execute the IVR. Specify the metadata that you would like to share with the provider on triggering this call.</li>
-    </ul>
-  </Step>
-  <Step>**Save & Save and Promote**: Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Save & Promote** when you are ready to move your template into the "**Live**" version.</Step>
+<Step title="Select IVR">
+
+In **Type**, select **IVR**.
+
+</Step>
+<Step title="Add the metadata">
+
+In **Meta Data**, enter the metadata you want to share with the provider when this call is triggered, as JSON. Metadata values are used to create dynamic text and convert it to speech. Placeholders must be inside double quotes, in the format `"{{ }}"`. For example:
+
+```json
+{
+  "name": "{{name}}",
+  "greet1": "Thank you for being with us."
+}
+```
+
+Click **View Docs** in the editor for more details.
+
+</Step>
+<Step title="Override the IVR/Flow/Bot ID (optional)">
+
+Expand **Additional Configuration** and select **Override IVR/Flow/Bot ID** to use a different IVR, flow or bot ID than the one configured in your integration.
+
+</Step>
 </Steps>
 
-## How to add dynamic content in template?
+</Tab>
+<Tab title="Call Connect">
 
-You can add dynamic content in your templates using one of the 4 options mentioned below.
+### Call Connect
+
+Call Connect, also known as a call bridge, connects two numbers. The first leg of the call is your bridge number, and the second leg is the recipient. No IVR or call flow is needed.
+
+![](/images/voicecreate-v2-call-connect.png)
+
+<Steps>
+<Step title="Select Call Connect">
+
+In **Type**, select **Call Connect**.
+
+</Step>
+<Step title="Enter the From Phone Number">
+
+Enter the number used for the first leg of the call, usually a business, agent or customer care number. Use a static value, or a placeholder such as `{{from}}` to pick it from the payload.
+
+</Step>
+</Steps>
+
+<Info>
+The second leg (To) of the call is picked up from the `to` payload values when you fire a notification event. This number is visible and searchable on the Sent Logs page.
+</Info>
+
+Example request payload:
+
+```json title="Voice Payload"
+{
+  "event": "<EVENT_NAME>",
+  "to": {
+    "voice": "<customer phone number>"
+  },
+  "data": {
+    "from": "<business, agent or customer care number>"
+  }
+}
+```
+
+</Tab>
+<Tab title="Text to Speech">
+
+### Text to Speech
+
+![](/images/voicecreate-v2-text-to-speech.png)
+
+<Steps>
+<Step title="Select Text to Speech">
+
+In **Type**, select **Text to Speech**.
+
+</Step>
+<Step title="Enter the text">
+
+In **Text to Speech**, type the content you want read out. It is spoken when the call connects to the recipient. You can add placeholders.
+
+</Step>
+</Steps>
+
+<Note>
+For Exotel, Text to Speech works through an IVR flow. The editor shows the URL to use, in the format `https://api.fyno.io/v1/<WORKSPACE_ID>/dynamic/text?textkey=text2speech`. See [Exotel setup](#provider-specific-setup).
+</Note>
+
+</Tab>
+</Tabs>
+
+## Provider-specific setup
+
+Each provider processes voice data differently. Configure your provider as shown below.
+
+<Tabs>
+<Tab title="Kaleyra">
+
+<AccordionGroup>
+<Accordion title="IVR">
+
+Metadata values are used in text-to-speech widgets to create dynamic text and convert it to speech. In Kaleyra Voice, use `{script:outbound:metadata-key-name}` to access a metadata value.
+
+For example, to configure a menu with 2 options and 3 placeholders, `script:outbound:name`, `script:outbound:greet1` and `script:outbound:greet2`, set it up in Kaleyra as shown below.
+
+![](/images/a015545-kaleyra_voice.png)
+
+In Fyno, add the matching metadata as shown below.
+
+![](/images/voice_template_ivr.png)
+
+</Accordion>
+<Accordion title="Call Connect">
+
+No IVR or call flow is needed. Configure the **From Phone Number** in Fyno and pass the recipient in the `to` object of the payload. See [Call Connect](#call-connect).
+
+</Accordion>
+<Accordion title="Text to Speech">
+
+Fyno prepares the dynamic content and passes it to Kaleyra using OBD (outbound dialing) calls. Type the content you want read out, and it is played on the OBD call. The content plays with a delay of 5 to 10 seconds, depending on its length.
+
+</Accordion>
+</AccordionGroup>
+
+</Tab>
+<Tab title="Exotel">
+
+<AccordionGroup>
+<Accordion title="IVR">
+
+In Exotel, metadata values are used in text-to-speech widgets to create dynamic text. Configure the endpoint shown in the Fyno voice template to access the dynamic text for the call.
+
+For example, if the metadata is `{ "Text2Play": "Dear Username, This is sample text to speech with dynamic content" }`, use this URL in the IVR text-to-speech greeting widget:
+
+`https://api.fyno.io/v1/<WORKSPACE_ID>/dynamic/text?textkey=Text2Play`
+
+To capture keypresses, use the **Passthru** widget in the Exotel platform while configuring the Fyno callback. Add the callback URL in each one to capture DTMF for every assigned keypress.
+
+</Accordion>
+<Accordion title="Call Connect">
+
+No IVR or call flow is needed. Configure the **From Phone Number** in Fyno and pass the recipient in the `to` object of the payload. See [Call Connect](#call-connect).
+
+</Accordion>
+<Accordion title="Text to Speech">
+
+Text to Speech is currently supported through IVR calls. Fyno prepares the dynamic content and makes it available at an endpoint.
+
+To play the text over a call, create an IVR flow in Exotel. In the **Greetings** widget, configure this endpoint, which returns the dynamic text to play for the call:
+
+`https://api.fyno.io/v1/<WORKSPACE_ID>/dynamic/text?textkey=text2speech`
+
+</Accordion>
+</AccordionGroup>
+
+</Tab>
+</Tabs>
+
+## How to add dynamic content
+
+You can add dynamic content to your templates using one of the four options below:
 
 - [Placeholders](./template-dynamic-content#placeholders)
 - [System Variables](./template-dynamic-content#system-variables)
 - [Handlebars](./template-dynamic-content#handlebars)
 - [Components](./template-dynamic-content#components)
 
-## How to test Voice template?
+## How to test a voice template
 
-You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+Use this feature to test a template thoroughly before including it in any Notification Event. This ensures early detection and resolution of any potential issues, for a seamless user experience.
 
 <Steps>
-  <Step>Click 'Run Test' on the top right hand side of the template.</Step>
-  <Step>It opens the pop up as shown below. ![](/images/template_voice_test_updated.png)</Step>
-  <Step>You can either enter the mobile no of the recipient where the Voice message should be sent or you can enter distinct_id. **Please make sure to enter Distinct_id of Test User profiles**</Step>
-  <Step>Select a Voice service provider which is already configured in Fyno.</Step>
-  <Step>When you click 'TEST', it will send Voice message to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.</Step>
+<Step>
+
+Click **Run Test** at the top right of the template. The test pop-up opens.
+
+![](/images/template_voice_test_updated.png)
+
+</Step>
+<Step>
+
+Enter either the mobile number of the recipient, or a `distinct_id`. **Make sure to enter the distinct_id of a Test User profile.**
+
+</Step>
+<Step>
+
+Select a voice integration that is already configured in Fyno.
+
+</Step>
+<Step>
+
+Click **Test** to place the call to the recipient with the selected integration. You see the success or failure message along with a link to the Sent Logs.
+
+</Step>
 </Steps>
 
-## How to raise Approval requests
+## Save and go live
 
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
+Click **Save** to save the template as a **Test** version. You can save different versions of the template this way. Use **Go Live** when you are ready to move your template to the **Live** version.
 
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+<Note>
+If your workspace has a maker-checker workflow enabled for template management, **Go Live** needs an additional approval step. Choose from your designated approvers, who review and authorize the template changes. See [Approval flow](./approval-flow) for the steps.
+</Note>

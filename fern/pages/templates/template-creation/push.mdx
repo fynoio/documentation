@@ -7,93 +7,156 @@ og:description: 'Learn how to create push notification templates, configure Andr
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-On clicking Push, you can see:
-![](/images/template_push_preview.png)
+When you add the **Push** channel to a template, the **Create your Push Template** screen opens. The Preview on the right shows how the notification looks on a device.
 
-- **Title:** This is the title for your template. It's an optional field but helps summarise and give context to the template
+![](/images/pushcreate-v2-editor.png)
 
-- **Message Content:** This is the body of the template, where the main content of the template goes. This is a required field.
+## Create a push template
 
-- **Action Button: (Optional)** Provide a name for the button. Along with the button, provide the link that clicking the button would lead to. You can use deeplink URLs here. You can either enter a valid HTTP/HTTPS URL or a route starting with “/” if you want to route them within the same path. This can only be used with Fyno Push, Xiaomi Push and Onesignal Push.
+<Steps>
+<Step title="Title (optional)">
 
-- **Android:** Additional settings for Android platform:
+Enter the push notification title. It helps summarize the notification and give it context.
 
-  - **Image URL:** URL of an image that will be downloaded on the device and displayed in a notification. Supported file formats are JPEG, PNG and BMP. WebP and HEIF support will vary across platforms.
+</Step>
+<Step title="Content">
 
-  - **Destination URL:** The link you would like the customer to access when they click on the notification. For all URL values, HTTPS is required. You can also use Deeplinks.
+Enter the body of the notification. This is a required field. You can add placeholders within `{{ }}`.
 
-  - **Icon:** An icon you want to be displayed on the notification.
+</Step>
+<Step title="Buttons (optional)">
 
-  - **Color:** Background colour for the icon provided.
+Click **Add Button** to add an action button. For each button, enter:
 
-  - **Sound:** Sound to be played when the notification is received on the device. The device's default sound will play when this is not set and, for grouped notifications, the sound file must be added to the project The formats allowed are: _.wav_, _.aiff_, _.caf_ (do not include file extension)
+- **Button**: The button text.
+- **Link**: Where clicking the button takes the user. Enter a valid HTTP or HTTPS URL, a deeplink, or a route starting with `/` to route the user within the same path.
 
-  - **Badge:** Sets the number of items this notification represents. It may be displayed as a badge count for launchers that support badging.
+Use the delete icon to remove a button.
 
-  - **Tag:** Only one notification with the same ID will be shown on the device. Use the same ID to update an existing notification instead of showing a new one. The character limit is set at 64 characters.
+<Note>
+Buttons can only be used with Fyno Push, Xiaomi Push and OneSignal Push.
+</Note>
 
-  - **Ticker:** Sets the "ticker" text, which is sent to accessibility services. Prior to API level 21 (Lollipop), this helps set the text that is displayed in the status bar when the notification first arrives.
+</Step>
+<Step title="Platform, other settings and additional data (optional)">
 
-  - **Collapse Key:** An identifier of a group of messages that can be collapsed, so that only the last message gets sent when delivery can be resumed.
-  
-  - **Channel Id**: Add this notification to a predefined channel ID to categorize it, ensuring users only receive the types of messages they've opted in for.
+Expand **Platform Settings**, **Other Settings** or **Additional Data** to configure them. See the sections below.
 
-- **IOS:** Optional Settings for IOS platforms:
+</Step>
+</Steps>
 
-  - **Image:** URL of an image that will be downloaded on the device and displayed in a notification. Supported file formats are _JPEG_, _PNG_ and _BMP_. _WebP_ and _HEIF_ (subject to recipient's device).
+<Tip>
+To use any user property in your templates, add it in this format: `{{$user.$<user_property>}}`. For example, to add Name as a placeholder from the User profile, add it as `{{$user.$name}}`.
+</Tip>
 
-  - **Subtitle:** Additional information that explains the purpose of the notification.
+<Warning>
+You cannot use only numeric values as placeholder keys.
+</Warning>
 
-  - **Icon:** The display icon which will be shown on the top status bar and to the left of the notification text, unless a large icon is set. A bell icon is shown by default. Do not include the file extension.
+## Platform Settings (optional)
 
-  - **Sound:** The name of a sound file in your app’s main bundle or in the Library/Sounds folder of your app’s container directory. Specify the string “default” to play the system sound.
+Choose the **Android** or **iOS** tab to set platform-specific options.
 
-  - **Badge:** The number to display in a badge on your app’s icon. Specify 0 to remove the current badge, if any.
+<Tabs>
+<Tab title="Android">
 
-  - **Collapse Key:** An identifier of a group of messages that can be collapsed, so that only the last message gets sent when delivery can be resumed.
+![](/images/pushcreate-v2-platform-android.png)
 
-- **Additional Settings:**
+| Field | What it does |
+| --- | --- |
+| **Image URL** | URL of an image that is downloaded on the device and shown in the notification. You can also upload an image. Supported file formats are JPEG, PNG and BMP. WebP and HEIF support varies across platforms. |
+| **Destination Url** | Clicking the notification redirects the user to the HTTPS link or deeplink provided here. |
+| **Icon** | Name of the icon file stored in your app's drawable resources. |
+| **Icon Background Color** | Hex code of the background color around the small icon. |
+| **Notification Sound** | Filename of a sound resource bundled in the app. If it is not set, the device's default sound plays. Allowed formats are .wav, .aiff and .caf. Don't include the file extension. |
+| **Notification Badge** | The number of items this notification represents. It may be shown as a badge count on launchers that support badging. |
+| **Tag** | Only the latest notification with the same Tag ID is shown on the device. Use the same ID to update an existing notification instead of showing a new one. Maximum 64 characters. |
+| **Ticker** | Text sent to accessibility services, and displayed in the status bar when the notification first arrives. |
+| **Collapse Key** | An identifier of a group of messages that can be collapsed, so that only the last message is sent when delivery can be resumed. |
+| **Channel ID** | Adds this notification to a predefined channel ID to categorize it, so users only receive the types of messages they've opted in for. |
 
-  - **TTL:** An identifier of a group of messages that can be collapsed, so that only the last message gets sent when delivery can be resumed. You can enter the value in the first field and select the unit of time in the second field.
+</Tab>
+<Tab title="iOS">
 
-  - **Analytics Label:** Use this analytics label, if you want to track the analytics of a Push template in Google Analytics.
+| Field | What it does |
+| --- | --- |
+| **Image** | URL of an image that is downloaded on the device and shown in the notification. Supported file formats are JPEG, PNG and BMP. WebP and HEIF support depends on the recipient's device. |
+| **Subtitle** | Additional information that explains the purpose of the notification. |
+| **Icon** | The icon shown in the top status bar and to the left of the notification text, unless a large icon is set. A bell icon is shown by default. Don't include the file extension. |
+| **Sound** | The name of a sound file in your app's main bundle or in the Library/Sounds folder of your app's container directory. Enter `default` to play the system sound. |
+| **Badge** | The number to show in a badge on your app's icon. Enter `0` to remove the current badge, if any. |
+| **Collapse Key** | An identifier of a group of messages that can be collapsed, so that only the last message is sent when delivery can be resumed. |
 
-  - **Priority:** Priority of a message to send to devices. Note this priority is a concept that controls when the message is delivered
+</Tab>
+</Tabs>
 
-  - **Additional Data:** This is an additional field that can be used to send some extra information along with the notification and used to render something on the device. Or can be used to send a data/payload message push notification. If you use Event listeners instead of Deeplinks, you can add any payload which can be used for redirection within your app.
+## Other Settings (optional)
 
-- **Preview:** Review your content and take a look at what your message would look like in the Preview section on the right.
+![](/images/pushcreate-v2-other-settings.png)
 
-- **Save & Go Live:** Save and create different versions of the templates by hitting Save which will be Test versions. Use **Go Live** when you are ready to move your template into the "Live" version.
+| Field | What it does |
+| --- | --- |
+| **TTL** | How long the push message is preserved for delivery if the device is offline. Enter the value in the first field and select the unit of time, such as **Seconds**, in the second. |
+| **Analytics Label** | A label to track the analytics of this push template in Google Analytics. |
+| **Priority** | The priority of the message sent to devices, for example **Normal**. Priority controls when the message is delivered. |
 
-<Tip>To use any user property in your templates, you can add it in this format - `{{$user.$<user_property>}}`. For example, to add Name as placeholder from User profile, you can add it as `{{$user.$name}}`</Tip>
+## Additional Data (optional)
 
-<Warning>You cannot use only numeric values as placeholder keys!</Warning>
+Use **Additional Data** to send extra information with the notification, for example to render something on the device or to send a data (payload) push notification. If you use event listeners instead of deeplinks, add a payload your app can use for redirection.
 
-## How to add dynamic content in template?
+![](/images/pushcreate-v2-additional-data.png)
 
-You can add dynamic content in your templates using one of the 4 options mentioned below.
+Enter the data as JSON. Placeholders in additional data must be inside double quotes, in the format `"{{ }}"`. For example:
+
+```json
+{
+  "screen": "order_details",
+  "order_id": "{{order_id}}"
+}
+```
+
+## How to add dynamic content
+
+You can add dynamic content to your templates using one of the four options below:
 
 - [Placeholders](./template-dynamic-content#placeholders)
 - [System Variables](./template-dynamic-content#system-variables)
 - [Handlebars](./template-dynamic-content#handlebars)
 - [Components](./template-dynamic-content#components)
 
-## How to test Push template?
+## How to test a push template
 
-You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+Use this feature to test a template thoroughly before including it in any Notification Event. This ensures early detection and resolution of any potential issues, for a seamless user experience.
 
 <Steps>
-  <Step>Click 'Run Test' on the top right hand side of the template.</Step>
-  <Step>It opens the pop up as shown below. ![](/images/template_push_test_updated.png)</Step>
-  <Step>You can either enter the Push token of the recipient where the Push should be sent or you can enter distinct_id. **Please make sure to enter Distinct_id of Test User profiles**</Step>
-  <Step>Select a Push service provider which is already configured in Fyno.</Step>
-  <Step>When you click 'TEST', it will send Push notification to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.</Step>
+<Step>
+
+Click **Run Test** at the top right of the template. The test pop-up opens.
+
+![](/images/template_push_test_updated.png)
+
+</Step>
+<Step>
+
+Enter either the push token of the recipient where the notification should be sent, or a `distinct_id`. **Make sure to enter the distinct_id of a Test User profile.**
+
+</Step>
+<Step>
+
+Select a push integration that is already configured in Fyno.
+
+</Step>
+<Step>
+
+Click **Test** to send the push notification to the recipient with the selected integration. You see the success or failure message along with a link to the Sent Logs.
+
+</Step>
 </Steps>
 
+## Save and go live
 
-## How to raise Approval requests
+Click **Save** to save the template as a **Test** version. You can save different versions of the template this way. Use **Go Live** when you are ready to move your template to the **Live** version.
 
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
-
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+<Note>
+If your workspace has a maker-checker workflow enabled for template management, **Go Live** needs an additional approval step. Choose from your designated approvers, who review and authorize the template changes. See [Approval flow](./approval-flow) for the steps.
+</Note>
