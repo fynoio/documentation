@@ -7,58 +7,127 @@ og:description: 'Learn how to create web push notification templates in Fyno, co
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno's web push templates allow you to create templates for both desktop and mobile web across Windows and MacOS devices.
+Fyno's web push templates let you create notifications for both desktop and mobile web, across Windows and macOS devices.
 
 ![](/images/webpush_template_creation.png)
 
-- **Title:** This is the title for your template. While it's optional, it aids in summarizing and providing context to the template.
-- **Message Content:** This constitutes the body of the template, where the primary content is placed. It's a mandatory field that must be filled out.
-- **Icon URL**: This is the icon you wish to display on the notification.This is primarily used for displaying brand logos. You can either provide a URL or upload an image for this purpose. The recommended size of the icon is 1:1 ratio. This is a mandatory field.
-- **Action URL:** This is the link that clicking the notification will redirect to. You can enter a valid HTTP/HTTPS URL or a route beginning with "/" if you intend to route users within the same path.
-- **Action Buttons**: (Optional)
+## Create a web push template
 
-  - Button Title- Provide a name for the button.
-  - Link - Along with the button, provide the link that clicking the button would lead to. You can either enter a valid HTTP/HTTPS URL or a route starting with “/” if you want to route them within the same path. For example, you can specify either `https://www.myntra.com/cart?product-id=123` or /cart?product-id=123.
-  - Icon - Enter a value in the format of '/img/icon.png'. This icon will not be rendered in the preview but will render in the actual notification sent.
-    <Info>You can add upto 3 Action buttons</Info>
+<Steps>
+<Step title="Title (optional)">
 
-- **Tag:** Only one notification with the same ID will be shown on the device. Use the same ID to update an existing notification instead of showing a new one. The character limit is set at 64 characters.
-- **Image:** Specify an image link for the image you wish to send along with the web push message. Alternatively, you can also upload an image. Supported file formats are JPG,JPEG, PNG. Recommended Size is less than 1 MB. Recommended ratio for the image is 2:3. The supported file formats are JPG, JPEG, and PNG for desktop and mobile web.
-- **Time to Live**: It defines how long the push message is preserved for delivery if the device is offline or due to OEM device restrictions.The default is 259,200 seconds.
-- **Additional Data**: This is an additional field that can be used to send some extra information along with the notification and used to render something on the device.
+Enter the title of the notification. It helps summarize the notification and give it context.
+
+</Step>
+<Step title="Message Content">
+
+Enter the body of the notification. This is a required field.
+
+</Step>
+<Step title="Icon URL">
+
+Enter the URL of the icon to show on the notification, or upload an image. This is usually your brand logo. This is a required field.
+
+<Tip>
+Use an icon with a 1:1 ratio.
+</Tip>
+
+</Step>
+<Step title="Action URL">
+
+Enter where clicking the notification takes the user. Enter a valid HTTP or HTTPS URL, or a route starting with `/` to route the user within the same path.
+
+</Step>
+<Step title="Action Buttons (optional)">
+
+Add up to 3 action buttons. See [Action buttons](#action-buttons).
+
+</Step>
+<Step title="Other fields (optional)">
+
+Set the **Tag**, **Image**, **Time to Live** and **Additional Data**. See [Other fields](#other-fields-optional).
+
+</Step>
+</Steps>
+
+## Action buttons
+
+You can add up to 3 action buttons. Each button has these settings:
+
+| Setting | What it does |
+| --- | --- |
+| **Button Title** | The name of the button. |
+| **Link** | Where clicking the button takes the user. Enter a valid HTTP or HTTPS URL, such as `https://www.myntra.com/cart?product-id=123`, or a route starting with `/`, such as `/cart?product-id=123`. |
+| **Icon** | The button icon, in the format `/img/icon.png`. |
+
+<Note>
+The button icon isn't shown in the preview, but it appears in the actual notification.
+</Note>
+
+## Other fields (optional)
+
+| Field | What it does |
+| --- | --- |
+| **Tag** | Only one notification with the same ID is shown on the device. Use the same ID to update an existing notification instead of showing a new one. Maximum 64 characters. |
+| **Image** | An image to send with the notification. Enter the image link, or upload an image. Supported file formats are JPG, JPEG and PNG, for desktop and mobile web. |
+| **Time to Live** | How long the push message is preserved for delivery if the device is offline or because of OEM device restrictions. The default is 259,200 seconds (3 days). |
+| **Additional Data** | Extra information sent with the notification, which can be used to render something on the device. |
+
+<Tip title="Image recommendations">
+Keep images under 1MB, with a 2:3 ratio.
+</Tip>
 
 ## Preview
 
-On the right hand side, you can see the Web Push Preview. It can be viewed at Device level. As of now, we support 2 devices.
+The **Web Push Preview** on the right shows the notification at device level. You can switch between the two supported devices:
 
-- Mac OS
+- macOS
 - Windows
 
 ![](/images/webpush_template_devices.png)
 
-## How to add dynamic content in template?
+## How to add dynamic content
 
-You can add dynamic content in your templates using one of the 4 options mentioned below.
+You can add dynamic content to your templates using one of the four options below:
 
 - [Placeholders](./template-dynamic-content#placeholders)
 - [System Variables](./template-dynamic-content#system-variables)
 - [Handlebars](./template-dynamic-content#handlebars)
 - [Components](./template-dynamic-content#components)
 
-## How to test WebPush template?
+## How to test a web push template
 
-You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+Use this feature to test a template thoroughly before including it in any Notification Event. This ensures early detection and resolution of any potential issues, for a seamless user experience.
 
 <Steps>
-  <Step>Click 'Run Test' on the top right hand side of the template.</Step>
-  <Step>It opens the pop up as shown below. ![](/images/template_webpush_test_updated.png)</Step>
-  <Step>You can either enter the Web push token of the recipient where the Web Push should be sent or you can enter distinct_id. **Please make sure to enter Distinct_id of Test User profiles**</Step>
-  <Step>Select a WebPush service provider which is already configured in Fyno.</Step>
-  <Step>When you click 'TEST', it will send WebPush notification to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.</Step>
+<Step>
+
+Click **Run Test** at the top right of the template. The test pop-up opens.
+
+![](/images/template_webpush_test_updated.png)
+
+</Step>
+<Step>
+
+Enter either the web push token of the recipient, or a `distinct_id`. **Make sure to enter the distinct_id of a Test User profile.**
+
+</Step>
+<Step>
+
+Select a web push integration that is already configured in Fyno.
+
+</Step>
+<Step>
+
+Click **Test** to send the web push notification to the recipient with the selected integration. You see the success or failure message along with a link to the Sent Logs.
+
+</Step>
 </Steps>
 
-## How to raise Approval requests
+## Save and go live
 
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
+Click **Save** to save the template as a **Test** version. You can save different versions of the template this way. Use **Go Live** when you are ready to move your template to the **Live** version.
 
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+<Note>
+If your workspace has a maker-checker workflow enabled for template management, **Go Live** needs an additional approval step. Choose from your designated approvers, who review and authorize the template changes. See [Approval flow](./approval-flow) for the steps.
+</Note>

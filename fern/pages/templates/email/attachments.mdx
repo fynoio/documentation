@@ -7,32 +7,41 @@ og:description: 'Configure email attachments in Fyno using uploaded files, dynam
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-In this document, we will explain how to add a single or multiple attachments in your email.
+You can add a single attachment or multiple attachments to your email, and they can be static or dynamic.
 
-You can add static as well as dynamic attachments to emails
+<Info>
+There is no limit to the number of attachments. However, the total size of the attachments should not exceed 10MB. Supported file extensions are .jpg, .jpeg, .png, .gif, .pdf, .mp4, .doc, .docx, .xls and .xlsx.
+</Info>
 
-<Info>There is no limit to the number of attachments. However, maximum size of the attachment(s) should be 10MB. We support the following file extensions: .jpg, .jpeg, .png, .gif, .pdf, .mp4, .doc, .docx, .xls and .xlsx</Info>
+## Attachment options
 
-On clicking on the attach button (highlighted below) on the to right corner of the either Email editor, you will see:
+Click the attachment icon (paperclip) next to the **Subject** field in any email editor. You see three options:
 
-![](/images/email_template_add_component.png)
+![](/images/emailcreate-v2-attachment-options.png)
 
-- **Upload Files**: Allows you to attach files from the system. This then stays as a static attachment in the body of the email and is sent along with the email as an attachment every time it's triggered.
+| Option | What it does |
+| --- | --- |
+| **Upload Files** | Attach files from your system. The file stays as a static attachment and is sent with the email every time it is triggered. |
+| **File URL** | Attach a file from a URL. Use static values, or placeholders for files that change at send time. See [Attach a file from a URL](#attach-a-file-from-a-url). |
+| **Select from component** | Attach a file saved as a [component](./components), such as a PDF component. |
 
-- **Dynamic Placeholders**: Allows you to include dynamic files within the email, when the notification event is triggered. You can use placeholders to specify the:
+## Attach a file from a URL
 
-  - File Name - Provide a static value like 'Invoice.pdf' (if you are testing it manually) or a placeholder like `{{attachment.filename}}`(if your are triggering notification event via API)
-  - Type - Select the file type from the dropdown or you can enter a placeholder like `{{attachment.filetype}}` You can see all the MIME types [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
-  - URL - Provide a static URL or Dynamic URL using a placeholder like `{{attachment.presigned_url}}`. The URL should be wither pre-signed or public URL.
+Use **File URL** to include files that are decided when the notification event is triggered. Click **File URL** to open the **File URL** pop-up. Use `{{ }}` in any field for dynamic values.
 
-![](/images/email_template_file_url.png)
+In **Number of files**, choose **Fixed** or **Dynamic**. See [Number of files: Fixed or Dynamic](#number-of-files-fixed-or-dynamic). For each file, you configure:
 
-<Tip>Please note that if you are using Presigned S3 URL, then the URL should trigger a download of the file immediately when opened.</Tip>
+- **File Name**: A static value like `Invoice.pdf` (if you are testing manually), or a placeholder like `{{attachment.filename}}` (if you trigger the notification event through the API).
+- **File Type**: Select the file type from the dropdown, or enter a placeholder like `{{attachment.filetype}}`. Use [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types/Common_types) for the file type.
+- **URL**: A static URL, or a dynamic URL using a placeholder like `{{attachment.presigned_URL}}`. The URL can be either pre-signed or public.
 
-Placeholders should be used if the attachment information is dynamic (for instance, a personalized attachment depending on the recipient). Typically such attachments are sent via an API call. To send dynamic attachments in the event payload, make sure that the `data` section of the payload has an object called `attachment` as shown below.
+Click **Done** to save the attachments.
 
-<Note>For file type, use [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types/Common_types) depending on your attachment's file type</Note>
+<Tip>
+If you use a pre-signed S3 URL, the URL should start downloading the file as soon as it is opened.
+</Tip>
 
+Use placeholders when the attachment is dynamic, for example a personalized attachment for each recipient. Such attachments are usually sent through an API call. To send dynamic attachments in the event payload, make sure the `data` section of the payload has an object called `attachment`, as shown below.
 
 ```curl title="Send Attachment via Email" wordWrap
 curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
@@ -54,136 +63,120 @@ curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
 }'
 ```
 
-In the above command:
+<Note>
+The keys inside `attachment` (`presigned_URL`, `filename` and `filetype`) are only examples. You can name them anything, as long as the keys in your payload match the placeholders you use in the template.
+</Note>
+
+In the above command, replace:
+
+- `<WorkspaceID>` with your Workspace ID.
+- `<API_KEY>` with your API key.
+- `<presigned_URL>` with the pre-signed URL of your file.
+- `<attachment_file_name>` with the name of the attached file.
+
+<Warning>
+You cannot use only numeric values as placeholder keys.
+</Warning>
+
+## How to add multiple attachments
+
+To add multiple attachments, add a set of placeholders for each file.
 
 <Steps>
-<Step>Replace `<WorkspaceID>` with your actual Workspace ID.</Step>
-<Step>Replace `<API_KEY>` with your actual API key.</Step> 
-<Step>Replace `<presigned_URL>` with the Presigned URL of your file.</Step>
-<Step>Replace `<filename>` with the name of the file attached.</Step>
+<Step>
+
+For file 1, add these placeholders:
+
+- Filename: `{{attachment.0.filename}}`
+- File Type: `{{attachment.0.filetype}}`
+- Content: `{{attachment.0.presigned_URL}}`
+
+</Step>
+<Step>
+
+Click **Add Key**.
+
+</Step>
+<Step>
+
+For file 2, add these placeholders:
+
+- Filename: `{{attachment.1.filename}}`
+- File Type: `{{attachment.1.filetype}}`
+- Content: `{{attachment.1.presigned_URL}}`
+
+</Step>
+<Step>
+
+Keep adding as many files as you need. The total file size should not exceed 10MB.
+
+</Step>
 </Steps>
 
+<Note>
+The content can be base64-encoded content or a pre-signed URL.
+</Note>
 
-<Note>You cannot use only numeric values as placeholder keys!</Note>
+## Number of files: Fixed or Dynamic
 
-## How to add multiple attachments?
+In the **File URL** pop-up, choose how files are attached in **Number of files**. You can add up to 25 attachments per template, in either mode.
 
-To add multiple attachments in email, add them in the placeholders as shown below.
+| | Fixed | Dynamic |
+| --- | --- | --- |
+| **Number of files** | Known in advance and the same for every send | Varies per send |
+| **How you configure it** | Add each file (File 1, File 2 and so on) separately | Configure one file mapper that applies to every item in an array |
+| **Use it when** | You send the same static files to all users, such as a brochure or product catalog | Files come from an API response, a loop or a previous step |
 
-<Steps>
-<Step>For file 1, you can give the below placeholders,
-   <ul><li>Filename - `{{attachment.0.filename}}`</li>
-   <li>File Type - `{{attachment.0.filetype}}`</li>
-   <li>Content - `{{attachment.0.presigned_URL}}`</li></ul></Step>
-<Step>Click 'Add Key'</Step>
-<Step>For file 2, you can give the below placeholders
-   <ul><li>Filename - `{{attachment.1.filename}}`</li>
-   <li>File Type - `{{attachment.1.filetype}}`</li>
-   <li>Content - `{{attachment.1.presigned_URL}}`</li></ul></Step>
-<Step>You can keep adding as many files. The total file size should not exceed 10MB.</Step>
-</Steps>
+<Tabs>
+<Tab title="Fixed">
 
-<Note>Please note that the content can be base64-encoded content or a Presigned URL</Note>
+In **Fixed** mode, you configure each file (**File 1**, **File 2** and so on) by specifying its name, file type and URL individually. Click **Add File** to add another file, or the delete icon to remove one.
 
-## Configuring File Attachments Using Fixed Mode
+![](/images/emailcreate-v2-file-url-fixed.png)
 
-**Fixed Mode** is used when the number of files is predefined and does not change at runtime.  
-You manually configure each file (**File 1**, **File 2**, etc.) by specifying its **name**, **MIME type**, and **URL** individually.
+| Field | Purpose | How to configure | Example |
+| --- | --- | --- | --- |
+| **Number of Files** | Defines how many files are attached. | Select **Fixed** and add each file manually. | Not applicable |
+| **File Name** | The name shown to the user. | Enter a static file name or a placeholder. | `invoice.pdf` |
+| **File Type** | The file type being sent. It must be a valid MIME type. | Select from the dropdown, or enter a valid value such as `image/png` or `application/pdf`. | `application/pdf`, `image/jpeg` |
+| **URL** | The file location. | Enter a publicly accessible URL or a valid pre-signed URL. | `https://example.com/file.pdf` |
 
-![](/images/fixed-mode-url.png)
-## When to Use Fixed Mode
-Use Fixed Mode when:
+For example, if you configure:
 
-- The number of files is known in advance.
-- The same files are sent to all users.
-- Files are static (for example, brochure, invoice template, product catalog).
-- You need full control over each file configuration.
-
-## Example Static Configuration
-
-### File 1
-- **File Name:** `invoice.pdf`  
-- **MIME Type:** `application/pdf`  
-- **URL:** `https://example.com/invoice.pdf`
-
-### File 2
-- **File Name:** `coupon.jpg`  
-- **MIME Type:** `image/jpeg`  
-- **URL:** `https://example.com/coupon.jpg`
-
-**Result:**  
-Both files will always be attached exactly as configured.
-
-## Fields Explained
-
-| Field | Purpose | How to Configure | Example |
-|-------|----------|-----------------|----------|
-| **Number of Files** | Defines how many files will be attached. | Select **Fixed** and manually add each file. | — |
-| **File Name** | Specifies the name shown to the user. | Enter a static file name or placeholder. | `invoice.pdf` |
-| **MIME Type** | Defines the file type being sent (must be valid MIME type). | Select from dropdown or enter a valid value (e.g., `image/png`, `application/pdf`). | `application/pdf`, `image/jpeg` |
-| **URL** | Specifies the file location. | Enter a publicly accessible URL or a valid pre-signed URL. | `https://example.com/file.pdf` |
-
-## Important Notes
-
-- Each file must be configured separately.
-- The URL must be publicly accessible or pre-signed.
-- The MIME type must be valid (for example, `application/pdf`, `image/png`).
-- The number of files will remain fixed for every execution.
-- If the file count needs to vary dynamically, use **Dynamic Mode** instead.
-
-## Sample Configuration Summary
-
-If you configure:
-
-| File | File Name | MIME Type | URL |
-|------|-----------|------------|------|
+| File | File Name | File Type | URL |
+| --- | --- | --- | --- |
 | File 1 | `product_catalog.pdf` | `application/pdf` | `https://example.com/catalog.pdf` |
 | File 2 | `pricing_sheet.pdf` | `application/pdf` | `https://example.com/pricing.pdf` |
 
-**Result:**  
-2 files will always be attached:
+Both files are always attached, exactly as configured.
 
-- `product_catalog.pdf`  
-- `pricing_sheet.pdf`
+<Note>
+- Each file must be configured separately.
+- The URL must be publicly accessible or pre-signed.
+- The number of files stays the same for every send. If the file count needs to change at send time, use **Dynamic** mode.
+</Note>
 
-## Configuring File Attachments Using Dynamic Mode
+</Tab>
+<Tab title="Dynamic">
 
-Dynamic mode is used when the number of files is not fixed and is provided at runtime as a JSON array (for example, from a previous step’s output).
+In **Dynamic** mode, the files are provided at send time as a JSON array, for example from a previous step's output. Instead of adding File 1, File 2 and so on manually, you define one mapping that says: for each item in this array, get the file name from here and the URL from there. Configure this mapping in the **File Mapper** section.
 
-Instead of manually adding **File 1**, **File 2**, **File 3**, and so on, you define mappings that tell the system:
+![](/images/emailcreate-v2-file-url-dynamic.png)
 
-> “For each item in this array, get the file name from here and the URL from there.”
+| Field | Purpose | How to configure | Example |
+| --- | --- | --- | --- |
+| **Number of Files** | Enables array-based (dynamic) file creation. | Select **Dynamic**. | Not applicable |
+| **File Mapper** | One mapping that applies to every item in the array. | Configure it once. Fyno applies it to all items. | Not applicable |
+| **File Name** | Where to get the file name for each item. | Add the first file name from your JSON array, using a placeholder. | `{{files.0.filename}}` |
+| **MIME Type** | The type of file being attached. | Add the first MIME type from your JSON array, using a placeholder that resolves to a valid MIME type, not a file extension. | `{{files.0.mime_type}}` |
+| **URL** | Where to get the file URL for each item. | Add the first file URL from your JSON array. It can be a static URL or a dynamic URL using a placeholder. | `{{files.0.url}}` |
 
-### When to Use Dynamic Mode
+<Warning>
+- Dynamic placeholders must follow the `a.0.b` format, for example `{{documents.0.name}}`. The `.0.` segment is required, because it tells Fyno which items are in the array.
+- Nested arrays and nested objects are not supported. If the file name or URL is not a direct property of the array item, dynamic mapping will not work.
+</Warning>
 
-Use **Dynamic** mode when:
-
-- The number of files varies per execution.  
-- Files come from an API response, loop, or previous ste.  
-- You don’t know in advance how many files there will be. 
-
-![](/images/dynamic_url.png)
-
-### Dynamic File Attachment Fields
-
-This section explains all fields used to configure dynamic file attachments.
-
-| Field | Purpose | How to Configure | Example |
-|------|--------|------------------|---------|
-| **Number of Files** | Enables array-based (dynamic) file creation. | Select **Dynamic**. | — |
-| **File Mapper** | Defines one template mapping that applies to every item in the array. | Configure once; the system automatically applies it to all items. | — |
-| **File Name (Dynamic)** | Specifies where to get the file name for each item. | Reference the array item using a placeholder. | `{{files.0.filename}}` or `{{array_path.0.filename}}` |
-| **MIME Type** | Specifies the type of file being attached. | Reference a placeholder that resolves to a valid MIME type (not a file extension). | `{{files.0.mime_type}}` → `image/png`, `application/xml` |
-| **URL (Dynamic)** | Specifies where to get the file URL for each item. | Reference the array item’s URL field. | `{{files.0.url}}` |
-
-### Important Notes
-
-- Dynamic placeholders must strictly follow the `a.0.b` format (for example, `{{documents.0.name}}`).
-- The `.0.` segment is required and acts as a schema hint that allows the system to identify array items.
-- Nested arrays or nested objects are not supported.  
-  If the filename or URL is not a direct property of the array item, dynamic mapping will not work.
-
-### Sample Body
+For example, with this sample body:
 
 ```json
 {
@@ -200,16 +193,15 @@ This section explains all fields used to configure dynamic file attachments.
     }
   ]
 }
-``` 
+```
 
-### Dynamic Field Configuration
+Configure the fields as:
 
-- File Name (Dynamic): `{{documents.0.name}}`
+- File Name: `{{documents.0.name}}`
 - MIME Type: `{{documents.0.mime_type}}`
-- URL (Dynamic): `{{documents.0.link}}`
+- URL: `{{documents.0.link}}`
 
-### Result
+Two files, `a.pdf` and `b.pdf`, are added automatically.
 
-Two files are automatically added:
-- a.pdf
-- b.pdf
+</Tab>
+</Tabs>
