@@ -1,0 +1,83 @@
+## 26.3.7
+
+This release adds a Consent Form component for collecting opt-ins through a time-limited link, flags campaign records with missing placeholder values before you send, and surfaces WhatsApp service message counts in Cost Analytics following the 1 October pricing change.
+
+Fyno Connect gains alerting for partial Content API failures, cohort duplication and a pre-selected default allowlist endpoint, and Journeys has been folded into Workflows in the Alarms filter, alongside fixes to the Report Extraction date picker on Windows, timestamps and missing values in Workflow Logs, older events missing from the Campaigns selector, the logs filter loader, and campaign reruns.
+
+{/* NEW FEATURES — capabilities that did not exist before.
+     Six cards max. cols={2} for 4-6, cols={3} for 3.
+     Read more only where a docs page exists. */}
+
+### 🚀 New features
+
+<CardGroup cols={2}>
+
+<Card title="Consent form component" icon="file-signature">
+
+A new Consent Form component collects opt-ins through a link that expires after a validity period you set. A consent checkbox is added by default and the submit button stays disabled until it is checked, and submitting can trigger a notification event or workflow. Preview the form on desktop and mobile before going live.
+
+[Read more](/docs/components)
+
+</Card>
+
+<Card title="Incomplete campaign records" icon="file-csv">
+
+Campaign creation now flags uploaded records with empty placeholder values and shows the count, so you can see what would go out missing information. Download them as a CSV to review or correct. This is informational and does not block you from creating or running the campaign.
+
+[Read more](/docs/campaign_creation)
+
+</Card>
+
+</CardGroup>
+
+{/* ENHANCEMENTS — changes to something that already existed.
+     Title format: "Area: What changed". Ordered by how many people it affects.
+     The WhatsApp item sits outside the group so its warning stays visible. */}
+
+### ⚡ Enhancements
+
+#### Cost Analytics: WhatsApp service message counts
+
+<Warning title="Changed behavior">
+
+Following WhatsApp's pricing change on 1 October 2026, service messages are no longer free once the allowance is exhausted. Each business phone number gets 1,000 free delivered service messages per calendar month, after which they are charged at the utility rate for the recipient's market. Unused allowance does not roll over.
+
+</Warning>
+
+The WhatsApp Cost Analytics card now shows a **Service Messages** count so you can see how many you have sent and how they contribute to your costs. The count also appears in the expanded country breakdown, which keeps its existing ordering.
+
+<AccordionGroup>
+
+<Accordion title="Fyno Connect: Alerting, cohort duplication and allowlist defaults">
+
+Three improvements to [Fyno Connect](/docs/fyno-connect):
+
+- A Content API call that fails partially now raises an alert instead of passing unnoticed, so a partial failure surfaces while you can still act on it.
+- Duplicate an existing cohort rather than rebuilding it from scratch, which is quicker when you need a variant of one you already have.
+- The default allowlist endpoint is pre-selected, so you no longer have to choose it each time when it is the one you want.
+
+</Accordion>
+
+<Accordion title="Alarms: Journeys removed from the module filter">
+
+The [Alarms](/docs/alarms) filter no longer lists Journeys as a separate module type. Journeys are workflows, so having both was redundant and made it unclear which to pick.
+
+Select **Workflows** to filter alarms for both workflows and journeys. Existing alarms are unaffected.
+
+</Accordion>
+
+</AccordionGroup>
+
+{/* BUG FIXES — one row each. Lead with the symptom a reader would recognise,
+     then say what it does now. Never ship a row without both halves. */}
+
+### 🛠 Bug fixes
+
+| Area | Fix |
+| --- | --- |
+| **Report Extraction** | On Windows, the date range picker ran past the bottom of the screen and the OK button sat behind the taskbar, so a range could not be confirmed. The picker now fits the viewport at any screen size and the OK button stays reachable. |
+| **Workflow Logs** | Capture Node timestamps displayed inconsistently because some carried timezone information and others did not. All date fields now use the same format with timezone information, so times read correctly across [Workflow Logs](/docs/workflow-logs). |
+| **Workflow Logs** | Missing timestamps and metrics rendered as **Invalid DateTime** and **NaN**. Workflow Logs now show a fallback value wherever data is unavailable, and valid values display as before. |
+| **Campaigns** | The event selector loaded only the 500 most recent live notification events, so older ones could not be picked. It now loads past that limit, making older live events selectable. |
+| **Campaigns** | Rerunning a campaign showed no progress, leaving you unable to tell whether it was running. A rerun now reports progress the same way the original run does. |
+| **Logs** | Changing a filter gave no feedback while results were fetched. A loading indicator now appears until the filtered list is ready. |
