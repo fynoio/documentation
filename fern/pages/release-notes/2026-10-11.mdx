@@ -2,7 +2,7 @@
 
 This release adds a Consent Form component for collecting opt-ins through a time-limited link, flags campaign records with missing placeholder values before you send, and surfaces WhatsApp service message counts in Cost Analytics following the 1 October pricing change.
 
-Fyno Connect gains alerting for partial Content API failures, cohort duplication and a pre-selected default allowlist endpoint, and Journeys has been folded into Workflows in the Alarms filter, alongside fixes to the Report Extraction date picker on Windows, timestamps and missing values in Workflow Logs, older events missing from the Campaigns selector, the logs filter loader, and campaign reruns.
+Fyno Connect gains alerting for partial Content API failures, cohort duplication and a pre-selected default allowlist endpoint, and Journeys has been folded into Workflows in the Alarms filter, alongside fixes to the Report Extraction date picker on Windows, date rendering in Workflow Logs, older events missing from the Campaigns selector, the logs filter loader, and campaign reruns.
 
 {/* NEW FEATURES — capabilities that did not exist before.
      Six cards max. cols={2} for 4-6, cols={3} for 3.
@@ -14,7 +14,7 @@ Fyno Connect gains alerting for partial Content API failures, cohort duplication
 
 <Card title="Consent form component" icon="file-signature">
 
-A new Consent Form component collects opt-ins through a link that expires after a validity period you set. A consent checkbox is added by default and the submit button stays disabled until it is checked, and submitting can trigger a notification event or workflow. Preview the form on desktop and mobile before going live.
+A new Consent Form component collects opt-ins through a link that expires after a validity period you set. A consent checkbox is added by default and the submit button stays disabled until it is checked, and submitting can trigger a notification event. Preview the form on desktop and mobile before going live.
 
 [Read more](/docs/components)
 
@@ -77,7 +77,7 @@ Select **Workflows** to filter alarms for both workflows and journeys. Existing 
 | --- | --- |
 | **Report Extraction** | On Windows, the date range picker ran past the bottom of the screen and the OK button sat behind the taskbar, so a range could not be confirmed. The picker now fits the viewport at any screen size and the OK button stays reachable. |
 | **Workflow Logs** | Capture Node timestamps displayed inconsistently because some carried timezone information and others did not. All date fields now use the same format with timezone information, so times read correctly across [Workflow Logs](/docs/workflow-logs). |
-| **Workflow Logs** | Missing timestamps and metrics rendered as **Invalid DateTime** and **NaN**. Workflow Logs now show a fallback value wherever data is unavailable, and valid values display as before. |
-| **Campaigns** | The event selector loaded only the 500 most recent live notification events, so older ones could not be picked. It now loads past that limit, making older live events selectable. |
+| **Workflow Logs** | Dates and metrics were not rendering as expected where a value was unavailable. Workflow Logs now show a fallback in those cases, and valid values display as before. |
+| **Campaigns** | The event selector loaded only the live notification events created or modified in the recent past, so older ones could not be picked. All live events are now available in the selector. |
 | **Campaigns** | Rerunning a campaign showed no progress, leaving you unable to tell whether it was running. A rerun now reports progress the same way the original run does. |
 | **Logs** | Changing a filter gave no feedback while results were fetched. A loading indicator now appears until the filtered list is ready. |
