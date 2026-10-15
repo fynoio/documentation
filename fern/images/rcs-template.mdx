@@ -1,0 +1,177 @@
+---
+title: 'RCS Templates'
+slug: 'rcs-template'
+description: 'Create and manage RCS templates including template messages, simple messages, rich cards, and carousels with media, buttons, dynamic content, and approval workflows.'
+og:title: 'RCS Templates | Fyno Documentation'
+og:description: 'Learn how to create RCS templates using template messages, simple messages, rich cards, and carousels, configure media and interactive buttons, and manage approvals.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+When you add the **RCS** channel to a template, the **Create your RCS template** screen opens. The first field, **Type**, decides what you build.
+
+| Type | Use it to |
+| --- | --- |
+| [Pre-approved RCS Template](#pre-approved-rcs-template) | Send an RCS template you created and got approved in your RCS provider account. Typically used for OTPs and transactional messages, replacing SMS. |
+| [Reply: Simple](#reply-simple) | Reply with a text, image, video or file message. |
+| [Reply: Card](#reply-card) | Reply with an interactive rich card, with media and buttons. |
+| [Reply: Carousel](#reply-carousel) | Reply with up to 10 rich cards that the user can scroll through. |
+
+## Pre-approved RCS Template
+
+A pre-approved template message has a 160-character limit.
+
+![](/images/rcscreate-v2-pre-approved.png)
+
+<Steps>
+<Step title="Select the type">
+
+In **Type**, select **Pre-approved RCS Template**.
+
+</Step>
+<Step title="Enter the template name">
+
+In **Template Name**, enter the template name defined in your RCS provider account.
+
+</Step>
+<Step title="Choose the template type">
+
+In **Template Type**, select **Simple Text**, **Rich Card** or **Carousel**, matching the template in your provider account.
+
+<Tabs>
+<Tab title="Simple Text">
+
+![](/images/rcscreate-v2-pre-approved.png)
+
+</Tab>
+<Tab title="Rich Card">
+
+![](/images/rcscreate-v2-rich-card.png)
+
+</Tab>
+<Tab title="Carousel">
+
+![](/images/rcscreate-v2-carousel.png)
+
+</Tab>
+</Tabs>
+
+</Step>
+<Step title="Map the body placeholders (optional)">
+
+If your template uses variables, map each one under **Body Placeholders**. For each variable defined in the RCS template, enter the **RCS Variable** and either map it to a **Fyno Placeholder** or enter a specific value. Click **Add** to add more rows, or the delete icon to remove one.
+
+</Step>
+</Steps>
+
+<Note>
+The Preview is not available for pre-approved template content.
+</Note>
+
+## Reply: Simple
+
+Choose the message type and add its content.
+
+| Message type | Content | Supported file types |
+| --- | --- | --- |
+| **Text** | Enter any text, with placeholders. Text messages are limited to 1,000 characters. | Not applicable |
+| **Image** | Enter an image URL or upload an image file. The file size is limited to 100MB, and the URL can have a maximum of 2,048 characters. | jpeg, jpg, png, gif |
+| **Video** | Enter a video URL or upload a video file. The file size is limited to 100MB, and the URL can have a maximum of 2,048 characters. | h263, m4v, mp4, mpeg, webm |
+| **File** | Enter a file URL or upload a file, and provide a valid file name. The file size is limited to 100MB, and the URL can have a maximum of 2,048 characters. | pdf |
+
+![](/images/template_rcs_preview.png)
+
+<Tip title="Force Refresh">
+Enable **Force Refresh** to make sure that if the media at the URL is updated, Fyno always fetches the latest version of the image, video or file.
+</Tip>
+
+## Reply: Card
+
+Send a preview of your website or product as an interactive rich card. Customers can click the link on the card to view your website or product. Rich cards can include images, buttons and suggested replies and actions. You can always see how your message looks in the Preview on the right.
+
+| Element | Description | Supported file types |
+| --- | --- | --- |
+| **Card Title** | The title of the card. | Not applicable |
+| **Card Description** | The description of the card. | Not applicable |
+| **Card Orientation** | Choose **Vertical** or **Horizontal**. | Not applicable |
+| **Card Alignment** | For a horizontal card, choose **Left** or **Right**. For a vertical card, choose **Short** or **Medium**. | Not applicable |
+| **Image** | Enter an image URL or upload an image file. The file size is limited to 100MB. | JPG, JPEG, GIF |
+| **Video** | Enter a video URL or upload a video file. The file size is limited to 100MB. | H263, M4V, MP4, MPEG-4, MPEG, WEBM |
+| **File** | Enter a file URL or upload a file. The file size is limited to 100MB. | PDF |
+| **Buttons** | Add up to 4 buttons, giving customers quick replies or actions. See [Card buttons](#card-buttons). | Not applicable |
+
+### Card buttons
+
+You can add up to 4 buttons to a card. There are six types of buttons.
+
+<AccordionGroup>
+<Accordion title="Quick Reply">
+
+- **Button Title**: The text that appears on the button.
+- **Button Payload** (optional): The payload sent back to the system when the button is clicked.
+
+![](/images/815df37-button_QR.png)
+
+</Accordion>
+<Accordion title="Visit Website">
+
+- **Button Title**: The text that appears on the button.
+- **Button Payload** (optional): The message or payload sent back to the system when the button is clicked.
+- **URL**: The webpage or resource users are taken to when they click the button. Use a base URL before adding variables as suffixes. For example, with the base URL `https://www.fyno.io/customers/` followed by `[customer_name]`, the full URL is `https://www.fyno.io/customers/[customer_name]`.
+
+![](/images/51cd4c6-button_website.png)
+
+</Accordion>
+<Accordion title="Phone Number">
+
+The phone number must include a leading `+` and the country code, with no separators. For example, `+919999900000`.
+
+</Accordion>
+<Accordion title="Date Select">
+
+- **Button Title**: The text that appears on the button.
+- **Button Payload** (optional): The message or payload sent back to the system when the button is clicked.
+- **Start Date**: When the event starts, for example a conference.
+- **End Date**: When the event ends.
+- **Event Title**: The title of the event.
+- **Event Description** (optional): A description of the event.
+
+![](/images/10a1aa6-button_dates.png)
+
+</Accordion>
+<Accordion title="Send Location">
+
+Show a location by entering the latitude and longitude, or by entering a query.
+
+- **Latitude**: The latitude in degrees, in the range -90.0 to +90.0. Positive values are north of the equator, negative values are south.
+- **Longitude**: The longitude in degrees, in the range -180.0 to +180.0. Positive values are east of the Prime Meridian, negative values are west.
+- **Label**: The label of the pin dropped at the location.
+- **Query**: A search query. For example, "Wework Co-working Space" shows all Wework co-working locations near the user, while "32, 5th Block, Jaya Nagar, Bengaluru 560041" selects that specific address, regardless of the user's location.
+
+</Accordion>
+<Accordion title="Request Location">
+
+Asks the user to share their location.
+
+</Accordion>
+</AccordionGroup>
+
+## Reply: Carousel
+
+Add up to 10 rich cards in a carousel. Each card has the same fields as a [rich card](#reply-card).
+
+## How to add dynamic content
+
+You can add dynamic content to your templates using one of the four options below:
+
+- [Placeholders](./template-dynamic-content#placeholders)
+- [System Variables](./template-dynamic-content#system-variables)
+- [Handlebars](./template-dynamic-content#handlebars)
+- [Components](./template-dynamic-content#components)
+
+## Save and go live
+
+Click **Save** to save the template as a **Test** version. Use **Go Live** when you are ready to move your template to the **Live** version.
+
+<Note>
+If your workspace has a maker-checker workflow enabled for template management, **Go Live** needs an additional approval step. Choose from your designated approvers, who review and authorize the template changes. See [Approval flow](./approval-flow) for the steps.
+</Note>

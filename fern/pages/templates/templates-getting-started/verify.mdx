@@ -7,133 +7,193 @@ og:description: 'Fyno Verify provides a fully managed multichannel verification 
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno Verify offers a fully managed API for seamless multichannel user verification via OTP or link.
+Fyno Verify is a fully managed API for multichannel user verification by OTP or link. A single API handles OTP generation, delivery and verification securely, so you can improve your onboarding and login flows.
 
-Elevate your onboarding and login process with a single API that handles the entire OTP generation, delivery and verification process in a secure way.
+Verifying that a new user is who they say they are is an essential first step in your relationship with them. It reduces spam and fraud on your site and keeps your users secure.
 
-## Why Fyno Verify?
+<Info>
+Fyno Verify supports SMS, Email, WhatsApp, Push, InApp and Voice.
+</Info>
 
-Verification is an essential first step in your online relationship with a user. By verifying that a new user is who they say they are, you can reduce spam and fraud on your site while ensuring the user's security.
-
-<Info>Fyno Verify supports SMS, Email, WhatsApp, Push, InApp and Voice.</Info>
-
-## How to configure Fyno Verify?
-
-In the templates, go to System Variables -> Verify. Click Settings icon
-
-![](/images/system_variables_verify.png)
-
-You can configure Fyno Verify in 2 ways.
-
-1. OTP
-2. Link
-   ![](/images/generate_and_verify_your_otps.png)
-
-<Tip>You can also configure both OTP and Link in the same template.</Tip>
-
-### How to configure Fyno Verify for OTP?
+## Configure Fyno Verify
 
 <Steps>
-<Step>Enable OTP toggle.</Step>
+<Step title="Open Fyno Verify">
 
-<Step>
-  In the pop-up, configure your settings for OTP.
-  <ol>
-    <li>Choose between a numeric or an alphanumeric OTP.</li>
-    <li>Specify the desired number of characters for the OTP. You can choose between 3 and 6 characters</li>
-    <li>Define the OTP validation time. You can choose between 60 seconds and 48 hours.</li>
-    <li>Set the number of allowed retries. You can choose between 1 and 10 retries</li>
-  </ol>
+In the template editor, go to **System Variables → Verify** in the left panel and click **Configure**.
+
+![](/images/dyncontent-v2-verify-panel.png)
+
 </Step>
+<Step title="Turn on OTP, Link or both">
 
-<Step>Select `Yes` in 'Use destination as id', if you want to send the destination(email/phone no etc) as id in the request once OTP is entered by the users in your app/website.</Step>
+In the **Fyno Verify** pop-up, turn on **OTP**, **Link** or both, then configure each one. See [OTP settings](#otp-settings) and [Link settings](#link-settings).
 
-<Step>If you choose `No` in 'Use destination as id', then you need to send `request_id` as part of Fyno Verify API request to verify the OTP.</Step>
+![](/images/dyncontent-v2-verify-modal.png)
 
-<Step>By default we will send same OTP to all the channels configured in your template. if you want to send different OTPs to different channels, then select 'Different OTP for all channels'.</Step>
+</Step>
+<Step title="Save">
+
+Click **Done**.
+
+</Step>
 </Steps>
 
-<Tip>Use `{{$fyno.$otp}}` as the OTP placeholder in your Fyno template.</Tip>
+<Tip>
+You can configure both OTP and Link in the same template.
+</Tip>
 
-![](/images/fyno_verify_type_of_otp.png)
+## OTP settings
 
-### How to configure Fyno Verify for Link?
+![](/images/dyncontent-v2-verify-otp.png)
 
-<Steps>
-  <Step>Enable Link toggle.</Step>
-  <Step>In the pop-up, define the Link validation time. You can choose between 60 seconds and 48 hours.</Step>
-  <Step>By default we will send same OTP to all the channels configured in your template. if you want to send different OTPs to different channels, then select 'Different OTP for all channels'.</Step>
-  <Step>Provide a redirect link if you want to redirect your users to a specific page in your app/website, otherwise leave it black. Users will see a success screen once they click the validation link and its verified.</Step>
-</Steps>
+| Setting | What it does |
+| --- | --- |
+| **Type of OTP** | Choose **Numeric** or **Alphanumeric**. |
+| **No. of characters** | The OTP length, from 3 to 6 characters. |
+| **Validation time limit** | How long the OTP is valid, between 60 seconds and 48 hours. |
+| **No. of attempts** | The number of allowed retries, from 1 to 10. |
+| **Use destination as id** | Select **Yes** to send the destination (email address, phone number and so on) as the ID when you verify the OTP the user entered. Select **No** to send the `request_id` in the Fyno Verify API request instead. |
+| **Channel Specific** (optional) | By default, the same OTP is sent to every channel in the template. Select **Different OTP for all channels** to send a different OTP to each channel. |
 
-<Tip>Use `{{$fyno.$link}}` as the Link placeholder in your Fyno template.
-![](/images/link_validation_time_limit.png)</Tip>
-<Tip>The generated URL will follow this format: `https://fy1.in/verify/x`, where x is a 32-character string.</Tip>
+<Note>
+Use `{{$fyno.$otp}}` as the OTP placeholder in your template.
+</Note>
 
-## Sample Fyno Verify API requests
+## Link settings
 
-1. If '_Use destination as id_' is `No` and '_Same OTP for all channels_' then: `https://api.fyno.io/v1/{{WSID}}/live/verify/validate?request_id=0b59df61-c587-4f44-a669-f0177a161b81&otp=2811`
+![](/images/dyncontent-v2-verify-link.png)
 
-For instance, if a user from Bank XYZ attempts to log in using their customer ID, the bank will send an OTP via SMS and email. The user can retrieve the OTP from either channel and enter it on the bank's login page.
+| Setting | What it does |
+| --- | --- |
+| **Validation time limit** | How long the link is valid, between 60 seconds and 48 hours. |
+| **Channel Specific** (optional) | By default, the same link is sent to every channel in the template. Select **Different links for all channels** to send a different link to each channel. |
+| **Redirect To** (optional) | The URL users are redirected to when they click the verification link. If you leave it empty, users see a success screen once the link is verified. |
 
-- If the OTP validation is successful, Fyno will update it as 'Verified' for both Email and SMS in logs.
-- If the OTP validation fails, Fyno will update it as 'Failed to Verify' for both Email and SMS in logs.
+<Note>
+Use `{{$fyno.$link}}` as the link placeholder in your template. The generated URL follows the format `https://fy1.in/verify/x`, where `x` is a 32-character string.
+</Note>
 
-2. If '_Use destination as id_' is `No` and '_Different OTP for all channels_' then: `https://api.fyno.io/v1/{{WSID}}/live/verify/validate?request_id=0b59df61-c587-4f44-a669-f0177a161b81&otp=2811`
+## Verify the OTP with the API
 
-For instance, if a user from Bank XYZ attempts to log in using their customer ID, the bank will send different OTP via SMS and email, say '4561' in SMS and '7891' in Email.
+Call the Fyno Verify API to validate the OTP the user entered. The request depends on the **Use destination as id** setting. `WSID` is your Workspace ID.
 
-- If the user enters '4561' and OTP validation is successful, Fyno will update it as 'Verified' for SMS in logs.
-- If the user enters '7891' and OTP validation is successful, Fyno will update it as 'Verified' for Email in logs.
-- If the OTP validation fails, Fyno will update it as 'Failed to Verify' for both Email and SMS in logs.
+<Tabs>
+<Tab title="Use destination as id: No">
 
-3. If '_Use destination as id_' is `Yes` and '_Same OTP for all channels_', then: `https://api.fyno.io/v1/{{WSID}}/live/verify/validate?otp=2811&destination=91xxxxxxxxxx`'
+Send the `request_id` and the OTP:
 
-For instance, if a user from Bank ABC attempts to log in using their customer ID, the bank will send an OTP via SMS and email. The user can retrieve the OTP from either channel and enter it on the bank's login page.
+```text wordWrap
+https://api.fyno.io/v1/{{WSID}}/live/verify/validate?request_id=0b59df61-c587-4f44-a669-f0177a161b81&otp=2811
+```
 
-- If the OTP validation is successful, Fyno will update it as 'Verified' for both Email and SMS in logs.
-- If the OTP validation fails, Fyno will update it as 'Failed to Verify' for both Email and SMS in logs.
+</Tab>
+<Tab title="Use destination as id: Yes">
 
-4. If 'Use destination as id' is `Yes` and 'Different OTP for all channels', then: `https://api.fyno.io/v1/{{WSID}}/live/verify/validate?otp=2811&destination=91xxxxxxxxxx`'
+Send the OTP and the destination:
 
-For instance, if a user from Bank ABC attempts to log in using their customer ID, the bank will send different OTP via SMS and email, say '4561' in SMS and '7891' in Email.
+```text wordWrap
+https://api.fyno.io/v1/{{WSID}}/live/verify/validate?otp=2811&destination=91xxxxxxxxxx
+```
 
-- If the user enters '4561' and OTP validation is successful, Fyno will update it as 'Verified' for SMS in logs.
-- If the user enters '7891' and OTP validation is successful, Fyno will update it as 'Verified' for Email in logs.
-- If the OTP validation fails, Fyno will update it as 'Failed to Verify' for both Email and SMS in logs.
+</Tab>
+</Tabs>
 
-<Info>`WSID` - _Workspace Id_</Info>
-<Info>Use `{{$fyno.$otp}}` as the OTP placeholder in your Fyno template.</Info>
+### How verification is logged
 
-## How Fyno Verify Works? - A User's Perspective
+For example, a bank sends a login OTP by both SMS and email. How Fyno updates the Sent Logs depends on the **Channel Specific** setting:
 
-For instance, brand ABC is using Fyno Verify to authenticate their users.
+| Scenario | Same OTP for all channels | Different OTP for all channels |
+| --- | --- | --- |
+| **What the user receives** | The same OTP in SMS and email. The user can enter it from either channel. | A different OTP in each channel, for example `4561` in SMS and `7891` in email. |
+| **Validation succeeds** | Marked **Verified** for both SMS and email. | Marked **Verified** only for the channel whose OTP was entered. For example, entering `4561` marks SMS as **Verified**. |
+| **Validation fails** | Marked **Failed to Verify** for both SMS and email. | Marked **Failed to Verify** for both SMS and email. |
+
+## How Fyno Verify works
+
+For example, brand ABC uses Fyno Verify to authenticate its users.
 
 ![](/images/fyno_verify_flowchart.png)
 
-1. User enters their phone number or email in the ABC's app/website.
-2. ABC triggers Fyno’s Notification event from their backend which generates an OTP
-3. Fyno sends the OTP via selected channel(s) configured in the notification event to the user
-4. User enters the OTP in the brand ABC's app/website.
-5. ABC backend calls Fyno Verify API to validate the OTP(sample request in the previous section)
-6. Fyno verifies the user-entered OTP and forwards the response to the ABC's application, yielding four potential outcomes/statuses:
-   1. `200: {
-"status": "ok",
-"_message": "verified"
-}`
-   2. `400: {
-    "status": "error",
-    "_message": "verify-attempt-failed",
-    "attempt_left": 2
-}`
-   3. `400: {
-    "status": "error",
-    "_message": "verify-attempt-exceeded",
-    "attempt_left": 0
-}`
-   4. `400: {
-    "status": "error",
-    "_message": "Not a valid request"
-}`
-7. If the OTP validation fails, the user will have the opportunity to retry. The number of retries allowed is based on the option configured.
-8. Once the user has exhausted all the retries, it is at the discretion of brand ABC to determine the waiting period before allowing the same user to retry.
+<Steps>
+<Step>
+
+The user enters their phone number or email address in ABC's app or website.
+
+</Step>
+<Step>
+
+ABC triggers a Fyno notification event from its backend, which generates an OTP.
+
+</Step>
+<Step>
+
+Fyno sends the OTP to the user through the channels configured in the notification event.
+
+</Step>
+<Step>
+
+The user enters the OTP in ABC's app or website.
+
+</Step>
+<Step>
+
+ABC's backend calls the Fyno Verify API to validate the OTP. See [Verify the OTP with the API](#verify-the-otp-with-the-api).
+
+</Step>
+<Step>
+
+Fyno verifies the OTP and returns one of these responses to ABC's application:
+
+<Tabs>
+<Tab title="Verified">
+
+```json title="200"
+{
+  "status": "ok",
+  "_message": "verified"
+}
+```
+
+</Tab>
+<Tab title="Attempt failed">
+
+```json title="400"
+{
+  "status": "error",
+  "_message": "verify-attempt-failed",
+  "attempt_left": 2
+}
+```
+
+</Tab>
+<Tab title="Attempts exceeded">
+
+```json title="400"
+{
+  "status": "error",
+  "_message": "verify-attempt-exceeded",
+  "attempt_left": 0
+}
+```
+
+</Tab>
+<Tab title="Invalid request">
+
+```json title="400"
+{
+  "status": "error",
+  "_message": "Not a valid request"
+}
+```
+
+</Tab>
+</Tabs>
+
+</Step>
+<Step>
+
+If validation fails, the user can retry, up to the number of attempts you configured. Once the user has used all their retries, ABC decides how long to wait before letting the same user try again.
+
+</Step>
+</Steps>

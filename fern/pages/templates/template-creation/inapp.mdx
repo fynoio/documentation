@@ -7,78 +7,181 @@ og:description: 'Learn how to create InApp notification templates, configure act
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno’s InApp template editor allows you to configure your template for Fyno’s InApp services.
-![](/images/template_inapp.png)
+Fyno's InApp template editor lets you configure templates for Fyno's InApp service. When you add the **InApp** channel to a template, the **Create your Fyno InApp template** screen opens.
 
-On clicking InApp, you can see:
+![](/images/inappcreate-v2-editor.png)
 
-- **Title:** Enter a title for your template, this is an optional field but it really helps to give a short context about your notification.
+The **InApp Preview** on the right shows the notification panel that comes with the Fyno InApp SDK, with **All** and **Unread** tabs.
 
-- **Body:** Enter the main body content of your template, you can use the rich text options provided in the editor to make your text more appealing.
+<Info>
+All links in the preview always open in a new tab, even when **Open in same tab** is selected.
+</Info>
 
-- **Tag:** Only one notification with the same ID will be shown in the notification center. Use the same ID to update an existing notification instead of showing a new one. The character limit is set at 64 characters.
+## Create an InApp template
 
-- **Action URL:** This is the main action of the notification when the notification tile is clicked. You can either enter a valid HTTP/HTTPS URL or a route starting with “/” if you want to route them within the same path. By default, the given URL opens in a new tab, but in case you want it to open in the same tab, just check the checkbox provided right under it.
+<Steps>
+<Step title="Choose the type">
 
-- **Icon URL:** By default the icon used in the template is the image provided to the SDK. You are also provided with the option to override that icon for each template. If no value is given here the default icon will be used. The URL of the image should be public. Supported file types are _jpeg_ and _png_.
+| Type | What it does |
+| --- | --- |
+| **Default** | Notifies users when a new InApp message is sent to them. |
+| **Silent** | Sends or updates InApp messages without triggering a pop-up notification for users. |
 
-- **Attachment Type:** You can add any one of the following attachment options along with your template:
+</Step>
+<Step title="Title">
 
-  - **None:** No attachment added
+Enter a title for the notification. It gives users short context about the notification.
 
-  - **Image:** Add an image attachment to your template to make it more attractive. The URL of the image should be public. Supported file types are _jpeg_ and _png_.
+</Step>
+<Step title="Body">
 
-  - **Video:** Add a video attachment to your template.The URL of the video should be public.
+Enter the main content of the notification. Use the toolbar above the field for bold, italic, strikethrough and code formatting.
 
-  - **Document:** Add a document to your template. The URL of the document should be public.
+</Step>
+<Step title="Action URL">
 
-- **Call To Actions:** You can add up to three CTA buttons to your template. Each of these buttons has the following configurations:
+Enter where clicking the notification takes the user. Enter a valid HTTP or HTTPS URL, or a route starting with `/` to route the user within the same path. By default, the link opens in a new tab. Select **Open in same tab** to open it in the same tab.
 
-  - **Button:** This is the title of the button.
+</Step>
+<Step title="Attachment Type">
 
-  - **Primary Button:** This checkbox allows you to add a primary/highlighted button to the template
+You can add one attachment to a notification. The URL must be public.
 
-  - **Link:** This is the action added to the button. You can either enter a valid HTTP/HTTPS URL or a route starting with “/” if you want to route them within the same path.
+<Tabs>
+<Tab title="None">
 
-  - **Open in the same tab:** By default the action/link opens up in a new tab. If you want to open the link in the same tab, check this box to do so.
+No attachment is added.
 
-  - **Add another:** This button adds a new button to the template
+</Tab>
+<Tab title="Image">
 
-  - **Delete:** Allows you to delete the previously created button.
+Enter the **Image URL**, or use the upload icon. The image size should not exceed 5MB, and it should be a valid HTTP image URL. Supported file types are jpeg and png.
 
-- **Preview:** Review your content and take a look at what your message would look like in the Preview section on the right. This section shows the notification panel that comes with the Fyno InApp SDK.
+![](/images/inappcreate-v2-attachment-image.png)
 
-- **Save & Go Live:** Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.
+</Tab>
+<Tab title="Video">
 
-<Tip>To use any user property in your templates, you can add it in this format - `{{$user.$<user_property>}}`. For example, to add Name as placeholder from User profile, you can add it as `{{$user.$name}}`</Tip>
+Enter the **Video URL**. The video size should not exceed 16MB, and it should be a valid HTTP video URL.
 
-<Info>All the links in the preview will always open in a new tab, even when "open in the same tab" is selected.</Info>
+![](/images/inappcreate-v2-attachment-video.png)
 
-<Warning>You cannot use only numeric values as placeholder keys!</Warning>
+</Tab>
+<Tab title="Document">
 
-## How to add dynamic content in template
+Enter the **Document URL**. The file size should not exceed 100MB, and it should be a valid HTTP file URL.
 
-You can add dynamic content in your templates using one of the 4 options mentioned below.
+![](/images/inappcreate-v2-attachment-document.png)
+
+</Tab>
+</Tabs>
+
+</Step>
+<Step title="Buttons (optional)">
+
+You can add up to 3 call-to-action buttons. The counter next to **Add** shows how many you've added, for example **Add (0/3)**. Each button has these settings:
+
+| Setting | What it does |
+| --- | --- |
+| **Button** | The title of the button. |
+| **Primary Button** | Makes this the primary, highlighted button. |
+| **Link** | Where the button takes the user. Enter a valid HTTP or HTTPS URL, or a route starting with `/` to route the user within the same path. |
+| **Open in same tab** | By default, the link opens in a new tab. Select this to open it in the same tab. |
+
+Use the delete icon to remove a button.
+
+</Step>
+<Step title="Other Settings (optional)">
+
+Expand **Other Settings** to configure these fields.
+
+![](/images/inappcreate-v2-other-settings.png)
+
+| Field | What it does |
+| --- | --- |
+| **Tag** | Only the latest notification with the same Tag ID is shown in the notification center. Use the same ID to update an existing notification instead of showing a new one. Maximum 64 characters. |
+| **TTL** | How long the notification is preserved for delivery if the device is offline. Enter the value in the first field and select the unit of time, such as **Seconds**, in the second. |
+| **Label** | The notification is organized under this label for the recipient. |
+| **Icon URL** | Overrides the default icon for this template. By default, the icon is the image provided to the SDK, and it is used when this field is empty. The URL must be public. Supported file types are jpeg and png. |
+| **Pin notification** | Pins the notification for the recipient. |
+
+<Note>
+**Label** and **Pin notification** are supported only in version **2.0.0-alpha-03** of the InApp React SDK.
+</Note>
+
+</Step>
+<Step title="Additional Data (optional)">
+
+Expand **Additional Data** to send extra information with the notification, as JSON.
+
+![](/images/inappcreate-v2-additional-data.png)
+
+Placeholders in additional data must be inside double quotes, in the format `"{{ }}"`. For example:
+
+```json
+{
+  "order_id": "{{order_id}}"
+}
+```
+
+</Step>
+</Steps>
+
+<Tip>
+To use any user property in your templates, add it in this format: `{{$user.$<user_property>}}`. For example, to add Name as a placeholder from the User profile, add it as `{{$user.$name}}`.
+</Tip>
+
+<Warning>
+You cannot use only numeric values as placeholder keys.
+</Warning>
+
+## How to add dynamic content
+
+You can add dynamic content to your templates using one of the four options below:
 
 - [Placeholders](./template-dynamic-content#placeholders)
 - [System Variables](./template-dynamic-content#system-variables)
 - [Handlebars](./template-dynamic-content#handlebars)
 - [Components](./template-dynamic-content#components)
 
-## How to test InApp template
+## How to test an InApp template
 
-You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+Use this feature to test a template thoroughly before including it in any Notification Event. This ensures early detection and resolution of any potential issues, for a seamless user experience.
 
 <Steps>
-  <Step>Click 'Run Test' on the top right hand side of the template.</Step>
-  <Step>It opens the pop up as shown below. ![](/images/template_inapp_test_updated.png)</Step>
-  <Step>You can either enter the InApp token of the recipient where the InApp should be sent or you can enter distinct_id. **Please make sure to enter Distinct_id of Test User profiles**</Step>
-  <Step>Select a InApp service provider which is already configured in Fyno.</Step>
-  <Step>When you click 'TEST', it will send InApp notification to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.</Step>
+<Step>
+
+Click **Run Test** at the top right of the template. The **Test InApp template** pop-up opens.
+
+![](/images/inappcreate-v2-test-modal.png)
+
+</Step>
+<Step>
+
+From the dropdown, choose **InApp Recipient** and enter the recipient's details, or choose **Distinct ID** and enter it. **Make sure to enter the distinct_id of a Test User profile.**
+
+</Step>
+<Step>
+
+In **InApp Integration**, select an InApp integration that is already configured in Fyno.
+
+</Step>
+<Step>
+
+**Auto-fill empty placeholders** (optional, AI assistance): If your template has placeholders with no sample values, Fyno can fill them using AI so you can test the notification. Click **Yes** to let Fyno fill sample values for the empty placeholders.
+
+</Step>
+<Step>
+
+Click **Run Test** to send the InApp notification to the recipient with the selected integration. You see the success or failure message along with a link to the Sent Logs.
+
+</Step>
 </Steps>
 
-## How to raise Approval requests
+## Save and go live
 
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
+Click **Save** to save the template as a **Test** version. You can save different versions of the template this way. Use **Go Live** when you are ready to move your template to the **Live** version.
 
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+<Note>
+If template approvals are enabled in your workspace, **Go Live** needs an additional approval step. Choose from your designated approvers, who review and authorize the template changes. See [Approval flow](./approval-flow) for the steps.
+</Note>
