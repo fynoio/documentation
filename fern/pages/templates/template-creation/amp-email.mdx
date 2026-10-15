@@ -6,96 +6,331 @@ og:title: 'AMP Email Template | Fyno Documentation'
 og:description: 'Understand AMP for Email, supported inboxes and email providers, sender registration requirements, AMP-enabled content, and HTML fallback best practices for interactive email experiences.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
-AMP (Accelerated Mobile Pages) for Email is changing the way businesses approach transactional and marketing email campaigns. Unlike traditional static emails, AMP allows you to deliver dynamic, interactive content directly within the email itself. This includes features like carousels, accordions, and forms, eliminating the need for recipients to open a new tab and visit a website. With AMP, you can provide a seamless, website-like experience right inside the email, enhancing user experience.
 
-## Inboxes that support AMP for Email
+export const tableWrapperStyle = {
+  overflowX: 'auto',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  borderRadius: '8px',
+  border: '1px solid var(--rb-border-main, #E0E0E0)',
+  padding: '8px',
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+};
 
-Currently AMP is supported by these email clients:
+export const tableStyle = {
+  width: '100%',
+  borderCollapse: 'separate',
+  borderSpacing: 0,
+  fontSize: '13px',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
 
-- Gmail
-- Yahoo! Mail
-- FairEmail
-- Mail.ru
+export const thStyle = {
+  position: 'sticky',
+  top: 0,
+  zIndex: 20,
+  backgroundColor: 'var(--rb-header-bg, #F0F0F0)',
+  color: 'var(--rb-header-text, #333333)',
+  textAlign: 'left',
+  padding: '12px',
+  fontWeight: '600',
+  borderBottom: '2px solid var(--rb-border-main, #E0E0E0)'
+};
 
-## Benefits of AMP Email
+export const thCenterStyle = { ...thStyle, textAlign: 'center' };
 
-With interactive AMP emails, you can send:
+export const tdStyle = {
+  padding: '8px 12px',
+  borderBottom: '1px solid var(--rb-border-sub, #F0F0F0)',
+  verticalAlign: 'middle',
+  backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
+  color: 'var(--rb-table-text, #1a1a1a)'
+};
 
-- Embed interactive **forms** within emails to conduct surveys and gather user feedback, such as Net Promoter Score (NPS) and Customer Satisfaction (CSAT) surveys, enabling users to provide their feedback without leaving the email.
+export const tdCenterStyle = { ...tdStyle, textAlign: 'center' };
 
-- Enhance emails containing content and numerous links by presenting the information in **interactive carousels**. This approach allows users to engage with the content and navigate through the links without the need to open a new page, thus improving the overall user experience.
+export const Badge = ({ type, text }) => {
+  const baseBadgeStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '4px',
+    padding: '4px 12px',
+    fontSize: '12px',
+    fontWeight: '600',
+    minWidth: '60px',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+    whiteSpace: 'nowrap'
+  };
 
-- Utilize **accordions** to present details of multiple products or services within an email. By organizing the information in collapsible sections, users can easily explore and access the specific details they're interested in, resulting in a more engaging and user-friendly experience.
+  const variants = {
+    yes: { backgroundColor: 'var(--badge-yes-bg, #F2F7E3)', color: 'var(--badge-yes-text, #547100)' },
+    view: { backgroundColor: 'var(--badge-view-bg, #E5EDF7)', color: 'var(--badge-view-text, #0E3672)' },
+    test: { backgroundColor: 'var(--badge-test-bg, #FAF4E3)', color: 'var(--badge-test-text, #8B6602)' },
+    no: { backgroundColor: 'var(--badge-no-bg, #F0F0F0)', color: 'var(--badge-no-text, #333333)' }
+  };
 
-## How does AMP for Email work?
+  return <span style={{ ...baseBadgeStyle, ...variants[type] }}>{text}</span>;
+};
 
-Traditionally, a marketing or a transactional email is a multipart message with two different parts delivered as different MIME types.
+<style>{`
+  :root {
+    --rb-table-bg: #FFFFFF;
+    --rb-table-text: #1a1a1a;
+    --rb-header-bg: #F0F0F0;
+    --rb-header-text: #333333;
+    --rb-border-main: #E0E0E0;
+    --rb-border-sub: #F0F0F0;
+    --badge-yes-bg: #F2F7E3;
+    --badge-yes-text: #547100;
+    --badge-view-bg: #E5EDF7;
+    --badge-view-text: #0E3672;
+    --badge-test-bg: #FAF4E3;
+    --badge-test-text: #8B6602;
+    --badge-no-bg: #F0F0F0;
+    --badge-no-text: #333333;
+  }
+  html.dark {
+    --rb-table-bg: #121212;
+    --rb-table-text: #F0F0F0;
+    --rb-header-bg: #333333;
+    --rb-header-text: #F0F0F0;
+    --rb-border-main: #4D4D4D;
+    --rb-border-sub: #262626;
+    --badge-yes-bg: #547100;
+    --badge-yes-text: #F2F7E3;
+    --badge-view-bg: #0E3672;
+    --badge-view-text: #E5EDF7;
+    --badge-test-bg: #8B6602;
+    --badge-test-text: #FAF4E3;
+    --badge-no-bg: #333333;
+    --badge-no-text: #F0F0F0;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table td {
+    background-color: var(--rb-table-bg, #FFFFFF) !important;
+    color: var(--rb-table-text, #1a1a1a) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table th {
+    background-color: var(--rb-header-bg, #F0F0F0) !important;
+    color: var(--rb-header-text, #333333) !important;
+  }
+  .fyno-styled-table-wrapper table.fyno-styled-table code {
+    font-size: 12px;
+  }
+`}</style>
 
-- **HTML**: This is what most email clients support now.
+AMP (Accelerated Mobile Pages) for Email lets you send dynamic, interactive content inside the email itself, such as carousels, accordions and forms. Recipients can interact with the content without opening a new tab or visiting a website, which gives them a website-like experience right in their inbox.
 
-- **Plain Text**: Originally, this was the only way to send emails. When the HTML MIME type was rolled out, not all email clients supported HTML, or readers could set their client to display only the text version. The text part still acts as a fallback for the HTML part.
-
-AMP for Email Works by creating an AMP markup that looks like HTML but is a new specification. It is delivered using a third, additional MIME type (on top of existing types i.e. HTML and Plain Text).
-
-The AMP HTML version is delivered only to the inboxes of service providers that currently support AMP, such as Gmail, Yahoo Mail, FairEmail, and mail.ru. All other clients fall back to the HTML version.
-
-## AMP enabled Email Clients
-
-We support AMP email for the below Email Service Providers.
-
-- SES
-- SendGrid
-- Sparkpost
-- Mailmodo
-- Mailgun
-- SMTP
-
-## Prerequisite for sending AMP Emails
-
-Before starting to send AMP emails, you will have to ensure the following:
-
-<Steps>
-  <Step>You have SPF (Sender Policy Framework) and DKIM (DomainKeys Identified Mail) set up for the domain you’re sending from.</Step>
-  <Step>Your email should be approved for sending AMP (Dynamic) emails, including elements like Carousel, Accordion, and Forms. For more information, you can refer to [Google's AMP email documentation](https://developers.google.com/gmail/ampemail).</Step>
-  <Step>
-    Send a production-ready AMP email to the following addresses:
-    <ul>
-      <li>`ampverification@yahoo.com`</li>
-      <li>`ampforemail.whitelisting@gmail.com`</li>
-      <li>`postmaster_amp@corp.mail.ru` (recommended only if you have more than 5000 users with the mail.ru domain)</li>
-    </ul>
-  </Step>
-  <Step>The last step is to complete the [AMP for Email: Sender Registration form](https://docs.google.com/forms/d/e/1FAIpQLSdso95e7UDLk_R-bnpzsAmuUMDQEMUgTErcfGGItBDkghHU2A/viewform?gxids=7628). This is the only form you need to fill out to be allowed to send AMP emails for all supporting email clients.</Step>
-  <Step>Wait for Confirmation - Each email client notifies you of your allowlist status via email. If you have any issues, contact the AMP for Email Working Group via [GitHub repository for AMP for Email](https://github.com/ampproject/wg-amp4email).</Step>
-</Steps>
-
-<Tip title="Important">
-  <ul>
-    <li>Providers require you to register all the from email addresses from which you plan to send AMP emails.</li>
-    <li>Always refer to the latest support information about [AMP for Email](https://amp.dev/about/email) provided by the email services because it may vary over time.</li>
-    <li>Adding your from email address to Gmail's allowlist can take up to three weeks.</li>
-    <li>No confirmation emails will be sent by Yahoo Mail. After 7 days, AMP will begin functioning for Yahoo Mail if it satisfies all client sender requirements.</li>
-  </ul>
+<Tip>
+In Fyno, the [Stripo editor](./template-creation-email#stripo-editor) supports AMP. The AMP blocks (**Carousel**, **Accordion** and **Form**) are marked with a lightning icon in the **Blocks** section.
 </Tip>
 
-Other criteria to be fulfilled:
+## What you can do with AMP emails
 
-- The recipient should have enabled dynamic emails through the inbox settings.
+<CardGroup cols={3}>
+<Card title="Forms" icon="fa-solid fa-square-check">
+Run surveys and collect feedback, such as NPS and CSAT, without the user leaving the email.
+</Card>
+<Card title="Carousels" icon="fa-solid fa-images">
+Present content with many links in a carousel that users can browse without opening a new page.
+</Card>
+<Card title="Accordions" icon="fa-solid fa-bars-staggered">
+Show details of multiple products or services in collapsible sections, so users open only what interests them.
+</Card>
+</CardGroup>
 
-- A non-AMP fallback email must also be sent along with AMP version. This is to make sure that an email is rendered in non AMP supporting mailboxes or AMP disabled mailboxes.
+## How AMP for Email works
 
-However, you can still test AMP emails by sending them to yourself. To do this, go to your Gmail settings, select _Dynamic Email > Developer Settings_, and add the email address that will be sending dynamic content.
+A marketing or transactional email is usually a multipart message, with each part delivered as a different MIME type:
 
-## HTML Fallback for AMP Emails
+<div style={tableWrapperStyle} className="fyno-styled-table-wrapper">
+  <table style={tableStyle} className="fyno-styled-table">
+    <thead>
+      <tr>
+        <th style={thStyle}>Part</th>
+        <th style={thStyle}>What it is</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={tdStyle}><strong>Plain text</strong></td>
+        <td style={tdStyle}>The original email format. It still acts as a fallback for the HTML part.</td>
+      </tr>
+      <tr>
+        <td style={tdStyle}><strong>HTML</strong></td>
+        <td style={tdStyle}>The format most email clients support today.</td>
+      </tr>
+      <tr>
+        <td style={tdStyle}><strong>AMP HTML</strong></td>
+        <td style={tdStyle}>AMP markup, which looks like HTML but follows its own specification. It is delivered as a third MIME type, on top of HTML and plain text.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-To ensure that every email recipient has a seamless inbox experience, it is necessary to create a fallback for AMP emails. When you add videos or images to the email, it is a good practice to add the HTML fallback so that the users who cannot view it due to limited email client functionality can still have a good email experience.
+The AMP part is shown only in inboxes that support AMP. All other email clients fall back to the HTML version.
 
-Fallback message comes in play when:
+## Supported inboxes and providers
 
-- The AMP email expires after 30 days, and if the user tries to access the AMP email after it has expired
+<Tabs>
+<Tab title="Inboxes">
 
-- If a user wants to forward an AMP email. In this case the recipient will only see the fallback.
+<div style={tableWrapperStyle} className="fyno-styled-table-wrapper">
+  <table style={tableStyle} className="fyno-styled-table">
+    <thead>
+      <tr>
+        <th style={thStyle}>Email client</th>
+        <th style={thCenterStyle}>AMP for Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={tdStyle}>Gmail</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Yahoo Mail</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>FairEmail</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Mail.ru</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-- The recipient does not use the email service provider to support the AMP functionality.
+</Tab>
+<Tab title="Email providers in Fyno">
 
-In such scenarios, the HTML fallback lets the recipient have an enjoyable experience and successfully impart necessary information.
+<div style={tableWrapperStyle} className="fyno-styled-table-wrapper">
+  <table style={tableStyle} className="fyno-styled-table">
+    <thead>
+      <tr>
+        <th style={thStyle}>Email service provider</th>
+        <th style={thCenterStyle}>AMP emails in Fyno</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={tdStyle}>SES</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>SendGrid</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>SparkPost</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Mailmodo</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Mailgun</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>SMTP</td>
+        <td style={tdCenterStyle}><Badge type="yes" text="Supported" /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</Tab>
+</Tabs>
+
+<Info>
+Support can change over time. Always check the latest [AMP for Email support information](https://amp.dev/about/email) from the email services.
+</Info>
+
+## Before you send AMP emails
+
+To send AMP emails, you need to register as a sender with the email clients that support AMP.
+
+<Steps>
+<Step title="Set up SPF and DKIM">
+
+Make sure SPF (Sender Policy Framework) and DKIM (DomainKeys Identified Mail) are set up for the domain you send from.
+
+</Step>
+<Step title="Get approved for dynamic emails">
+
+Your email must be approved for sending AMP (dynamic) emails, including elements like carousels, accordions and forms. See [Google's AMP email documentation](https://developers.google.com/gmail/ampemail).
+
+</Step>
+<Step title="Send a production-ready AMP email for review">
+
+Send a production-ready AMP email to these addresses:
+
+- `ampverification@yahoo.com`
+- `ampforemail.whitelisting@gmail.com`
+- `postmaster_amp@corp.mail.ru` (recommended only if you have more than 5,000 users with the mail.ru domain)
+
+</Step>
+<Step title="Complete the sender registration form">
+
+Fill in the [AMP for Email: Sender Registration form](https://docs.google.com/forms/d/e/1FAIpQLSdso95e7UDLk_R-bnpzsAmuUMDQEMUgTErcfGGItBDkghHU2A/viewform?gxids=7628). This is the only form you need to fill in to send AMP emails to all supporting email clients.
+
+</Step>
+<Step title="Wait for confirmation">
+
+Each email client tells you your allowlist status by email. If you have any issues, contact the AMP for Email Working Group through the [AMP for Email GitHub repository](https://github.com/ampproject/wg-amp4email).
+
+</Step>
+</Steps>
+
+<Warning title="Important">
+- Register every From email address you plan to send AMP emails from.
+- Adding your From email address to Gmail's allowlist can take up to three weeks.
+- Yahoo Mail doesn't send a confirmation email. After 7 days, AMP starts working in Yahoo Mail if you meet all its sender requirements.
+</Warning>
+
+### Other requirements
+
+- The recipient must have dynamic emails enabled in their inbox settings.
+- You must send a non-AMP fallback email along with the AMP version, so the email still renders in inboxes that don't support AMP or have it disabled. See [HTML fallback for AMP emails](#html-fallback-for-amp-emails).
+
+<Tip title="Test before you're allowlisted">
+You can test AMP emails by sending them to yourself. In Gmail, go to **Settings → Dynamic email → Developer settings** and add the email address that sends the dynamic content.
+</Tip>
+
+## HTML fallback for AMP emails
+
+Always create an HTML fallback for your AMP emails, so every recipient has a good experience. This matters most when you add videos or images, which some email clients can't show.
+
+The recipient sees the fallback instead of the AMP version when:
+
+<div style={tableWrapperStyle} className="fyno-styled-table-wrapper">
+  <table style={tableStyle} className="fyno-styled-table">
+    <thead>
+      <tr>
+        <th style={thStyle}>Scenario</th>
+        <th style={thStyle}>What happens</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={tdStyle}><strong>The AMP email has expired</strong></td>
+        <td style={tdStyle}>AMP content expires after 30 days. If the user opens the email after that, they see the fallback.</td>
+      </tr>
+      <tr>
+        <td style={tdStyle}><strong>The email is forwarded</strong></td>
+        <td style={tdStyle}>The person it is forwarded to sees only the fallback.</td>
+      </tr>
+      <tr>
+        <td style={tdStyle}><strong>The inbox does not support AMP</strong></td>
+        <td style={tdStyle}>The recipient's email client or provider doesn't support AMP, or they have dynamic emails turned off.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+In all these cases, the HTML fallback makes sure the recipient still gets the information they need.

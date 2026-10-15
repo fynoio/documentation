@@ -11,7 +11,7 @@ Handlebars is a JavaScript library used for creating dynamic templates.
 
 It allows you to define templates with placeholders, and these placeholders are replaced with data when the template is triggered with the information sent in the payload.
 
-Handlebars within Fyno support features like conditional operations, loops, date time formatting, partial searches, and custom helpers, making it a very cool tool to use when creating your templates.
+Handlebars within Fyno support features like conditional operations, loops, date time formatting, partial searches, and custom helpers, making it a powerful tool for building your templates.
 
 ## Handlebars in Fyno's Templates
 
@@ -50,8 +50,8 @@ To understand how handlebars work, we first need to establish a sample payload, 
 
 Fyno has default as well as custom **handlebars** that you can use in your templates. Let's have a look at what these are and how to use them using the above payload and data as example responses. You can also [generate handlebars with Fyno AI](#generate-handlebars-with-fyno-ai) by describing what you need in plain language.
 
-<Warning title='🚧 Double Quotes within Handlebars {{" "}} may break your templates!'>
-<p>Double quote may break your syntax in HBS, especially in emails! And nobody wants that!</p><p>**For example:** Use `{{math number1 '+' number2}}` instead of `{{math number1 "+" number2}}`.</p><p>Use single quotes `{{' '}}` instead! :sunglasses:</p>
+<Warning title="Use single quotes inside handlebars">
+Double quotes inside handlebars can break your template syntax, especially in emails. Use single quotes instead. For example, use `{{math number1 '+' number2}}` instead of `{{math number1 "+" number2}}`.
 </Warning>
 
 <AccordionGroup>
@@ -126,7 +126,7 @@ active
 {{{investments.0.company}}}
 ```
 
-<Note>If you use double-brackets instead of triple, L&T will show as `L&amp;T`</Note>
+<Note>If you use double braces instead of triple, L&T shows as `L&amp;T`.</Note>
 
 ```text title="Output" wordWrap
 L&T
@@ -599,7 +599,7 @@ Invested in Larsen & Toubro!
 ```
 
 ```text title="Output" wordWrap
-
+L&T is in India
 ```
 
 </Accordion>
@@ -674,13 +674,13 @@ The date is today!
 
 </Accordion>
 
-<Accordion title="To check difference between two dates (in seconds, minutes, days, hours, month, hours, etc)">
+<Accordion title="To check the difference between two dates (in ms, seconds, minutes, hours, days, weeks, months or years)">
 
 ```hbs title="Format" wordWrap
 {{dateDiff timestamp1_with_timezone timestamp2_with_timezone 'ms / seconds / minutes / hours / days / weeks / months / years'}}
 ```
 
-<Note>The date and time must be in RFC-3339, ISO_8601 or the helper will return NaN</Note>
+<Note>The date and time must be in RFC 3339 or ISO 8601 format, or the helper returns NaN.</Note>
 
 ```hbs title="Example" wordWrap
 {{dateDiff '2023-12-01T14:30:00+05:30' '2023-12-19T14:30:00+05:30' 'ms'}}
@@ -944,6 +944,7 @@ $30.00
 26/11/2024 02:51 PM
 Tuesday, 26 November
 Tuesday, 26th November 2024 14:54 +05:30
+26/11/2024
 ```
 
 </Accordion>
@@ -1022,27 +1023,27 @@ Don't want to write the syntax yourself? Describe what you need in plain languag
 
 You can open the generator from two places:
 
-- **Left panel on the template page:** Expand **Handlebars** > **Build Your Own** and click **Generate**. If you'd rather build the logic yourself, this section also links to the Handlebars Builder.
+- **Left panel on the template page:** Expand **Handlebars** > **Build Your Own** and click **Generate**. If you'd rather build the logic yourself, this section also links to the [Handlebars Builder](#handlebars-builder).
 - **AI menu on input fields:** Any field that supports handlebars has an AI menu. Choose **Generate Handlebar** from it.
 
 The AI menu also has **Improve Handlebars**, which refines a handlebar that's already in the field instead of starting from scratch.
 
-![Build Your Own section in the left panel, with the Generate button](/images/handlebars-build-your-own.png)
+![Build Your Own section in the left panel, with the Generate button](/images/hbcreate-v2-build-your-own.png)
 
 ### Generate a handlebar
 
 <Steps>
 <Step title="Describe your requirement">
-In the **Tell us your requirement** field, describe what the handlebar should do. For example: _Show order_date in short Indian date format._ Then click **Generate**.
+In the **Generate Handlebars** window, describe what the handlebar should do. For example: _Show order_date in short Indian date format._ Then click **Generate**.
 
 <Note>Fyno AI works only with placeholders that already exist in your template. For example, to show a date in a specific format, the date must already be a placeholder in your template.</Note>
 
-![Generate Handlebars window with a requirement entered](/images/handlebars-generate-window.png)
+![Generate Handlebars window with a requirement entered](/images/hbcreate-v2-generate-window.png)
 </Step>
 <Step title="Let Fyno AI work">
-Fyno AI reads your requirement, looks up the best-fitting helper from the handlebars library, and writes the handlebar, checking its syntax along the way. You can click **Cancel** at any point.
+While **Brewing your handlebar** is shown, Fyno AI reads your requirement, looks up the best-fitting helper from the handlebar library, and writes the handlebar, checking its syntax along the way. You can click **Cancel** at any point.
 
-![Fyno AI generating a handlebar](/images/handlebars-brewing.png)
+![Fyno AI generating a handlebar](/images/hbcreate-v2-brewing.png)
 </Step>
 <Step title="Review and copy">
 Fyno AI shows the generated handlebar with a sample output, so you can confirm it does what you expect.
@@ -1145,3 +1146,32 @@ Click **Generate** to try again, or **Back** to return to the previous result.
 ### If generation fails
 
 If Fyno AI can't generate a handlebar, you'll see **Oops! That didn't go as planned**. Click **Try Again**, ideally with a more specific prompt. If an earlier attempt had succeeded, you can also click **View previous Handlebar** to go back to that result.
+
+## Handlebars Builder
+
+The [Handlebars Builder](https://hbs.fyno.io/) lets you build handlebar logic visually, without writing the syntax yourself. To open it from a template, expand **Handlebars** > **Build Your Own** in the left panel and click **Handlebars Builder**.
+
+![](/images/dyncontent-v2-handlebar-builder.png)
+
+<Steps>
+<Step title="Add blocks">
+
+Add blocks from the toolbox (**Content**, **Date & Time**, **String**, **Math**, **Logic**, **Values** and **Print**) to build your logic.
+
+</Step>
+<Step title="Enter sample data">
+
+In **Input Object**, enter sample data as JSON, such as the [sample payload](#handlebars-in-fynos-templates) on this page.
+
+</Step>
+<Step title="Check the result">
+
+**Handlebar Syntax** shows the generated handlebar, and **Output Preview** shows the result for your sample data.
+
+</Step>
+<Step title="Copy the handlebar">
+
+Click **Copy** under **Handlebar Syntax** and paste the handlebar into your template.
+
+</Step>
+</Steps>

@@ -7,35 +7,88 @@ og:description: 'Learn how to create chat templates for Microsoft Teams, use pla
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-## Teams
+When you add the **Teams** channel to a template, the **Create your Teams Template** screen opens. The Preview on the right shows how the message looks in Microsoft Teams.
 
-![](/images/template_teams.png)
+![](/images/teamscreate-v3-editor.png)
 
-* **Teams Template:** The message body can be in Text or JSON depending on the kind of input.
-* **Placeholders:** Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. You can use our Handlebar functions with your placeholders for operations such as Date formatting, number formatting, arithmetic operations etc. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
-* **Preview:** Review your content and take a look at what your message would look like in the Preview section on the right.
-* **Save & Go Live:** Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.
+## Add the content
 
-### How to add dynamic content in template?
+Under **Content**, choose how you want to write the message body.
 
-You can add dynamic content in your templates using one of the 4 options mentioned below.
+<Tabs>
+<Tab title="Text">
 
-* [Placeholders](./template-dynamic-content#placeholders)
-* [System Variables](./template-dynamic-content#system-variables)
-* [Handlebars](./template-dynamic-content#handlebars)
-* [Components](./template-dynamic-content#components)
+Use **Text** to send a simple message. Type your message and use the toolbar above the field for bold, italic, strikethrough and code formatting. You can add placeholders within `{{ }}`.
 
-# How to test any Chat template?
+</Tab>
+<Tab title="JSON">
 
-You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+Use **JSON** to send the message body as JSON. You can add placeholders within `{{ }}`.
 
-1. Click 'Run Test' on the top right hand side of the template.
-2. You can either enter the destination of the recipient or you can enter distinct\_id. **Please make sure to enter Distinct\_id of Test User profiles**
-3. Select a provider which is already configured in Fyno.
-4. When you click 'TEST', it will send chat message to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.
+![](/images/teamscreate-v2-json.png)
 
-## How to raise Approval requests
+</Tab>
+</Tabs>
 
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
+## Placeholders
 
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+Below the **Channels** section on the left, you can find placeholders. Placeholders are denoted by **`{{ }}`** or **Handlebars**. Click a placeholder to open a pop-up window where you can define its parameters. You can use Handlebars functions with your placeholders for operations such as date formatting, number formatting and arithmetic operations. See the comprehensive guide on [Handlebars](https://handlebarsjs.com/guide/).
+
+<Tip title="Did you know?">
+You can use a period (.), underscore (\_) or hyphen (-) within the handlebars. Try it now!
+</Tip>
+
+<Warning>
+You cannot use only numeric values as placeholder keys.
+</Warning>
+
+## How to add dynamic content
+
+You can add dynamic content to your templates using one of the four options below:
+
+- [Placeholders](./template-dynamic-content#placeholders)
+- [System Variables](./template-dynamic-content#system-variables)
+- [Handlebars](./template-dynamic-content#handlebars)
+- [Components](./template-dynamic-content#components)
+
+## How to test a Teams template
+
+Use this feature to test a template thoroughly before including it in any Notification Event. This ensures early detection and resolution of any potential issues, for a seamless user experience.
+
+<Steps>
+<Step>
+
+Click **Run Test** at the top right of the template. The **Test Teams template** pop-up opens.
+
+![](/images/teamscreate-v3-test-modal.png)
+
+</Step>
+<Step>
+
+From the dropdown, choose **Teams** and enter the recipient details on Teams, or choose **Distinct ID** and enter it. **Make sure to enter the distinct_id of a Test User profile.**
+
+</Step>
+<Step>
+
+In **Teams Integration**, select a Teams integration that is already configured in Fyno.
+
+</Step>
+<Step>
+
+**Auto-fill empty placeholders** (optional, AI assistance): If your template has placeholders with no sample values, Fyno can fill them using AI so you can test the message. Click **Yes** to let Fyno fill sample values for the empty placeholders.
+
+</Step>
+<Step>
+
+Click **Run Test** to send the message to the recipient with the selected integration. You see the success or failure message along with a link to the Sent Logs.
+
+</Step>
+</Steps>
+
+## Save and go live
+
+Click **Save** to save the template as a **Test** version. You can save different versions of the template this way. Use **Go Live** when you are ready to move your template to the **Live** version.
+
+<Note>
+If template approvals are enabled in your workspace, **Go Live** needs an additional approval step. Choose from your designated approvers, who review and authorize the template changes. See [Approval flow](./approval-flow) for the steps.
+</Note>

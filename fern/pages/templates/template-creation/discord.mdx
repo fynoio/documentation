@@ -7,26 +7,88 @@ og:description: 'Learn how to create chat templates for Discord, use placeholder
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-## Discord
+When you add the **Discord** channel to a template, the **Create your Discord Template** screen opens. The Preview on the right shows how the message looks in Discord.
 
-![](/images/template_discord.png)
+![](/images/discordcreate-v3-editor.png)
 
-* **Discord Template:** The message body can be in Text or JSON depending on the kind of input.
-* **Placeholders:** Below the "Channels" section on the left, you can find placeholders. Placeholders are denoted by **`{{}}`** or **Handlebars**. You may define the parameters of **Placeholders** by clicking on it, which opens up a pop-up window where you can define them. Check out this comprehensive guide on how to use "**[Handlebars](https://handlebarsjs.com/guide/)**"
-* **Preview:** Review your content and take a look at what your message would look like in the Preview section on the right.
-* **Save & Go Live:** Save and create different versions of the templates by hitting **Save** which will be **Test** versions. Use **Go Live** when you are ready to move your template into the "**Live**" version.
+## Add the content
 
-# How to test any Chat template?
+Under **Content**, choose how you want to write the message body.
 
-You can use this feature to conduct thorough testing of a template prior to its inclusion in any Notification Event. This ensures the early detection and resolution of any potential issues, ensuring a seamless user experience.
+<Tabs>
+<Tab title="Text">
 
-1. Click 'Run Test' on the top right hand side of the template.
-2. You can either enter the destination of the recipient or you can enter distinct\_id. **Please make sure to enter Distinct\_id of Test User profiles**
-3. Select a provider which is already configured in Fyno.
-4. When you click 'TEST', it will send chat message to the recipient with the selected service provider. You will see the success or failure message along with the link for Sent Logs.
+Use **Text** to send a simple message. Type your message and use the toolbar above the field for bold, italic, strikethrough and code formatting. You can add placeholders within `{{ }}`.
 
-## How to raise Approval requests
+</Tab>
+<Tab title="JSON">
 
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
+Use **JSON** to send the message body as JSON. You can add placeholders within `{{ }}`.
 
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+![](/images/discordcreate-v2-json.png)
+
+</Tab>
+</Tabs>
+
+## Placeholders
+
+Below the **Channels** section on the left, you can find placeholders. Placeholders are denoted by **`{{ }}`** or **Handlebars**. Click a placeholder to open a pop-up window where you can define its parameters. See the comprehensive guide on [Handlebars](https://handlebarsjs.com/guide/).
+
+<Tip title="Did you know?">
+You can use a period (.), underscore (\_) or hyphen (-) within the handlebars. Try it now!
+</Tip>
+
+<Warning>
+You cannot use only numeric values as placeholder keys.
+</Warning>
+
+## How to add dynamic content
+
+You can add dynamic content to your templates using one of the four options below:
+
+- [Placeholders](./template-dynamic-content#placeholders)
+- [System Variables](./template-dynamic-content#system-variables)
+- [Handlebars](./template-dynamic-content#handlebars)
+- [Components](./template-dynamic-content#components)
+
+## How to test a Discord template
+
+Use this feature to test a template thoroughly before including it in any Notification Event. This ensures early detection and resolution of any potential issues, for a seamless user experience.
+
+<Steps>
+<Step>
+
+Click **Run Test** at the top right of the template. The **Test Discord template** pop-up opens.
+
+![](/images/discordcreate-v3-test-modal.png)
+
+</Step>
+<Step>
+
+From the dropdown, choose **Discord** and enter the recipient details on Discord, or choose **Distinct ID** and enter it. **Make sure to enter the distinct_id of a Test User profile.**
+
+</Step>
+<Step>
+
+Select a Discord integration that is already configured in Fyno. If you see **No Discord provider integration found**, click **Integrate Provider** to set one up first.
+
+</Step>
+<Step>
+
+**Auto-fill empty placeholders** (optional, AI assistance): If your template has placeholders with no sample values, Fyno can fill them using AI so you can test the message. Click **Yes** to let Fyno fill sample values for the empty placeholders.
+
+</Step>
+<Step>
+
+Click **Run Test** to send the message to the recipient with the selected integration. You see the success or failure message along with a link to the Sent Logs.
+
+</Step>
+</Steps>
+
+## Save and go live
+
+Click **Save** to save the template as a **Test** version. You can save different versions of the template this way. Use **Go Live** when you are ready to move your template to the **Live** version.
+
+<Note>
+If template approvals are enabled in your workspace, **Go Live** needs an additional approval step. Choose from your designated approvers, who review and authorize the template changes. See [Approval flow](./approval-flow) for the steps.
+</Note>
