@@ -7,128 +7,131 @@ og:description: 'Learn how WhatsApp template drafts, approvals, statuses, update
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-When creating a template, you can either **save it as a draft** or **submit it to Meta for review**.  
-These two actions define the template lifecycle.
+When your template is ready, use the buttons at the top right of the template page. **Save as Draft** keeps it in Fyno, and **Send to Provider** submits it to Meta for review.
+
+![](/images/waext-v2-save-send-buttons.png)
+
+| | Save as Draft | Send to Provider |
+| --- | --- | --- |
+| **Where it goes** | Stays in your Fyno workspace. Nothing is sent to Meta. | Submitted to Meta for policy review. |
+| **Can you edit it?** | Yes, at any time. | No, not while it's under review. |
+| **Can you use it in notifications?** | No. | Yes, once Meta approves it. |
+| **Use it when** | The content, variables or links aren't final, you're waiting for internal sign-off, or you're still preparing other languages. | The template is complete and ready for Meta's review. |
+
 ## Save as Draft
 
-Saving as Draft keeps the template only inside Fyno. The template is not shared with Meta for review.
+Click **Save as Draft** to save the template in your workspace without sending it to Meta. You can keep editing it and add languages later. Drafts don't appear when you create a Fyno WhatsApp template, and can't be used in notifications until they're approved.
 
-### What happens
-- The template is stored in your workspace.  
-- You can edit it anytime.  
-- You can add languages later.  
-- It does not appear while creating a Fyno WhatsApp template and cannot be used in notifications until it's approved.  
-- Saved in Fyno but not submitted to Meta for review.
+## Send for approval
 
-### When to use
-Use Draft while:
+<Steps>
+<Step title="Click Send to Provider">
 
-- Content is incomplete.  
-- Variables or links are not finalized.  
-- Waiting for marketing or legal approval.  
-- Preparing multiple language versions.  
+The **Send For Approval** pop-up opens.
 
-Drafts are safe working versions — nothing is sent externally.
+</Step>
+<Step title="Select the languages">
 
-## Send for Approval
-Send for Approval submits the template to Meta for policy review. Each selected language is reviewed separately.
+Select the languages to submit. Each language is reviewed by Meta separately.
 
-### What happens
-- Meta reviews the template for policy compliance.  
-- You cannot edit the template while it is under review.  
-- After the review is completed (approved or rejected), the template status is updated in Fyno and reflected in the **Synced** tab.  
-- If approved, the template becomes usable and can be mapped to Notification Events.  
-- If rejected, it appears with the rejected status in **Synced**, where you can review the reason, edit the template, and resubmit it for approval.  
+![](/images/waext-v2-send-for-approval.png)
 
-### Language selection during submission
-When sending for approval:
-- **Checked languages →** submitted to Meta for review  
-- **Unchecked languages →** remain saved as Draft  
+- You can only submit languages whose content is valid. Valid languages show **Changes are valid**.
+- Languages you don't select are saved as drafts, so you can keep editing them and submit them later.
 
-This lets you publish approved languages immediately while continuing to edit others before submitting them later.
+</Step>
+<Step title="Submit">
 
-## WhatsApp Template statuses
+Click **Submit**. Meta reviews the template, which can take up to 24 hours. When the review is complete, the status is updated in Fyno under the **Synced** tab.
 
-| Status | Description |
-|--------|-------------|
-| Pending | Submitted and awaiting provider review. The process can take up to 24 hours.<br/><br/>During this time:<br/>- The template cannot be edited.<br/>- Fields appear greyed out (read-only).<br/>- The template cannot be used for sending messages. |
-| Approved | Approved by Meta and ready to send messages. |
-| Rejected | The template was rejected during the review process. It can be edited and resubmitted for approval. |
-| Paused | Paused by Meta due to repeated negative user feedback (blocks or spam reports). Messages using this template cannot be sent. |
-| Suspended | The template was blocked due to policy or quality concerns. You can appeal the decision through Meta for further review. |
-| Disabled | Disabled by Meta due to repeated negative feedback or policy violations. Messages using this template cannot be sent. |
+- **Approved:** The template is ready to use. Associate it with a Fyno WhatsApp template to use it in Notification Events.
+- **Rejected:** Review the reason, edit the template and submit it again.
 
-For more detail, check the **message_template_status_update** webhook reference.
+</Step>
+</Steps>
 
-## Updating a template
-**IMPORTANT NOTE:** Meta treats template updates as a new review request. We recommend creating a new template instead of updating, as Meta approvals for updates take longer. Notifications using this template may fail if there’s live traffic during the approval process.
+<Note>
+If template approvals are enabled in your workspace, **Send to Provider** needs an additional approval step. Choose from your designated approvers, who review the template before it's sent to Meta. See [Create an Approval Request](./create-approval-request) for the steps.
+</Note>
 
-## Draft Tab
-Templates saved in Fyno but not yet submitted to Meta appear under the **Draft** tab.
-- Draft templates remain editable.  
-- They cannot be used to send messages until they are submitted and approved by Meta.
+## Template statuses
 
-## Modifying an existing WhatsApp template
-When you try to modify an existing WhatsApp template, Fyno shows a notice with two options: **Edit here** or **Duplicate and exit**.
+| Status | What it means |
+| --- | --- |
+| **Pending** | Submitted and waiting for Meta's review, which can take up to 24 hours. The template is read-only and can't be used to send messages. |
+| **Approved** | Approved by Meta and ready to send messages. |
+| **Rejected** | Rejected during review. You can edit it and submit it again. |
+| **Paused** | Paused by Meta because of repeated negative user feedback, such as blocks or spam reports. It can't be used to send messages. |
+| **Suspended** | Blocked because of policy or quality concerns. You can appeal the decision through Meta. |
+| **Disabled** | Disabled by Meta because of repeated negative feedback or policy violations. It can't be used to send messages. |
 
-### Duplicate and exit (recommended)
-Choose **Duplicate and exit** if the template is already being used in live messaging.
+For more detail, see Meta's <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/webhooks/reference/message_template_status_update" target="_blank" rel="noopener noreferrer">message_template_status_update webhook reference</a>.
 
-#### What happens
-- A pop-up appears to create a copy of the template.  
-- You give the copy a new name.  
-- You select the destination WABA.  
-- The original template continues working without interruption.  
-- The new template is created and saved as a draft.  
-- You can also choose to **Duplicate all languages** to copy every language variant.  
+## Draft and Synced tabs
 
-#### Use this when
-- The template is used in active campaigns.  
-- You want zero message disruption.  
-- You are making major changes (content, variables, buttons).  
+Every template has two tabs on the left of the template page:
 
-**Example scenario**
-Promotion update:  
-Old template: *“Get 10% off this weekend”*  
-New template: *“Get 20% off this weekend + free shipping”*
+- **Draft:** The working copy you edit in Fyno. It isn't live until it's submitted and approved.
+- **Synced:** The version and status from Meta. This is the live message customers receive, and it can't be edited here.
 
-### Edit here (create a draft version)
-Choose **Edit here** if you want to update the same template.
+![](/images/waext-v2-draft-synced-tabs.png)
 
-#### What happens
-- A new draft version of the template opens.  
-- The current approved template keeps working until you submit the changes for approval.  
-- Your changes are submitted for approval once you save and send it.  
+## Update an approved template
 
-#### Use this when
-- You are fixing small content issues.  
-- The template is not actively used in campaigns.  
+<Warning title="Meta reviews every update">
+Meta treats an update as a new review request, and updates take longer to approve. Notifications that use the template may fail if there's live traffic during the review. We recommend creating a new template instead.
+</Warning>
 
-If the template is already being used in live traffic, message delivery may fail or be paused during the review period.
+When you open an approved template that has no draft, Fyno asks how you want to make changes.
 
-**Examples**
-- Fixing a typo  
-  `Hi {{1}}, your order is shipped → Hi {{1}}, your order is shipped.`  
-- Changing punctuation or wording slightly  
-  `Your package arrives today → Your package will arrive today.`  
-- Updating support email address  
+![](/images/waext-v2-edit-or-clone.png)
 
-## Draft behavior during updates
-If you choose to update it, Fyno creates a **Draft version**. The Draft is an editable working copy that is not yet approved.
+<Tabs>
+<Tab title="Clone and exit (recommended)">
 
-You enter Draft mode when:
-- Creating a brand-new template  
-- Clicking **Edit** on an approved template  
-- Adding a new language to an existing template  
-- Fixing a rejected template  
-- Duplicating a template to create a new version  
+Creates a copy of the template so the original keeps working without interruption.
 
-**NOTE:** These changes do not affect the live traffic.
+1. Click **Clone and exit**. The **Clone Template** pop-up opens, showing the current integration and WABA / namespace.
+2. Enter a **New Template Name**, and in **Destination**, select the integration (WABA / namespace) to create the copy in.
+3. Select **Clone all languages** to copy every language of the template, or clear it to copy only the current language.
+4. Click **Clone Template**. The copy is saved as a draft. Edit it and send it for approval.
 
-When you save the updated template, a **Draft icon** appears next to the template status, alongside the synced version.
-Once submitted, editing the template does not replace the live version immediately. Instead, it creates a new Draft version that you can work on and must be reviewed and approved by Meta once it’s ready.
+![](/images/waext-v2-clone-dialog.png)
 
-## When the updated template gets approved
+**Use it when** the template is used in active campaigns, you can't afford any message disruption, or you're making major changes to content, variables or buttons.
 
-The template must be refreshed in the **Fyno WhatsApp Template**.
-Until the template status is refreshed and the latest version is approved, active flows may continue to reference the previously approved version. Failure to refresh the template in a timely manner may affect live traffic and message delivery behavior.
+For example, to change _"Get 10% off this weekend"_ to _"Get 20% off this weekend + free shipping"_, clone the template.
+
+</Tab>
+<Tab title="Edit here">
+
+Opens a new draft version of the same template. The approved version keeps working until you send your changes for approval.
+
+**Use it when** you're fixing small issues and the template isn't used in active campaigns. For example:
+
+- Fixing a typo: `Hi {{1}}, your order is shipped` to `Hi {{1}}, your order is shipped.`
+- Changing wording slightly: `Your package arrives today` to `Your package will arrive today.`
+- Updating a support email address.
+
+<Note>
+If the template is in live traffic, message delivery may fail or be paused while Meta reviews the update.
+</Note>
+
+</Tab>
+</Tabs>
+
+### How draft versions work
+
+A draft is an editable working copy that isn't approved yet. Changes to a draft don't affect live traffic. A draft is created when you:
+
+- Create a new template.
+- Click **Edit here** on an approved template.
+- Add a new language to an existing template.
+- Fix a rejected template.
+- Clone a template.
+
+When you save a draft of an approved template, a draft icon appears next to the template status, alongside the synced version.
+
+### After the update is approved
+
+Refresh the template in the **Fyno WhatsApp Template** that uses it. Until you do, active flows may keep using the previously approved version, which can affect live traffic and message delivery.

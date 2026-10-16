@@ -7,43 +7,71 @@ og:description: 'Learn how to sync and re-sync WhatsApp templates from supported
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-If a template already exists in your WhatsApp Business Account, connect the integration to sync it into Fyno and use it immediately without recreating it. If you're integrated with a supported WhatsApp service provider, Fyno can fetch and sync your existing templates directly.
+If a template already exists in your WhatsApp Business Account, sync it into Fyno and use it right away, without recreating it.
 
-- Kaleyra  
-- Meta  
-- ValueFirst  
-- Gupshup Enterprise  
-- Meta Direct  
+Syncing is available for these WhatsApp providers:
 
-## What Syncing Does
+- Kaleyra
+- Meta
+- Meta Direct
+- ValueFirst
+- Gupshup Enterprise
 
-Syncing imports data from your WhatsApp Business Account:
+## What syncing imports
 
-- All message templates (for example, Approved, Pending, Rejected, Disabled, etc.)  
-- WhatsApp Flows  
-- Template metadata (category, quality rating, status updates)  
+| Data | What's included |
+| --- | --- |
+| **Message templates** | All templates, whatever their status, such as Approved, Pending, Rejected or Disabled. |
+| **WhatsApp Flows** | All flows in the account. |
+| **Template metadata** | Category, quality rating and status updates. |
 
-## Steps to Sync / Re-sync WhatsApp Templates
+## Sync all templates
 
-1. Go to **Sync WhatsApp Templates**.  
-2. Select the required **Integration** (grouped by WABA / Namespace).  
-3. Click **Sync**.  
+<Steps>
+<Step title="Open Sync WhatsApp Templates">
 
-**NOTE:** The system imports all templates and flows associated with the selected integration, regardless of approval status.
+On the **External Templates** page, open **Sync WhatsApp Templates**.
 
-## Re-sync Individual templates
+</Step>
+<Step title="Select the integration">
 
-Use this when you only need to update or fetch a specific template instead of syncing everything.
+In **Integrations**, select the integration to sync from. Integrations are grouped by WABA / Namespace.
 
-### When to Re-sync
+![](/images/waext-v2-sync-dialog.png)
 
-- Status changed (Approved, Rejected, Disabled, Pending)  
-- Template content/components updated  
-- Rejected template fixed and resubmitted  
-- WhatsApp Flow created or modified  
+</Step>
+<Step title="Click Sync">
 
-If the status shown in Fyno looks outdated, refresh it:
+Fyno imports all the templates and flows in the selected integration, whatever their approval status.
 
-1. Click **Re-sync Templates**.  
-2. Wait for the sync to complete.  
-3. Check the **Last synced time** to confirm the update.
+</Step>
+</Steps>
+
+## Re-sync a single template
+
+Re-sync one template when you only need its latest details, instead of syncing everything. Re-sync a template when:
+
+- Its status has changed, such as to Approved, Rejected, Disabled or Pending.
+- Its content or components have been updated.
+- You've fixed and resubmitted a rejected template.
+- A WhatsApp Flow it uses has been created or changed.
+
+<Steps>
+<Step title="Find the template">
+
+On the **External Templates** page, find the template in the list.
+
+</Step>
+<Step title="Click the Re-sync icon">
+
+Click the **Re-sync** icon on the template's row. Fyno fetches the latest version and status of the template.
+
+![](/images/waext-v2-resync-icon.png)
+
+</Step>
+<Step title="Check the last synced time">
+
+The time next to the icon, such as **2M ago**, shows when the template was last synced. Check it to confirm the template was updated.
+
+</Step>
+</Steps>
