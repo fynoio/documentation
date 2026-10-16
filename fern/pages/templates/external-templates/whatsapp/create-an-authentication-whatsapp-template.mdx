@@ -7,88 +7,108 @@ og:description: 'Learn how to create WhatsApp Authentication templates, configur
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Authentication templates are used to securely verify a user’s identity during login or sensitive actions. The message format is predefined and cannot include promotional content.  
+Use an Authentication template to send one-time passcodes (OTPs) that verify a user's identity during login or sensitive actions. The message format is predefined (`{{1}} is your verification code.`) and can't include promotional content. Creating one takes five steps:
 
-Navigate to **Templates → External → WhatsApp Templates**, then click **Create**.
+1. [Create the template](#step-1-create-the-template)
+2. [Choose the code delivery type](#step-2-choose-the-code-delivery-type)
+3. [Complete the details](#step-3-complete-the-details)
+4. [Add more languages](#step-4-add-more-languages-optional) (optional)
+5. [Save or send for approval](#step-5-save-or-send-for-approval)
 
-### Step 1: Fill in the required details in the dialog:
+## Step 1: Create the template
 
-| Field | Description |
-|-------|-------------|
-| Template Name | Unique identifier (lowercase, no spaces, use underscores). |
-| Naming examples | summer_sale_offer<br/>festival_discount_v2<br/>new_feature_announcement |
-| Integrations | Select the WhatsApp Business Account where this template will be created and submitted for approval. The template will belong to this account and can only be used to send messages from its connected phone numbers. |
-| Category | Select **Authentication**. |
-| Language | Select one or more languages for this template from the available options. You can add more languages later, if needed. |
+Navigate to **Templates → External → WhatsApp Templates**, then click **Create**. Fill in the dialog and click **Create Template**.
 
-### Choose code delivery method
+| Field | What to enter |
+| --- | --- |
+| **Template Name** | A unique name in lowercase, with underscores instead of spaces. For example, `login_otp`. |
+| **Integrations** | The WhatsApp Business Account to create the template in. The template can only send messages from this account's phone numbers. |
+| **Category** | Select **Authentication**. |
+| **Language** | One or more languages. You can add or remove languages later. |
 
-**Zero-tap auto-fill** *(Use it if you are sending OTP to mobile apps)*  
-The verification code is automatically detected.
+## Step 2: Choose the code delivery type
 
-![](/images/zero-tap-auto-fill.png)
+Under **Code Delivery Type**, choose how users receive the code.
 
-**One-tap auto-fill** *(Use it if you are sending OTP to mobile apps and mobile browser)*  
-WhatsApp displays an Auto-Fill button. The user taps it to apply the code.
+| Delivery type | How it works | Use it for |
+| --- | --- | --- |
+| **Zero tap auto-fill** | The code is sent and filled in automatically. | OTPs sent to your mobile app. |
+| **One tap auto-fill** | The user taps an **Autofill** button to fill in the code. | OTPs sent to your mobile app or mobile browser. |
+| **Copy code** | The user copies the code and pastes it. | Any device. |
 
-![](/images/one-tap-auto-fill.png)
+<Tabs>
+<Tab title="Zero tap auto-fill">
 
-**Copy Code**  
-The user manually copies and pastes the verification code. Works across all devices.
+If zero-tap isn't possible, an auto-fill or copy code message is sent instead.
 
-![](/images/copy-code.png)
+To use zero-tap, select the checkbox to confirm that you accept the WhatsApp Business Terms of Service for zero-tap authentication, and that your customers expect the code to be filled in automatically.
 
-### Fill in the required details in the dialog:
+![](/images/waext-v2-auth-zero-tap.png)
 
-#### App setup *(Required for Zero-tap and One-tap Auto-fill)*
+</Tab>
+<Tab title="One tap auto-fill">
+
+If auto-fill isn't possible, a copy code message is sent instead.
+
+![](/images/waext-v2-auth-one-tap.png)
+
+</Tab>
+<Tab title="Copy code">
+
+The message shows a **Copy Code** button. No app setup is needed.
+
+![](/images/waext-v2-auth-copy-code.png)
+
+</Tab>
+</Tabs>
+
+## Step 3: Complete the details
+
+<Steps>
+<Step title="Set up your app (zero-tap and one-tap only)">
+
+Under **App Setup**, enter the details of the mobile app where the code should be filled in automatically.
 
 ![](/images/add-setup-authentication.png)
 
-Provide details of the mobile app where the code should be filled automatically.
+| Field | What to enter |
+| --- | --- |
+| **Package Name** | Your Android app's package name (maximum 224 characters). |
+| **App Signature Hash** | The signature hash of your app (maximum 11 characters). Meta uses it to verify your app and fill in the code securely. |
 
-| Field | Description |
-|-------|-------------|
-| Package Name | Android app identifier - This is your mobile app package name. |
-| App Signature Hash | Used by Meta to securely verify and auto-fill the code - This is the signature you used to submit your mobile app to Play store/App store. |
+Click **Add App** to add more apps, up to 5.
 
-You can add multiple apps if needed.
+</Step>
+<Step title="Enter the button text">
 
-### Button text
+Enter the text users see on the button in WhatsApp (maximum 25 characters each).
 
 ![](/images/copy-code-button-authentication.png)
 
-Define what users see on the button inside WhatsApp.
+| Button | What it does | Shown for |
+| --- | --- | --- |
+| **Auto-Fill** | Fills in the code when the user taps it. | Zero tap and one tap auto-fill |
+| **Copy Code** | Copies the code so the user can paste it. | All delivery types |
 
-| Button | Purpose |
-|--------|---------|
-| Auto-Fill | Applies the detected code when the user clicks on it (one-time auto-fill). |
-| Copy code | Lets the user manually paste the code. |
+<Note>
+For zero-tap and one-tap auto-fill, you still need the button text. It's used for the backup message if auto-fill isn't possible.
+</Note>
 
-### Additional configuration (optional)
+</Step>
+<Step title="Add extra security information (optional)">
 
-You can enable extra security information:
+Expand **Additional Configuration** to add:
 
-- **Add expiry time for the code** — After the code has expired, the auto-fill button will be disabled.  
-- **Add security recommendation** — If you select this option, the text *‘For your security, do not share this code.’* will be added to your message.
+- **Expiry time for the code**: After the code expires, the auto-fill button is disabled.
+- **Security recommendation**: Adds the text _"For your security, do not share this code."_ to your message.
 
-### Adding Multiple Languages
+</Step>
+</Steps>
 
-You can create your template in multiple languages to reach users in different regions.
+## Step 4: Add more languages (optional)
 
-**How it works:**
+To reach users in different regions, click **Add** next to **Languages** and add a version of the template in each language. Translate the button text in each language.
 
-- Create the template in your primary language.  
-- Add additional language versions within the same template.  
-- Translate the message content and button text for each language.  
-- Ensure all variables and dynamic fields remain consistent across languages.  
+## Step 5: Save or send for approval
 
-This allows you to send the same template structure while displaying the content in the user’s preferred language.
-
-### Send for Approval
-
-After completing the template:
-
-- Save the template.  
-- Send for approval.  
-
-> Meta reviews the template content and the selected category when you submit a WhatsApp template. Once Meta approves the template, it becomes usable for sending messages and, in Fyno, appears under the **Synced** tab so you can associate it with a Fyno WhatsApp template and use it to create Notification Events.
+When your template is ready, save it as a draft or send it to Meta for approval. See [Save as Draft vs Send for Approval](./save-or-send-for-approval).

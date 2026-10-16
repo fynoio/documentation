@@ -7,135 +7,145 @@ og:description: 'Learn how to create SMS templates, configure DLT integration se
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-## Navigation  
-Go to → **Templates → External → SMS → Create**
-![](/images/create-sms-external-template.png)
+Create an SMS External Template in Fyno and submit it for DLT approval. Creating one takes four steps:
 
-## Configure Template Content
+1. [Create the template](#step-1-create-the-template)
+2. [Write the message](#step-2-write-the-message)
+3. [Check the preview and credits](#step-3-check-the-preview-and-credits)
+4. [Save or send to the provider](#step-4-save-or-send-to-the-provider)
 
-### Basic Details
+## Step 1: Create the template
 
-| Field | Description |
-|------|------------|
-| **Template Name** | Unique name for internal identification. |
-| **DLT Integration** | DLT account where the template will be registered. |
-| **Category** | Defines the SMS use case (e.g., service, promotional, transactional) as specified on the DLT platform. |
-| **Template Type** | The classification of the template as defined by the DLT provider. |
+Navigate to **Templates → External → SMS**, then click **Create**. Fill in the dialog and click **Create Template**.
 
-### Template Type Selection
+![](/images/smsext-v2-create-dialog.png)
 
-Select one of four template types before configuring content. Each option shows inline guidance in the dialog:
+| Field | What to enter |
+| --- | --- |
+| **Template Name** | A unique name to identify the template in Fyno. |
+| **DLT Integration** | The DLT account to register the template in. |
+| **Category** | The SMS use case, as specified on the DLT platform. |
+| **Template Type** | The template type, as defined by the DLT provider. See the table below. |
 
-| Type | Description shown in UI |
-|---|---|
-| Transactional | Can only be used by Banks to send OTPs and alerts. |
-| Promotional | Similar to Service Explicit, except it can be sent between 10 PM and 9 AM. |
-| Service Implicit | All kinds of purely transactional SMS content like OTPs, order placement, order tracking, etc. |
-| Service Explicit | All kinds of promotional content should be registered here, like discounts, offers, new launches. |
+| Template type | What it's for |
+| --- | --- |
+| **Transactional** | Can only be used by banks to send OTPs and alerts. |
+| **Promotional** | Promotional content, which can only be sent between 10 PM and 9 AM. |
+| **Service Implicit** | All kinds of purely transactional content, such as OTPs, order placement and order tracking. |
 
-> **NOTE**: For detailed use cases and DLT-compliant message formats for each type, see [Template Types](../template-type).
+For use cases and DLT-compliant message formats for each type, see [Template Types](../template-type).
 
-Select a Template Type, then select **Create Template** to open the template editor. The editor is split into two panels: the configuration form on the left, and a live SMS preview on the right. This layout and the fields below are shared across all four template types.
+## Step 2: Write the message
 
-### Header
+The editor has the template form on the left and a live SMS preview on the right. The fields are the same for every template type.
 
-Enter the sender header for the message. This must match one of the DLT-registered headers already configured in your DLT integration (for example, `FYNOIO`). The field shows a live character counter.
+<Steps>
+<Step title="Enter the header">
 
-### SMS Content
+Enter the sender header. It must match one of the DLT-registered headers in your DLT integration, for example `FYNOIO`.
 
-Enter the message body. Use **+ Add Variable** to insert a placeholder rather than typing it manually. Variables appear as numbered placeholders in the order added — `{{1}}`, `{{2}}`, `{{3}}`, and so on.
+</Step>
+<Step title="Write the SMS content">
 
-As you type, a stats panel next to the content box updates in real time:
+Enter the message body. To add a variable, click **+ Add Variable** instead of typing it. Variables are numbered in the order you add them: `{{1}}`, `{{2}}`, `{{3}}` and so on.
+
+A panel next to the content box updates as you type:
 
 | Stat | What it shows |
-|---|---|
-| Encoding | The encoding currently applied to the message (e.g., GSM-7). |
-| 1 Credit equals | The number of characters that make up a single SMS credit at the current encoding. |
-| Credits Used | Estimated number of SMS credits the message will consume. |
-| Characters Used | Total character count of the message as composed. |
+| --- | --- |
+| **Encoding** | The encoding applied to the message, such as GSM-7. |
+| **1 Credit equals** | How many characters make up one SMS credit at this encoding. |
+| **Credits Used** | The estimated number of credits the message uses. |
+| **Characters Used** | The total number of characters in the message. |
 
-If the content exceeds 1 credit, a banner appears with a **Reduce Credits** action. See [Reduce Credits with Fyno AI](#reduce-credits-with-fyno-ai).
+</Step>
+<Step title="Reduce credits with Fyno AI (optional)">
 
-### Reduce Credits with Fyno AI
+If the message uses more than 1 credit, a banner appears below the content box. Click **Reduce Credits** to shorten the message with Fyno AI.
 
-If the message exceeds 1 credit, a banner appears below the SMS Content box. Select **Reduce Credits** in the banner to reduce the credits using Fyno AI.
 ![](/images/sms-reduce-credits-banner.png)
 
-To reduce credits:
+<AccordionGroup>
+<Accordion title="How to reduce credits">
 
-1. Select **Reduce Credits**.
-2. If the message uses more than 2 credits, choose a target in **Reduce to [n] credit**, then select **Generate Content**.
+1. Click **Reduce Credits**.
+2. If the message uses more than 2 credits, choose a target in **Reduce to [n] credit**, then click **Generate Content**.
 
-   ![](/images/sms-reduce-to-credit.png)
+![](/images/sms-reduce-to-credit.png)
 
-3. Fyno AI rephrases the content in three steps: it reads the content, keeps every variable you added, and trims the length without changing the meaning. Select **Cancel** to stop at any point.
-4. Review the suggested content, then select one of the following:
+3. Fyno AI rephrases the content. It keeps every variable and shortens the text without changing the meaning. Click **Cancel** to stop at any point.
+4. Review the suggestion. Click **Use This Content** to replace your text with it, or **Re-Generate Content** to try again. When you regenerate, describe what to change and, optionally, tell us what went wrong with the previous result, then click **Generate**.
 
-   ![](/images/sms-reduce-credits-result.png)
+![](/images/sms-reduce-credits-result.png)
 
-   - **Use This Content** to replace the text in the SMS Content box.
-   - **Re-Generate Content** to try again. You can describe what to change and, optionally, select feedback on what went wrong with the previous output to help us improve our AI features. Then select **Generate**.
+</Accordion>
+<Accordion title="If Fyno AI can't reduce the credits">
 
-If Fyno AI can't reduce the credit count, it shows **"Oops! That didn't go as planned."** Select **Try Again** to retry with different guidance, or **View previous Content** to keep your original message.
+You see **Oops! That didn't go as planned.** Click **Try Again** to retry with different guidance, or **View previous Content** to keep your original message.
 
-> **NOTE**: Rephrased content is new content for DLT. Submit the template for approval again before using it.
+</Accordion>
+</AccordionGroup>
 
-### Sample for Body Content
+<Warning>
+Rephrased content counts as new content for DLT. Submit the template for approval again before you use it.
+</Warning>
 
-Below the SMS Content box, a Sample for Body Content panel lists one input per variable used in the message, so the DLT provider can review the template with representative values.
+</Step>
+<Step title="Add sample values">
 
-- Do not enter real customer data — sample values only.
-- Each input is typed to match the kind of value the variable will hold, shown as an icon inside the field.
-- All sample values are required. An empty field is outlined in red with "Sample value is required" until filled in.
+The **Sample for Body Content** panel below the content box has one field for each variable. The DLT provider uses these values to review the template.
+
+- Every sample value is required. An empty field shows **Sample value is required**.
+- Use sample values only. Don't enter real customer data.
+- An icon in each field shows the type of value it expects:
 
 | Icon | Type | Example |
-|---|---|---|
-| Tt | Text | Order ID, name, date string |
+| --- | --- | --- |
+| Tt | Text | Order ID, name, date |
 | # | Numeric | Amount, quantity |
 | 🔗 | URL | Tracking link, callback link |
 
-> **NOTE**: Templates with no variables (fully static content, as in some Service Implicit messages) don't show this panel.
+Templates with no variables, such as some Service Implicit messages, don't show this panel.
 
-## SMS Preview
+</Step>
+<Step title="Turn on Unicode (if needed)">
 
-The preview panel shows how the SMS will appear on a mobile device, using the Header as the sender name. You can:
-- Validate formatting  
-- Check variable placement  
-- Review message length  
+Select **Unicode Message** if the content or variable values may contain regional languages or other non-English characters.
 
-The system automatically calculates:
-- Character count  
-- Number of SMS credits  
+<Note>
+If a message isn't marked as Unicode but contains Unicode characters, it may not be delivered correctly. SMS providers may charge more for Unicode messages.
+</Note>
 
-## Encoding and Credits
+</Step>
+</Steps>
 
-### GSM-7 Encoding
+## Step 3: Check the preview and credits
 
-- **1 credit = 160 characters**
+The preview on the right shows how the SMS appears on a phone, with the header as the sender name. Use it to check formatting, variable placement and message length.
 
-| No. of Messages | Text Characters | Unicode Characters |
-|----------------|----------------|-------------------|
-| 1 SMS | 160 | 70 |
-| 2 SMS | 306 | 134 |
-| 3 SMS | 459 | 201 |
-| 4 SMS | 612 | 268 |
-| 5 SMS | 765 | — |
+The number of characters per SMS depends on the encoding:
 
-## Unicode Encoding
+| Number of SMS | Text (GSM-7) characters | Unicode characters |
+| --- | --- | --- |
+| 1 | 160 | 70 |
+| 2 | 306 | 134 |
+| 3 | 459 | 201 |
+| 4 | 612 | 268 |
+| 5 | 765 | Not applicable |
 
-Enable this checkbox to send a unicode message if the content or placeholder values may contain unicode or non-English characters.
+## Step 4: Save or send to the provider
 
-### Enable Unicode Message When:
-- Using regional languages.  
-- Variables may contain Unicode text.
+Use the buttons at the top of the editor:
 
-> **NOTE**: If the message isn't marked as unicode and either the content or placeholder values contain unicode characters, it might not be delivered correctly. SMS providers may also charge more for unicode messages.
+| Button | What it does |
+| --- | --- |
+| **Save As Draft** | Saves the template in Fyno without sending it to the DLT provider. |
+| **Send To Provider** | Submits the template for DLT approval. |
 
-## Saving and Submitting
+For the differences and template statuses, see [Save as Draft vs Send for Approval](./save-or-send-for-approval-for-sms).
 
-At the top of the editor:
+The page header shows who created the template and when, its current status (for example, **Sent to provider for approval**), and a history icon to view earlier versions.
 
-- **Save As Draft** — stores the template without sending it to the DLT provider.
-- **Send To Provider** — submits the template for DLT approval.
-
-The page header shows who created the template and when (e.g., "Created – 13d ago"), the current status (e.g., "Sent to provider for approval"), and a history icon to view prior versions.
+<Note>
+If template approvals are enabled in your workspace, **Send To Provider** needs an additional approval step. Choose from your designated approvers, who review the template before it's sent to the provider. See [Create an Approval Request](./create-approval-request) for the steps.
+</Note>
