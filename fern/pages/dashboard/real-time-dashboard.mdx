@@ -1,10 +1,7 @@
 ---
-title: 'Real-time Dashboard'
-slug: 'real-time-dashboard'
-description: "Track notification traffic as it happens with Fyno's Real-time Dashboard: live status counts, trend cards, delivery rates, and channel activity over a rolling window."
-og:title: "Monitor live notification traffic using Fyno's Real-time Dashboard | Fyno Documentation"
-og:description: 'A quick introduction to what the Fyno Real-time Dashboard is about and how to use it during and after a send.'
-image: https://images.fyno.io/brand/fyno-doc-preview.png
+title: Real-time Dashboard
+subtitle: "Track notification traffic as it happens with Fyno's Real-time Dashboard: live status counts, trend cards, delivery rates, and channel activity over a rolling window."
+slug: real-time-dashboard
 ---
 
 The Real-time Dashboard shows notification traffic as it happens, over a short rolling window, and refreshes itself automatically every 10 seconds. Where the Analytics Dashboard is built for reporting and trend analysis over days or weeks, the Real-time Dashboard is built for the minutes during and after a send.
@@ -15,7 +12,9 @@ The Real-time Dashboard is currently in Beta. Metrics and controls may change be
 
 Navigate to: **Dashboard > Real-time**. Real-time sits under Dashboard in the left menu and is not visible until you click Dashboard.
 
-![](/images/real-time-dashboard-page.png)
+![](/images/rtd-channel-overview.png)
+
+The page heading shows the current time next to the dashboard name, along with a **Live** badge to confirm the data is updating.
 
 Use the Real-time Dashboard to:
 
@@ -28,23 +27,107 @@ Use the Real-time Dashboard to:
 
 The controls at the top of the page set the scope for every widget on it.
 
-| Control | Description |
-| --- | --- |
-| Time window | Rolling window of traffic to display: 5, 15, 30, or 60 minutes.|
-| Compare against the same window yesterday | Overlays the equivalent window from the previous day so you can tell a real drop from a normal traffic pattern. |
-| Analytics Labels | Restricts every metric on the page to the selected labels. Leave empty to see all traffic. |
-| Status Guide | Opens the full status lifecycle reference. |
-| Refresh indicator (10 seconds) | Counts down to the next automatic refresh. No manual refresh is needed. |
+<table>
+  <thead>
+    <tr>
+      <th>Control</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Time window</td>
+      <td>Rolling window of traffic to display: 5, 15, 30, or 60 minutes.</td>
+    </tr>
+    <tr>
+      <td>Compare against the same window yesterday</td>
+      <td>Overlays the equivalent window from the previous day so you can tell a real drop from a normal traffic pattern.</td>
+    </tr>
+    <tr>
+      <td>Analytics Labels</td>
+      <td>Restricts every metric on the page to the selected labels. Leave empty to see all traffic.</td>
+    </tr>
+    <tr>
+      <td>Status Guide</td>
+      <td>Opens the full status lifecycle reference.</td>
+    </tr>
+    <tr>
+      <td>Refresh indicator (10 seconds)</td>
+      <td>Counts down to the next automatic refresh. No manual refresh is needed.</td>
+    </tr>
+  </tbody>
+</table>
+
+The selected time window and Analytics Labels are saved in the page URL. Reloading the page keeps your selection, and you can bookmark or share the link to open the dashboard with the same filters already applied.
+
+### Comparing with yesterday
+
+When **Compare against the same window yesterday** is on, every widget shows how today's traffic compares with the same window yesterday:
+
+- **Change chips:** A chip next to each value shows the change from yesterday, with an up or down arrow, for example ▲12%.
+- **Tables:** The status summary and the delivery rates table show today's value with its change chip. Hover over a value to see today's and yesterday's counts with their percentages, for example Today: 21,567 (90%) and Yesterday: 21,000 (80%).
+- **Cards:** The trend cards and channel cards show today's value followed by yesterday's, for example 2.3K / 2.1K.
+- **Charts:** Yesterday is plotted as a dotted line behind today's line.
+
+A change chip turns red only when the change is 5% or more and in the direction that signals a problem. All other chips stay grey, so small day-to-day variation and improvements do not draw attention.
+
+<table>
+  <thead>
+    <tr>
+      <th>Statuses</th>
+      <th>Chip turns red when the value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Requested, Attempted, Sent, Delivered</td>
+      <td>Falls by 5% or more</td>
+    </tr>
+    <tr>
+      <td>Error, Failed, Dropped, Timeout, Undelivered</td>
+      <td>Rises by 5% or more</td>
+    </tr>
+  </tbody>
+</table>
+
+Widgets keep the same height with or without the comparison, so the layout does not shift when you switch it on or off.
+
+{/* TODO: add screenshot of the dashboard with Compare against the same window yesterday on */}
 
 ## Status summary
 
-The strip across the top of the page counts every notification in the selected window at each stage of its lifecycle.
+The table at the top of the page counts every notification in the selected window at each stage of its lifecycle.
 
-![](/images/dashboard-statuses.png)
+![](/images/rtd-dashboard-statuses.png)
 
 Large counts are abbreviated, so 8,900 notifications appear as 8.9K.
 
-Alongside the count, the Sent and No DLR counters also show a percentage.
+Every status except Requested shows a percentage below its count. The label under each column heading tells you what the percentage is measured against:
+
+<table>
+  <thead>
+    <tr>
+      <th>Statuses</th>
+      <th>Percentage shown</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Error, Failed, Dropped, Attempted</td>
+      <td>% of requested</td>
+    </tr>
+    <tr>
+      <td>Timeout, Sent, Delivered, Undelivered, No DLR</td>
+      <td>% of attempted</td>
+    </tr>
+  </tbody>
+</table>
+
+The table opens with a single **All** row that totals every channel. Click the arrow beside All to expand it and see the same counts broken down by channel, one row per channel, such as SMS, Email, and WhatsApp. Click the arrow again to collapse the breakdown.
+
+![](/images/realtimedsashboard-status-by-channel.png)
+
+Requests that were dropped before a channel could be resolved are grouped in a **Channel not found** row, so they still add up to the All total.
 
 Counts are derived the same way as elsewhere in Fyno:
 
@@ -63,49 +146,176 @@ Delivery reports arrive after the notification is sent, not at the same time. Fy
 
 Four cards plot the shape of traffic across the window. Each card shows its total for the window, a trend line, and Max, Min, and Avg below the chart. The vertical axis scales to the data in the window.
 
-| Card | What it shows |
-| --- | --- |
-| Requested | Requests received across the window. |
-| Attempted | Requests handed to a provider across the window. |
-| Delivered | Notifications confirmed as delivered across the window. |
-| Undelivered | Notifications the provider could not deliver across the window. |
+<table>
+  <thead>
+    <tr>
+      <th>Card</th>
+      <th>What it shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Requested</td>
+      <td>Requests received across the window.</td>
+    </tr>
+    <tr>
+      <td>Attempted</td>
+      <td>Requests handed to a provider across the window.</td>
+    </tr>
+    <tr>
+      <td>Delivered</td>
+      <td>Notifications confirmed as delivered across the window.</td>
+    </tr>
+    <tr>
+      <td>Undelivered</td>
+      <td>Notifications the provider could not deliver across the window.</td>
+    </tr>
+  </tbody>
+</table>
 
-Maximum, Minimum, and Average are the highest, lowest, and average values across the points plotted in the window.
+Max, Min, and Avg are the highest, lowest, and average values across the points plotted in the window.
 
 <Note>
 Hovering over any point on one of the four charts shows the values at that exact time across all four cards.
 </Note>
 
+The time of the hovered point is shown in the top-right corner of each card. The hover moves through the window one minute at a time, so no minute in the window is skipped.
+
 ## Delivery rates
 
-The table at the bottom of the page breaks delivery performance down for the same window.
+The Delivery rates table breaks delivery performance down for the same window.
 
 Use the dropdown in the section heading to switch between:
 
 - **Notification Events Delivery Rates**: grouped by individual notification events, for pinpointing which workflow is degrading.
 - **Analytics Labels Delivery Rates**: grouped by label, for tracking a campaign or business initiative as a whole.
+- **Provider Delivery Rates**: grouped by provider, for spotting whether a drop is limited to one provider.
 
-![](/images/delivery-rates-table.png)
+If your workspace has Analytics Labels, the section opens on **Analytics Labels Delivery Rates** by default. Workspaces without Analytics Labels open on **Notification Events Delivery Rates**.
 
-The table carries the same statuses as the status summary strip: Requested, Error, Failed, Dropped, Attempted, Timeout, Sent, Delivered, Undelivered, and No DLR.
+![](/images/realtimedsashboard-analytics-labels-sample.png)
+
+The table carries the same statuses as the status summary: Requested, Error, Failed, Dropped, Attempted, Timeout, Sent, Delivered, Undelivered, and No DLR.
+
+### Table controls
 
 Two controls sit above the table:
 
-| Control | Description |
-| --- | --- |
-| Search Notification Events | Find a specific notification event instead of scrolling the table. Available only in the Notification Events Delivery Rates view. |
-| Columns | Choose which status columns the table displays. The button shows how many of the available columns are currently on, such as 10/10. |
+<table>
+  <thead>
+    <tr>
+      <th>Control</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Search Notification Events</td>
+      <td>Find a specific notification event instead of scrolling the table. Available only in the Notification Events Delivery Rates view.</td>
+    </tr>
+    <tr>
+      <td>Columns</td>
+      <td>Choose which status columns the table displays. The button shows how many of the available columns are currently on, such as 10/10.</td>
+    </tr>
+  </tbody>
+</table>
 
-Each row can be expanded using the arrow beside its name. Expanding a notification event shows one row per integration that was used, with the channel shown beneath the integration name, and the status counts for that integration alone. A channel appears in more than one row when the notification event used more than one integration on it.
+The table also has the following controls:
+
+<table>
+  <thead>
+    <tr>
+      <th>Control</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Expand / Collapse</td>
+      <td>The <code>&gt;&lt;</code> icon at the right end of the column headings. Collapses the Error, Failed, Dropped, and Timeout columns into a single Not Sent column, so the table fits on screen. Click it again to see each status separately.</td>
+    </tr>
+    <tr>
+      <td>Full Screen</td>
+      <td>The icon at the top-right of the section. Opens the table in a full-screen view so you can read every column and row without scrolling the rest of the dashboard. Click the icon again to return to the dashboard.</td>
+    </tr>
+  </tbody>
+</table>
+
+In full-screen view, the heading shows the selected time window and the refresh indicator, and the table keeps refreshing every 10 seconds.
+
+![](/images/realtimedsashboard-analytics-labels-sample-full-screen.png)
+
+### Sorting
+
+To sort the table, click the three-dot menu beside a status column heading. Columns sort by count, by percentage, and, when comparing with yesterday, by percentage difference.
+
+### Expanding rows
+
+Each row can be expanded using the arrow beside its name, in every view. Expanding a row shows one row per integration that was used, with the channel shown beneath the integration name, and the status counts for that integration alone. A channel appears in more than one row when the notification event, label, or provider used more than one integration on it.
+
+Some rows group traffic that does not fit a named entry:
+
+<table>
+  <thead>
+    <tr>
+      <th>Row</th>
+      <th>What it contains</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>No analytics label</td>
+      <td>Notifications sent without an analytics label. Shown in the Analytics Labels Delivery Rates view.</td>
+    </tr>
+    <tr>
+      <td>No integration found</td>
+      <td>Requests that were dropped before an integration could be selected, shown inside an expanded row.</td>
+    </tr>
+  </tbody>
+</table>
+
+A dash (-) in a cell means there is no data for that status in the selected window.
+
+The table shows 20 rows per page by default. Use **Rows per page** and the arrows below the table to change the page size or move between pages.
 
 If no notifications match the current window and filters, the section shows "No data found for the selected window". Widen the window or clear the Analytics Labels filter.
 
+## Active Alarms
+
+The Active Alarms section shows the [alarms](/docs/alarms) raised in the selected window, so you can see what has gone wrong next to the traffic it affected.
+
+![](/images/realtimedsashboard-active-alarms-section.png)
+
+Each alarm appears as a card with:
+
+- The alarm name and its severity: High, Medium, Low, or Info.
+- The number of occurrences in the window, with a bar chart of occurrences across the window.
+- What the alarm relates to, such as the notification event, provider, or integration.
+- When it last occurred.
+- **View**, which opens the full alarm details.
+
+Use the arrows or the dots below the cards to move through them. The severity chips in the section heading show how many alarms are active at each level. Click a chip to show only alarms of that severity.
+
+<Note>
+Alarms are point-in-time events, so they cannot be compared with the same window yesterday. When the comparison is on, the Active Alarms section shows only today's alarms.
+</Note>
+
+### Full-screen view
+
+Click the full-screen icon in the section heading to open Active Alarms in a full-screen view. The heading keeps the severity chips and also shows the selected time window and the refresh indicator. Click the icon again to return to the dashboard.
+
+![](/images/realtimedashboard-active-alarms-expanded.png)
+
 ## Channel trends
 
-![](/images/real-time-dashboard-channel-charts.png)
+![](/images/rtd-channel-trends.png)
 
-A card is shown for each channel with a notification requested for the selected time slice. Each card plots Requested and Attempted across the window as two series, with the total for each shown in the legend above the chart. The horizontal axis is marked at one-minute intervals across the selected window.
+A card is shown for each channel with at least one notification requested in the selected window. Each card plots Requested and Attempted across the window as two series, with the total for each shown in the legend above the chart. The horizontal axis is marked at one-minute intervals across the selected window.
+
+Requested is plotted in grey and Attempted in the channel's colour, with Attempted also showing its percentage of Requested, for example Attempted: 2.3K (80%). When comparing with yesterday, the legend adds yesterday's totals and a change chip, and yesterday's series appear as dotted lines.
 
 <Info>
 Hovering over a point on any channel's chart shows the count for every channel at that same time.
 </Info>
+![](/images/activity-trend-by-channels.png)
+The time of the hovered point is shown in the top-right corner of each card. The hover moves one minute at a time, so no minute in the window is skipped.
