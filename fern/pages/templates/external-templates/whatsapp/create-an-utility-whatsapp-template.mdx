@@ -7,174 +7,162 @@ og:description: 'Learn how to create WhatsApp Utility templates, configure heade
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Utility templates are sent after a user performs an action and contain transactional information such as confirmations, updates, or reminders.  
-Examples include order confirmations, delivery updates, payment alerts, and account notifications.  
+Use a Utility template for transactional messages that follow an action the user already took, such as order confirmations, delivery updates, payment alerts and account notifications. Creating one takes four steps:
 
-Navigate to **Templates → External → WhatsApp Templates**, then click **Create**.
+1. [Create the template](#step-1-create-the-template)
+2. [Build the message](#step-2-build-the-message)
+3. [Add more languages](#step-3-add-more-languages-optional) (optional)
+4. [Save or send for approval](#step-4-save-or-send-for-approval)
 
-### Step 1: Fill in the required details in the dialog:
+<Note>
+Meta may automatically recategorize a Utility template as Marketing based on its template policies. Keep the content strictly about the user's existing activity, such as an order, payment, renewal or alert.
+</Note>
 
-| Field | Description |
-|-------|-------------|
-| Template Name | Unique identifier (lowercase, no spaces, use underscores). |
-| Naming examples | summer_sale_offer<br/>festival_discount_v2<br/>new_feature_announcement |
-| Integrations | Select the WhatsApp Business Account where this template will be created and submitted for approval. The template will belong to this account and can only be used to send messages from its connected phone numbers. |
-| Category | Select **Utility**. |
-| Language | Select one or more languages for this template from the available options. You can add more languages later, if needed. |
+## Step 1: Create the template
 
-## Step 2: Configure Template Content
+Navigate to **Templates → External → WhatsApp Templates**, then click **Create**. Fill in the dialog and click **Create Template**.
 
-Use this only for messages related to an existing user action (orders, payments, renewals, alerts, confirmations).
+![](/images/waext-v2-utility-create-dialog.png)
 
-### Add the Header (optional)
+| Field | What to enter |
+| --- | --- |
+| **Template Name** | A unique name in lowercase, with underscores instead of spaces. For example, `order_shipped_update`. |
+| **Integrations** | The WhatsApp Business Account to create the template in. The template can only send messages from this account's phone numbers. |
+| **Category** | Select **Utility**. |
+| **Language** | One or more languages. You can add or remove languages later. |
 
-Choose how the message should appear at the top.
+## Step 2: Build the message
 
-**Options:**
+A Utility message has a header, body, footer and buttons. The Preview on the right shows how it looks.
 
-- None  
-- Text  
-- Image  
-- Video  
-- Document  
-- Location  
+![](/images/waext-v2-utility-editor.png)
 
-For Utility messages, keep the header informational.
+<Steps>
+<Step title="Add a header (optional)">
 
-![](/images/header-type-and-content-utility.png)
+The header appears at the top of the message. For Utility messages, keep it informational. Choose one type.
 
-**Examples:**
+<AccordionGroup>
+<Accordion title="Text">
 
-- Payment Successful  
-- Payment due  
-- Order update  
+Enter a short title in **Header Content** (maximum 60 characters), such as _Payment successful_ or _Order update_. You can add one variable, with a sample value.
 
-You may add **one variable** and must provide a sample value.
+![](/images/waext-v2-utility-header-text.png)
 
-### Media header
+</Accordion>
+<Accordion title="Image">
 
-Upload supported media:
+Click **Choose JPG or PNG file** and upload a sample image (maximum 5 MB).
 
-| Type | Format | Max Size |
-|------|--------|----------|
-| Image | JPG / PNG | 5 MB |
-| Video | MP4 | 16 MB |
-| Document | PDF | 100 MB |
+![](/images/waext-v2-utility-header-image.png)
 
-You must provide sample values for every variable so Meta can review the message.
+</Accordion>
+<Accordion title="Video">
 
-### Write the message Body (required)
+Click **Choose MP4 file** and upload a sample video (maximum 16 MB).
 
-Describe the notification clearly and reference the user’s existing activity.
+![](/images/waext-v2-utility-header-video.png)
 
-![](/images/message-body-utility.png)
+</Accordion>
+<Accordion title="Document">
 
-You must provide sample values for every variable so WhatsApp can review the message.
+Click **Choose PDF file** and upload a sample document (maximum 100 MB).
 
-### Add Footer (optional)
+![](/images/waext-v2-utility-header-document.png)
 
-A short line shown at the bottom of the message.
+</Accordion>
+<Accordion title="Location">
+
+Shows a location, with its name and address, above the message body.
+
+![](/images/waext-v2-utility-header-location.png)
+
+</Accordion>
+</AccordionGroup>
+
+<Note>
+Media samples are only used by Meta to review your template. Do not include any customer information.
+</Note>
+
+</Step>
+<Step title="Write the body">
+
+Enter the main message (maximum 1,032 characters). Describe the notification clearly and refer to the user's existing activity. You can format text and add variables. Provide a sample value for every variable so Meta can review the message.
+
+![](/images/waext-v2-utility-body.png)
+
+</Step>
+<Step title="Add a footer (optional)">
+
+A short line at the bottom of the message, such as a disclaimer or support info. Maximum 60 characters, with no variables.
 
 ![](/images/sample-footer-marketing.png)
 
-**Typical uses:**
+</Step>
+<Step title="Set the message validity period">
 
-- disclaimers  
-- support info  
-- opt-out instructions  
+Choose how long Meta tries to deliver the message, for example 30 days. If it isn't delivered in time, you aren't charged and the recipient doesn't see it.
 
-**Limit:** 60 characters  
-Footer does not support variables.
-
-### Set Message Validity Period
-
-This defines how long Meta will attempt to deliver the message.
-
-If a message isn’t delivered within this time frame, Meta will stop retrying. You won’t be charged and the recipient won’t receive it.
-
-**Example:** 30 days
 ![](/images/message-validity-period-utility.png)
 
-### Add Buttons (optional)
+</Step>
+<Step title="Add buttons (optional)">
 
-Buttons should help complete the user’s existing action.
+Buttons should help the user complete their existing action. Click **Add Button** and choose a type.
 
-Click **Add Button** and choose the type.
+<AccordionGroup>
+<Accordion title="Flow (commonly used)">
 
-#### Flow button (commonly used)
+Opens a WhatsApp Flow.
 
 ![](/images/flow-button-utility.png)
 
-You must provide:
+| Field | What to enter |
+| --- | --- |
+| **Button Title** | The button text users see. |
+| **Flow ID** | The ID of the flow, generated in Meta. |
+| **Flow Action** | **Navigate** opens a specific screen. **Data Exchange** sends or receives data. |
+| **Navigate Screen** | The name of the first screen of the flow. |
 
-- Button Title — Button text visible  
-- Flow ID — generated in Meta  
-- Flow Action  
-  - Navigate > opens a specific screen  
-  - Data Exchange > sends/receives data  
+</Accordion>
+<Accordion title="Quick Reply: Custom">
 
-**Navigate Screen** — First screen name of the flow.
-
-#### Quick Reply button
-
-User sends a predefined reply.  
+The user sends a predefined reply, such as **Yes** or **No**.
 
 ![](/images/quick-reply-button.png)
-For example: confirmations like **Yes / No**.
 
-#### Marketing Opt-Out
+</Accordion>
+<Accordion title="Quick Reply: Marketing Opt-Out">
 
-Allows users to opt out of receiving marketing or promotional messages.
+Lets users opt out of receiving marketing messages.
 
-#### Call-to-Action buttons
+</Accordion>
+<Accordion title="Call to Action: Visit Website">
 
-Allows users to perform an action.
-
-You can add:
+Opens a website. Use a **static URL** to send the same link to everyone, or select **Dynamic URL** to send a different link to each user, such as a payment link. Select **Track URL** to track clicks with [Fyno Shorty](../../url-shortener).
 
 ![](/images/visit-website-curousel.png)
 
-**Visit Websites (static or dynamic)**
+</Accordion>
+<Accordion title="Call to Action: Call Phone Number">
 
-**Static URL**
-
-- Use when you send the same URL to all users  
-- Add button text (CTA in WhatsApp message)  
-- Provide a valid website URL  
-- Enable **Track URL** checkbox  
-
-**Dynamic URL**
-
-- Use when sending different URLs to different users (for example, payment links)  
-- Enable **Dynamic URL** toggle  
-- Add button text  
-- Provide a valid website URL  
-- Enable **Track URL** checkbox  
-
-**Call Phone Number**
 ![](/images/call-phone-number.png)
 
-**WhatsApp Voice Call**
+</Accordion>
+<Accordion title="Call to Action: WhatsApp Voice Call">
+
 ![](/images/whatsapp-voice-call.png)
 
-## Adding Multiple Languages
+</Accordion>
+</AccordionGroup>
 
-You can create your template in multiple languages to reach users in different regions.
+</Step>
+</Steps>
 
-**How it works:**
+## Step 3: Add more languages (optional)
 
-- Create the template in your primary language  
-- Add additional language versions within the same template  
-- Translate the message content and button text for each language  
-- Ensure all variables and dynamic fields remain consistent across languages  
+To reach users in different regions, click **Add** next to **Languages** and add a version of the template in each language. Translate the message and button text, and keep the same variables in every language.
 
-This allows you to send the same template structure while displaying the content in the user’s preferred language.
+## Step 4: Save or send for approval
 
-## Send for Approval
-
-After completing the template:
-
-- Save the template  
-- Send for approval  
-
-Meta reviews the template content and the selected category when you submit a WhatsApp template. Once Meta approves the template, it becomes usable for sending messages and, in Fyno, appears under the **Synced** tab so you can associate it with a Fyno WhatsApp template and use it to create Notification Events.
+When your template is ready, save it as a draft or send it to Meta for approval. See [Save as Draft vs Send for Approval](./save-or-send-for-approval).

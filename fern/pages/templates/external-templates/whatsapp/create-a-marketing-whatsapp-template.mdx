@@ -7,268 +7,290 @@ og:description: 'Learn how to create WhatsApp Marketing templates, configure hea
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Use a Marketing template when you want to send promotions, announcements, or campaign notifications to users.  
+Use a Marketing template to send promotions, announcements or campaign notifications to users. Creating one takes four steps:
 
-- To create one, navigate to **Templates → External → WhatsApp Templates**, then click **Create**.  
-- In the template setup screen, select **Marketing** as the category and then fill in the required details.
+1. [Create the template](#step-1-create-the-template)
+2. [Build the message](#step-2-build-the-message), as a **Common** message, a **Carousel** or a **Calling Permission Request**
+3. [Add more languages](#step-3-add-more-languages-optional) (optional)
+4. [Save or send for approval](#step-4-save-or-send-for-approval)
 
+## Step 1: Create the template
 
-### Step 1: Fill in the required details in the dialog:
+Navigate to **Templates → External → WhatsApp Templates**, then click **Create**. Fill in the dialog and click **Create Template**.
 
-| Field | Description |
-|-------|-------------|
-| Template Name | Unique identifier (lowercase, no spaces, use underscores). |
-| Naming examples | summer_sale_offer<br/>festival_discount_v2<br/>new_feature_announcement |
-| Integrations | Select the WhatsApp Business Account where this template will be created and submitted for approval. The template will belong to this account and can only be used to send messages from its connected phone numbers. |
-| Category | Select **Marketing**. |
-| Language | Select one or more languages for this template from the available options. You can add more languages later, if needed. |
+![](/images/waext-v2-create-dialog.png)
 
-## Step 2: Configure template content
+| Field | What to enter |
+| --- | --- |
+| **Template Name** | A unique name in lowercase, with underscores instead of spaces. For example, `summer_sale_offer`. |
+| **Integrations** | The WhatsApp Business Account to create the template in. The template can only send messages from this account's phone numbers. |
+| **Category** | Select **Marketing**. |
+| **Language** | One or more languages. You can add or remove languages later. |
 
-Marketing templates support flexible content components.
+## Step 2: Build the message
 
-### Template Content Fields
+In **Template Type**, choose the type of message:
 
-#### Select Template Type
+| Template type | Use it to |
+| --- | --- |
+| **Common** | Send a standard message with a header, body, footer and buttons. |
+| **Carousel** | Send up to 10 swipeable cards, each with its own media and buttons. |
+| **Calling Permission Request** | Ask users for permission to call them on WhatsApp. |
 
-Choose the type of message you want to send:
+<Tabs>
+<Tab title="Common">
 
-- **Common** — Standard WhatsApp message (text, media, buttons, flows, etc.)  
-- **Carousel** — Multi-card message format (covered in a separate guide)
+A standard WhatsApp message with a header, body, footer and buttons.
 
-## Here’s what appears when you select Template Type: Common
+![](/images/waext-v2-editor-common.png)
 
-### Configure the Header (optional)
+<Steps>
+<Step title="Add a header (optional)">
 
-The header appears at the top of the WhatsApp message and helps users quickly understand the message context.
+The header appears at the top of the message. Choose one type.
 
-You can choose one header type:
+<AccordionGroup>
+<Accordion title="Text">
 
-- None  
-- Text  
-- Image  
-- Video  
-- Document  
-- Location  
+Enter a short title in **Header Content** (maximum 60 characters). You can include one variable.
 
-**Text header**
-![](/images/common-template-type-marketing.png)
-- Enter a short title (max 60 characters).  
-- You may include one variable.  
+![](/images/waext-v2-header-text.png)
 
-**Media header**
+</Accordion>
+<Accordion title="Image">
 
-Upload supported media:
+Click **Choose JPG or PNG file** and upload a sample image (maximum 5 MB).
 
-| Type | Format | Max Size |
-|------|--------|----------|
-| Image | JPG / PNG | 5 MB |
-| Video | MP4 | 16 MB |
-| Document | PDF | 100 MB |
+![](/images/waext-v2-header-image.png)
 
-### Write the Body (required)
+</Accordion>
+<Accordion title="Video">
 
-This is the main message users will receive.
+Click **Choose MP4 file** and upload a sample video (maximum 16 MB).
 
-You can:
+![](/images/waext-v2-header-video.png)
 
-- Write formatted text  
-- Add variables (dynamic values)  
-- Personalize content  
+</Accordion>
+<Accordion title="Document">
+
+Click **Choose PDF file** and upload a sample document (maximum 100 MB).
+
+![](/images/waext-v2-header-document.png)
+
+</Accordion>
+<Accordion title="Location">
+
+Shows a location, with its name and address, above the message body.
+
+![](/images/waext-v2-header-location.png)
+
+</Accordion>
+</AccordionGroup>
+
+<Note>
+Media samples are only used by Meta to review your template. Do not include any customer information.
+</Note>
+
+</Step>
+<Step title="Write the body">
+
+Enter the main message (maximum 1,032 characters). You can format text and add variables. Provide a sample value for every variable so Meta can review the message.
+
 ![](/images/sample-for-body-content-marketing.png)
 
-You must provide sample values for every variable so WhatsApp can review the message.
+</Step>
+<Step title="Add a footer (optional)">
 
-### Add a Footer (optional)
+A short line at the bottom of the message, such as a disclaimer or opt-out instructions. Maximum 60 characters, with no variables.
 
-A short line shown at the bottom of the message.
 ![](/images/sample-footer-marketing.png)
 
-**Typical uses:**
+</Step>
+<Step title="Set the message validity period">
 
-- disclaimers  
-- support info  
-- opt-out instructions  
+Choose how long Meta tries to deliver the message, for example 30 days. If it isn't delivered in time, you aren't charged and the recipient doesn't see it.
 
-**Limit:** 60 characters  
-Footer does not support variables.
-
-### Set Message Validity Period
-
-This defines how long Meta will attempt to deliver the message.
-
-If a message isn’t delivered within this time frame, Meta will stop retrying. You won’t be charged and the recipient won’t receive it.
 ![](/images/message-validity-period.png)
 
-**Example:** 30 days
+</Step>
+<Step title="Add buttons (optional)">
 
-### Add Buttons (optional)
+Click **Add Button** and choose a type. The menu shows how many of each type you can add.
 
-Buttons let users respond or take action directly from WhatsApp. You can add different button types depending on your use case.
+![](/images/waext-v2-add-button-menu.png)
 
-#### Flow button
+<AccordionGroup>
+<Accordion title="Quick Reply: Custom">
 
-Triggers a WhatsApp Flow experience.
-![](/images/type-flow-button-marketing.png)
+The user sends a predefined reply, such as **Yes** or **No**.
 
-You must provide:
-
-- Button Title — Button text visible  
-- Flow ID — generated in Meta  
-- Flow Action  
-  - Navigate > opens a specific screen  
-  - Data Exchange > sends/receives data  
-
-**Navigate Screen** — First screen name of the flow
-
-#### Quick Reply button
 ![](/images/quick-reply-button.png)
 
-User sends a predefined reply.  
-For example: confirmations like **Yes / No**.
+</Accordion>
+<Accordion title="Quick Reply: Marketing Opt-Out">
 
-#### Call-to-Action buttons
+Lets users opt out of receiving marketing messages.
 
-Allows users to perform an action.
+</Accordion>
+<Accordion title="Call to Action: Visit Website">
 
-You can add:
+Opens a website. Use a **static URL** to send the same link to everyone, or select **Dynamic URL** to send a different link to each user, such as a payment link. Select **Track URL** to track clicks with [Fyno Shorty](../../url-shortener).
 
-**Visit Website (Static URL or Dynamic URL)**
+![](/images/waext-v2-cta-visit-website.png)
 
-![](/images/visit-website-call-to-action.png)
+</Accordion>
+<Accordion title="Call to Action: Call Phone Number">
 
-**Static URL**
-
-- Use when you send the same URL to all users  
-- Add button text (CTA in WhatsApp message)  
-- Provide a valid website URL  
-- Optionally enable URL tracking (refer to Fyno Shorty for insights)
-
-**Dynamic URL**
-
-- Use when sending different URLs to different users (for example, payment links)  
-- Enable **Dynamic URL** toggle  
-- Add button text  
-- Provide a valid website URL  
-- Enable **Track URL** checkbox  
-
-**Call Phone Number**
 ![](/images/call-phone-number.png)
 
-**WhatsApp Voice Call**
+</Accordion>
+<Accordion title="Call to Action: WhatsApp Voice Call">
+
 ![](/images/whatsapp-voice-call.png)
 
-**Copy Coupon Code**
+</Accordion>
+<Accordion title="Call to Action: Copy Coupon Code">
+
 ![](/images/copy-coupon-code.png)
 
-### Limits
+</Accordion>
+<Accordion title="Flow">
 
-- Maximum **4 CTA buttons**  
-- Up to **2 website buttons**  
-- **1 phone button**  
-- **1 coupon button**  
+Opens a WhatsApp Flow.
 
-For more information, please refer to the Meta Call-to-action.
+![](/images/type-flow-button-marketing.png)
 
-## Send for Approval
+| Field | What to enter |
+| --- | --- |
+| **Button Title** | The button text users see. |
+| **Flow ID** | The ID of the flow, generated in Meta. |
+| **Flow Action** | **Navigate** opens a specific screen. **Data Exchange** sends or receives data. |
+| **Navigate Screen** | The name of the first screen of the flow. |
 
-After completing the template:
+</Accordion>
+</AccordionGroup>
 
-- Save the template  
-- Send for approval  
+| Button type | Maximum |
+| --- | --- |
+| Call to Action buttons in total | 4 |
+| Visit Website | 2 |
+| Call Phone Number | 1 |
+| WhatsApp Voice Call | 1 |
+| Copy Coupon Code | 1 |
+| Marketing Opt-Out | 1 |
+| Flow | 1 |
 
-Meta reviews the template content and the selected category when you submit a WhatsApp template. Once Meta approves the template, it becomes usable for sending messages and, in Fyno, appears under the **Synced** tab so you can associate it with a Fyno WhatsApp template and use it to create Notification Events.
+</Step>
+</Steps>
 
-## Here’s what appears when you select Template Type: Carousel
+</Tab>
+<Tab title="Carousel">
 
-When you want to send a swipeable message containing multiple cards, each card acts like a mini message with its own content, media, and buttons.
+A swipeable message with up to **10 cards**, shown below a message body. Each card has its own text, media and buttons. Use it for product catalogs, multiple offers, event listings or booking options.
 
-You typically use carousel templates for:
+![](/images/waext-v2-carousel-editor.png)
 
-- Product catalogs  
-- Multiple offers  
-- Event listings  
-- Travel or booking options  
+<Steps>
+<Step title="Write the body">
 
-### Fill the Carousel templates as follow:
+Enter the message shown above the cards (maximum 1,032 characters). You can add variables.
 
-#### Cards section
+</Step>
+<Step title="Add cards">
 
-Instead of a single message block, you create multiple cards.
+Under **Cards**, click **Add** to add a card. The counter shows how many you've added, for example **Add (1/10)**. Select a card to edit it, or click **X** on it to remove it.
 
-- You can add up to **10 cards**  
-- Users swipe horizontally to view them  
+</Step>
+<Step title="Write the card content">
 
-### Card Content
+Enter the caption for the card in **Card Content**. You can add variables, and you must provide sample values for them.
 
-The maximum length is **160 characters**.  
-Each variable increases the limit by **4 characters** (for example, 2 variables → 168 characters).
-![](/images/card-body.png)
+</Step>
+<Step title="Add the card media">
 
-- Variables are supported  
-- Provide sample values for the variables  
-- Each card has its own message (caption for that specific card)
+Every card needs media. In **Media Type**, choose **Image** or **Video** and upload a sample. The sample is only used for Meta's review, so don't include any customer information.
 
-### Card Media
+<AccordionGroup>
+<Accordion title="Image">
 
-Every card must include media. This media becomes the main visual for the card.
+Click **Choose JPG or PNG file** and upload a sample image.
 
-You can choose:
+![](/images/waext-v2-carousel-sample-image.png)
 
-- Image (JPG/PNG)  
-- Video (MP4)  
+</Accordion>
+<Accordion title="Video">
 
-![](/images/media-type.png)
+Click **Choose MP4 file** and upload a sample video.
 
-**Sample for Image / Video**
+![](/images/waext-v2-carousel-sample-video.png)
 
-Upload an example image or video used only for review purposes.
+</Accordion>
+</AccordionGroup>
 
-![](/images/sample-for-image.png)
-![](/images/sample-for-video.png)
+</Step>
+<Step title="Add card buttons">
 
-### Card Buttons
+Buttons are set per card, with up to **2 buttons per card**. Click **Add Button** and choose a type.
 
-Buttons are configured **per card**, not per template.
+<AccordionGroup>
+<Accordion title="Quick Reply">
 
-You can add up to **2 buttons per card**:
-
-**Quick Reply**
 ![](/images/quick-reply-button.png)
 
-**Call to Action**
+</Accordion>
+<Accordion title="Visit Website">
 
-Allows users to perform an action.
-
-You can add:
-
-**Visit Websites (static or dynamic)**
+Use a **static URL** to send the same link to everyone, or select **Dynamic URL** to send a different link to each user. Select **Track URL** to track clicks.
 
 ![](/images/visit-website-curousel.png)
 
-**Static URL**
+</Accordion>
+</AccordionGroup>
 
-- Use when sending the same URL to all users  
-- Add button text  
-- Provide a valid website URL  
-- Enable **Track URL** checkbox  
+</Step>
+</Steps>
 
-**Dynamic URL**
+</Tab>
+<Tab title="Calling Permission Request">
 
-- Enable **Dynamic URL** toggle  
-- Add button text  
-- Provide a valid website URL  
-- Enable **Track URL** checkbox  
+Asks users for permission to call them on WhatsApp. The message shows a fixed permission card, "Can [BIZ_NAME] call you?", with a **Choose Preference** option.
 
-## Adding Multiple Languages
+![](/images/waext-v2-calling-permission.png)
 
-You can create your template in multiple languages to reach users in different regions.
+<Steps>
+<Step title="Add a header (optional)">
 
-**How it works:**
+Choose **None**, or **Text** and enter a short title in **Header Content** (maximum 60 characters).
 
-- Create the template in your primary language  
-- Add additional language versions within the same template  
-- Translate the message content and button text for each language  
-- Ensure all variables and dynamic fields remain consistent across languages  
+</Step>
+<Step title="Write the body">
 
-This allows you to send the same template structure while displaying the content in the user’s preferred language.
+Enter the message shown above the permission card (maximum 1,032 characters). You can add variables.
+
+</Step>
+<Step title="Add a footer (optional)">
+
+Maximum 60 characters, with no variables.
+
+</Step>
+<Step title="Set the message validity period">
+
+Choose how long Meta tries to deliver the message, for example 30 days.
+
+</Step>
+</Steps>
+
+<Note>
+You can't add or edit buttons for this template type. It supports only one button type, and the button text is fixed.
+</Note>
+
+</Tab>
+</Tabs>
+
+## Step 3: Add more languages (optional)
+
+To reach users in different regions, click **Add** next to **Languages** and add a version of the template in each language. Translate the message and button text, and keep the same variables in every language.
+
+## Step 4: Save or send for approval
+
+When your template is ready, save it as a draft or send it to Meta for approval. See [Save as Draft vs Send for Approval](./save-or-send-for-approval).

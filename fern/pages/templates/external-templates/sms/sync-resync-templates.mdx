@@ -7,20 +7,39 @@ og:description: 'Learn how to sync SMS templates from DLT providers using CSV im
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-To sync DLT templates: Navigate to → Templates → External → SMS → Sync.
+Sync your DLT templates into Fyno to keep them up to date with the DLT platform. Syncing lets you:
 
-**Sync Option**
-
-The Sync option allows you to:
 - Import templates from the DLT platform.
-- Refresh approval status.
+- Refresh their approval status.
 - Fetch newly approved or rejected templates.
 
-## Steps to Sync
-1. Select the DLT provider name from which you want to sync the SMS templates.
-2. Upload the CSV file downloaded from the DLT platform. Make sure you upload the file as it is, without making any changes.
-3. Click “Sync.”
-4. All SMS templates present in the CSV file will now be synced to your Fyno workspace.
+## Sync SMS templates
 
-This ensures Fyno always reflects the latest provider-side state.
+<Steps>
+<Step title="Open Sync SMS Templates">
 
+Navigate to **Templates → External → SMS**, then click **Sync**.
+
+</Step>
+<Step title="Select the DLT integration">
+
+In **DLT Integration**, select the DLT integration to sync the templates from.
+
+![](/images/smsext-v2-sync-dialog.png)
+
+</Step>
+<Step title="Upload the CSV file">
+
+Click **Upload .CSV File** and upload the CSV file you downloaded from the DLT platform.
+
+<Warning>
+Upload the file exactly as you downloaded it. Don't make any changes to it.
+</Warning>
+
+</Step>
+<Step title="Click Sync">
+
+All the SMS templates in the CSV file are synced to your Fyno workspace, so Fyno reflects their latest state on the DLT platform.
+
+</Step>
+</Steps>

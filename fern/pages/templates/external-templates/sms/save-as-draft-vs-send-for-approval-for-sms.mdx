@@ -7,36 +7,48 @@ og:description: 'Learn the difference between saving SMS templates as drafts and
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
+When your SMS template is ready, use the buttons at the top of the editor. **Save As Draft** keeps it in Fyno, and **Send To Provider** submits it to your DLT integration for approval.
+
+![](/images/smsext-v2-save-send-buttons.png)
+
+| | Save As Draft | Send To Provider |
+| --- | --- | --- |
+| **Where it goes** | Stays in Fyno. Nothing is sent to DLT. | Submitted to the selected DLT integration. |
+| **Can you edit it?** | Yes, at any time. | No, it's locked while it's under review. |
+| **Can you use it to send SMS?** | No. | Yes, once DLT approves it. |
+| **Use it when** | The content is still being reviewed or isn't final. | The template is complete and ready for DLT approval. |
+
 ## Save as Draft
-- Stores the template only in Fyno.
-- Fully editable.
-- Not sent to DLT.
-- Cannot be used for messaging.
-- Use this when the content is still under review.
 
-## Submit for Approval (Send to Provider)
-- Submits the template to the selected DLT integration.
-- Locks the template for editing during review.
-- Approval status is updated after sync.
-- Once approved, the template becomes available for sending SMS.
+Click **Save As Draft**. The **Template Saved** pop-up confirms the draft was saved. Click **Done** to close it.
 
-## Template List Overview
+![](/images/smsext-v2-draft-saved.png)
 
-Each template in the list displays:
+## Send for approval
 
-| Field           | Description                                                  |
-|----------------|--------------------------------------------------------------|
-| Template Name  | Name of the DLT template.                                    |
-| Status         | Current approval state.                                      |
-| Last Synced    | Last time the status was fetched.                            |
-| DLT Provider   | Connected DLT integration.                                   |
-| Type           | Transactional, Service Implicit, Service Explicit, or Promotional. |
+Click **Send To Provider** to submit the template to your DLT integration. The template is locked while DLT reviews it. Its status is updated in Fyno when the template is synced, and once it's approved, you can use it to send SMS.
 
-## Template Statuses
+<Note>
+If template approvals are enabled in your workspace, **Send To Provider** needs an additional approval step. Choose from your designated approvers, who review the template before it's sent to the provider. See [Create an Approval Request](./create-approval-request) for the steps.
+</Note>
 
-| Status                      | Description                                                                 |
-|---------------------------|-----------------------------------------------------------------------------|
-| Draft (Saved as Draft)    | Created in Fyno but not submitted to DLT and not usable.                   |
-| Pending                   | Submitted to DLT and waiting for approval.                                 |
-| Approved                  | Verified and approved by DLT and ready to use for sending messages.        |
-| Rejected                  | Not approved by DLT.                                                       |
+## Template statuses
+
+| Status | What it means |
+| --- | --- |
+| **Draft** | Saved in Fyno, but not submitted to DLT. It can't be used yet. |
+| **Pending** | Submitted to DLT and waiting for approval. |
+| **Approved** | Approved by DLT and ready to send messages. |
+| **Rejected** | Not approved by DLT. |
+
+## Template list
+
+Each template in the SMS templates list shows:
+
+| Column | What it shows |
+| --- | --- |
+| **Template Name** | The name of the DLT template. |
+| **Status** | Its current approval status. |
+| **Last Synced** | When the status was last fetched from DLT. |
+| **DLT Provider** | The connected DLT integration. |
+| **Type** | Transactional, Promotional or Service Implicit. |
