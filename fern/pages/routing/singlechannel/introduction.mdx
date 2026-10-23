@@ -7,18 +7,24 @@ og:description: 'Manage multiple telecommunication and messaging vendors within 
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno's Single Channel Route allow you to work with multiple providers for a specific channel.
+Fyno's Single Channel Route lets you work with multiple providers within one channel.
 
-### What is a Single Channel Route?
+## What is a Single Channel Route?
 
-"Single Channel Route" helps you decide how exactly you would like to route your notification, for any provider that is already configured within each of your channels.
+A Single Channel Route decides exactly how a notification is routed across the providers you have already configured for a channel. You can create one for SMS, RCS, WhatsApp, Email, Viber, Slack, Discord, Teams, Push, Voice and InApp.
 
-You can choose to do anything from doing a specific action like route traffic through a different operator, based on the mobile number series or route traffic in a round robin fashion across multiple service providers, to adding a provider as 'failover'. That flexible!
+With a Single Channel Route, you can:
 
-### Why do I need Route?
+- Send traffic through a specific provider based on a condition, for example the mobile number series.
+- Spread traffic across multiple providers in a round robin fashion, or split it between them by percentage.
+- Add one or more providers as a failover.
 
-Single Channel Route gives you the freedom to plan and build redundancies between your providers. No more downtimes with Fyno's Routing feature!
+<Tip title="What is the difference between a Single Channel Route and an Omnichannel Route?">
+  A Single Channel Route makes connections **within** a channel, between its providers. An [Omnichannel Route](./omnichannel-routing-introduction) makes connections **between** channels.
+</Tip>
 
-Single Channel Route also can help you easily plan for commitments with your providers and help achieve this seamlessly without manual monitoring and switch-overs
+## Why use a Single Channel Route?
 
-Single Channel Route can also help target specific audiences based on conditional routing, explained in the next sections.
+- **Avoid downtime**: Plan and build redundancy between your providers, so that a provider outage does not stop your notifications.
+- **Meet provider commitments**: Plan for the volume commitments you have with your providers, and meet them without manual monitoring and switch-overs.
+- **Target specific audiences**: Use conditional routing to send notifications for specific audiences through specific providers, as explained in the next sections.
