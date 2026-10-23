@@ -7,94 +7,134 @@ og:description: 'Architect multi-channel message strategies using state-driven f
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Creating an Omnichannel Route is pretty simple, with Fyno's Omnichannel Route Builder.
+You build Omnichannel Routes in Fyno's Omnichannel Route Builder by placing channels and controls on a canvas and connecting them.
 
-To get started, follow the below steps:
+## Create an Omnichannel Route
 
 <Steps>
-  <Step>Login to your Fyno account and navigate to the Omnichannel Tab from the left Navigation pane.</Step>
-  <Step>Click on "**+Create**" to a new Omnichannel Route.</Step>
-  <Step>In the pop-up that appears, fill in an appropriate name for the route that you are about to create along with a description and click on "**Submit**".</Step>
-  <Step>On the page that loads, you will see a flow builder and elements that act as your building component on the left hand side.</Step>
+  <Step>
+    Log in to your Fyno account and go to **Routes → Omni-Channel** in the left navigation. This page lists your existing omnichannel routes, with each route's description and when it was last edited. Use the search bar and the **Version** filter to find a route. To manage an existing route, see [Manage your routes](./omnichannel-routing-introduction#manage-your-routes).
+
+    ![](/images/omni-channel-routes-listing.png)
+  </Step>
+  <Step>Click **+ Create**.</Step>
+  <Step>
+    In the **Create Omni-channel route** dialog, enter a **Name** for the route and, optionally, a **Description**. Click **Submit**.
+
+    ![](/images/create-omni-channel-route-dialog.png)
+  </Step>
+  <Step>
+    The route builder opens with your route at `v1 (Test)` and a **Start** node on the canvas. The components you build the route with are on the left.
+
+    ![](/images/omni-channel-route-builder.png)
+  </Step>
+  <Step>Drag components onto the canvas and connect them, starting from the **Start** node. Each component is explained below.</Step>
+  <Step>Click **Save** to save your changes to the test version.</Step>
+  <Step>
+    When the route is ready, click **Go Live**, then click **Confirm** in the **Go Live Confirmation** dialog.
+
+    ![](/images/go-live-confirmation.png)
+
+    <Note>
+      If approvals are turned on for your workspace, clicking **Go Live** asks you to request approval instead. See [Approval Requests](./approval-request) for how this works.
+    </Note>
+  </Step>
 </Steps>
 
-To understand each of the elements, let's quickly have a look at the sections within the left-hand pane. 
+<Tip title="Proximity matters!">
+  The builder has proximity connectors: a component you drop on the canvas automatically connects to the closest component that has a free connection node.
+</Tip>
 
 ## Channels
 
-Channels account for all the Channels and Providers you have added in the "**Integrations**" section. This will also contain the Routes you have created within a **Channel** within the "**Routing**" section of Fyno's App.
+The top section of the components pane lists the channels: **SMS**, **WhatsApp**, **Email**, **Slack**, **Discord**, **Teams**, **Push**, **InApp**, **Voice** and **RCS**.
 
-If there is no Integration configured, you will not be able to see any details when trying to select a **Provider** or **Route**.
+Click a channel node on the canvas to configure it:
 
-Within each channel component, you would be able to:
+- **Provider/Route** (required): Choose from the providers you have added in **Integrations** for that channel, or from the single channel routes you have created for it. If no integration is configured for the channel, the list is empty.
+- **Success Criteria** (optional): Define which statuses count as success, and how long to wait for them.
+  - **Wait For** and **Unit**: How long the route waits for a status after sending.
+  - **for**: The statuses that count as success. You can select more than one, and receiving any one of them counts as success. The statuses available depend on the channel. For SMS, they are Delivered, Clicked, Invalid-Sub, Failed, Rejected, Undelivered, Dropped and No Report.
 
-- Select a provider or a route (single channel route)
-- **Success Criteria** - This is an optional field. You can define the status(es) that determine the Success flow and specify the wait time for these statuses.
-- For example - To set the success criteria for a WhatsApp notification when it is delivered or read within 2 minutes after being sent, configure the settings as follows:
-  1.  Enable the Success Criteria section.
-  2.  Select the desired statuses, such as "delivered" or "read" etc.
-  3.  Set the wait time to 2 minutes.  
-      This configuration ensures that the flow will wait for up to 2 minutes to receive either a "delivered" or "read" status for the WhatsApp notification before proceeding to the success flow. If none of the specified statuses are received within the 2-minute window, the flow will transition to the failure flow.
+![](/images/channel-node-settings.png)
 
-<Info>The wait time range is limited to a minimum of 5 seconds and a maximum of 24 hours.</Info>
+![](/images/success-criteria-statuses.png)
 
-![](/images/omnichannel_route_create.png)
+Once configured, the node summarizes its setup, for example: *Send SMS through [provider], then wait 1 minute for Success Criteria*.
 
-<Tip>To end the flow, simply disable the Success Criteria section.</Tip>
+For example, to treat a WhatsApp notification as successful when it is delivered or read within 2 minutes of being sent:
 
-## Status-Based Route
+1. Turn on **Success Criteria**.
+2. Set **Wait For** to `2` and **Unit** to **Minutes**.
+3. Select the statuses, such as **Delivered** or **Read**.
 
-Each Channel block has "**Success**" and "**Failure**" operations. - classify this section as Status based routing to make sure it stands out
+The route then waits up to 2 minutes for either status. If one is received, the route follows the success flow. If neither is received within 2 minutes, it follows the failure flow.
 
-- **Success**: When a notification satisfies a success criteria within the configured 'wait for' time ,then the Success flow will be executed
-- **Failure**: When a notification doesn't satisfy a success criteria within the configured 'wait for' time ,then the Failure flow will be executed
+<Info>The wait time can be from a minimum of 5 seconds to a maximum of 24 hours.</Info>
 
+<Tip>To end the flow at a channel, turn off **Success Criteria** for that channel.</Tip>
 
+## Status-based routing
+
+Every channel node with Success Criteria turned on has two outputs, **Success** and **Failure**:
+
+- **Success**: The flow connected here runs when the notification receives one of the selected statuses within the wait time.
+- **Failure**: The flow connected here runs when the notification does not receive any of the selected statuses within the wait time.
+
+In the route below, an SMS is sent first, with a 1-minute wait for its Success Criteria. On success, a WhatsApp message is sent. On failure, an Email is sent. If the WhatsApp message fails, a **Condition** decides the next step: if it is true, an Email is sent, and if it is false, an InApp notification is sent.
+
+![](/images/status-based-routing-example.png)
 
 ## Controls
 
-Controls allow you to shape the direction that your Omnichannel Route takes with multiple functions to help you achieve this.
+Controls shape the direction your route takes. There are two controls.
 
-Under this, we have 2 components:
+### Condition
 
-1. **Condition**: Condition allows you to execute specific actions based on the set conditions. For example, based on user type, if you want to decide the channel, you can do it by using conditions. If the user type is Power User, then send WhatsApp else send SMS. This can be done as shown below.
+A **Condition** runs different actions depending on whether the condition is met. It has two outputs, **True** and **False**. For example, to choose the channel based on user type: if the user is a Power User, send WhatsApp, otherwise send SMS.
 
-![](/images/omnichannel_route_condition.png)
+To set up a condition, fill in:
 
-2. **Wait for**: Allows you to add a delay to the route, so that you can create a stacked notification plan, without bombarding your end users across all channels. Under this, we have a few options:
+- **Condition**: What to check, for example **Destination** or **Country**.
+- **Channel**: The channel the check applies to.
+- **Operator**: How to compare, for example **equals** or **in**.
+- **Value**: The value or values to compare against.
 
-   - Enter Time: Enter the count of time here.
-   - Unit: Choose the unit of time for the delay.
+Click **Add Another** to add more conditions. Multiple conditions are always combined with **AND**, so all of them must be met for the condition to be true. Click the delete icon to remove a condition.
+
+![](/images/condition-settings.png)
+
+### Wait For
+
+**Wait For** adds a delay to the route, so you can stack your notifications without bombarding users across all channels at once. Set:
+
+- **Enter Time**: The length of the delay.
+- **Unit**: The unit of time for the delay.
 
 <Tip>
-  You can only enter values upto 24 hours, for a delay. This means you can:
+  A delay can be at most 24 hours, which means you can enter:
   <ol>
-    <li>Enter upto 1440 minutes</li>
-    <li>Enter upto 86400 seconds</li>
+    <li>Up to 1440 minutes</li>
+    <li>Up to 86400 seconds</li>
   </ol>
 </Tip>
 
-## Understanding how Omnichannel Route works
+## Example: making sure the user reads your notification
 
-For example, you have 3 channels - WhatsApp, Email and Push. The objective of this Omnichannel Route is to make sure your user 'Read' the notification you sent.
+Say you have three channels, WhatsApp, Email and Push, and the objective of the route is to make sure the user reads your notification.
 
 <Steps>
-  <Step>Initially send an WhatsApp notification to a customer and wait for 5 minutes till its is Read. Based on this Success Criteria, the next flow will be triggered. ![](/images/omnichannel_example_whatsapp.png)</Step>
-  <Step>If the WhatsApp is successfully Read, this means you have achieved your objective and the flow will end. If the WhatsApp is not Read, then send Email and wait for 5 minutes till its Opened (In email, there is only Open status, not Read). ![](/images/omnichannel_example_email.png)</Step>
-  <Step>If the Email is successfully Read, this means you have achieved your objective and the flow will end. If the Email is not Read, then send Push. ![](/images/omnichannel_example_push.png)</Step>
+  <Step>Send a WhatsApp notification and wait 5 minutes for it to be **Read**. The next step depends on this Success Criteria. ![](/images/omnichannel_example_whatsapp.png)</Step>
+  <Step>If the WhatsApp message is read, the objective is met and the flow ends. If it is not read, send an Email and wait 5 minutes for it to be **Opened**. (Email has an Opened status rather than Read.) ![](/images/omnichannel_example_email.png)</Step>
+  <Step>If the Email is opened, the objective is met and the flow ends. If it is not opened, send a Push notification. ![](/images/omnichannel_example_push.png)</Step>
 </Steps>
 
-On creating this on Fyno's Omnichannel Route builder, it would look like this.
+In the Omnichannel Route Builder, this route looks like this:
+
 ![](/images/omnichannel_example.png)
 
-<Tip title="Proximity Matters!">Our workflow builders are so receptive, we have proximity connectors that automatically connects to the component closest to it, which has a free connection node!</Tip>
+## When a destination is missing
 
-## How it works if destination is not available
+If a user's destination for a channel is missing, that step is automatically treated as a failure, and the step connected to its **Failure** output runs.
 
-If a destination is missing, its automatically considered as failure and executes the next step linked to failure.
-
-For example, a Omnichannel route is defined as follows - Send SMS, if successful, then send email, and on failure send WhatsApp. 
-If the SMS destination is not available, it should trigger the WhatsApp as defined in the failure section.
-
-
-
+For example, say a route sends an SMS, then sends an Email on success or a WhatsApp message on failure. If the user has no SMS destination, the WhatsApp message is sent, as defined in the failure flow.
