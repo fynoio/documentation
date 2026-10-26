@@ -484,6 +484,8 @@ navigation:
                     path: "pages/workflows/nodes-and-actions/digest-widget.mdx"
                   - page: "Cohort Widget"
                     path: "pages/workflows/nodes-and-actions/cohort-widget.mdx"
+                  - page: "AI Magic Match"
+                    path: "pages/workflows/nodes-and-actions/ai-magic-match.mdx"  
                   - page: "Wait For Reply"
                     path: "pages/workflows/nodes-and-actions/wait-for-reply.mdx"
                   - page: "Wait For"
