@@ -1,0 +1,125 @@
+---
+title: 'AI Magic Match Widget within a Workflow'
+slug: 'workflows/nodes-and-actions/ai-magic-match'
+description: 'Configure the AI Magic Match widget to understand what a user is asking for and route the workflow to the matching branch.'
+og:title: 'AI Magic Match Widget in Workflow | Fyno Documentation'
+og:description: 'Learn how to configure the AI Magic Match widget to match user messages by intent and send the workflow down the right branch.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The **AI Magic Match** widget is used to read a user's message, understand what they are asking for, and continue the workflow on the branch that matches it.
+
+It matches by meaning, not exact words. For example, "Where is my order?" and "Please share the latest update on my order" are worded differently but both ask for the order status, so both go down the same branch.
+
+This is useful for handling customer queries, routing requests to the right follow-up message, or telling apart requests such as order status, cancellations, refunds, or delivery agent details.
+
+Users can configure the widget using:
+- User Input
+- Conditions
+
+![AI Magic Match widget in a workflow](/images/ai-magic-match-node.png)
+
+Each condition adds an **If** branch to the widget, numbered in order (1st, 2nd and so on). The last branch is **Else**, which the workflow follows when the user's message does not match any condition.
+
+## Steps to configure AI Magic Match Widget
+
+![AI Magic Match configuration](/images/ai-magic-match-settings.png)
+
+<Steps>
+  <Step>
+    Drag and drop the **AI Magic Match** widget into the workflow and connect it to the workflow step that receives the user's message.
+  </Step>
+
+  <Step>
+    Select the <b>User Input</b>.
+
+    Choose the variable that contains the user's message. This is the text the widget reads and compares against your conditions.
+
+    Example:
+
+    ```text
+    {{$input.body.message}}
+    ```
+  </Step>
+
+  <Step>
+    Click <b>ADD CONDITION</b> and enter a <b>Condition Name</b>.
+
+    Use a short name that describes the request.
+
+    Example:
+
+    ```text
+    order_status
+    ```
+  </Step>
+
+  <Step>
+    Under <b>If user input is similar to</b>, describe the kind of message that should match this condition.
+
+    Click <b>ADD</b> to add more descriptions to the same condition. To remove one, click the <b>X</b> next to it.
+
+    Example:
+
+    ```text
+    Customer wants to know the status or location of their order
+    Customer wants the delivery agent details
+    ```
+  </Step>
+
+  <Step>
+    Repeat the previous two steps for each request you want to handle, such as cancellations or refunds. Each condition adds its own branch to the widget.
+
+    To remove a condition, click the delete icon next to it.
+  </Step>
+
+  <Step>
+    Connect the next workflow steps to each branch, including <b>Else</b>, so every message is handled.
+  </Step>
+
+  <Step>
+    Save the workflow configuration.
+
+    Once configured, the workflow will read the user's message and continue on the branch of the matching condition, or on <b>Else</b> if nothing matches.
+  </Step>
+</Steps>
+
+## Test Magic Match Conditions
+
+Before going live, check that your conditions match the messages you expect.
+
+![Test Magic Match Conditions](/images/ai-magic-match-test.png)
+
+<Steps>
+  <Step>
+    Open <b>Test Magic Match Conditions</b>.
+  </Step>
+
+  <Step>
+    Enter a sample message, written the way a user would type it.
+
+    Example:
+
+    ```text
+    I want to check my order status. Please share the latest update on my order.
+    ```
+  </Step>
+
+  <Step>
+    Click <b>Run Test</b> to see which condition the sample message matches.
+
+    If it matches the wrong condition, or none, update the descriptions under <b>If user input is similar to</b> and test again.
+  </Step>
+</Steps>
+
+## Example
+
+| User message | Matched condition | Result |
+| --- | --- | --- |
+| Where is my order? | order_status | Workflow continues on the order_status branch. |
+| Who is delivering my parcel? | order_status | Workflow continues on the order_status branch. |
+| Do you have this sofa in blue? | None | Workflow continues on the Else branch. |
+
+<Note>
+Describe the intent in plain words, like "Customer wants to cancel their order", instead of listing exact messages. Adding two or three descriptions that cover different ways of asking helps the widget match more accurately.
+</Note>
