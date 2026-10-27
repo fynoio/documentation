@@ -1,0 +1,91 @@
+## 26.4.1
+
+This release adds Direct Send message types to WhatsApp templates, so you can send utility and authentication messages without waiting for Meta to approve a template first, and an AI Magic Match widget to Workflows that works out what someone means instead of looking for exact wording.
+
+The Real-time Dashboard now shows active alarms alongside live traffic, with a channel breakdown and sorting on every status column. Templates with Quick Reply buttons can hold on to the notification event payload for incoming workflows, Do Not Disturb warnings appear where you send from and say what happens to each channel, and card views have been tidied so only the things you can click look clickable, alongside fixes to a wrong confirmation message on the Allowlist, long names breaking a panel layout, and chart hover skipping minutes.
+
+### 🚀 New features
+
+<CardGroup cols={2}>
+
+<Card title="WhatsApp Direct Send" icon="paper-plane">
+
+Two new message types in WhatsApp templates: **Direct Send: Simple Text** for utility text messages, and **Direct Send: Interactive** for authentication and utility messages with clickable buttons. Neither needs Meta to approve the template first, so you can send these without the usual wait.
+
+[Read more](/docs/template-creation-whatsapp#message-types)
+
+</Card>
+
+<Card title="AI Magic Match widget" icon="brain">
+
+A new condition widget for Workflows that works out what someone means, instead of checking their message against a fixed list of phrases. Set up an intent such as **Cancel Order** once, and messages like "I want to cancel my order" or "I need to cancel something I bought" all match it, so your workflow can branch on the result.
+
+<Note>
+
+The widget appears in the workflow builder for everyone, but is greyed out unless it is enabled for your account. Contact support to enable AI Magic Match.
+
+</Note>
+
+[Read more](/docs/workflows/nodes-and-actions/ai-magic-match)
+
+</Card>
+
+</CardGroup>
+
+{/* ENHANCEMENTS — changes to something that already existed.
+     Title format: "Area: What changed". Ordered by how many people it affects. */}
+
+### ⚡ Enhancements
+
+<AccordionGroup>
+
+<Accordion title="Real-time dashboard: Active alarms, channel breakdown and sorting">
+
+Four additions to the [Real-time Dashboard](/docs/real-time-dashboard):
+
+- **Active Alarms** shows the alarms that occurred in the window you are viewing, so you can see what went wrong next to the traffic it affected.
+- Expand the **All** row to see counts split by channel.
+- Sort any status column by count, percentage, or change since yesterday.
+- Show or hide status columns, and open on the Analytics Labels view if your workspace uses labels.
+
+</Accordion>
+
+<Accordion title="Templates: Keep the notification event payload for incoming workflows">
+
+When a template has [Quick Reply buttons](/docs/whatsapp-interactive-message#quick-replies), you can now tick **Store the notification event payload so you can use it in incoming workflows** and set how long to keep it for.
+
+When someone taps a button and their reply starts an incoming workflow, the stored payload comes with it, so the workflow can use details from the original notification rather than just what the button sent back.
+
+</Accordion>
+
+<Accordion title="DND: Warnings where you send from">
+
+[Do Not Disturb](/docs/delivery-limit) hours are now flagged in the playground and across campaigns, rather than only in settings, and the warning tells you what happens to each channel. Group settings replace the workspace ones where they are set.
+
+The distinct ID message for subscription topics is now shown as information rather than a warning.
+
+</Accordion>
+
+<Accordion title="Card views: Only clickable things look clickable">
+
+Across Templates, Routes, Notification Events, Workflows, Cohorts and Components:
+
+- Live and test indicators now sit inside a shaded chip, in both card and list views, so they no longer look like buttons.
+- The actions menu is always visible, rather than appearing only when you hover.
+- Channel icons on Templates, and trigger icons on Workflows, are lighter so they read as labels rather than buttons.
+- On Workflows, the journey user count moved to the left and the analytics icon to the right.
+- On Cohorts, the last updated text is now aligned and the same size as the rest of the card.
+
+</Accordion>
+
+</AccordionGroup>
+
+{/* BUG FIXES — one row each. Lead with the symptom a reader would recognise,
+     then say what it does now. Never ship a row without both halves. */}
+
+### 🛠 Bug fixes
+
+| Area | Fix |
+| --- | --- |
+| **Allowlist** | Selecting **Set as Default Delivery Endpoint** showed a confirmation message for the opposite action, "Allowlist removed as default". The message now confirms what was actually done. |
+| **Notification Events** | The panel showing where an event is used broke its layout when an event or group name was long, pushing content out of place. Long names are now shortened with the full name shown on hover, and the test and live switch sits below the name and last updated. |
