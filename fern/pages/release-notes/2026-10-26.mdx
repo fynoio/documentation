@@ -2,7 +2,7 @@
 
 This release adds Direct Send message types to WhatsApp templates, so you can send utility and authentication messages without waiting for Meta to approve a template first, and an AI Magic Match widget to Workflows that works out what someone means instead of looking for exact wording.
 
-Quick Reply buttons can now carry event data through to the workflow a reply triggers, warnings about Do Not Disturb hours appear where you send from, card views have been tidied so only the things you can click look clickable, and the Real-time Dashboard gains column controls and a default view, alongside fixes to a wrong confirmation message on the Allowlist, long names breaking a panel layout, and chart hover skipping minutes.
+The Real-time Dashboard now shows active alarms alongside live traffic, with a channel breakdown and sorting on every status column. Templates with Quick Reply buttons can hold on to the notification event payload for incoming workflows, Do Not Disturb warnings appear where you send from and say what happens to each channel, and card views have been tidied so only the things you can click look clickable, alongside fixes to a wrong confirmation message on the Allowlist, long names breaking a panel layout, and chart hover skipping minutes.
 
 ### 🚀 New features
 
@@ -10,13 +10,21 @@ Quick Reply buttons can now carry event data through to the workflow a reply tri
 
 <Card title="WhatsApp Direct Send" icon="paper-plane">
 
-Two new message types in [WhatsApp templates](/docs/template-creation-whatsapp): **Direct Send: Simple Text** for utility text messages, and **Direct Send: Interactive** for authentication and utility messages with clickable buttons. Neither needs Meta to approve the template first, so you can send these without the usual wait.
+Two new message types in WhatsApp templates: **Direct Send: Simple Text** for utility text messages, and **Direct Send: Interactive** for authentication and utility messages with clickable buttons. Neither needs Meta to approve the template first, so you can send these without the usual wait.
+
+[Read more](/docs/template-creation-whatsapp#message-types)
 
 </Card>
 
 <Card title="AI Magic Match widget" icon="brain">
 
-A new condition widget for Workflows that works out what someone means, instead of checking their message against a fixed list of phrases. Set up an intent such as **Cancel Order** once, and messages like "I want to cancel my order" or "I need to cancel something I bought" all match it, so your workflow can branch on the result. Each node can have its own set of intents.
+A new condition widget for Workflows that works out what someone means, instead of checking their message against a fixed list of phrases. Set up an intent such as **Cancel Order** once, and messages like "I want to cancel my order" or "I need to cancel something I bought" all match it, so your workflow can branch on the result.
+
+<Note>
+
+The widget appears in the workflow builder for everyone, but is greyed out unless it is enabled for your account. Contact your account team to turn it on.
+
+</Note>
 
 [Read more](/docs/workflows/nodes-and-actions/ai-magic-match)
 
@@ -31,11 +39,30 @@ A new condition widget for Workflows that works out what someone means, instead 
 
 <AccordionGroup>
 
-<Accordion title="Templates: Event data carried through Quick Reply buttons">
+<Accordion title="Real-time dashboard: Active alarms, channel breakdown and sorting">
 
-You can now attach event data to a [Quick Reply button](/docs/whatsapp-interactive-message#quick-replies) in a WhatsApp template. When someone taps the button and their reply starts an incoming workflow, that data comes with the reply, so the workflow knows what the original message was about and can use it in later steps.
+Four additions to the [Real-time Dashboard](/docs/real-time-dashboard):
 
-Replies and workflow triggering work exactly as before.
+- **Active Alarms** shows the alarms that occurred in the window you are viewing, so you can see what went wrong next to the traffic it affected.
+- Expand the **All** row to see counts split by channel.
+- Sort any status column by count, percentage, or change since yesterday.
+- Show or hide status columns, and open on the Analytics Labels view if your workspace uses labels.
+
+</Accordion>
+
+<Accordion title="Templates: Keep the notification event payload for incoming workflows">
+
+When a template has [Quick Reply buttons](/docs/whatsapp-interactive-message#quick-replies), you can now tick **Store the notification event payload so you can use it in incoming workflows** and set how long to keep it for.
+
+When someone taps a button and their reply starts an incoming workflow, the stored payload comes with it, so the workflow can use details from the original notification rather than just what the button sent back.
+
+</Accordion>
+
+<Accordion title="DND: Warnings where you send from">
+
+[Do Not Disturb](/docs/delivery-limit) hours are now flagged in the playground and across campaigns, rather than only in settings, and the warning tells you what happens to each channel. Group settings replace the workspace ones where they are set.
+
+The distinct ID message for subscription topics is now shown as information rather than a warning.
 
 </Accordion>
 
@@ -51,25 +78,6 @@ Across Templates, Routes, Notification Events, Workflows, Cohorts and Components
 
 </Accordion>
 
-<Accordion title="DND: Warnings where you send from">
-
-[Do Not Disturb](/docs/delivery-limit) hours are now flagged at the point you send, instead of only in settings. You will see a warning in the playground for both workspace and group DND, and in campaigns when sending immediately, when scheduling, and on the details screen of a scheduled campaign, which now also shows the DND hours.
-
-Approvers see whether a scheduled time falls inside DND hours, and a warning if they tick fire on approval. Requesters see the warning in the confirmation popup when sending a campaign that was approved without fire on approval. Reruns show it for both immediate and scheduled sends.
-
-The distinct ID message for subscription topics is now shown as information rather than a warning, since it is guidance rather than a problem.
-
-</Accordion>
-
-<Accordion title="Real-time dashboard: Column controls and default view">
-
-Two improvements to the [Real-time Dashboard](/docs/real-time-dashboard):
-
-- Show or hide the status columns in the delivery rates table, so you can keep just the ones you are watching.
-- If your workspace uses analytics labels, the table now opens on the Analytics Labels view instead of Notification Events.
-
-</Accordion>
-
 </AccordionGroup>
 
 {/* BUG FIXES — one row each. Lead with the symptom a reader would recognise,
@@ -81,4 +89,3 @@ Two improvements to the [Real-time Dashboard](/docs/real-time-dashboard):
 | --- | --- |
 | **Allowlist** | Selecting **Set as Default Delivery Endpoint** showed a confirmation message for the opposite action, "Allowlist removed as default". The message now confirms what was actually done. |
 | **Notification Events** | The panel showing where an event is used broke its layout when an event or group name was long, pushing content out of place. Long names are now shortened with the full name shown on hover, and the test and live switch sits below the name and last updated. |
-| **Real-time dashboard** | Hovering across a chart skipped some minutes, so a few points could not be read. Hover now setps through every minute in the window. |
