@@ -197,6 +197,19 @@ The remaining fields are the same for every header type:
   - **Button Title**: The text shown on the button.
   - **Button Payload** (optional): Data that is captured on an incoming webhook when the button is clicked.
 
+#### Store event payload
+
+![](/images/wainteractive-v2-store-payload.png)
+
+When a recipient clicks a quick reply button, their reply can trigger an incoming workflow. Turn on this option to keep the data from the original notification event and attach it to that reply, so the incoming workflow can use it in later steps.
+
+- **Store the notification event payload so you can use it in incoming workflows**: Select this checkbox to save the event payload.
+- **How long should the payload be stored for?**: Enter a value in **Time** and choose the unit from the dropdown, for example **Seconds**. Replies received after this period will not have the event payload attached.
+
+<Note>
+This only adds the event data to the reply. How incoming messages are received and how workflows are triggered stays the same.
+</Note>
+
 ### Menu
 
 Provide options from a menu within your WhatsApp message for your customers to choose from.
