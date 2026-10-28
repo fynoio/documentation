@@ -892,4 +892,37 @@ redirects:
     permanent: true
   - source: "/docs/workflow-webhook-trigger"
     destination: "/docs/workflow-webhook-trigger-setup"
-    permanent: true                
+    permanent: true
+  - source: "/docs/log-details-delivery"
+    destination: "/docs/sent-logs"
+    permanent: true  
+  - source: "/docs/approval-flow"
+    destination: "/docs/approval-request"
+    permanent: true
+  - source: "/docs/external-templates/template-type"
+    destination: "/docs/external-templates/sms/template-type"
+    permanent: true
+  - source: "/docs/routes/copying-routes"
+    destination: "/docs/routes#steps-to-copy-routes-to-another-workspace"
+    permanent: true
+  - source: "/docs/notification-event-group"
+    destination: "/docs/groups"
+    permanent: true
+  - source: "/docs/log-details-trace"
+    destination: "/docs/workflow-logs#trace-log"
+    permanent: true
+  - source: "/docs/log-details-placeholders"
+    destination: "/docs/sent-log-details#debugging-template-placeholders-in-logs"
+    permanent: true
+  - source: "/docs/log-details-summary"
+    destination: "/docs/sent-log-details#reviewing-notification-trace-and-summary-logs"
+    permanent: true  
+  - source: "/docs/copying-templates-components"
+    destination: "/docs/fyno-templates-overview#steps-to-copy-templates"
+    permanent: true  
+  - source: "/docs/log-details-content"
+    destination: "/docs/sent-log-details#understanding-log-content-details"
+    permanent: true 
+  - source: "/docs/security/saml-single-sign-on"
+    destination: "/docs/saml"
+    permanent: true                                     
