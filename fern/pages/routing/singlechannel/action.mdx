@@ -1,76 +1,84 @@
 ---
-title: 'The Action Operator and Single-Channel Traffic Strategies'
+title: 'Action Operator in Single Channel Routes'
 slug: 'routing-action'
 description: 'Configure inline vendor allocation frameworks within a single communication medium. Master payload division techniques including direct failover stacks, round-robin queues, and percentage-based distribution matrices.'
-og:title: 'The Action Operator and Single-Channel Traffic Strategies | Fyno Documentation'
+og:title: 'Action Operator in Single Channel Routes | Fyno Documentation'
 og:description: 'Configure inline vendor allocation frameworks within a single communication medium. Master payload division techniques including direct failover stacks, round-robin queues, and percentage-based distribution matrices.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-The **Action** operator in the **Single Channel Route** flow-builder helps you create a simple and straightforward action, regardless of any factors. To understand this better, let's have a look at the options we have here.
+An **Action** in the Single Channel Route flow builder decides how a notification is sent through your providers.
 
-On creating a **Single Channel Route** and selecting **Action**, there are a few components that you will see.
+## Routing strategy
 
-## Single Channel Route Strategy
-
-Routing strategy allows you to choose from multiple options, based on how and what you want to do with the traffic.
+When you add an **Action**, choose a strategy from the **Select action** dropdown, depending on what you want to do with the traffic:
 
 - Simply Send
 - Round Robin
 - Distribute Between
 - Do Nothing
 
-Let's have a closer look at each selection.
+![](/images/single-channel-action-types.png)
+
+Each strategy is explained below.
 
 ### Simply Send
 
-**Simply Send** allows you to simply send messages in order to the providers that have been added, with the one that has been selected first as the Primary and the other providers as failover.
+**Simply Send** sends the notification through the provider you select as the primary. If that fails, it tries the failover providers in the order you added them.
 
-On selecting **Simply Send**,
+![](/images/action-simply-send.gif)
 
 <Steps>
-  <Step>You will be asked to select the provider you want to configure here. Select your preferred primary provider now.</Step>
-  <Step>Once this is selected, you will see the **Failover** section. This allows you to select a failover provider, in case the primary operator did not (for any reason) execute the notification for you. Please note that adding failover is optional but its recommended if your are using more than 1 provider for the same channel.</Step>
-  <Step>Select any **Provider** as your failover provider, that you have already pre-configured. You can add as many as you want and in any order you like.</Step>
-  <Step>Click on "**Save**" to save your changes.</Step>
+  <Step>Select your primary provider.</Step>
+  <Step>
+    Under **Failover**, click **Add Another** to add a failover provider, in case the primary provider does not send the notification for any reason. You can choose from any provider you have already configured, and add as many as you want, in any order.
+
+    Failover is optional, but recommended if you use more than one provider for the channel.
+  </Step>
+  <Step>Click **Save** at the top right of the flow builder to save your changes.</Step>
 </Steps>
+
+![](/images/single-channel-action-simply-send.png)
 
 ### Round Robin
 
-If you choose **Round Robin** from the drop-down, your notifications will be distributed equally in an ordered fashion to each **Provider** that has been selected, one after another.
+**Round Robin** distributes your notifications equally across the providers you select, one after another, in order.
 
-For example, in case there are 3 Providers that have been configured, PA, PB, and PC; then:
+For example, with three providers, PA, PB and PC:
 
-1. PA executes Notification 1
-2. PB executes Notification 2
-3. PC executes Notification 3
-4. PA executes Notification 4...
-5. Pn executes Notification "m"
+1. PA sends notification 1.
+2. PB sends notification 2.
+3. PC sends notification 3.
+4. PA sends notification 4, and so on.
 
-On selecting **Round Robin**:
+![](/images/action-round-robin.gif)
 
 <Steps>
-  <Step>You will be asked to select a minimum of 2 providers.</Step>
-  <Step>You can add as many providers as you like, depending on how many you have added in the **Providers** section.</Step>
-  <Step>Once this is selected, you will see the **Failover** section. This allows you to select a failover provider, in case the primary operator that you selected above did not (for any reason) execute the notification for you.</Step>
-  <Step>Select any **Provider** as your failover provider, that you have already pre-configured. You can add as many as you want and in any order you like.</Step>
-  <Step>Click on "**Save**" to save your changes.</Step>
+  <Step>Select at least two providers. Click **Add Another** to add more, from the providers you have configured for the channel.</Step>
+  <Step>Under **Failover**, click **Add Another** to add a failover provider, in case the providers above do not send the notification for any reason. You can add as many as you want, in any order.</Step>
+  <Step>Click **Save** at the top right of the flow builder to save your changes.</Step>
 </Steps>
+
+![](/images/single-channel-action-round-robin.png)
 
 ### Distribute Between
 
-Fyno's **Distribute Between** feature within the flow-builder allows you to do exactly that. Splitting traffic based on percentages has never been easier.
+**Distribute Between** splits traffic between providers by percentage.
 
-On selecting **Distribute Between**:
+For example, with an 80% and 20% split, out of every 100 notifications, about 80 go through the first provider and about 20 through the second.
+
+![](/images/action-distribute-between.gif)
 
 <Steps>
-  <Step>You will be asked to select a minimum of 2 providers as well as provide the percentage of traffic to be routed through each **Provider**.</Step>
-  <Step>You can add as many providers as you like, depending on how many you have added in the **Providers** section.</Step>
-  <Step>Once this is selected, you will see the **Failover** section. This allows you to select a failover provider, in case the primary operator that you selected above did not (for any reason) execute the notification for you.</Step>
-  <Step>Select any **Provider** as your failover provider, that you have already pre-configured. You can add as many as you want and in any order you like.</Step>
-  <Step>Click on "**Save**" to save your changes.</Step>
+  <Step>Select at least two providers, and enter the percentage of traffic to send through each, for example 80% and 20%. Click **Add Another** to add more providers.</Step>
+  <Step>Under **Failover**, click **Add Another** to add a failover provider, in case the providers above do not send the notification for any reason. You can add as many as you want, in any order.</Step>
+  <Step>Click **Save** at the top right of the flow builder to save your changes.</Step>
 </Steps>
+
+![](/images/single-channel-action-distribute-between.png)
 
 ### Do Nothing
 
-This option essentially helps you end the action happening on the block. If **Do nothing** is selected, no other action will be available for toggling.
+**Do Nothing** ends the flow at this point, without sending the notification. It has no other settings, and no failover.
+
+![](/images/action-do-nothing.gif)

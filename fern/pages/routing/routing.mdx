@@ -1,62 +1,82 @@
 ---
-title: 'The Routing Matrix Architecture'
+title: 'Routes'
 slug: 'routes'
 description: 'Deploy advanced logic frameworks across individual communication mediums and complex multi-channel message trees. Learn how single-channel vendor clusters and omni-channel fallback workflows work together to maximize message delivery.'
-og:title: 'The Routing Matrix Architecture | Fyno Documentation'
+og:title: 'Routes | Fyno Documentation'
 og:description: 'Deploy advanced logic frameworks across individual communication mediums and complex multi-channel message trees. Learn how single-channel vendor clusters and omni-channel fallback workflows work together to maximize message delivery.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Effective communication requires a reliable and flexible routing system to ensure messages reach their intended recipients without delays or failures. Fyno’s Routing feature empowers you to optimize message delivery across multiple providers and channels with ease. This section explores two powerful routing capabilities: **Single Channel Route** and **Omnichannel Route**.
+Effective communication needs a reliable, flexible routing system so that messages reach their recipients without delays or failures. Fyno's Routes let you optimize message delivery across multiple providers and channels. There are two types of routes:
 
-[Single Channel Route](./routing-introduction) helps you manage multiple providers within a specific channel, enabling traffic distribution, failover setups, and conditional routing.
+- **[Single Channel Route](./routing-introduction)**: Manage multiple providers within one channel, with traffic distribution, failover setups and conditional routing.
+- **[Omnichannel Route](./omnichannel-routing-introduction)**: Move between different channels, such as SMS, WhatsApp, Email, Push, InApp and more, so that your message reaches the user on at least one touchpoint.
 
-[Omnichannel Route](./omnichannel-routing-introduction) takes it a step further by allowing seamless transitions between different communication channels—SMS, WhatsApp, Email, Push, and more—to ensure message delivery across multiple touchpoints.
+You can find both by clicking **Routes** in the left navigation, under the **Omni-Channel** and **Single Channel** tabs.
 
-By leveraging Fyno’s routing capabilities, you can build redundancy, improve reliability, and maximize engagement with your audience. Let’s dive into the details!
+By combining the two, you can build redundancy, improve reliability and maximize engagement with your audience.
 
-Single channel and omni-channel routes can be copied from your workspace to other workspaces you own. The copy process is only available in workspaces where you have the <strong>Owner</strong> role.
+## Copy routes to another workspace
 
-## Steps to copy routes to another workspace
+You can copy single channel and omnichannel routes from your workspace to other workspaces. Copying is only possible between workspaces that have the same owner.
+
+<Note>
+  Only route-related data is copied to the destination workspace. Any dependencies, such as integrations, must be created or copied manually in the destination workspace.
+</Note>
 
 ### 1. Prepare your destination workspace
 
-It is important to note that when copying routes, only the route-related data will be copied to the destination workspace. Any dependencies must be created or copied manually in the destination workspace.
-
 <Steps>
-  <Step>Manually create the required integrations used by the routes in the workspace.</Step>
-  <Step>If the omni-channel route contains a single channel route, then ensure that the single channel route is first copied over using the process described in the next section.</Step>
+  <Step>Create the integrations used by the routes in the destination workspace.</Step>
+  <Step>If an omnichannel route uses a single channel route, copy that single channel route first, using the process described in the next section.</Step>
 </Steps>
 
-### 2. Copy your route(s) to another workspace
+### 2. Copy your routes
 
 <Steps>
-  <Step>Ensure you are in the workspace from where you would like to copy the route.</Step>
-  <Step>Navigate to the listing page for single channel routes (Routes → Single Channel from the navigation) or omni channel routes (Routes → Omni-Channel).</Step>
-  <Step>Click the "Three Dots" icon on the route that you would like to copy. This step will open a menu.</Step>
-  <Step>In the menu options, select “Copy to another workspace”. ![](/images/workspace-copy/options-menu.png)</Step>
-  <Step>You will now see a checkbox next to every route listed on the page. You can select multiple routes to copy if needed.</Step>
-  <Step>Once you have completed your selection, click “Copy Selected Single Channel Routes” or “Copy Selected Omni Channel Routes” in the alert above the listing.</Step>
-  <Step>When copying a single route that has a live version, you will see an option to copy either the latest live or test version. If your route only has a test version, that version will be copied.</Step>
-  <Step>When copying multiple routes, the latest live or the latest test version will be copied, depending on the route.</Step>
-  <Step>You will now see a dialog box with an option to select destination workspaces. In the “Destination Workspace(s)” dropdown menu, you will see all the workspaces you are a member of, but only the ones in which you have the “Owner” role will be available for selection. You can select up to five applicable workspaces.</Step>
-  <Step>Once all the workspaces are selected, click “Confirm”. This step will initiate the copy process.</Step>
-  <Step>Now, in all the selected workspaces, you will see the copied routes.</Step>
+  <Step>Make sure you are in the workspace you want to copy the route from.</Step>
+  <Step>Click **Routes** in the left navigation, then select the **Omni-Channel** or **Single Channel** tab.</Step>
+  <Step>Click the **three dots** icon on the route you want to copy, then select **Copy to another workspace**. ![](/images/route-options-menu.png)</Step>
+  <Step>A checkbox now appears next to every route on the page. Select one or more routes to copy.</Step>
+  <Step>Click **Copy Selected Single Channel Routes** or **Copy Selected Omni Channel Routes** in the alert above the listing.</Step>
+  <Step>
+    Choose the version to copy:
+    - **Single route with a live version**: choose whether to copy the latest live or the latest test version. If the route only has a test version, that version is copied.
+    - **Multiple routes**: the latest live or latest test version of each route is copied, depending on the route.
+  </Step>
+  <Step>
+    In the copy dialog, select the workspaces to copy to from the **Destination workspace(s)** dropdown. All workspaces you are a member of are listed, but only those with the same owner as your current workspace can be selected. You can select up to five workspaces.
+
+    The dialog also lists the route's dependencies, such as integrations. Make sure these are copied to or available in each destination workspace to avoid errors.
+
+    ![](/images/copy-route-to-another-workspace.png)
+  </Step>
+  <Step>Click **Confirm** to start copying. The copied routes appear in each selected workspace.</Step>
 </Steps>
 
-### 3. Post copy to-do
+### 3. After copying
 
-Once the routes are copied to the destination workspaces, open each route, re-select the integration (where applicable), and save the route to ensure that it works correctly.
+Open each copied route in the destination workspace, re-select the integration where applicable, and click **Save** so that the route works correctly.
 
 ## How versioning works
 
-Let's say we are copying a route from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
+Say you copy a route from Workspace A to Workspace B. The version created in Workspace B depends on whether the route already exists there.
+
+### If the route does not exist in Workspace B
+
+The copy is created as **v1 (Test)**.
+
+### If the route already exists in Workspace B
+
+The copy is created as a new version that is neither test nor live. For example, if Workspace B has **v1 (Test)**, the copy is created as **v2**.
+
+To use the copied version:
 
 <Steps>
-  <Step>
-    If the route does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
-  </Step>
-  <Step>
-    If the route already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the route name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied route.
-  </Step>
+  <Step>Select **v2** from the version dropdown beside the route name.</Step>
+  <Step>Click **Save** to make it **v2 (Test)**, or click **Go Live** to make it **v2 (Live)**.</Step>
 </Steps>
+
+<Note>
+  Existing versions in the destination workspace are never overwritten, so you decide when to save or make the copied route live.
+</Note>
