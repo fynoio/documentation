@@ -381,14 +381,12 @@ navigation:
               - section: "Single Channel Route"
                 path: "pages/routing/singlechannel/introduction.mdx"
                 contents:
-                  - page: "Creating a Single Channel Route"
+                  - page: "Configure a Single-Channel Route"
                     path: "pages/routing/singlechannel/creation.mdx"
                   - page: '"Action" Operator'
                     path: "pages/routing/singlechannel/action.mdx"
                   - page: '"Condition" Operator'
                     path: "pages/routing/singlechannel/condition.mdx"
-                  - page: "Integrating a Single Channel Route"
-                    path: "pages/routing/singlechannel/integration.mdx"
               - section: "Omnichannel Route"
                 path: "pages/routing/omnichannel/introduction.mdx"
                 contents:

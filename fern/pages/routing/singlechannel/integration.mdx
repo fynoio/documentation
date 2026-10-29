@@ -7,12 +7,9 @@ og:description: 'Map high-availability cluster definitions to live application t
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Integrating a **Single Channel Route** into a notification event allows it to be used effectively.
+To put a **Single Channel Route** to use, add it to a notification event in place of a **Provider**.
 
-This is done by simply adding the **Single Channel Route** instead of **Providers**.
+- **Provider**: Sends a channel's notifications (SMS, WhatsApp and so on) through that one provider. This is the basic setup.
+- **Single Channel Route**: Sends the channel's notifications through the route you built, with multiple providers, redundancy and conditions. This lets you set up a complex delivery structure in minutes.
 
-The understanding here is that adding providers gives you the basic set-up of a single **Provider** for a specific notification type (SMS, WhatsApp, etc.).
-
-On the other hand, **Single Channel Route** allows you to create redundancies and other conditions, with multiple **Providers**, effectively making a complex structure in minutes.
-
-To use a **Single Channel Route**, select the one you want while setting up the [Configuration](./notification-event-creation#routeprovider), in **Notification Events**.
+To use a Single Channel Route, select it while setting up the [Configuration](./notification-event-creation#routeprovider) of your notification event in **Notification Events**.
