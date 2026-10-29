@@ -1,45 +1,70 @@
 ---
-title: 'Introduction to Omnichannel Orchestration'
+title: 'Introduction to Omnichannel Routes'
 slug: 'omnichannel-routing-introduction'
 description: 'Coordinate message delivery across distinct channels and provider pools. Learn how omnichannel orchestration prevents delivery gaps and handles region-specific failover logic.'
-og:title: 'Introduction to Omnichannel Orchestration | Fyno Documentation'
+og:title: 'Introduction to Omnichannel Routes | Fyno Documentation'
 og:description: 'Coordinate message delivery across distinct channels and provider pools. Learn how omnichannel orchestration prevents delivery gaps and handles region-specific failover logic.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno's Omnichannel Route - the game changer thats going to give you the freedom to supercharge your notification.
+"Omnichannel" means all channels, and that is exactly what an Omnichannel Route gives you: the freedom to mix and match multiple **channels** and **providers** in a single route, from simple fallbacks to flows with several branches and conditions.
 
-The word "Omnichannel" explains the feature accurately, meaning all channels. Basically, this would give you the capacity to mix, match and play around with multiple **Channels** as well as **Providers**, allowing you to create routes with multiple complexities and features.
+## What is an Omnichannel Route?
 
-## What is Omnichannel Route?
+An Omnichannel Route lets you work with multiple notification channels, including SMS, WhatsApp, Email, Slack, Discord, Teams, Push, InApp, Voice and RCS. You can connect channels:
 
-Omnichannel at the crux of it, allows you to work with multiple notification channels like SMS, WhatsApp, Email, Push, Chat, RCS, Voice or InApp
+- **In sequence**, one after another, so they work in tandem.
+- **As a failover**, so that a channel acts as a backup for the one before it.
 
-- By connecting them one after another to work in tandem with each other
-- As a failover or a back-up for the one preceding it.
+![](/images/omni-in-sequence.gif)
 
-<Tip title="What is the Difference between Single Channel Route and Omnichannel Route?">The difference between Single Channel Routing and Omnichannel Routing is the simple fact that Routing works to make connections **WITHIN** a Channel and Omnichannel Routing works to make connections **BETWEEN** channels.</Tip>
+![](/images/omni-channel-failover.gif)
 
-## Why use Omnichannel Route?
+<Tip title="What is the difference between a Single Channel Route and an Omnichannel Route?">
+  A Single Channel Route makes connections **within** a channel, between its providers. An Omnichannel Route makes connections **between** channels.
+</Tip>
 
-Omnichannel Route allows you to have the flexibility of using any channel in your arsenal, at any point in time, to make sure the communication you want sent out to your customers actually gets delivered to them.
+## Why use an Omnichannel Route?
 
-The constraint of a single channel is no longer a problem.
+An Omnichannel Route lets you use any channel available to you, at any point in the flow, to make sure your communication actually reaches your customers.
 
-The uncertainty of "Will my communication reach my clients?" can be done away with.
+- You are no longer limited to a single channel.
+- You no longer have to wonder whether your communication reached your customers.
 
-## When to use Omnichannel Route?
+## When to use an Omnichannel Route?
 
-Omnichannel Route, when used correctly, can be leveraged to solve multiple use-case that would otherwise require multiple teams' coordination and many lines of code.
+An Omnichannel Route solves use cases that would otherwise need coordination across multiple teams and many lines of code.
 
-To understand the best way to leverage Omnichannel Route is by taking a real use case.
+Take an example. Company ABC has customers in India and the USA, and wants to:
 
-Lets take an example. A Company ABC has a customer base in India as well as in USA. However, they would like to:
+1. Notify customers in India via **SMS**, since it is cheaper and they already have it set up.
+2. Notify customers in the USA via **WhatsApp**, since it is their preferred channel.
+3. In both countries, wait for a minute after the first notification goes out, and then send a **Push** notification.
 
-1. Execute notifications to the customer base in India via SMS, since its cheaper and they already have a set-up in place.
-2. Execute notifications to the customer base in USA via WhatsApp, since this is the preferred method of communication.
-3. For both India and USA, post the first notification going out, wait for a minute and then send out a Push Notification.
+Without Fyno's Omnichannel Routes, this would be time-consuming and need channel-wise coordination across teams. With an Omnichannel Route, you can build it in minutes.
 
-This seems like a tedious process that may be time consuming as well as involve different teams in terms of channel wise coordination, which would be needed to execute this efficiently. However, this can be easily created with Fyno's Omnichannel Route feature in a matter of minutes.
+![](/images/omni-company-abc.gif)
 
-Let's have a look at how to do this in the next sections.
+## View route details
+
+To see where a route is used, click the **three dots** icon on the route and select **View Details**. It shows when the route was last updated, along with:
+
+- **Used in**: The notification events that use the route.
+- **Depends On**: The integrations the route uses.
+
+Use the **Test** and **Live** toggle at the top to see the details for each version.
+
+![](/images/view-route-details.png)
+
+## Duplicate a route
+
+<Steps>
+  <Step>Click the **three dots** icon on the route and select **Duplicate**.</Step>
+  <Step>
+    In the **Duplicate Omni-channel route** dialog, the **Name** is filled in as the route's name followed by `-copy`. Change it if needed, add an optional **Description**, and click **Submit**.
+
+    ![](/images/duplicate-omni-channel-route-dialog.png)
+  </Step>
+</Steps>
+
+See how to [create an Omnichannel Route](./omnichannel-route-creation#create-an-omnichannel-route).
