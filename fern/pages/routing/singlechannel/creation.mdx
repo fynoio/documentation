@@ -1,73 +1,81 @@
 ---
-title: 'Configuring Single-Channel Gateway Clusters'
+title: 'Configuring a Single-Channel Route'
 slug: 'route-creation'
 description: 'Initialize standalone routing patterns within individual communication channels. Learn how to navigate the graph canvas, manage version revisions, and coordinate downstream event dependencies.'
-og:title: 'Configuring Single-Channel Gateway Clusters | Fyno Documentation'
+og:title: 'Configuring a Single-Channel Route | Fyno Documentation'
 og:description: 'Initialize standalone routing patterns within individual communication channels. Learn how to navigate the graph canvas, manage version revisions, and coordinate downstream event dependencies.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Single Channel Route is easy to create, with a clear concept of what you want to achieve and some creativity.
+Click **Routes** in the left navigation and select the **Single Channel** tab. This tab lists your existing single channel routes, with when each was last edited. At the top of the page, you can:
 
-On the Single Channel Route listing page, you will find an option (next to 'Create' button) to change your view between a card grid and a list view, for your convenience.
+- Search for a route by name.
+- Filter routes by **Channel**.
+- Filter routes by **Version**, for example to see only live routes.
+- Switch between a card grid and a list view, using the icon next to **+ Create**.
 
-Your option to filter out only the **Live** routes as well as the **Channel** filter is on the top of the page.
+![](/images/single-channel-routes-listing.png)
 
-You can also filter it based on the channels.
-
-## Create a Route
-
-Click the **Create+** at the top right corner of the page.
-
-In the pop-up that appears,
+## Create a route
 
 <Steps>
-  <Step>Select the channel from the drop-down in the top right corner.</Step>
-  <Step>Provide a name and description and hit "**Create Route**" to get started.</Step>
+  <Step>Click **+ Create** at the top right of the page.</Step>
+  <Step>
+    In the **Create Single Channel Route** dialog, select the channel from the dropdown. You can create a route for SMS, RCS, WhatsApp, Email, Viber, Slack, Discord, Teams, Push, Voice and InApp.
+
+    ![](/images/single-channel-route-channel-list.png)
+  </Step>
+  <Step>
+    Enter a **Name** for the route. The name starts with the channel you selected, for example `sms-`. Optionally, add a **Description**, then click **Submit**.
+
+    ![](/images/create-single-channel-route-dialog.png)
+  </Step>
 </Steps>
 
-### Flow-builder
+## Flow builder
 
-The page that opens on creating a new **Single Channel Route** is called the flow-builder.
+Creating a route opens the flow builder, where you design how notifications are routed for the channel, including redundancy and failover.
 
-This is what allows you to design your routing and entire design, including redundancies and fail overs. Before we get started with creating complex routes, let's understand the features.
+![](/images/single-channel-route-builder.png)
 
-On the **Flow-builder** you will see:
+A route has three parts.
 
-- Start
-- Components
-  - **Action** - Action allows you to execute a rule like Simply send, Round Robin, Distribute between etc. You can also add fail over logic. 
-  - **Condition** - Condition allows you to provide complexity to govern the flow of notifications and execute specific actions based on the set conditions.
-  - **Failover** - Allows you to have a backup plan for all your routing flows. This helps you improve your chances of keeping that "no downtime" promise to your clients!
-- Stop (Once **Components** have been configured)
+### Start
 
-### Menu Options
+Every route begins at **Start**. Below it, **Pick a component to start** lets you add your first component.
 
-On the Flow-builder page, you will see a few more options in the top left corner. These are:
+### Components
 
-- **Extended Menu**
-  - Rename - Renames the current Route configuration
-  - Duplicate - Duplicates the current Route configuration
-  - Delete - Deletes the route
-- **Save** - Saves the last changes that were made. This will be saved as a **Draft** and will be in **Test** environment.
-- **Go Live** - Click on **Go Live** if you are happy with the flow and want to move the **Route** to **Live** environment.
+Components decide what happens to a notification. There are two, and you can click either on the canvas to open its settings:
 
-<Tip>If you are in **Test** environment, and you only **Save**, then the draft will not be visible in **Live** environment.</Tip>
+- **[Condition](./routing-condition)**: Controls the flow of notifications, so that specific actions run depending on whether the condition is met. Each condition has a **True** and a **False** outcome.
+- **[Action](./routing-action)**: Decides how the notification is sent through your providers, using Simply Send, Round Robin, Distribute Between or Do Nothing. Actions also have a **Failover** section, where you add backup providers in case sending fails, helping you keep your "no downtime" promise to your customers.
 
-### Test and Live Versions
+### Stop
 
-Every route that you create will be saved as **Test** versions, allowing you to test different variations and combinations of routes, to suit your needs.
+**Stop** is added after an Action, and marks where that branch of the route ends.
 
-When a **Test** version is saved, this does not disturb the **Live** version that may be plugged in your application and may be active.
+## Example
 
-When you are confident and happy with the **Single Channel Route** that you have created and tested in **Test** version, this can then be moved into the live version by following the below steps.
+In the route below, a Condition checks whether the variable `type` equals `ivr`. On **True**, the notification is sent with Simply Send through one provider. On **False**, it is sent with Simply Send through another. Each branch then ends at **Stop**.
+
+![](/images/single-channel-route-example.png)
+
+## Test and live versions
+
+Every route you create is saved as a **Test** version, so you can try out different variations and combinations to suit your needs. Saving a Test version does not affect the **Live** version, which may be plugged into your application and active.
 
 <Steps>
-  <Step>Make the final changes on the route and test it to make sure you are getting the desirable results.</Step>
-  <Step>On the top of the page, next to the name of the **Single Channel Route**, you will see the Test Version mentioned.</Step>
-  <Step>To keep this as a **Test**, click on **Save** and the draft will be saved.</Step>
-  <Step>To make this version of the **Test** version live, click **Go Live**.</Step>
-  <Step>This will make the current version the live version of the **Single Channel Route**.</Step>
+  <Step>Make your final changes to the route and test it to make sure you get the results you want.</Step>
+  <Step>Check the version dropdown next to the route name to see which version you are working on.</Step>
+  <Step>To keep the version as a test, click **Save**. The draft is saved in **Test** and is not visible in **Live**.</Step>
+  <Step>
+    To make the version live, click **Go Live**, then click **Confirm** in the **Go Live Confirmation** dialog. The current version becomes the live version of the route.
+
+    <Note>
+      If approvals are turned on for your workspace, clicking **Go Live** asks you to request approval instead. See [Approval Requests](./approval-request) for how this works.
+    </Note>
+  </Step>
 </Steps>
 
-<Tip>Once a **Single Channel Route** is live, all the **Notification Events** into which this route is plugged in will also be automatically updated and modified.</Tip>
+<Tip>Once a Single Channel Route is live, every notification event it is plugged into automatically uses the live version.</Tip>

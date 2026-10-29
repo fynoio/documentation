@@ -7,18 +7,55 @@ og:description: 'Manage multiple telecommunication and messaging vendors within 
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno's Single Channel Route allow you to work with multiple providers for a specific channel.
+Fyno's Single Channel Route lets you work with multiple providers within one channel.
 
-### What is a Single Channel Route?
+## What is a Single Channel Route?
 
-"Single Channel Route" helps you decide how exactly you would like to route your notification, for any provider that is already configured within each of your channels.
+A Single Channel Route lets you decide how your notifications are routed across the providers you have already configured for a channel. You can create one for SMS, RCS, WhatsApp, Email, Viber, Slack, Discord, Teams, Push, Voice and InApp.
 
-You can choose to do anything from doing a specific action like route traffic through a different operator, based on the mobile number series or route traffic in a round robin fashion across multiple service providers, to adding a provider as 'failover'. That flexible!
+With a Single Channel Route, you can:
 
-### Why do I need Route?
+- Send traffic through a specific provider based on a condition, for example the mobile number series.
+- Spread traffic across multiple providers in a round robin fashion, or split it between them by percentage.
+- Add one or more providers as a failover.
 
-Single Channel Route gives you the freedom to plan and build redundancies between your providers. No more downtimes with Fyno's Routing feature!
+<Tip title="What is the difference between a Single Channel Route and an Omnichannel Route?">
+  A Single Channel Route makes connections **within** a channel, between its providers. An [Omnichannel Route](./omnichannel-routing-introduction) makes connections **between** channels.
+</Tip>
 
-Single Channel Route also can help you easily plan for commitments with your providers and help achieve this seamlessly without manual monitoring and switch-overs
+## Why use a Single Channel Route?
 
-Single Channel Route can also help target specific audiences based on conditional routing, explained in the next sections.
+Here are three common ways to use a Single Channel Route.
+
+### Avoid downtime with failover
+
+Add a backup provider, so that a provider outage does not stop your notifications. If the primary provider is down, the route sends the notification through the failover provider instead. Set this up with the [Simply Send](./routing-action#simply-send) action and a **Failover** provider.
+
+![](/images/routes-use-case-failover.gif)
+
+### Meet provider commitments
+
+Split traffic between providers by percentage, so you meet the volume you have committed to each one without manual monitoring and switch-overs. Set this up with the [Distribute Between](./routing-action#distribute-between) action.
+
+![](/images/routes-use-case-traffic-split.gif)
+
+### Target specific audiences
+
+Use a [Condition](./routing-condition) to send notifications for specific audiences through specific providers, or not at all. For example, you can block SMS to one country and send to every other country as usual.
+
+![](/images/routes-use-case-country-condition.gif)
+
+## View route details
+
+To see where a route is used, click the **three dots** icon on the route and select **View Details**. It shows when the route was last updated, along with:
+
+- **Used in**: The notification events that use the route.
+- **Depends On**: The integrations the route uses.
+
+Use the **Test** and **Live** toggle at the top to see the details for each version.
+
+## Use a route in a notification event
+
+When you set up a notification event, you can select a Single Channel Route instead of a single provider for a channel. The notification event then sends that channel's notifications through your route, with all its providers, conditions and failover.
+
+To do this, select the route while setting up the [Configuration](./notification-event-creation#routeprovider) of your notification event in **Notification Events**.
