@@ -28,7 +28,10 @@ The **Alarms** card on your Dashboard shows how many alarms are currently unreso
 
 ## Alarms page
 
-The Alarms page lists every alarm raised in your workspace.
+The Alarms page lists every alarm raised in your workspace. You can open it in either of these ways:
+
+- In the left navigation bar, go to **Dashboard** > **Alarms**.
+- On your Dashboard, click **View All** on the **Alarms** card.
 
 ![](/images/alarm-dashboard.png)
 
@@ -46,8 +49,12 @@ Alarms are split into three tabs, each showing the number of alarms it contains.
 
 Use the filters at the top right to narrow down the list.
 
-- **Module**: shows only the alarms raised in a specific part of Fyno, such as a notification event, workflow, webhook, provider, integration, or WhatsApp template.
-- **Severity**: shows only alarms of the selected severity.
+- **Module**: shows only the alarms raised in a specific part of Fyno. Choose from **Notification Event**, **Webhook**, **Workflow**, **Provider**, **Integration**, **Campaign**, or **WhatsApp Meta Template**.
+- **Severity**: shows only alarms of the selected severity. Choose from **High**, **Medium**, **Low**, or **Info**.
+
+Both filters are set to **All** by default.
+
+![](/images/alarm-filters.png)
 
 ### How alarms are grouped
 
@@ -69,27 +76,65 @@ You can sort by **Started**, **Last Occurrence**, and **Occurrences** by clickin
 Some alarms are raised by a one-time change rather than by repeated delivery failures, for example when Meta rejects a template or changes its category. These alarms show `0` occurrences and `-` as the last occurrence, but they stay open until you resolve them.
 </Tip>
 
+## Alarm alerts
+
+Fyno can send Email and InApp alerts to your team for alarms and anomalies in your workspace. You choose who receives them.
+
+1. On the Alarms page, click **ALARM ALERTS** at the top right. The **Alarm Alerts** page opens.
+
+2. Under **Who should receive Email and InApp alerts for alarms and anomalies?**, choose one of these options:
+
+   | Option | Who receives alerts |
+   | --- | --- |
+   | **All team members** | Everyone in the workspace. The option shows how many members there are, for example *All 21 team members*. |
+   | **Only selected team members** | Only the team members you pick. |
+   | **No one** | No one in the workspace. A warning is shown so you know alerts are turned off. |
+
+   ![](/images/alarm-alerts-all.png)
+
+3. If you chose **Only selected team members**:
+   - Click **Select Email ID** and pick a team member.
+   - Click **ADD** to add another team member.
+   - Click the delete icon next to a team member to remove them.
+
+   ![](/images/alarm-alerts-selected.png)
+
+4. Click **CONFIRM** to save.
+
+<Warning>
+If you select **No one**, no team member in the workspace will receive Email or InApp alerts for alarms and anomalies.
+</Warning>
+
+![](/images/alarm-alerts-no-one.png)
+
 ## Alarm details
 
-Click any alarm to open its details.
+Click any alarm to open the **Alarm Details** page. To go back to the list, click **Alarms** at the top left.
 
 ![](/images/alarm-detail-for-each-item.png)
 
-The details view contains:
+The alarm's current status, **Open**, **Re-opened** or **Resolved**, is shown next to the page title. The page is made up of these sections:
 
-- **Title and status**: the alarm description and its current status (Open, Re-opened, or Resolved), along with who opened it and when.
-- **Explanation**: a short description of what happened. Click **Learn More** to read more about the issue.
-- **Module and Source**: the module where the alarm was raised and the specific resource that caused it, such as the template name. Click the link icon next to the source to open it directly.
-- **Integration(s)**: the integration involved, along with its account identifier. For WhatsApp, this is the **WABA / Namespace**.
-- **Recommended Solution**: suggested steps to fix the issue, where available.
+| Section | What it shows |
+| --- | --- |
+| **Description** | Why the alarm was raised, for example *Notification Dropped because of DND period*, and its severity, for example *High Severity*. Click the copy icon to copy the description. |
+| **Module** and **Source** | The module where the alarm was raised and the resource that caused it, such as the notification event name. Click the link icon next to the source to open it. |
+| **Integration(s)** | For alarms tied to an integration, the integration involved and its account identifier. For WhatsApp, this is the **WABA / Namespace**. |
+| **Recommended Solution** | Suggested steps to fix the issue. This section is marked **Coming Soon** for now. |
+| **Occurrences** | **Total**: how many times the alarm has occurred.<br/>**Started**: when the alarm was first raised, as time ago and the date.<br/>**Last Occurrence**: when the alarm was last seen. |
+| **Sample Logs** | Logs from the alarm's recent occurrences. |
+
+<Note>
+Sample logs are available for 4 days after they're created. If the alarm last occurred more than 4 days ago, the logs no longer show on this page. Click **REQUEST REPORT** to request a report instead.
+</Note>
 
 ### Resolving an alarm
 
-Once you've fixed the underlying issue, click **Mark as Resolved**. The alarm moves to the **Resolved** tab. If the same issue occurs again, the alarm moves to the **Re-opened** tab so you know the fix didn't hold.
+Once you've fixed the underlying issue, click **MARK AS RESOLVED** at the top right. The alarm moves to the **Resolved** tab. If the same issue occurs again, the alarm moves to the **Re-opened** tab so you know the fix didn't hold.
 
 ### Viewing the change log
 
-To see the history of an alarm, click the **history** icon at the top right of the alarm details. The **Alarm History** panel lists every status change with its date and time, who made it, and any note added. Alarms that re-open automatically are shown as re-opened by **Fyno AI**. This is useful when an alarm has been re-opened and you want to know who resolved it earlier.
+To see the history of an alarm, click the **history** icon next to **MARK AS RESOLVED**. The **Alarm History** panel lists every status change with its date and time, who made it, and any note added. Alarms that re-open automatically are shown as re-opened by **Fyno AI**. This is useful when an alarm has been re-opened and you want to know who resolved it earlier.
 
 ![](/images/alarm-history.png)
 
