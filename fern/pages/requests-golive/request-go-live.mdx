@@ -1,29 +1,35 @@
 ---
-title: 'Go Live and Requests'
+title: 'Go Live'
 slug: 'request-go-live'
 description: 'Manage production environment updates using structured peer-review cycles. Learn how to filter pending updates, audit user version changes, and manage approval request states.'
-og:title: 'Go Live and Requests | Fyno Documentation'
+og:title: 'Go Live | Fyno Documentation'
 og:description: 'Manage production environment updates using structured peer-review cycles. Learn how to filter pending updates, audit user version changes, and manage approval request states.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-From the **Go Live** page, you can move your Templates, Routes, Notification Events, Workflows and Components from their Test version to Live. You can also see the full history of version changes for all of them.
-
-<Note>
-If you have turned on Approval Request in Security Settings, you will see **Requests** in the navigation menu instead of **Go Live**, and items need to be approved before they go Live. To learn how this works, see [Approval Request](https://fyno.io/docs/approval-request).
-</Note>
+From the **Go Live** page, you can move your Templates, Routes, Notification Events, Workflows and Components from their Test version to Live.
 
 ## What you can take Live
 
 Everything you have saved but not yet taken Live is listed on this page, grouped by feature into tabs. The number next to a tab name shows how many items in that tab are waiting to go Live.
 
 <CardGroup cols={3}>
-  <Card title="TEMPLATES" icon="file-lines" href="https://fyno.io/docs/templates-getting-started" />
-  <Card title="NOTIFICATION EVENTS" icon="bell" href="https://fyno.io/docs/events-overview" />
-  <Card title="ROUTES" icon="route" href="https://fyno.io/docs/routes" />
+  <Card title="TEMPLATES" icon="pen-ruler" href="https://fyno.io/docs/templates-getting-started" />
+  <Card title="NOTIFICATION EVENTS" icon="sitemap" href="https://fyno.io/docs/events-overview" />
+  <Card title="ROUTES" icon="code-branch" href="https://fyno.io/docs/routes" />
   <Card title="WORKFLOWS" icon="diagram-project" href="https://fyno.io/docs/workflows" />
-  <Card title="COMPONENTS" icon="cubes" href="https://fyno.io/docs/components" />
+  <Card title="COMPONENTS" icon="shapes" href="https://fyno.io/docs/components" />
 </CardGroup>
+
+## What each column shows
+
+| Column | What it shows |
+| --- | --- |
+| **Name** | The name of the Template, Route, Notification Event, Workflow or Component that you have saved in Test and not yet taken Live. |
+| **Feature** | The type of feature the item belongs to, for example **Template**. |
+| **Test Version** | The test version of the item, such as v1, v2 or v3. |
+| **Updated On** | The date and time the test version was last updated. |
+| **Created On** | The date and time the item was first created. |
 
 ## How to take items Live
 
@@ -34,38 +40,19 @@ Everything you have saved but not yet taken Live is listed on this page, grouped
   <Step title="Select the items">
     Select the checkbox next to one or more items. To select every item in the tab at once, use the checkbox in the header row.
 
+    ![](/images/go-live-select-items.png)
+
     <Tip>
     To find a specific item quickly, type its name in the search box at the top of the page.
     </Tip>
   </Step>
   <Step title="Click GO LIVE">
-    Click **GO LIVE**. The button stays greyed out until you select at least one item.
+    Click **GO LIVE**, then click **CONFIRM** in the **Go Live Confirmation** dialog. The test versions of the selected items go Live.
 
-    If Approval Request is turned on, this sends the items for approval instead. See [Approval Request](https://fyno.io/docs/approval-request).
+    ![](/images/go-live-confirm-items.png)
+
+    If Approval Request is turned on, clicking **GO LIVE** opens the **Request Approval** dialog instead. Select your approvers, add an optional message and click **REQUEST**. See [Approval Request](https://fyno.io/docs/approval-request).
+
+    ![](/images/go-live-request-approval.png)
   </Step>
 </Steps>
-
-Once an item is Live, you will see it under the **Live** tab.
-
-![Selecting an item and clicking GO LIVE](/images/go-live.gif)
-
-## What each column shows
-
-### Test version
-
-| Column | What it shows |
-| --- | --- |
-| **Name** | The name of the Template, Route, Notification Event, Workflow or Component that you have saved in Test and not yet taken Live. |
-| **Feature** | The type of feature the item belongs to, for example **Template**. |
-| **Test Version** | The test version of the item, such as v1, v2 or v3. |
-| **Updated On** | The date and time the test version was last updated. |
-| **Created On** | The date and time the item was first created. |
-
-### Live version
-
-| Column | What it shows |
-| --- | --- |
-| **Name** | The name of the Template, Route, Notification Event, Workflow or Component that has been taken Live. |
-| **Feature** | The type of feature the item belongs to, for example **Template**. |
-| **Went Live** | When the item went Live. |
-| **By** | The person who took the item from Test to Live. |
