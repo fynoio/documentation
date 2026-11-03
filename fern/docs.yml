@@ -57,13 +57,12 @@ navigation:
             path: "pages/dashboard/dashboard.mdx"
             icon: fa-regular fa-chart-simple
             contents:
-            - page: "Real-Time Dashboard"
-              path: "pages/dashboard/real-time-dashboard.mdx"
             - page: "Central Dashboard"
-              path: "pages/dashboard/central-dashboard.mdx"  
-          - page: "Alarms"
-            path: "pages/dashboard/alarms.mdx"
-            icon: fa-regular fa-triangle-exclamation
+              path: "pages/dashboard/central-dashboard.mdx"
+            - page: "Real-time"
+              path: "pages/dashboard/real-time-dashboard.mdx"
+            - page: "Alarms"
+              path: "pages/dashboard/alarms.mdx"
           - page: "Versioning"
             icon: fa-regular fa-code-pull-request
             path: "pages/versioning/versioning-overview.mdx"
@@ -280,15 +279,11 @@ navigation:
                     path: "pages/integrations/dlt/vodafone-idea.mdx"
               - page: "Verification"
                 path: "pages/integrations/verification.mdx"
-          - page: "Components"
-            icon: fa-regular fa-shapes
-            path: "pages/templates/components.mdx"
           - section: "Templates"
-            path: "pages/templates/templates-getting-started.mdx"
+            path: "pages/templates/fyno-template.mdx"
             icon: fa-regular fa-pen-ruler
             contents:
               - section: "Fyno Templates"
-                path: "pages/templates/fyno-template.mdx"
                 contents:
                 - section: "Creating a Template"
                   path: "pages/templates/template-creation.mdx"
@@ -341,39 +336,39 @@ navigation:
                   path: "pages/templates/templates-getting-started/shorty.mdx"
                 - page: "Fyno Verify"
                   path: "pages/templates/templates-getting-started/verify.mdx"
-              - section: "External Templates"
-                path: "pages/templates/external-templates.mdx"
+              - section: "DLT Templates"
+                path: "pages/templates/external-templates/sms/create-sms-external-template.mdx"
                 contents:
-                  - section: "SMS Templates"
-                    path: "pages/templates/external-templates/sms/create-sms-external-template.mdx"
-                    contents:
-                    - page: "Template Types"
-                      path: "pages/templates/external-templates/sms/sms-template-type.mdx"
-                    - page: "Create and Configure SMS Template"
-                      path: "pages/templates/external-templates/sms/create-and-configure-sms-external-template.mdx"
-                    - page: "Save / Send for Approval"
-                      path: "pages/templates/external-templates/sms/save-as-draft-vs-send-for-approval-for-sms.mdx"    
-                    - page: "Sync / Re-sync Templates"
-                      path: "pages/templates/external-templates/sms/sync-resync-templates.mdx"
-                    - page: "Create Approval Request"
-                      path: "pages/templates/external-templates/sms/create-approval-request-sms.mdx"  
-                  - section: "WhatsApp Templates"
-                    path: "pages/templates/external-templates/whatsapp/create-external-whatsapp-template-from-fyno.mdx"
-                    contents:
-                      - page: "Create Marketing Templates"
-                        path: "pages/templates/external-templates/whatsapp/create-a-marketing-whatsapp-template.mdx"
-                      - page: "Create Utility Templates"
-                        path: "pages/templates/external-templates/whatsapp/create-an-utility-whatsapp-template.mdx"
-                      - page: "Create Authentication Templates"
-                        path: "pages/templates/external-templates/whatsapp/create-an-authentication-whatsapp-template.mdx"
-                      - page: "Save / Send for Approval"
-                        path: "pages/templates/external-templates/whatsapp/save-as-draft-vs-send-for-approval.mdx"  
-                      - page: "Sync / Re-sync Templates"
-                        path: "pages/templates/external-templates/whatsapp/sync-resync-whatsapp-template.mdx"
-                      - page: "Create Approval Request"
-                        path: "pages/templates/external-templates/whatsapp/create-approval-request.mdx"
-                      - page: "Low Delivery Rates for Marketing notification"
-                        path: "pages/templates/whatsapp/whatsapp-marketing-delivery.mdx"      
+                - page: "Template Types"
+                  path: "pages/templates/external-templates/sms/sms-template-type.mdx"
+                - page: "Create and Configure SMS Template"
+                  path: "pages/templates/external-templates/sms/create-and-configure-sms-external-template.mdx"
+                - page: "Save / Send for Approval"
+                  path: "pages/templates/external-templates/sms/save-as-draft-vs-send-for-approval-for-sms.mdx"    
+                - page: "Sync / Re-sync Templates"
+                  path: "pages/templates/external-templates/sms/sync-resync-templates.mdx"
+                - page: "Create Approval Request"
+                  path: "pages/templates/external-templates/sms/create-approval-request-sms.mdx"  
+              - section: "Meta Templates"
+                path: "pages/templates/external-templates/whatsapp/create-external-whatsapp-template-from-fyno.mdx"
+                contents:
+                  - page: "Create Marketing Templates"
+                    path: "pages/templates/external-templates/whatsapp/create-a-marketing-whatsapp-template.mdx"
+                  - page: "Create Utility Templates"
+                    path: "pages/templates/external-templates/whatsapp/create-an-utility-whatsapp-template.mdx"
+                  - page: "Create Authentication Templates"
+                    path: "pages/templates/external-templates/whatsapp/create-an-authentication-whatsapp-template.mdx"
+                  - page: "Save / Send for Approval"
+                    path: "pages/templates/external-templates/whatsapp/save-as-draft-vs-send-for-approval.mdx"  
+                  - page: "Sync / Re-sync Templates"
+                    path: "pages/templates/external-templates/whatsapp/sync-resync-whatsapp-template.mdx"
+                  - page: "Create Approval Request"
+                    path: "pages/templates/external-templates/whatsapp/create-approval-request.mdx"
+                  - page: "Low Delivery Rates for Marketing notification"
+                    path: "pages/templates/whatsapp/whatsapp-marketing-delivery.mdx"      
+              - page: "Components"
+                icon: fa-regular fa-shapes
+                path: "pages/templates/components.mdx"
           - section: "Routes"
             icon: fa-regular fa-code-merge
             path: "pages/routing/routing.mdx"
@@ -411,7 +406,7 @@ navigation:
             path: "pages/logs/logs.mdx"
             icon: fa-regular fa-database
             contents:
-              - section: "Sent Logs"
+              - section: "Overview"
                 path: "pages/logs/sent-logs.mdx"
                 contents:
                   - page: "Log Details"
@@ -923,4 +918,4 @@ redirects:
     permanent: true 
   - source: "/docs/security/saml-single-sign-on"
     destination: "/docs/saml"
-    permanent: true                                     
+    permanent: true
