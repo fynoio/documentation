@@ -1,8 +1,8 @@
 ---
-title: 'SMS Template'
+title: 'DLT Templates'
 slug: 'external-templates/sms/template-overview'
 description: 'Manage DLT-registered SMS templates, configure variables, monitor approval status, sync templates from providers, and track template lifecycle changes in Fyno.'
-og:title: 'SMS Templates | Fyno Documentation'
+og:title: 'DLT Templates | Fyno Documentation'
 og:description: 'Learn how SMS templates work in Fyno, including DLT compliance, template creation, provider synchronization, variable tagging requirements, approval workflows, and change tracking.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
@@ -21,9 +21,9 @@ From this screen, you can:
 - Save templates as drafts before submitting them.
 - Sync templates that already exist in your DLT account.
 
-Once approved, the template can be used to create a Fyno Template, which can then be used in Notification Events, Workflows etc.
+Once approved, the template can be used in a template on the **Templates** page, which can then be used in Notification Events, Workflows etc.
 
-### SMS Template View
+### DLT Templates list
 
 Each row in the list represents a single DLT template and shows its current status in Fyno.
 
@@ -41,7 +41,7 @@ Each row in the list represents a single DLT template and shows its current stat
 - **Sent to provider for approval** — shown in the template editor header once submitted.
 - **Rejected** — the DLT provider declined the template.
 
-> **NOTE**: The exact label used for an approved/live template wasn't captured in the screenshots reviewed for this documentation. Confirm the terminology before publishing.
+{/* TODO: The exact label used for an approved/live template wasn't captured in the screenshots reviewed for this documentation. Confirm the terminology before publishing. */}
 
 Use **Sync** to pull templates that already exist in your DLT account into Fyno, and **Create** to open the template creation dialog. The listing also supports search and filtering by Status, DLT Integration, and Type.
 
@@ -71,7 +71,7 @@ Approved Variable Tags:
 
 All existing templates must be reviewed and updated to comply with these mandatory variable tagging norms.
 
-> **NOTE — FLAG FOR REVIEW**: The template editor's SMS Content field uses numbered placeholders — ```{{1}}```, ```{{2}}```, ```{{3}}``` — rather than the ```{#numeric#}``` / ```{#alphanumeric#}``` / ```{#url#}``` DLT tag format shown above. Confirm with product whether ```{{n}}``` maps to a DLT tag internally at submission time, or whether this section needs updating to reflect the current tagging mechanism.
+{/* TODO, FLAG FOR REVIEW: The template editor's SMS Content field uses numbered placeholders (1, 2, 3 in double curly braces) rather than the #numeric# / #alphanumeric# / #url# DLT tag format shown above. Confirm with product whether the numbered placeholders map to a DLT tag internally at submission time, or whether this section needs updating to reflect the current tagging mechanism. */}
 
 > **Examples**
 > OTP (Numeric Variable): Your OTP is ```{#var#}```. Do not share it with anyone. (Example value: 483921).

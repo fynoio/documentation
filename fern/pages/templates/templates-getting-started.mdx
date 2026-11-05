@@ -1,11 +1,13 @@
 ---
 title: 'Templates'
 slug: 'templates-getting-started'
-description: 'Learn how templates work in Fyno and how to create, manage, organize, and publish content across multiple notification channels.'
+description: 'Learn how templates work in Fyno and how to create, manage, organize, copy, and publish content across multiple notification channels.'
 og:title: 'Templates | Fyno Documentation'
-og:description: 'Get started with templates in Fyno. Create template collections, manage channel-specific content, organize notification assets, and promote templates from test to live.'
+og:description: 'Get started with templates in Fyno. Create template collections, manage channel-specific content, organize notification assets, copy templates between workspaces, and promote templates from test to live.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
+
+Think of a template as a master blueprint for your messages. Instead of writing text directly into your code, you design your messages inside Fyno. This means you can change your wording, fix typos, or update branding anytime you want **without** needing a developer to change code or redeploy the app.
 
 Templates are a one-stop shop for all your message content that needs to be recorded and stored in a safe place within the Fyno App, that can be used when needed.
 
@@ -13,15 +15,28 @@ Be it static or dynamic templates with variable or replaceable parameters for im
 
 Templates are stored based on the Channel Type as per the Integrations Section. This is the second and crucial step in the Fyno building blocks to create your perfect notification event flow.
 
+{/* TODO: Replace with a current screenshot of the Templates page. */}
+![](/images/fyno-templates-overview-list.png)
+
+## Where it fits in your workflow
+
+It sits right in the middle of your core notification setup:
+
+1. **Connect your provider:** Link your communication channels (e.g., Twilio, SendGrid, Gupshup).
+2. **Design your Template:** Create and personalize your messaging layouts *(This Step!)*.
+3. **Trigger it:** Launch and orchestrate the delivery using a workflow event.
+
+> **Tip:** By decoupling message content from application logic, you can safely experiment, update multi-channel copy, and test variations in real-time without affecting active production features.
+
 ## Getting Started with Templates
 
-From the left navigation panel select Templates to open the section.
+Click **Templates** in the left navigation. It opens the Templates page, which lists all your templates.
 
 Let's run through the Templates Page to have a better understanding of how it works.
 
 On the landing page, to the left, you will find an easy toggle to change your view between a card grid and a list view, for your convenience.
 
-Your option to filter out only the **Live** routes is at the top of the page.
+Your option to filter out only the **Live** templates is at the top of the page.
 
 ### Create
 
@@ -40,10 +55,15 @@ Your option to filter out only the **Live** routes is at the top of the page.
       <li>Teams</li>
       <li>Push</li>
       <li>In-App</li>
+      <li>Voice</li>
+      <li>Web Push</li>
+      <li>RCS</li>
     </ul>
   </Step>
   <Step>Once you're ready, click on "**Submit**".</Step>
 </Steps>
+
+For a full walkthrough of the template editor, see [Creating a Template](./template-creation).
 
 ### Template Collection Cards
 
@@ -61,59 +81,68 @@ On each template card, you will see:
   - Delete your template
   - Promote Test to Live
 
-### How to copy Templates to another workspace
+## DLT Templates and Meta Templates
 
-Templates can be copied from one workspace to another workspace that you own. 
+Your SMS and WhatsApp templates that need provider approval have their own pages under **Templates**:
+
+- **[DLT Templates](./external-templates/sms/template-overview)** for your SMS templates registered on the DLT platform.
+- **[Meta Templates](./external-templates/whatsapp)** for your WhatsApp templates.
+
+From these pages, you can either create a new template or bring in templates that already exist in your WhatsApp Business account or DLT account. Fyno sends newly created templates to the provider for approval, and once approved they become available to use in Notification Events, Templates, and Workflows. If a template was created directly on WhatsApp or the DLT platform, you can simply sync it to make it appear here. All template actions, such as creating templates, checking their status, and keeping them up to date, can be done from these pages.
+
+## Copying Templates
+
+You can copy templates from one workspace to another workspace that you own, making it easy to reuse notification templates across multiple workspaces.
 
 <Callout type="warning">
   **Prerequisite:** You must have the **Owner** role in the destination workspace to use this feature.
 </Callout>
 
 <Callout type="info">
-  **Note:** Only Fyno Templates (**Templates** → **Fyno**) can be copied. External Templates (**Templates** → **External**) are not supported.
+  **Note:** Only the templates on the **Templates** page can be copied. **DLT Templates** and **Meta Templates** are not supported.
 </Callout>
 
-#### Before you copy
+### Before you begin
 
 Only the template itself is copied. Any external dependencies must be resolved or created in the destination workspace before you can use the copied template.
 
-Before copying, ensure you:
-* **Components:** If the template uses reusable components, copy those components first (see [Copying Components](#copying-components) below).
+Before copying templates, make sure the destination workspace is ready.
 
-#### Steps to copy templates
+- Create any required integrations in the destination workspace.
+- If the template uses reusable components, copy those components to the destination workspace before copying the template. See [Copying Components](./components#how-to-copy-components-to-another-workspace).
 
-<Steps>
-  <Step>Open the source workspace containing the template.</Step>
-  <Step>Go to **Templates** → **Fyno**.</Step>
-  <Step>Click the three-dot (**⋮**) menu on the template you want to copy.</Step>
-  <Step>Select **Copy to another workspace**.</Step>
-  <Step>Select one or more templates to copy (if required).</Step>
-  <Step>Click **Copy Selected Templates**.</Step>
-  <Step>
-    Choose which version to copy:
-    * If you're copying a **single template** that has both Live and Test versions, choose which version to copy. (If only a Test version exists, the Test version is copied).
-    * When copying **multiple templates**, the latest available version (Live or Test) of each template is copied automatically.
-  </Step>
-  <Step>Select up to five destination workspaces where you have the **Owner** role.</Step>
-  <Step>Click **Confirm** to start the copy process.</Step>
-</Steps>
+> **Note:** Only the template and its associated template data are copied. Dependencies such as integrations and reusable components must exist in the destination workspace.
 
-The selected templates will now appear in each destination workspace.
+### Steps to copy templates
 
-#### Template versioning
+1. Switch to the workspace that contains the template you want to copy.
+2. Click **Templates** in the left navigation.
+3. Locate the template you want to copy.
+4. Click the **Three Dots (⋮)** menu on the template.
+5. Select **Copy to another workspace**.
+6. A checkbox appears beside every template in the list. Select one or more templates to copy.
+7. Click **Copy Selected Templates**.
+8. If copying a single template that has a Live version, choose whether to copy the latest **Live** or **Test** version. If the template only has a Test version, that version is copied.
+9. When copying multiple templates, the latest available **Live** version is copied where available; otherwise, the latest **Test** version is copied.
+10. In the **Destination Workspace(s)** dropdown, select up to five workspaces where you have the **Owner** role.
+11. Click **Confirm** to begin the copy process.
 
-The versioning behavior of the copied template depends on whether it already exists in your destination workspace:
+Once the process completes, the selected templates are available in each destination workspace.
 
-### When the template does not exist in the destination workspace
-* A new template is created as `v1` (Test).
+### How template versioning works
 
-### When the template already exists
-* A new standalone version is created without modifying existing versions.
-* For example:
-  * **Existing version:** `v1` (Test)
-  * **Copied version:** `v2`
-* You can then:
-  * **Save** to make it `v2` (Test), or
-  * Click **Go Live** to promote it to `v2` (Live).
+Let's say we are copying a template from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
 
-> This prevents existing versions from being overwritten and gives you control over when the copied version becomes active.
+1. If the template does not exist in Workspace B, then the version created by the copy process will always be v1 (Test).
+2. If the template already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live), without modifying existing versions.
+
+<Note title="Example">
+Workspace B already has the template at **v1 (Test)**. When you copy the template into it, Fyno creates a new standalone version, **v2**. To use it:
+
+1. Select **v2** from the version dropdown next to the template name.
+2. Choose what to do with it:
+   - Click **Save** to make it **v2 (Test)**.
+   - Click **Go Live** to promote it to **v2 (Live)**.
+
+This way, existing versions in the destination workspace are never overwritten, and you decide when to save or promote the copied template.
+</Note>
