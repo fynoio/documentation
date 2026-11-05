@@ -1,22 +1,99 @@
 ---
 title: 'Logs'
 slug: 'logs-overview'
-description: 'Understand the multi-tier logging architecture of Fyno. Learn how to navigate granular notification logs, visual event routing paths, automated workflows, user inbound responses, and external delivery callback endpoints.'
+description: 'Track every notification sent from Fyno. Filter logs, interpret delivery statuses, export reports, and find event, workflow, inbound, callback and verification logs.'
 og:title: 'Logs | Fyno Documentation'
-og:description: 'Understand the multi-tier logging architecture of Fyno. Learn how to navigate granular notification logs, visual event routing paths, automated workflows, user inbound responses, and external delivery callback endpoints.'
+og:description: 'Understand the multi-tier logging architecture of Fyno. Track each notification sent, filter and export logs, and navigate event routing paths, workflows, inbound responses, delivery callbacks and verification requests.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
 Logs are a detailed view of what has happened on each of your requests, with vital information for you to further analyse and derive conclusions about the notifications sent, and to further improve your communication strategies.
 
-There are different type of Logs
+Click **Logs** in the left navigation. It opens the Logs page, where we help you track each and every notification sent from Fyno. To see another type of log, expand **Logs** and select it from the dropdown.
 
-- [Overview](./sent-logs) - Provides the most granular and in-depth understanding of each notification sent.
-- [Notification Event Logs](./notification-event-logs) - Visually helps you to understand how a notification is sent to a user including Routing (single and omnichannel).
-- [Workflow Logs](./workflow-logs) - Provides you in-depth step by step understanding of how a Workflow is executed.
-- [Inbound Logs](./inbound-logs) - Helps you to view all the user responses received from WhatsApp and SMS.
-- [Callback Logs](./delivery-callback-logs) - Delivery Callback logs helps you track each and every delivery report which Fyno sent it back to your Allowlist URL.
-- [Verification Logs](./verification-logs) - Provides a centralized view of verification requests processed by the system.
+| Log type | What it shows |
+| --- | --- |
+| [Notification Event Logs](./notification-event-logs) | Visually helps you to understand how a notification is sent to a user including Routing (single and omnichannel). |
+| [Workflow Logs](./workflow-logs) | Provides you in-depth step by step understanding of how a Workflow is executed. |
+| [Inbound Logs](./inbound-logs) | Helps you to view all the user responses received from WhatsApp and SMS. |
+| [Callback Logs](./delivery-callback-logs) | Delivery Callback logs helps you track each and every delivery report which Fyno sent it back to your Allowlist URL. |
+| [Verification Logs](./verification-logs) | Provides a centralized view of verification requests processed by the system. |
+
+This page covers the logs of every notification sent, how to filter them, and what each column contains.
+
+<Note title="Logs stay on this page for 7 days by default">
+The exact period depends on your workspace's [Data Retention](./data-retention) setting. To review older notifications, [request a report](./sent-logs-report-extraction).
+</Note>
+
+## Logs
+
+The logs visible on the **Logs** page give you a chronological overview of the latest interaction activity occurring on your Fyno account.
+
+When you review your logs, the primary indicator is the **Status** indicator. This flag marks exactly where your request stands within the system lifecycle:
+
+| Status | Description |
+| --- | --- |
+| **Attempted** | Message request was successfully validated by Fyno and routing logic has been initiated toward the provider. |
+| **Sent** | Message request was processed successfully by the provider and dispatched into the delivery network. |
+| **Dropped** | Message was dropped internally due to preset rules (e.g., Suppression lists, Routing caps, or Subscription opt-outs). |
+| **Error** | Message failed internally at Fyno's layer before reaching the network provider gateway. |
+| **Failed** | Message processing completely failed or validation checks were rejected at provider's end. |
+| **Timeout** | Downstream gateway/provider failed to respond or acknowledge the payload within the 5–10 second window. |
+| **Delivered** | Message reached the destination device successfully. |
+| **Undelivered** | A definitive undelivered event payload was reported back asynchronously by the carrier network. |
+| **Clicked** | An embedded URL/Link or the action button in the message was clicked by the user. |
+| **Read / Open** | Message container was explicitly opened or flagged as read by the recipient. |
+| **No DLR** | Message was dispatched, but the network carrier did not return a Delivery Receipt acknowledgment. |
+
+<Tip>
+Filtering by **Status** is especially useful when investigating failed or delayed notifications. For how statuses behave on each channel, see the [Status Guide](./notification-status).
+</Tip>
+
+### Using the logs table
+
+| Control | What it does |
+| --- | --- |
+| **Test** / **Live** toggle | Switches between logs from your test and live environments. |
+| Column filters | Filter the table by any column, using the filter directly below each header. |
+| **Advanced Filters** | Opens more filtering options. |
+| Clear filters icon | Clears all applied filters. It sits next to **Advanced Filters**. |
+| **Columns** | Chooses which columns appear in the table. |
+| **Get Count** | Shows how many logs match your current filters. It sits at the bottom of the table. |
+| **Status Guide** | Opens a quick reference for every notification status. |
+| **Request Report** | Exports logs as a report. See [Report Extraction](./sent-logs-report-extraction). |
+
+{/* TODO: The screenshots don't show the Placeholders, Provider, or Account Name filters, or the Message ID / Request ID search. Confirm they're now under Advanced Filters and update the Template and Provider rows and the Search section to say so. Also check whether the logs page can filter by Distinct ID and Analytics Label, as the report form can, and document them here if so. */}
+
+### Understanding the Log Schema Columns
+![](/images/sent-logs-timestamp-filter.png)
+
+Each column in the logs table contains the following data, along with the filters you can use to narrow down results:
+
+| Column | What it shows | Filter by |
+| --- | --- | --- |
+| **Timestamp** | Exact date and time when the notification request was initiated from your application. | **Date Range**: Today, Yesterday, Last 7 days, Last 28 days, or a custom range. |
+| **Template** | Template name and content layout used when the notification request was fired. | **Template** for logs from specific templates. **Placeholders** for logs containing a specific placeholder value in the notification payload. |
+| **Notification Event** | Name of the **Event** configuration triggered by the notification API request made to Fyno. | **Event Name** for logs of a specific event across all configured channels and providers. |
+| **Destination** | Recipient's address, along with the **Channel** used to deliver the message. | **Destination** for notifications sent to a specific recipient. **Channel** for SMS, WhatsApp, Email, Push, Chat, or In-App notifications. |
+| **Provider** | Provider used to route and send the message. | **Provider** for notifications sent through a specific provider. **Account Name** for a particular account, if you have multiple accounts under a provider. |
+
+<Note>Make sure to configure your regional time zone within **Settings** so that log outputs display correctly in your local time format.</Note>
+
+### Search
+Use the **Search** bar to look up a specific **Message ID** or **Request ID** to quickly locate an individual notification for debugging.
+
+## DND Period Logs report
+
+To check which notifications went out during your Do Not Disturb (DND) window, request a **DND Period Logs** report. For how to generate it, which messages it includes, and how the DND window is selected, see the DND Period Logs section in [Report Extraction](./sent-logs-report-extraction#dnd-period-logs-report).
+
+## Test & Live Versions
+
+The **Logs** page keeps **Test** and **Live** data separate, so notifications you send while testing never inflate your live production figures.
+
+<Tip title="Can't find a notification log?">
+- **Check the environment.** Switch to **Test** or **Live**, whichever the notification was sent from.
+- **Check the date.** If the notification is older than your retention period, [request a report](./sent-logs-report-extraction) instead.
+</Tip>
 
 ## Data Masking in logs
 
