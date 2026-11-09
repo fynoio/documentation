@@ -7,14 +7,47 @@ og:description: 'Learn how to create workflows using the Subscription widget to 
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-### Subscription
+The **Subscription** widget activates the process for subscribing or unsubscribing. This happens when a user clicks **Stop Promotions** in a WhatsApp message, or when a user consents to receive WhatsApp marketing notifications.
 
-The subscription widget activates the process for subscribing or unsubscribing. This happens when a user clicks "Stop Promotions" in a WhatsApp message or when a user consents to receive WhatsApp marketing notifications.
+![Subscription widget](/images/subscription-widget-panel.png)
 
-For example, to unsubscribe a user from WhatsApp notification, follow the below steps.
+<Note>
+This feature is currently supported only for WhatsApp.
+</Note>
+
+| Action | What it does |
+|---|---|
+| **Opted-Out** | Unsubscribes the user, for example when they tap **Stop promotions**. |
+| **Opted-In** | Subscribes the user, for example when they agree to receive marketing messages. |
+
+## Example
+
+Two users get the same WhatsApp promotion. Priya taps **Stop promotions**, so the workflow opts her out. Rahul taps **Shop now**, so the condition is false and he stays subscribed.
+
+![Subscription widget opting a user out](/images/subscription-example.gif)
+
+## Unsubscribe a user from WhatsApp notifications
+
+To unsubscribe a user from WhatsApp notifications, follow the below steps.
 
 <Steps>
-  <Step>In the Workflow, configure the WABA no by adding 'Virtual No' trigger. ![](/images/workflow_subscription_incoming_message.png)</Step>
-  <Step>Drag and drop a Condition block and configure it as shown below. Its critical to use the variable '**$input.body.simplified.message.text**' and value as '**Stop promotions**' ![](/images/workflow_subscription_condition.png)</Step>
-  <Step>Drag and drop 'Subscription' action and attach it to if block. Then add Subscription key as 'simplified.message.button.payload' and action as 'Opted-Out'. ![](/images/workflow_subscription_optout.png)</Step>
+  <Step title="Add the Virtual No trigger">
+    In the Workflow, configure the WABA number by adding the **Virtual No** trigger.
+
+    ![](/images/workflow_subscription_incoming_message.png)
+  </Step>
+  <Step title="Add a Condition">
+    Drag and drop a **Condition** block and configure it as shown below.
+
+    <Warning>
+    It's critical to use the variable `$input.body.simplified.message.text` and the value `Stop promotions`.
+    </Warning>
+
+    ![](/images/workflow_subscription_condition.png)
+  </Step>
+  <Step title="Add the Subscription widget">
+    Drag and drop the **Subscription** action and attach it to the **If** block. Then add the Subscription key as `simplified.message.button.payload` and the action as **Opted-Out**.
+
+    ![](/images/workflow_subscription_optout.png)
+  </Step>
 </Steps>

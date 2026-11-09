@@ -6,8 +6,10 @@ slug: workflows/nodes-and-actions/typing-indicator
 ---
 
 The **Typing Indicator** widget displays a typing animation in the recipient's chat window while the workflow prepares its next message.
+
 ![](/images/typing-indicator.png)
-This widget is used in conversational workflows — WhatsApp journeys, chatbots, and support flows — where the next step needs a few seconds to complete. Showing a typing animation during that gap tells the user a reply is on the way instead of leaving the conversation silent.
+
+This widget is used in conversational workflows, such as WhatsApp journeys, chatbots, and support flows, where the next step needs a few seconds to complete. Showing a typing animation during that gap tells the user a reply is on the way instead of leaving the conversation silent.
 
 The widget has no configurable fields. It is placed in the workflow ahead of the step that sends the reply.
 
@@ -17,56 +19,74 @@ The widget has no configurable fields. It is placed in the workflow ahead of the
 
 {/* TODO: confirm channel support. Drafted as WhatsApp-only, since the indicator is sent against the user's last inbound message ID. Update if RCS or any other channel is supported. */}
 
+## Example
+
+A customer asks "Where is my order?". The **Typing Indicator** shows dots in their chat while the **API** step looks up the order, and the reply from **Send Message** replaces the dots. On a second branch that sends no message, the dots disappear on their own after 25 seconds.
+
+![Typing Indicator in a WhatsApp conversation](/images/typing-indicator-example.gif)
+
 ## Prerequisites
 
-- The workflow must be a conversational flow that has already received an inbound message from the user. The typing indicator is sent against the user's most recent incoming message, so an incoming message step must precede it.
+- The workflow must be a conversational flow that has already received an inbound message from the user. The typing indicator is sent against the user's most recent incoming message, so an incoming message step must come before it.
 - Supported on **WhatsApp**.
 
 ## Steps to configure Typing Indicator Widget
 
 <Steps>
-  <Step>
+  <Step title="Add the widget">
     Drag and drop the **Typing Indicator** widget into the workflow.
   </Step>
-
-  <Step>
-    Connect it to the step that receives the user's message — for example, a **Wait for Reply** widget or an incoming message trigger.
+  <Step title="Connect it after the incoming message">
+    Connect it to the step that receives the user's message, for example a **Wait for Reply** widget or an incoming message trigger.
   </Step>
-
-  <Step>
+  <Step title="Connect it before the reply">
     Connect the **Typing Indicator** widget to the step that prepares or sends the reply, such as an **API Call**, **Subflow**, or **Send Message** widget.
 
     The widget itself has no fields to configure.
   </Step>
-
-  <Step>
+  <Step title="Save">
     Save the workflow configuration.
   </Step>
 </Steps>
 
-During workflow execution, the typing animation appears in the user's chat as soon as the widget runs. The workflow does not pause — it continues immediately to the next step.
+<Note>
+During workflow execution, the typing animation appears in the user's chat as soon as the widget runs. The workflow does not pause. It continues immediately to the next step.
+</Note>
 
 ## Behaviour during execution
 
-| Scenario                                     | Result                                                                                      |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| A message is sent within 25 seconds          | The typing indicator is replaced by the message.                                              |
-| No message is sent within 25 seconds         | The typing indicator is dismissed automatically and the workflow continues.                   |
-| The branch ends without sending a message    | The typing indicator is dismissed after 25 seconds, having signalled a reply that never came. ![](/images/typing-indicator-will-disappear.png)|
-{/* TODO: confirm — on Meta's Cloud API, sending a typing indicator also marks the user's message as read. If Fyno passes this through, add a <Note> here; it is a visible side effect worth calling out. */}
+| Scenario | Result |
+| --- | --- |
+| A message is sent within 25 seconds | The typing indicator is replaced by the message. |
+| No message is sent within 25 seconds | The typing indicator is dismissed automatically and the workflow continues. |
+| The branch ends without sending a message | The typing indicator is dismissed after 25 seconds, having signalled a reply that never came. |
+
+![](/images/typing-indicator-will-disappear.png)
+
+{/* TODO: confirm. On Meta's Cloud API, sending a typing indicator also marks the user's message as read. If Fyno passes this through, add a <Note> here; it is a visible side effect worth calling out. */}
 
 ## Example Use Cases
 
-| Scenario                                     | Placement                                                                     |
-| -------------------------------------------- | ------------------------------------------------------------------------------ |
-| AI-generated support reply                   | Between **Wait for Reply** and the **API Call** widget that fetches the response |
-| Order or ticket status lookup                | Before the **API Call** widget that queries the backend system                    |
-| Reply that depends on a subflow              | Before the **Subflow** widget                                                    |
-| Slow third-party lookup before a confirmation | Before the **Send Message** widget                                              |
+| Scenario | Placement |
+| --- | --- |
+| AI-generated support reply | Between **Wait for Reply** and the **API Call** widget that fetches the response |
+| Order or ticket status lookup | Before the **API Call** widget that queries the backend system |
+| Reply that depends on a subflow | Before the **Subflow** widget |
+| Slow third-party lookup before a confirmation | Before the **Send Message** widget |
 
 ## Best practices
 
-- Place the widget immediately before the step that causes the delay, not at the start of the workflow.
-- Use it only on branches that end in a message to the user.
-- Do not place it before a **Wait For** widget configured for longer than 25 seconds — the animation will have disappeared well before the message is sent.
-- Add the widget once per reply.
+<CardGroup cols={2}>
+  <Card title="Place it right before the delay" icon="location-crosshairs">
+    Place the widget immediately before the step that causes the delay, not at the start of the workflow.
+  </Card>
+  <Card title="Only where a reply follows" icon="reply">
+    Use it only on branches that end in a message to the user.
+  </Card>
+  <Card title="Avoid long waits after it" icon="hourglass-half">
+    Do not place it before a **Wait For** widget set to longer than 25 seconds. The animation will have disappeared well before the message is sent.
+  </Card>
+  <Card title="Once per reply" icon="1">
+    Add the widget once per reply.
+  </Card>
+</CardGroup>

@@ -1,5 +1,5 @@
 ---
-title: 'Creating a workflow with Incoming Number (Virtual Number)'
+title: 'Creating a workflow with Incoming message (Virtual Number)'
 slug: 'creating-a-workflow-with-incoming-message-trigger'
 description: 'Learn how to create workflows using Incoming Number (Virtual Number) in Fyno to capture WhatsApp replies, SMS responses, and voice keypress inputs, and trigger automated actions.'
 og:title: 'Creating a workflow with Virtual Number - Workflows | Fyno Documentation'
@@ -9,9 +9,11 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 This functionality is ideal for creating automated WhatsApp conversations using predefined templates and notification event triggers. It's also useful for capturing and updating customer SMS responses in your system.
 
-You can also capture Keypress values during a Voice call and trigger a workflow. 
+You can also capture Keypress values during a Voice call and trigger a workflow.
 
-For example, you can configure the below example using our Workflow:
+## Example: COD order confirmation
+
+For example, you can configure the below flow using our Workflow:
 
 <Steps>
   <Step>Send a WhatsApp to customers who placed a COD order to either confirm or cancel their order.</Step>
@@ -21,79 +23,200 @@ For example, you can configure the below example using our Workflow:
   <Step>If yes, let them enter a phone no and call an API to update it in your system. If user selects No, the flow will end.</Step>
 </Steps>
 
-![](/images/23148faf071fcbb59991a1055685dfb90da35e1806735223cdb85e6bd5c861d0-flow_usecase.png)
+The animation below follows two customers through this flow, plus what happens if your API call fails.
 
-To achieve this, you need to do the following steps:
+![](/images/virtual-number-example.gif)
 
-- Step 1 - Create a WhatsApp template to initiate a conversation. 
-- Step 2 - Design a Workflow to decide what WhatsApp message to send based on user response.
+To achieve this, you need to do the following:
 
-## Step 1 - Create a WhatsApp template to initiate a conversation
+<CardGroup cols={2}>
+  <Card title="Step 1: Create a WhatsApp template" href="#step-1-create-a-whatsapp-template-to-initiate-a-conversation">
+    The message with Quick Reply buttons that starts the conversation.
+  </Card>
+  <Card title="Step 2: Design the workflow" href="#step-2-design-a-workflow-to-decide-what-whatsapp-message-to-send-based-on-user-response">
+    Decides what WhatsApp message to send based on the user's response.
+  </Card>
+</CardGroup>
+
+## Step 1: Create a WhatsApp template to initiate a conversation
+
 ![](/images/virtual-num-template-preview.png)
+
 <Steps>
-  <Step>Create a template on the **Templates** page with the content and Quick Reply options as shown. ![](/images/virtual-num-edit-template.png)</Step>
-  <Step>
-    In the template, you can see 2 Quick Reply options. When user clicks any Quick Reply option, it will trigger a workflow.
-    <ol>
-      <li>Confirm</li>
-      <li>Cancel</li>
-    </ol>
+  <Step title="Create the template">
+    Create a Fyno Template with the content and Quick Reply options as shown.
+
+    ![](/images/virtual-num-edit-template.png)
   </Step>
-  <Step>If you want to pass additional information when the user clicks Quick Reply button, you can do that by adding a JSON payload in the Custom Id section.</Step>
-  <Step>For example, you need to pass order_id and the template name to be used in the Workflow, You can do that by adding a JSON Payload as shown below. You can add any payload upto 126 characters. ![](/images/183f9ed-dynamic_payload_QR.png)</Step>
+  <Step title="Add the Quick Reply options">
+    In the template, you can see 2 Quick Reply options, **Confirm** and **Cancel**. When the user clicks any Quick Reply option, it will trigger a workflow.
+  </Step>
+  <Step title="Pass extra data in the button (optional)">
+    If you want to pass additional information when the user clicks a Quick Reply button, add a JSON payload in the **Custom Id** section.
+
+    For example, to pass `order_id` and the template name to the Workflow, add a JSON payload as shown below. You can add any payload up to 126 characters.
+
+    ```json
+    {"order_id": "ORD-10245", "template": "order_confirmation"}
+    ```
+
+    ![](/images/183f9ed-dynamic_payload_QR.png)
+  </Step>
 </Steps>
 
-## Step 2 - Design a Workflow to decide what WhatsApp message to send based on user response
+## Step 2: Design a Workflow to decide what WhatsApp message to send based on user response
+
 ![](/images/virtual-num-workflow.png)
+
+Here is the trigger setup at a glance.
+
+![](/images/virtual-number-setup.gif)
+
+### Set up the Virtual Number trigger
+
 <Steps>
-<Step>Create a workflow with 'Virtual Number' as trigger. You can do that by dragging & dropping Virtual No trigger into Workflow canvas. ![](/images/workflow_incoming_config.png)</Step>
-<Step>Select your WhatsApp Business no to which user sends their response. You can add more than 1 whatsapp business number. So any replies received in any of these configured numbers will trigger this workflow.  ![](/images/workflow_incoming_addnos.png)</Step>
-<Step>You can store the data you are passing in the button payload if you want to use that data further in the workflow. In this example, we are passing order_id and template name in the button payload. We can store those values as shown. ![](/images/incoming_workflow_stored_var.png)</Step>
-<Step>Add a condition to check what the user has sent to your WhatsApp Business number. In this use case, user could have sent either 'Confirm' or 'Cancel'. The variable '_simplified.message.button.text_' will contain the Quick Reply text your customer has sent. In this case, we have assumed, user has sent 'Confirm'. ![](/images/incoming_workflow_condition.png)</Step>
-<Step>If you want to make sure, this response comes from the exact template message you sent to the user, you can add one more condition to check the template name as shown. ![](/images/incoming_workflow_multiple_condition.png)</Step>
-<Step>You need to add the condition as Custom Value `$input.body.entry.0.changes.0.value.messages.0.button.payload.template` equals `order_confirmation`. This is done to access the template variable we added in the WhatsApp template (Refer Point 4 in Step 1).</Step>
-<Step>Repeat steps 3,4 and 5 for 'Cancel' flow.</Step>
-<Step>The next step is trigger 'Call an API' to send the user response to your system.</Step>
-<Step>Drag and Drop 'API' action block into the workflow canvas.</Step>
-<Step>You need to post a request to your webhook. Make sure you have allow-listed your URL. Read more about it [here](./allowlist-url). ![](/images/incoming_workflow_call_api.png)</Step>
-<Step>When the user clicks either 'Confirm' or 'Cancel', send the response to your system to update the order status.</Step>
-<Step>Check if the order status update is successful.</Step>
-<Step>To do so, add a condition to check if the HTTP response code is 200'. This can be done by adding the condition as shown below. ![](/images/incoming_api_status_check.png)</Step>
-<Step>If the HTTP status code is 200, send a notification to the user confirming the status of the order. ![](/images/incoming_order_status_notification.png)</Step>
-<Step>Map the mobile no in the destination section. You can choose 'simplified.source' from the dropdown.</Step>
-<Step>You can map all the placeholders used in the template as shown in the data section as shown above. Make sure to add it in the format `{{$http_response.data.<variable>}}`.</Step>
-<Step>You can add a **Reply widget** to store the user response and use it further in the flow as shown below. You can also specify how long you want to wait for the user's reply. In this example, we are waiting for 30 minutes and we are saving the user response for whether they want to change the phone no or not. ![](/images/incoming_workflow_wait_for_reply.png)</Step>
-<Step>Using this, you can decide whether you need to call an API to update the phone no (if user clicked Yes) or end the flow. ![](/images/incoming_workflow_final.png)</Step>
+  <Step title="Select the trigger">
+    Create a workflow and select **VIRTUAL NO.** from the triggers. The **Mobile No.** panel opens. To pick a different trigger, click **CHANGE TRIGGER**.
+  </Step>
+  <Step title="Select your WhatsApp Business number">
+    Under **Mobile Number**, select the number to which users send their response. You can add more than 1 WhatsApp Business number, so any replies received on any of these numbers will trigger this workflow.
+
+    ![](/images/virtual-number-trigger.png)
+
+    <Note>
+    Don't see your number? Click **GO TO INTEGRATIONS** to set up a new incoming number for WhatsApp, or contact [support@fyno.io](mailto:support@fyno.io).
+    </Note>
+  </Step>
+  <Step title="Store the button payload data (optional)">
+    You can store the data you are passing in the button payload if you want to use that data further in the workflow. In this example, we are passing `order_id` and the template name in the button payload.
+
+    Expand **Store Button Payload Data (optional)**, enter a name in **Stored variable**, and pick where the value comes from in **Variable value from payload**. Click **ADD ANOTHER** to store more values.
+
+    ![](/images/virtual-number-store-payload.png)
+  </Step>
+  <Step title="Simplify the payload (optional)">
+    Incoming message payloads have long keys. Click **SIMPLIFY PAYLOAD** to open the **Payload Mapper**, where you can give a key a short name to use across the workflow.
+
+    Enter a name under **MAPPER VARIABLES**, then pick a payload key or enter HBS under **PAYLOAD/HBS**. Click **ADD** for more, then **CONFIRM**.
+
+    ![](/images/virtual-number-payload-mapper.png)
+  </Step>
 </Steps>
 
-<Note>To send simple and interactive whatsapp messages, you can directly use 'Send message' widget and create a whatsapp template and use it. No need to create a notification event in such cases. </Note>
+### Check what the user replied
 
-## How to test a Incoming message workflow?
+<Steps>
+  <Step title="Add a condition for the reply">
+    Add a condition to check what the user has sent to your WhatsApp Business number. In this use case, the user could have sent either 'Confirm' or 'Cancel'. The variable `simplified.message.button.text` will contain the Quick Reply text your customer has sent. In this case, we have assumed the user has sent 'Confirm'.
 
-While configuring the Incoming number, there is an option to add Test mobile numbers. You can add up to 3 numbers. So all the messages sent from these mobile numbers will trigger the _latest Test version of the Workflow_.
+    ![](/images/incoming_workflow_condition.png)
+  </Step>
+  <Step title="Check the template name (optional)">
+    If you want to make sure this response comes from the exact template message you sent to the user, add one more condition to check the template name as shown.
 
-![](/images/incoming_workflow_test_numbers.png)
+    Add the condition as Custom Value `$input.body.entry.0.changes.0.value.messages.0.button.payload.template` equals `order_confirmation`. This accesses the template variable we added in the WhatsApp template (see step 3 in Step 1).
 
-## How to receive delivery reports?
+    ![](/images/incoming_workflow_multiple_condition.png)
+  </Step>
+  <Step title="Repeat for Cancel">
+    Repeat the steps above for the 'Cancel' flow.
+  </Step>
+</Steps>
 
-Fyno allows you to forward delivery reports to your own system or integrate them with third-party analytics tools like Mixpanel and Amplitude. This feature enables you to track and analyze the success of your notification deliveries seamlessly.
+### Update the order in your system
 
-You can read more about it [here](./receive-delivery-reports).
+<Steps>
+  <Step title="Call your API">
+    Add the **API** action block to the workflow canvas to send the user response to your system and update the order status when the user clicks either 'Confirm' or 'Cancel'.
 
-## How to configure Idempotent Key?
+    You need to post a request to your webhook. Make sure you have allow-listed your URL. Read more about it [here](./allowlist-url).
 
-Workflows now supports idempotency, ensuring you can safely retry requests without the risk of performing the same operation twice. This feature proves invaluable in scenarios where an API call gets interrupted in transit, leaving you without a response.
+    ![](/images/incoming_workflow_call_api.png)
+  </Step>
+  <Step title="Check the update worked">
+    Add a condition to check if the HTTP response code is `200`, as shown below.
 
-You can read more about it [here](./configure-idempotent-key-workflow).
+    ![](/images/incoming_api_status_check.png)
+  </Step>
+</Steps>
 
-## How to configure overrides?
+### Notify the user and wait for their reply
 
-Fyno allows you to override pre-configured values within an Integration, enabling you to use different values for specific notifications in a Workflow. This flexibility is useful when you need to customize the sender information or other details based on the requirements of each notification.
+<Steps>
+  <Step title="Send the order status">
+    If the HTTP status code is `200`, send a notification to the user confirming the status of the order.
 
-You can read more about it [here](./configure-overrides-workflow).
+    - Map the mobile no in the destination section. You can choose `simplified.source` from the dropdown.
+    - Map all the placeholders used in the template in the data section, in the format `{{$http_response.data.<variable>}}`.
 
-## How to raise Approval requests
+    ![](/images/incoming_order_status_notification.png)
+  </Step>
+  <Step title="Wait for the user's reply">
+    Add a **Wait For Reply** node to store the user response and use it further in the flow. You can also set how long to wait for the reply. In this example, we wait for 30 minutes and save whether the user wants to change their phone no.
 
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
+    ![](/images/incoming_workflow_wait_for_reply.png)
+  </Step>
+  <Step title="Act on the reply">
+    Using this, you can decide whether to call an API to update the phone no (if the user clicked Yes) or end the flow.
 
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+    ![](/images/incoming_workflow_final.png)
+  </Step>
+</Steps>
+
+<Note>
+To send simple and interactive WhatsApp messages, you can directly use the **Send Message** node with a WhatsApp template. No need to create a notification event in such cases.
+</Note>
+
+### Nodes you can use
+
+These nodes are available after a Virtual Number trigger:
+
+![](/images/virtual-number-nodes.png)
+
+| Node | What it does |
+|------|--------------|
+| **Notification Event** | Sends a notification using one of your notification events. |
+| **API** | Calls an allowlisted API, for example to update your system. |
+| **Subscription** | Updates the user's notification subscription. |
+| **User Profiles** | Stores or updates details about the user. |
+| **Send Message** | Sends a WhatsApp message directly from a template, without a notification event. |
+| **Write to Spreadsheet** | Writes data from the workflow to a spreadsheet. |
+| **Subflow** | Bundles repeated nodes so you can reuse them across the workflow. |
+| **AI Magic Match** | Sends the user down a branch based on the meaning of their reply. |
+| **Condition** | Sends the user down a branch based on a variable and a value. |
+| **Wait For Reply** | Waits a set time for the user's reply and stores it. |
+
+## How to test an Incoming message workflow?
+
+While configuring the trigger, expand **Test Numbers (optional)** and add up to 3 mobile numbers, with country codes. All messages sent from these numbers will trigger the _latest Test version of the Workflow_.
+
+![](/images/virtual-number-test-numbers.png)
+
+## More settings
+
+<CardGroup cols={3}>
+  <Card title="Receive delivery reports" href="./receive-delivery-reports">
+    Forward delivery reports to your own system or tools like Mixpanel and Amplitude.
+  </Card>
+  <Card title="Configure an idempotent key" href="./configure-idempotent-key-workflow">
+    Safely retry requests without running the same operation twice.
+  </Card>
+  <Card title="Configure overrides" href="./configure-overrides-workflow">
+    Use different integration values, like sender details, for specific notifications.
+  </Card>
+</CardGroup>
+
+## Request Approval to Go Live
+
+If your workspace has **Approval** turned on, clicking **GO LIVE** creates an approval request instead of publishing the workflow right away.
+
+![](/images/workflow-request-approval.gif)
+
+<Steps>
+  <Step>Click **GO LIVE** to open the **Request Approval** window.</Step>
+  <Step>Select one or more approvers from **Select Approvers**.</Step>
+  <Step>Add a note in **Write a Message**. Select **Go live on approval** to publish automatically once approved.</Step>
+  <Step>Click **REQUEST**.</Step>
+</Steps>
+
+You can read more about it on the [Approval Request](/approval-request) page.

@@ -1,0 +1,465 @@
+---
+title: 'Creating a Workflow using Meta (WhatsApp Flows)'
+slug: 'workflow-using-meta'
+description: 'Learn how to configure workflows using Meta WhatsApp Flows as a trigger, including API integration, response mapping, conditions, and dynamic screen rendering.'
+og:title: 'Create Workflow using Meta | Fyno Documentation'
+og:description: 'Configure WhatsApp Flow-based workflows using Meta triggers, API calls, conditions, and dynamic response mapping in Fyno.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+Creating a workflow using Meta (WhatsApp) as the trigger source enables you to connect your workflow with a configured WhatsApp integration and select a specific flow that should be executed when triggered. By choosing the appropriate integration and external flow, you define how user interactions on WhatsApp are handled, such as collecting inputs or initiating actions.
+
+This setup helps automate communication and ensures that the right experience is delivered to users through your selected WhatsApp Business account.
+
+## What is Meta Flow Trigger?
+
+The Meta Flow trigger allows you to start a Workflow directly from a WhatsApp Flow interaction. This enables businesses to collect user inputs through WhatsApp-native forms and process them dynamically using APIs, conditions, subflows, and profile updates.
+
+![](/images/meta-workflow-widgets.png)
+
+A common use case would be:
+
+<Steps>
+  <Step>A customer opens a WhatsApp Flow.</Step>
+  <Step>They submit details such as order ID, mobile number, or booking preference.</Step>
+  <Step>Fyno receives the Flow interaction.</Step>
+  <Step>The workflow calls APIs, validates responses, maps screen data dynamically, and returns the next screen to Meta.</Step>
+</Steps>
+
+This makes the experience conversational while still allowing backend-driven workflows.
+
+## Prerequisites
+
+Before configuring a Meta Flow trigger, ensure the following prerequisites are completed:
+
+- A valid WhatsApp integration is already configured in your workspace.
+- Your WhatsApp Flow is created and published in Meta.
+- The external flow is available and synced with Fyno.
+- Any APIs that need to be called inside the workflow are allowlisted beforehand.
+- You have clarity on the payload structure that should be sent back to Meta screens.
+- If your flow depends on dynamic screen rendering, ensure the API response structure is finalized before configuration.
+
+## How to Configure a Meta Flow Trigger
+
+Here is the setup at a glance.
+
+![](/images/meta-flow-setup.gif)
+
+To configure a Meta Flow trigger in Fyno, follow the below steps.
+
+<Steps>
+  <Step title="Create the workflow">
+    Navigate to **Workflows** from the left navigation panel.
+
+    If you have already created workflows, you will see all the existing workflows in a card view. Click **CREATE**, enter a name for the workflow and click **SUBMIT**. The Workflow canvas opens with the list of available triggers.
+  </Step>
+  <Step title="Select the Meta Flow trigger">
+    From the trigger selection canvas, select **META FLOW**. The **WhatsApp Flows** configuration panel opens.
+
+    <Tip>
+    Picked the wrong trigger? Click **CHANGE TRIGGER** at the top of the panel to go back to the list.
+    </Tip>
+  </Step>
+  <Step title="Select the WhatsApp integration">
+    Under **Select WhatsApp Integration**, choose the WhatsApp integration connected to your Meta Business account.
+
+    This integration determines which WhatsApp Business Account and Flow configuration will be used for this workflow.
+
+    ![](/images/meta-whatsapp-flows-trigger.png)
+  </Step>
+  <Step title="Select the external Flow">
+    Under **Select an external Flow**, choose the Meta Flow that should invoke this workflow.
+
+    Only flows associated with the selected WhatsApp integration will appear here. Common examples include:
+
+    - Lead collection flow
+    - Appointment booking flow
+    - KYC verification flow
+    - Order tracking flow
+  </Step>
+  <Step title="Save the workflow">
+    Click **SAVE** to save the workflow configuration.
+
+    Once the workflow is saved successfully, Fyno generates a Workflow URL that Meta uses to invoke the workflow.
+
+    ![](/images/workflow-saved-successfully.png)
+  </Step>
+</Steps>
+
+## Workflow URL
+
+The Workflow URL is the endpoint Meta calls whenever a user interacts with the WhatsApp Flow. After saving the workflow, click the Workflow URL icon at the top of the builder, or select **Workflow URL** from the **More Options** menu (**⋮**) on the workflow card.
+
+![](/images/workflow-url.png)
+
+You will see two environments, **LIVE** and **TEST**. You can configure either based on your current testing stage.
+
+For more on this window, see [Workflow URL](/workflows#access-and-settings) on the Workflows page.
+
+<Tabs>
+  <Tab title="Public access">
+    By default, workflows are public. Fyno supports two authentication mechanisms for public workflows.
+
+    **BASIC AUTH**
+
+    The URL includes the Workspace ID and Token. Example structure:
+
+    ```text
+    https://<WORKSPACE_ID>:<TOKEN>@api.fyno.io/...
+    ```
+
+    **TOKEN AUTH**
+
+    The token is appended as a query parameter:
+
+    ```text
+    ?token=<FYNO_GENERATED_TOKEN>
+    ```
+
+    This is useful when configuring integrations where query parameter authentication is preferred.
+  </Tab>
+  <Tab title="Restricted access">
+    If additional security is required, turn on the **Restricted** toggle. Restricted workflows support the following.
+
+    **Bearer Token Authentication**
+
+    Pass the Fyno API Key in the Authorization header:
+
+    ```json
+    {
+      "Authorization": "Bearer <YOUR_FYNO_API_KEY>"
+    }
+    ```
+
+    **Basic Authentication**
+
+    Use the Workspace ID and API Key combination. Example:
+
+    ```text
+    https://<WORKSPACE_ID>:<API_KEY>@api.fyno.io/...
+    ```
+
+    <Tip>
+    Restricted access is recommended for production-grade implementations.
+    </Tip>
+  </Tab>
+</Tabs>
+
+You can also rotate or customize the token later with **Customize Token**. See [Access and Settings](/workflows#access-and-settings) on the Workflows page.
+
+## How Meta Flow Workflows Execute
+
+Once the trigger is configured, the workflow behaves like a regular Fyno workflow. The Meta Flow trigger acts as the entry point, while the nodes you add after it control the logic and response generation.
+
+![](/images/meta-flow-build.gif)
+
+After the trigger node, you can add the following from the panel on the left of the canvas:
+
+![](/images/meta-flow-nodes.png)
+
+| Node | What it does |
+|------|--------------|
+| **API** | Calls an allowlisted API and maps its response to the next Meta screen. |
+| **User Profiles** | Stores or updates customer details during the Flow. |
+| **Subflow** | Bundles repeated nodes so you can reuse them across this workflow. |
+| **AI Magic Match** | Sends the user down a branch based on what they typed, even when the wording differs. |
+| **Condition** | Sends the user down a branch based on a variable and a value. |
+
+## Actions Supported in Meta Flow Workflows
+
+<Tabs>
+  <Tab title="API">
+    API actions are commonly used in Meta Flows because most WhatsApp Flows require dynamic data fetching or validation before rendering the next screen.
+
+    Typical examples include:
+
+    - Fetching customer details.
+    - Validating OTPs.
+    - Checking eligibility.
+    - Fetching available appointment slots.
+    - Retrieving order details.
+    - Creating support tickets.
+
+    Add **API** from the node panel and connect it to the Meta Flow trigger. The node shows as **Call an API** on the canvas, and its panel has two sections, **Request** and **Response**.
+
+    ![](/images/meta-call-an-api.png)
+
+    **Request**
+
+    <Steps>
+      <Step>
+        Under **Allowlist URL**, select the verified allowlisted endpoint that should be called.
+
+        Only URLs added in the Allowlist section will appear here. This restriction ensures that workflows cannot invoke unauthorized endpoints.
+      </Step>
+      <Step>
+        Select the **HTTP Method**. Supported methods include **GET** and **POST**. The selected method should match the backend API implementation.
+      </Step>
+      <Step>
+        Select the **Content Type** for the payload. Available options: None, JSON, Form Data, URL Encoded Form, XML and Text.
+
+        For most Meta Flow implementations, JSON is typically used because WhatsApp Flow interactions exchange structured JSON payloads.
+      </Step>
+      <Step>
+        (Optional) Configure **Query Parameters** if the API requires query strings. Query parameters are generally used with GET requests.
+
+        ```text
+        /users?page=1&limit=20
+        ```
+      </Step>
+      <Step>
+        (Optional) Configure **Headers** if the API requires authentication or additional metadata, such as authentication, API keys, environment identifiers or content negotiation.
+
+        ```text
+        Authorization: Bearer <token>
+        ```
+      </Step>
+    </Steps>
+
+    **Response**
+
+    <Steps>
+      <Step>
+        Expand the **Response** section to configure how the API response should be mapped to Meta screens.
+      </Step>
+      <Step>
+        Under **Screen**, select the Meta Flow screen that should receive the mapped payload. Each screen corresponds to a screen configured in the Meta Flow.
+      </Step>
+      <Step>
+        Under **Data**, configure the payload that should be sent back to Meta, in JSON mode for complex payload structures or FORM mode for simpler field-level mappings.
+
+        ```json
+        {
+          "name": "{{customer_name}}",
+          "order_id": "{{order_id}}",
+          "status": "{{order_status}}"
+        }
+        ```
+      </Step>
+      <Step>
+        Use the **Simplify** option if the API response contains deeply nested fields. Simplify allows you to create reusable aliases for response variables and use them throughout the workflow more efficiently.
+
+        For example, instead of repeatedly using `$response.customer.profile.contact.mobile`, you can create a simplified variable such as `customer_mobile`.
+      </Step>
+    </Steps>
+
+    See [Response Mapping for Meta](#response-mapping-for-meta) for more on JSON and FORM mapping.
+  </Tab>
+  <Tab title="User Profiles">
+    The User Profiles action allows you to store or update customer attributes during the Meta Flow interaction.
+
+    Examples include:
+
+    - Saving preferred language.
+    - Updating customer contact details.
+    - Storing onboarding status.
+    - Saving booking preferences.
+
+    This helps maintain continuity across future engagements and campaigns.
+
+    To set it up:
+
+    1. Add **User Profiles** from the node panel. It shows as **User Profile** on the canvas.
+    2. Under **Distinct ID value**, enter the flow variable that holds the user's distinct ID.
+    3. Under **Action**, select what you want to do to the user profile from **Action Type**.
+
+    ![](/images/meta-user-profiles.png)
+
+    You can read more about it [here](https://fyno.io/docs/workflows/nodes-and-actions/user-profile-widget).
+  </Tab>
+  <Tab title="Subflow">
+    Subflows allow you to modularize workflow logic and reuse common functionality. You can bundle repeated nodes into a subflow, loop them if required, and reuse them across the workflow.
+
+    Common use cases include:
+
+    - OTP validation.
+    - User verification.
+    - Eligibility checks.
+    - Shared customer lookup logic.
+    - Appointment booking flows.
+
+    To set it up:
+
+    1. Add **Subflow** from the node panel, then click **CREATE SUBFLOW** in its panel.
+
+       ![](/images/meta-subflow.png)
+
+    2. Enter a **Subflow name**, then add nodes after the **Start** node, the same way you build the main workflow.
+    3. Click **DONE** to save the subflow and go back to the workflow. Click **DELETE** to remove it.
+
+       ![](/images/meta-subflow-editor.png)
+
+    <Note>
+    The Subflow node shows a red warning until a subflow is set up for it.
+    </Note>
+
+    This keeps workflows easier to maintain and scale. You can read more about it [here](https://fyno.io/docs/workflows/nodes-and-actions/subflow-widget).
+  </Tab>
+  <Tab title="AI Magic Match">
+    AI Magic Match sends the user down a branch based on what they typed, by checking if their input is similar to the phrases you add. This is useful when users can answer in their own words, for example "track my order" or "where is my parcel".
+
+    To set it up:
+
+    1. Add **AI Magic Match** from the node panel.
+    2. Under **User Input**, pick the variable that holds the user's input.
+    3. Under **Conditions**, give the first condition a **Condition Name**.
+    4. Under **If user input is similar to**, type a phrase in **Input Text**. Click **ADD** to add more phrases for the same condition.
+    5. Click **ADD CONDITION** to add another branch. An **Else** branch is added for inputs that match none of your conditions.
+    6. Use **Test Condition** to check your setup.
+
+    ![](/images/meta-ai-magic-match.png)
+
+    Each condition becomes its own branch on the canvas, so you can connect different nodes to each one.
+  </Tab>
+  <Tab title="Condition">
+    Condition blocks can be used after API calls to branch workflow execution based on:
+
+    - API response
+    - HTTP status code
+    - User selections
+    - Validation outcomes
+
+    To set it up:
+
+    1. Add **Condition** from the node panel. It adds an **If** and an **Else** branch.
+    2. Click the **If** branch. Under **Condition**, choose what to check, for example **Variable**, and pick the value to check in **Enter Value**.
+    3. Choose an **Operator**, such as **equals**, and type the **Value** to compare against.
+    4. Click **ADD ANOTHER** to add more checks to the same branch.
+
+    ![](/images/meta-condition.png)
+
+    | If this happens | Then |
+    |-----------------|------|
+    | OTP validation succeeds | Proceed to the next screen |
+    | Customer exists | Fetch the profile |
+    | API fails | Show a fallback screen |
+    | Slots are unavailable | Show a retry option |
+
+    Supported operators include:
+
+    - Equals
+    - Not Equals
+    - Contains
+    - Starts With
+    - Ends With
+    - Greater Than
+    - Less Than
+    - Greater than or Equal
+    - Less than or Equal
+    - Is
+    - Is Empty
+    - In
+    - nin
+    - is boolean
+
+    Conditions help orchestrate complex conversational journeys within WhatsApp Flows.
+  </Tab>
+</Tabs>
+
+## Response Mapping for Meta
+
+The Response section is one of the most important parts of Meta Flow workflows. It controls how API responses are transformed into payloads that Meta uses to render WhatsApp screens dynamically.
+
+![](/images/map-api-response-for-meta.png)
+
+<Tabs>
+  <Tab title="JSON mapping">
+    Use JSON mapping when:
+
+    - Nested objects are required.
+    - Dynamic arrays are needed.
+    - Complex response structures must be constructed.
+    - Conditional payload generation is involved.
+
+    ```json
+    {
+      "customer": {
+        "name": "{{customer_name}}",
+        "email": "{{customer_email}}"
+      },
+      "order": {
+        "id": "{{order_id}}",
+        "status": "{{order_status}}"
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="FORM mapping">
+    FORM mode provides a simpler UI-driven mapping experience.
+
+    This is useful for straightforward field mappings where deep nesting is not required.
+  </Tab>
+</Tabs>
+
+## Dynamic Screen Rendering
+
+One of the most powerful capabilities of Meta Flow workflows is dynamic screen rendering. The workflow can:
+
+- Fetch data from APIs.
+- Process responses.
+- Return customized screen payloads to Meta.
+- Control the next screen dynamically.
+
+<Tabs>
+  <Tab title="Appointment booking">
+    <Steps>
+      <Step>User selects a city inside the WhatsApp Flow.</Step>
+      <Step>The workflow calls an API to fetch available appointment slots.</Step>
+      <Step>The API response is mapped dynamically inside the Response section.</Step>
+      <Step>The next WhatsApp screen displays available appointment slots dynamically.</Step>
+    </Steps>
+  </Tab>
+  <Tab title="Order tracking">
+    <Steps>
+      <Step>User enters an order ID.</Step>
+      <Step>The workflow validates the order using an API.</Step>
+      <Step>Shipment details are fetched dynamically.</Step>
+      <Step>The tracking information is rendered inside WhatsApp.</Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+This allows WhatsApp Flows to behave more like fully interactive applications instead of static forms.
+
+## Important Things to Know
+
+<Warning>
+Meta Flow workflows rely heavily on response mapping. Incorrect payload structures can prevent screens from rendering correctly.
+</Warning>
+
+- Always validate API responses before mapping them to Meta screens.
+- If your API structure changes, update the mapping configuration accordingly.
+- Simplify variables should use meaningful names for easier debugging and maintenance.
+- Use TEST URLs during development before switching to LIVE.
+- Restricted workflows are recommended for production-grade implementations.
+- Keep payloads optimized and avoid unnecessary nesting unless required by the Meta Flow design.
+
+## Request Approval to Go Live
+
+If your workspace has **Approval** turned on, clicking **GO LIVE** creates an approval request instead of publishing the workflow right away.
+
+![](/images/workflow-request-approval.gif)
+
+<Steps>
+  <Step title="Click GO LIVE">
+    In the workflow builder, click **GO LIVE**. The **Request Approval** window opens, showing the workflow name and version it is for.
+
+    ![](/images/workflow-request-approval.png)
+  </Step>
+  <Step title="Choose approvers">
+    Select one or more approvers from **Select Approvers**. The window shows the minimum number of approvers required.
+  </Step>
+  <Step title="Add a message and choose how to publish">
+    In **Write a Message**, add a short note on why you are requesting approval.
+
+    - Select **Go live on approval** to publish the workflow automatically once it is approved.
+    - Leave it unselected if you want to publish it yourself after approval.
+  </Step>
+  <Step title="Send the request">
+    Click **REQUEST**.
+
+    ![](/images/workflow-request-approval-filled.png)
+  </Step>
+</Steps>
+
+Once the request is approved, the workflow goes live automatically if **Go live on approval** was selected. If not, click **GO LIVE** to publish it. You can read more about it on the [Approval Request](/approval-request) page.

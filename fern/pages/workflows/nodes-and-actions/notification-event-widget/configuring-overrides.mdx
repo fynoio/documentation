@@ -9,9 +9,30 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 Fyno allows you to override pre-configured values within an Integration, enabling you to use different values for specific notifications in a Workflow. This flexibility is useful when you need to customize the sender information or other details based on the requirements of each notification.
 
-For example, if you have set up `tech@fyno.io` as the "from_email" address in your SES integration but want to use a different email address passed in the payload for a specific notification, Fyno enables you to achieve this by configuring overrides. This feature allows you to tailor your notifications according to your needs while maintaining the overall integration configuration.
+## Example
+
+Say you have set up `tech@fyno.io` as the `from_email` address in your SES integration, but want to use a different email address passed in the payload for a specific notification. Configuring an override lets you do this for that notification only, while the integration keeps its own settings.
+
+![Overriding from_email with a payload value](/images/overrides-example.gif)
+
+| Case | `from_email` used |
+|---|---|
+| Without an override | `tech@fyno.io`, from the SES integration |
+| With an override set to `{{email}}` | `support@abcstore.com`, from the workflow payload |
+
+## Steps to configure overrides
 
 <Steps>
-  <Step>Go to 'Override' tab under Settings, while configuring notification event within a workflow as shown below. ![](/images/workflow_override.png)</Step>
-  <Step>Select the value you want to use from the payload. For example, if you want to use the variable 'email' from the payload for 'from_email', you can do it as shown above.</Step>
+  <Step title="Open the Override tab">
+    While configuring a notification event within a workflow, open **Settings** and go to the **Override** tab, as shown below.
+
+    ![](/images/workflow_override.png)
+  </Step>
+  <Step title="Pick the value from the payload">
+    Select the value you want to use from the payload. For example, to use the variable `email` from the payload for `from_email`, map it as shown above.
+  </Step>
 </Steps>
+
+<Note>
+The override applies only to the notification event where you set it. Other notifications keep using the values configured in the integration.
+</Note>

@@ -1,5 +1,5 @@
 ---
-title: 'Creating a Workflow with Webhook Trigger'
+title: 'Creating a Workflow with webhook trigger'
 slug: 'workflow-webhook-trigger-setup'
 description: 'Learn how to configure workflows using Webhook triggers, including HTTP method setup, payload mapping, simplify variables, API calls, conditions, and workflow URL configuration.'
 og:title: 'How to create a workflow using Webhook - Workflows | Fyno Documentation'
@@ -7,62 +7,102 @@ og:description: 'This document provides a detailed guide on how to create workfl
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Navigate to the Workflow section from the left navigation panel.
-
-If you have already created few workflows, you can see the list of all the Workflows you have created in card view. You can click 'Create+' to create a new workflow.
-
-Once you click '+Create', a workflow canvas opens.
+A Webhook trigger starts your workflow whenever another system, such as a payment gateway or your backend, calls the Workflow URL. The data it sends becomes available to every step of the workflow.
 
 ## Prerequisites
 
-- Ensure relevant notification events which will be configured as part of Workflow is created.
+- Ensure relevant notification events which will be configured as part of Workflow are created.
 - Make sure you have the sample payload which will be triggered via webhook.
 - Ensure at least 1 allowlist API is configured if you want to receive delivery reports.
 
-
 ## How to configure a Webhook
 
+Here is the setup at a glance.
+
+![](/images/webhook-setup.gif)
+
 <Steps>
-  <Step> When you create a new workflow, you will see the canvas with the of triggers ![](/images/workflow_triggers.png)</Step>
-  <Step>Drag and drop 'Webhook' under Triggers into the Workflow canvas. ![](/images/workflow_add_webhook.png)</Step>
-  <Step>
-    **HTTP Method** - Select the HTTP method which will call the workflow. There are 2 options.
-    <ul>
-      <li>GET</li>
-      <li>POST</li>
-    </ul>
+  <Step title="Create the workflow">
+    Navigate to **Workflows** from the left navigation panel. If you have already created a few workflows, you can see them in card view.
+
+    Click **CREATE**, enter a name and click **SUBMIT**. The workflow canvas opens with the list of triggers.
   </Step>
-  <Step>
-    **Content Type**- If you select POST in the previous step, then you need to select the content type of the payload.
-    <ul>
-      <li>None - No payload will be sent while triggering the workflow</li>
-      <li>JSON - content will be set to application/json</li>
-      <li>Form Data - content will be set to multipart/form-data</li>
-      <li>URL Encoded Form - content will be set to application/x-www-form-urlencoded</li>
-      <li>XML - content will be set to application/xml</li>
-      <li>Text - content will be set to text/plain</li>
-    </ul>
+  <Step title="Select the Webhook trigger">
+    Select **WEBHOOK** from the triggers. The **Webhook** panel opens on the right. To pick a different trigger, click **CHANGE TRIGGER**.
+
+    ![](/images/webhook-trigger.png)
   </Step>
-  <Step>**Sample Payload** - If you have selected JSON or Form Data or URL Encoded Form, then you need to add sample payload as shown below. ![](/images/4365960-add_sample_payload.png)</Step>
-  <Step>Once you click 'Add Sample Payload', a page will open where you can enter the sample payload. ![](/images/workflow_webhook_sample_payload.png)</Step>
-  <Step>**Simplify** - Using complex payloads for placeholder mapping can be challenging. Additionally, employing a payload variable repeatedly for conditional checks in Workflow is a cumbersome task. To streamline this process, we've introduced the '_Simplify_' feature. This feature allows you to create custom variables, map payload fields to these variables, assign complex expressions to these variables using the payload fields and seamlessly use these new variables throughout the Workflow. You can click 'Simplify' on the top right hand side.</Step>
-  <Step>
-    The Simplify popup will look as shown below.
-    <ul>
-      <li>When directly mapping payload data, you can achieve it by linking, for example, 'acquirer_data.authentication_reference_number' to the variable 'ref_no'.</li>
-      <li>However, if you're using Handlebars (HBS), the correct syntax involves using the payload data as '$input.body.status' to map it to a variable like payment_status. Attempting to use just 'payload.status' will result in an error. To know more about Handlebars, please refer our [documentation](./templates-handlebars)</li>
-    </ul>
+  <Step title="Choose the HTTP Method">
+    Under **HTTP Method\***, select the method which will call the workflow.
+
+    - **GET**: trigger this workflow with a GET request and optional query parameters.
+    - **POST**: trigger this workflow with a POST request and a payload with the appropriate content type.
+
+    ![](/images/webhook-http-method.png)
+  </Step>
+  <Step title="Choose the Content Type">
+    If you select POST, then you need to select the content type of the payload under **Content Type\***.
+
+    | Content Type | What it means |
+    |--------------|---------------|
+    | **None** | No payload will be sent when triggering the workflow. |
+    | **JSON** | Content type will be set to `application/json`. |
+    | **Form Data** | Content type will be set to `multipart/form-data`. |
+    | **URL Encoded Form** | Content type will be set to `application/x-www-form-urlencoded`. |
+    | **XML** | Content type will be set to `application/xml`. |
+    | **Text** | Content type will be set to `text/plain`. |
+
+    ![](/images/webhook-content-type.png)
+  </Step>
+  <Step title="Add a Sample Payload">
+    If you have selected JSON, Form Data or URL Encoded Form, then you need to add a sample payload as shown below.
+
+    ![](/images/4365960-add_sample_payload.png)
+
+    Once you click **Add Sample Payload**, a page will open where you can enter the sample payload.
+
+    ![](/images/workflow_webhook_sample_payload.png)
+  </Step>
+  <Step title="Add Query Parameters (optional)">
+    Expand **Query Parameters (Optional)** if the workflow URL will include query parameters. These are primarily used with GET requests and are appended to the URL path after a `?` character, for example `/users?page=1&per_page=20`.
+
+    Enter each one in **Enter Key** and **Enter Value**. Click **ADD ANOTHER** to add more.
+
+    ![](/images/webhook-query-parameters.png)
+  </Step>
+  <Step title="Add Headers (optional)">
+    Expand **Headers (Optional)** if you want to send any HTTP headers when running the workflow. Headers give the server extra information to process the request, and each has a key and a value, for example `Cache-Control: no-store, no-cache, must-revalidate`.
+
+    Enter them in **JSON** or switch to **FORM** to add them field by field.
+
+    ![](/images/webhook-headers.png)
+  </Step>
+  <Step title="Simplify the payload (optional)">
+    Using complex payloads for placeholder mapping can be challenging, and using the same payload variable again and again in conditions is cumbersome. **Simplify** lets you create your own variables, map payload fields to them, build expressions from payload fields, and use these variables throughout the Workflow. Click **Simplify** at the top right.
+
+    - When directly mapping payload data, you can link, for example, `acquirer_data.authentication_reference_number` to the variable `ref_no`.
+    - If you're using Handlebars (HBS), use the payload data as `$input.body.status` to map it to a variable like `payment_status`. Using just `payload.status` will result in an error. To know more about Handlebars, refer to our [documentation](./templates-handlebars).
+
     ![](/images/workflow_simplify_mapper.png)
-    <Info>There is no restriction on the number of mapper variables created. All mapper variable names need to be unique.</Info>
-    <Warning>Mapper variable name must not be any of the following: 'body,' 'headers,' 'formdata,' 'query,' or 'method.'</Warning>
+
+    <Info>
+    There is no restriction on the number of mapper variables created. All mapper variable names need to be unique.
+    </Info>
+
+    <Warning>
+    Mapper variable name must not be any of the following: `body`, `headers`, `formdata`, `query` or `method`.
+    </Warning>
   </Step>
-  <Step>**Query Parameters** - This is an optional field. This is primarily used with GET requests. They are appended to the URL path after a ? character. Example - /users?page=1&per_page=20</Step>
-  <Step>**Headers**- This is an optional field. In API requests, request headers are used to provide additional information for a server to process an API request. API headers typically have a key and a value. For example, a Cache-Control header might be structured like this: _Cache-Control:no-store, no-cache, must-revalidate_</Step>
+  <Step title="Save">
+    Click **SAVE**. Once the trigger is saved, you can add action and condition blocks after it.
+  </Step>
 </Steps>
 
 ## How does Workflow Work?
 
 Let's illustrate this with our payment gateway example used by the ABC company. When ABC creates the Workflow in Fyno, they will configure their payment gateway to call the Workflow URL anytime a payment is processed.
+
+![](/images/webhook-example.gif)
 
 Let's assume that the response sent by the payment gateway for a successful payment is the below JSON.
 
@@ -86,239 +126,203 @@ When a payment succeeds, the gateway will invoke the Workflow URL by including t
 
 The details that we configure in the trigger step should reflect the details used by the source calling the Workflow. So in our example, if the gateway is invoking the Webhook/Workflow URL as a `POST` request, this is how ABC will configure the trigger:
 
-- **HTTP method** - `POST`
-- **Query string** - empty (since the gateway does not add any query strings to the URL)
-- **Headers** - empty (assuming that the gateway does not pass any headers in its response)
-- **Content type** - JSON (since the payload is of type JSON)
-- **Payload** - payment success JSON payload from the gateway
+| Setting | Value | Why |
+|---------|-------|-----|
+| **HTTP Method** | `POST` | The gateway calls the URL with a POST request. |
+| **Query Parameters** | Empty | The gateway does not add any query strings to the URL. |
+| **Headers** | Empty | The gateway does not pass any headers. |
+| **Content Type** | JSON | The payload is of type JSON. |
+| **Sample Payload** | The JSON above | The payment success payload from the gateway. |
 
-It is critical to note that the data configured in the trigger step is just a sample and only provides a means to build the rest of the Workflow, as you will see later. In other words, if the payment gateway provider adds a new attribute to the response, the Workflow will run as expected, even with the old payload. However, if you need to use this new attribute in the Workflow, updating the trigger step with the new payload is essential.
+<Note>
+The data configured in the trigger step is just a sample, used to build the rest of the Workflow. If the payment gateway adds a new attribute to the response, the Workflow will still run as expected with the old payload. However, if you need to use this new attribute in the Workflow, you must update the trigger step with the new payload.
+</Note>
 
-Once we save the initial component, the next step of the flow opens up. You have 2 options here:
+Once the **Trigger** has been set up and saved, you can drag and drop any action block or condition block.
 
-- **Action:** Action allows you to take an action based on the payload. Notification Event and API call are the 2 options.
-- **Condition:** Condition applies a condition to the details that were shared in the payload and helps further refine your query with a series of conditions. Conditions are added as If-else blocks.
-
-Once a **Trigger** has been successfully set up and saved, you can drag and drop any action block or condition block.
 ![](/images/workflow_controls_actions.png)
 
-To understand each of these components, a deep dive into the same is needed, which will be covered in the next sections.
+<CardGroup cols={2}>
+  <Card title="Action" href="#action">
+    Takes an action based on the payload, such as sending a Notification Event or calling an API.
+  </Card>
+  <Card title="Condition" href="#condition">
+    Checks the details in the payload and sends the flow down an If or Else branch.
+  </Card>
+</CardGroup>
 
 ## Action
 
-An "Action" block can be added immediately after the trigger or based on the outcome of a **Condition** (explained below).
+An **Action** block can be added immediately after the trigger or based on the outcome of a **Condition**.
 
-### Notification Event
+<Tabs>
+  <Tab title="Notification Event">
+    **Notification Event** refers to the notification events created within Fyno and can be called as an action for the payload that was added in the previous step of the workflow.
 
-Trigger **Notification Event** refers to the notification events created within Fyno's application and can be called as an action for the payload that was added in the previous step of the workflow.
+    When you add a **Notification Event**, set up the following:
 
-On drag and drop of the **Notification Event**, you will see the:
+    - **Notification Event:** Select a relevant notification event from the dropdown, specific to this trigger.
+    - **Map Data:** On selecting the notification event, you will see the mapping details. For the notification event you have selected, you need to specify details from the payload received from the trigger.
+      - **Distinct Id:** If you are using Fyno's user profile, select the value for Distinct Id from the payload or a custom variable created using **Simplify**.
+      - **Channels:** All the channels configured in the template linked to the selected notification event appear here. If you are not using Fyno's user profile, map the channel level destinations from the payload data or custom variables created with **Simplify**. In this example, the template linked to the notification event `sms-test-2` has only SMS as the channel, which is why you see SMS under Map Data.
 
-- **Notification Event:** Select a relevant **Notification Event** from the dropdown, specific to this **Trigger**.
-- **Map Data:** On selecting the notification event, you will see the Notification Event Mapping details. Basically, for the notification event that you have selected, you will need to specify details from the payload that is being received from the Trigger
-  ![](/images/d1460ba-Event_Mapping.png)
+      ![](/images/d1460ba-Event_Mapping.png)
 
-  - **Distinct Id:** If you are using Fyno's user profile, then select value for Distinct Id from the payload or a custom variable created using the _Simplify_ option.
-  - **Channels** : All the channels configured as part of the template linked to the Notification Event selected will appear here. If you are not using Fyno's user profile, map the channel level destinations from the payload data or custom variables created with _Simplify_. In this example, the template linked to the notification event 'sms-test-2' has only SMS as the channel. That's why you see SMS under Map data.
+    - **Data:** You will see all the fields that you have specified as **Placeholders** (dynamic values) in the template linked to the notification event. If you do not see this field, there are no placeholders in the template.
 
-- **Data:** In this section, you will see all the fields that you have specified as **Placeholders** (variable parameters/dynamic values) in the **Template** that is associated with the **Notification Event** that was selected. In case you do not see this field, this means that there are no **Placeholders** in the **Template**.
-  ![](/images/6caa7b5-event_maping_data.png)
+      ![](/images/6caa7b5-event_maping_data.png)
 
-- **Additional Data:** Additional data in the form of a payload can be specified here if required, in JSON format. This is an optional field. A typical use case for additional data is when you do not manually add placeholders during template creation. For instance, if your template contains the text `Hi {{name}}` but you do not explicitly specify `name` as a placeholder during template creation. Nevertheless, Fyno still identifies the name as a placeholder since it appears in the `{{ }}` syntax. In this scenario, you can include the value of the name in the **Additional Data'**section. To do this, specify the name as the key and select a corresponding value from the dropdown.
+    - **Additional Data (optional):** Additional data in the form of a JSON payload. A typical use case is when you did not add placeholders manually during template creation. For instance, if your template contains `Hi {{name}}` but you did not add `name` as a placeholder, Fyno still identifies `name` as a placeholder since it uses the `{{ }}` syntax. Add `name` as the key here and select a value from the dropdown.
+  </Tab>
+  <Tab title="API">
+    Fyno's Workflow enables you to call external APIs and run the next part of the workflow based on the response received. This makes workflows extremely powerful and flexible.
 
-#### How to receive delivery reports?
+    The first step to calling an external API in a Workflow is to allowlist the API endpoint:
 
-Fyno allows you to forward delivery reports to your own system or integrate them with third-party analytics tools like Mixpanel and Amplitude. This feature enables you to track and analyze the success of your notification deliveries seamlessly.
+    1. Navigate to the [Allowlist URL page](https://app.fyno.io/webhooks).
+    2. Add and verify the URL or endpoint.
 
-You can read more about it [here](./receive-delivery-reports).
+    When you add the **API** node, you'll see the following:
 
-#### How to configure Idempotent Key?
+    ![](/images/workflow_call_api_request.png)
 
-Workflows now supports idempotency, ensuring you can safely retry requests without the risk of performing the same operation twice. This feature proves invaluable in scenarios where an API call gets interrupted in transit, leaving you without a response.
+    - **Allowlist URL Name:** Select a URL from the allowlist.
+    - **Cache response of this API? (optional):** Fyno caches the API response for a set time based on the key value. The workflow uses the cached response until the time runs out or the key value changes, so it doesn't call the API again for nothing.
+      - **Cache Key:** Select the key value you want to cache.
+      - **Time & Unit:** Select a duration between 1 minute and 1 day.
 
-You can read more about it [here](./configure-idempotent-key-workflow).
+      ![](/images/workflow_API_response_cache.png)
 
-#### How to configure overrides?
+    - **Method:** GET or POST.
+    - **Content Type:** If you select POST, choose the content type of the payload. The options are the same as for the [Webhook trigger](#how-to-configure-a-webhook).
+    - **Sample Payload:** If you have selected JSON, Form Data or URL Encoded Form, add a sample payload. Click **Add Payload**, then either:
+      1. Paste the payload in the JSON window, or
+      2. Select **Use sections of the sample payload submitted during trigger configuration** and pick one of the sections.
 
-Fyno allows you to override pre-configured values within an Integration, enabling you to use different values for specific notifications in a Workflow. This flexibility is useful when you need to customize the sender information or other details based on the requirements of each notification.
+      ![](/images/workflow_call_api.png)
 
-You can read more about it [here](./configure-overrides-workflow).
+      ![](/images/workflow_api_response_content.png)
 
-### API
+    - **Query Parameters (optional):** Primarily used with GET requests, for example `/users?page=1&per_page=20`.
+    - **Headers (optional):** For example, `Cache-Control: no-store, no-cache, must-revalidate`.
+    - **Simplify:** Works the same way as in the trigger. See [Simplify the payload](#how-to-configure-a-webhook).
 
-Fyno's Workflow enables you to call external API's and run the subsequent part of the workflow based on the response received from the API call. This feature makes workflows extremely powerful and flexible to handle various use cases.
-
-The first step to calling an external API in an Workflow is to allowlist the API endpoint. To do this:
-
-<Steps>
-  <Step>Navigate to the [Allowlist URL page](https://app.fyno.io/webhooks)</Step>
-  <Step>Add and verify the URL/endpoint</Step>
-</Steps>
-
-On drag & drop of the **API** component, you'll see the following:
-
-![](/images/workflow_call_api_request.png)
-
-- **Allowlist URL Name:** Select a URL from the allowlist
-
-- **Cache response of this API?**: - Its an optional field. We will cache API responses for a specified timeframe based on the key value. The workflow will use this cached response until either the timeframe expires or the key value changes, eliminating unnecessary API calls.
-![](/images/workflow_API_response_cache.png)
-
-<Steps>
-  <Step>Cache Key - Select the key value which you want to cache.</Step>
-  <Step>Time & Unit - You can select a duration between 1 minute and 1 day</Step>
-</Steps>
-
-- **Method:** Specify the method of input. It may be
-
-  - GET
-  - POST
-
-- **Content Type**- If you select POST in the previous step, then you need to select the content type of the payload.
-
-  - None - No payload will be sent while triggering the workflow
-  - JSON - content will be set to application/json
-  - Form Data - content will be set to multipart/form-data
-  - URL Encoded Form - content will be set to application/x-www-form-urlencoded
-  - XML - content will be set to application/xml
-  - Text - content will be set to text/plain
-
-- **Sample Payload** - If you have selected JSON or Form Data or URL Encoded Form, then you need to add sample payload as shown below.
-  ![](/images/4365960-add_sample_payload.png)
-
-  Once you click 'Add Payload', a page will open as shown below.
-  ![](/images/workflow_call_api.png)
-
-  1. You can either paste the payload in the json window (or)
-  2. You can select 'Use sections of the sample payload submitted during trigger configuration' checkbox. If you select this option, then you need to select one of the sections as shown below
-
-![](/images/workflow_api_response_content.png)
-
-- **Query Parameters** - This is an optional field. This is primarily used with GET requests. They are appended to the URL path after a ? character. Example - /users?page=1&per_page=20
-- **Headers**- This is an optional field. In API requests, request headers are used to provide additional information for a server to process an API request. API headers typically have a key and a value. For example, a Cache-Control header might be structured like this: _Cache-Control:no-store, no-cache, must-revalidate_
-- **Simplify** - Using complex payloads for placeholder mapping can be challenging. Additionally, employing a payload variable repeatedly for conditional checks in Workflow is a cumbersome task. To streamline this process, we've introduced the '_Simplify_' feature. This feature allows you to create custom variables, map payload fields to these variables, assign complex expressions to these variables using the payload fields and seamlessly use these new variables throughout the Workflow. You can click 'Simplify' on the top right hand side.
-- The Simplify popup will look as shown below.
-
-  - When directly mapping payload data, you can achieve it by linking, for example, 'acquirer_data.authentication_reference_number' to the variable 'ref_no'.
-  - However, if you're using Handlebars (HBS), the correct syntax involves using the payload data as '$input.body.status' to map it to a variable like payment_status.
-    Attempting to use just 'payload.status' will result in an error. To know more about Handlebars, please refer our [documentation](./templates-handlebars)
-
-  ![](/images/workflow_simplify_mapper.png)
-
-<Info>There is no restriction on the number of mapper variables created. All mapper variable names need to be unique.</Info>
-
-<Warning>Mapper variable name must not be any of the following: 'body,' 'headers,' 'formdata,' 'query,' or 'method.'</Warning>
-
-<Tip title="The response of an API call can be used to configure notification events.">For instance, if your API call returns a key `email` which contains the email address which you would like to use in the preceding notification event, then you can use a custom variable with value `{{$http_response.data.email}}` to configure the email in the notification event.</Tip>
+    <Tip title="The response of an API call can be used to configure notification events.">
+    For instance, if your API call returns a key `email` with the email address you want to use in the next notification event, use a custom variable with the value `{{$http_response.data.email}}` to configure the email in the notification event.
+    </Tip>
+  </Tab>
+</Tabs>
 
 ## Condition
 
-The **Condition** feature within Workflow allows you to write all the conditional-based logical triggering that you would need to address different situations within a single workflow.
-
-**Conditions** can be written for the parameters within the payload that are received from
-the initial **Trigger** and will help orchestrate the flow based on these parameters workflow canvas will look as shown below..
+The **Condition** feature within Workflow lets you add all the logic you need to handle different situations within a single workflow. Conditions can be written for the parameters in the payload received from the trigger, and help direct the flow based on them.
 
 ![](/images/0f42772-workflow_condition.png)
 
-### Variable
+Choose what the condition should check:
 
-- **Variable**: Select the **Variable** name that you want to base the condition on.
-- **Operator:** Select an operator that you want to define the condition with. It can be any of the following:
-  - Equals
-  - Note Equals
-  - Starts With
-  - Ends With
-  - Contains
-  - In
-  - Greater Than
-  - Less Than
-  - Greater than or Equal
-  - Less than or Equal
-  - Is
-  - Is Empty
-  - nin 
-  - is boolean
-- **Value:** Specify the value for the condition, based on which the "If-else" condition will be applied.
+<Tabs>
+  <Tab title="Variable">
+    - **Variable:** Select the variable you want to base the condition on.
+    - **Operator:** Select an operator from the [list below](#supported-operators).
+    - **Value:** Specify the value the If/Else condition will check against.
+  </Tab>
+  <Tab title="HTTP Status Code">
+    Select this option to create a condition based on the HTTP status code of an **API** action. The status code can be success (`200`, `201`, `2xx` etc.) or failure (`4xx` or `5xx`).
 
-### HTTP Status Code
+    - **Operator:** Select an operator from the [list below](#supported-operators).
+    - **Value:** Specify the status code the If/Else condition will check against.
+  </Tab>
+  <Tab title="HTTP Response">
+    Select this option to create a condition based on the HTTP response of an **API** action. The response can be a string or a JSON key.
 
-You should select this option while creating a condition based on the HTTP status code of an **API Call** action. The status code can be anything, be it success (`200`, `201`, `2xx` etc.) or failure (`4xx` or `5xx`). On selecting **HTTP Status Code**, field-specific data points will be seen as below:
+    - **HTTP Response:** Specify the key from the API response. If the response looks like `{status: "ok"}`, enter `status`. If the response is nested like `{status: {response: "ok"}}`, enter `status.response`.
+    - **Operator:** Select an operator from the [list below](#supported-operators).
+    - **Custom Value:** Specify the value the If/Else condition will check against.
+  </Tab>
+</Tabs>
 
-- **Operator:** Select an operator that you want to define the condition with. It can be any of the following:
-  - Equals
-  - Note Equals
-  - Starts With
-  - Ends With
-  - Contains
-  - In
-  - Greater Than
-  - Less Than
-  - Greater than or Equal
-  - Less than or Equal
-  - Is
-  - Is Empty
-  - nin 
-  - is boolean
+### Supported operators
 
-- **Value:** Specify the value for the condition, based on which the "If-else" condition will be applied.
-- **HTTP Response:** You should select this option while creating a condition based on the HTTP response of an **API Call** action. The response can be a string or a JSON key. On selecting **HTTP Response**, field-specific data points will be seen as below:
-  - **HTTP Response:** Specify the condition based on the response of the API call. For instance, if the response looks like `{status: "ok"}`, then the value of the **HTTP Response** field will be `status`. If the response is nested like `{status: {response: "ok"}}`, the value of the field will be `status.response`.
-  - **Operator:** Select an operator that you want to define the condition with. It can be any of the following:
-    - Equals
-    - Note Equals
-    - Starts With
-    - Ends With
-    - Contains
-    - In
-    - Greater Than
-    - Less Than
-    - Greater than or Equal
-    - Less than or Equal
-    - Is
-    - Is Empty
-    - nin 
-    - is boolean
+The **Operator** field supports the following:
 
-  - **Custom Value:** Specify the value for the condition, based on which the "If-else" condition will be applied.
+- Equals
+- Not Equals
+- Starts With
+- Ends With
+- Contains
+- In
+- Greater Than
+- Less Than
+- Greater than or Equal
+- Less than or Equal
+- Is
+- Is Empty
+- nin
+- is boolean
 
 ## Workflow URL
 
-Once you saved or Go Live your workflow, you will see a popup as shown below .
+The URL is auto-generated when you create the workflow. You need to use this URL to invoke the Workflow. Once you save or go live with your workflow, you will see a popup as shown below.
 
 ![](/images/workflow_url_copy.png)
 
-The URL is auto-generated when you create the workflow. You will need to use this URL to invoke this Workflow.
+You can also open the Workflow URL by clicking the Workflow URL icon at the top right, next to the **GO LIVE** button.
 
-You can also access the Workflow URL by clicking the 'Copy Workflow URL' icon at the top right side next to 'Go Live' button.
+We provide URLs for both **TEST** and **LIVE**. Copy both URLs and configure them in your system or any third party tool where the webhook will be triggered. For more on this window, see [Access and Settings](/workflows#access-and-settings) on the Workflows page.
 
-We provide URLs for both Test and Live. Please copy both the URLs and configure it in your system or any third party tool where the webhook will be triggered.
+<Tabs>
+  <Tab title="Public">
+    If you are using a public URL, you can select one of these 2 options:
 
-### Public
+    - **BASIC AUTH:** The URL consists of your workspace ID and the token which Fyno uses for authentication.
+    - **TOKEN AUTH:** The URL includes a query parameter `token=<Fyno_generated_token>`.
 
-If you are using Public URL, you can select one of these 2 options.
+    ![](/images/workflow_basic_url.png)
 
-- **Basic Auth** - the URL consists of the combination of your workspace ID and the token which Fyno uses for authentication.
+    <Info>
+    Workflows are public by default. If you turn on **Restricted** after the workflow is created and save it, you must use the Restricted URLs (Live and Test) when running the workflow.
+    </Info>
+  </Tab>
+  <Tab title="Restricted">
+    To use restricted access, turn on the **Restricted** toggle. You can select one of these 2 options:
 
-- **Token Auth** - the URL includes a query parameter `token=<Fyno_generated_token>`.
+    - **Bearer Token:** Pass your Fyno API Key as a bearer token in the authorization header: `{'Authorization': 'Bearer <YOUR_FYNO_API_KEY>'}`.
+    - **Basic Auth:** The URL consists of your workspace ID and API Key, which Fyno uses for authentication. Example: `https://<WORKSPACE_ID>:<API_KEY>@api.fyno.io/v1/automation/XXXXXXX`
 
-![](/images/workflow_basic_url.png)
+    ![](/images/workflow_restricted_url.png)
+  </Tab>
+</Tabs>
 
-<Info>Workflows are public by default. If you enable the "Restricted" option after the workflow is created and save it with this setting, you must use "Restricted" URLs (Live & Test) when funning the workflow.</Info>
+<Tip title='You can update the token using the "Customize Token" option in the workflow header.'>
+Since the workflow URL can be called from anywhere, it is a good idea to update the token if you feel it has been compromised. Always remember to update the workflow URL (with the new token) wherever the workflow is called.
+</Tip>
 
-### Restricted
+## More settings
 
-If you want to use Restricted access, enable the Restricted Toggle as shown below. You can select one of these 2 options.
+<CardGroup cols={3}>
+  <Card title="Receive delivery reports" href="./receive-delivery-reports">
+    Forward delivery reports to your own system or tools like Mixpanel and Amplitude.
+  </Card>
+  <Card title="Configure an idempotent key" href="./configure-idempotent-key-workflow">
+    Safely retry requests without running the same operation twice.
+  </Card>
+  <Card title="Configure overrides" href="./configure-overrides-workflow">
+    Use different integration values, like sender details, for specific notifications.
+  </Card>
+</CardGroup>
 
-- **Bearer Token** - Pass your Fyno API Key as a bearer token in the authorization header. `{'Authorization': 'Bearer <YOUR_FYNO_API_KEY>'}`.
-- **Basic Auth** - the URL consists of the combination of your workspace ID and API Key which Fyno uses for authentication.  
-   Example: `https://<WORKSPACE_ID>:<API_KEY>@api.fyno.io/v1/automation/XXXXXXX`
+## Request Approval to Go Live
 
-![](/images/workflow_restricted_url.png)
+If your workspace has **Approval** turned on, clicking **GO LIVE** creates an approval request instead of publishing the workflow right away.
 
-<Tip title='You can update the token using the "Customize Token" option in the Workflow details page header.'>Since you can invoke the workflow URL from anywhere, it is a good idea to update the token if you feel it has been compromised. You must always remember to update the workflow URL (with the new token) at the source from where the workflow is called.</Tip>
+![](/images/workflow-request-approval.gif)
 
-## How to raise Approval requests
+<Steps>
+  <Step>Click **GO LIVE** to open the **Request Approval** window.</Step>
+  <Step>Select one or more approvers from **Select Approvers**.</Step>
+  <Step>Add a note in **Write a Message**. Select **Go live on approval** to publish automatically once approved.</Step>
+  <Step>Click **REQUEST**.</Step>
+</Steps>
 
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
-
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+You can read more about it on the [Approval Request](/approval-request) page.

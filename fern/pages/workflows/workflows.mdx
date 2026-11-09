@@ -13,17 +13,17 @@ This feature has the flexibility to connect to any third party tool like Mixpane
 
 ## What is a Workflow?
 
-
 Workflows in Fyno is a notifications orchestration service that allows anyone to easily design intelligent notification flows without coding.
 
 Workflow can be used to:
-- Deliver notifications based on notification events created from and data sources like Segment, Mixpanel, Amplitude or any webhooks .
+
+- Deliver notifications based on notification events created from data sources like Segment, Mixpanel, Amplitude or any webhooks.
 - Deliver notifications based on a user response to a SMS or WhatsApp notification.
-- Design a transactional journey flow based on Notification event trigger
-- Enables you to call any APIs and the response can be used to determine any conditional flow.
+- Design a transactional journey flow based on Notification event trigger.
+- Call any APIs and use the response to decide any conditional flow.
 - Send Delivery reports back to your backend system or third party analytics tools like Mixpanel through callbacks.
 
-**Workflow as a Transformation Layer**
+### Workflow as a Transformation Layer
 
 Migrating to Fyno from your current service provider requires no modifications to your existing payload structure. Our workflow is designed to accept any payload format and provides flexible transformation capabilities to match your specific requirements. This migration can be completed without any technical development work on your end.
 
@@ -47,24 +47,28 @@ Triggers determine:
 - When the workflow is activated.
 - What data is passed into the workflow.
 - How the workflow connects to internal or external systems.
-- Different trigger types are designed for different use cases. Some are event-driven, some are based on user behavior, and others rely on external integrations. Choosing the right trigger ensures that workflows run at the appropriate time, receive the required data, and scale effectively.
-- We support the following trigger types in workflows:
 
+Different trigger types are designed for different use cases. Some are event-driven, some are based on user behavior, and others rely on external integrations. Choosing the right trigger ensures that workflows run at the appropriate time, receive the required data, and scale effectively.
+
+We support the following trigger types in workflows:
 
 ![](/images/all-workflow-widgets.png)
 
-- [Meta Flow](./workflow-using-meta) - Allows workflows to start based on user interactions within Meta platforms such as WhatsApp flows.
-- [Webhook](./workflow-webhook-trigger-setup) - Allows workflows to be initiated through real-time API calls from external systems.
-- [Virtual No](./creating-a-workflow-with-incoming-message-trigger) - A virtual mobile number with the capability to receive incoming messages can be configured here. If you want to design a workflow based on user's response in WhatsApp or SMS, then this trigger should be used. Contact [support@fyno.io](mailto:support@fyno.io) for configuring a virtual number.
-- [Mixpanel](./workflow-using-mixpanel-cohort) - Create the Workflow using a mixpanel cohort as the trigger.
-- [Moengage](./workflow-using-moengage) - Enables workflows to start based on events and user activity tracked in MoEngage.
-- [Notification Event](./workflow-notification-event-trigger) - Allows workflows to start based on the lifecycle of a notification.
+| Trigger | What it does |
+|---------|--------------|
+| [Meta Flow](./workflow-using-meta) | Allows workflows to start based on user interactions within Meta platforms such as WhatsApp flows. |
+| [Webhook](./workflow-webhook-trigger-setup) | Allows workflows to be initiated through real-time API calls from external systems. |
+| [Virtual No](./creating-a-workflow-with-incoming-message-trigger) | A virtual mobile number with the capability to receive incoming messages can be configured here. If you want to design a workflow based on user's response in WhatsApp or SMS, then this trigger should be used. Contact [support@fyno.io](mailto:support@fyno.io) for configuring a virtual number. |
+| [Mixpanel](./workflow-using-mixpanel-cohort) | Create the Workflow using a mixpanel cohort as the trigger. |
+| [Moengage](./workflow-using-moengage) | Enables workflows to start based on events and user activity tracked in MoEngage. |
+| [Notification Event](./workflow-notification-event-trigger) | Allows workflows to start based on the lifecycle of a notification. |
 
-**How to Choose the Right Trigger**
+#### How to Choose the Right Trigger
 
 Selecting the correct trigger depends on your use case, data source, and desired behavior.
 
 Use the following guidelines to decide:
+
 - If your workflow needs to start based on backend or system events, use the Webhook trigger.
 - If your workflow depends on user behavior tracked in analytics tools, use Mixpanel or MoEngage.
 - If your workflow is part of a conversational or interactive flow, use Meta Flow or Virtual Number.
@@ -77,27 +81,30 @@ Actions represent the actual operations performed within a workflow.
 These are the steps where something happens as a result of the trigger and logic defined in the workflow.
 
 **Examples of actions include**:
+
 - Sending notifications (SMS, Email, Push, WhatsApp).
 - Calling external APIs via webhooks.
 - Updating user data or attributes.
 - Triggering downstream systems.
-- Actions are executed in sequence unless modified by conditions. They are responsible for delivering value to the end user or interacting with other systems.
+
+Actions are executed in sequence unless modified by conditions. They are responsible for delivering value to the end user or interacting with other systems.
 
 ### Conditions
 
 Conditions allow you to introduce decision-making into your workflow.
 
-They evaluate data and determine which path the workflow should take next. This enables you to create different experiences for different users based on their attributes or behavior.
-Conditions typically follow an if/else structure.
+They evaluate data and determine which path the workflow should take next. This enables you to create different experiences for different users based on their attributes or behavior. Conditions typically follow an if/else structure.
 
 Examples:
-- If a user is a premium customer, send a premium offer; otherwise, send a standard offer
-- If payment fails due to insufficient balance, retry later; otherwise, notify the user immediately
-- Conditions make workflows dynamic and personalized, ensuring that users receive relevant communication instead of generic messages.
+
+- If a user is a premium customer, send a premium offer; otherwise, send a standard offer.
+- If payment fails due to insufficient balance, retry later; otherwise, notify the user immediately.
+
+Conditions make workflows dynamic and personalized, ensuring that users receive relevant communication instead of generic messages.
 
 ## How Workflows Work
 
-The best way to explain the full scope and capability of Workflows is with an example. So, let’s dive right in.
+The best way to explain the full scope and capability of Workflows is with an example. So, let's dive right in.
 
 Company ABC handles payments on its website via an external payment gateway.
 
@@ -108,164 +115,328 @@ The requirement is:
 - If the user is a Power User, then convert the payment type to COD and confirm the order by sending an Email and SMS.
 - If the user is non-Power User, then send a SMS with a payment link to retry payment.
 
-Fyno’s Workflow makes it simple to operate this end-to-end process.
+Fyno's Workflow makes it simple to operate this end-to-end process.
 
-While Fyno’s notification events will handle the delivery of notifications, the true power of Workflows can be harnessed by calling any APIs as part of the Workflow and creating actions based on the response.
+While Fyno's notification events will handle the delivery of notifications, the true power of Workflows can be harnessed by calling any APIs as part of the Workflow and creating actions based on the response.
 
-For this example, let’s assume that company ABC has two API endpoints -
+For this example, let's assume that company ABC has two API endpoints:
 
-- `/customers` - a `GET` endpoint that returns the type of customer.
+- `/customers`: a `GET` endpoint that returns the type of customer.
+- `/orders/{{customer_id}}`: a `PUT` endpoint that can update the customer's order details.
 
-- `/orders/{{customer_id}}` - a `PUT` endpoint that can update the customer’s order details  
-   Here is how the end-to-end process would work:  
-   ![](/images/automations-example.png)
+Here is how the end-to-end process would work. The animation follows each customer through the workflow, one path at a time.
+
+![](/images/workflow-payment-example.gif)
+
+### Setup
 
 <Steps>
-  <Step>Company ABC creates the Workflow in Fyno.</Step>
-  <Step>ABC then adds the Workflow URL as a webhook for successful and failed payments on the payment gateway site</Step>
-  <Step>Customer 1 makes a successful purchase on ABC’s website. The Workflow fires, and the customer receives an SMS and email confirming the successful purchase.</Step>
-  <Step>Customers 2 and 3 cannot make a successful online payment due to an issue with the bank. The Workflow fires, and due to the failed payment, it knows to trigger the `/customers` endpoint to get details about customer type.</Step>
-  <Step>Customer 2 is found to be a Power User (best user cohort in terms of monetisation) based on the result of the API call to `/customers`.</Step>
-  <Step>As a result, Customer 2’s order is confirmed (despite the failed payment), and the Workflow converts the order type to COD by making an API call to `/orders/{{ customer_id }}`.</Step>
-  <Step>If this API call is successful, the Workflow sends an order confirmation to Customer 2 via Email and SMS.</Step>
-  <Step>But Customer 3 is found to be a non-Power User.</Step>
-  <Step>So for Customer 3, workflow will trigger a notification with Payment link to retry and make the payment.</Step>
-  <Step> Once the Customer 3 successfully makes the payment, he/she will receive Order Confirmation communication.</Step>
+  <Step title="Create the workflow">
+    Company ABC creates the Workflow in Fyno.
+  </Step>
+  <Step title="Connect the payment gateway">
+    ABC then adds the Workflow URL as a webhook for successful and failed payments on the payment gateway site.
+  </Step>
 </Steps>
 
+### What happens for each customer
+
+<Tabs>
+  <Tab title="Customer 1: payment succeeds">
+    Customer 1 makes a successful purchase on ABC's website.
+
+    The Workflow fires, and the customer receives an SMS and email confirming the successful purchase.
+  </Tab>
+  <Tab title="Customer 2: Power User">
+    Customer 2 cannot make a successful online payment due to an issue with the bank. The Workflow fires and, due to the failed payment, calls the `/customers` endpoint to get the customer type.
+
+    1. Customer 2 is found to be a Power User (best user cohort in terms of monetisation).
+    2. The order is confirmed despite the failed payment, and the Workflow converts the order type to COD by calling `/orders/{{ customer_id }}`.
+    3. If this API call is successful, the Workflow sends an order confirmation via Email and SMS.
+
+    <Note>
+    If the call does not return a `200` response, the Workflow sends the retry communication with a payment link instead.
+    </Note>
+  </Tab>
+  <Tab title="Customer 3: not a Power User">
+    Customer 3 cannot make a successful online payment due to an issue with the bank. The Workflow fires and calls the `/customers` endpoint to get the customer type.
+
+    1. Customer 3 is found to be a non-Power User.
+    2. The Workflow sends a notification with a payment link to retry the payment.
+    3. Once Customer 3 successfully makes the payment, they receive the Order Confirmation communication.
+  </Tab>
+</Tabs>
+
 What would have otherwise required more than a few lines of code to configure, is being addressed with Fyno's Workflow feature, allowing you to add triggers, provide conditions and decide outcomes, all with a visual understanding of how the entire flow will work.
+
+## Create a Workflow
+
+Here is the full flow at a glance, from creating a workflow to taking it live.
+
+![](/images/workflow-create.gif)
+
+<Steps>
+  <Step title="Open Workflows">
+    In the side menu, go to **Workflows** under **ADVANCED**. The page lists all your workflows. You can search by name, filter by **Version**, switch the layout, and filter by group from the panel on the left.
+
+    Click **CREATE**.
+
+    ![](/images/workflow-list.png)
+  </Step>
+  <Step title="Name the workflow">
+    In the **Create Workflow** window, fill in:
+
+    - **Name**: a name that tells your team what the workflow does.
+    - **Add To Group (Optional)**: puts the workflow in a group so it is easier to find later.
+    - **Description (Optional)**: a short note on what the workflow is for.
+
+    Click **SUBMIT**.
+
+    ![](/images/workflow-create-modal.png)
+  </Step>
+  <Step title="Pick a trigger">
+    The workflow builder opens with all the trigger types around the centre. Click the one that should start your workflow. See [Triggers](#triggers) to decide which one fits.
+
+    ![](/images/workflow-trigger-picker.png)
+  </Step>
+  <Step title="Build the flow">
+    Add nodes from the panel on the left of the canvas and connect them to set the order of steps, such as sending a notification event or waiting for a set time before the next step.
+
+    Click **SAVE** to save your changes to the **Test** version.
+
+    ![](/images/workflow-builder.png)
+  </Step>
+  <Step title="Go live">
+    When you have tested the workflow, click **GO LIVE**, then click **CONFIRM**. See the **Go Live** tab under [Manage Workflows](#manage-workflows) for more.
+  </Step>
+</Steps>
+
+## The Workflow Builder
+
+The top of the builder shows the workflow name and its version, along with the controls you use most.
+
+![](/images/workflow-builder-header.png)
+
+| Control | What it does |
+|---------|--------------|
+| **Version dropdown** | Shows the version you are viewing, for example `v1 (Test)` or `v4 (Live)`. Use it to switch between versions. |
+| **Created / Updated** | Shows who last changed the workflow, which version, and how long ago. |
+| **History icon** | Opens the change logs. See the **Change logs** tab under [Access and Settings](#access-and-settings). |
+| **Customize Token icon** | Opens **Update Workflow Token**. See [Access and Settings](#access-and-settings). |
+| **Workflow URL icon** | Opens the **Workflow URL** window. See [Access and Settings](#access-and-settings). |
+| **GO LIVE** | Publishes the current **Test** version to **Live**. |
+| **SAVE** | Saves your changes to the **Test** version. |
+
+The bottom left of the canvas has tools to zoom in, zoom out, fit the whole flow on screen, go full screen and show a mini map.
 
 ## Workflow Options Menu
 
 Each workflow in the workflow list includes a **More Options** menu (**⋮**), which provides access to the most common workflow management actions. These actions allow you to update workflow information, review configuration details, create copies, request deletion, or publish changes without leaving the workflow list.
+
+![](/images/workflow-options-menu.png)
 
 ### Available Options
 
 | Option | Description |
 |---------|-------------|
 | **Edit** | Update the workflow name or change its assigned group. |
+| **Copy to another workspace** | Copy the workflow to a different workspace. |
 | **View Details** | View the workflow, dependencies, versions, and where it is used across the workspace. |
 | **Duplicate** | Create a copy of the workflow. |
-| **Copy to Another Workspace** | Copy the workflow to a different workspace. |
+| **Workflow URL** | Get the URL used to call the workflow and set who can call it. |
+| **Customize Token** | Set your own token for calling the workflow with token authentication. |
 | **Delete** | Delete the workflow. |
 | **Go Live** | Publish the current **Test** version of the workflow to the **Live** environment. |
 
-## Edit Workflow
+## Manage Workflows
 
-The **Edit** action allows you to modify the workflow's basic information without affecting its configuration. This is typically used to rename a workflow or reorganize it into a different group.
+<Tabs>
+  <Tab title="Edit">
+    The **Edit** action allows you to modify the workflow's basic information without affecting its configuration. This is typically used to rename a workflow or reorganize it into a different group.
+  </Tab>
+  <Tab title="Delete">
+    The **Delete** action removes the workflow.
 
-## Delete Workflow
+    Before deleting the workflow, the system displays any resources that reference it, helping you understand the impact of the deletion.
 
-The **Delete** action removes the workflow.
+    <Note>
+    If approval requests are enabled, the deletion is submitted as an [approval request](/approval-request) instead of being deleted immediately.
+    </Note>
+  </Tab>
+  <Tab title="Go Live">
+    The **Go Live** action publishes the current **Test** version of a workflow to the **Live** environment, making the latest approved configuration available for production use.
 
-> **Note**: If approval requests are enabled, the deletion is submitted as an approval request instead of being deleted immediately.
+    You can go live from the **More Options** menu (**⋮**) on the workflow list, or from the **GO LIVE** button in the builder. In both cases, click **CONFIRM** in the **Go Live Confirmation** window.
 
-Before deleting the workflow, the system displays any resources that reference it, helping you understand the impact of the deletion.
+    ![](/images/workflow-go-live-confirmation.png)
 
-## Go Live
+    <Note>
+    If approval requests are enabled, going live is sent as an approval request. See the **Request approval** tab. Otherwise, the workflow goes live right away.
+    </Note>
 
-The **Go Live** action publishes the current **Test** version of a workflow to the **Live** environment, making the latest approved configuration available for production use.
+    After publishing, it is recommended to open **View Details**, switch to the **Live** environment, and confirm that:
 
-After publishing, it is recommended to open **View Details**, switch to the **Live** environment, and confirm that:
+    - The expected changes are present.
+    - The **Last Updated** timestamp reflects the recent publication.
 
-- The expected changes are present.
-- The **Last Updated** timestamp reflects the recent publication.
+    Performing this verification helps ensure that the correct version has been deployed successfully.
+  </Tab>
+  <Tab title="Request approval">
+    If your workspace has **Approval** turned on in security settings, clicking **GO LIVE** does not publish the workflow right away. It creates an approval request instead, and the workflow goes live only after it is approved.
 
-Performing this verification helps ensure that the correct version has been deployed successfully.
+    ![](/images/workflow-request-approval.gif)
 
-## View Details
+    <Steps>
+      <Step title="Click GO LIVE">
+        In the workflow builder, click **GO LIVE**, or select **Go Live** from the **More Options** menu (**⋮**). The **Request Approval** window opens.
+      </Step>
+      <Step title="Choose approvers">
+        Select one or more approvers from the **Select Approvers** dropdown.
+      </Step>
+      <Step title="Add a message and choose how to publish">
+        In **Write a Message**, add a short note on why you are requesting approval.
 
-The **View Details** page displays the modules and dependencies used by a workflow. It lists the resources that the workflow depends on, such as **Notification Events** and **Allowlist URLs**, helping you understand which workspace components are associated with the workflow before making changes or publishing updates.
+        - Select **Go live on approval** to publish the workflow automatically once it is approved.
+        - Leave it unselected if you want to publish it yourself after approval.
+      </Step>
+      <Step title="Send the request">
+        Click **REQUEST**. The pending request shows at the top of the workflow, along with how many approvals are needed.
+      </Step>
+      <Step title="Cancel the request (optional)">
+        To withdraw the request, click **Cancel Request**, then click **Confirm**.
+      </Step>
+    </Steps>
 
-This page is particularly useful for identifying workflow dependencies, reviewing version information, and comparing the **Test** and **Live** versions before deployment.
+    Once the request is approved, the workflow goes live automatically if **Go live on approval** was selected. If not, click **GO LIVE** to publish it.
 
-### Information Displayed
+    <Note>
+    For how approvers review and respond to requests, see [Approval Request](/approval-request).
+    </Note>
+  </Tab>
+  <Tab title="View Details">
+    The **View Details** page displays the modules and dependencies used by a workflow. It lists the resources that the workflow depends on, such as **Notification Events** and **Allowlist URLs**, helping you understand which workspace components are associated with the workflow before making changes or publishing updates.
 
-The page includes the following information:
+    This page is particularly useful for identifying workflow dependencies, reviewing version information, and comparing the **Test** and **Live** versions before deployment.
 
-| Field | Description |
-|-------|-------------|
-| **Name** | Displays the workflow name. |
-| **Group Tag** | Identifies the group to which the workflow belongs, such as *Customer Journey* or *Internal Automation*. |
-| **Environment** | Indicates whether the displayed information relates to the **Test** or **Live** version of the workflow. |
-| **Last Updated** | Shows when the selected environment was most recently modified, helping identify the latest published or draft version. |
-| **Depends On** | Lists the resources referenced by the workflow, such as notification events, templates, components, Omni-Channel routes, API integrations, or external services used within the workflow. |
-| **Used In** | Lists the resources that reference the workflow, where applicable, allowing you to assess the impact of modifying or deleting it. |
+    **Information displayed**
 
-### Environment Selection
+    | Field | Description |
+    |-------|-------------|
+    | **Name** | Displays the workflow name. |
+    | **Group Tag** | Identifies the group to which the workflow belongs, such as *Customer Journey* or *Internal Automation*. |
+    | **Environment** | Indicates whether the displayed information relates to the **Test** or **Live** version of the workflow. |
+    | **Last Updated** | Shows when the selected environment was most recently modified, helping identify the latest published or draft version. |
+    | **Depends On** | Lists the resources referenced by the workflow, such as notification events, templates, components, Omni-Channel routes, API integrations, or external services used within the workflow. |
+    | **Used In** | Lists the resources that reference the workflow, where applicable, allowing you to assess the impact of modifying or deleting it. |
 
-The environment selector allows you to switch between the two available versions of a workflow without leaving the details page.
+    **Environment selection**
 
-- **Test** displays the draft version used for development, testing, and validation before publication.
-- **Live** displays the version currently available to end users.
+    The environment selector allows you to switch between the two available versions of a workflow without leaving the details page.
 
-## Copy to Another Workspace
+    - **Test** displays the draft version used for development, testing, and validation before publication.
+    - **Live** displays the version currently available to end users.
+  </Tab>
+  <Tab title="Copy to another workspace">
+    The **Copy to another workspace** action lets you copy a workflow from the current workspace to another workspace. This is useful when you want to reuse an existing workflow across multiple workspaces without recreating it manually.
 
-The **Copy to Another Workspace** action lets you copy a workflow from the current workspace to another workspace. This is useful when you want to reuse an existing workflow across multiple workspaces without recreating it manually.
+    **Workflow versioning during copy**
 
-### Workflow Versioning During Copy
+    When a workflow is copied to another workspace, versioning is handled automatically.
 
-When a workflow is copied to another workspace, versioning is handled automatically.
+    ![](/images/workflow-versions.png)
 
-- If the workflow does **not** exist in the destination workspace, the copied workflow is created as **Version 1 (Test)**.
-- If the workflow **already exists** in the destination workspace, the copied workflow is created as a new standalone version (for example, **v2**). You can then review the new version and either save it as the current **Test** version or publish it as the new **Live** version.
+    - If the workflow does **not** exist in the destination workspace, the copied workflow is created as **Version 1 (Test)**.
+    - If the workflow **already exists** in the destination workspace, the copied workflow is created as a new standalone version (for example, **v2**). You can then review the new version and either save it as the current **Test** version or publish it as the new **Live** version.
 
-This approach prevents existing versions in the destination workspace from being overwritten while giving you control over when to promote the copied version.
+    For example, if the version in the destination workspace is `v1 (Test)`, the copy creates `v2`. Select `v2` from the version dropdown beside the workflow name and click **SAVE** to make it `v2 (Test)`, or click **GO LIVE** to make it `v2 (Live)`.
 
-### Prerequisites
+    This approach prevents existing versions in the destination workspace from being overwritten while giving you control over when to promote the copied version.
 
-Before copying a workflow to another workspace, ensure that all dependent resources used by the workflow are already available in the destination workspace.
+    **Prerequisites**
 
-This includes:
+    Before copying a workflow to another workspace, ensure that all dependent resources used by the workflow are already available in the destination workspace. This includes:
 
-- Notification Events referenced by the workflow.
-- Allowlist URLs required by the workflow.
-- Any other workflow dependencies or referenced resources that are specific to the source workspace.
+    - Notification Events referenced by the workflow.
+    - Allowlist URLs required by the workflow.
+    - Any other workflow dependencies or referenced resources that are specific to the source workspace.
 
-> **Important**
->
-> If the required dependencies are not present in the destination workspace, recreate or migrate them before copying the workflow to ensure it functions correctly after the transfer.
+    <Warning>
+    If the required dependencies are not present in the destination workspace, recreate or migrate them before copying the workflow to ensure it functions correctly after the transfer.
+    </Warning>
+  </Tab>
+</Tabs>
 
-## Groups
+## Access and Settings
 
-Groups help you organize related workflows together. For instance, if you have multiple workflows for different stages of a customer journey (Welcome, Onboarding, Engagement, Retention, Re-engagement), you can create a Customer Journey group and assign all these workflows to it. This makes workflow filtering and management more efficient.
+<Tabs>
+  <Tab title="Workflow URL">
+    Every workflow has a URL. Other systems, such as a payment gateway or your backend, call this URL to start the workflow. Open it from **Workflow URL** in the **More Options** menu (**⋮**), or from the Workflow URL icon in the builder.
 
-### How versioning works
+    ![](/images/workflow-url.gif)
 
-Let's say we are copying a workflow from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
-![](/images/workflow-versions.png)
-<Steps>
-  <Step>
-    If the workflow does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
-  </Step>
-  <Step>
-    If the workflow already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the workflow name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied workflow.
-  </Step>
-</Steps>
+    The **Workflow URL** window lets you:
 
-## How to view change logs?
+    - Switch between the **LIVE** and **TEST** URL.
+    - Choose how callers sign in, with **BASIC AUTH** or **TOKEN AUTH**.
+    - Copy the URL with the copy icon.
+    - Set who can call the workflow with the **Restricted** toggle.
 
-To view the history of all the modifications made to a template, you can utilize the change logs feature.
+    Click **SAVE CHANGES** to keep your changes.
 
-To do so, locate the history icon positioned at the top right corner of the template page, as shown in the image below, and click on it to view the change logs.
+    ![](/images/workflow-url.png)
 
-It shows the following details
+    **Authentication methods**
 
-- Who updated it
-- Which version was updated
-- At what date & time its updated.
-  ![](/images/email_template_changelog.png)
-  
-## How versioning works
+    ![](/images/workflow-url-auth-options.png)
 
-Let's say we are copying a notification event from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
+    | Method | When to use it |
+    |--------|----------------|
+    | **BASIC AUTH** | The URL carries your Fyno account details, so callers can use it as is. |
+    | **TOKEN AUTH** | The URL uses a workflow token instead. You can set your own token in the **Customize Token** tab. |
 
-<Steps>
-  <Step>
-    If the notification event does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
-  </Step>
-  <Step>
-    If the notification event already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the notification event name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied notification event.
-  </Step>
-</Steps>
+    <Warning>
+    Treat the Workflow URL like a password. Anyone who has it can start the workflow while access is public.
+    </Warning>
 
+    **Access level**
+
+    By default, the access level of a workflow is public, so it can be called with either authentication method above. Turn on **Restricted** to allow the workflow to run only with your Fyno API Key.
+
+    ![](/images/workflow-restricted-access.png)
+
+    <Tip>
+    Keep the workflow public while you build and test it, then switch it to **Restricted** once it is ready.
+    </Tip>
+  </Tab>
+  <Tab title="Customize Token">
+    If you call your workflow with **TOKEN AUTH**, you can replace its token with your own value.
+
+    ![](/images/workflow-customize-token.gif)
+
+    1. Open **Customize Token** from the **More Options** menu (**⋮**), or click the Customize Token icon in the builder.
+    2. Enter the new value in **Enter new token value** and again in **Confirm new token value**.
+    3. Click **UPDATE TOKEN**.
+    4. Open **Workflow URL** and copy the new URL. Update it wherever the workflow is called.
+
+    ![](/images/workflow-update-token.png)
+
+    <Note>
+    The URL changes when you update the token, so make sure to copy the new URL.
+    </Note>
+  </Tab>
+  <Tab title="Change logs">
+    To view the history of all the modifications made to a workflow, you can utilize the change logs feature.
+
+    To do so, open the workflow and click the history icon at the top right of the builder, next to the **Created** or **Updated** details, as shown in the image below.
+
+    ![](/images/workflow-builder-header.png)
+
+    The **Change Logs** panel opens with the latest change at the top. It shows the following details:
+
+    - Who updated it
+    - Which version was updated, and what happened to it, for example **Updated (v3)** or **Went live with (v2)**
+    - At what date & time it was updated
+
+    ![](/images/workflow-change-logs.png)
+  </Tab>
+</Tabs>
