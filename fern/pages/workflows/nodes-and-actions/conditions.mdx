@@ -7,59 +7,78 @@ og:description: 'Learn how to configure the Conditions widget to create conditio
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-The **Conditions** widget allows users to create conditional branching logic within workflows.
+The **Conditions** widget allows you to create conditional branching logic within workflows.
 
 This widget helps workflows evaluate variables dynamically during execution and route users through different workflow paths based on configured conditions.
 
-# Steps to configure Conditions Widget
+- If the configured condition evaluates to **true**, the workflow proceeds through the **If** branch.
+- If the condition evaluates to **false**, the workflow proceeds through the **Else** branch.
+
+## Example
+
+Say you want premium users to get a premium offer and everyone else a standard one. The **If** branch checks `user_type` equals `premium`. The animation below follows three users through the widget.
+
+![Conditions widget routing users](/images/conditions-widget-example.gif)
+
+## Steps to configure Conditions Widget
+
+Here is the **If** panel being filled in for the example above.
+
+![Filling in the If branch](/images/conditions-widget-setup.gif)
 
 <Steps>
-  <Step>
-    Drag and drop the <b>Conditions</b> widget into the workflow and connect it to the required workflow step.
+  <Step title="Add the widget">
+    Drag and drop the **Conditions** widget into the workflow and connect it to the required workflow step. It adds an **If** and an **Else** branch.
   </Step>
-
-  <Step>
-    Open the widget configuration panel by clicking the <b>If</b> block inside the Conditions widget.
+  <Step title="Open the If branch">
+    Open the widget configuration panel by clicking the **If** block inside the Conditions widget.
   </Step>
-
-  <Step>
-    Select the required <b>Variable</b> from the dropdown list.
+  <Step title="Choose what to check">
+    Under **Condition**, select **Variable**. Then select the required variable in **Enter Value**, for example `{{user_type}}`.
   </Step>
-
-  <Step>
-    Choose the appropriate <b>Operator</b> such as <b>equals</b>, <b>contains</b>, or other supported comparison operators.
+  <Step title="Choose the Operator">
+    Choose the appropriate **Operator** such as **equals**, **contains**, or other supported comparison operators.
   </Step>
-
-  <Step>
-    Enter the comparison <b>Value</b> that should be evaluated against the selected variable.
+  <Step title="Enter the Value">
+    Enter the comparison **Value** that should be evaluated against the selected variable, for example `premium`.
   </Step>
-
-  <Step>
-    Click <b>ADD ANOTHER</b> to add multiple conditions if required.
+  <Step title="Add more checks (optional)">
+    Click **ADD ANOTHER** to add multiple conditions if required. Use the delete icon to remove one.
   </Step>
-
-  <Step>
-    Save the configuration.
-
-    During workflow execution:
-
-    - If the configured condition evaluates to <b>true</b>, the workflow proceeds through the <b>If</b> branch.
-    - If the condition evaluates to <b>false</b>, the workflow proceeds through the <b>Else</b> branch.
+  <Step title="Connect the branches and save">
+    Connect the next workflow steps to both **If** and **Else**, then save the configuration.
   </Step>
 </Steps>
 
-# Supported Capabilities
+<Accordion title="Supported operators">
+  - Equals
+  - Not Equals
+  - Contains
+  - Starts With
+  - Ends With
+  - Greater Than
+  - Less Than
+  - Greater than or Equal
+  - Less than or Equal
+  - Is
+  - Is Empty
+  - In
+  - nin
+  - is boolean
+</Accordion>
 
-The Conditions widget can be used for:
+## Supported Capabilities
 
-- Conditional workflow branching
-- Dynamic user segmentation
-- Attribute-based routing
-- Personalized workflow execution
-- Multi-condition evaluation
-- Decision-based automation flows
+<CardGroup cols={3}>
+  <Card title="Conditional workflow branching" icon="code-branch" />
+  <Card title="Dynamic user segmentation" icon="users" />
+  <Card title="Attribute-based routing" icon="route" />
+  <Card title="Personalized workflow execution" icon="user-gear" />
+  <Card title="Multi-condition evaluation" icon="list-check" />
+  <Card title="Decision-based automation flows" icon="diagram-project" />
+</CardGroup>
 
-# Example Use Cases
+## Example Use Cases
 
 | Scenario | Condition |
 |---|---|

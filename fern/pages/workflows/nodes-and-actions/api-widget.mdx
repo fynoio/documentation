@@ -9,152 +9,116 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 The **Call an API** widget allows workflows to make outbound API requests using verified allow-listed endpoints. This widget can be used to fetch external data, trigger third-party services, or process workflow payloads dynamically.
 
-The widget contains two primary sections:
+<CardGroup cols={2}>
+  <Card title="Request" icon="arrow-up-right">
+    Configure the outbound API request.
+  </Card>
+  <Card title="Response" icon="arrow-down-left">
+    Configure and simplify the API response payload.
+  </Card>
+</CardGroup>
 
-- **Request** — Configure the outbound API request
-- **Response** — Configure and simplify the API response payload
+![Call an API widget](/images/api-widget-panel.png)
+
+<Note>
+Only verified allow-listed URLs can be used inside the Call an API widget. Ensure the endpoint is configured before creating the workflow.
+</Note>
+
+## Example
+
+Say your workflow needs the latest status of an order before it sends an update. The **Call an API** widget calls your orders API, simplifies the response, and the next **Notification Event** uses the status in its message.
+
+![Call an API fetching order details](/images/api-widget-example.gif)
+
+| Setting | Value in this example |
+| --- | --- |
+| **Allowlist URL** | `orders-api` |
+| **HTTP Method** | GET |
+| **Content Type** | None |
+| **Query Parameters** | `order_id` = `{{$input.body.order_id}}` |
+| **Headers** | `Authorization: Bearer <token>` |
+| **Simplified value used next** | `{{order.status}}`, which is `shipped` |
 
 ## Steps to configure Call an API Widget
 
 <Steps>
-  <Step>
+  <Step title="Add the widget">
     Drag and drop the **Call an API** widget into the workflow and connect it to the required workflow step.
   </Step>
+</Steps>
 
-  <Step>
-    Configure the <b>Request</b> section.
+### Request
 
-    This section is used to define the API endpoint and request configuration.
-  </Step>
+The **Request** section is used to define the API endpoint and request configuration.
 
-  <Step>
-    Select the <b>Allowlist URL</b>.
-
+<Steps>
+  <Step title="Select the Allowlist URL">
     Choose the verified allow-listed endpoint that should be called from the workflow.
-
-    | Field | Description |
-    | --- | --- |
-    | Allowlist URL | Verified endpoint configured for outbound API calls. |
-
   </Step>
-
-  <Step>
-    Select the <b>HTTP Method</b>.
-
-    This defines the type of API request that will be executed.
-
-    Supported methods may include:
-
-    - GET
-    - POST
-    - PUT
-    - PATCH
-    - DELETE
-
-    | Field | Description |
-    | --- | --- |
-    | HTTP Method | Defines the request operation used while calling the API. |
-
+  <Step title="Select the HTTP Method">
+    This defines the type of API request that will be executed. Supported methods may include GET, POST, PUT, PATCH and DELETE.
   </Step>
-
-  <Step>
-    Configure the <b>Content Type</b>.
-
-    The content type determines the format of the request payload being sent to the API.
-
-    Common content types include:
-
-    - None
-    - application/json
-    - form-data
-    - x-www-form-urlencoded
-
-    | Field | Description |
-    | --- | --- |
-    | Content Type | Defines the payload format used in the API request. |
-
+  <Step title="Configure the Content Type">
+    The content type determines the format of the request payload being sent to the API. Common content types include None, `application/json`, `form-data` and `x-www-form-urlencoded`.
   </Step>
-
-  <Step>
-    Configure <b>Query Parameters</b> (Optional).
-
+  <Step title="Configure Query Parameters (optional)">
     Query parameters are appended to the API URL and are typically used for filtering, searching, or passing request-specific values.
-
-    Example:
 
     ```json
     {
       "userId": "$input.user.id"
     }
     ```
-
-    | Field | Description |
-    | --- | --- |
-    | Query Parameters | Key-value pairs appended to the request URL. |
-
   </Step>
-
-  <Step>
-    Configure <b>Headers</b> (Optional).
-
-    Headers are used to send additional metadata with the API request.
-
-    Common examples include:
-
-    - Authorization tokens
-    - API keys
-    - Custom request headers
-
-    Example:
+  <Step title="Configure Headers (optional)">
+    Headers are used to send additional metadata with the API request, such as authorization tokens, API keys or custom request headers.
 
     ```json
     {
       "Authorization": "Bearer <token>"
     }
     ```
-
-    | Field | Description |
-    | --- | --- |
-    | Headers | Additional metadata sent along with the API request. |
-
-  </Step>
-
-  <Step>
-    Configure the <b>Response</b> section.
-
-    The Response section allows users to add a sample API response payload and simplify it using the payload mapper.
-
-    Users can provide response data in:
-    
-    - JSON format
-    - FORM format
-  </Step>
-
-  <Step>
-    Use the <b>Simplify</b> option to flatten and simplify nested API response payloads for easier mapping within workflows.
-
-    Example Response:
-
-    ```json
-    {
-      "user": {
-        "id": 101,
-        "name": "John Doe"
-      }
-    }
-    ```
-
-    Simplified Output:
-
-    ```json
-    {
-      "user.id": 101,
-      "user.name": "John Doe"
-    }
-    ```
   </Step>
 </Steps>
 
-<Note>
-Only verified allow-listed URLs can be used inside the Call an API widget. Ensure the endpoint is configured before creating the workflow.
-</Note>
+| Field | Description |
+| --- | --- |
+| **Allowlist URL** | Verified endpoint configured for outbound API calls. |
+| **HTTP Method** | Defines the request operation used while calling the API. |
+| **Content Type** | Defines the payload format used in the API request. |
+| **Query Parameters** | Key-value pairs appended to the request URL. |
+| **Headers** | Additional metadata sent along with the API request. |
+
+### Response
+
+The **Response** section allows you to add a sample API response payload and simplify it using the payload mapper.
+
+<Steps>
+  <Step title="Add a sample response">
+    Provide the response data in **JSON** or **FORM** format.
+  </Step>
+  <Step title="Simplify the response">
+    Use the **Simplify** option to flatten nested API response payloads for easier mapping within workflows.
+
+    <Tabs>
+      <Tab title="Example response">
+        ```json
+        {
+          "user": {
+            "id": 101,
+            "name": "John Doe"
+          }
+        }
+        ```
+      </Tab>
+      <Tab title="Simplified output">
+        ```json
+        {
+          "user.id": 101,
+          "user.name": "John Doe"
+        }
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+</Steps>

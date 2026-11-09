@@ -8,86 +8,99 @@ image: 'https://images.fyno.io/brand/fyno-doc-preview.png'
 ---
 
 The **Spreadsheet** widget writes data from your workflow to an external spreadsheet, supporting both **Microsoft Excel workbooks** and **Google Sheets**.
-![](/images/spreadsheet_widget.png)
+
 You can use this widget to:
 
-- Record workflow execution details.
-- Capture customer or transaction data.
-- Maintain audit logs.
-- Create reporting datasets.
-- Share information with teams through spreadsheets.
+<CardGroup cols={3}>
+  <Card title="Record workflow execution details" icon="clipboard-list" />
+  <Card title="Capture customer or transaction data" icon="receipt" />
+  <Card title="Maintain audit logs" icon="shield-check" />
+  <Card title="Create reporting datasets" icon="chart-column" />
+  <Card title="Share information with teams" icon="share-nodes" />
+</CardGroup>
 
 After connecting the Spreadsheet widget to a Google Spreadsheet or Microsoft Excel workbook, you can configure one or more worksheets and map the required columns for use in your workflow.
 
-## Supported Spreadsheet Types
+## Example
 
-When adding a **Spreadsheet Widget**, select one of the following connection types:
+Say you want to log every confirmed order in a sheet. Each column is mapped to a value: three come from the workflow data, and **Status** is a static value. Every time the workflow runs, a new row is added.
 
-- **Microsoft Excel**
-- **Google Spreadsheet**
+![Write to Spreadsheet adding a row per workflow run](/images/spreadsheet-example.gif)
 
-The configuration fields displayed depend on the selected spreadsheet type.
-
-## Microsoft Excel
-
-Use this option to connect to an Excel workbook stored in Microsoft SharePoint.
-![](/images/write-to-spreadsheet-ms-excel.png)
-### Configuration
-
-After selecting **Microsoft Excel**, provide the following details:
-
-| Field | Description |
+| Column Header | Value |
 | --- | --- |
-| **Workbook ID** | The unique identifier of the Excel workbook, which can be found in the URL. |
-| **Sheet Name** | The worksheet within the workbook to connect to. |
-| **Tenant ID** | Microsoft Azure Active Directory Tenant ID. |
-| **Client ID** | Azure Application (Client) ID. |
-| **Client Secret** | Azure Application Client Secret used for authentication. |
-| **SharePoint URL** | The SharePoint site URL where the workbook is stored. |
+| Order ID | `{{order_id}}` |
+| Customer | `{{name}}` |
+| Status | `Confirmed` (static value) |
+| Amount | `{{amount}}` |
 
-### Values to Write to the Sheet
+## Connect a spreadsheet
 
-After selecting the worksheet, configure the values to write by mapping worksheet columns to workflow data.
+When adding a **Spreadsheet** widget, select one of the following connection types. The configuration fields displayed depend on the selected spreadsheet type.
+
+<Tabs>
+  <Tab title="Microsoft Excel">
+    Use this option to connect to an Excel workbook stored in Microsoft SharePoint.
+
+    ![](/images/write-to-spreadsheet-ms-excel.png)
+
+    After selecting **Microsoft Excel**, provide the following details:
+
+    | Field | Description |
+    | --- | --- |
+    | **Workbook ID** | The unique identifier of the Excel workbook, which can be found in the URL. |
+    | **Sheet Name** | The worksheet within the workbook to connect to. |
+    | **Tenant ID** | Microsoft Azure Active Directory Tenant ID. |
+    | **Client ID** | Azure Application (Client) ID. |
+    | **Client Secret** | Azure Application Client Secret used for authentication. |
+    | **SharePoint URL** | The SharePoint site URL where the workbook is stored. |
+  </Tab>
+  <Tab title="Google Spreadsheet">
+    Use this option to connect to a Google Spreadsheet using a Google service account.
+
+    ![](/images/write-to-spreadsheet-google-spreadsheet.png)
+
+    After selecting **Google Spreadsheet**, provide the following details:
+
+    | Field | Description |
+    | --- | --- |
+    | **Spreadsheet ID** | The unique identifier of the Google Spreadsheet. |
+    | **Sheet Name** | The worksheet within the spreadsheet to connect to. |
+    | **Private Key** | The private key from the Google service account credentials. |
+    | **Client Email** | The service account client email used for authentication. |
+  </Tab>
+</Tabs>
+
+<Warning>
+The Client Secret and Private Key give access to your files. Keep them private and don't share them in screenshots or messages.
+</Warning>
+
+## Values to Write to the Sheet
+
+This works the same way for both Microsoft Excel and Google Spreadsheet. After selecting the worksheet, configure the values to write by mapping worksheet columns to workflow data.
+
 ![](/images/values-to-write-the-sheet.png)
-1. For each mapping, specify:
-   - **Column Header** – The column in the selected worksheet where the data will be written.
-   - **Value** – The static value or workflow variable to write to the corresponding column.
-2. Click **Add Another** to create a new column mapping and repeat the process to add additional column mappings as required.
 
-## Google Spreadsheet
+<Steps>
+  <Step title="Map a column">
+    For each mapping, specify:
 
-Use this option to connect to a Google Spreadsheet using a Google service account.
-![](/images/write-to-spreadsheet-google-spreadsheet.png)
-### Configuration
-
-After selecting **Google Spreadsheet**, provide the following details:
-
-| Field | Description |
-| --- | --- |
-| **Spreadsheet ID** | The unique identifier of the Google Spreadsheet. |
-| **Sheet Name** | The worksheet within the spreadsheet to connect to. |
-| **Private Key** | The private key from the Google service account credentials. |
-| **Client Email** | The service account client email used for authentication. |
-
-### Values to Write to the Sheet
-
-After selecting the worksheet, configure the values to write by mapping worksheet columns to workflow data.
-![](/images/values-to-write-the-sheet.png)
-1. For each mapping, specify:
-   - **Column Header** – The column in the selected worksheet where the data will be written.
-   - **Value** – The static value or workflow variable to write to the corresponding column.
-2. Click **Add Another** to create a new column mapping and repeat the process to add additional column mappings as required.
+    - **Column Header:** The column in the selected worksheet where the data will be written.
+    - **Value:** The static value or workflow variable to write to the corresponding column.
+  </Step>
+  <Step title="Add more columns">
+    Click **Add Another** to create a new column mapping, and repeat for as many columns as you need.
+  </Step>
+</Steps>
 
 ## Outcome
 
-The **Spreadsheet** widget enables workflows to write data directly to external spreadsheets.
+The **Spreadsheet** widget enables workflows to write data directly to external spreadsheets, so you can capture, organize, and share workflow-generated data efficiently. It supports:
 
-By supporting:
-
-- Microsoft Excel.
-- Google Spreadsheets.
-- Static values.
-- Dynamic workflow values.
-- Multiple column mappings.
-
-users can capture, organize, and share workflow-generated data efficiently.
+<CardGroup cols={3}>
+  <Card title="Microsoft Excel" icon="file-excel" />
+  <Card title="Google Spreadsheets" icon="table" />
+  <Card title="Static values" icon="font" />
+  <Card title="Dynamic workflow values" icon="code" />
+  <Card title="Multiple column mappings" icon="table-columns" />
+</CardGroup>

@@ -7,79 +7,102 @@ og:description: 'Learn how to use the User Profile widget to manage user profile
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno allows you to update a user profile or fetch a user profile details within a workflow. This is helpful when you need to decide what notifications to send based on a user property or Update a channel/user property linked to a profile based on the data received in the webhook.
+Fyno allows you to update a user profile or fetch user profile details within a workflow. This is helpful when you need to decide what notifications to send based on a user property, or to update a channel or user property linked to a profile based on the data received in the webhook.
 
-To add a user profile within a workflow, drag and drop User profile widget to the workflow.
-You can perform 5 different actions using User profile widget within a workflow. ![](/images/user_profile_actions.png)
+To add a user profile within a workflow, drag and drop the **User Profiles** widget into the workflow. You can perform 5 different actions with it.
 
- - Update/add channel
- - Remove channel
- - Update profile details
- - Fetch profile details
- - Delete profile
+![](/images/user_profile_actions.png)
 
-### Update/add channel
+| Action | Use it to |
+|---|---|
+| **Update/add channel** | Add a new channel or update an existing channel's details. |
+| **Remove channel** | Remove one or more channels from the profile. |
+| **Update profile details** | Create, update, clear or increment user properties. |
+| **Fetch profile details** | Get user properties to use later in the workflow. |
+| **Delete profile** | Delete the user profile. |
 
-To add a new channel or update the existing channel details, you can use this action. ![](/images/user_profile_add_update.png)
+## Example
 
-- Distinct Id : Map user's distinct id from the payload
-- Action Type : Update/add channel
-- Channel : Select the channel you want to add or update
-- Variable value from payload : If you want to update SMS channel, then select mobile number from the payload. 
+The animation below takes one user, Priya, through all five actions in turn: her SMS number is added, her Email channel is removed, her plan is updated and her order count goes up, her plan is fetched for the next step, and finally her profile is deleted.
 
-<Note> You can add multiple channel details to add or update </Note>
+![One user profile through the five actions](/images/user-profile-example.gif)
 
-### Remove channel
+## Set up the widget
 
-To remove a channel details from user profile, you can use this action. ![](/images/user_profile_remove.png)
+Every action starts with the same two fields. Here they are being filled in.
 
-- Distinct Id : Map user's distinct id from the payload
-- Action Type : Remove channel
-- Channel : Select the channel(s) you want to remove
+![Filling in the User Profiles panel](/images/user-profile-setup.gif)
 
-### Update profile details
+1. Under **Distinct ID value from the payload**, select the variable from the payload that holds the user's distinct ID, for example `{{$input.body.distinct_id}}`.
+2. Under **Action**, select the action you want to perform from **Action Type**.
 
-To update the profile details of an existing user profile, you can use this action. 
+Then fill in the fields for that action.
 
-- Distinct Id : Map user's distinct id from the payload
-- Action Type : Update profile details
+<Tabs>
+  <Tab title="Update/add channel">
+    To add a new channel or update the existing channel details, use this action.
 
-**Action**
+    ![](/images/user_profile_add_update.png)
 
-1. Create Property - Select this if you want to add a new property
-  - Property Name : Enter the user property name
-  - Property Type : Select the property's data type - String, Boolean, Date, List or Number
-  - Property value from payload : select the property value from payload
+    | Field | What to enter |
+    |---|---|
+    | **Distinct Id** | Map the user's distinct ID from the payload. |
+    | **Action Type** | Update/add channel |
+    | **Channel** | Select the channel you want to add or update. |
+    | **Variable value from payload** | The value for that channel. For example, to update the SMS channel, select the mobile number from the payload. |
 
-2. Update Property - Select this if you want to update an existing  property
-  - Property Name : Select the user property name from the drop down
-  - Property value from payload : select the property value from payload
+    <Note>
+    You can add multiple channel details to add or update.
+    </Note>
+  </Tab>
+  <Tab title="Remove channel">
+    To remove channel details from a user profile, use this action.
 
-3. Update Property only if empty - Select this if you want to update an existing  property which is empty. 
-  - Property Name : Select the user property name from the drop down
-  - Property value from payload : select the property value from payload
+    ![](/images/user_profile_remove.png)
 
-4. Leave empty - Select this if you want to update an existing  property with empty value. 
-  - Property Name : Select the user property name from the drop down
+    | Field | What to enter |
+    |---|---|
+    | **Distinct Id** | Map the user's distinct ID from the payload. |
+    | **Action Type** | Remove channel |
+    | **Channel** | Select the channel(s) you want to remove. |
+  </Tab>
+  <Tab title="Update profile details">
+    To update the profile details of an existing user profile, use this action.
 
-5. Increment/Decrement numeric value - Select this if you want to increase or decrease the value of a  numerical property
-  - Property Name : Select the user property name from the drop down
-  - Property value from payload : select the property value from payload
+    | Field | What to enter |
+    |---|---|
+    | **Distinct Id** | Map the user's distinct ID from the payload. |
+    | **Action Type** | Update profile details |
 
+    Then choose what to do under **Action**:
 
-### Fetch profile details
+    | Action | When to use it | Fields |
+    |---|---|---|
+    | **Create Property** | Add a new property. | **Property Name**: enter the name. **Property Type**: String, Boolean, Date, List or Number. **Property value from payload**: select the value. |
+    | **Update Property** | Update an existing property. | **Property Name**: select from the dropdown. **Property value from payload**: select the value. |
+    | **Update Property only if empty** | Update an existing property only if it is empty. | **Property Name**: select from the dropdown. **Property value from payload**: select the value. |
+    | **Leave empty** | Set an existing property to an empty value. | **Property Name**: select from the dropdown. |
+    | **Increment/Decrement numeric value** | Increase or decrease a number property. | **Property Name**: select from the dropdown. **Property value from payload**: select the value. |
+  </Tab>
+  <Tab title="Fetch profile details">
+    To fetch details from a user profile, use this action.
 
-To remove a channel details from user profile, you can use this action. ![](/images/user_profile_fetch.png)
+    ![](/images/user_profile_fetch.png)
 
-- Distinct Id : Map user's distinct id from the payload
-- Action Type : Fetch profile details
-- Select properties to fetch : Select one or more user properties from dropdown
+    | Field | What to enter |
+    |---|---|
+    | **Distinct Id** | Map the user's distinct ID from the payload. |
+    | **Action Type** | Fetch profile details |
+    | **Select properties to fetch** | Select one or more user properties from the dropdown. |
+  </Tab>
+  <Tab title="Delete profile">
+    To delete a user profile, use this action.
 
+    ![](/images/user_profile_delete.png)
 
-### Delete Profile
-
-To delete a user profile, you can use this action. ![](/images/user_profile_delete.png)
-
-- Distinct Id : Map user's distinct id from the payload
-- Action Type : Remove channel
-- Channel : Select the channel(s) you want to remove
+    | Field | What to enter |
+    |---|---|
+    | **Distinct Id** | Map the user's distinct ID from the payload. |
+    | **Action Type** | Delete profile |
+  </Tab>
+</Tabs>

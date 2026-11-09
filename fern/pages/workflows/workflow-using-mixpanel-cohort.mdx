@@ -1,5 +1,5 @@
 ---
-title: 'Creating a Workflow using Mixpanel Cohort'
+title: 'Creating a workflow with Mixpanel Cohort'
 slug: 'workflow-using-mixpanel-cohort'
 description: 'Learn how to configure workflows using Mixpanel cohorts as triggers, including cohort sync behavior, notification mapping, and workflow URL configuration.'
 og:title: 'Workflow using Mixpanel Cohorts | Fyno Documentation'
@@ -7,137 +7,197 @@ og:description: 'Configure workflows triggered by Mixpanel cohorts to automate n
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Navigate to the Workflow section from the left navigation panel.
-
-On the landing page of Workflow, you will see the Value proposition of Workflows. You can create a new workflow by clicking 'Create New Workflow'.
-
-If you have already created few workflows, you can see the list of all the Workflows you have created in card view. You can click 'Create+' to create a new workflow.
-
-Once you click 'Create+', a workflow canvas opens.
+A Mixpanel trigger starts your workflow whenever Mixpanel syncs a cohort to Fyno. You can send different notifications to users when the cohort is first synced, when users join it, and when they leave it.
 
 ## Prerequisites
 
-1. Ensure relevant notification events which will be configured as part of Workflow is created.
+1. Ensure relevant notification events which will be configured as part of Workflow are created.
 2. Ensure at least 1 allowlist API is configured if you want to receive delivery reports.
+
+## Example: EMI reminders from a cohort
+
+Say you have a Mixpanel cohort called `emi-due` for users whose EMI is due this week. Every Mixpanel cohort can be linked to one of 3 actions, and each one becomes its own branch on the **Cohort** node.
+
+![](/images/mixpanel-example.gif)
+
+| Action | Who it includes | In this example |
+|--------|-----------------|-----------------|
+| **First Run** | All the users during the initial cohort sync. Use this option if you want to do a one time sync. | Send `emi-reminder` to everyone in the cohort. |
+| **Added** | Users who joined the cohort since the last sync. | Send `emi-reminder` to the new member. |
+| **Removed** | Users who left the cohort since the last sync. | Send a payment thank-you to users who have paid. |
 
 ## How to configure a Trigger using Mixpanel cohort
 
+Here is the setup at a glance.
+
+![](/images/mixpanel-setup.gif)
+
 <Steps>
-  <Step>Drag and drop 'Mixpanel' under Triggers into the Workflow canvas. ![](/images/3414d34-workflow_mp_custom.png)</Step>
-  <Step>Custom Fields - This is Optional. By default, `mixpanel_distinct_id` and `mixpanel_cohort_name` will be sent for every Mixpanel cohort. If your cohort has additional fields, add it here.</Step>
-  <Step>Cohort Name - Enter a cohort name. Make sure the name matches with the Cohort created in Mixpanel. ![](/images/35afc62-MP_Custom_fields.png)</Step>
-  <Step>
-    Every Mixpanel cohort can be associated with one of the 3 actions.
-    <ol>
-      <li>First Run - Includes all the users during the initial cohort sync. Use this option if you want to do One Time Sync.</li>
-      <li>Member added - Includes users who joined the cohort since the last sync</li>
-      <li>Member removed - Includes users who left the cohort since the last sync.</li>
-    </ol>
+  <Step title="Create the workflow">
+    Navigate to **Workflows** from the left navigation panel. If you have already created a few workflows, you can see them in card view.
+
+    Click **CREATE**, enter a name and click **SUBMIT**. The workflow canvas opens with the list of triggers.
+  </Step>
+  <Step title="Select the Mixpanel trigger">
+    Select **MIXPANEL** from the triggers. The **Mixpanel** panel opens on the right. To pick a different trigger, click **CHANGE TRIGGER**.
+  </Step>
+  <Step title="Add Custom Fields (optional)">
+    By default, `mixpanel_distinct_id` and `mixpanel_cohort_name` are sent for every Mixpanel cohort. If your cohort has additional fields, enter each field name in **Mixpanel Custom Fields** and press ENTER.
+
+    <Note>
+    Make sure the case matches the field name in Mixpanel.
+    </Note>
+
+    In this example, `plan_type` is added as a custom field.
+
+    ![](/images/mixpanel-trigger.png)
+  </Step>
+  <Step title="Add a Cohort and enter its name">
+    Add a **Cohort** node from the panel on the left and connect it to the trigger. Under **Cohort Name**, enter the cohort name. Make sure the name matches the cohort created in Mixpanel.
+
+    The Cohort node shows 3 outputs, **First Run**, **Added** and **Removed**. Connect the next steps to the ones you need.
+
+    ![](/images/mixpanel-cohort-name.png)
   </Step>
 </Steps>
 
 ## Action
 
-There are 2 possible actions you can add.
+Once the trigger and cohort are set up, add nodes from the panel on the left of the canvas.
 
-- Notification Event
-- Cohort
+![](/images/mixpanel-nodes.png)
 
-![](/images/da04a48-MP_actions.png)
+| Node | What it does |
+|------|--------------|
+| **Notification Event** | Sends a notification using one of your notification events. |
+| **Cohort** | Links a Mixpanel cohort to the trigger, with **First Run**, **Added** and **Removed** outputs. |
+| **Subflow** | Bundles repeated nodes so you can reuse them across the workflow. |
+| **AI Magic Match** | Sends the user down a branch based on the meaning of their input. |
+| **Condition** | Sends the user down a branch based on a variable and a value. |
 
-### Notification Event
+The two you will use most are **Notification Event** and **Cohort**.
 
-**Notification Event** refers to the notification events created within Fyno's application and can be called in response to an action in Mixpanel.
+<Tabs>
+  <Tab title="Notification Event">
+    **Notification Event** refers to the notification events created within Fyno and can be called in response to an action in Mixpanel. Connect it to a **First Run**, **Added** or **Removed** output.
 
-On drag and drop of the **Notification Event**, you will see the:
+    <Steps>
+      <Step title="Select the notification event">
+        Under **Select Notification Event**, choose a relevant **Notification Event** from the dropdown, specific to this Mixpanel action.
 
-<Steps>
-  <Step>**Notification Event:** Select a relevant **Notification Event** from the dropdown, specific to this Mixpanel action.</Step>
-  <Step>
-    **Map Data:** On selecting the notification event, you will see the Notification Event Mapping details. Basically, for the notification event that you have selected, you will need to specify which fields from the Mixpanel cohort correspond to the destination, data, callback etc. ![](/images/cbb5e48-MP_Event.png)
-    <ol>
-      <li>**Distinct Id:** If you are using Fyno's user profile, then select value for Distinct Id from the payload or a custom variable created using the _Simplify_ option.</li>
-      <li>**Channels** : All the channels configured as part of the template linked to the Notification Event selected will appear here. If you are not using Fyno's user profile, map the channel level destinations with a field from the Mixpanel cohort . In this example, the template linked to the notification event 'Onboarding_Routing' has only Email as the channel. That's why you see Email under Map data. Under Index for Destination, choose 'all' or you can add any specific index like 0,1 etc.</li>
-    </ol>
-  </Step>
-  <Step>**Data:** In this section, you will see all the fields that you have specified as **Placeholders** (variable parameters/dynamic values) in the **Template** that is associated with the **Notification Event** that was selected. In case you do not see this field, this means that there are no **Placeholders** in the **Template**. ![](/images/7ee8479-MP_Data.png)</Step>
-  <Step>
-    **Additional Data:** Additional data in the form of a payload can be specified here if required, in JSON format. This is an optional field. A typical use case for additional data is when you do not manually add placeholders during template creation. For instance, if your template contains the text `Hi {{ name }}` but you do not explicitly specify `name` as a placeholder during template creation. Nevertheless, Fyno still identifies the name as a placeholder since it appears in the `{{}}` syntax. In this scenario, you can include the value of the name in the **Additional Data** section. To do this, specify the name as the key and select a corresponding value from the dropdown.
-  </Step>
-</Steps>
+        The **Map data** section uses the **Test** version of the notification event.
+      </Step>
+      <Step title="Map the destination">
+        Under **DESTINATION**, specify which field from the Mixpanel cohort is the recipient.
 
-### Cohorts
+        - **Distinct ID:** If you are using Fyno's user profile, select the value for Distinct ID, for example `{{mixpanel_distinct_id}}`, or a custom variable created using **Simplify**.
+        - **Channel destination:** All the channels configured in the template linked to the selected notification event appear here. If you are not using Fyno's user profile, map the channel destination with a field from the Mixpanel cohort. In this example, the template linked to `emi-reminder` has only Email as the channel, which is why you see **Email**.
 
-You can add multiple cohorts to the Mixpanel trigger as shown below. This helps you to add as many cohorts to a single Workflow and execute all your use cases.
+        ![](/images/mixpanel-notification-event.png)
+      </Step>
+      <Step title="Map the placeholders">
+        Under **DATA**, you will see all the fields specified as **Placeholders** (dynamic values) in the template linked to the selected notification event. Map each one to a value from the cohort. If you do not see this section, there are no placeholders in the template.
 
-![](/images/d92e66f-mp_multiple_cohorts_updated.png)
+        ![](/images/mixpanel-data.png)
+      </Step>
+      <Step title="Add Additional Data (optional)">
+        Use **ADDITIONAL DATA** for placeholders used in a route or not saved in the template. For instance, if your template contains `Hi {{ name }}` but you did not add `name` as a placeholder during template creation, Fyno still identifies it as a placeholder since it uses the `{{ }}` syntax.
 
-<Info>Cohorts can only be associated with Trigger nodes. It is not possible to add cohorts to Notification Event nodes.</Info>
+        Enter the key in **Placeholder name**, and select a value in **Placeholder value**. Click **ADD ANOTHER** to add more.
 
-## How to receive delivery reports?
+        ![](/images/mixpanel-additional-data.png)
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Cohort">
+    You can add multiple cohorts to the Mixpanel trigger as shown below. This helps you add as many cohorts as you need to a single Workflow and handle all your use cases.
 
-Fyno allows you to forward delivery reports to your own system or integrate them with third-party analytics tools like Mixpanel and Amplitude. This feature enables you to track and analyze the success of your notification deliveries seamlessly.
+    ![](/images/d92e66f-mp_multiple_cohorts_updated.png)
 
-You can read more about it [here](./receive-delivery-reports).
-
-## How to configure Idempotent Key?
-
-Workflows now supports idempotency, ensuring you can safely retry requests without the risk of performing the same operation twice. This feature proves invaluable in scenarios where an API call gets interrupted in transit, leaving you without a response.
-
-You can read more about it [here](./configure-idempotent-key-workflow).
-
-## How to configure overrides?
-
-Fyno allows you to override pre-configured values within an Integration, enabling you to use different values for specific notifications in a Workflow. This flexibility is useful when you need to customize the sender information or other details based on the requirements of each notification.
-
-You can read more about it [here](./configure-overrides-workflow).
+    <Info>
+    Cohorts can only be connected to the trigger. It is not possible to add cohorts after Notification Event nodes.
+    </Info>
+  </Tab>
+</Tabs>
 
 ## Workflow URL
 
-Once you saved or saved and promoted your workflow, you need to copy the Workflow URL. We provide URLs for both Test and Live. Please copy both the URLs and configure it in your system or any third party tool where the webhook will be triggered.
+Once you save or go live with your workflow, copy the Workflow URL. We provide URLs for both **TEST** and **LIVE**. Copy both URLs and configure them in Mixpanel, as shown in the next section.
 
-To get workflow URL, click workflow URL icon next to 'Live' button in the top navigation.
+To get the Workflow URL, click the Workflow URL icon next to the **GO LIVE** button at the top. The URL is auto-generated when you create the workflow. For more on this window, see [Access and Settings](/workflows#access-and-settings) on the Workflows page.
 
-![](/images/6c50368aeca6ca11400616a9e716f260f8772a0e55abb992b8ba89070fc37bba-icon_workflow.png)
+![](/images/workflow-header-url-icon.png)
 
-You will see the below popup. The URL is auto-generated when you create the workflow. You will need to use this URL to invoke this Workflow.
+<Tabs>
+  <Tab title="Public">
+    By default, the access level of a workflow is public. Choose **LIVE** or **TEST** to see that URL, and click the copy icon to copy it.
 
-### Public
+    Below the URL, the window shows the **Username** and **Password** to use in the HTTP Basic Auth settings when you create the integration in Mixpanel. Click the copy icon next to each one.
 
-If you are using Public URL, you will see the URL as shown below. You also need to configure the Username & Password while configuring webhook in Mixpanel.
+    ![](/images/mixpanel-workflow-url-public.png)
 
-![](/images/0f5030e-Workflow_URL_2.png)
+    <Info>
+    Workflows are public by default. If you turn on **Restricted** after the workflow is created and save it, you must use the Restricted URLs (Live and Test) when running the workflow.
+    </Info>
+  </Tab>
+  <Tab title="Restricted">
+    To use restricted access, turn on the **Restricted** toggle and click **SAVE CHANGES**. Restricted workflows can be run only with your Fyno API Key.
 
-<Info>Workflows are public by default. If you enable the "Restricted" option after the workflow is created and save it with this setting, you must use "Restricted" URLs (Live & Test) when funning the workflow.</Info>
+    The **Username** stays the same. For the **Password**, use your Fyno API Key in Mixpanel.
 
-### Restricted
+    ![](/images/mixpanel-workflow-url-restricted.png)
 
-If you want to use Restricted access, enable the Restricted Toggle as shown below. You also need to configure the Username & Password while configuring webhook in Mixpanel.
+    <Tip>
+    Keep the workflow public while you build and test it, then switch it to **Restricted** once it is ready.
+    </Tip>
+  </Tab>
+</Tabs>
 
-![](/images/747f6d2-Restricted_URL_2.png)
+<Tip title='You can update the token using the "Customize Token" option in the workflow header.'>
+Since the workflow URL can be called from anywhere, it is a good idea to update the token if you feel it has been compromised. Always remember to update the workflow URL (with the new token) in Mixpanel.
+</Tip>
 
-<Tip title='You can update the token using the "Customize Token" option in the Workflow details page header.'>Since you can invoke the workflow URL from anywhere, it is a good idea to update the token if you feel it has been compromised. You must always remember to update the workflow URL (with the new token) at the source from where the workflow is called.</Tip>
+## Connect the Workflow URL in Mixpanel
 
-## How to configure Workflow URL in Mixpanel
-
-To send data from Mixpanel to Fyno's Workflow, you need to configure Workflow URL in Mixpanel. To do so, follow the below steps.
+To send cohort data from Mixpanel to your workflow, add the Workflow URL to Mixpanel.
 
 <Steps>
-  <Step>In Mixpanel's top navigation, click Data Management icon and go to Integrations. ![](/images/d41fef79c97c114e24017462f6f1c3b70337bc1d7debbe443812fc9939c20a70-Mixpanel_webhook.png)</Step>
-  <Step>In the integrations, select Custom webhook and click Add connection. You will see a popup as shown. ![](/images/475fc8e132e53775bda93f34e761db5e54699da5e367e97db934a011779c9bcd-mixpanel_config.png)</Step>
-  <Step>
-    Provide the following details
-    <ul>
-      <li>Connector Name - Unique name to identify the webhook to send data to Fyno.</li>
-      <li>URL - Enter the Workflow URL you got in the previous section here.</li>
-      <li>Username - Provide the username from Workflow URL popup</li>
-      <li>Password - Provide the password from Workflow URL popup</li>
-    </ul>
+  <Step title="Open Integrations">
+    In Mixpanel, click the **Data Management** icon in the top navigation and go to **Integrations**.
+  </Step>
+  <Step title="Add a Custom webhook">
+    Select **Custom webhook** and click **Add connection**.
+  </Step>
+  <Step title="Fill in the details">
+    Enter a **Connector Name** to identify the connection. Paste the Workflow URL in **URL**, then enter the **Username** and **Password** from the Workflow URL window. For restricted workflows, the password is your Fyno API Key.
   </Step>
 </Steps>
 
-## How to raise Approval requests
+## More settings
 
-If your workspace has maker-checker workflow enabled for template management, the 'Go Live' action requires an additional approval step. You'll need to choose from your designated approvers who will review and authorize the template changes.
+<CardGroup cols={3}>
+  <Card title="Receive delivery reports" href="./receive-delivery-reports">
+    Forward delivery reports to your own system or tools like Mixpanel and Amplitude.
+  </Card>
+  <Card title="Configure an idempotent key" href="./configure-idempotent-key-workflow">
+    Safely retry requests without running the same operation twice.
+  </Card>
+  <Card title="Configure overrides" href="./configure-overrides-workflow">
+    Use different integration values, like sender details, for specific notifications.
+  </Card>
+</CardGroup>
 
-You can read more about it [here](https://fyno.io/docs/approval-flow)
+## Request Approval to Go Live
+
+If your workspace has **Approval** turned on, clicking **GO LIVE** creates an approval request instead of publishing the workflow right away.
+
+![](/images/workflow-request-approval.gif)
+
+<Steps>
+  <Step>Click **GO LIVE** to open the **Request Approval** window.</Step>
+  <Step>Select one or more approvers from **Select Approvers**.</Step>
+  <Step>Add a note in **Write a Message**. Select **Go live on approval** to publish automatically once approved.</Step>
+  <Step>Click **REQUEST**.</Step>
+</Steps>
+
+You can read more about it on the [Approval Request](/approval-request) page.
