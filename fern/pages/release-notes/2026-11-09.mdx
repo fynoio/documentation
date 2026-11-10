@@ -1,0 +1,73 @@
+
+## 26.4.2
+
+This release adds a Typst editor for building PDF components, with AI that can write the Typst for you from a description or update what you already have.
+
+Report downloads can now be customised by type and columns, alarms let you choose who gets notified, components can be organised into groups, Quick Reply buttons can hold on to the notification event payload for incoming workflows, and delivery callback logs gain an analytics label column, alongside fixes to the workflow trace status and the download filters.
+
+### 🚀 New features
+
+<CardGroup cols={2}>
+
+<Card title="Typst editor for PDFs" icon="file-pdf">
+
+Build PDF components in Typst, with a live preview. Set the page size, layout and margins, add a header and footer, and protect the PDF with a password.
+
+</Card>
+
+<Card title="AI for Typst" icon="wand-magic-sparkles">
+
+Describe the PDF you want and AI writes the Typst for you. You can also describe a change to an existing PDF and review the result before accepting it.
+
+</Card>
+
+<Card title="Custom report downloads" icon="file-arrow-down">
+
+Choose a report type when downloading from logs, and pick which columns to include rather than taking all of them.
+
+</Card>
+
+<Card title="Groups in Components" icon="folder">
+
+Organise components into groups, the same way templates and notification events already work.
+
+</Card>
+
+</CardGroup>
+
+{/* ENHANCEMENTS — changes to something that already existed.
+     Title format: "Area: What changed". Ordered by how many people it affects. */}
+
+### ⚡ Enhancements
+
+<AccordionGroup>
+
+<Accordion title="Alarms: Choose who gets notified">
+
+Each [alarm](/docs/alarms) now has a recipient setting: **All** workspace members, **Selected** members you pick, or **None** to turn notifications off for that alarm.
+
+</Accordion>
+
+<Accordion title="Templates: Keep the notification event payload for incoming workflows">
+
+When a template has [Quick Reply buttons](/docs/whatsapp-interactive-message#quick-replies), you can now tick **Store the notification event payload so you can use it in incoming workflows** and set how long to keep it for.
+
+When someone taps a button and their reply starts an incoming workflow, the stored payload comes with it, so the workflow can use details from the original notification rather than just what the button sent back.
+
+</Accordion>
+
+<Accordion title="Delivery callback logs: Analytics label column and filter">
+
+[Delivery callback logs](/docs/delivery-callback-logs) now show an analytics label column after the event column, with a filter in the column heading.
+
+</Accordion>
+
+</AccordionGroup>
+
+### 🛠 Bug fixes
+
+| Area | Fix |
+| --- | --- |
+| **Workflow Logs** | The final status in the trace did not match the status shown for the same run in the logs list. Both now show the same status. |
+| **Logs** | In the report download, the optional filters section opened only when you selected the icon. The whole heading now opens it. |
+| **Real-time dashboard** | Hovering across a chart skipped some minutes, so a few points could not be read. Hover now steps through every minute in the window. |
