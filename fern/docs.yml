@@ -280,7 +280,7 @@ navigation:
               - page: "Verification"
                 path: "pages/integrations/verification.mdx"
           - section: "Templates"
-            path: "pages/templates/fyno-template.mdx"
+            path: "pages/templates/templates-getting-started.mdx"
             icon: fa-regular fa-pen-ruler
             contents:
               - section: "Creating a Template on Fyno"
@@ -858,6 +858,9 @@ redirects:
   - source: "/docs/log-details"
     destination: "/docs/sent-log-details"
     permanent: true
+  - source: "/docs/log-details-response"
+    destination: "/docs/sent-log-details#analyzing-provider-api-responses-in-logs"
+    permanent: true
   - source: "/docs/meta-whatsapp-template"
     destination: "/docs/external-templates/whatsapp"
     permanent: true
@@ -883,7 +886,7 @@ redirects:
     destination: "/docs/workflow-webhook-trigger-setup"
     permanent: true
   - source: "/docs/log-details-delivery"
-    destination: "/docs/sent-logs"
+    destination: "/docs/sent-log-details#tracking-notification-delivery-status-in-logs"
     permanent: true  
   - source: "/docs/approval-flow"
     destination: "/docs/approval-request"
@@ -898,7 +901,7 @@ redirects:
     destination: "/docs/groups"
     permanent: true
   - source: "/docs/log-details-trace"
-    destination: "/docs/workflow-logs#trace-log"
+    destination: "/docs/sent-log-details#debugging-notification-hops-with-log-trace"
     permanent: true
   - source: "/docs/log-details-placeholders"
     destination: "/docs/sent-log-details#debugging-template-placeholders-in-logs"

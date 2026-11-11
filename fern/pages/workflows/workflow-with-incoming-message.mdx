@@ -43,24 +43,13 @@ To achieve this, you need to do the following:
 ![](/images/virtual-num-template-preview.png)
 
 <Steps>
-  <Step title="Create the template">
-    Create a Fyno Template with the content and Quick Reply options as shown.
-
-    ![](/images/virtual-num-edit-template.png)
-  </Step>
-  <Step title="Add the Quick Reply options">
-    In the template, you can see 2 Quick Reply options, **Confirm** and **Cancel**. When the user clicks any Quick Reply option, it will trigger a workflow.
-  </Step>
-  <Step title="Pass extra data in the button (optional)">
-    If you want to pass additional information when the user clicks a Quick Reply button, add a JSON payload in the **Custom Id** section.
-
-    For example, to pass `order_id` and the template name to the Workflow, add a JSON payload as shown below. You can add any payload up to 126 characters.
-
-    ```json
-    {"order_id": "ORD-10245", "template": "order_confirmation"}
-    ```
-
-    ![](/images/183f9ed-dynamic_payload_QR.png)
+  <Step>Create a template on the **Templates** page with the content and Quick Reply options as shown. ![](/images/virtual-num-edit-template.png)</Step>
+  <Step>
+    In the template, you can see 2 Quick Reply options. When user clicks any Quick Reply option, it will trigger a workflow.
+    <ol>
+      <li>Confirm</li>
+      <li>Cancel</li>
+    </ol>
   </Step>
 </Steps>
 
