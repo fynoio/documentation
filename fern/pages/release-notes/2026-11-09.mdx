@@ -3,7 +3,7 @@
 
 This release adds a Typst editor for building PDF components, with AI that can write the Typst for you from a description or update what you already have.
 
-Report downloads can now be customised by type and columns, alarms let you choose who gets notified, components can be organised into groups, Quick Reply buttons can hold on to the notification event payload for incoming workflows, and delivery callback logs gain an analytics label column, alongside fixes to the workflow trace status and the download filters.
+Report downloads can now be customised by type and columns, you can choose who receives alarm notifications, components can be organised into groups, Quick Reply buttons can hold on to the notification event payload for incoming workflows, and delivery callback logs gain an analytics label column, alongside fixes to the workflow trace status and the download filters.
 
 ### 🚀 New features
 
@@ -13,11 +13,7 @@ Report downloads can now be customised by type and columns, alarms let you choos
 
 Build PDF components in Typst, with a live preview. Set the page size, layout and margins, add a header and footer, and protect the PDF with a password.
 
-</Card>
-
-<Card title="AI for Typst" icon="wand-magic-sparkles">
-
-Describe the PDF you want and AI writes the Typst for you. You can also describe a change to an existing PDF and review the result before accepting it.
+Describe the PDF you want and AI writes the Typst for you, or describe a change to an existing one and review the result before accepting it.
 
 </Card>
 
@@ -35,16 +31,15 @@ Organise components into groups, the same way templates and notification events 
 
 </CardGroup>
 
-{/* ENHANCEMENTS — changes to something that already existed.
-     Title format: "Area: What changed". Ordered by how many people it affects. */}
-
 ### ⚡ Enhancements
 
 <AccordionGroup>
 
 <Accordion title="Alarms: Choose who gets notified">
 
-Each [alarm](/docs/alarms) now has a recipient setting: **All** workspace members, **Selected** members you pick, or **None** to turn notifications off for that alarm.
+You can now control who receives [alarm](/docs/alarms) notifications in the app and by email: **All** workspace members, **Selected** members you pick, or **None** to turn them off.
+
+The setting applies to all alarms.
 
 </Accordion>
 
