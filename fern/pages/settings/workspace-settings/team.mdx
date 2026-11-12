@@ -123,7 +123,9 @@ export const Badge = ({ type, text }) => {
     yes: { backgroundColor: 'var(--badge-yes-bg, #F2F7E3)', color: 'var(--badge-yes-text, #547100)' },
     view: { backgroundColor: 'var(--badge-view-bg, #E5EDF7)', color: 'var(--badge-view-text, #0E3672)' },
     test: { backgroundColor: 'var(--badge-test-bg, #FAF4E3)', color: 'var(--badge-test-text, #8B6602)' },
-    no: { backgroundColor: 'var(--badge-no-bg, #F0F0F0)', color: 'var(--badge-no-text, #333333)' }
+    no: { backgroundColor: 'var(--badge-no-bg, #F0F0F0)', color: 'var(--badge-no-text, #333333)' },
+    /* Used in the Add-On Policies section for "Can enable" */
+    addon: { backgroundColor: 'var(--badge-addon-bg, #F1EBFA)', color: 'var(--badge-addon-text, #5B2E9E)' }
   };
 
   return <span style={{ ...baseBadgeStyle, ...variants[type] }}>{text}</span>;
@@ -148,6 +150,8 @@ export const Badge = ({ type, text }) => {
     --badge-test-text: #8B6602;
     --badge-no-bg: #F0F0F0;
     --badge-no-text: #333333;
+    --badge-addon-bg: #F1EBFA;
+    --badge-addon-text: #5B2E9E;
   }
   /* Dark colours follow the docs site's own theme toggle (the "dark" class
      on <html>), not the operating system's colour-scheme setting. Using
@@ -172,6 +176,8 @@ export const Badge = ({ type, text }) => {
     --badge-test-text: #FAF4E3;
     --badge-no-bg: #333333;
     --badge-no-text: #F0F0F0;
+    --badge-addon-bg: #5B2E9E;
+    --badge-addon-text: #F1EBFA;
   }
 
   /* Scoped, paired background + text overrides for THIS table only.
@@ -289,7 +295,17 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}>
+          <Badge type="yes" text={
+            <span>
+              Yes
+              <span className="tooltip-container">
+                <i className="tooltip-icon">i</i>
+                <span className="tooltip-text">campaign analytics only</span>
+              </span>
+            </span>
+          } />
+        </td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -300,7 +316,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -346,7 +362,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -434,7 +450,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -459,7 +475,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -470,7 +486,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -481,7 +497,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -554,14 +570,66 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
+
+      {/* ADD-ON POLICIES */}
+      <TableHeader text="Add-On Policies" />
+      <tr>
+        <td style={tdStyle}>Report Download</td>
+        <td style={tdStyle}><Badge type="yes" text="Included" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Included" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Included" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Included" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="no" text="Not applicable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Unmask Sensitive Data</td>
+        <td style={tdStyle}><Badge type="yes" text="Included" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Included" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="no" text="Not applicable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Invite team members and modify roles</td>
+        <td style={tdStyle}><Badge type="yes" text="Included" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Included" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Included" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="no" text="Not applicable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Approver</td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="no" text="Not applicable" /></td>
+        <td style={tdStyle}><Badge type="addon" text="Can enable" /></td>
+      </tr>
     </tbody>
   </table>
 </div>
 
+**How to read the Add-On Policies section:**
+
+- **Included**: The role already has this access. You don't need to add the policy.
+- **Can enable**: The role doesn't have this access by default. You can give it by attaching the add-on policy to the user.
+- **Not applicable**: Add-on policies can't be attached to this role.
+
 ### Additional Notes
 
 - Owner, Super Admin, and Workspace Admin have broad access across most features and can perform high-level administrative actions.
-- Owner and Super Admin can unmask masked fields by default. For all other roles, unmasking requires the Unmask Sensitive Data add-on policy.
 - Each workspace can have only one Owner.
 - Only the Owner can add Super Admins, and any Super Admin added by the Owner will automatically be added to all workspaces under that Owner.
 - Certain permissions may vary by feature (for example, test-only access, view-only access, or restricted actions like Go Live / Fire), as detailed in the table above.
@@ -582,16 +650,7 @@ When you assign the **Auditor** role, you can further narrow what data that user
 Add-on policies provide fine-grained control over specific actions.
 ![](/images/add-on-policy.png)
 
-They are useful when a user needs limited administrative capabilities without being assigned a higher role.
-
-The following add-on policies are available:
-
-| Add-On Policy | What it allows |
-| --- | --- |
-| Report Download | Download both test and live reports. |
-| Unmask Sensitive Data | Unmask masked fields in logs and download reports containing unmasked data. |
-| Invite team members and modify roles | Invite, remove, and modify roles and add-on policies of team members. |
-| Approver | View and approve modules that have approval enabled. |
+They are useful when a user needs limited administrative capabilities without being assigned a higher role. To see which roles already include each policy and which roles it can be added to, refer to the **Add-On Policies** section of the [Roles & Permissions](#roles--permissions) table above.
 
 > Note: Add-on policies can be assigned to all roles except **Auditor**. The Add-On Policy field is not available when the Auditor role is selected.
 
