@@ -1,105 +1,133 @@
 ---
 title: 'Notification Event Analytics'
 slug: 'notification-event-analytics'
-description: "Fyno's Notification Event Analytics provides visual insights into the performance of notification events through graphs and charts It will help you to optimise your communication strategy to improve your deliverability"
-og:title: 'Notification Event Analytics - Notification Events | Fyno Documentation'
-og:description: "Fyno's Notification Event Analytics provides visual insights into the performance of notification events through graphs and charts It will help you to optimise your communication strategy to improve your deliverability"
+description: 'See how a notification event is performing with charts for events fired, delivery, channel engagement and URL clicks, so you can improve your messaging and delivery.'
+og:title: 'Notification Event Analytics | Fyno Documentation'
+og:description: 'See how a notification event is performing with charts for events fired, delivery, channel engagement and URL clicks, so you can improve your messaging and delivery.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Fyno's **Notification Event Analytics** allows you to visualise the performance as well as gain insights into your **Notification Events** in the form of charts in one place, which helps improve the overall experience as well as outcomes pertaining to that notification event.
+**Notification Event Analytics** shows how a notification event is performing, with all its charts in one place. Use it to understand what is working and to improve the results of that notification event.
 
-To get started with **Notification Event Analytics**, you will need to have created a **Notification Event**. Once a **Notification Event** is created and is in use, the triggered notifications would be summarised into the Analytics.
+To see analytics, you first need a notification event. Once the notification event is created and in use, the notifications it sends are summarised here.
 
-You can find your way to **Notification Event Analytics** by:
+## Open Notification Event Analytics
 
-- Navigating to the **Notification Events** page and clicking the "Bar Chart" icon on the top right corner of the corresponding event card.
-- Or by clicking on a **Notification Event** and clicking on the "Bar Chart" icon on the top right corner of the event.
+You can open Notification Event Analytics in 2 ways:
 
-On clicking on the "Bar Chart" icon for **Notification Event Analytics**, a new page opens up with details. For ease of understanding, an **Notification Events Analytics** page with pre-populated data is visualised below.
+- On the **Notification Events** page, click the analytics icon (bar chart) on the notification event card.
+- Open a notification event and click the analytics icon (bar chart) at the top right.
 
-![](/images/analytics_overview.png)
+The analytics page opens with the name of the notification event at the top, shown as **Analytics: &lt;notification event name&gt;**. Click the icon next to the name to open the notification event, or click **Notification-Events** at the top left to go back to the list.
 
-### Time Filter
+![Notification Event Analytics overview](/images/analytics-overview.png)
 
-At the top right corner of the page, you will see options to filter the analytics by a time period of your choice:
+![A quick look through the analytics page](/images/analytics-page-tour.gif)
+
+## Filters and page options
+
+| Option | What it does |
+| --- | --- |
+| **Time filter** (top left) | Choose the time period to view. The selected date range appears next to it. The filter applies to the whole page. |
+| **Analytics Label** (top right) | View analytics for a Dynamic Analytics Label set in your notification event. See [Analytics Label](#analytics-label). |
+| **last updated** (top right) | Shows when the data was last refreshed. |
+| **Status Guide** | Opens a guide to what each status means. |
+
+The time filter options are:
 
 1. Today
 2. Yesterday
-3. Last 7 days
-4. Last 28 days
-5. Custom ( Allows you to set a time range up to the last 3 months)
-
-The selected filter will apply to the entire **Notification Event Analytics** report page, globally.
+3. Last 7 Days
+4. Last 28 Days
+5. Custom (lets you pick a time range within the last 3 months)
 
 ## Overview
 
-The **Overview** section of the **Notification Event Analytics** section provides an eagle-eye view of the event's performance.
+The overview cards give you a quick summary of how the notification event is doing.
 
-On this card, you will see:
+| Card | What it shows |
+| --- | --- |
+| **Events Fired** | The number of times the notification event was fired, split into **Delivered**, **Undelivered** and **Dropped**. |
+| **Notifications Requested** | The number of notification requests sent to Fyno for this notification event. |
+| **Notifications Sent** | The number of notifications Fyno sent to your service providers for this notification event. Click **See how?** to learn how it is counted. |
+| **Notifications Delivered** | The number of notifications delivered, with the delivery rate in brackets. Click **view split** to see the breakdown. |
+| **Converted** | The number of conversions for this notification event, if Track Conversion is turned on. Read more in [Track Conversion](./notification-event-creation#track-conversion-optional). |
 
-- Fired - The number of times the notification event was fired. This data is split into Delivered, Undelivered and Dropped. 
-- Notifications Requested - The number of notifications requests sent to Fyno for this notification event.
-- Notifications Sent - The number of notifications successfully sent from Fyno to Service Providers via this notification event .
-- Delivered - The number of notifications delivered via this notification event.
-- Converted - The no of conversions for this notification event (if you have enabled Track Conversion in your notification event). You can read more about it [here](./notification-event-creation#track-conversion-optional).
-
-<Info title="Count of notifications higher than number of times the notification event was fired?">Thats completely normal! It all depends on the number of channels and providers added for the route or notification event itself. In case you have more than 1 channel or provider configured, you will have exponentially more number of notifications, compared to the number of times the notification event was triggered.</Info>
+<Info title="More notifications than events fired?">That's completely normal! It depends on how many channels and providers are set up in the route or notification event. If you have more than 1 channel or provider, each event can send several notifications, so the count of notifications can be much higher than the number of times the notification event was fired.</Info>
 
 ## Sent by Channels
 
-The **Channel Sent** card gives you a view of the distribution of notification traffic through the channels used.
+The **Sent by Channels** chart shows how your notifications are split across the channels used. The total number of notifications is shown in the middle, with the count for each channel next to the chart.
 
 ## Analytics Label
 
-The **Analytics Label** filter enables you to view analytics based on Dynamic Analytics label you configured in your notification event. You can read more about it [here](./notification-event-creation#analytics-label-optional).
+The **Analytics Label** dropdown at the top right lets you view analytics for a Dynamic Analytics Label set in your notification event. Read more in [Analytics Label](./notification-event-creation#analytics-label-optional).
 
 ## Channel Engagement
 
-**Channel Engagement** provides you with a detailed view of each channel used to send out notifications along with the outcomes of the notifications sent.
+**Channel Engagement** shows each channel used to send notifications and what happened to them, like a funnel.
 
-Outcomes can be anything from:
+![Channel Engagement](/images/analytics-channel-engagement.png)
 
-- **Sent** - When a notification is successfully sent from Fyno's platform
-- **Delivered** - When a notification gets successfully delivered to the destination (mobile number, email address, or device tokens like in the case of Push).
-- **Read/Open** - Read applies only to WhatsApp and In-App notifications. When any of these notifications are interacted with or opened, the provider returns a status as "Read" for all of these notifications. Whereas, Open applies only to email notifications. When an email is essentially "opened", this will be tagged as "Open" and tracked on Fyno's App.
-- **Clicked** - When a notification is clicked on, this will be tracked as a "Clicked" notification. This applies to In-App, Push, Emails with links, etc.
-- **Deleted** - When a Push notification is rendered in user's device and user dismiss it by swiping left.
-- **Keypress** - When a user receives a voice IVR call and presses a key to proceed with the call.
-- **Replied** - When a user replies to a WhatsApp a notification he/she receives in their device.
+Use the buttons at the top right of the card to switch between counts (**#**), percentages (**%**) and a table view.
 
-You can read about all the different notification statuses for each channel [here](./notification-status).
+The statuses you may see are:
 
-The count for each can be seen on hovering over the bar graphs.
+- **Attempted**: The notification was sent from Fyno.
+- **Delivered**: The notification reached the destination (mobile number, email address, or device token in the case of Push).
+- **Read/Open**: Read applies only to WhatsApp and In-App notifications. When these notifications are opened or interacted with, the provider returns the status "Read". Open applies only to email. When an email is opened, it is marked as "Open" and tracked in Fyno.
+- **Clicked**: The notification was clicked. This applies to In-App, Push, emails with links, and so on.
+- **Deleted**: A Push notification was shown on the user's device and the user swiped it away.
+- **Keypress**: The user received a voice (IVR) call and pressed a key to continue.
+- **Replied**: The user replied to a WhatsApp notification they received.
 
-<Tip>You can highlight a single status to look at! Simply click on the other statuses from the legend list at the bottom of the graph to un-select them!</Tip>
+Read about all the notification statuses for each channel in [Notification Status](./notification-status).
+
+Hover over a bar to see its count.
+
+<Tip>Want to focus on one status? Click the other statuses in the legend below the chart to hide them.</Tip>
 
 ## Delivery Distribution
 
-This chart explains the distribution of notifications delivered across multiple channels configured in your notification event.
-If you are using a Omni-channel route but still seeing lots of notifications going through multiple channels, then either you could increase the Wait time in your route or Check with your service providers, if there is any delay in sending delivery status to Fyno. 
+This chart shows which channels, or combinations of channels, your notifications were delivered on. Each bar stands for a channel or a set of channels, shown by their icons. Notifications that were not delivered on any channel appear as **Undelivered**.
 
-![](/images/analytics_delivery_distribution.png)
+![Delivery Distribution](/images/analytics-delivery-distribution.png)
+
+If your notifications are rarely delivered on more than one channel, you'll see a **Kudos to you!** message.
+
+If you use an Omni-Channel Route but still see many notifications delivered on several channels, you can either increase the wait time in your route, or check with your service providers whether they are slow to send delivery statuses to Fyno.
+
+If the notification event uses only one channel, the chart is empty and suggests going [omni-channel](./omnichannel-routing-introduction) for better deliverability.
+
+![Delivery Distribution with a single channel](/images/analytics-delivery-distribution-single.png)
 
 ## Delivery Status
 
-The delivery status graph shows you the delivery status by the channel that you have selected from the drop-down in the top right corner of the card.
+The **Delivery Status** chart shows the delivery statuses over time for one channel. To change the channel, click the chart title (for example, **Email Delivery Status**) and pick another channel from the dropdown. Channels are listed by how much they are used.
 
-The list will populate the **Channels** based on usage and in chronological order of the count of each channel.
+![Email Delivery Status](/images/analytics-delivery-status-email.png)
 
-You can toggle on or off the statuses you would like to see by clicking on the legends at the bottom of the graph. Let's have a look at some of these statuses to understand it better.
+- Hover over any point on the chart to see the count and percentage of each status for that day.
+- Use the **#** and **%** buttons at the top right to switch between counts and percentages.
+- Use the zoom buttons at the bottom right to zoom in and out.
+- Click a status in the legend below the chart to show or hide it.
 
-- **Sent** - All notifications that have left the Fyno App successfully towards the destination are marked as "Sent". In scenarios where there is no delivery confirmation received from the provider, this status will remain as "Sent".
-- **Delivered** - When a notification is delivered successfully to the Destination, then these messages are considered "Delivered"
-- **Error** - All notifications that fail to be triggered from the Fyno App due to some error (it may be any from an issue on a template to not choosing a provider for a channel), will be tagged as "Error"
-- **Failed** - When a notification is tagged as "Failed" this is most probably due to conditions that are mandatory from the provider that are not being met, due to which the notification execution has been tagged as "Failed"
-- **Bounce** - Bounce is a status that would be seen only in the case of an "Email" channel. This happens when
-  - The email address is incorrect
-  - The email address requires senders to be whitelisted in their domain to receive emails.
-  - The email address' mailbox is full and unable to receive any more notifications.
+![Hovering over the WhatsApp Delivery Status chart](/images/analytics-delivery-status-hover.gif)
+
+Here are some of the statuses you may see:
+
+- **Requested**: Notifications requested for that channel.
+- **Sent**: Notifications that left Fyno successfully towards the destination. If the provider doesn't send a delivery confirmation, the status stays as "Sent".
+- **Delivered**: Notifications that reached the destination successfully.
+- **Error**: Notifications that could not be sent from Fyno because of an error, for example a problem with the template or no provider selected for a channel.
+- **Failed**: Notifications that failed, most likely because a condition required by the provider was not met.
+- **Bounce**: Seen only for Email. This happens when:
+  - The email address is incorrect.
+  - The email address only accepts emails from senders allowlisted on their domain.
+  - The mailbox is full and can't receive any more emails.
 
 <Info>
-  Undelivered statuses are tracked when they are:
+  These statuses are counted as **Undelivered**:
   <ul>
     <li>Invalid-Subscriber</li>
     <li>Blacklist</li>
@@ -107,3 +135,9 @@ You can toggle on or off the statuses you would like to see by clicking on the l
     <li>Bounce</li>
   </ul>
 </Info>
+
+## URL Engagement
+
+**URL Engagement** shows click metrics for the top five shortened URLs in your notifications. Each bar is one shortened URL, and the legend below the chart shows which URL each bar belongs to.
+
+![URL Engagement](/images/analytics-url-engagement.png)

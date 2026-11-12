@@ -1,99 +1,108 @@
 ---
-title: 'Orchestrating Logic and Rules in Notification Events'
+title: 'Create a Notification Event'
 slug: 'notification-event-creation'
-description: 'Unify message templates, routing protocols, and multi-channel configurations into a single functional payload. Learn how to implement conditional logic frameworks, track payload conversion loops, and manage isolated environment rollouts.'
-og:title: 'Orchestrating Logic and Rules in Notification Events | Fyno Documentation'
-og:description: 'Unify message templates, routing protocols, and multi-channel configurations into a single functional payload. Learn how to implement conditional logic frameworks, track payload conversion loops, and manage isolated environment rollouts.'
+description: 'Learn how to create a notification event, choose its templates and routes, and set up analytics labels, duplicate checks, conversion tracking and going live.'
+og:title: 'Create a Notification Event | Fyno Documentation'
+og:description: 'Learn how to create a notification event, choose its templates and routes, and set up analytics labels, duplicate checks, conversion tracking and going live.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
 A notification event is the single most important part of Fyno's application design.
 
-**Notification Event = Template + (Providers or Route) **
+<Note>
+**Notification Event = Template + (Providers or Route)**
+</Note>
 
-For a notification event to be successfully created, you will need to have pre-configured:
+Before you create a notification event, make sure you have already set up:
 
 1. Providers
 2. Templates
 3. Routing (optional)
 
-To create a new Notification Event, click on the "**Create+**" on the right side of the page.
-To create a new Notification Event, click the **Create+** button on the right side of the page.
+## Create a notification event
+
+To create a new notification event, click **CREATE** on the top right of the Notification Events page.
+
+![Creating a notification event](/images/create-notification-event.gif)
 
 <Steps>
-  <Step>Provide a name for your notification event.</Step>
+  <Step>Enter a **Name** for your notification event.</Step>
 
   <Step>
-    Select the Notification Event Type from one of the three options:
-    <ul>
-      <li>OTP</li>
-      <li>Transactional</li>
-      <li>Marketing</li>
-    </ul>
+    Select the **Type** from one of the three options:
+    - **OTP**
+    - **Transactional**
+    - **Marketing**
   </Step>
 
   <Step>
-    Provide a description for your notification event. This will help you identify and manage the event more easily in the future.
+    Select a group in **Add To Group (Optional)**. This helps you keep all related notification events together.
   </Step>
 
   <Step>
-    Select a group. This helps you organize all related notification events.
+    Add a **Description (Optional)**. This helps you identify and manage the event more easily later.
   </Step>
 
   <Step>
-    Select a subscription topic from the list of subscriptions created in User Preferences. This is an optional field. Refer to this
-    <a href="./user-preferences">documentation</a>
-    {" "}to learn how to create a subscription.
+    Select a subscription topic in **Select Subscription Topic (Optional)**. The list shows the subscription topics created in User Preferences. To learn how to create one, see [User Preferences](./user-preferences).
   </Step>
 
-  <Step>Click **Submit** once you're done.</Step>
+  <Step>Click **SUBMIT** once you're done.</Step>
 </Steps>
 
-<Note>Make sure to choose the correct Subscription Topic. If a channel is disabled within the Subscription Topic, notifications will not be sent even if the corresponding channel template is configured.</Note>
+<Note>Make sure you choose the correct subscription topic. If a channel is turned off in the subscription topic, notifications will not be sent on that channel, even if a template is set up for it.</Note>
 
-![](/images/notification_event_card.png)
+## The notification event card
 
-On creating a notification event, on each **Notification Event** card you will see:
+![Notification event card](/images/notification_event_card.png)
 
-- Notification Event Analytics button which will take you the analytics page of that notification event.
-- **Run Test** Button, which will open up the Notification Event Playground Window
+Once a notification event is created, its card on the Notification Events page shows:
+
+- **Notification Event Analytics** button, which takes you to the analytics page of that notification event.
+- **Run Test** button, which opens the Notification Event Playground window.
 - When the notification event was last updated.
-- Icon which represents the live or test version of a notification event.
-- Group to which a notification event belongs. In this example, Payment_Reminder is the group name.
-- A "**Vertical Ellipsis**" at the top right corner, that gives you the option to
-  - "Rename" the **Notification Event**
-  - "Duplicate" the **Notification Event**
-  - "Delete" the **Notification Event**
-  - Option to 'Go Live' if the latest changes are still in test version.
+- An icon that shows whether the notification event has a Live version or only a Test version.
+- The group the notification event belongs to. In this example, Payment_Reminder is the group name.
+- A **More Options** menu (⋮) at the top right corner, with these options:
+  - **Edit**
+  - **Copy to another workspace**
+  - **View Details**
+  - **Duplicate**
+  - **Delete**
+  - **Go Live**, if the latest changes are still in the Test version.
+
+![More Options menu](/images/notification-event-options-menu.gif)
+
+To learn what each option does, see the [Notification Events overview](./events-overview#notification-event-options-menu).
 
 ## Template
 
-The first step to building a "**Notification Event**" with Fyno is to select a template that you have already created in the "**Templates**" section OR to create a new template by clicking 'Create Template'.
+The first step to building a notification event is to pick a template you have already created in **Templates**, or to create a new one by clicking **Create Template**.
 
 - **Selecting a template**
 
-  - On clicking on the drop-down, you will see the entire list of templates created. Select one to proceed.
-  - On selecting a template, at the bottom of the template selected, you will even be able to see the preview of the template on the right hand side.
-  - If you wish to edit the selected template click on the 'EDIT TEMPLATE' button right above the template preview on the right hand side.
+  - Click the dropdown to see all the templates you have created. Select one to continue.
+  - Once you select a template, a preview of it appears on the right side.
+  - To edit the selected template, click **EDIT TEMPLATE** just above the template preview on the right side.
     ![](/images/event_select_template.png)
 
 - **Creating a new template**
 
-  - You can create a new template from scratch by clicking 'Create Template'.
+  - You can create a new template from scratch by clicking **Create Template**.
     ![](/images/event_select_template.png)
 
-  - It will open a popup from where you can start creating a template
-  - Refer this [doc](./template-creation) on how a new template can be created from scratch.
+  - This opens a popup where you can start creating the template.
+  - See [Create a template](./template-creation) to learn how to create a template from scratch.
 
 ### Conditional Templates
 
-Conditional Templates empower you to choose templates based on specific conditions. This feature allows you to associate multiple templates with the same event, eliminating the need for redundant creation of multiple notification events.
+Conditional Templates let you pick which template to send based on conditions you set. This means you can attach several templates to the same notification event, instead of creating a separate notification event for each one.
 
-#### How it works?
+#### How does it work?
 
-For instance, if you plan to send order status communications to users for statuses like Order Confirmed, Shipped, In-Transit, and Delivered. You can create four templates, each tailored to a specific order status. With Conditional Templates, you can efficiently manage these 4 templates under a single notification event, streamlining your communication workflow.
+Say you want to send order updates to users for the statuses Order Confirmed, Shipped, In-Transit and Delivered. You can create four templates, one for each status. With Conditional Templates, all four templates can live under a single notification event, which keeps your setup simple.
 
-<Info>There is NO cap on the number of templates you can include in a conditional template flow.</Info>
+<Info>There is no limit on the number of templates you can add to a conditional template flow.</Info>
 
 #### Sample cURL Request
 
@@ -197,148 +206,157 @@ curl -X POST 'https://api.fyno.io/v1/<WorkspaceID>/event' \
 </CodeBlocks>
 
 <Steps>
-  <Step>Navigate to the notification event page and click on "Use conditionally" under Templates section. ![](/images/event_conditional_template_click.png)</Step>
   <Step>
-    To add conditions, follow these steps:
-    <ol>
-      <li>Select the template you wish to use.</li>
-      <li>Establish conditions based on variables. For instance, to trigger the Order Confirmed communication, select the 'Order_Confirmed' template and set the condition as "status equals Confirmed," and repeat this process for other statuses accordingly. You can use 'Add rule' to add multiple conditions to choose a template.</li>
-      <li>You can click 'Add Template' to keep adding new templates with conditions.</li>
-      <li>Ensure, 'Else' condition is added. You can choose either 'Do Nothing' or select a fallback template attached if none of the other conditions are not satisfied.</li>
-    </ol>
+    Go to the notification event page and click **Use conditionally** under the Templates section.
+
+    ![](/images/event_conditional_template_click.png)
+  </Step>
+  <Step>
+    To add conditions:
+    1. Select the template you want to use.
+    2. Set conditions based on variables. For example, to send the Order Confirmed message, select the `Order_Confirmed` template and set the condition as "status equals Confirmed". Repeat this for the other statuses. Use **Add rule** to add more than one condition for a template.
+    3. Click **Add Template** to keep adding templates with conditions.
+    4. Make sure an **Else** condition is added. Choose either **Do Nothing** or a fallback template to send when none of the other conditions match.
+
     ![](/images/event_conditional_templates.png)
   </Step>
-  <Step>To delete any of the conditions added, click the delete icon on the right hand side of each condition added.</Step>
-  <Step>To preview a template, click the numbered button in the top-left corner of the conditional template card. The preview will appear on the right side of the page.</Step>
-  <Step>To rearrange the conditions, you can drag them up or down by clicking the 'Drag Indicator' icon on the left-hand side of each condition.</Step>
-  <Step>You can remove all the conditions by clicking 'Remove all conditions' icon at the bottom.</Step>
-  <Step>Once you have added all the conditions, you will see the conditions in collapsed format as shown below. You can see the preview of different templates by clicking '>' icon to navigate forward and by clicking '\<' to navigate backwards or type in the condition number in the field next to 'Previewing' to go directly to that template.![](/images/event_conditional_templates_collapsed.png)</Step>
-  <Step>To modify any of the conditions, simply click on 'Edit Conditions.'</Step>
+  <Step>To delete a condition, click the delete icon on the right side of that condition.</Step>
+  <Step>To preview a template, click the numbered button in the top left corner of the conditional template card. The preview appears on the right side of the page.</Step>
+  <Step>To reorder the conditions, drag them up or down using the **Drag Indicator** icon on the left side of each condition.</Step>
+  <Step>To remove all the conditions at once, click **Remove all conditions** at the bottom.</Step>
+  <Step>
+    Once you have added all the conditions, they appear in a collapsed view as shown below. To preview the different templates, click **>** to go forward and **\<** to go back, or type the condition number in the field next to **Previewing** to jump straight to that template.
+
+    ![](/images/event_conditional_templates_collapsed.png)
+  </Step>
+  <Step>To change any of the conditions, click **Edit Conditions**.</Step>
 </Steps>
 
 On to the next step!
 
 ## Route/Provider
 
-Route/Provider allows you to define the manner in which the notification will be sent across channels and providers.
+Route/Provider lets you decide how the notification is sent across channels and providers.
 
-On clicking the drop-down menu under Rules, you will see:
+Click the dropdown under **Rules** to see these options:
 
-- **Single Channel Route or Provider** - Individually select each channel and select a **Provider** or **Route** for each channel. For example, if your template has 3 channels, you will see options to select how you want to send your Email, SMS and WhatsApp. You can decide to choose a service provider or a Single channel route created for that channel. You can read more about Single Channel Route [here](./route-creation).
+- **Single Channel Route or Provider**: Pick a **Provider** or **Route** for each channel separately. For example, if your template has 3 channels, you will choose how to send your Email, SMS and WhatsApp. For each channel, you can pick a service provider or a Single Channel Route created for that channel. Read more about [Single Channel Routes](./route-creation).
   ![](/images/event_select_single_channel_route.png)
 
-- **Omni-channel Route** - Select an **Omni-Channel Route** that has been created. You can read more about Omni Channel Route [here](./omnichannel-routing-introduction).
+- **Omni-channel Route**: Select an Omni-Channel Route you have already created. Read more about [Omni-Channel Routes](./omnichannel-routing-introduction).
 
 ## Analytics Label (Optional)
 
-Select this option if you want to either group analytics of multiple notification events or filter analytics of a single notification event.
+Use this option to group the analytics of several notification events together, or to filter the analytics of a single notification event.
 
 ![](/images/event_analytics_label.png)
 
-You can select either Static or Dynamic analytics labels.
+You can select either a Static or a Dynamic analytics label.
 
-- **Static** - Use this option to consolidate and analyze analytics across multiple related notification events.
+- **Static**: Use this to combine and view analytics across several related notification events.
 
-  - **Example:** - For instance, if you want to track multiple status notifications (Confirmed, Shipped, InTransit, Delivered) in one comprehensive view. This eliminate the need to analyze each notification separately. Helps you to gain holistic insights into customer engagement across the entire order journey  
-    By grouping these notifications, you'll understand the complete performance of your Order Status communication at a glance.
-  - **How to Group Analytics:**
-    - Navigate to the analytics label dropdown
-    - Select the specific Order Status notifications you want to analyze together
-  - **Related Resources:**
-    - To know how to add analytics labels, please refer this [document](./analytics-label).
-    - To see how to view the analytics, you can refer this [document](./dashboard).
+  - **Example:** Say you want to track several order status notifications (Confirmed, Shipped, InTransit, Delivered) in one view. You no longer need to check each notification separately, and you get a full picture of how customers engage across the whole order journey. By grouping these notifications, you can see how your Order Status messages perform at a glance.
+  - **How to group analytics:**
+    - Go to the analytics label dropdown.
+    - Select the Order Status notifications you want to view together.
+  - **Related resources:**
+    - To learn how to add analytics labels, see [Analytics Label](./analytics-label).
+    - To learn how to view the analytics, see [Dashboard](./dashboard).
 
-- **Dynamic** - This feature allows you to dive deep into your notification performance by either:
-  - Grouping analytics across multiple notification events
-  - Filtering data for a specific notification event
-  - **Example:** Imagine you're sending policy renewal emails using a single template across different mobile brands (Apple, Samsung, Vivo, and Oppo).
-    - How to Analyze by Device Brand:
-      - Use the placeholder `{{brand_name}}` as your Analytics label
-      - This enables you to track performance metrics for each mobile brand separately
-  - **Related Resources:**
-    - To know how to add analytics labels, please refer this [document](./analytics-label).
-    - To see how to view the analytics, you can refer this [document](./dashboard).
+- **Dynamic**: Use this to look closely at how your notifications perform by either:
+  - Grouping analytics across several notification events
+  - Filtering data for one notification event
+  - **Example:** Say you send policy renewal emails using one template for different mobile brands (Apple, Samsung, Vivo and Oppo).
+    - How to view analytics by brand:
+      - Use the placeholder `{{brand_name}}` as your analytics label.
+      - This lets you track how the emails perform for each mobile brand separately.
+  - **Related resources:**
+    - To learn how to add analytics labels, see [Analytics Label](./analytics-label).
+    - To learn how to view the analytics, see [Dashboard](./dashboard).
 
 ## Check for Duplication (Optional)
 
 ![](/images/event_duplicate_check.png)
 
-This option will be visible only if you enable 'Duplicate Message Check' settings. You can read how to enable this setting [here](./duplicate-message-check)
+This option appears only if the **Duplicate Message Check** setting is turned on. Read how to turn it on in [Duplicate Message Check](./duplicate-message-check).
 
-Enabling this option will drop notifications with the **same template ID, channel and destination**. Additionally you can check placeholder(s) too before deciding whether to drop a notification or not. This will make sure users don't get duplicate content if its triggered by mistake from your end.
+Turning on this option drops any notification with the **same template ID, channel and destination**. You can also check placeholder values before deciding whether to drop a notification. This makes sure users don't receive the same message twice if it is triggered by mistake from your end.
 
 <Steps>
-  <Step>Enable Check for Duplication checkbox.</Step>
-  <Step>Enter the duration till which you want to check for duplication. For example, if you fired the notification and want to check for duplicate content and drop it for the next 1 hour, enter 1 hour. You can enter upto 24 hours.</Step>
-  <Step>Enable '**Exceptions**' option, to check the placeholder data before deciding whether to drop a notification or not. You can select the placeholders to check (along with template ID, channel and destination) from the dropdown.</Step>
+  <Step>Select the **Check for Duplication** checkbox.</Step>
+  <Step>Enter how long to keep checking for duplicates. For example, if you want to drop any repeat of a notification for the next 1 hour after it is sent, enter 1 hour. You can enter up to 24 hours.</Step>
+  <Step>Turn on **Exceptions** to check placeholder values before deciding whether to drop a notification. Select the placeholders to check (along with template ID, channel and destination) from the dropdown.</Step>
   <Step>
-    **Example Scenario**: Imagine sending SIP confirmation notifications where:
-    <ul>
-      <li>A user has multiple SIPs</li>
-      <li>Each SIP is for a different stock</li>
-      <li>All SIPs have the same amount</li>
-      <li>The only differentiating factor is the stock name</li>
-    </ul>
+    **Example scenario**: Say you send SIP confirmation notifications where:
+    - A user has several SIPs
+    - Each SIP is for a different stock
+    - All SIPs have the same amount
+    - The only difference is the stock name
   </Step>
   <Step>
-    **How to Use:**
-    <ul>
-      <li>Enable Exceptions feature</li>
-      <li>Select relevant placeholders from the dropdown (e.g., 'Stock')</li>
-      <li>Fyno will then consider the stock name when checking for duplicates</li>
-      <li>Result: All notifications will be sent, even with same template/channel/destination</li>
-    </ul>
+    **How to use it:**
+    - Turn on **Exceptions**.
+    - Select the relevant placeholders from the dropdown (for example, `Stock`).
+    - Fyno then takes the stock name into account when checking for duplicates.
+    - Result: All the notifications are sent, even though they share the same template, channel and destination.
   </Step>
 </Steps>
 
 ## Track Conversion (Optional)
 
-This option will be visible only if you enable Conversion Tracking setting. You can read how to enable this setting [here](./conversion-tracking).
+This option appears only if the **Conversion Tracking** setting is turned on. Read how to turn it on in [Conversion Tracking](./conversion-tracking).
 
 ![](/images/event_track_conversion.png)
 
 <Steps>
-  <Step>Enable Track conversion checkbox.</Step>
-  <Step>Enter the duration till which you want to track the conversion. For example, if you fired the notification and want to track conversion for the next 15 minutes, enter 15 minutes.</Step>
-  <Step>Click Copy Code. You need to pass only conversion id in the data payload to intimate Fyno to mark the notification as 'Converted' for a user/destination. Make sure, you pass the same conversion id while triggering the notification event also.</Step>
+  <Step>Select the **Track conversion** checkbox.</Step>
+  <Step>Enter how long to track the conversion. For example, if you want to track conversions for 15 minutes after the notification is sent, enter 15 minutes.</Step>
+  <Step>Click **Copy Code**. To tell Fyno to mark a notification as **Converted** for a user or destination, you only need to pass the conversion ID in the data payload. Make sure you pass the same conversion ID when you trigger the notification event.</Step>
 </Steps>
-
-## Save & Go Live
-
-Make sure you save every change by hitting the "**Save**" button at the top of the page. This will only save your changes as **Test**
-
-On clicking on the **Go Live** CTA, the notification event will be live immediately.
 
 ### Test and Live Versions
 
-When a **Test** version is saved, this does not disturb the **Live** version that may be plugged in your application and may be active.
+Saving a **Test** version does not affect the **Live** version, which may already be connected to your application and in use.
 
-When you are confident and happy with the **Notification Event** that you have created and tested in **Test** version, this can then be moved into live version by following the below steps.
-
-<Steps>
-  <Step>Make the final changes on the notification event and test it to make sure you are getting the desirable results.</Step>
-  <Step>On the top of the page, next to the name of the **Notification Event**, you will see the Test Version mentioned.</Step>
-  <Step>To keep this as a **Test**, click on **Save** and the draft will be saved.</Step>
-  <Step>To make this version of the **Test** live, click **Go Live**.</Step>
-  <Step>This will make the current version the live version of the **Notification Event**.</Step>
-</Steps>
-
-## How to group Notification Events?
-
-Notification Events Groups help you organize related notification events together. For instance, if you have multiple notification events for different order statuses (Confirmed, Cancelled, Shipped, InTransit, Delivered), you can create an 'Order Management' group and assign all these notification events to it. This makes notification events filtering and management more efficient.
-
-You can read more about it [here](./notification-event-group).
-
-## Approval flow
-
-If you have enabled 'Approval' in Security Settings, when you click 'Go Live', you will need to raise an approval request for the changes you have done.
+Once you are happy with the notification event you have built and tested in the **Test** version, follow these steps to make it live:
 
 <Steps>
-  <Step>You will see the below popup once you click 'Go Live' . Select approvers from the 'From' dropdown. You can choose one or more approvers. You need to write a short message mentioning the reason for approval request. If you select 'Go Live on approval', the feature will go Live once the approver approves the request. Clicking 'Send for Approval' will send the request. ![](/images/eadd428-event_approval.png)</Step>
-  <Step>You will see the approval request in the Notification event page as shown . You can click 'Cancel' to cancel the request. ![](/images/2abc2a1-notif_event_approval_request.png)</Step>
-  <Step>The approvers will receive an Email, an InApp notification for every approval request.</Step>
-  <Step>The approver will see the request in the Notification event page. The approver can approve or reject from the respective notification event. ![](/images/60de965-approval_request_feature_page.png)</Step>
-  <Step>Also if the approver wants to see all the pending requests, then can see them in the 'Requests' page as shown below. ![](/images/ba2bc39-Pending_Request.png)</Step>
-  <Step>The approver can choose one or more requests and either Approve or Reject. While rejecting they need to provide a rejection reason.</Step>
-  <Step>If the request is Approved, the feature will go Live if the requestor selected 'Go Live on approval' while raising the request. Otherwise, they have to click 'Go Live' to take the feature Live.</Step>
+  <Step>Make your final changes to the notification event and test it to make sure you get the results you want.</Step>
+  <Step>At the top of the page, next to the notification event name, you will see the Test version.</Step>
+  <Step>To keep it as **Test**, click **Save** and the draft is saved.</Step>
+  <Step>To make this Test version live, click **Go Live**.</Step>
+  <Step>The current version is now the Live version of the notification event.</Step>
 </Steps>
+
+## How to group notification events?
+
+Notification event groups help you keep related notification events together. For example, if you have notification events for different order statuses (Confirmed, Cancelled, Shipped, InTransit, Delivered), you can create an "Order Management" group and add all of them to it. This makes filtering and managing notification events easier.
+
+Read more in [Notification Event Groups](./notification-event-group).
+
+## Save & Go Live
+
+Make sure you save every change by clicking **Save** at the top of the page. This saves your changes only to the **Test** version.
+
+When you click **Go Live**, the notification event goes live right away.
+
+<Note>
+If [Approval Request](./approval-request) is turned on, clicking **Go Live** asks you to raise an approval request first. See [Approval Request](#approval-request) below.
+</Note>
+
+## Approval Request
+
+If Approval Request is turned on in Security Settings, clicking **Go Live** asks you to raise an approval request for your changes.
+
+<Tip>
+For the full details on how approval requests work, see [Approval Request](./approval-request).
+</Tip>
+
+![Raising an approval request](/images/request-approval.gif)
+Click **Go Live**. The **Request Approval** window opens, showing the notification event name and version.
+    - Choose one or more approvers in **Select Approvers**. At least one approver is required.
+    - Add a short note in **Write a Message** explaining why you are asking for approval.
+    - Select **Go live on approval** if you want the notification event to go live as soon as the request is approved.
+    - Click **REQUEST** to send the request.
+
+    ![Request Approval window](/images/request-approval.png)

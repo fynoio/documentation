@@ -30,21 +30,7 @@ In the case of the preceding `OrderConfirmed` example:
 
 To make an idempotent request, include an additional `Idempotency-Key: <key>` header in your request. Experience smoother operations with this powerful addition to our API!"
 
-```cURL {4} title="Notification Event API with Idempotency Key" wordWrap
-curl -X POST 'https://api.fyno.io/v1/FYXXXXXXXXXXXX/event' \
--H 'Authorization: Bearer <YOUR_FYNO_API_KEY>' \
--H 'Content-Type: application/json' \
--H 'Idempotency-Key: 5de04035-9105-4c76-a6dc-fd20441a5ab9' \
--d '{
-  "event": "Welcome_Email",
-  "to": {
-    "email": "<receivers_email>"
-  },
-  "data": {
-    "name": "Rahul"
-  }
-}'
-```
+![Notification Event API with Idempotency Key](/images/idempotency-key.gif)
 
 At Fyno, we've engineered a foolproof idempotency system. It records the status code and body of the initial request made using a specific idempotency key, regardless of its outcome - success or failure. Subsequent requests with the same key will yield the identical result, even in the case of 500 errors.
 

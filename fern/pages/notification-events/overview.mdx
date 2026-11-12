@@ -6,141 +6,269 @@ og:title: 'Core Concepts of Notification Events | Fyno Documentation'
 og:description: 'Combine message layouts with delivery configurations. Learn how variables match payload keys and structure multi-channel routing logic.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
-A notification event is the combination of templates, service providers or route (single or omni-channel).
 
-**Notification Events = Template + (Providers or Route) **
+A notification event brings together a template and the way it is delivered, either through service providers or a route (single channel or Omni-Channel).
+
+<Note>
+**Notification Event = Template + (Providers or Route)**
+</Note>
 
 ## What does it do?
 
 A notification event is what sends your configured message to the end user.
 
-## How do they work?
+## How does it work?
 
 <Steps>
-  <Step>Add the recipient number or email ID - depending on your use case.</Step>
-  <Step>
-    Add variables that have been created within the template.
-    <ul>
-      <li>Variables are usually denoted within **`{{}}`**.</li>
-      <li>Each variable needs to be filled out without which null (empty) value will be delivered in place of the placeholder in the message.</li>
-    </ul>
+  <Step title="Add the recipient">
+    Add the recipient's phone number or email ID, depending on your use case.
+  </Step>
+  <Step title="Fill in the variables">
+    Add values for the variables created in the template.
+    - Variables are usually written inside **`{{}}`**.
+    - Fill in every variable. If a variable is left empty, a blank (null) value is sent in place of the placeholder in the message.
   </Step>
 </Steps>
 
+## The Notification Events page
+
+Select **Notification Events** from the navigation to see all the notification events in your workspace.
+
+![Notification Events page](/images/listing.png)
+
+From this page you can:
+
+- Search for a notification event by name using the **Search Notification Events** box.
+- Filter the list using the **Version** dropdown.
+- See all notification events under **All**, or browse them by group under **GROUPS**.
+- Create a new notification event using **CREATE**.
+- Open the **More Options** menu (⋮) on any notification event card.
+
+Each card shows the notification event name and when it was last updated. The icons at the bottom of the card tell you its version and type:
+
+| Icon | What it means |
+| --- | --- |
+| Teal rocket | The notification event has a Live version. |
+| Grey rocket | The notification event only has a Test version. |
+| Shop | Marketing notification event. |
+| Dollar sign ($) | Transactional notification event. |
+| Asterisks (\*\*\*) | OTP notification event. |
+
+## How to create a notification event
+
+![Creating a notification event](/images/create-notification-event.gif)
+
+<Steps>
+  <Step>
+    On the Notification Events page, click **CREATE**. The **Create Notification event** window opens.
+  </Step>
+  <Step>
+    Fill in the details below and click **SUBMIT**.
+  </Step>
+</Steps>
+
+![Create Notification event window](/images/create-dialog.png)
+
+| Field | Required | What to enter |
+| --- | --- | --- |
+| **Name** | Yes | A name for the notification event. |
+| **Type** | Yes | The kind of message this event sends: **OTP**, **Transactional** or **Marketing**. |
+| **Add To Group (Optional)** | No | A group to organise notification events for easier management. |
+| **Description (Optional)** | No | A short note about what this notification event is for. |
+| **Select Subscription Topic (Optional)** | No | The subscription topic this notification event belongs to. |
+
+![Type dropdown](/images/type-dropdown.png)
+
+Next, choose the template along with the channels to complete the notification event. A detailed walk-through is provided in the next section.
+
 ## Notification Event Options Menu
-Each notification event in the notification event list includes a **More Options** menu (⋮), which provides quick access to common notification event management actions. These actions allow you to update notification event information, review configuration details, create copies, request deletion, or publish changes without leaving the notification event list.
+
+Each notification event card has a **More Options** menu (⋮). It gives you quick access to common actions, so you can update, review, copy, delete or publish a notification event without leaving the list.
+
+![More Options menu](/images/options-menu.png)
 
 The available actions are:
-- **Edit** – Update the notification event name or change its assigned group.
-- **View Details** – View the notification event's metadata, dependencies, and where it is used across the workspace.
-- **Duplicate** – Create a copy of the notification event.
-- **Copy to Another Workspace** – Copy the notification event to a different workspace.
-- **Delete** – Delete the notification event.
-- **Go Live** – Publish the current Test version of the notification event to the Live environment.
 
-### Edit Notification Event
-The Edit action allows you to modify the notification event's basic information without affecting its configuration.
+- **Edit**: Change the notification event name or its group.
+- **Copy to another workspace**: Copy the notification event to a different workspace.
+- **View Details**: See where the notification event is used and what it depends on.
+- **Duplicate**: Create a copy of the notification event in the same workspace.
+- **Delete**: Delete the notification event.
+- **Go Live**: Publish the current Test version of the notification event to Live.
+
+### Edit
+
+Use **Edit** to change the notification event's basic information. Its setup (templates, routes and providers) stays as it is.
 
 You can:
+
 - Rename the notification event.
-- Change the group to which the notification event belongs.
+- Move it to a different group.
 
-This action is useful for reorganizing or renaming notification events while preserving their existing configuration.
+This is useful when you want to reorganise or rename notification events without touching how they work.
 
-### Delete Notification Event
-The Delete action removes the notification event from the workspace.
+### Copy to another workspace
 
-If approval requests are enabled, the deletion is submitted as an approval request instead of being performed immediately.
+Use **Copy to another workspace** to reuse a notification event in another workspace without building it again. After the copy is done, the copied notification event can be managed on its own, separately from the original.
 
-Before the notification event is deleted, the system displays a list of campaigns and workflows that currently use the notification event. Reviewing this information helps you understand the impact of deleting the notification event before confirming the action.
+For the full steps, see [Copy notification events to another workspace](#copy-notification-events-to-another-workspace) below.
 
 ### View Details
-The View Details page displays where a notification event is used and what resources it depends on. It lists the campaigns and workflows that reference the notification event, along with the templates and Omni-Channel routes used by it, helping you understand its usage and dependencies before making changes or publishing updates.
 
-This page is particularly useful for understanding where a notification event is used, identifying its dependencies, and comparing the Test and Live versions before deployment.
+**View Details** shows where a notification event is used and what it needs to work. Check this before you make changes, publish or delete a notification event.
 
-#### Information Displayed
-The page includes the following information:
+![Opening View Details and switching between Live and Test](/images/view-details.gif)
 
-- Name – Displays the notification event name.
-- **Group Tag** – Identifies the group to which the notification event belongs, such as Internal Alerts or Onboarding.
-- **Environment** – Indicates whether the displayed information relates to the Test or Live version of the notification event.
-- **Last Updated** – Shows when the selected environment was most recently modified, helping identify the latest published or draft version.
-- **Used In** – Lists all campaigns and workflows that use the notification event, allowing you to assess the impact of modifying or deleting it.
-- **Depends On** – Lists the templates and Omni-Channel routes referenced by the notification event, helping you understand its dependencies before making changes, publishing, or deleting it.
+<Tabs>
+  <Tab title="Live">
+    ![View Details, Live version](/images/view-details-live.png)
+  </Tab>
+  <Tab title="Test">
+    ![View Details, Test version](/images/view-details-test.png)
+  </Tab>
+</Tabs>
 
-#### Environment Selection
-The environment selector allows you to switch between the two available versions of a notification event without leaving the details page.
+#### What you will see
 
-- **Test** displays the draft version used for development, testing, and validation before publication.
-- **Live** displays the version currently available to end users.
+| Item | What it shows |
+| --- | --- |
+| **Name** | The notification event name. |
+| **Group Tag** | The group the notification event belongs to, such as Internal Alerts or Onboarding. |
+| **Test / Live** | Which version you are looking at. |
+| **Last Updated** | When the selected version was last changed. |
+| **Used in** | The campaigns and workflows that use this notification event, so you can see what is affected if you change or delete it. |
+| **Depends On** | The templates, Omni-Channel routes and integrations this notification event uses. |
 
-### Copy to Another Workspace
+#### Switch between Test and Live
 
-The Copy to Another Workspace action lets you copy a notification event from the current workspace to another workspace. This is useful when you want to reuse an existing notification event across multiple workspaces without recreating it manually.
+Use the **Test** and **Live** toggle at the top right to switch between the two versions without leaving the page.
 
-Before you begin
+- **Test**: The draft version, used for building and testing before it is published.
+- **Live**: The version your end users currently receive.
 
-- Ensure that all dependencies required by the notification event are available in the destination workspace.
-- This includes the relevant templates, components, and any other referenced resources.
-- If these dependencies are not available, the copied notification event may require additional configuration before it can function correctly.
+### Duplicate
 
-After the copy is complete, the notification event is available in the destination workspace and can be managed independently of the original.
+Use **Duplicate** to create a copy of a notification event in the same workspace.
 
-## How to create a notification event?
+<Steps>
+  <Step>
+    Click the **More Options** menu (⋮) on the notification event and select **Duplicate**. The **Duplicate Notification event** window opens.
+  </Step>
+  <Step>
+    The **Name** is filled in with the original name followed by `-copy`, and the **Type** is carried over. Change them if needed.
+  </Step>
+  <Step>
+    Optionally, choose a group, add a description or select a subscription topic.
+  </Step>
+  <Step>
+    Click **SUBMIT**.
+  </Step>
+</Steps>
 
-You will need to choose the template along with the channels to create a successful notification event. A detailed walk-through is provided in the next section.
+![Duplicate Notification event window](/images/duplicate-dialog.png)
 
-Notification events can be copied from your workspace to other workspaces you own. The copy process is only available in workspaces where you have the <strong>Owner</strong> role.
+### Delete
 
-## Steps to copy notification events to another workspace
+Use **Delete** to remove the notification event from the workspace.
+
+Before anything is deleted, Fyno shows the campaigns and workflows that use this notification event, so you can see the impact before you confirm.
+
+<Note>
+If [Approval Request](./approval-request) is turned on, the deletion is sent as an approval request instead of happening right away.
+</Note>
+
+### Go Live
+
+Use **Go Live** to publish the current Test version of the notification event to Live.
+
+## Copy notification events to another workspace
+
+You can copy notification events from your workspace to other workspaces you own. Copying is only available in workspaces where you have the **Owner** role.
+
+<Warning>
+Only the notification event itself is copied. Everything it depends on, such as templates, components, routes and integrations, must be created or copied into the destination workspace separately. If these are missing, the copied notification event will need extra setup before it works.
+</Warning>
 
 ### 1. Prepare your destination workspace
 
-It is important to note that when copying notification events, only the notification event-related data will be copied to the destination workspace. Any dependencies must be created or copied manually in the destination workspace.
-
 <Steps>
-  <Step>Manually create the required integrations in the workspace.</Step>
-  <Step>Go to the templates page (**Templates** in the left navigation) and copy the templates and reusable components (if applicable) used by any of the notification events in the notification event via the [copy process](./copying-templates-components).</Step>
-  <Step>If applicable, go to the "Routes" pages (Routes → Single Channel and Routes → Omni-Channel from the navigation) and copy the routes used by any of the notification events in the notification event via the [copy process](./copying-routes).</Step>
-  <Step>If the notification events use Analytics Labels, then manually create the labels on the "Add Ons" page.</Step>
-  <Step>If the notification event uses Subscription Topics, then manually create and configure the topics on the User Preferences page (**User → Preferences** in the navigation).</Step>
+  <Step>
+    Create the required integrations in the destination workspace.
+  </Step>
+  <Step>
+    Go to **Templates** from the navigation and copy the templates used by the notification events. If they use reusable components, copy those too from **Components** under Templates. See the [copy process](./copying-templates-components).
+  </Step>
+  <Step>
+    If applicable, go to **Routes → Single Channel** and **Routes → Omni-Channel** from the navigation and copy the routes used by the notification events. See the [copy process](./copying-routes).
+  </Step>
+  <Step>
+    If the notification events use Analytics Labels, create the labels on the **Add Ons** page.
+  </Step>
+  <Step>
+    If the notification events use Subscription Topics, create and set up the topics on the User Preferences page (**User → Preferences** from the navigation).
+  </Step>
 </Steps>
 
-### 2. Copy your notification event(s) to another workspace
+### 2. Copy your notification events
 
-<Steps>
-  <Step>Ensure you are in the workspace from where you would like to copy the notification event.</Step>
-  <Step>Navigate to the notification events listing page by selecting Notification Events from the navigation.</Step>
-  <Step>Click the "Three Dots" icon on the notification event that you would like to copy. This step will open a menu.</Step>
-  <Step>In the menu options, select “Copy to another workspace”. ![](/images/workspace-copy/options-menu.png)</Step>
-  <Step>You will now see a checkbox next to every notification event listed on the page. You can select multiple notification events to copy if needed.</Step>
-  <Step>Once you have completed your selection, click “Copy Selected Notification Events” in the alert above the listing.</Step>
-  <Step>When copying a single notification event that has a live version, you will see an option to copy either the latest live or test version. If your notification event only has a test version, that version will be copied.</Step>
-  <Step>When copying multiple notification events, the latest live or the latest test version will be copied, depending on the notification event.</Step>
-  <Step>You will now see a dialog box with an option to select destination workspaces. In the “Destination Workspace(s)” dropdown menu, you will see all the workspaces you are a member of, but only the ones in which you have the “Owner” role will be available for selection. You can select up to five applicable workspaces.</Step>
-  <Step>Once all the workspaces are selected, click “Confirm”. This step will initiate the copy process.</Step>
-  <Step>Now, in all the selected workspaces, you will see the copied notification events.</Step>
-</Steps>
-
-### 3. Post copy checklist
-
-<Steps>
-  <Step>If the copied notification event is associated with a subscription topic, click the "Three Dots" icon on the notification event in the listing page, click "Edit", select the topic in the "Select Subscription Topic" dropdown, and click "Update".</Step>
-  <Step>For every copied notification event, re-select the templates (including conditional templates if applicable).</Step>
-  <Step>Re-select the routes and/or integrations and save the notification event.</Step>
-  <Step>Similar steps are needed in other copied dependencies. Please see the post copy checklist for [routes](./copying-routes#3-post-copy-to-do).</Step>
-</Steps>
-
-## How versioning works
-
-Let's say we are copying a notification event from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
+![Copying a notification event to another workspace](/images/copy-to-another-workspace.gif)
 
 <Steps>
   <Step>
-    If the notification event does not exist in Workspace B, then the version created by the copy process will always be <code>v1 (Test)</code>.
+    Make sure you are in the workspace you want to copy the notification event from.
   </Step>
   <Step>
-    If the notification event already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live). For example, if the version in Workspace B is <code>v1 (Test)</code>, then the process will create a new version called <code>v2</code>. You can select this version from the version dropdown beside the notification event name and click “Save” to change the version to <code>v2 (Test)</code>, or click the “Go Live” button to promote it to <code>v2 (Live)</code>. This ensures that changes to existing versions in the destination workspace are not overwritten and gives you control over when to save or promote the copied notification event.
+    Select **Notification Events** from the navigation.
+  </Step>
+  <Step>
+    Click the **More Options** menu (⋮) on the notification event you want to copy and select **Copy to another workspace**.
+  </Step>
+  <Step>
+    A checkbox now appears next to every notification event on the page. Select one or more notification events to copy.
+  </Step>
+  <Step>
+    Click **COPY SELECTED NOTIFICATION EVENT** in the bar above the list. To start over, click **Clear selection**.
+
+    ![Copy selected notification event bar](/images/copy-selected-bar.png)
+  </Step>
+  <Step>
+    Choose which version to copy:
+    - **One notification event with a Live version**: You can choose to copy either the latest Live or the latest Test version.
+    - **One notification event with only a Test version**: The Test version is copied.
+    - **Several notification events**: The latest Live or latest Test version of each is copied, depending on the notification event.
+  </Step>
+  <Step>
+    In the **Destination Workspace(s)** dropdown, select up to five workspaces. You will see every workspace you are a member of, but you can only select the ones where you have the **Owner** role.
+  </Step>
+  <Step>
+    Click **Confirm** to start copying. The copied notification events now appear in all the selected workspaces.
   </Step>
 </Steps>
+
+### 3. After copying
+
+<Steps>
+  <Step>
+    If the copied notification event uses a subscription topic, click the **More Options** menu (⋮) on it, select **Edit**, choose the topic in **Select Subscription Topic**, and click **Update**.
+  </Step>
+  <Step>
+    For every copied notification event, select the templates again (including conditional templates, if any).
+  </Step>
+  <Step>
+    Select the routes and/or integrations again and save the notification event.
+  </Step>
+  <Step>
+    Do the same for other copied items. See the [post-copy checklist for routes](./copying-routes#3-post-copy-to-do).
+  </Step>
+</Steps>
+
+### How versioning works
+
+Say you are copying a notification event from Workspace A to Workspace B. There are two cases:
+
+| Case | What happens |
+| --- | --- |
+| The notification event **does not exist** in Workspace B | The copy is created as `v1 (Test)`. |
+| The notification event **already exists** in Workspace B | The copy is created as a new standalone version that is neither Test nor Live. For example, if Workspace B has `v1 (Test)`, the copy is created as `v2`. |
+
+In the second case, pick the new version from the version dropdown next to the notification event name. Then click **Save** to make it `v2 (Test)`, or click **Go Live** to make it `v2 (Live)`. This way, existing versions in the destination workspace are never overwritten, and you decide when to save or publish the copy.
