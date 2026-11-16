@@ -115,16 +115,17 @@ If you select **No one**, no team member in the workspace will receive Email or 
 
 Click any alarm to open the **Alarm Details** page. To go back to the list, click **Alarms** at the top left.
 
-![](/images/alarm-detail-for-each-item-final.png)
+![](/images/alarm-detail-for-each-item-new-ui.png)
 
 The alarm's current status, **Open**, **Re-opened** or **Resolved**, is shown next to the page title. The page is made up of these sections:
 
 | Section | What it shows |
 | --- | --- |
-| **Description** | Why the alarm was raised, for example *Notification Dropped because of DND period*, and its severity, for example *High Severity*. Click the copy icon to copy the description. |
-| **Module** and **Source** | The module where the alarm was raised and the resource that caused it, such as the notification event name. Click the link icon next to the source to open it. |
-| **Integration(s)** | For alarms tied to an integration, the integration involved and its account identifier. For WhatsApp, this is the **WABA / Namespace**. |
+| **Description** | Why the alarm was raised, for example *Meta automatically changed the category to Marketing based on template content*, and its severity, for example **High**. Click **LEARN MORE** to read more about this type of alarm. |
+| **Module** and **Source** | The module where the alarm was raised, such as *WhatsApp External Template*, and the item that caused it, such as a template or notification event name. Click the icon next to the source to open it. |
+| **Integration(s)** | For alarms tied to an integration, the integration involved and its account ID. For WhatsApp, the account ID is shown under **WABA / Namespace**. |
 | **Recommended Solution** | Suggested steps to fix the issue. This section is marked **Coming Soon** for now. |
+| **Occurrences** | How often the issue has happened. **Total** is the number of times it occurred, **Started** is when the alarm was first raised, and **Last Occurrence** is when it most recently happened. |
 
 <Note>
 Sample logs are available for 4 days after they're created. If the alarm last occurred more than 4 days ago, the logs no longer show on this page. Click **REQUEST REPORT** to request a report instead.
@@ -134,6 +135,7 @@ Sample logs are available for 4 days after they're created. If the alarm last oc
 
 Once you've fixed the underlying issue, click **MARK AS RESOLVED** at the top right. The alarm moves to the **Resolved** tab. If the same issue occurs again, the alarm moves to the **Re-opened** tab so you know the fix didn't hold.
 
+To see what has happened to an alarm over time, click the history icon next to **MARK AS RESOLVED**.
 ### Viewing the change log
 
 To see the history of an alarm, click the **history** icon next to **MARK AS RESOLVED**. The **Alarm History** panel lists every status change with its date and time, who made it, and any note added. Alarms that re-open automatically are shown as re-opened by **Fyno AI**. This is useful when an alarm has been re-opened and you want to know who resolved it earlier.
