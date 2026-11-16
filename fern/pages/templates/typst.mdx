@@ -1,0 +1,209 @@
+---
+title: 'Typst Editor'
+slug: 'typst-editor'
+description: 'Create PDF components in Fyno with the Typst Editor. Write Typst code, add placeholders and images, use Fyno AI, and check your PDF in a live preview.'
+og:title: 'Typst Editor | Fyno Documentation'
+og:description: 'Learn how to build PDF components in Fyno with the Typst Editor, using placeholders, system variables, uploaded images, Fyno AI and a live PDF preview.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
+---
+
+The Typst Editor lets you build a PDF by writing Typst code. You can add dynamic data through placeholders, use your own images, and check the PDF in a live preview next to your code. It is the recommended editor for PDF components.
+
+The example below picks the Typst Editor, writes a simple order invoice, and saves it. The preview fills in as each line is added.
+
+![Create a PDF with the Typst Editor](/images/typst-create-pdf.gif)
+
+## Open the Typst Editor
+
+1. In the left menu, click **Components**.
+2. Open your PDF component, or [create a new one](https://fyno.io/docs/components#how-to-create-a-pdf-component).
+3. On the **Choose an editor to create your PDF** screen, click **Typst Editor**.
+
+![Choose an editor to create your PDF](/images/typst-choose-editor.png)
+
+| Editor | When to use it |
+| --- | --- |
+| **Typst Editor** (Recommended) | Write your PDF in Typst with JSON placeholders and uploaded image assets. |
+| **No-Code PDF Editor** | Create, edit, and export complex documents without writing any code. |
+| **Html Editor** | Use this if you already have your HTML template code. |
+
+## Editor layout
+
+The editor has three parts:
+
+- **Left panel**: Settings, Variables, Assets, Outline, and Errors. Click `<<` to collapse it.
+- **Code editor**: where you write your Typst code.
+- **Preview**: shows the PDF as it will look, and updates as you type.
+
+![Typst Editor layout](/images/typst-editor-layout.png)
+
+Click the icons on the left to move between the panels. The example below sets a password in **Settings**, then opens **Variables**, **Assets**, **Outline**, and **Errors**.
+
+![Typst Editor left panel](/images/typst-left-panel.gif)
+
+## Starter code
+
+Every new Typst PDF opens with a small starter template:
+
+```typst
+// Placeholders are available as JSON: data.at("key")
+#let data = json("data.json")
+
+// Uploaded assets are referenced by their file name: image("assets/logo.png")
+
+#set page(paper: "a4", margin: 2cm)
+#set text(size: 10pt)
+
+= Hello #data.at("name", default: "there")
+```
+
+| Line | What it does |
+| --- | --- |
+| `#let data = json("data.json")` | Loads your placeholder values so you can use them in the PDF. Keep this line. |
+| `#set page(paper: "a4", margin: 2cm)` | Sets the page size and margins. |
+| `#set text(size: 10pt)` | Sets the default text size. |
+| `= Hello #data.at("name", default: "there")` | Adds a heading. It shows the value of `name`, or "there" if no value is sent. |
+
+## Settings
+
+Click the gear icon in the left panel to open **Settings**.
+
+![Settings](/images/typst-settings.png)
+
+| Field | Description |
+| --- | --- |
+| **File Name** | The name of the PDF file. |
+| **Protect with Password** | Select this to lock the PDF with a password. |
+| **Password** | The password needed to open the PDF. This field appears when **Protect with Password** is selected. |
+
+## Variables
+
+Click the `{ }` icon in the left panel to open **Variables**. Use the **Search** box to find a variable quickly.
+
+### Placeholders
+
+Placeholders are replaced with the dynamic data sent in the `data` payload.
+
+![Placeholders](/images/typst-placeholders.png)
+
+1. Next to **Placeholders**, click **+**, or expand the section and click **+ ADD**.
+2. Use the placeholder in your code with `data.at("key")`.
+
+```typst
+Hello #data.at("name")
+```
+
+To show a fallback value when no data is sent, add a default:
+
+```typst
+Hello #data.at("name", default: "there")
+```
+
+### System Variables
+
+System Variables are values that Fyno already has. They are grouped as **Digest**, **User Properties**, **Subscription**, and **Verify**. Expand a group to see the variables in it.
+
+![System Variables](/images/typst-system-variables.png)
+
+## Assets
+
+Click the image icon in the left panel to open **Assets**. This is where you upload images such as your logo.
+
+![Assets](/images/typst-assets.png)
+
+1. Click **Upload assets** or the upload icon next to **Assets**.
+2. Choose your image file.
+3. Use the image in your code with its file name:
+
+```typst
+#image("assets/logo.png")
+```
+
+## Outline
+
+Click the outline icon in the left panel to open **Outline**. It lists the main parts of your code, such as variables and headings, with their line numbers. Use **Filter outline** to narrow the list.
+
+![Outline](/images/typst-outline.png)
+
+## Errors
+
+Click the error icon in the left panel to open **Errors**. If something in your code cannot be compiled, the problem is listed here. When everything is fine, you see **No errors on compilation**.
+
+![Errors](/images/typst-errors.png)
+
+## Formatting toolbar
+
+The toolbar above the code editor adds common Typst formatting for you, so you do not have to type it by hand. It includes undo and redo, bold, italic, underline, headings, bulleted and numbered lists, math, code, links, and comments.
+
+## Generate with AI
+
+Click **Generate with AI** at the bottom of the code editor to let Fyno AI write or change the Typst code for you.
+
+![Generate with AI button](/images/typst-generate-with-ai-button.png)
+
+Three options appear. Click the one you need.
+
+![Generate with AI](/images/typst-generate-with-ai.png)
+
+### Create Typst with AI
+
+Opens **Create with Fyno AI**. Enter what you need in **Tell us your requirement** and click **Create**.
+
+![Create with Fyno AI](/images/typst-create-with-ai.png)
+
+The example below uses **Create Typst with AI** to build the order invoice from a short description.
+
+![Create Typst with AI](/images/typst-generate-with-ai.gif)
+
+### Convert HTML to Typst
+
+Paste your HTML code and click **Convert**. Fyno AI turns it into Typst.
+
+![Convert HTML to Typst](/images/typst-convert-html.png)
+
+### Edit Typst with AI
+
+Opens **Edit with Fyno AI**. Describe the changes you want to make and click **Edit PDF**.
+
+![Edit with Fyno AI](/images/typst-edit-with-ai.png)
+
+## Preview
+
+The preview on the right shows the number of pages and the PDF itself. Use the zoom list to change the preview size. Choose **Fit**, or a value from **25%** to **200%**.
+
+![Preview controls](/images/typst-preview.png)
+
+### Fullscreen preview
+
+Click the fullscreen icon to **Open the fullscreen preview in a new window**.
+
+![Open the fullscreen preview in a new window](/images/typst-preview-fullscreen.png)
+
+### Save and Download PDF
+
+Click the download icon to save your work and download the PDF.
+
+![Save and Download PDF](/images/typst-save-download.png)
+
+### Switch Editor
+
+Click **Switch Editor** to go back and choose a different editor.
+
+![Switch Editor](/images/typst-switch-editor-button.png)
+
+<Warning>
+Switching the editor removes your current work. Fyno shows **All your changes will be lost** and asks you to confirm. Click **SWITCH** to continue, or **CANCEL** to stay in the Typst Editor.
+</Warning>
+
+![Switch editor confirmation](/images/typst-switch-editor.png)
+
+## Save and go live
+
+1. Click **SAVE** to save your changes.
+2. Click **GO LIVE** to make this version the live version.
+
+The version list next to the component name shows which version you are on and which one is live, for example **v2 (Live)**.
+
+<Note>
+If approvals are turned on for your workspace, send the PDF for approval before it goes live. See [Approval Request](https://fyno.io/docs/approval-request).
+</Note>
