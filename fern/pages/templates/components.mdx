@@ -53,7 +53,7 @@ For example, to add a Header in email editor, you need to follow the below steps
 
 ## How to create a PDF component
 
-<Note>The **No-Code PDF Editor** is the recommended option for creating new PDF components. Choose the **HTML Editor** only if you already have an existing HTML template that you want to reuse.</Note>
+<Note>The **Typst Editor** is the recommended option for creating new PDF components. To learn how to use it, see [Typst Editor](https://fyno.io/docs/typst-editor). Choose the **HTML Editor** only if you already have an existing HTML template that you want to reuse.</Note>
 
 <Steps>
   <Step>Click **Components** to open the Components page.</Step>
@@ -75,9 +75,22 @@ For example, to add a Header in email editor, you need to follow the below steps
   <Step>
     Click **Submit**, then choose one of the following editors:![](/images/choose_an_editor_to_create_your_pdf.png)
     <ul>
-      <li><strong>No-Code PDF Editor (Recommended)</strong> – Create and format your PDF using the visual editor without writing HTML.</li>
+      <li><strong>Typst Editor (Recommended)</strong> – Write your PDF in Typst with JSON placeholders and uploaded image assets.</li>
+      <li><strong>No-Code PDF Editor</strong> – Create and format your PDF using the visual editor without writing HTML.</li>
       <li><strong>HTML Editor</strong> – Use this option only if you already have an existing HTML template that you want to reuse.</li>
     </ul>
+  </Step>
+
+  <Step>
+    <strong>If you select the Typst Editor:</strong>
+    ![](/images/typst-editor-layout.png)
+    <ul>
+      <li>Write your PDF in Typst code and check it in the live preview next to your code.</li>
+      <li>Insert dynamic values using <strong>Placeholders</strong> and <strong>System Variables</strong>, and add your images from <strong>Assets</strong>.</li>
+      <li>Set the paper size and margins in your Typst code, for example <code>#set page(paper: "a4", margin: 2cm)</code>.</li>
+      <li>Use <strong>Generate with AI</strong> to create Typst code, convert your HTML to Typst, or edit your code with Fyno AI.</li>
+    </ul>
+    For step-by-step help with each part of the editor, see [Typst Editor](https://fyno.io/docs/typst-editor).
   </Step>
 
   <Step>

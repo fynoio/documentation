@@ -279,6 +279,12 @@ navigation:
                     path: "pages/integrations/dlt/vodafone-idea.mdx"
               - page: "Verification"
                 path: "pages/integrations/verification.mdx"
+          - section: "Components"
+            icon: fa-regular fa-shapes
+            path: "pages/templates/components.mdx"
+            contents:
+              - page: "Typst Editor"
+                path: "pages/templates/typst.mdx"                  
           - section: "Templates"
             path: "pages/templates/templates-getting-started.mdx"
             icon: fa-regular fa-pen-ruler
