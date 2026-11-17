@@ -53,7 +53,7 @@ For example, to add a Header in email editor, you need to follow the below steps
 
 ## How to create a PDF component
 
-<Note>The **No-Code PDF Editor** is the recommended option for creating new PDF components. Choose the **HTML Editor** only if you already have an existing HTML template that you want to reuse.</Note>
+<Note>The **Typst Editor** is the recommended option for creating new PDF components because it creates PDFs faster. Choose the **HTML Editor** only if you already have an existing HTML template that you want to reuse.</Note>
 
 <Steps>
   <Step>Click **Components** to open the Components page.</Step>
@@ -75,43 +75,232 @@ For example, to add a Header in email editor, you need to follow the below steps
   <Step>
     Click **Submit**, then choose one of the following editors:![](/images/choose_an_editor_to_create_your_pdf.png)
     <ul>
-      <li><strong>No-Code PDF Editor (Recommended)</strong> – Create and format your PDF using the visual editor without writing HTML.</li>
+      <li><strong>Typst Editor (Recommended)</strong> – Write your PDF in Typst with JSON placeholders and uploaded image assets.</li>
+      <li><strong>No-Code PDF Editor</strong> – Create and format your PDF using the visual editor without writing HTML.</li>
       <li><strong>HTML Editor</strong> – Use this option only if you already have an existing HTML template that you want to reuse.</li>
     </ul>
   </Step>
+  <Step>Build your PDF in the editor you chose. Each editor is explained in the tabs below.</Step>
+</Steps>
 
-  <Step>
-    <strong>If you select the No-Code PDF Editor:</strong>
-    <ul>
-      <li>Create and format your content using the rich text editor.</li>![](/images/no_code_pdf_editor.png)
-      <li>Add images, tables, horizontal rules, multi-column layouts, page breaks, and hyperlinks.</li>
-      <li>Insert dynamic values using <strong>Placeholders</strong>, <strong>Handlebars</strong>, and <strong>System Variables</strong>.</li>
-    </ul>
-  </Step>
+<Tabs>
+  <Tab title="Typst Editor">
 
-  <Step>
-    <strong>If you select the HTML Editor:</strong> The HTML editor opens as shown below.
-    ![](/images/html_pdf_editor.png)
-    You can copy and paste your HTML code into the editor to create the PDF component.
-  </Step>
+Typst is a simple markup language for creating documents. You write plain text with short commands for headings, tables, images, and styling, and Typst turns it into a PDF. It creates PDFs faster than the other editors, which is why it is the recommended option.
 
-  <Step>
-    Configure the PDF using the following settings:
-    <ul>
-      <li><strong>File Name</strong> – Uses the component name by default. You can provide a custom file name or use a placeholder.</li>
-      <li><strong>Layout</strong> – Choose <strong>Portrait</strong> or <strong>Landscape</strong>. Portrait is the default.</li>
-      <li><strong>Paper Size</strong> – Select the required paper size. <strong>A4</strong> is the default.</li>
-      <li><strong>Margins</strong> – Configure the required page margins.</li>
-      <li><strong>Protect with Password</strong> – Enable password protection. You can enter a password manually or use a placeholder.</li>
-      <li><strong>Include Header</strong> – Include the configured PDF header (Optional).</li>
-      <li><strong>Include Footer</strong> – Include the configured PDF footer (Optional).</li>
-    </ul>
-  </Step>
+In the Typst Editor, you write the Typst code on one side and see the PDF in a live preview on the other. You can add dynamic data through placeholders and use your own images.
 
-  <Step>Click **Save and Preview PDF** to generate and review the PDF.</Step>
+The example below picks the Typst Editor, writes a simple order invoice, and saves it. The preview fills in as each line is added.
 
+![Create a PDF with the Typst Editor](/images/typst-create-pdf.gif)
+
+#### Editor layout
+
+The editor has three parts:
+
+- **Left panel**: Settings, Variables, Assets, Outline, and Errors. Click `<<` to collapse it.
+- **Code editor**: where you write your Typst code.
+- **Preview**: shows the PDF as it will look, and updates as you type.
+
+![Typst Editor layout](/images/typst-editor-layout.png)
+
+Click the icons on the left to move between the panels. The example below sets a password in **Settings**, then opens **Variables**, **Assets**, **Outline**, and **Errors**.
+
+![Typst Editor left panel](/images/typst-left-panel.gif)
+
+#### Starter code
+
+Every new Typst PDF opens with a small starter template:
+
+```typst
+// Placeholders are available as JSON: data.at("key")
+#let data = json("data.json")
+
+// Uploaded assets are referenced by their file name: image("assets/logo.png")
+
+#set page(paper: "a4", margin: 2cm)
+#set text(size: 10pt)
+
+= Hello #data.at("name", default: "there")
+```
+
+| Line | What it does |
+| --- | --- |
+| `#let data = json("data.json")` | Loads your placeholder values so you can use them in the PDF. Keep this line. |
+| `#set page(paper: "a4", margin: 2cm)` | Sets the page size and margins. |
+| `#set text(size: 10pt)` | Sets the default text size. |
+| `= Hello #data.at("name", default: "there")` | Adds a heading. It shows the value of `name`, or "there" if no value is sent. |
+
+#### Settings
+
+Click the gear icon in the left panel to open **Settings**.
+
+![Settings](/images/typst-settings.png)
+
+| Field | Description |
+| --- | --- |
+| **File Name** | The name of the PDF file. |
+| **Protect with Password** | Select this to lock the PDF with a password. |
+| **Password** | The password needed to open the PDF. This field appears when **Protect with Password** is selected. |
+
+The page size and margins are set in your Typst code, not in **Settings**.
+
+#### Variables
+
+Click the `{ }` icon in the left panel to open **Variables**. Use the **Search** box to find a variable quickly.
+
+**Placeholders** are replaced with the dynamic data sent in the `data` payload.
+
+![Placeholders](/images/typst-placeholders.png)
+
+1. Next to **Placeholders**, click **+**, or expand the section and click **+ ADD**.
+2. Use the placeholder in your code with `data.at("key")`.
+
+```typst
+Hello #data.at("name")
+```
+
+To show a fallback value when no data is sent, add a default:
+
+```typst
+Hello #data.at("name", default: "there")
+```
+
+**System Variables** are values that Fyno already has. They are grouped as **Digest**, **User Properties**, **Subscription**, and **Verify**. Expand a group to see the variables in it.
+
+![System Variables](/images/typst-system-variables.png)
+
+#### Assets
+
+Click the image icon in the left panel to open **Assets**. This is where you upload images such as your logo.
+
+![Assets](/images/typst-assets.png)
+
+1. Click **Upload assets** or the upload icon next to **Assets**.
+2. Choose your image file.
+3. Use the image in your code with its file name:
+
+```typst
+#image("assets/logo.png")
+```
+
+#### Outline
+
+Click the outline icon in the left panel to open **Outline**. It lists the main parts of your code, such as variables and headings, with their line numbers. Use **Filter outline** to narrow the list.
+
+![Outline](/images/typst-outline.png)
+
+#### Errors
+
+Click the error icon in the left panel to open **Errors**. If something in your code cannot be compiled, the problem is listed here. Click **Fix with AI** to let Fyno AI correct the code for you. When everything is fine, you see **No errors on compilation**.
+
+![Errors](/images/typst-errors.png)
+
+#### Formatting toolbar
+
+The toolbar above the code editor adds common Typst formatting for you, so you do not have to type it by hand. It includes undo and redo, bold, italic, underline, headings, bulleted and numbered lists, math, code, links, and comments.
+
+#### Generate with AI
+
+Click **Generate with AI** at the bottom of the code editor to let Fyno AI write or change the Typst code for you.
+
+![Generate with AI button](/images/typst-generate-with-ai-button.png)
+
+Three options appear. Click the one you need.
+
+![Generate with AI](/images/typst-generate-with-ai.png)
+
+**Create Typst with AI** opens **Create with Fyno AI**. Enter what you need in **Tell us your requirement** and click **Create**.
+
+![Create with Fyno AI](/images/typst-create-with-ai.png)
+
+The example below uses **Create Typst with AI** to build the order invoice from a short description.
+
+![Create Typst with AI](/images/typst-generate-with-ai.gif)
+
+**Convert HTML to Typst** lets you paste your HTML code and click **Convert**. Fyno AI turns it into Typst.
+
+![Convert HTML to Typst](/images/typst-convert-html.png)
+
+**Edit Typst with AI** opens **Edit with Fyno AI**. Describe the changes you want to make and click **Edit PDF**.
+
+![Edit with Fyno AI](/images/typst-edit-with-ai.png)
+
+#### Preview
+
+The preview on the right shows the number of pages and the PDF itself. Use the zoom list to change the preview size. Choose **Fit**, or a value from **25%** to **200%**.
+
+![Preview controls](/images/typst-preview.png)
+
+Click the fullscreen icon to **Open the fullscreen preview in a new window**.
+
+![Open the fullscreen preview in a new window](/images/typst-preview-fullscreen.png)
+
+Click the download icon to **Save and Download PDF**.
+
+![Save and Download PDF](/images/typst-save-download.png)
+
+Click **Switch Editor** to go back and choose a different editor.
+
+![Switch Editor](/images/typst-switch-editor-button.png)
+
+<Warning>
+Switching the editor removes your current work. Fyno shows **All your changes will be lost** and asks you to confirm. Click **SWITCH** to continue, or **CANCEL** to stay in the Typst Editor.
+</Warning>
+
+  </Tab>
+  <Tab title="No-Code PDF Editor">
+
+The No-Code PDF Editor opens as shown below.
+
+![](/images/no_code_pdf_editor.png)
+
+- Create and format your content using the rich text editor.
+- Add images, tables, horizontal rules, multi-column layouts, page breaks, and hyperlinks.
+- Insert dynamic values using **Placeholders**, **Handlebars**, and **System Variables**.
+
+Configure the PDF using the following settings:
+
+- **File Name** – Uses the component name by default. You can provide a custom file name or use a placeholder.
+- **Layout** – Choose **Portrait** or **Landscape**. Portrait is the default.
+- **Paper Size** – Select the required paper size. **A4** is the default.
+- **Margins** – Configure the required page margins.
+- **Protect with Password** – Enable password protection. You can enter a password manually or use a placeholder.
+- **Include Header** – Include the configured PDF header (Optional).
+- **Include Footer** – Include the configured PDF footer (Optional).
+
+Click **Save and Preview PDF** to generate and review the PDF.
+
+  </Tab>
+  <Tab title="HTML Editor">
+
+The HTML editor opens as shown below.
+
+![](/images/html_pdf_editor.png)
+
+You can copy and paste your HTML code into the editor to create the PDF component.
+
+<Tip>To move your HTML template to the faster Typst Editor, open the **Typst Editor**, click **Generate with AI**, and choose **Convert HTML to Typst**. Paste your HTML code and click **Convert**, and Fyno AI turns it into Typst for you.</Tip>
+
+Configure the PDF using the following settings:
+
+- **File Name** – Uses the component name by default. You can provide a custom file name or use a placeholder.
+- **Layout** – Choose **Portrait** or **Landscape**. Portrait is the default.
+- **Paper Size** – Select the required paper size. **A4** is the default.
+- **Margins** – Configure the required page margins.
+- **Protect with Password** – Enable password protection. You can enter a password manually or use a placeholder.
+- **Include Header** – Include the configured PDF header (Optional).
+- **Include Footer** – Include the configured PDF footer (Optional).
+
+Click **Save and Preview PDF** to generate and review the PDF.
+
+  </Tab>
+</Tabs>
+
+Once your PDF is ready:
+
+<Steps>
   <Step>Click **Save** to create a test version of the component or **Go Live** to publish the live version.</Step>
-
   <Step>
     Once the PDF component is created successfully, it appears on the **Components** page and can be reused in Email, WhatsApp, and SMS templates.
     ![](/images/components.png)
