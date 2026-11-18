@@ -1,5 +1,5 @@
 ---
-title: 'Sent Log Report Extraction'
+title: 'Report Extraction'
 slug: 'sent-logs-report-extraction'
 description: 'Generate and download notification reports from Fyno, including All Logs, Summary, Daily Summary, DND Period Logs, and SMS Delivery reports for both Live and Test environments.'
 og:title: 'Report Extraction - Add-Ons | Fyno Documentation'
@@ -7,7 +7,7 @@ og:description: 'Learn how to request, generate, and download notification repor
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Report extraction enables you to download Sent Logs for both Live and Test environments.
+Report extraction enables you to download your logs for both Live and Test environments.
 
 You can download 5 types of report
 
@@ -23,7 +23,7 @@ You can download 5 types of report
 ## Steps to extract report
 
 <Steps>
-  <Step>Navigate to **Sent Logs**</Step> 
+  <Step>Click **Logs** in the left navigation.</Step> 
   <Step>Click 'Request Report' on the top right corner.![](/images/sent-logs-request-report.png)</Step>
   <Step>
     Choose the **Version**, select **Type**, **Date Range**, then click **Confirm**. ![](/images/request-report-modal-ui.png)
@@ -79,7 +79,7 @@ Fyno picks the DND setting based on the filters you select, in this order:
 | 2 | Channel only | The first DND setting that matches the channel |
 | 3 | No filter | The first DND setting, whichever it is |
 
-{/* TODO: The Request Report form has no Group filter, and prod doesn't show a Group column in Sent Logs. Confirm with eng how Group ID gets set (for example, whether it comes from the selected Notification Event) before publishing the first row. */}
+{/* TODO: The Request Report form has no Group filter, and prod doesn't show a Group column in Logs. Confirm with eng how Group ID gets set (for example, whether it comes from the selected Notification Event) before publishing the first row. */}
 
 <Warning title="Always select a channel">
 Without a **Channel** filter, the report uses whichever DND setting happens to be first, which may belong to a different channel than the one you're checking.

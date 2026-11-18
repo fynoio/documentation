@@ -26,7 +26,7 @@ Each strategy is explained below.
 
 **Simply Send** sends the notification through the provider you select as the primary. If that fails, it tries the failover providers in the order you added them.
 
-![](/images/action-simply-send.gif)
+![](/images/single-channel-route-simply-send.gif)
 
 <Steps>
   <Step>Select your primary provider.</Step>
@@ -44,14 +44,14 @@ Each strategy is explained below.
 
 **Round Robin** distributes your notifications equally across the providers you select, one after another, in order.
 
-For example, with three providers, PA, PB and PC:
+For example, with three providers, Provider A, Provider B and Provider C:
 
-1. PA sends notification 1.
-2. PB sends notification 2.
-3. PC sends notification 3.
-4. PA sends notification 4, and so on.
+1. Provider A sends notification 1.
+2. Provider B sends notification 2.
+3. Provider C sends notification 3.
+4. Provider A sends notification 4, and so on.
 
-![](/images/action-round-robin.gif)
+![](/images/single-channel-route-round-robin.gif)
 
 <Steps>
   <Step>Select at least two providers. Click **Add Another** to add more, from the providers you have configured for the channel.</Step>
@@ -65,9 +65,9 @@ For example, with three providers, PA, PB and PC:
 
 **Distribute Between** splits traffic between providers by percentage.
 
-For example, with an 80% and 20% split, out of every 100 notifications, about 80 go through the first provider and about 20 through the second.
+For example, with an 80% and 20% split, out of every 100 notifications, about 80 go through Provider A and about 20 through Provider B.
 
-![](/images/action-distribute-between.gif)
+![](/images/single-channel-route-distribute-between.gif)
 
 <Steps>
   <Step>Select at least two providers, and enter the percentage of traffic to send through each, for example 80% and 20%. Click **Add Another** to add more providers.</Step>
@@ -81,4 +81,4 @@ For example, with an 80% and 20% split, out of every 100 notifications, about 80
 
 **Do Nothing** ends the flow at this point, without sending the notification. It has no other settings, and no failover.
 
-![](/images/action-do-nothing.gif)
+![](/images/single-channel-route-do-nothing.gif)
