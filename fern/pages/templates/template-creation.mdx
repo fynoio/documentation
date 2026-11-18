@@ -36,7 +36,7 @@ A channel needs a template before Fyno can send on it. Templates support the fol
 
 <Steps>
   <Step title="Open the Templates page">
-    Go to **Templates → Fyno** and click **Create** in the top right corner.
+    Click **Templates** in the left navigation, then click **Create** in the top right corner.
   </Step>
   <Step title="Name the template">
     Enter a **Name**. Use something your team will recognize, such as `order_shipped` or `sip-payment-reminder`.
@@ -206,7 +206,7 @@ Send a real message before you attach a template to a notification event, so you
     Select one of the providers already configured for this channel in your integrations.
   </Step>
   <Step title="Send">
-    Click **Test**. Fyno shows whether the send succeeded or failed, along with a link to the [Sent Logs](./sent-logs) entry.
+    Click **Test**. Fyno shows whether the send succeeded or failed, along with a link to the entry in [Logs](./logs-overview).
   </Step>
 </Steps>
 
@@ -272,10 +272,9 @@ If your workspace has **Approval** enabled in security settings (a maker-checker
       </Step>
       <Step title="Review the request">
         Open the template to approve or reject the request there, or go to **Approval Requests** in the left navigation to see every pending request.
+        ![](/images/approval-request-message-final.png)
+        ![](/images/approval-request-main-page.png)
 
-        ![](/images/60de965-approval_request_feature_page.png)
-
-        ![](/images/ba2bc39-Pending_Request.png)
       </Step>
       <Step title="Approve or reject">
         Select one or more requests and click **Approve** or **Reject**. A rejection reason is required.
@@ -287,9 +286,8 @@ If your workspace has **Approval** enabled in security settings (a maker-checker
 Once approved, the version goes live automatically if the requester selected **Go Live on approval**. Otherwise, the requester clicks **Go Live** to publish it. See [Approval Request](./approval-request) for more.
 
 ## Next steps
-
 <CardGroup cols={2}>
-  <Card title="SMS Templates" icon="fa-solid fa-comment-sms" href="./template-creation-sms">
+  <Card title="SMS Templates" icon="fa-regular fa-message-dots" href="./template-creation-sms">
     Build SMS content with DLT support, encoding, and sender settings.
   </Card>
   <Card title="WhatsApp Templates" icon="fa-brands fa-whatsapp" href="./template-creation-whatsapp">
