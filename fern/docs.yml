@@ -280,7 +280,7 @@ navigation:
               - page: "Verification"
                 path: "pages/integrations/verification.mdx"
           - section: "Templates"
-            path: "pages/templates/fyno-template.mdx"
+            path: "pages/templates/templates-getting-started.mdx"
             icon: fa-regular fa-pen-ruler
             contents:
               - section: "Creating a Template on Fyno"
