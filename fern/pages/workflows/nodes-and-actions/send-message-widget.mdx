@@ -7,49 +7,54 @@ og:description: 'Learn how to configure the Send Message widget to create and se
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
+<Info>
+The Send Message widget is currently available as a **Beta** feature and may continue to evolve with additional capabilities and configuration options.
+</Info>
 
-The **Send Message** widget allows users to create and send message templates directly within workflows.
+The **Send Message** widget allows you to create and send message templates directly within workflows.
 
 This widget helps workflows trigger communication messages dynamically during workflow execution and supports reusable messaging templates.
 
-The feature is currently available in **Beta**.
+## Example
 
-# Steps to configure Send Message Widget
+Say a customer confirms their order and you want to send them a confirmation right away. The **Send Message** widget uses a message template with placeholders, fills them from the workflow data, and sends the message.
+
+![Send Message filling a template and sending it](/images/send-message-example.gif)
+
+| Placeholder | Value from the workflow data |
+|---|---|
+| `{{name}}` | Priya |
+| `{{order_id}}` | O121 |
+| `{{delivery_date}}` | 12 Nov |
+
+## Steps to configure Send Message Widget
 
 <Steps>
-  <Step>
-    Drag and drop the <b>Send Message</b> widget into the workflow and connect it to the required workflow step.
+  <Step title="Add the widget">
+    Drag and drop the **Send Message** widget into the workflow and connect it to the required workflow step.
   </Step>
-
-  <Step>
-    Open the widget configuration panel.
+  <Step title="Open the configuration panel">
+    Click the widget to open its configuration panel.
   </Step>
-
-  <Step>
-    Click <b>CREATE MESSAGE TEMPLATE</b> to create a new message template.
+  <Step title="Create a message template">
+    Click **CREATE MESSAGE TEMPLATE** to create a new message template.
   </Step>
-
-  <Step>
+  <Step title="Add the content">
     Configure the message template with the required content, placeholders, and channel-specific details.
   </Step>
-
-  <Step>
+  <Step title="Save">
     Save the template configuration.
 
     Once configured, the workflow can use the message template during execution.
   </Step>
 </Steps>
 
-# Supported Capabilities
+## Supported Capabilities
 
-The Send Message widget can be used for:
-
-- Workflow notifications
-- Conversational messaging
-- Customer communication flows
-- Dynamic template-based messaging
-- Reusable communication templates
-
-<Note>
-The Send Message widget is currently available as a Beta feature and may continue to evolve with additional capabilities and configuration options.
-</Note>
+<CardGroup cols={3}>
+  <Card title="Workflow notifications" icon="bell" />
+  <Card title="Conversational messaging" icon="comments" />
+  <Card title="Customer communication flows" icon="users" />
+  <Card title="Dynamic template-based messaging" icon="wand-magic-sparkles" />
+  <Card title="Reusable communication templates" icon="clone" />
+</CardGroup>

@@ -11,6 +11,8 @@ The **AI Magic Match** widget is used to read a user's message, understand what 
 
 It matches by meaning, not exact words. For example, "Where is my order?" and "Please share the latest update on my order" are worded differently but both ask for the order status, so both go down the same branch.
 
+![AI Magic Match routing customer messages by meaning](/images/ai-magic-match-example.gif)
+
 This is useful for handling customer queries, routing requests to the right follow-up message, or telling apart requests such as order status, cancellations, refunds, or delivery agent details.
 
 Users can configure the widget using:
@@ -24,6 +26,10 @@ Each condition adds an **If** branch to the widget, numbered in order (1st, 2nd 
 ## Steps to configure AI Magic Match Widget
 
 ![AI Magic Match configuration](/images/ai-magic-match-settings.png)
+
+Here is the panel being filled in with the example values used in the steps below.
+
+![Filling in AI Magic Match](/images/ai-magic-match-setup.gif)
 
 <Steps>
   <Step>
@@ -118,6 +124,7 @@ Before going live, check that your conditions match the messages you expect.
 | --- | --- | --- |
 | Where is my order? | order_status | Workflow continues on the order_status branch. |
 | Who is delivering my parcel? | order_status | Workflow continues on the order_status branch. |
+| I don't need this anymore, please cancel it | cancel_order | Workflow continues on the cancel_order branch. |
 | Do you have this sofa in blue? | None | Workflow continues on the Else branch. |
 
 <Note>

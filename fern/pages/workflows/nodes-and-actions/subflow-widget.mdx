@@ -7,17 +7,31 @@ og:description: 'Learn how to configure Subflows in workflows to build reusable 
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-# Overview
-
 The **Subflow** feature introduces reusable and loop-based execution within workflows. Instead of restricting workflows to linear execution, Subflows allow workflows to dynamically redirect execution to another node within the same workflow while preserving workflow context and execution state.
+
 ![](/images/subflow-inrtroduction.png)
-This enables workflows to:
-- Redirect execution dynamically.
-- Repeat sections of workflows until conditions are met.
-- Reuse common workflow logic.
-- Preserve variables, counters, API responses, and execution state across iterations.
+
+## Benefits of Subflows
+
+<CardGroup cols={2}>
+  <Card title="Bundle repeated nodes" icon="box">
+    Bundle repeated workflow nodes into reusable execution units, and reuse common logic without duplicating workflow branches.
+  </Card>
+  <Card title="Redirect execution" icon="arrow-turn-up">
+    Redirect workflow execution dynamically to another node in the same workflow.
+  </Card>
+  <Card title="Repeat until done" icon="rotate">
+    Repeat sections of workflows until conditions are met.
+  </Card>
+  <Card title="Keep state" icon="database">
+    Maintain workflow variables, counters, API responses, and execution state across iterations.
+  </Card>
+</CardGroup>
+
+This allows workflows to behave dynamically instead of following rigid sequential execution paths.
 
 Subflows are especially useful for:
+
 - Authentication recovery
 - Retry handling
 - Polling workflows
@@ -25,67 +39,43 @@ Subflows are especially useful for:
 - Bulk operations
 - Reusable API orchestration
 
-# Benefits of Subflows
+## Example
 
-Subflows help users:
+Say a customer asks to block all their cards, and the number of cards is only known when the workflow runs. One **Block card** step inside a Subflow loops once per card, keeps count, and the user is notified once at the end.
 
-- Bundle repeated workflow nodes into reusable execution units.
-- Redirect workflow execution dynamically.
-- Repeat sections of workflows until conditions are met.
-- Reuse common logic without duplicating workflow branches.
-- Maintain workflow variables, counters, API responses, and execution state across iterations.
+![Subflow looping to block each card](/images/subflow-example.gif)
 
-This allows workflows to behave dynamically instead of following rigid sequential execution paths.
+## Creating and Configuring a Subflow
 
-# Creating and Configuring a Subflow
+Here is a subflow being named in the Subflow editor.
 
-## Steps to configure a Subflow
+![Naming a subflow](/images/subflow-setup.gif)
 
 <Steps>
-  <Step>
-    Navigate to the <b>Workflow Builder</b> where reusable or loop-based execution is required.
+  <Step title="Open the Workflow Builder">
+    Navigate to the **Workflow Builder** where reusable or loop-based execution is required.
   </Step>
-
-  <Step>
-    Add the <b>Subflow</b> widget from the workflow builder sidebar or configuration panel.
+  <Step title="Add the Subflow widget">
+    Add the **Subflow** widget from the workflow builder sidebar.
   </Step>
+  <Step title="Create the subflow">
+    Click **CREATE SUBFLOW** to open the Subflow editor window.
 
-  <Step>
-    Click <b>Create</b> to open the Subflow editor window.![](/images/subflow-configuration.png)
+    ![](/images/subflow-configuration.png)
   </Step>
-
-  <Step>
-    Provide a unique and descriptive name for the subflow.
-
-    Example:
-
-    ```text
-    Authentication Retry Flow
-    ```
+  <Step title="Name it">
+    In **Subflow name**, provide a unique and descriptive name, for example `Authentication Retry Flow`.
   </Step>
-
-  <Step>
-    Build the reusable subflow by adding workflow nodes such as:
-
-    - API Calls
-    - Conditions
-    - Wait Steps
-    - Notifications
-    - Variable Updates
-    - Authentication Handlers
-
-    Example Flow:
+  <Step title="Add the nodes">
+    Build the reusable subflow by adding workflow nodes after **Start**, such as API calls, conditions, wait steps, notifications, variable updates and authentication handlers.
 
     ```text
     Call API → Condition → Wait → Notification
     ```
   </Step>
+  <Step title="Add a Loop or Redirect">
+    Add a **Loop** or **Redirect** node wherever the workflow execution should repeat, and configure:
 
-  <Step>
-    Add a <b>Loop</b> or <b>Redirect</b> node wherever the workflow execution should repeat.
-
-    Configure:
-    
     - Continue conditions
     - Retry conditions
     - Exit behavior
@@ -93,131 +83,82 @@ This allows workflows to behave dynamically instead of following rigid sequentia
 
     This allows the workflow to dynamically jump back to earlier nodes while preserving workflow state.
   </Step>
-
-  <Step>
-    Configure the loop execution count.
-
-    Supported options:
-    
+  <Step title="Set the loop count">
     | Type | Description |
     | --- | --- |
-    | Static Value | Fixed number defined manually. |
-    | Dynamic Value | Value determined during runtime using workflow variables or node outputs. |
+    | **Static Value** | Fixed number defined manually. |
+    | **Dynamic Value** | Value determined during runtime using workflow variables or node outputs. |
 
-    The maximum supported loop count is <b>20</b>.
+    <Note>
+    The maximum supported loop count is **20**.
+    </Note>
   </Step>
+  <Step title="Define the fallback">
+    Define what happens when retry limits are exceeded, conditions fail, APIs continue failing, or loop conditions are no longer satisfied. For example: exit the workflow, send a notification, trigger an alternate flow, or log a failure event.
 
-  <Step>
-    Define fallback behavior for scenarios where:
-    
-    - Retry limits are exceeded.
-    - Conditions fail.
-    - APIs continue failing.
-    - Loop conditions are no longer satisfied.
-
-    Example fallback actions:
-
-    - Exit workflow
-    - Send notification
-    - Trigger alternate flow
-    - Log failure event
-  </Step>
     ![](/images/subflow-notification-event.png)
-  <Step>
-    Optionally store payload data returned from the subflow.
-
-    The payload is stored in JSON format and can later be accessed using workflow variables.
   </Step>
-
-  <Step>
-    Click <b>DONE</b> to save the subflow configuration.
-
-    The reusable subflow is now available within the workflow.
+  <Step title="Store the payload (optional)">
+    Optionally store payload data returned from the subflow. The payload is stored in JSON format and can later be accessed using workflow variables.
   </Step>
-
-  <Step>
-    To update the subflow later, click the Subflow widget and select the <b>Edit</b> icon.
-  </Step>
-
-  <Step>
-    Insert the saved subflow wherever reusable execution logic is required within workflows.
+  <Step title="Save">
+    Click **DONE** to save the subflow configuration. The reusable subflow is now available within the workflow. To remove it, click **DELETE**.
   </Step>
 </Steps>
 
-# Supported Use Cases
+<Tip>
+To update the subflow later, click the Subflow widget and select the **Edit** icon. You can insert the saved subflow wherever reusable execution logic is required within the workflow.
+</Tip>
 
-Subflows can be used for:
+## Use Cases
 
-- Retry handling.
-- Authentication recovery.
-- Polling workflows.
-- Bulk processing.
-- Conversational loops.
-- Reusable API orchestration.
+<Tabs>
+  <Tab title="Authentication refresh and retry">
+    Long-running workflows often depend on authentication tokens for downstream API execution. During workflows involving waits, retries, or asynchronous processing, tokens may expire before the next API call executes. Without a recovery mechanism, downstream APIs may fail and interrupt customer journeys.
 
-# Use Cases
+    ![](/images/authentication-refresh-flow.png)
 
-## Authentication Refresh and Retry Handling
+    **Using Subflows:**
 
-Long-running workflows often depend on authentication tokens for downstream API execution. During workflows involving waits, retries, or asynchronous processing, tokens may expire before the next API call executes.
+    <Steps>
+      <Step>The workflow validates whether the authentication token is still active.</Step>
+      <Step>If expired, execution redirects back to the authentication node.</Step>
+      <Step>The workflow generates and validates a fresh OTP.</Step>
+      <Step>The access token is refreshed.</Step>
+      <Step>Workflow execution resumes from the original flow path.</Step>
+    </Steps>
 
-Without a recovery mechanism, downstream APIs may fail and interrupt customer journeys.
-![](/images/authentication-refresh-flow.png)
+    The same reusable flow can also handle OTP retries by redirecting execution back to the authentication step until retry limits are reached.
 
-Using Subflows:
-- The workflow validates whether the authentication token is still active.
-- If expired, execution redirects back to the authentication node.
-- The workflow generates and validates a fresh OTP.
-- The access token is refreshed.
-- Workflow execution resumes from the original flow path.
+    **Benefits:** eliminates duplicated authentication branches, improves workflow reliability, simplifies retry management, and preserves execution context during retries.
+  </Tab>
+  <Tab title="Bulk card blocking">
+    Enterprise workflows often process dynamic lists where the number of records is unknown during workflow design, such as bulk card blocking in banking workflows.
 
-The same reusable flow can also handle OTP retries by redirecting execution back to the authentication step until retry limits are reached.
+    Without looping support:
 
-### Benefits
+    - API nodes are duplicated multiple times.
+    - Separate workflows are created for different record counts.
+    - Maintenance becomes difficult.
 
-- Eliminates duplicated authentication branches.
-- Improves workflow reliability.
-- Simplifies retry management.
-- Preserves execution context during retries.
+    ![](/images/bulk-card-blocking-flow.png)
 
-## Bulk Card Blocking Flow
+    **Using Subflows:**
 
-Enterprise workflows often process dynamic lists where the number of records is unknown during workflow design.
+    <Steps>
+      <Step>The workflow initializes a counter.</Step>
+      <Step>It processes the current card using the block-card API.</Step>
+      <Step>It checks whether more cards remain.</Step>
+      <Step>If more cards exist, execution redirects back to the block-card node.</Step>
+      <Step>Failures are retried automatically until retry limits are reached.</Step>
+    </Steps>
 
-Example:
-- Bulk card blocking in banking workflows
+    This enables a single workflow structure to process any number of cards dynamically.
 
-Without looping support:
-- API nodes are duplicated multiple times.
-- Separate workflows are created for different record counts.
-- Maintenance becomes difficult.
+    **Benefits:** eliminates duplicated workflow branches, supports scalable bulk operations, simplifies workflow maintenance, and improves retry handling for failed operations.
+  </Tab>
+</Tabs>
 
-![](/images/bulk-card-blocking-flow.png)
+## Outcome
 
-Using Subflows:
-- The workflow initializes a counter.
-- Processes the current card using the block-card API.
-- Evaluates whether additional cards remain.
-- Redirects execution back to the block-card node if more cards exist.
-- Automatically retries failures until retry limits are reached.
-
-This enables a single workflow structure to process any number of cards dynamically.
-
-### Benefits
-
-- Eliminates duplicated workflow branches.
-- Supports scalable bulk operations.
-- Simplifies workflow maintenance.
-- Improves retry handling for failed operations.
-
-# Outcome
-
-The **Subflow** feature enables workflows to become significantly more dynamic, scalable, and maintainable.
-
-By supporting:
-- Reusable execution paths.
-- Looping behavior.
-- Retry handling.
-- Workflow redirection.
-
-builders can create workflows that adapt to real-time conditions instead of relying on rigid sequential execution.
+The **Subflow** feature enables workflows to become significantly more dynamic, scalable, and maintainable. By supporting reusable execution paths, looping behavior, retry handling, and workflow redirection, builders can create workflows that adapt to real-time conditions instead of relying on rigid sequential execution.

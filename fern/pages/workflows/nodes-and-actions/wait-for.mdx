@@ -11,62 +11,45 @@ The **Wait For** widget is used to pause workflow execution for a specified dura
 
 This is useful for creating delayed journeys, scheduled follow-ups, reminder notifications, or timed workflow actions.
 
-Users can configure the wait duration using:
-- Time
-- Unit
+You set the wait duration with **Time** and **Unit**.
 
-The supported duration range is between **1 minute and 30 days**.
+<Note>
+The supported wait duration must be between **1 minute and 30 days**.
+</Note>
+
+## Example
+
+Say you want to ask for feedback 1 day after an order is delivered. Add a **Wait For** of 1 day between the delivery notification and the feedback request.
+
+![Wait For pausing a workflow for 1 day](/images/wait-for-example.gif)
 
 ## Steps to configure Wait For Widget
 
+Here is the panel being filled in for the example above.
+
+![Filling in Wait For](/images/wait-for-setup.gif)
+
 <Steps>
-  <Step>
+  <Step title="Add the widget">
     Drag and drop the **Wait For** widget into the workflow and connect it to the required workflow step.
   </Step>
-
-  <Step>
-    Configure the <b>Time</b> field.
-
-    Enter the numeric value that defines how long the workflow should pause before continuing.
-
-    Example:
-
-    ```text
-    1
-    ```
+  <Step title="Enter the Time">
+    Enter the numeric value that defines how long the workflow should pause before continuing, for example `1`.
   </Step>
-
-  <Step>
-    Select the <b>Unit</b> for the wait duration.
-
-    Supported units may include:
-
-    - Minutes
-    - Hours
-    - Days
-
-    Example:
-
-    ```text
-    Days
-    ```
+  <Step title="Select the Unit">
+    Select the unit for the wait duration. Supported units may include Minutes, Hours and Days, for example **Days**.
   </Step>
-
-  <Step>
+  <Step title="Save">
     Save the workflow configuration.
 
     Once configured, the workflow execution will pause for the specified duration before triggering the next workflow action.
   </Step>
 </Steps>
 
-## Example
+## More examples
 
 | Time | Unit | Result |
 | --- | --- | --- |
 | 1 | Days | Workflow waits for 1 day before continuing. |
 | 30 | Minutes | Workflow waits for 30 minutes before continuing. |
 | 2 | Hours | Workflow waits for 2 hours before continuing. |
-
-<Note>
-The supported wait duration must be between 1 minute and 30 days.
-</Note>
