@@ -329,7 +329,7 @@ navigation:
                       - page: "Teams Template"
                         path: "pages/templates/template-creation/teams.mdx"
                   - page: "Components"
-                    path: "pages/templates/components.mdx"
+                    path: "pages/templates/template-component.mdx"
                   - page: "Dynamic Content"
                     path: "pages/templates/templates-getting-started/dynamic-content.mdx"
                   - page: "Handlebars"
@@ -922,8 +922,8 @@ redirects:
     destination: "/docs/logs-overview"
     permanent: true
   - source: "/docs/fyno-templates-overview"
-    destination: "/docs/templates-getting-started"
+    destination: "/docs/get-started-with-templates"
     permanent: true
   - source: "/docs/external-templates"
-    destination: "/docs/templates-getting-started"
+    destination: "/docs/get-started-with-templates"
     permanent: true
