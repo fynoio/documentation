@@ -9,30 +9,27 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 The **Template Content Key** configuration is used to map payload fields to the content placeholders defined within a template. This helps dynamically populate template data during workflow execution.
 
-Users can select keys directly from the payload mapper based on the available workflow payload structure.
+You can select keys directly from the payload mapper, based on the available workflow payload structure.
+
+## Example
+
+Say the workflow payload has the message text in `custom1`. Map **Template Content Key** to `custom1`, and the template content is filled with that value when the workflow runs.
+
+![Mapping a payload key to the template content](/images/template-content-key-example.gif)
 
 ## Steps to configure Template Content Key
 
 <Steps>
-  <Step>
-    Navigate to the <b>Template Content Key</b> field within the workflow configuration.
+  <Step title="Open the field">
+    Navigate to the **Template Content Key** field within the workflow configuration.
   </Step>
+  <Step title="Find the payload key">
+    Enter or select the payload key that corresponds to the template content. Start typing to narrow down the list.
 
-  <Step>
-    Enter or select the payload key that corresponds to the template content.
-
-    The mapper displays available payload fields grouped by sections such as:
-    
-    - BODY
-    - METHOD
-    - CONTENTTYPE
-    - Additional payload groups
+    The mapper displays available payload fields grouped by sections such as **BODY**, **METHOD**, **CONTENTTYPE** and other payload groups.
   </Step>
-
-  <Step>
+  <Step title="Select the key">
     Select the required payload key from the mapper list.
-
-    Example keys:
 
     | Section | Example Key |
     | --- | --- |
@@ -40,10 +37,8 @@ Users can select keys directly from the payload mapper based on the available wo
     | BODY | `custom1` |
     | METHOD | `method` |
     | CONTENTTYPE | `contentType` |
-
   </Step>
-
-  <Step>
+  <Step title="Run the workflow">
     Once mapped, the selected payload value will dynamically populate the template content during workflow execution.
   </Step>
 </Steps>

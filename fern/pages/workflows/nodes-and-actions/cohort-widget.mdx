@@ -1,56 +1,57 @@
 ---
 title: 'Cohort Widget'
 slug: 'workflows/nodes-and-actions/cohort-widget'
-description: 'Learn how to configure the Cohort widget in workflows to add or remove users from Mixpanel cohorts based on workflow execution.'
+description: 'Learn how to configure the Cohort widget in workflows to act on users who are in, join or leave a Mixpanel cohort.'
 og:title: 'Cohort Widget in Workflow | Fyno Documentation'
-og:description: 'Learn how to configure the Cohort widget in workflows to add or remove users from Mixpanel cohorts using First Run, Added, and Removed actions.'
+og:description: 'Learn how to configure the Cohort widget in workflows to act on Mixpanel cohort members using the First Run, Added, and Removed outputs.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
-The **Cohort** widget is used to manage user segmentation within workflows. It allows users to add or remove users from cohorts configured in Mixpanel.
+
+The **Cohort** widget is used to work with user segments from Mixpanel. It connects to the **Mixpanel** trigger and tells the workflow which users are in a cohort, who has joined it and who has left it, each time Mixpanel syncs the cohort to Fyno.
 
 The cohort name configured in the widget must exactly match the cohort name available in Mixpanel.
 
-The widget supports the following actions:
+## How the outputs work
 
-- First Run
-- Added
-- Removed
+The widget has three outputs. Connect the next steps of your workflow to the ones you need.
 
-These actions help track user movement within cohorts during workflow execution.
+| Output | Who goes down this path |
+| --- | --- |
+| **First Run** | All users in the cohort during the initial cohort sync. Use this if you want to do a one time sync. |
+| **Added** | Users who joined the cohort since the last sync. |
+| **Removed** | Users who left the cohort since the last sync. |
+
+Say you have a Mixpanel cohort called `emi-due` for users whose EMI is due. The animation below shows three syncs and the output each user goes down.
+
+![Cohort widget outputs across Mixpanel syncs](/images/cohort-widget-example.gif)
 
 ## Steps to configure Cohort Widget
 
-<Steps>
-  <Step>
-    Drag and drop the **Cohort** widget into the workflow and connect it to the required workflow step.
-  </Step>
+![Entering the cohort name](/images/cohort-widget-setup.gif)
 
-  <Step>
-    In the <b>Enter Cohort Name</b> field, provide the cohort name.
+<Steps>
+  <Step title="Add the widget">
+    Drag and drop the **Cohort** widget into the workflow and connect it to the **Mixpanel** trigger.
+  </Step>
+  <Step title="Enter the cohort name">
+    Under **Enter Cohort Name**, type the name in the **Cohort Name** field. The name shows on the widget as you type.
 
     The entered value should exactly match the cohort name configured in Mixpanel.
   </Step>
-
-  <Step>
-    Configure the cohort action based on the workflow requirement.
-
-    Supported actions include:
-
-    | Action | Description |
-    | --- | --- |
-    | First Run | Adds the user to the cohort only during the first workflow execution. |
-    | Added | Adds the user to the cohort. |
-    | Removed | Removes the user from the cohort. |
-
+  <Step title="Connect the outputs">
+    Connect the next workflow steps to **First Run**, **Added** or **Removed**, based on the workflow requirement. For example, send a reminder from **Added** and a thank-you from **Removed**.
   </Step>
-
-  <Step>
+  <Step title="Save">
     Save the workflow configuration.
 
-    During workflow execution, users will automatically be added or removed from the configured Mixpanel cohort based on the selected action.
+    Each time Mixpanel syncs the cohort, users go down the output that matches what happened to them.
   </Step>
 </Steps>
 
 <Note>
 The cohort name is case-sensitive and must exactly match the cohort configured in Mixpanel.
 </Note>
+
+<Info>
+Cohorts can only be connected to the Mixpanel trigger. You can add more than one Cohort widget to the same trigger to handle several cohorts in one workflow. See [Creating a workflow with Mixpanel Cohort](/workflow-using-mixpanel-cohort).
+</Info>
