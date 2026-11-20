@@ -7,13 +7,15 @@ og:description: 'Learn how to create reusable components in Fyno, including emai
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-The Components feature allows you to build modular, reusable elements such as headers and footers. By creating these components once, you can easily add them into any email you create, saving time and effort.
+The Components feature allows you to build modular, reusable elements such as headers and footers.
+
+By creating these components once, you can easily add them into any email you create, saving time and effort.
 
 ## How to create a component (except PDF)
 
 <Steps>
-  <Step>In the left navigation, expand **Templates**.</Step>
-  <Step>Click **Components**. It opens up the Components page.</Step>
+  <Step>From the left navigation menu, locate **Components**.</Step>
+  <Step>Click 'Components' and it opens up the Components page.</Step>
   <Step>Click 'Create'. You will see a popup as shown below ![](/images/component_create.png)</Step>
   <Step>Give a unique name for your component and choose a component type. In this example, I am creating a Header component called 'On-Boarding'</Step>
   <Step>
@@ -51,7 +53,7 @@ For example, to add a Header in email editor, you need to follow the below steps
 
 ## How to create a PDF component
 
-<Note>The **No-Code PDF Editor** is the recommended option for creating new PDF components. Choose the **HTML Editor** only if you already have an existing HTML template that you want to reuse.</Note>
+<Note>The **Typst Editor** is the recommended option for creating new PDF components because it creates PDFs faster. Choose the **HTML Editor** only if you already have an existing HTML template that you want to reuse.</Note>
 
 <Steps>
   <Step>Click **Components** to open the Components page.</Step>
@@ -73,40 +75,16 @@ For example, to add a Header in email editor, you need to follow the below steps
   <Step>
     Click **Submit**, then choose one of the following editors:![](/images/choose_an_editor_to_create_your_pdf.png)
     <ul>
-      <li><strong>No-Code PDF Editor (Recommended)</strong> – Create and format your PDF using the visual editor without writing HTML.</li>
+      <li><strong>Typst Editor (Recommended)</strong> – Write your PDF in Typst with JSON placeholders and uploaded image assets.</li>
+      <li><strong>No-Code PDF Editor</strong> – Create and format your PDF using the visual editor without writing HTML.</li>
       <li><strong>HTML Editor</strong> – Use this option only if you already have an existing HTML template that you want to reuse.</li>
     </ul>
   </Step>
+  <Step>Build your PDF in the editor you chose. Each editor is explained in the tabs below.</Step>
+</Steps>
 
-  <Step>
-    <strong>If you select the No-Code PDF Editor:</strong>
-    <ul>
-      <li>Create and format your content using the rich text editor.</li>![](/images/no_code_pdf_editor.png)
-      <li>Add images, tables, horizontal rules, multi-column layouts, page breaks, and hyperlinks.</li>
-      <li>Insert dynamic values using <strong>Placeholders</strong>, <strong>Handlebars</strong>, and <strong>System Variables</strong>.</li>
-    </ul>
-  </Step>
-
-  <Step>
-    <strong>If you select the HTML Editor:</strong> The HTML editor opens as shown below.
-    ![](/images/html_pdf_editor.png)
-    You can copy and paste your HTML code into the editor to create the PDF component.
-  </Step>
-
-  <Step>
-    Configure the PDF using the following settings:
-    <ul>
-      <li><strong>File Name</strong> – Uses the component name by default. You can provide a custom file name or use a placeholder.</li>
-      <li><strong>Layout</strong> – Choose <strong>Portrait</strong> or <strong>Landscape</strong>. Portrait is the default.</li>
-      <li><strong>Paper Size</strong> – Select the required paper size. <strong>A4</strong> is the default.</li>
-      <li><strong>Margins</strong> – Configure the required page margins.</li>
-      <li><strong>Protect with Password</strong> – Enable password protection. You can enter a password manually or use a placeholder.</li>
-      <li><strong>Include Header</strong> – Include the configured PDF header (Optional).</li>
-      <li><strong>Include Footer</strong> – Include the configured PDF footer (Optional).</li>
-    </ul>
-  </Step>
-
-  <Step>Click **Save and Preview PDF** to generate and review the PDF.</Step>
+<Tabs>
+  <Tab title="Typst Editor">
 
     Typst is a simple markup language for creating documents. You write plain text with short commands for headings, tables, images, and styling, and Typst turns it into a PDF. It creates PDFs faster than the other editors, which is why it is the recommended option.
 
@@ -325,7 +303,6 @@ Once your PDF is ready:
 
 <Steps>
   <Step>Click **Save** to create a test version of the component or **Go Live** to publish the live version.</Step>
-
   <Step>
     Once the PDF component is created successfully, it appears on the **Components** page and can be reused in Email, WhatsApp, and SMS templates.
     ![](/images/components.png)
@@ -352,29 +329,29 @@ You can use a PDF Component in WhatsApp template in 2 ways
 
 ### How to use a PDF Component as Header in WhatsApp template
 
-- From left nav, go to a WhatsApp template (**Templates**).
+- From left nav, go to a WhatsApp template (Templates -> Fyno) .
 - Copy the component you want to add from the Components section in the navigation. 
 - Paste the value in the Header textbox. It will be added as `{{Component '<Component_name>'}}`
 - The added component will look as shown below. ![](/images/whatsapp_header_pdf.png)
 
 ### How to use a PDF Component as part of website CTA button
 
-Things to be done in the Meta Template 
+Things to be done in WhatsApp External Template 
 
-- In the Meta template, make sure to add a website button 
+- In the external template, make sure to add a website button 
 - Enable Dynamic URL toggle.
 - Enable Track URL check box.
 
-Things to be done in the template on the **Templates** page 
+**Things to be done in Fyno Template** 
 
-- From left nav, go to a WhatsApp template (**Templates**).
+- From left nav, go to a WhatsApp template (Templates -> Fyno) .
 - Copy the component you want to add from the Components section in the navigation. 
 - Paste the value in the button textbox. It will be added as `{{Component '<Component_name>'}}`
 - The added component will look as shown below. ![](/images/whatsapp_button_pdf.png)
 
 ### How to use a PDF Component in SMS template
 
-- From left nav, go to an SMS template (**Templates**).
+- From left nav, go to a WhatsApp template (Templates -> Fyno) .
 - Copy the component you want to add from the Components section in the navigation. 
 - Paste the value in any of the placeholders. It will be added as `{{Component '<Component_name>'}}` as shown below. ![](/images/pdf_component_sms.png)
 - Fyno will automatically shorten the URL of the PDF component added and send it in SMS. 
@@ -396,7 +373,8 @@ Reusable components can also be copied between workspaces that you own.
 
 <Steps>
   <Step>Open the source workspace.</Step>
-  <Step>In the left navigation, expand **Templates** and click **Components**.</Step>
+  <Step>Go to **Templates** → **Fyno**.</Step>
+  <Step>Click **Components** in the page header.</Step>
   <Step>Click the three-dot (**⋮**) menu on the component you want to copy.</Step>
   <Step>Select **Copy to another workspace**.</Step>
   <Step>Select one or more components to copy.</Step>
@@ -410,6 +388,7 @@ The copied components will now be available in the selected destination workspac
 #### Component versioning
 
 Component versioning follows the same behavior as template versioning:
+
 * **New Components:** If the component does not exist in the destination workspace, it is created as `v1` (Test).
 * **Existing Components:** If the component already exists, a new standalone version (for example, `v2`) is created without affecting existing versions. You can later save it as the new Test version or promote it to Live when you are ready.
 
