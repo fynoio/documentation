@@ -90,15 +90,11 @@ From these pages, you can either create a new template or bring in templates tha
 
 ## Copying Templates
 
-You can copy templates from one workspace to another workspace that you own, making it easy to reuse notification templates across multiple workspaces.
+You can copy templates to other workspaces that have the same owner as the current workspace, making it easy to reuse notification templates across multiple workspaces.
 
-<Callout type="warning">
-  **Prerequisite:** You must have the **Owner** role in the destination workspace to use this feature.
-</Callout>
-
-<Callout type="info">
+<Info>
   **Note:** Only the templates on the **Templates** page can be copied. **DLT Templates** and **Meta Templates** are not supported.
-</Callout>
+</Info>
 
 ### Before you begin
 
@@ -109,8 +105,6 @@ Before copying templates, make sure the destination workspace is ready.
 - Create any required integrations in the destination workspace.
 - If the template uses reusable components, copy those components to the destination workspace before copying the template. See [Copying Components](./components#how-to-copy-components-to-another-workspace).
 
-> **Note:** Only the template and its associated template data are copied. Dependencies such as integrations and reusable components must exist in the destination workspace.
-
 ### Steps to copy templates
 
 1. Switch to the workspace that contains the template you want to copy.
@@ -120,10 +114,11 @@ Before copying templates, make sure the destination workspace is ready.
 5. Select **Copy to another workspace**.
 6. A checkbox appears beside every template in the list. Select one or more templates to copy.
 7. Click **Copy Selected Templates**.
-8. If copying a single template that has a Live version, choose whether to copy the latest **Live** or **Test** version. If the template only has a Test version, that version is copied.
-9. When copying multiple templates, the latest available **Live** version is copied where available; otherwise, the latest **Test** version is copied.
-10. In the **Destination Workspace(s)** dropdown, select up to five workspaces where you have the **Owner** role.
-11. Click **Confirm** to begin the copy process.
+8. Choose which version to copy:
+   - **Copying one template**: You can choose to copy its **Test** or **Live** version. If it only has a Test version, the Test version is copied.
+   - **Copying several templates**: You can't choose. The latest **Live** or latest **Test** version of each template is copied.
+9. In the **Destination Workspace(s)** dropdown, select up to five workspaces. You can only select workspaces that have the same owner as the current workspace.
+10. Click **Confirm** to begin the copy process.
 
 Once the process completes, the selected templates are available in each destination workspace.
 
@@ -132,15 +127,10 @@ Once the process completes, the selected templates are available in each destina
 Let's say we are copying a template from Workspace A to Workspace B. There are two versioning scenarios to keep in mind.
 
 1. If the template does not exist in Workspace B, then the version created by the copy process will always be v1 (Test).
-2. If the template already exists in Workspace B, then the copy process will create a new standalone version (neither test nor live), without modifying existing versions.
+2. If the template already exists in Workspace B, then the copy process will create a new version, without modifying existing versions.
 
 <Note title="Example">
-Workspace B already has the template at **v1 (Test)**. When you copy the template into it, Fyno creates a new standalone version, **v2**. To use it:
+Workspace B already has the template at **v1 (Test)**. When you copy the template into it, Fyno creates it as **v2 (Test)**. When you're ready, click **Go Live** to make it **v2 (Live)**.
 
-1. Select **v2** from the version dropdown next to the template name.
-2. Choose what to do with it:
-   - Click **Save** to make it **v2 (Test)**.
-   - Click **Go Live** to promote it to **v2 (Live)**.
-
-This way, existing versions in the destination workspace are never overwritten, and you decide when to save or promote the copied template.
+This way, existing versions in the destination workspace are never overwritten, and you decide when to make the copied template live.
 </Note>

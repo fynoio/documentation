@@ -849,9 +849,6 @@ redirects:
   - source: "/docs/sync-whatsapp-templates-to-fyno"
     destination: "/docs/external-templates/whatsapp/sync-resync-templates"
     permanent: true  
-  - source: "/docs/sync-whatsapp-templates-to-fyno"
-    destination: "/docs/external-templates/whatsapp/sync-resync-templates"
-    permanent: true  
   - source: "/docs/fyno-verify"
     destination: "/docs/fyno-verify-otp-link"
     permanent: true 
@@ -876,11 +873,8 @@ redirects:
   - source: "/docs/event-triggering"
     destination: "/docs/notification-event-triggering"
     permanent: true
-  - source: "/docs/event-triggering"
-    destination: "/docs/notification-event-triggering"
-    permanent: true
-  - source: "/docs/copying-routes"  
-    destination: "/docs/routes/copying-routes"
+  - source: "/docs/copying-routes"
+    destination: "/docs/routes#steps-to-copy-routes-to-another-workspace"
     permanent: true
   - source: "/docs/workflow-webhook-trigger"
     destination: "/docs/workflow-webhook-trigger-setup"
@@ -910,7 +904,7 @@ redirects:
     destination: "/docs/sent-log-details#reviewing-notification-trace-and-summary-logs"
     permanent: true  
   - source: "/docs/copying-templates-components"
-    destination: "/docs/fyno-templates-overview#steps-to-copy-templates"
+    destination: "/docs/get-started-with-templates#steps-to-copy-templates"
     permanent: true  
   - source: "/docs/log-details-content"
     destination: "/docs/sent-log-details#understanding-log-content-details"
@@ -925,5 +919,8 @@ redirects:
     destination: "/docs/get-started-with-templates"
     permanent: true
   - source: "/docs/external-templates"
+    destination: "/docs/get-started-with-templates"
+    permanent: true
+  - source: "/docs/templates-getting-started"
     destination: "/docs/get-started-with-templates"
     permanent: true

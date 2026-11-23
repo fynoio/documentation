@@ -1,19 +1,17 @@
 ---
-title: 'Idempotency Controls and Request Duplication Guards'
+title: 'Idempotent Requests'
 slug: 'idempotent-requests'
-description: 'Implement strict network failover retry patterns using custom payload hashes. Learn how to pass token parameters across distributed queues, identify state validations, and handle context cache lifetimes.'
-og:title: 'Idempotency Controls and Request Duplication Guards | Fyno Documentation'
-og:description: 'Implement strict network failover retry patterns using custom payload hashes. Learn how to pass token parameters across distributed queues, identify state validations, and handle context cache lifetimes.'
+description: 'Safely retry Fyno API requests without sending the same notification twice, using an idempotency key.'
+og:title: 'Idempotent Requests | Fyno Documentation'
+og:description: 'Safely retry Fyno API requests without sending the same notification twice, using an idempotency key.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Introducing Idempotency for Seamless Request Retries!
-
-Fyno API now supports idempotency, ensuring you can safely retry requests without the risk of performing the same operation twice. This feature proves invaluable in scenarios where an API call gets interrupted in transit, leaving you without a response.
+The Fyno API supports idempotency, ensuring you can safely retry requests without the risk of performing the same operation twice. This feature proves invaluable in scenarios where an API call gets interrupted in transit, leaving you without a response.
 
 For instance, if a request to send a notification doesn't go through due to a network glitch, simply retry the request using the same idempotency key. This guarantees that no more than one notification will be sent.
 
-Fyno supports idempotency with only 3 APIs - Event, Event Bulk and Automations APIs.
+Fyno supports idempotency with only 3 APIs: Event, Event Bulk and Automations APIs.
 
 ## Example
 
@@ -28,7 +26,9 @@ In the case of the preceding `OrderConfirmed` example:
 
 ## How it works?
 
-To make an idempotent request, include an additional `Idempotency-Key: <key>` header in your request. Experience smoother operations with this powerful addition to our API!"
+To make an idempotent request, include an additional `Idempotency-Key: <key>` header in your request.
+
+![Notification Event API with Idempotency Key](/images/idempotency-key.gif)
 
 ```cURL {4} title="Notification Event API with Idempotency Key" wordWrap
 curl -X POST 'https://api.fyno.io/v1/FYXXXXXXXXXXXX/event' \
@@ -46,7 +46,7 @@ curl -X POST 'https://api.fyno.io/v1/FYXXXXXXXXXXXX/event' \
 }'
 ```
 
-At Fyno, we've engineered a foolproof idempotency system. It records the status code and body of the initial request made using a specific idempotency key, regardless of its outcome - success or failure. Subsequent requests with the same key will yield the identical result, even in the case of 500 errors.
+At Fyno, we've engineered a foolproof idempotency system. It records the status code and body of the initial request made using a specific idempotency key, regardless of its outcome, success or failure. Subsequent requests with the same key will yield the identical result, even in the case of 500 errors.
 
 Crafting a unique idempotency key is in your hands, but we recommend using **V4 UUIDs or a similarly random string** to prevent overlaps.
 
