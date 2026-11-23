@@ -1,7 +1,7 @@
 ---
 title: 'Logs'
 slug: 'logs-overview'
-description: 'Track every notification sent from Fyno. Filter logs, interpret delivery statuses, export reports, and find event, workflow, inbound, callback and verification logs.'
+description: 'Track every notification sent from Fyno. Filter logs, ask the AI Data Assistant, interpret delivery statuses, export reports, and find event, workflow, inbound, callback and verification logs.'
 og:title: 'Logs | Fyno Documentation'
 og:description: 'Understand the multi-tier logging architecture of Fyno. Track each notification sent, filter and export logs, and navigate event routing paths, workflows, inbound responses, delivery callbacks and verification requests.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
@@ -60,12 +60,13 @@ Filtering by **Status** is especially useful when investigating failed or delaye
 | **Columns** | Chooses which columns appear in the table. |
 | **Get Count** | Shows how many logs match your current filters. It sits at the bottom of the table. |
 | **Status Guide** | Opens a quick reference for every notification status. |
+| **AI Data Assistant** | Opens a chat where you can ask about your notifications in plain words. See [AI Data Assistant](#ai-data-assistant). |
 | **Request Report** | Exports logs as a report. See [Report Extraction](./sent-logs-report-extraction). |
 
 {/* TODO: The screenshots don't show the Placeholders, Provider, or Account Name filters, or the Message ID / Request ID search. Confirm they're now under Advanced Filters and update the Template and Provider rows and the Search section to say so. Also check whether the logs page can filter by Distinct ID and Analytics Label, as the report form can, and document them here if so. */}
 
 ### Understanding the Log Schema Columns
-![](/images/sent-logs-timestamp-filter.png)
+![](/images/logs-timestamp-filter.png)
 
 Each column in the logs table contains the following data, along with the filters you can use to narrow down results:
 
@@ -81,6 +82,50 @@ Each column in the logs table contains the following data, along with the filter
 
 ### Search
 Use the **Search** bar to look up a specific **Message ID** or **Request ID** to quickly locate an individual notification for debugging.
+
+## AI Data Assistant
+
+Instead of setting filters one by one, you can type your question and let the assistant do the filtering for you. Select **AI Data Assistant** at the top of the **Logs** page and describe what you want, such as "Show all email and SMS logs from yesterday where delivery failed".
+
+![](/images/ai-data-assistant-button.png)
+
+Fyno AI reads the question, works out the filters it needs, and runs the query against your workspace data. The numbers always come from your data; the assistant never writes them itself.
+
+### What you can ask
+
+The assistant answers three kinds of questions, and the starter cards on the first screen show an example of each.
+
+![](/images/ai-data-assistant-home.png)
+
+| Type | What you get | Example |
+| --- | --- | --- |
+| **Analytics** | A single number or a chart. | How many WhatsApp messages failed yesterday? |
+| **Logs** | Logs of all notifications that match your search. | Show logs for all SMS that failed yesterday |
+| **Report** | A downloadable report. | Give me a report of all SMS sent last month |
+
+You can select a starter card or type your own question in the box at the bottom. Select **New Conversation** to clear the chat and start again.
+
+### Working with the answer
+
+Log and report answers show sample rows from the last 7 days, with the newest first. The columns match the ones you see in the logs table, such as Msg ID, Request ID, Request TS, Provider Submit TS, Distinct ID, To, and Channel.
+
+![](/images/ai-data-assistant-report.png)
+
+To get everything the question covers, including data older than 7 days, select **Request Report**. Fyno prepares the report in the background. Once it is ready, you can download it from the chat window, from the email Fyno sends you, or from the In-App notification.
+
+![](/images/ai-data-assistant-report-requested.png)
+
+If nothing matches your question in the last 7 days, the assistant tells you so and suggests a report for older data. An analytics question with no matching data returns 0.
+
+<Tip>
+Give the assistant the time frame, the channel, and the status you care about. "Failed SMS yesterday" works better than "failed messages".
+</Tip>
+
+Use the thumbs up and thumbs down icons below an answer to tell us how useful it was.
+
+<Note>
+The same assistant is available on the [Dashboard](./dashboard), so you can ask the same questions while reviewing your analytics.
+</Note>
 
 ## DND Period Logs report
 
