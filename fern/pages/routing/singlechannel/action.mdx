@@ -1,9 +1,9 @@
 ---
-title: 'Action Operator in Single Channel Routes'
+title: 'Action in Single Channel Routes'
 slug: 'routing-action'
-description: 'Configure inline vendor allocation frameworks within a single communication medium. Master payload division techniques including direct failover stacks, round-robin queues, and percentage-based distribution matrices.'
-og:title: 'Action Operator in Single Channel Routes | Fyno Documentation'
-og:description: 'Configure inline vendor allocation frameworks within a single communication medium. Master payload division techniques including direct failover stacks, round-robin queues, and percentage-based distribution matrices.'
+description: 'Decide how a Single Channel Route sends notifications through your providers. Send through one provider, rotate across several, split traffic by percentage, and add failover providers.'
+og:title: 'Action in Single Channel Routes | Fyno Documentation'
+og:description: 'Decide how a Single Channel Route sends notifications through your providers. Send through one provider, rotate across several, split traffic by percentage, and add failover providers.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
@@ -22,6 +22,10 @@ When you add an **Action**, choose a strategy from the **Select action** dropdow
 
 Each strategy is explained below.
 
+<Note title="Can't find a provider in the list?">
+  The dropdowns show only the providers you have already configured for the channel. If you see the note **You have used all your providers. Integrate a couple more to add here**, every configured provider is already in use in this action.
+</Note>
+
 ### Simply Send
 
 **Simply Send** sends the notification through the provider you select as the primary. If that fails, it tries the failover providers in the order you added them.
@@ -31,7 +35,7 @@ Each strategy is explained below.
 <Steps>
   <Step>Select your primary provider.</Step>
   <Step>
-    Under **Failover**, click **Add Another** to add a failover provider, in case the primary provider does not send the notification for any reason. You can choose from any provider you have already configured, and add as many as you want, in any order.
+    Under **Failover**, click **Add** to add a failover provider, in case the primary provider does not send the notification for any reason. You can choose from any provider you have already configured, and add as many as you want, in any order. To add another one, click **Add** again.
 
     Failover is optional, but recommended if you use more than one provider for the channel.
   </Step>
@@ -55,7 +59,7 @@ For example, with three providers, Provider A, Provider B and Provider C:
 
 <Steps>
   <Step>Select at least two providers. Click **Add Another** to add more, from the providers you have configured for the channel.</Step>
-  <Step>Under **Failover**, click **Add Another** to add a failover provider, in case the providers above do not send the notification for any reason. You can add as many as you want, in any order.</Step>
+  <Step>Under **Failover**, click **Add** to add a failover provider, in case the providers above do not send the notification for any reason. You can add as many as you want, in any order.</Step>
   <Step>Click **Save** at the top right of the flow builder to save your changes.</Step>
 </Steps>
 
@@ -71,7 +75,7 @@ For example, with an 80% and 20% split, out of every 100 notifications, about 80
 
 <Steps>
   <Step>Select at least two providers, and enter the percentage of traffic to send through each, for example 80% and 20%. Click **Add Another** to add more providers.</Step>
-  <Step>Under **Failover**, click **Add Another** to add a failover provider, in case the providers above do not send the notification for any reason. You can add as many as you want, in any order.</Step>
+  <Step>Under **Failover**, click **Add** to add a failover provider, in case the providers above do not send the notification for any reason. You can add as many as you want, in any order.</Step>
   <Step>Click **Save** at the top right of the flow builder to save your changes.</Step>
 </Steps>
 

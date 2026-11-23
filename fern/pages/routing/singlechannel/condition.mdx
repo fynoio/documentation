@@ -1,9 +1,9 @@
 ---
-title: 'Condition Operator in Single Channel Routes'
+title: 'Condition in Single Channel Routes'
 slug: 'routing-condition'
-description: 'Incorporate logical filters into single-channel message trees using structural matching expressions. Learn how to parse destination types, extract geographic telephone tokens, and route workflows through conditional outcome branches.'
-og:title: 'Condition Operator in Single Channel Routes | Fyno Documentation'
-og:description: 'Incorporate logical filters into single-channel message trees using structural matching expressions. Learn how to parse destination types, extract geographic telephone tokens, and route workflows through conditional outcome branches.'
+description: 'Add rules to a Single Channel Route that allow or prevent an action. Check the destination, country, analytics label or a variable, compare it, and route each outcome down a True or False branch.'
+og:title: 'Condition in Single Channel Routes | Fyno Documentation'
+og:description: 'Add rules to a Single Channel Route that allow or prevent an action. Check the destination, country, analytics label or a variable, compare it, and route each outcome down a True or False branch.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
@@ -11,15 +11,15 @@ A **Condition** in the flow builder lets you allow or prevent an action, dependi
 
 When you add a **Condition** to a Single Channel Route, its panel has three parts:
 
-- **Key**: What to check.
+- **If**: What to check.
 - **Operator**: How to compare it.
 - **Value**: What to compare it against.
 
-## Key
+## If
 
-The **Key** is the field or part of the notification you want to check. It can even be a part of the payload, not just the notification content.
+The **If** field is where you pick the field or part of the notification you want to check. It can even be a part of the payload, not just the notification content.
 
-The **Key** dropdown has these options:
+The **If** dropdown has these options:
 
 ![](/images/single-channel-condition-types.png)
 
@@ -41,6 +41,14 @@ You can use this in many ways, from blocking all traffic to specific countries t
 
 ![](/images/single-channel-condition-country.png)
 
+### Analytics Label
+
+**Analytics Label** applies a condition to the analytics label sent with the notification, so you can route traffic by the label you have tagged it with.
+
+In the **Value** field, select an existing label or type the label you want to match, for example `LINK-VERIFY`. Then choose an operator to compare it.
+
+![](/images/single-channel-condition-analytics-label.png)
+
 ### Variable
 
 A **Variable** (a placeholder, or dynamic or replaceable parameter) is a part of a message that holds user-specific details. Enter the variable's name in the **Enter Variable** field, then choose an operator and enter a value. For example, the condition below checks the user's priority, using the variable `$user.Priority`.
@@ -53,7 +61,7 @@ Fyno can apply rules based on variable data. For example, you can identify OTP m
 
 ## Operator
 
-An **Operator** applies the condition to the **Key** and returns the outcome. The operators available in Fyno are:
+An **Operator** applies the condition to the field you selected in **If** and returns the outcome. The operators available in Fyno are:
 
 - Greater Than
 - Less Than
@@ -68,11 +76,11 @@ An **Operator** applies the condition to the **Key** and returns the outcome. Th
 - Is Empty
 - Not In List
 
-Combined with the **Key**, operators let you set rules that decide the outcome and the action that follows.
+Combined with the field you check, operators let you set rules that decide the outcome and the action that follows.
 
 ## Value
 
-The **Value** is what the **Key** is compared against using the **Operator**. When the comparison holds, the condition is **True**.
+The **Value** is what the field in **If** is compared against using the **Operator**. When the comparison holds, the condition is **True**.
 
 ## Condition outcomes
 
@@ -100,7 +108,7 @@ Say the goal is to **block traffic to Belgium, without affecting traffic to any 
 <Steps>
   <Step>Click **Routes** in the left navigation, select the **Single Channel** tab and create a new route for the **SMS** channel.</Step>
   <Step>In the flow builder, under **Pick a component to start**, select **Condition**.</Step>
-  <Step>From the **Key** dropdown, select **Country**.</Step>
+  <Step>From the **If** dropdown, select **Country**.</Step>
   <Step>From the operator dropdown, select **equals**.</Step>
   <Step>From the **Value** list, select **Belgium**.</Step>
   <Step>
