@@ -36,7 +36,7 @@ Add-on policies can be assigned:
 - During user invitation.
 - While modifying an existing user.
 
-Add-on policies are available for all roles except **Auditor**.
+Add-on policies can be added to any role. The only exception is **Approver**, which cannot be assigned to the **Auditor** role.
 
 This enables flexible and controlled access management across teams.
 
@@ -47,11 +47,15 @@ The below roles with unique levels of access have been created so that you can a
 ### Roles & Permissions
 
 export const tableWrapperStyle = {
-  overflowX: 'auto', /* Keeps horizontal scroll safe on small screens */
+  /* Both axes scroll inside this box. overflowX alone also computes overflow-y,
+     which scoped the sticky header to a container that never scrolled
+     vertically, so the header never stuck. A capped height gives the sticky
+     header and the frozen first column something to stick to. */
+  overflow: 'auto',
+  maxHeight: '72vh',
   backgroundColor: 'var(--rb-table-bg, #FFFFFF)',
   borderRadius: '8px',
   border: '1px solid var(--rb-border-main, #E0E0E0)',
-  padding: '8px',
   fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
 };
 
@@ -65,13 +69,17 @@ export const tableStyle = {
 
 export const thStyle = {
   position: 'sticky',
-  top: 0, /* Sticks directly to the top edge of the browser viewport */
+  top: 0, /* Sticks to the top of the scroll box below, not the viewport */
   zIndex: 20,
   backgroundColor: 'var(--rb-header-bg, #F0F0F0)',
   color: 'var(--rb-header-text, #333333)',
   textAlign: 'left',
   padding: '12px',
   fontWeight: '600',
+  /* Keeps every column heading on one line so the header row stays 43px tall,
+     which is the offset the category rows below stick to. Wrapping made the
+     header taller and the first category row slid underneath it. */
+  whiteSpace: 'nowrap',
   borderBottom: '2px solid var(--rb-border-main, #E0E0E0)'
 };
 
@@ -88,7 +96,7 @@ export const TableHeader = ({ text }) => (
     <td colSpan="9" style={{
       position: 'sticky',
       top: '43px', /* Dynamically trails directly below the main header height */
-      zIndex: 10,
+      zIndex: 18,
       backgroundColor: 'var(--rb-category-bg, #FAF4E3)',
       color: 'var(--rb-category-text, #8B6602)',
       fontWeight: '700',
@@ -99,7 +107,7 @@ export const TableHeader = ({ text }) => (
       textAlign: 'left',
       borderBottom: '1px solid var(--rb-border-main, #E0E0E0)'
     }}>
-      {text}
+      <span style={{ position: 'sticky', left: '12px' }}>{text}</span>
     </td>
   </tr>
 );
@@ -189,6 +197,29 @@ export const Badge = ({ type, text }) => {
   .fyno-roles-table-wrapper table.fyno-roles-table tr td[colspan] {
     background-color: var(--rb-category-bg, #FAF4E3) !important;
     color: var(--rb-category-text, #8B6602) !important;
+  }
+
+  /* Belt and braces: the scroll box is declared here as well as in the inline
+     style object. Without a capped height the header has nothing to stick to,
+     so the page scrolls the whole table up and the header leaves with it. */
+  .fyno-roles-table-wrapper {
+    max-height: 72vh !important;
+    overflow: auto !important;
+  }
+
+  /* Freeze the first column so the feature name stays with its row, and the
+     top-left corner stays above both frozen edges. The category rows span every
+     column, so they are excluded from the left freeze. */
+  .fyno-roles-table-wrapper table.fyno-roles-table th:first-child,
+  .fyno-roles-table-wrapper table.fyno-roles-table tbody td:first-child:not([colspan]) {
+    position: sticky !important;
+    left: 0;
+    z-index: 15;
+    min-width: 150px;
+    border-right: 1px solid var(--rb-border-main, #E0E0E0);
+  }
+  .fyno-roles-table-wrapper table.fyno-roles-table thead th:first-child {
+    z-index: 30 !important;
   }
 
   /* Custom CSS Tooltip Logic with speech bubble arrow pointer */
@@ -289,7 +320,17 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}>
+          <Badge type="yes" text={
+            <span>
+              Yes
+              <span className="tooltip-container">
+                <i className="tooltip-icon">i</i>
+                <span className="tooltip-text">campaign analytics only</span>
+              </span>
+            </span>
+          } />
+        </td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -300,7 +341,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -346,7 +387,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -434,7 +475,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -459,7 +500,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -470,7 +511,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -481,7 +522,7 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="yes" text="Yes" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
-        <td style={tdStyle}><Badge type="view" text="View only" /></td>
+        <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="view" text="View only" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
@@ -554,14 +595,75 @@ export const Badge = ({ type, text }) => {
         <td style={tdStyle}><Badge type="no" text="No" /></td>
         <td style={tdStyle}><Badge type="no" text="No" /></td>
       </tr>
+
+      {/* ADD-ON POLICIES */}
+      <TableHeader text="Add-On Policies" />
+      <tr>
+        <td style={tdStyle}>Report Download</td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Unmask Sensitive Data</td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Invite team members and modify roles</td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="yes" text="Default" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+      </tr>
+      <tr>
+        <td style={tdStyle}>Approver</td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+        <td style={tdStyle}><Badge type="no" text="Not applicable" /></td>
+        <td style={tdStyle}><Badge type="view" text="Can enable" /></td>
+      </tr>
+
+      {/* TODO, CONFIRM WITH PRODUCT: the Default vs Can enable split for
+          Report Download and for Invite team members and modify roles is read
+          off the base-role rows above, not confirmed. Vidisha flagged that
+          invite is heavily customised per account with a lot of overrides and
+          that Aman needs to confirm it. Approver and Unmask Sensitive Data are
+          confirmed: no role has Approver by default, Auditor can never be an
+          approver, and Unmask can be enabled for Auditor. */}
     </tbody>
   </table>
 </div>
 
+**Add-On Policies key**
+
+- **Default**: the role already has this, nothing to add.
+- **Can enable**: not included in the role, add it when the user needs it.
+- **Not applicable**: cannot be assigned to this role.
+
 ### Additional Notes
 
 - Owner, Super Admin, and Workspace Admin have broad access across most features and can perform high-level administrative actions.
-- Owner and Super Admin can unmask masked fields by default. For all other roles, unmasking requires the Unmask Sensitive Data add-on policy.
+- Owner and Super Admin can unmask masked fields by default. Every other role, including Auditor, needs the Unmask Sensitive Data add-on policy. See the Add-On Policies section of the table above.
 - Each workspace can have only one Owner.
 - Only the Owner can add Super Admins, and any Super Admin added by the Owner will automatically be added to all workspaces under that Owner.
 - Certain permissions may vary by feature (for example, test-only access, view-only access, or restricted actions like Go Live / Fire), as detailed in the table above.
@@ -593,7 +695,7 @@ The following add-on policies are available:
 | Invite team members and modify roles | Invite, remove, and modify roles and add-on policies of team members. |
 | Approver | View and approve modules that have approval enabled. |
 
-> Note: Add-on policies can be assigned to all roles except **Auditor**. The Add-On Policy field is not available when the Auditor role is selected.
+> Note: Every role can be given an add-on policy. **Approver** is the one exception, as it cannot be assigned to the **Auditor** role.
 
 ### Report Download
 
@@ -627,6 +729,8 @@ This is typically assigned to IT or operations teams responsible for onboarding 
 
 ### Approver
 
+No role has this policy by default, so it has to be added to anyone who needs to approve requests. It cannot be assigned to the **Auditor** role.
+
 Users with the Approver policy can:
 
 - Access the Approval Requests page
@@ -645,7 +749,7 @@ To create a new team member, follow the below steps:
 3. Click `+ Invite Team Member`.
 4. Enter the user’s Email ID.
 5. Select a Role based on the level of access required.
-6. Optionally attach Add-On Policy to the user. This option is not available for the Auditor role.
+6. Optionally attach an Add-On Policy to the user. For the Auditor role, every policy except Approver can be attached.
 7. If you selected the **Auditor** role, optionally enable **Restrict to specific Analytics Labels** and select the labels the user is allowed to access.
 8. Click `Send Invite`.
 
@@ -673,7 +777,7 @@ You can update a user’s role and policies after they have been added.
 2. Locate the user in the list.
 3. Click the **three-dot** menu next to the user.
 4. Select **Modify**.
-5. Update the role and/or add-on policies. For users with the **Auditor** role, add-on policies are not available; you can update the Analytics Label restriction instead.
+5. Update the role and/or add-on policies. For users with the **Auditor** role, you can also update the Analytics Label restriction.
 6. Save the changes.
 
 All role and permission updates are managed through the three-dot menu to ensure controlled access and avoid unintended changes.
