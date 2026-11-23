@@ -1,0 +1,90 @@
+
+## 26.4.3
+
+This release revamps alarm details, so an alarm now tells you what went wrong, how often it has happened and what to do about it, and adds PDF generation counts across analytics and the dashboards.
+
+In the sidebar, main sections now open their own page as well as expand, Alarms sits under Dashboard, and Components and external templates have moved under Templates. Campaign placeholders accept a fixed value, the status summary collapses to a simpler view, single-channel routes are easier to work with, and the Typst editor has more fonts, alongside fixes to saving large workflows, report extraction, the components list, workflow analytics and DLT template data.
+
+### 🚀 New features
+
+<CardGroup cols={2}>
+
+<Card title="Revamped alarm details" icon="bell">
+
+Opening an [alarm](/docs/alarms) now shows a description of what it means and a recommended solution, so you can act on it without piecing the cause together yourself.
+
+You also get the number of occurrences with a chart of when they happened, the time of the most recent one, and sample logs you can open to investigate.
+
+</Card>
+
+<Card title="PDF generation counts" icon="file-pdf">
+
+Event Analytics and Campaign Analytics now show how many PDFs were generated, and a new view breaks that down by notification event.
+
+A trend chart on both the workspace and central dashboards shows how generation changes over time. Counts follow the time range and filters you have selected.
+
+</Card>
+
+</CardGroup>
+
+### ⚡ Enhancements
+
+#### Navigation: Reorganised sidebar
+
+<Warning title="Changed behavior">
+
+**Components** has moved under **Templates**, and external templates are now listed separately as **DLT Templates** and **Meta Templates**.
+
+</Warning>
+
+**Dashboard**, **Templates**, **Logs** and **User** are now links as well as expandable sections, so selecting one opens its main page and reveals its sub-pages in a single step. The section stays open while you are in it.
+
+**Alarms** now sits under **Dashboard**, next to **Real-time**. **Routes** opens omni-channel routes directly, with tabs on the page to switch to single-channel.
+
+<AccordionGroup>
+
+<Accordion title="Campaigns: Use a fixed value for a placeholder">
+
+When mapping placeholders while [creating a campaign](/docs/campaign_creation), you can now type a fixed value instead of picking a column from your CSV file or cohort.
+
+Useful when every recipient gets the same text, so you no longer have to add a column to your source data just to carry it. Mapping to a column works exactly as before.
+
+</Accordion>
+
+<Accordion title="Real-time dashboard: Collapse the status summary">
+
+You can now collapse **Failed**, **Error**, **Dropped** and **Timeout** in the status summary on the [Real-time Dashboard](/docs/real-time-dashboard) into a single combined figure, for a simpler view when you are watching overall health rather than individual failures.
+
+Expand them again whenever you need the breakdown. The totals stay the same either way.
+
+</Accordion>
+
+<Accordion title="Routes: Single-channel improvements">
+
+A few changes to make [single-channel routes](/docs/routing-introduction) easier to work with:
+
+- The side panel now closes when you select outside it, the same as omni-channel routes and workflows.
+- Analytics label is available as a condition, so you no longer have to set it through variables.
+- The first step reads **Pick an option to start**, and **Next component** is now **What to do next?**
+- Action colours now match the rest of the interface.
+
+</Accordion>
+
+<Accordion title="Components: More fonts in the Typst editor">
+
+More fonts are available when building PDF [components](/docs/components) in Typst.
+
+</Accordion>
+
+</AccordionGroup>
+
+### 🛠 Bug fixes
+
+| Area | Fix |
+| --- | --- |
+| **Workflows** | • Large workflows that used the event response in a condition could not be saved, failing with an error. They now save as expected.<br />• Sub-flows could give the same node more than one identical ID. Node IDs are now unique. |
+| **Components** | • Creating or deleting a component did not update the list until you refreshed the page. The list and its record count now update straight away.<br />• The AI features in the component builder did not work in every browser. They now work across supported browsers. |
+| **Report Extraction** | Reports came back empty when a destination mobile number was entered without its country code, or an email address was typed in capitals. Numbers no longer need the country code, and email addresses match whatever case you use. |
+| **Workflow Analytics** | The page did not show its empty state correctly when a workflow had no data for the selected period. It now renders as expected. |
+| **Templates** | • DLT templates loaded the wrong data. They now fetch the right templates.<br />• Switching between channels briefly showed the previous channel's data. A loading indicator now appears until the new data is ready. |
+| **Navigation** | • The sidebar highlighted the wrong item when moving between DLT and Meta templates, and used the wrong highlight colour in dark mode. Both now follow the page you are on. |
