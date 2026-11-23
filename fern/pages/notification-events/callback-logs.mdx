@@ -1,62 +1,62 @@
 ---
-title: 'Tracking Outbound Delivery Progress with Callback Logs'
+title: 'Delivery Callback Logs'
 slug: 'delivery-callback-logs'
-description: 'Monitor automated delivery webhooks dispatched to your infrastructure. Debug HTTP return codes, payload response benchmarks, and manage automated retry triggers.'
-og:title: 'Tracking Outbound Delivery Progress with Callback Logs | Fyno Documentation'
-og:description: 'Monitor automated delivery webhooks dispatched to your infrastructure. Debug HTTP return codes, payload response benchmarks, and manage automated retry triggers.'
+description: 'Track every delivery report Fyno sends to your allowlisted URL, check its status code and response time, and retry failed callbacks.'
+og:title: 'Delivery Callback Logs | Fyno Documentation'
+og:description: 'Track every delivery report Fyno sends to your allowlisted URL, check its status code and response time, and retry failed callbacks.'
 image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
-Delivery Callback logs help you track each and every delivery report we sent it back to your Allowlist URL.
+Delivery Callback Logs help you track every delivery report Fyno sends back to your [allowlisted URL](./allowlist).
 
-On the page that opens, you will see the following:
+On the page, you will see:
 
-- Delivery Callback Logs
+- The delivery callback logs
 - Filters
-- Test and Live version tabs.
+- **Test** and **Live** version tabs
 
 ## Delivery Callback Logs
 
-The logs that are seen on the "Delivery Callback Logs" page give you an overview of all the Delivery Callback sent to the Allowlist URL. Each log will have the below details.
+The **Delivery Callback Logs** page lists every delivery callback sent to your allowlisted URLs. Each log shows:
 
-- **Timestamp**: Tells you the details of when (date and time) the delivery report was sent to the Allowlisted URL.
-- **Notification Event**: Notification Event for which the callback request was triggered.
-- **Allowlist URL**: Allowlist URL where the delivery report was sent. You can find the list of Allowlist URLs under Workspace Settings -> Allowlist URL.
-- **HTTP Status Code**: HTTP status code of the callback request. The status code can be anything, be it success (200, 201, 2xx etc.) or failure (4xx or 5xx).
-- **Response Time**: Time it took to send the delivery report to the Allowlist URL.
+| Column | What it shows |
+| --- | --- |
+| **Timestamp** | The date and time the delivery report was sent to the allowlisted URL. |
+| **Notification Event** | The notification event the callback was sent for. |
+| **Allowlist URL** | The allowlisted URL the delivery report was sent to. You can see your allowlisted URLs under **Workspace Settings → Allowlist URL**. |
+| **HTTP Status Code** | The HTTP status code of the callback request. This can be a success code (such as 200, 201 or other 2xx codes) or a failure code (4xx or 5xx). |
+| **Response Time** | How long it took to send the delivery report to the allowlisted URL. |
 
-![](/images/fb7ca5c-Delivery_Callback_Logs.png)
+![Delivery Callback Logs](/images/fb7ca5c-Delivery_Callback_Logs.png)
 
 ## Filters
 
-You can filter the logs based on the criteria mentioned below.
+You can filter the logs by:
 
-- **Timestamp**: Tells you the details of when (date and time) the notification event was triggered. You can select one of the provided options, which are:
-  - Today
-  - Yesterday
-  - Last 7 days
-  - Custom - select a timestamp based on the log retention settings for delivery callback logs. You can see this under Workspace Settings -> Add On's -> Logs Archival
-- **Message Id**: A unique id generated for the notification event that was triggered.
-- **Custom Id**: Shows the Custom Id configured as part of the callback.
-- **Allowlist URL**: Allowlisted URL where the delivery report was sent.
-- **HTTP Status Code**: HTTP status code of the callback request. The status code can be anything, be it success (200, 201, 2xx etc.) or failure (4xx or 5xx).
+| Filter | What it does |
+| --- | --- |
+| **Timestamp** | Shows logs from a time period: **Today**, **Yesterday**, **Last 7 days** or **Custom**. With **Custom**, you can pick any range within your log retention period for delivery callback logs, set under **Workspace Settings → Add On's → Logs Archival**. |
+| **Message Id** | The unique ID created for the notification event that was triggered. |
+| **Custom Id** | The Custom ID set in the callback. |
+| **Allowlist URL** | The allowlisted URL the delivery report was sent to. |
+| **HTTP Status Code** | The HTTP status code of the callback request, success (2xx) or failure (4xx or 5xx). |
 
-On clicking the individual Callback log, you will see the Request and Response payloads with each request.
+Click a callback log to see the request and response payloads for that callback.
 
-![](/images/096c8af-Callback_details_new.png)
+![Callback log details](/images/096c8af-Callback_details_new.png)
 
-## Test & Live Versions
+## Test and Live versions
 
-In the logs section, the **Test** and **Live** versions are uniquely partitioned, to show you the details notifications sent in that particular version of the API that has been generated.
+**Test** and **Live** logs are kept separate. Each tab shows only the callbacks for notifications sent in that version.
 
-<Tip title="Can't find a notification log?">Check the environment that the notification was triggered in. Notification triggered in **Test** environment cannot be seen in **Live** and vice versa.</Tip>
+<Tip title="Can't find a callback log?">Check which environment the notification was triggered in. Callbacks for notifications triggered in **Test** don't appear in **Live**, and the other way round.</Tip>
 
 ## How to retry failed callbacks
 
-By default, Fyno will attempt 3 times to send delivery callback. 
+By default, Fyno tries to send each delivery callback 3 times.
 
-If the callback continues to fail after these attempts (due to downtime on your end or other issues), you can manually retry them using the 'Retry Failed Callback' button.
+If a callback still fails after that, for example because your server was down, you can resend it with the **Retry Failed Callback** button.
 
-![](/images/delivery_callback_retry.png)
+![Retry Failed Callback](/images/delivery_callback_retry.png)
 
-When you click this button, a popup will display the number of failed delivery callbacks based on your selected filters. Simply click the 'Retry' button to resend all failed callbacks.
+When you click it, a popup shows how many delivery callbacks failed, based on the filters you selected. Click **Retry** to resend all of them.
