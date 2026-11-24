@@ -20,17 +20,30 @@ A few examples of filters include filtering by specific status, location, or sig
 Let's have a look at how to create a cohort.
 
 <Steps>
-  <Step>From the left navigation panel, click on **Cohorts**. On the page that opens, click on "Create Cohort".</Step>
-  <Step>In the pop-up, provide a relevant name for the cohort, select a database to create the cohort and click on "Submit".</Step>
-  <Step>On submitting, a new page will open consisting of a dropdown menu with the list of all the schemas present in the selected database.</Step>
-  <Step>Select a schema and view its data in a tabular form below. Apply filters, or run a query on it to get the desired segment of users.</Step>
-  <Step>Click on "Save Cohort" to save the selected schema and the applied filters or query to complete the cohort creation process.</Step>
-  <Step>Alternatively, you can click on the dropdown next to "Save Cohort" and select "Save and Create Campaign" to not only save the cohort but also create a campaign from it.</Step>
+  <Step>From the left navigation panel, click on **Cohorts**. The page lists every cohort in your account with its database, when it was created and updated, and who created it. Use the search box to find a cohort by name.</Step>
+  <Step>Click **New Cohort**.</Step>
+  <Step>In the **Create New Cohort** pop-up, enter a name for the cohort, pick a database from **Select Database**, and click **Submit**.</Step>
+  <Step>The cohort page opens. The **Select Schema** dropdown lists all the schemas present in the selected database.</Step>
+  <Step>Select a schema to view its data in a table below. Use the **Filter** tab or the **Query** tab to get the segment of users you want.</Step>
+  <Step>Click **Save Cohort** to save the selected schema along with the applied filters or query and complete the cohort creation process.</Step>
+  <Step>Alternatively, you can click the arrow next to **Save Cohort** and select **Save and Create Campaign** to not only save the cohort but also create a campaign from it.</Step>
 </Steps>
+
+![](/images/connect_cohorts_list.png)
+
+![](/images/connect_cohort_create_modal.png)
+
+![](/images/connect_cohort_builder.png)
+
+## Choose the columns you see
+
+Click the columns icon at the top right of the builder to open the **Column List**. Remove a column to hide it from the table below, and add it back when you need it. This is handy when a schema has more columns than you want to look at while building the cohort.
+
+![](/images/connect_cohort_column_list.png)
 
 ## Filters and Query Builder
 
-Filters and Query allow you to get the segment of users for certain conditions or factors.
+Filters and Query allow you to get the segment of users for certain conditions or factors. Switch between the two using the **Filter** and **Query** tabs.
 
 ### Filters Builder
 
@@ -58,15 +71,40 @@ Example of a rule:
 Age > 30, Company = Fyno, Email ends with @fyno.io, and many more.
 ```
 
-#### Distinct Values
+Click **Add Rule** to add another rule to the same group.
 
-Use the highlighted icon to instantly see all unique values in your selected column. This automatic detection saves time, especially when working with large datasets, by showing you all possible filter values in a convenient dropdown menu.
+![](/images/connect_cohort_key_dropdown.png)
+
+#### Operators
+
+These are the operators you can pick from:
+
+| Operator | What it does |
+| --- | --- |
+| `=` | Matches rows where the value is exactly the same |
+| `!=` | Matches rows where the value is different |
+| `<`, `>`, `<=`, `>=` | Compares numbers and dates |
+| `contains` | Matches rows where the value appears anywhere in the text |
+| `begins with` | Matches rows where the text starts with the value |
+| `ends with` | Matches rows where the text ends with the value |
+| `is null` | Matches rows where the column has no value |
+| `is not null` | Matches rows where the column has any value |
+| `in` | Matches rows where the value is one of the values you list |
+| `not in` | Matches rows where the value is none of the values you list |
+| `between` | Matches rows where the value falls within a range, including the ends |
+| `not between` | Matches rows where the value falls outside a range |
+| `last X days (Range)` | Matches rows from the last X days up to today |
+| `last X days (Exact)` | Matches rows from that one day, X days ago |
+
+#### Get Distinct Rows
+
+Use the highlighted icon to instantly see the unique values in your selected column, up to the first 1000. This automatic detection saves time, especially when working with large datasets, by showing you the possible filter values in a convenient dropdown menu.
 
 ![](/images/connect_filters_distinct.png)
 
 #### Group
 
-A group is a collection of rules that can be used to organize filters and create complex filters by combining multiple groups with different combinators.
+A group is a collection of rules that can be used to organize filters and create complex filters by combining multiple groups with different combinators. Click **Add Group** to add one.
 
 #### Combinators
 
@@ -75,9 +113,11 @@ Determine how 2 rules or groups will combine together in order to form a complet
 1.  AND: The "AND" combinator evaluates to true if both of its rules or groups are true. If at least one of the it is false, the entire combined condition evaluates to false. The "AND" operator can be thought of as representing the intersection of conditions.
 2.  OR: The "OR" operator evaluates to true if at least one of its rules or groups is true. If both are false, the entire combined condition evaluates to false. The "OR" operator can be thought of as representing the union of conditions.
 
-<Tip>After completely adding all the rules and groups, hit the "Apply" button to filters and view the updated data below.</Tip>
+Click the combinator between two groups to switch it between AND and OR.
 
-<Tip>Click the 'Get Count' button to view the total number of users in the cohort.</Tip>
+![](/images/connect_cohort_groups_and.png)
+
+<Tip>After completely adding all the rules and groups, hit the **Apply** button to filters and view the updated data below.</Tip>
 
 ### Query Builder
 
@@ -177,6 +217,15 @@ The query returns the User_id, Name and Email of each matching user. Notice how 
 <Tip>If the results aren't what you expected, refine your prompt and generate the query again, or edit the query directly in the Query Editor.</Tip>
 
 <Note>Fyno AI only reads the first 3 rows of the selected schemas when you enable the sample-data option. Leave it unchecked if those rows contain sensitive information you don't want to share.</Note>
+
+## Save the cohort
+
+Once the data below the builder shows the users you want, save the cohort:
+
+- Click **Save Cohort** to save it and stay on the cohorts list.
+- Click the arrow next to **Save Cohort** and select **Save and Create Campaign** to save the cohort and open the **Create Campaign** pop-up with this cohort already selected.
+
+![](/images/connect_cohort_save_options.png)
 
 ## How to download cohort data?
 
