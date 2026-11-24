@@ -1,27 +1,29 @@
 
 ## 26.4.3
 
-This release revamps alarm details, so an alarm now tells you what went wrong, how often it has happened and what to do about it, and adds PDF generation counts across analytics and the dashboards.
+This release adds an AI Data Assistant for asking about your notifications in plain words, and PDF generation counts across analytics and the dashboards.
 
-In the sidebar, main sections now open their own page as well as expand, Alarms sits under Dashboard, and Components and external templates have moved under Templates. Campaign placeholders accept a fixed value, the status summary collapses to a simpler view, single-channel routes are easier to work with, and the Typst editor has more fonts, alongside fixes to saving large workflows, report extraction, the components list, workflow analytics and DLT template data.
+Navigation takes fewer clicks and drops Fyno-specific wording, alarm details have a clearer layout, campaign placeholders accept a fixed value, the status summary collapses to a simpler view, single-channel routes are easier to work with, and the Typst editor covers more languages, alongside fixes to saving large workflows, report extraction, the components list, workflow analytics and DLT template data.
 
 ### 🚀 New features
 
 <CardGroup cols={2}>
 
-<Card title="Revamped alarm details" icon="bell">
+<Card title="AI Data Assistant" icon="comments">
 
-Opening an [alarm](/docs/alarms) now shows a description of what it means and a recommended solution, so you can act on it without piecing the cause together yourself.
+Ask about your notifications in plain words instead of building filters. A question such as "Show all SMS that failed yesterday" returns a number, a chart, or a list of matching messages.
 
-You also get the number of occurrences with a chart of when they happened, the time of the most recent one, and sample logs you can open to investigate.
+Answers cover the last 7 days. Request a report when you need more than that. Available on the Logs page and the Dashboard.
+
+[Read more](/docs/logs-overview#ai-data-assistant)
 
 </Card>
 
 <Card title="PDF generation counts" icon="file-pdf">
 
-Event Analytics and Campaign Analytics now show how many PDFs were generated, and a new view breaks that down by notification event.
+Event Analytics and Campaign Analytics now show how many PDFs were generated.
 
-A trend chart on both the workspace and central dashboards shows how generation changes over time. Counts follow the time range and filters you have selected.
+The main and central dashboards add a view of PDF generation by notification event, and a trend chart showing how it changes over time. Counts follow the time range and filters you have selected.
 
 </Card>
 
@@ -29,11 +31,11 @@ A trend chart on both the workspace and central dashboards shows how generation 
 
 ### ⚡ Enhancements
 
-#### Navigation: Reorganised sidebar
+#### Navigation: Fewer clicks and plainer names
 
 <Warning title="Changed behavior">
 
-**Components** has moved under **Templates**, and external templates are now listed separately as **DLT Templates** and **Meta Templates**.
+**Components** has moved under **Templates**, and **External Templates** is now split into **DLT Templates** and **Meta Templates**.
 
 </Warning>
 
@@ -41,7 +43,15 @@ A trend chart on both the workspace and central dashboards shows how generation 
 
 **Alarms** now sits under **Dashboard**, next to **Real-time**. **Routes** opens omni-channel routes directly, with tabs on the page to switch to single-channel.
 
+Fyno-specific wording has also gone. **Fyno Templates** is now simply **Templates**, and **Sent Logs** is now **Logs**.
+
 <AccordionGroup>
+
+<Accordion title="Alarms: A clearer layout for alarm details">
+
+The [alarm](/docs/alarms) details page has been redesigned. The same information is there, laid out so you can take it in at a glance instead of hunting for it.
+
+</Accordion>
 
 <Accordion title="Campaigns: Use a fixed value for a placeholder">
 
@@ -53,7 +63,7 @@ Useful when every recipient gets the same text, so you no longer have to add a c
 
 <Accordion title="Real-time dashboard: Collapse the status summary">
 
-You can now collapse **Failed**, **Error**, **Dropped** and **Timeout** in the status summary on the [Real-time Dashboard](/docs/real-time-dashboard) into a single combined figure, for a simpler view when you are watching overall health rather than individual failures.
+You can now collapse **Failed**, **Error**, **Dropped** and **Timeout** in the status summary on the [Real-time Dashboard](/docs/real-time-dashboard). Collapsed, they appear together in the table as a single **Not Sent** column, for a simpler view when you are watching overall health rather than individual failures.
 
 Expand them again whenever you need the breakdown. The totals stay the same either way.
 
@@ -70,9 +80,11 @@ A few changes to make [single-channel routes](/docs/routing-introduction) easier
 
 </Accordion>
 
-<Accordion title="Components: More fonts in the Typst editor">
+<Accordion title="Components: More languages in the Typst editor">
 
-More fonts are available when building PDF [components](/docs/components) in Typst.
+The Typst editor now includes fonts for Indian scripts, among them Devanagari, Bengali, Tamil, Telugu, Kannada, Malayalam, Gujarati, Gurmukhi and Oriya, as well as Arabic and Urdu, so you can build PDF [components](/docs/components) in those languages.
+
+General-purpose fonts including Poppins, Arimo, Carlito, DejaVu and Liberation are available too.
 
 </Accordion>
 
@@ -82,9 +94,8 @@ More fonts are available when building PDF [components](/docs/components) in Typ
 
 | Area | Fix |
 | --- | --- |
-| **Workflows** | • Large workflows that used the event response in a condition could not be saved, failing with an error. They now save as expected.<br />• Sub-flows could give the same node more than one identical ID. Node IDs are now unique. |
+| **Workflows** | Large workflows that used the event response in a condition could not be saved, failing with an error. They now save as expected. |
 | **Components** | • Creating or deleting a component did not update the list until you refreshed the page. The list and its record count now update straight away.<br />• The AI features in the component builder did not work in every browser. They now work across supported browsers. |
-| **Report Extraction** | Reports came back empty when a destination mobile number was entered without its country code, or an email address was typed in capitals. Numbers no longer need the country code, and email addresses match whatever case you use. |
+| **Report Extraction** | Reports came back empty when an Indian mobile number was entered without its country code, or an email address was typed in capitals. Indian numbers now work either way, and email addresses match whatever case you use. Numbers for other countries still need their country code. |
 | **Workflow Analytics** | The page did not show its empty state correctly when a workflow had no data for the selected period. It now renders as expected. |
 | **Templates** | • DLT templates loaded the wrong data. They now fetch the right templates.<br />• Switching between channels briefly showed the previous channel's data. A loading indicator now appears until the new data is ready. |
-| **Navigation** | • The sidebar highlighted the wrong item when moving between DLT and Meta templates, and used the wrong highlight colour in dark mode. Both now follow the page you are on. |
