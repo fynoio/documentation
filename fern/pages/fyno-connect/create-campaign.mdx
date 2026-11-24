@@ -9,13 +9,13 @@ image: https://images.fyno.io/brand/fyno-doc-preview.png
 
 Campaigns allow you to trigger bulk notifications to a select group of users that you have created via **Cohorts** through a specific **Notification Event** that you have pre-created in Fyno Cloud.
 
-To get started with **Campaigns** on Fyno Connect:
+## Create a campaign
 
 <Steps>
   <Step>
-    Click on **Campaigns** from the left navigation bar. On the new page, click on **Create +** to create a new campaign. In the pop-up, fill in:
+    Click on **Campaigns** from the left navigation bar. On the new page, click on **Create +** to create a new campaign. In the **Create Campaign** pop-up, fill in:
     <ul>
-      <li>**Name**: Provide a suitable name for the campaign</li>
+      <li>**Campaign**: Provide a suitable name for the campaign.</li>
       <li>
         **Campaign Type**: Select the type of campaign. This can be:
         <ul>
@@ -27,23 +27,56 @@ To get started with **Campaigns** on Fyno Connect:
           <li>Transactional</li>
         </ul>
       </li>
-      <li>**Select Cohort**: Select a cohort you would like to use. In case you selected "Save and Create Campaign" while saving a cohort, this would be pre-filled.</li>
-      <li>**Select Workspace**: Select a workspace where you want to execute this campaign.</li>
+      <li>**Cohort**: Select the cohort you want to send to. If you selected **Save and Create Campaign** while saving a cohort, this is already filled in.</li>
+      <li>**Workspace**: Select the workspace where you want to execute this campaign.</li>
     </ul>
+    Click **Create**.
   </Step>
-  <Step>
-    Once this information is filled click on "Next". At this step, you will need to configure the **Notification Event** details by entering the following:
-    <ul>
-      <li>**Notification Event Name**: Select the name of a pre-created notification event from Fyno Cloud.</li>
-      <li>**Type**: Select [One Time](#one-time-campaigns) or [Recurring](#recurring-campaigns)</li>
-      <li>**To**: Select the channel, based on the configured details in the **Notification Event** and select a corresponding header from the cohort created for the same. For example, if the selected channel is Email, then the corresponding header from the data that contains the email IDs to execute these emails will need to be selected.</li>
-      <li>**Data**: Placeholders can be specified using this section, to correspond and pick up data from the headers of the cohort created. For example, if the email contains a placeholder called "Shoe Brand" then the corresponding column header containing that information needs to be selected.</li>
-    </ul>
-  </Step>
-  <Step>Once this information is filled in, click on "Next Step". Here, you will be able to test the campaign before executing it, just to ensure that the notification event is correctly configured and the data points are correctly reflecting.</Step>
-  <Step>To test, enter a test number under the **To** field and click on "Trigger Campaign".</Step>
+  <Step>The campaign page opens with a **Unsaved** label next to the name, and the selected workspace shown below it. Select a pre-created notification event from the **Notification Event** dropdown. The live version of the event appears next to the dropdown, and the open icon takes you to the event in Fyno Cloud.</Step>
+  <Step>Fill in the **Configuration** section, described below.</Step>
+  <Step>Click **Go To Testing**, send a test, and click **Test And Save**.</Step>
 </Steps>
-Only when the notification event is successfully called, will the campaign get created and triggered!
+
+![](/images/connect_campaign_create_modal.png)
+
+The campaign is created and triggered only after the notification event is called successfully.
+
+## Configuration
+
+![](/images/connect_campaign_configuration.png)
+
+### Type
+
+Select [One Time](#one-time-campaigns) or [Recurring](#recurring-campaigns).
+
+### TO
+
+Map each channel to the column in your cohort that holds that address. For example, if the notification event sends an email, pick the column that holds the email IDs. The channels you see here depend on the channels configured in the selected notification event.
+
+### DATA
+
+Map each placeholder in your template to the column in your cohort that holds its value. For example, if the template has a placeholder called `name`, select the column that holds the names. Click **Add Key** to add another placeholder.
+
+![](/images/connect_campaign_configuration_filled.png)
+
+The **Preview** panel on the right shows the template with your mapped columns in place, so you can check that every placeholder picks up the right column before you test.
+
+![](/images/connect_campaign_preview.png)
+
+### Include duplicate records in campaign
+
+Duplicate records in the cohort are excluded by default, so a user who appears twice gets the notification once. Select this checkbox if you want to send to every record, duplicates included.
+
+### Custom Parameters
+
+Expand **Custom Parameters (optional)** to send extra values along with the notification. These values come back to you in the delivery report.
+
+| Placeholders | Mandatory |
+| ------------ | --------- |
+| custom_id    | Yes       |
+| custom1      | No        |
+| custom2      | No        |
+| custom3      | No        |
 
 ## Campaign Types
 
@@ -69,7 +102,43 @@ Frequency - Select the periodicity of the campaign. You can choose from one of t
 When the campaign ends - Select after how many times you want the campaign to end.
 ![](/images/connect_campaign_creation.png)
 
+## Test and fire the campaign
+
+Click **Go To Testing** at the bottom of the configuration to open the **Testing** section. The fields here come from what you mapped in the configuration.
+
+<Steps>
+  <Step>Under **TO**, enter a real address for each channel, such as your own number under **SMS** or your own address under **Email**.</Step>
+  <Step>Under **DATA**, enter a sample value for each placeholder. The **Preview** panel updates as you type, so you can see exactly how the message reads.</Step>
+  <Step>Click **Test And Save**. Fyno sends the test to the addresses you entered and shows **Test successful for this configuration!** if the notification event was called successfully.</Step>
+  <Step>Confirm the campaign in the **Confirm campaign fire** pop-up to send it to everyone in the cohort.</Step>
+</Steps>
+
+Click **Back To Configuration** at any point to change the mapping before you test again.
+
+![](/images/connect_campaign_testing.png)
+
+![](/images/connect_campaign_testing_filled.png)
+
+![](/images/connect_campaign_test_success.png)
+
+![](/images/connect_campaign_confirm_fire.png)
+
+## Campaign run logs
+
+Switch to the **Logs** tab on the right of the campaign page to see every run of the campaign, with the time it was processed and finished, the total number of records, and how many of them succeeded. Click the open icon on a run to see its notification logs.
+
+![](/images/connect_campaign_logs.png)
+
 <Info title="Your logs are safe with us!">For every campaign triggered by you via Fyno Connect, the logs will be visible on **Notification Event logs** as well as the **Logs** page. Head on over to the **Logs** section and find insights about your campaign.</Info>
+
+## Duplicate or delete a campaign
+
+On the **Campaigns** page, click the ellipsis at the end of a campaign to:
+
+- **Duplicate**: Create a copy of the campaign with the same configuration, which you can then edit and fire separately.
+- **Delete**: Remove the campaign.
+
+![](/images/connect_campaign_duplicate_delete.png)
 
 ## How to use Content APIs in Campaigns
 
@@ -83,24 +152,23 @@ Fyno allows you to forward delivery reports to your own system or integrate them
 
 By sending delivery reports to your preferred systems or analytics platforms, you can gain valuable insights into the effectiveness of your notification strategies and make data-driven decisions to optimize your communication processes. Fyno's flexibility ensures a smooth integration with your chosen tools, empowering you to monitor and improve your notification performance.
 
-- To configure callbacks to receive delivery reports, select the checkbox - 'Receive delivery report from Fyno to my allow-listed endpoint(s)'.
+- To configure callbacks to receive delivery reports, select the checkbox **Send data to my allowlisted endpoint(s)**.
 - This option allows you to receive Delivery reports of each notification triggered in any URL you have allowlisted in Fyno.
-- You can select up to 3 delivery report endpoints from verified Allowlist URLs. If you didn't allowlist any URL, you can refer this [doc](./configuring-allowlist-url-sqs-to-receive-delivery-report) and add a new URL
+- Select up to 3 endpoints from the **Allowlisted Endpoints** dropdown. If you have not allowlisted any URL yet, refer to this [doc](./configuring-allowlist-url-sqs-to-receive-delivery-report) and add a new URL.
 
   ![](/images/connect_delivery_report.png)
 
-Once the Delivery Endpoint URL(s) is selected, you can select up to 3 additional placeholders to be sent back in the callback URL.
-
-| Placeholders | Mandatory |
-| ------------ | --------- |
-| custom_id    | Yes       |
-| custom1      | No        |
-| custom2      | No        |
-| custom3      | No        |
+Once the endpoints are selected, you can send up to 3 additional placeholders back in the callback URL using [Custom Parameters](#custom-parameters).
 
 ## How to throttle a campaign?
 
 Throttle is optional but we recommend using it. Throttling allows you to control the rate at which notifications (Emails/SMS/WhatsApp/Push/WebPush) are sent to users.
+
+In the **Throttle (Optional)** section, click **Add**, then select **By Time** or **By Batch**. Click **Cancel** to remove the throttle.
+
+![](/images/connect_campaign_throttle.png)
+
+![](/images/connect_campaign_throttle_options.png)
 
 ### By Time
 
@@ -110,6 +178,6 @@ You can specify a duration for which the campaign should run. You can have a min
 
 ### By Batch
 
-In this option, you can throttle the number of records the campaign should send for a specific duration. You can have a batch size between 1000 and 5000 and time limit between 1 and 60 minutes. For example you want to send a execute a batch of 1000 records in the csv file every minute, then you can enter 1000 records and 1 minute
+In this option, you can throttle the number of records the campaign should send for a specific duration. You can have a batch size between 1,000 and 50,000 records, and a time limit between 1 and 60 minutes. For example, if you want to send a batch of 1,000 records every minute, enter 1000 records and 1 minute.
 
 ![](/images/connect_throttle_batch.png)
