@@ -1,7 +1,10 @@
 ---
-title: Real-time Dashboard
-subtitle: "Track notification traffic as it happens with Fyno's Real-time Dashboard: live status counts, trend cards, delivery rates, active alarms, and channel trends over a rolling window."
-slug: real-time-dashboard
+title: 'Real-time Dashboard'
+slug: 'real-time-dashboard'
+description: "Track notification traffic as it happens with Fyno's Real-time Dashboard: live status counts, trend cards, delivery rates, active alarms, and channel trends over a rolling window."
+og:title: "Track live notification traffic with Fyno's Real-time Dashboard | Fyno Documentation"
+og:description: 'A quick introduction to what the Real-time Dashboard is about and how to use it.'
+image: https://images.fyno.io/brand/fyno-doc-preview.png
 ---
 
 The Real-time Dashboard shows notification traffic as it happens, over a short rolling window, and refreshes itself automatically every 10 seconds. Where the Analytics Dashboard is built for reporting and trend analysis over days or weeks, the Real-time Dashboard is built for the minutes during and after a send.
@@ -12,7 +15,7 @@ The Real-time Dashboard is currently in Beta. Metrics and controls may change be
 
 Navigate to: **Dashboard > Real-time**. Real-time sits under Dashboard in the left menu and is not visible until you click Dashboard.
 
-![](/images/realtimedashboard-overview.png)
+![](/images/realtimedashboard-overview-v2.png)
 
 The page heading shows the current time next to the dashboard name. The **Live** badge means the dashboard shows live data. There is no Real-time Dashboard for test data.
 
@@ -58,7 +61,7 @@ The top of the page also has a **Status Guide** link, which opens the full statu
 
 The table at the top of the page counts every notification in the selected window at each stage of its lifecycle.
 
-![](/images/realtimedashboard-status-summary.png)
+![](/images/realtimedashboard-status-summary-v2.png)
 
 Every status except Requested shows a percentage below its count. The label under each column heading tells you what the percentage is measured against:
 
@@ -83,7 +86,15 @@ Every status except Requested shows a percentage below its count. The label unde
 
 The table opens with a single **All** row that totals every channel. Click the arrow beside All to expand it and see the same counts broken down by channel, one row per channel, such as SMS, Email, and WhatsApp. Click the arrow again to collapse the breakdown.
 
-![](/images/realtimedashboard-status-by-channel.png)
+![](/images/realtimedashboard-status-by-channel-v2.png)
+
+To fit the table on screen, click the <code>&gt;&lt;</code> icon at the right end of the column headings. This collapses the Failed, Error, Dropped, and Timeout columns into a single **Not Sent** column.
+
+![](/images/realtimedashboard-collapse-columns-icon.png)
+
+Not Sent shows the combined count of those four statuses, with its share of requested in brackets below. Click the icon again to see each status separately.
+
+![](/images/realtimedashboard-status-not-sent-collapsed.png)
 
 Counts are derived the same way as elsewhere in Fyno:
 
@@ -198,7 +209,7 @@ The table also has the following controls:
   <tbody>
     <tr>
       <td>Expand / Collapse</td>
-      <td>The <code>&gt;&lt;</code> icon at the right end of the column headings. Collapses the Error, Failed, Dropped, and Timeout columns into a single Not Sent column, so the table fits on screen. Click it again to see each status separately.</td>
+      <td>The <code>&gt;&lt;</code> icon at the right end of the column headings. Collapses the Failed, Error, Dropped, and Timeout columns into a single Not Sent column, so the table fits on screen. Click it again to see each status separately.</td>
     </tr>
     <tr>
       <td>Full Screen</td>
