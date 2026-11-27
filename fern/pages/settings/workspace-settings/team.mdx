@@ -654,12 +654,6 @@ export const Badge = ({ type, text }) => {
   </table>
 </div>
 
-**Add-On Policies key**
-
-- **Default**: the role already has this, nothing to add.
-- **Can enable**: not included in the role, add it when the user needs it.
-- **Not applicable**: cannot be assigned to this role.
-
 ### Additional Notes
 
 - Owner, Super Admin, and Workspace Admin have broad access across most features and can perform high-level administrative actions.
@@ -668,16 +662,33 @@ export const Badge = ({ type, text }) => {
 - Only the Owner can add Super Admins, and any Super Admin added by the Owner will automatically be added to all workspaces under that Owner.
 - Certain permissions may vary by feature (for example, test-only access, view-only access, or restricted actions like Go Live / Fire), as detailed in the table above.
 
-### Restricting Access by Analytics Labels (Auditor only)
+### Restricting Access by Analytics Labels (Auditor and Campaign Manager only)
 
-When you assign the **Auditor** role, you can further narrow what data that user is able to see by enabling **Restrict to specific Analytics Labels**.
+When you assign the **Auditor** or **Campaign Manager** role, you can further narrow what data that user is able to see by enabling **Restrict to specific Analytics Labels**.
 
-- The option appears only when the Auditor role is selected. It is not available for any other role.
-- When enabled, select the Analytics Labels the Auditor is allowed to access.
+- The option appears only when the Auditor or Campaign Manager role is selected. It is not available for any other role.
+- When enabled, use **Select Analytics Labels** to choose the labels the team member is allowed to access.
 - The restriction applies across all logs and reports available to that team member, based on their role.
-- The Auditor will only see data associated with the selected labels; data under all other labels remains hidden.
+- The team member will only see data associated with the selected labels; data under all other labels remains hidden.
 
-> Note: This restriction narrows the data visible within the access the Auditor role already grants. It does not add any new access on its own.
+> Note: This restriction narrows the data visible within the access their role already grants. It does not add any new access on its own.
+
+![](/images/restrict-access-auditor.png)
+
+### Restricting Access by Groups (Campaign Manager only)
+
+When you assign the **Campaign Manager** role, you can limit which notification events and campaigns they can work with by enabling **Restrict access to specific Notification Event / Campaign Groups**.
+
+- The option appears only when the Campaign Manager role is selected. It is not available for any other role.
+- When enabled, use **Select Groups** to choose the Groups the team member is allowed to access.
+- The team member can only use notification events from the selected Groups.
+- They can only view, create, and fire campaigns from the selected Groups.
+- Notification events and campaigns under all other Groups remain hidden.
+- Templates and components are not affected. The team member can still access them as their role allows.
+
+> Note: This restriction narrows what the team member can access within their role. It does not add any new access on its own.
+
+![](/images/restrict-access-campaign-manager.png)
 
 ### Add-On Policies
 
@@ -750,8 +761,9 @@ To create a new team member, follow the below steps:
 4. Enter the user’s Email ID.
 5. Select a Role based on the level of access required.
 6. Optionally attach an Add-On Policy to the user. For the Auditor role, every policy except Approver can be attached.
-7. If you selected the **Auditor** role, optionally enable **Restrict to specific Analytics Labels** and select the labels the user is allowed to access.
-8. Click `Send Invite`.
+7. If you selected the **Auditor** or **Campaign Manager** role, optionally enable **Restrict to specific Analytics Labels** and select the labels the user is allowed to access from **Select Analytics Labels**.
+8. If you selected the **Campaign Manager** role, you can also enable **Restrict access to specific Notification Event / Campaign Groups** and select the Groups the user is allowed to access from **Select Groups**.
+9. Click `Send Invite`.
 
 The newly invited colleague will receive an email with details to sign up on the Fyno application.
 
@@ -777,7 +789,7 @@ You can update a user’s role and policies after they have been added.
 2. Locate the user in the list.
 3. Click the **three-dot** menu next to the user.
 4. Select **Modify**.
-5. Update the role and/or add-on policies. For users with the **Auditor** role, you can also update the Analytics Label restriction.
+5. Update the role and/or add-on policies. For users with the **Auditor** or **Campaign Manager** role, you can also update the Analytics Label restriction. For users with the **Campaign Manager** role, you can also update the Group restriction.
 6. Save the changes.
 
 All role and permission updates are managed through the three-dot menu to ensure controlled access and avoid unintended changes.
@@ -825,3 +837,4 @@ You can read more about it [here](https://www.fyno.io/docs/approval-request)
 - Roles define baseline access, while add-on permissions provide additional capabilities.
 - Certain actions, such as inviting users or modifying roles, require explicit permissions.
 - Features may be disabled or hidden if access is not granted.
+- Access can be narrowed further with restrictions: Analytics Labels for the Auditor and Campaign Manager roles, and Notification Event / Campaign Groups for the Campaign Manager role.
