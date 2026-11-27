@@ -18,7 +18,7 @@ You can open Notification Event Analytics in 2 ways:
 - On the **Notification Events** page, click the analytics icon (bar chart) on the notification event card.
 - Open a notification event and click the analytics icon (bar chart) at the top right.
 
-![Notification Event Analytics, top of the page](/images/analytics-page-1.png)
+![Notification Event Analytics, top of the page](/images/notification-event-analytics-pdfs-generated.png)
 
 ![Notification Event Analytics, bottom of the page](/images/analytics-page-2.png)
 
@@ -37,11 +37,15 @@ The overview cards give you a quick summary of how the notification event is doi
 
 | Card | What it shows |
 | --- | --- |
-| **Events Fired** | The number of times the notification event was fired, split into **Delivered**, **Undelivered** and **Dropped**. |
+| **Events Fired** | The number of times the notification event was fired, split into **Delivered**, **Undelivered** and **Dropped**. If the notification event generates PDFs, a **PDFs generated** count appears below the split. |
 | **Notifications Requested** | The number of notification requests sent to Fyno for this notification event. |
 | **Notifications Sent** | The number of notifications Fyno sent to your service providers for this notification event. Click **See how?** to learn how it is counted. |
 | **Notifications Delivered** | The number of notifications delivered, with the delivery rate in brackets. Click **view split** to see the breakdown. |
 | **Converted** | The number of conversions for this notification event, if Track Conversion is turned on. Read more in [Track Conversion](./notification-event-creation#track-conversion-optional). |
+
+<Info title="PDFs generated">The **PDFs generated** count is the number of PDFs Fyno created for this notification event in the selected time period, for example a reminder letter attached to an email. It appears only when the notification event generates PDFs. The count is of PDFs, not of events, so one event can add more than one to it.</Info>
+
+The count here covers only this notification event. To compare PDF generation across all your notification events, see which events generated the most PDFs, and see when generation peaked, go to [PDF Generation](./central-dashboard#pdf-generation) on the Central Dashboard.
 
 <Info title="More notifications than events fired?">That's completely normal! It depends on how many channels and providers are set up in the route or notification event. If you have more than 1 channel or provider, each event can send several notifications, so the count of notifications can be much higher than the number of times the notification event was fired.</Info>
 
